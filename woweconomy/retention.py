@@ -175,6 +175,21 @@ POLICY: Tuple[SourcePolicy, ...] = (
                  rationale="realm identity and connected-realm groups"),
     SourcePolicy("import_log", "intel.sqlite", DIMENSION, "",
                  rationale="import bookkeeping"),
+    # Coordination between pipeline workers.  A lease is not history: the
+    # row exists only while a worker holds it, and an expired row is a
+    # leftover, so it is swept rather than kept.  The run log is the
+    # opposite -- it is the only record of what actually happened, and it
+    # is small -- so it is kept for a bounded window and never silently
+    # trimmed to nothing.  The stat table is "what is true now", one row
+    # per key.
+    SourcePolicy("pipeline_lease", "intel.sqlite", RAW, "expires_at",
+                 expires_when="the row's expires_at is in the past",
+                 rationale="a lapsed lease is a leftover, not evidence"),
+    SourcePolicy("pipeline_run", "intel.sqlite", RAW, "started_at",
+                 expires_when="the run started more than 90 days ago",
+                 rationale="durable record of what the pipeline actually did"),
+    SourcePolicy("pipeline_stat", "intel.sqlite", CURRENT, "",
+                 rationale="the latest value of each shared statistic"),
     SourcePolicy("realm_model_run", "intel.sqlite", DIMENSION, "created_at",
                  rationale="model provenance; small and auditable"),
     SourcePolicy("mob_observation", "intel.sqlite", DIMENSION, "",
