@@ -1,0 +1,893 @@
+# FarmAnalysis — zone farm finder
+
+Scrape Wowhead drop tables per zone, join with TSM prices (`avgSalePrice`),
+rank the best farms / transmogs / jackpots, and rotate camps to dodge
+hyperspawn loot throttles.
+
+## Setup
+
+```powershell
+cd C:\FarmAnalysis
+pip install playwright requests
+python -m playwright install chromium
+```
+
+Blizzard API (optional — BoP/junk filter only). Put creds in `.env`
+at the repo root (auto-loaded, never committed/shared):
+
+```text
+BLIZZARD_CLIENT_ID=...
+BLIZZARD_CLIENT_SECRET=...
+```
+
+## 1. Scrape zones
+
+One or many `zone=<id>/<slug>` straight on the command line.
+Default: lootable-only filter, every listing page, headful browser,
+per-NPC disk cache (`woweconomy/wowhead_zones/cache/`).
+
+```powershell
+# single zone
+python -m woweconomy.services.wowhead "zone=331/ashenvale"
+
+# multiple zones, one run
+python -m woweconomy.services.wowhead "zone=719/blackfathom-deeps" "zone=16/azshara"
+
+# flags (any position): all | <page-number> | all-npcs | headless | no-cache
+python -m woweconomy.services.wowhead "zone=331/ashenvale" all no-cache
+```
+
+Output: `woweconomy/wowhead_zones/zone_<id>.json`
+(one entry per NPC: `npc_id`, `npc_name`, items with
+`item_id`, `item_name`, `item_type`, `drop_rate` 0-1, `qty`, `source_url`).
+Checkpoints every 25 NPCs; killing the window loses nothing already cached —
+rerun resumes from cache.
+
+## 2. Repair a zone file
+
+Names backfill (if missing), one row per (npc, item), drops junk
+(rate 0 / no `avgSalePrice`), seeds the cache. Run after the scrape.
+
+```powershell
+python scripts/repair_zone.py woweconomy/wowhead_zones/zone_331.json
+python scripts/repair_zone.py woweconomy/wowhead_zones/zone_719.json --db tsm_markets.db
+```
+
+## 3. Rank farms
+
+```powershell
+# one zone
+python -m woweconomy.analytics.farm_ranking woweconomy/wowhead_zones/zone_331.json
+
+# all zones merged
+python -m woweconomy.analytics.farm_ranking woweconomy/wowhead_zones/zone_331.json woweconomy/wowhead_zones/zone_719.json woweconomy/wowhead_zones/zone_16.json
+
+# options: --db tsm_markets.db (default when it exists) | --price-source region|legacy|csv
+#          --market-csv (default csv/items.csv, used by --price-source csv)
+#          --blizz-db (default tsm_markets.db) | --top 10 --stops 3 --kpm 20
+#          --sort ev|jackpot (rank farms by steady EV or best single hit)
+python -m woweconomy.analytics.farm_ranking woweconomy/wowhead_zones/zone_331.json --db tsm_markets.db --top 15 --stops 4 --kpm 25 --sort jackpot
+```
+
+Prints: **top farms** (`EV/kill = Σ rate × qty × avgSalePrice × 0.95`,
+`real` = EV weighted by `P(sale in --horizon days, default 30)`), **top mogs** (highest
+`avgSalePrice` that actually sells), **top jackpots** (rare <10%, pricey,
+selling), and a **camp rotation**.
+
+## 4. Find an item's drops
+
+```powershell
+python scripts/find_drop.py "Ruffled Chaplet"
+python scripts/find_drop.py 14047
+python scripts/find_drop.py "robe" --limit 30 --db tsm_markets.db
+```
+
+## 5. Blizzard enrichment (BoP / junk filter)
+
+Fetches `quality` + `binding` for every distinct drop item
+(`BIND_ON_PICKUP` and `POOR` are excluded from all rankings).
+Needs the env creds above. Background-friendly (~5 items/s, resumable).
+
+```powershell
+python scripts/enrich_items.py
+python scripts/enrich_items.py woweconomy/wowhead_zones/zone_16.json --db tsm_markets.db
+```
+
+The ranking picks the filter up automatically via `--blizz-db` and reports
+`Blizzard filter: N BoP/junk rows excluded`.
+
+## Como correr tudo (um comando)
+
+`scripts/run_all.py` encadeia as etapas pela ordem certa e no fim imprime um
+resumo com exit codes. Corre **offline por defeito** (o scrape fica de fora).
+
+```powershell
+python scripts/run_all.py --list              # etapas disponiveis
+python scripts/run_all.py --dry-run           # mostra a sequencia, nao corre nada
+python scripts/run_all.py                     # sync -> repair -> enrich -> rank -> score -> inventory -> tests
+python scripts/run_all.py --scrape             # inclui o scrape Wowhead (browser, lento)
+python scripts/run_all.py --only rank,inventory # so algumas etapas
+python scripts/run_all.py --skip enrich,score   # tudo menos estas
+```
+
+O que cada etapa produz:
+
+| etapa | comando | saida |
+|---|---|---|
+| `sync` | `python scripts/sync_market.py --no-csv` (AppData -> `tsm_market`/`tsm_region`) | precos frescos para as etapas seguintes (`--fetch-csv` tambem baixa os CSVs publicos) |
+| `scrape` | `python -m woweconomy.services.wowhead "zone=331/ashenvale" "zone=719/blackfathom-deeps" "zone=16/azshara" all` | `woweconomy/wowhead_zones/zone_<id>.json` |
+| `repair` | `python scripts/repair_zone.py <zone.json> tsm_markets.db` (por zona) | zone JSON limpo + cache |
+| `enrich` | `python scripts/enrich_items.py --db tsm_markets.db` | `blizzard_items` (quality/binding/sellPrice) |
+| `rank` | `python -m woweconomy.analytics.farm_ranking <zones...> --db tsm_markets.db --blizz-db tsm_markets.db --top 20 --out FarmReport.txt` | `FarmReport.txt` |
+| `score` | `python run.py` | `MarketReport.txt` (+ `MarketReport.warnings.log`) |
+| `inventory` | `python scripts/enrich_inventory.py inventory.csv --db tsm_markets.db` + `python scripts/calc_price.py --inventory inventory.csv --db tsm_markets.db --rebuild --out inventory_priced.csv --audit inventory_audit.csv` | `inventory_priced.csv` + `inventory_audit.csv` |
+| `journal` | `python scripts/journal.py import` + `report --brief` | vendas reais (Journalator) + calibracao da heuristica |
+| `tests` | `python -m pytest tests -q` | 50 testes |
+
+### O que os colecionadores ainda não têm
+
+`woweconomy.analytics.collector_demand` cruza o teu inventário (ou os drops de uma
+zona) com as wishlists do Data for Azeroth: `missing_pct` é a fatia da amostra de
+colecionadores que **não** tem o item, `owned_pct` é a concorrência (quantos perfis
+do DfA o têm) e `value` é `missing_pct x (100 - owned_pct) / 100` — procurado **e** raro.
+
+```powershell
+python -m woweconomy.analytics.collector_demand inventory --db tsm_markets.db
+python -m woweconomy.analytics.collector_demand inventory --db tsm_markets.db --csv gaps.csv
+python -m woweconomy.analytics.collector_demand zone woweconomy/wowhead_zones/zone_16.json --db tsm_markets.db
+python -m woweconomy.analytics.collector_demand zone woweconomy/wowhead_zones/zone_16.json --out Azshara_gaps.txt
+python -m woweconomy.analytics.collector_demand item "Pattern: Chimeric Gloves" --db tsm_markets.db
+python -m woweconomy.analytics.collector_demand item 271435 14165 --db tsm_markets.db
+```
+
+O modo `item` responde a uma pergunta só: "e este item?" — aceita nome ou ID,
+mostra se o tens na bolsa, o preço/liquidez do TSM, todas as entradas nas três
+wishlists (com o aviso de que `id_cat` de uma aparência é um appearanceID, não o
+itemID) e que NPCs das zonas carregadas o largam, com o EV por kill e a fatia que
+é procura de coleção. `--no-zones` salta a parte dos drops; `--zones a.json,b.json`
+escolhe os JSON a varrer; `--csv items.csv` grava uma linha por item consultado
+(as mesmas colunas do relatório, mais `found` e `ev_kill`). Se o nome não existir, sugere os parecidos em vez de falhar em
+silêncio.
+
+O relatório de zona abre com a secção **`BoE QUE A AMOSTRA AINDA NAO TEM`**: uma
+linha por item BoE (`sem/amostra`, falta%, drop%, preço, EV/kill, sr, spd, NPC),
+ordenada por quantas contas ainda não o têm. É a medida por item que o `--faltam`
+do `boe_targets` dá para o universo inteiro, aqui limitada aos drops da zona.
+
+Segue-se o **`DROPS POR MOB`**: cada mob traz a sua linha agregada (`EV/kill`,
+`EV coleccao` — a fatia de quem ainda não tem o que ele larga —, **`montra`** —
+a soma do preço TSM de cada drop vendável do mob, uma vez cada: o que terias na
+AH se listasses tudo o que ele larga; é um portfólio, somado sobre *todos* os
+drops (mesmo os que `--mob-drops` esconde), não EV por kill nem promessa de
+venda —, `falta%` — média das faltas dos drops do mob pesada pelo drop% —,
+`falta/kill%` — probabilidade de
+uma kill largar pelo menos um item que a amostra ainda não tem —, `pago/tot`) e,
+por baixo, **os drops do mob por ordem de quem os ainda não tem**: o primeiro de
+cada mob é a **montra** (o drop que mais contas da amostra não têm), com
+`sem/amostra`, `falta%`, `drop%`, preço e `EV/kill`. A lista de mobs segue a
+mesma ordem (montra primeiro), portanto o topo do relatório é o mob cujo melhor
+drop mais gente ainda precisa. O EV de um mob usa a taxa *dele*: um item largado
+por dois mobs entra nos dois, com o drop% de cada um, e não com o melhor dos
+dois. O mob que não tem preço não desaparece — fica com `EV 0g` e a contagem
+visível. `--mob-drops N` decide quantos drops de cada mob aparecem (3 por
+omissão, `0` = todos e `--top N` quantos mobs).
+
+### Ids para grupos do TSM
+
+O modo `ids` faz a mesma análise da zona e imprime só ids: **um grupo do TSM por
+linha**, no formato `i:<id>,i:<id>,...` do TSM 4, pronto a colar no Import do
+grupo. As bandas
+são cortes de operação, não os `COLECTOR`/`NICHO` das tabelas, e o número de
+separações é o número de cortes em `--cuts`: `85,65` (o default) faz três grupos
+(`85+`, `65-85`, `<65`) e `85,75,65,55` faz cinco (`85+`, `75-85`, `65-75`,
+`55-65`, `<55`). Um corte é um limite inferior **inclusivo** (um item com 85,0%
+entra em `85+`), a ordem no `--cuts` não interessa e cortes repetidos são um só.
+`--band` escolhe as linhas pelo rótulo (`65-75`), pela posição (`2`), pelo nome
+antigo (`alta` = primeira, `nicho` = segunda, `comum` = a última) ou com
+`todas`; o default é `alta,nicho`. Ficam de fora, como no EV, as linhas
+era-Classic, os BoP e os itens sem linha nas wishlists; cada id aparece uma vez,
+ordenado pela falta. `--out-prefix mogs` grava um ficheiro por banda
+(`mogs_85plus.txt`, `mogs_75-85.txt`, …) com exactamente a linha a colar.
+
+```powershell
+REM 5 grupos
+python -m woweconomy.analytics.collector_demand ids woweconomy/wowhead_zones/zone_331.json woweconomy/wowhead_zones/zone_16.json --db tsm_markets.db --cuts 85,75,65,55 --band todas --out-prefix mogs
+```
+
+Para os grupos de comportamento do `mog_groups` há uma string única com tudo —
+nomes dos grupos, itens e operações de auctioning já associadas:
+
+```powershell
+python scripts/mog_groups.py                    REM grupos + .txt/.csv em reports/mog_groups
+python scripts/tsm_groups_export.py --write   # reports/mog_groups/mogs_groups.tsm (referência regional)
+python scripts/tsm_groups_export.py --write --realm Dragonmaw   # mogs_groups_dragonmaw.tsm (perfil do reino)
+python scripts/mog_realm_profiles.py           # mede a concorrência e o nível local de cada reino
+```
+
+É uma linha `AceSerializer` (`^1^T...`) que se cola em `Groups -> Import`; cria
+`Liquid`, `Collector`, `Slow`, `Very_Slow`, `Unproven`, `Unknown`, `Conflict` e
+as operações `Mogs ...` com as strings da secção D de `reports/mog_groups.md`.
+As operações ancoram no **mercado regional** (`dbregionmarketavg` →
+`dbregionhistorical` → `dbhistorical`), nunca no `dbmarket`/`dbminbuyout` do reino
+— num reino sem concorrência o teu próprio anúncio *é* o mercado e o preço
+ficaria congelado no primeiro valor — nem no `dbregionsaleavg` (média de vendas,
+contaminada por snipes). O factor é **bandado** por `ifgt` (500 g / 5 000 g /
+50 000 g) e sobe com a banda; `unknown` não posta (`postCap 0`). O `--realm`
+aplica o perfil medido do reino (factor local medido, postura, duração e janela
+de retenção no `maxExpires`): o `mogs_groups.tsm` sem `--realm` é a referência
+regional, e cada reino com perfil tem o seu ficheiro.
+
+O `mog_groups` classifica **por aparência**: as variantes que partilham o look
+ficam no mesmo grupo mesmo que só uma tenha preço, e as variantes de sufixo
+aleatório (“... of the Fireflash”) seguem o id base (`i:9768`), que é o que o TSM
+usa. `--items all` (default) agrupa os 127 155 itens com aparência (os looks sem
+preço ficam `unknown`); `--items variants` limita aos 38 746 com preço no look.
+
+**Por id quando o id existe** (aparências): o `db2_item_appearance` liga o item
+às suas aparências e o `dfa.db :: missing` diz quantas contas da amostra ainda as
+não têm -- os dois lados falam appearanceID. O modo `zone`/`inventory` usa essa
+ponte primeiro e só cai no nome quando o item não tem aparência nenhuma
+(receitas, lixo, quest). No Ashenvale isto mudou **571 -> 881** itens com
+procura (gap >= 50%: 502 -> 655) e a fatia de EV atribuível a colecionadores
+**36% -> 41%**, com os mesmos 1.071 itens: os 310 que faltavam eram aparências
+que o nome não encontrava.
+
+O join **por nome** continua a ser o único possível para `mounts.id` (mountID) e
+`recipes.id` (recipeID) — e os ids de aparência partilham o intervalo numérico
+dos ids de item, portanto juntar drops por número *sem* a ponte "acerta" em ~80%
+por coincidência. `~` à frente do nome significa que o sufixo aleatório
+foi removido ("Pagan Britches of the Fireflash" -> "Pagan Britches": a mesma
+transmog).
+
+### Grupos de preço: descoberta, não listas
+
+Quando o objectivo deixa de ser "quanto vale esta peça" e passa a ser "qual
+estratégia transforma o inventário em ouro", o que serve é um **grupo**,
+não uma lista de peças. `scripts/pricing_groups.py` descobre os grupos a
+partir de medições (procura potencial da amostra Data for Azeroth, o
+comportamento do ask em 78 dias, a concorrência) e propõe os grupos e
+operações de TSM correspondentes:
+
+```powershell
+python scripts/pricing_groups.py                # bandas, grupos, evidência
+python scripts/pricing_groups.py --write        # relatório + CSV + proposta de TSM
+```
+
+A banda de preço e o comportamento são dimensões **independentes**: os
+coeficientes da banda saem da banda (nunca de um rótulo de grupo), e o ajuste
+do grupo só é aplicado quando há venda própria que o sustente — sem isso é
+1,00 e diz "heurístico". A análise também testa se os grupos se distinguem de
+facto (pela velocidade do mercado) e diz quais devem ser fundidos.
+
+Saídas em `reports/pricing_groups/` (a string de import proposta **nunca** foi
+importada) e o relatório em `reports/pricing_groups.md`.
+
+#### Preço de referência ponderado pela evidência
+
+O `first(dbmarket, dbregionmarketavg, dbregionhistorical)` original tem dois
+problemas opostos: o ask local de um item raro assenta numa única listagem, e
+a referência regional é a média de 92 reinos (com os seus anúncios mortos). O
+`woweconomy/analytics/reference_price.py` substitui-o por uma **mistura
+ponderada pela qualidade da evidência local** (profundidade, frescura,
+dispersão), com o peso limitado para que a referência regional nunca domine, e
+com a divergência local/regional a ser um diagnóstico e não uma regra de preço.
+
+```powershell
+python scripts/reference_backtest.py --write   # walk-forward + calibração
+python scripts/pricing_groups.py --write       # gera a candidata ponderada
+```
+
+A candidata fica em `reports/pricing_groups/pricing_groups_weighted_proposal.tsm`
+e o relatório em `pricing_groups_weighted_report.md`; a proposta original
+(`pricing_groups_proposal.tsm`) fica intacta. A expressão gerada é TSM válido
+(só `dbmarket`, `dbregionmarketavg` e `dbregionhistorical`, sem fonte
+customizada) e é verificada contra o modelo antes de ser escrita.
+
+A auditoria da candidata (`scripts/validate_weighted_pricing.py`) compara-a
+com a original **item a item** e ao nível da expressão (o que o TSM
+calcularia, com os valores crus), sem importar nada:
+
+```powershell
+python scripts/validate_weighted_pricing.py --write
+```
+
+Deixa `reports/pricing_groups/validation_report.md` (15 verificações, a
+comparação, o que falta para medir ouro, a reversão e a recomendação) e
+`weighted_vs_original.csv` (uma linha por item do inventário).
+
+#### Grupos de Token Rush por reino
+
+O `scripts/token_rush_profiles.py` junta as duas peças (os grupos de
+comportamento e o motor de preço) e escreve **um export TSM por reino**, para
+um **perfil TSM por reino**:
+
+```powershell
+python scripts/token_rush_profiles.py --write
+```
+
+Cada `token_rush_<reino>.tsm` tem **os mesmos grupos e os mesmos 127 155
+itens** do export mog, com o **preço do motor de evidência** (uma fórmula
+viva: `ifgt(dbmarket, banda, r × dbmarket, …)`, com `r` a razão medida do
+grupo) e a operação de rush (12 h, 7 dias de retenção, `priceReset = none`).
+
+O relatório `reports/token_rush_groups.md` diz qual perfil criar
+(`mogs-<reino>`), como importar (perfil limpo) e como reverter. **Nada é
+importado automaticamente.**
+
+#### Registo de eventos do addon `DFA_AuctionIntelligence`
+
+O banco do DFA tinha vendas **sem data** e custos **assumidos**. O addon
+`DFA_AuctionIntelligence` captura o que faltava: a data de cada evento, o preço
+pedido e o realizado, o depósito e a taxa efetivamente cobrados, e o `dbmarket`
+do TSM **no momento do evento**. O `scripts/dfa_ai.py` importa esse registo
+(idempotente, tabela `auction_events`) e mede o que passa a ser mensurável:
+
+```powershell
+python scripts/dfa_ai.py --status     # onde está o export
+python scripts/dfa_ai.py --import     # importa
+python scripts/dfa_ai.py --measure    # clearance datado, tempo até à venda,
+                                      # sell-through, custos reais
+python scripts/dfa_ai.py --plan       # o protocolo de teste
+```
+
+Em jogo: `/dfaai status`, `/dfaai sync`, `/dfaai export`. O `sync` importa o
+arquivo do Journalator, que é a fonte das datas.
+
+#### Motor de preço baseado em evidência
+
+O modelo de preços do projecto fixa um coeficiente por banda de preço sobre
+preços de anúncio. O `scripts/pricing_engine.py` faz o contrário: estima, item a
+item, o **valor realizável** a partir de uma média aritmética ponderada pela
+qualidade da evidência, e devolve três saídas separadas — o valor estimado
+(com intervalo, confiança e proveniência), a **liquidez** e o **preço de
+listagem recomendado**.
+
+```powershell
+python scripts/pricing_calibration.py --write   # mede o peso de cada fonte
+python scripts/pricing_engine.py --write --backtest
+```
+
+O princípio é explícito: **os anúncios mostram o que os vendedores querem
+receber; as transacções mostram o que alguém pagou**. Por isso as fontes de
+anúncio e as de venda não são misturadas — o valor de transacção vem primeiro e
+as referências de mercado são confrontadas com ele. Os pesos saem de
+uma **calibração** contra as vendas reais da conta, não de constantes: a
+calibração mede que o ask local é, em mediana, **3,9× o preço realizado**, e o
+que isso implica.
+
+Os relatórios ficam em `reports/pricing_engine/` (calibração, estimativas
+item a item, walk-forward). Nada é importado no TSM.
+
+#### Guard de preço mínimo do Token Rush
+
+O `minPrice` é uma **porta**, não um preço: lido o addon, com concorrência o TSM
+posta `parede − undercut`; abaixo do piso e com `priceReset = none` o item não é
+posted; com `cancelUndercut`/`cancelRepost` a false o TSM nunca cancela; e não
+há repost automático. `scripts/token_rush_guard.py` compara quatro
+alternativas de piso (original, ponderada, piso original em todo o lado, piso
+só na evidência fraca) e classifica o inventário em *liquidar* / *manter preço* /
+*não repôr automaticamente*:
+
+```powershell
+python scripts/token_rush_guard.py --write
+```
+
+Fica `reports/pricing_groups/token_rush_guard.md` (semântica, alternativas,
+efeito no capital, os 25 itens mais susceptíveis, configuração de teste e
+reversão, recomendação) e `guard_alternatives.csv`.
+
+### Token Rush: liquidar o inventário com prazo
+
+Quando o objectivo deixa de ser o valor do item e passa a ser **ter ouro em
+12 dias**, o modelo normal não serve: é preciso um perfil do item, uma postura
+do reino e um factor de prazo, e o resultado tem de caber num orçamento de
+horas. Isso é o `scripts/token_rush.py`, que funciona em modo *dry run* e não
+toca em nada dentro do jogo:
+
+```powershell
+python scripts/token_rush.py                                # fila e défice
+python scripts/token_rush.py --write --export --flipqueue   # relatório + ficheiros
+python scripts/token_rush.py --feedback                     # o que foi realmente vendido
+```
+
+| ficheiro | o que é |
+|---|---|
+| `reports/token_rush/token_rush.md` | o relatório da campanha (estado, postura por reino, fila, marcos dos dias 3/6/9/12, bloqueios) |
+| `reports/token_rush/rush_queue.csv` | a fila: uma linha por item×reino com perfil, evidência, preço, piso e avisos |
+| `reports/token_rush/flipqueue_<reino>.csv` | lista para o FlipQueue (`Sell Price` = preço recomendado, `Sell Realm` = reino alvo) |
+| `reports/mog_groups/liquidity_mogs_groups_<reino>.tsm` | import do TSM com **um grupo e uma operação por item** |
+| `reports/token_rush/feedback.md` | preço recomendado vs preço a que vendeu, e a taxa de venda observada |
+
+As regras: o **perfil do item** (A líquido, B procura provada, C especulativo,
+D estoque parado, U desconhecido) sai de evidência — as vendas e expirações da
+própria conta — e nunca do preço; a **postura do reino** é uma dimensão
+separada (nível local, concorrência, avisos de dados: reinos com métricas
+idênticas são o mesmo mercado); o **preço de rush** é a referência local com a
+banda de undercut (pela concorrência), o factor do item (pela evidência) e o
+factor de prazo (pelo calendário), entre um piso (valor de venda ao fornecedor
+e limite de perda) e um tecto (a referência). A fila ordena por contribuição
+para o défice por hora de gestão, e o valor esperado só aparece quando existe
+histórico de venda do próprio item — quando não existe, a linha diz
+*heurística* e a ordem usa um peso de evidência, não uma probabilidade.
+
+### Itens do cliente: binding (BoE) e a ponte aparência→item
+
+`scripts/import_db2.py` traz duas tabelas do cliente (CSV em `wago.tools`, uma
+vez, guardado em `db2/`) para dentro do `tsm_markets.db`:
+
+```powershell
+python scripts/import_db2.py                  # descarrega (se preciso) + importa + relatorios
+python scripts/import_db2.py --build 12.1.7.70424   # outro build do cliente
+python scripts/import_db2.py --stats          # so relata, zero rede
+```
+
+O build e' **fixo** (`12.1.7.70424`, `DEFAULT_BUILD`): sem `?build=` o wago.tools
+serve o que estiver atual, e duas corridas separadas por um patch misturariam
+duas tabelas de itens na mesma tabela derivada. O build usado fica em
+`db2_meta`; se for diferente do que esta' em `db2/`, os CSV sao re-descarregados.
+
+* `db2_items` — id, nome, **binding** (`2` = Bind on Equip, o único vendável),
+  qualidade, expansão, **era**, ilvl, nível requerido.
+* `db2_item_appearance` — `ItemID → appearanceId`, onde o `appearanceId` é o
+  `ItemAppearance.ID`, o mesmo `visualid` que o Data for Azeroth usa no catálogo
+  de aparências. É a ponte que o cruzamento por nome não tinha (18% por nome
+  contra 99,8% por id).
+
+**Era**: `era != 0` marca linhas de era-Classic (WoW clássico/MoP) que existem no
+mesmo espaço de ids. Foi assim que se resolveu a contradição da *Slippers of the
+Hissing Cult* (id 271435): o cliente diz `Bonding=1` (BoP) e o TSM tem 46.938g,
+porque a linha é de era-Classic (RequiredLevel 90, ItemLevel 219) e não tem
+gémeo retail. O relatório `local_check` dá esta divisão para o mercado, a bolsa e
+os drops das zonas, para deixar de somar dois jogos diferentes.
+
+### Era e binding como filtro do EV (por id, nao por nome)
+
+`woweconomy/services/db2_items.py` le' `db2_items`, sobrepoe o `blizzard_items`
+onde o cliente nao tem linha (e para o `sell_price`, que o ItemSparse nao traz) e
+devolve o mesmo tipo que o ranking ja' usava -- agora com `era`. O filtro deixa
+de depender de nomes e dos ~1.877 ids que a API tinha enriquecido.
+
+Cada item e' classificado **pelo id**, por esta ordem: `era` -> `bop` -> `junk`.
+(`era` primeiro de proposito: um BoE de era-Classic continua a nao ser ouro de
+retail, e chama-lo "BoP" esconderia a razao.)
+
+* `farm_ranking` -- o cabecalho passa a dizer
+  `Item filter: N drop rows out of the EV (era-Classic X, BoP Y, grey Z)`;
+  `--no-era-filter` desliga so' a era. `db2_items` tambem e' o que da' o
+  `TOP BOE`, antes limitado aos ids enriquecidos.
+* `collector_demand` -- o item fica no relatorio marcado `[ERA]`/`[BOP]`
+  mas com `EV = 0` (e fora do `valor de montra`); ha' uma seccao `FORA DO EV` no
+  fim e colunas `era`, `binding`, `excluded` no CSV. `--facts-db` escolhe o
+  sqlite (vazio desliga o filtro) e `--no-era-filter` mantem a era. Sem
+  `db2_items` o relatorio avisa que binding/era nao foram verificados, em vez de
+  fingir que verificou. A qualidade **POOR nao e' filtrada aqui** (ao contrario
+  do `farm_ranking`): um item cinzento tambem tem aparencia e e' isso que este
+  relatorio vende.
+
+Medido nas 3 zonas ja' scrape: **0** linhas de era-Classic e **0** BoP (as 1.653
+aparicoes de drop ja' estavam todas enriquecidas pela API), logo o EV delas nao
+muda. Na bolsa (210 itens) saem do EV as 2 linhas era-Classic (e 0 BoP, que sao
+as mesmas). O ganho e' para as zonas novas e para a bolsa, nao para o que ja'
+estava medido.
+
+### Saber se um item e' BoE ou BoP
+
+```powershell
+python scripts/item_binding.py                    # auditoria + CSV em reports/
+python scripts/item_binding.py 229155             # um item, por id
+python scripts/item_binding.py "Worn Shortsword"  # um item, por nome
+```
+
+A auditoria confronta as duas fontes de binding e exporta o que nao cabe numa
+tabela unica:
+
+| ficheiro | o que tem |
+|---|---|
+| `reports/boe_retail.csv` | os **16.286** BoE retail (sem as 160 linhas era-Classic) |
+| `reports/bop_priced.csv` | os **331** que o cliente diz BoP mas tem preco/volume no TSM |
+| `reports/binding_conflicts.csv` | onde o DB2 e a API da Blizzard discordam |
+| `reports/binding_unknown.csv` | os **180** ids do TSM que nao existem em nenhuma das fontes |
+| `reports/boe_targets.csv` | os 16.286 BoE com o estado `falta`/`comum`/`sem_aparencia` e o preco |
+
+Estado atual: **34.400** itens retail vendaveis na AH (17.668 sem binding +
+16.286 BoE + 446 bind on use), DB2 e API concordam em 1.876 de 1.877 ids
+(o unico conflito e' `246660`), e as 331 "contradicoes" sao todas de TWW/DF
+(305 com volume registado) -- ficam fora do EV, listadas para decisao em vez de
+serem silenciosamente aceites ou descartadas. Nenhum item QUEST tem preco, logo
+ao regra do binding nao precisa de mais casos.
+
+### Quais BoE ainda faltam aos coleccionadores
+
+```powershell
+python -m woweconomy.analytics.boe_targets              # relatorio + reports/boe_targets.csv
+python -m woweconomy.analytics.boe_targets --faltam --only-priced --sort valor   # por ITEM
+python -m woweconomy.analytics.boe_targets --top 50 --no-csv
+```
+
+`--faltam` é a leitura simples: **uma linha por item**, com `sem/amostra` -- quantas
+das contas sondadas não trouxeram a aparência na resposta, ou seja, quantas ainda
+não têm o item. Sem colunas de aparência. A posse é medida pela aparência que o
+item concede porque é o que o DfA expõe: se a aparência não veio, o item de
+certeza não veio (o inverso não se pode afirmar -- a conta pode tê-la por outro
+item).
+
+O join e' **por id dos dois lados**, e e' isso que o torna exato: o
+`ItemAppearance.ID` do cliente e' o mesmo `visualid` do catalogo do Data for
+Azeroth, portanto `db2_item_appearance` liga item -> aparicao sem passar por
+nomes. O preco/liquidez vem do TSM.
+
+Cada BoE retail ganha um estado:
+
+| estado | o que significa | itens |
+|---|---|---|
+| `falta` | pelo menos uma das suas aparências ainda falta a amostra | **14.868** (91,3%) |
+| `inobtenivel` | todas as aparências vêm de fonte morta no catálogo do DfA | 239 |
+| `fora_catalogo` | têm aparência, mas nenhuma está no catálogo | 13 |
+| `comum` | aparência obtível e já todos a têm | 0 |
+| `sem_aparencia` | não tem linha de aparência: receita, anel, trinket, token | 1.166 |
+
+`inobtenivel` merece a distinção: o BoE continua a vender-se (quem o compra
+passa a ter a aparência), mas o DfA nunca lhe chama procura porque a fonte
+listada está morta -- sem o catálogo estes 239 caíam no balde "comum", que era
+o que acontecia antes de irmos ver a flag `unobtainable`.
+
+**Direcção do dado:** o endpoint de colecções do DfA devolve o que a conta
+**tem**. O scanner deste projecto subtrai-o ao catálogo (`obtainable - owned`,
+`dataforazeroth.py`) e grava o complemento em `dfa.db :: missing`; o
+`demand_appearances.csv` é escrito a partir dessa tabela. Portanto o CSV que
+este relatório lê **já é o que falta** -- e os dados confirmam-no:
+`missing_pct` vs `owned_pct` tem correlação **-0,98** (44 mil linhas).
+
+Dos 14.868 em falta, **9.751 faltam a >= 50%** da amostra, **13.413 têm preço** e
+**10.859 têm volume** (`soldPerDay > 0`). O `--sort valor` ordena por
+preço x falta -- e' uma chave de ordenação, não um EV; `--sort falta` (default)
+poe primeiro o que mais falta.
+
+O lookup do `item_binding.py` passa a dizer as duas coisas de uma vez:
+
+```
+transmog  : 1 aparencia(s) | falta a 57.0% da amostra (42.73% dos perfis)
+```
+
+Os `demand_<kind>.csv` são gerados pelo scan do Data for Azeroth; quando o aviso
+de amostra velha aparecer, regenera-os com:
+
+```powershell
+cd C:\economics
+python -m woweconomy.services.dataforazeroth report
+```
+
+Não é promessa de venda: `missing_pct` diz que ainda falta aos colecionadores, não
+que te compram amanhã. `sale_rate`/`sold_per_day` (TSM) continuam a ser a única
+prova de movimento e vão em cada linha.
+
+Pre-requisitos: `pip install playwright requests pytest numpy python-dotenv` +
+`python -m playwright install chromium`, e `.env` com as credenciais Blizzard
+(etapas `enrich`/`inventory`; sem elas, salta com `--skip enrich,inventory`).
+
+### Onde (que reino) esses mog valem mais
+
+A demanda do DfA é global; o leilão é por reino. Este comando junta as duas
+coisas e responde “onde ponho este item?”:
+
+```powershell
+python -m woweconomy.analytics.realm_market --db tsm_markets.db
+python -m woweconomy.analytics.realm_market --db tsm_markets.db --min-score 50
+python -m woweconomy.analytics.realm_market --db tsm_markets.db --min-score 70 --csv realms.csv
+python -m woweconomy.analytics.realm_market --kind mounts --db tsm_markets.db
+```
+
+Duas coisas que o cálculo tem de respeitar, e respeita:
+
+- **Reinos ligados são um só mercado.** Stormreaver, Dragonmaw, Haomarush e
+  Spinebreaker partilham o mesmo leilão e o TSM guarda o mesmo preço nos quatro
+  nomes; o comando colapsa-os numa linha (`Dragonmaw +3`) para não os contar
+  quatro vezes nem enviesar a mediana.
+- **A referência é a mediana dos reinos, não o preço regional do TSM.** O
+  `region_market` é uma média arrastada pelas mesmas listagens mortas que se
+  querem desarmar: um pedido de 68k num item de 700g puxa a média e faz os
+  reinos saudáveis parecerem 5x baratos. Por item, a referência é a mediana
+  entre mercados, e `--realm-cap` (default 2x) corta um pedido antes de ele
+  decidir o ranking.
+
+O que ele NÃO diz: velocidade. `saleRate`/`soldPerDay` só existem por região
+(um número para toda a EU), por isso a tabela mede o que se **pede** e quanta
+concorrência há (`leiloes`), nunca “vende mais unidades aqui”. Colunas a ler
+juntas: `vs mediana` (preço), `leiloes` (profundidade) e `cortes` (quantos
+pedidos eram irreais -- perto da metade numa praça morta).
+
+## De onde vêm os dados (TSM vs Blizzard API)
+
+Regra: **preços e sinais = TSM**; **Blizzard API = só metadados de item**.
+
+- **TSM `AppData.lua`** (escrito pelo TSM desktop app, tipicamente de hora a hora) —
+  fonte principal: por reino `minBuyout`, `DBMarket` (média ponderada de 14 dias),
+  `numAuctions`, `historical`; por região `DBRegionMarketAvg`, `DBRegionHistorical`,
+  `DBRegionSaleAvg`, `DBRegionSaleRate` (fração dos posts que vende, a única medida
+  de velocidade), `DBRegionSoldPerDay`. Zero chamadas de API.
+- **CSVs públicos da TSM** (oficiais, sem chave nem conta) — rota alternativa sem
+  app desktop, e a que alimenta `csv/`:
+  `region/items.csv` (`marketValue,historical,avgSalePrice,saleRate,soldPerDay`),
+  `realm/<realm>/items.csv` (`marketValue,minBuyout,recent,historical`) e
+  `commodities.csv`.
+- **Blizzard API** — a API de leilões devolve **apenas um retrato das listagens
+  atuais** (~1h de cadência): não tem histórico, não tem preço médio, não tem
+  `saleRate` nem vendas concluídas (impossível reconstruir `DBMarket` a partir daí).
+  Um pedido de commodities consome **25 unidades de quota**, o limite é
+  **36.000 chamadas/hora**, e os termos exigem apagar dados com mais de **30 dias**.
+  Fica para o que só ela tem: `quality`/`binding`/`sellPrice` (`enrich_items.py`,
+  `enrich_inventory.py`).
+
+```powershell
+python scripts/sync_market.py --check        # frescura de cada fonte (nao escreve)
+python scripts/sync_market.py                # AppData -> tsm_* + CSVs publicos TSM
+python scripts/sync_market.py --no-csv       # so AppData -> tsm_* (sem rede)
+python scripts/sync_market.py --csv-only     # so os CSVs publicos
+python scripts/sync_market.py --force        # reescreve mesmo sem mudanças
+```
+
+O `run_all.py` corre a etapa `sync` primeiro (sem rede) para que ranking, score e
+inventário leiam o mesmo retrato de mercado. Os CSV em `csv/` são escritos **sem
+BOM**, tal como os originais da TSM, para não partir leitores que usam
+`encoding="utf-8"` (um BOM tornaria a 1ª coluna `'\ufeffitemId'`).
+
+## Vendas reais: o diario (`scripts/journal.py`)
+
+A heuristica tem suposicoes (`--target-posts`, `--undercount`, `--elasticity`); os
+teus dados reais substituem-nas quando existirem.
+
+**Journalator** (addon, ja instalado) guarda em `SavedVariables/Journalator_Statistics.lua`
+por item e reino: `successes` (vendeu), `failures` (expirou), `totalSold`/`totalBought`
+com contagem e valor. E dai que sai a tua verdade:
+
+```powershell
+python scripts/journal.py import     # Journalator -> journal_stats (copper)
+python scripts/journal.py report     # tabela + calibracao + inflacao
+```
+
+O report mostra: vendas/expiracoes reais, **sell-through real**, **posts por venda
+reais**, preco realizado vs a minha `posta` vs o `TSM venda`, e uma seccao
+**"ja expiraram sem vender"** com a razao `posta/venda` (marca `inflacao` quando
+>=3x). Se houver poucos dados (<3 itens ou <5 vendas) ele diz que sao poucos e
+**mantem a heuristica** — nao inventa calibracao.
+
+**Registar a mao** (vendas e reposts que o addon nao apanhar, ou para apontar o
+que fizeste a seguir a um report):
+
+```powershell
+python scripts/journal.py log-sale --item "Wool Cloth" --price 5 --qty 99
+python scripts/journal.py log-post --item 1351 --price 12632
+python scripts/journal.py log-fail --item 1351 --note "expirou 48h"
+python scripts/journal.py log-buy  --item 124640 --price 800 --qty 3
+python scripts/journal.py import-csv journal.csv   # date;kind;item;price_gold;qty;note
+python scripts/journal.py stats                    # o que esta guardado
+```
+
+O registo manual **conta para a calibracao** (sell-through, posts por venda, preco
+realizado), somado ao do addon — nao e so uma nota. Tres regras que importam:
+
+- **uma tentativa = um desfecho**: `log-sale` (vendeu) ou `log-fail` (expirou).
+  Um **repost** e outra tentativa: se voltar a expirar, e outro `log-fail`. E
+  assim que os reposts aparecem no racio em vez de o inflacionarem.
+  `log-post`/`log-cancel` ficam de fora do racio (senao o anuncio contava 2x).
+- o **reino e inferido** (o do addon; senao o mais frequente da base), para os
+  teus registos fundirem com os do addon em vez de criarem uma linha paralela.
+- se registares a mao algo que o addon **ja viu**, o report avisa que esta a
+  contar 2x (o evento existe nas duas fontes).
+
+Unidades: o pedido/cli fala em **gold**, a base guarda **copper** (convencao do
+repo), como o resto dos sinais do TSM.
+
+### O que entra no inventario (e porque falta algo)
+
+O criterio de BoE e o **binding**, nao a qualidade: entra **todo** o `ON_EQUIP`
+(inclui cinzas `POOR` e brancos `COMMON`, que sao BoE na mesma) mais as
+recipes/patterns/plans (a Blizzard da-lhes binding vazio, logo deteta-se pelo
+nome). Fica de fora: soulbound (`ON_ACQUIRE`, `TO_ACCOUNT`), commodities e o que
+ainda nao foi enriquecido.
+
+```powershell
+python scripts/calc_price.py --inventory scripts/inventario.csv --min-quality UNCOMMON  # corta cinzas/brancos
+python scripts/calc_price.py --inventory scripts/inventario.csv --audit audit.csv      # uma linha por item do input
+```
+
+O `--audit` escreve **todas** as linhas do input com `status`
+(`precificado`/`ignorado`) e `motivo` — é a resposta a "porque é que este item não
+está lá?". O `run_all.py` já gera `inventory_audit.csv` na etapa `inventory`. O
+resultado inclui as colunas `quality` e `binding` para filtrares no Excel.
+
+### Politicas de preco do `calc_price.py` (afinaveis)
+
+O preco nunca vem de um so numero: cada distorcao conhecida tem regra propria.
+
+| knobs | default | o que muda |
+|---|---|---|
+| `--undercount` | **2.20** | `saleRate`/`soldPerDay` só contam vendas de quem usa TSM, logo são um piso; calibrado em 204 vendas reais (1.0 = TSM puro) |
+| `--sale-cap` | **3.0** | **sem parede local**, teto = `DBRegionSaleAvg x isto`; quando morde, o desconto por velocidade *não* se aplica por cima |
+| `--realm-cap` | 2.0 | **com parede local**, teto = `max(mediana local, MinBuyout) x isto` |
+| `--relist-cap` | 0.5 | o custo de relist esperado nunca passa isto do valor do item |
+| `--target-posts` | **1** | no caminho "sem oferta", alvo de posts por venda |
+| `--elasticity` | 1.0 | agressividade desse desconto (>1 corta mais) |
+
+Regras sem knob: `DBRegionSaleAvg` (média de **compras**, com snipes/flips) **nunca** ancora o preço quando cai abaixo do `MinBuyout` atual — aí é prova de compra barata, não preço. E `LIQUIDAR` devolve o tier **Min** (preço de despacho), não o piso de vendor.
+
+Os defaults acima vêm do diário real: ver a secção seguinte. A coluna `venda_x`
+(quanto a minha `posta` é a venda média do TSM) mostra o desvio item a item.
+
+### Colunas do `inventory_priced.csv`
+
+Ordem pensada para leitura direta: **`Name`, `posta` (a quanto postar), `confianca`,
+`mode`, `Qty`, `ItemID`**, depois a banda de preco (`Min`/`Normal`/`Max`) e so no
+fim a evidencia de mercado (`minBuyout`, `market`, `saleavg`, `hist`, `regMarket`,
+`rate`, `daily`, `unicidade`, `BonusIDs`, `note`).
+
+### Abrir os CSV no Excel / Google Sheets
+
+Os CSV sao escritos com separador `;` e **UTF-8 com BOM**, que e o que o Excel
+pt-PT abre com duplo-clique (colunas certas + acentos). O TSM exporta tambem com
+`;` (sem BOM) e a leitura detecta `;` e `,` automaticamente, logo nada disto
+quebra os scripts.
+
+**A coluna `note` nao contem `,` nem `;`** (de proposito — ver `csv_safe` no
+`calc_price.py`). O Excel e o Sheets *adivinham* o separador, e se a nota
+trouxesse virgulas de milhares (`14,250g`) ou o proprio `;`, a deteccao falhava e
+a importacao entrava desmanchada. Agora so existe um candidato a separador no
+ficheiro, logo a deteccao e inequivoca nos dois programas.
+
+No **Google Sheets**: `Ficheiro > Importar > Carregar` e importa — a deteccao
+automatica acerta. Se mesmo assim ele oferecer a escolha, diz-lhe **ponto e
+virgula**. Se preferires virgulas (o separador nativo do Sheets), usa `--sep ,`:
+como a nota ja nao tem virgulas, tambem sai limpo.
+
+```powershell
+# duplo-clique, ou forcar o separador na saida do calc_price
+python scripts/calc_price.py --inventory scripts/inventario.csv --sep ,   # se preferires virgulas
+
+# abrir num app que nao adivinha nada (Excel: Dados > Obter Dados > De Texto/CSV)
+notepad inventory_priced.csv          # Notepad++/VS Code: escolhe UTF-8
+Get-Content inventory_priced.csv -Encoding utf8 | Select-Object -First 5
+
+# via codigo: o sep=None deixa o pandas detectar o separador
+python -c "import pandas as pd; print(pd.read_csv('inventory_priced.csv', sep=None, engine='python', encoding='utf-8-sig').head())"
+```
+
+### So o essencial (sem scrape e sem browser)
+
+```powershell
+python scripts/run_all.py --skip enrich,inventory   # rank + score + tests
+python scripts/calc_price.py --inventory scripts/inventario.csv --db tsm_markets.db --rebuild
+```
+
+## Full pipeline (fresh start)
+
+```powershell
+python -m woweconomy.services.wowhead "zone=331/ashenvale" "zone=719/blackfathom-deeps" "zone=16/azshara" all
+python scripts/repair_zone.py woweconomy/wowhead_zones/zone_331.json
+python scripts/repair_zone.py woweconomy/wowhead_zones/zone_719.json
+python scripts/repair_zone.py woweconomy/wowhead_zones/zone_16.json
+python scripts/enrich_items.py
+python -m woweconomy.analytics.farm_ranking woweconomy/wowhead_zones/zone_331.json woweconomy/wowhead_zones/zone_719.json woweconomy/wowhead_zones/zone_16.json
+```
+
+## How the numbers work (resumo dos cálculos)
+
+Money units: TSM and Blizzard money fields are **copper**; display divides
+by 10,000 for gold. Missing prices are **excluded, never zero-filled**.
+
+Per drop (probability `p`, mean qty `q`, reference price = `avgSalePrice`):
+
+- `EV_GROSS = p x q x v`, `v = avgSalePrice x (1 - 5%)` (retail AH cut, assumption).
+- No base+rate price multiplier exists in this repo: the reference price is
+  used unscaled. (A `avg x (2 + 10 x sr)` formula would inflate every price
+  2-12x without basis and is deliberately NOT applied.)
+- `sale_rate` is TSM **DBRegionSaleRate**: fraction of listed region auctions
+  that sell, verified 0-1 decimal scale. Per-LISTING sell-through with **no
+  time dimension**. It is a liquidity indicator, never a daily probability.
+- `EV_NET = EV_GROSS x sale_rate x VOL`, `VOL = 1` if `sold_per_day > 0`
+  else `0.1` (thin-market haircut, documented assumption).
+- Pricing multiplier (opt-in): effective list price
+  `avg x (base + sr x rate_mult)`, floor `vendor x floor_mult`
+  (`--price-base/--price-rate/--price-floor`, defaults 1.0/0.0/off =
+  reference pricing, no silent change).
+- `drop_rate` is the Wowhead `%` column (validated once, never clamped);
+  `qty` = range midpoint (`1-4` -> 2.5, uniform assumption, samples unknown).
+- `VENDOR_GOLD = p x q x Blizzard sell_price`: immediate gold, no AH.
+- Days-to-sale is N/A: the metric cannot support it. No daily compounding.
+
+Per NPC: `EV_GROSS_PER_KILL`, `EV_NET_EXPECTED_PER_KILL`,
+`EV_EXPECTED_PER_HOUR` (@ `--kpm`), `VENDOR_GOLD_PER_KILL`,
+`DATA_CONFIDENCE` = evidence share x freshness `1/(1+age_days/30)`
+(coverage, NOT a sale probability; unknown age counts 0.5),
+`JACKPOT_EV` (best weighted single hit + evidence: `spd`, `sr`, vendor),
+`JACKPOT_PROBABILITY` (`P(>=1 drop in 100 kills)` - genuine drop probability),
+`EXPECTED_DAYS_TO_SALE` = n/a.
+
+Rankings: farms (EV_NET), vendor farms, recipes, BoE (Blizzard-verified
+`ON_EQUIP` only - never name-guessed), mixed (>=2 pillars), mogs (by price),
+mog EV / fast movers (`sr>=5%`) / thin (`sr<1%`) / vendor-fallback views,
+mog farms (joint sell-through of what you plausibly loot in `--mog-kills`
+kills, default 600; days n/a), jackpots (rare <10%, selling), mats
+(units/kill), rotation (round-robin vs hyperspawn throttle).
+
+**BEST GOLDBOUND SESSION** (`--session 15 30 60`, `--travel-sec`):
+route vs best solo NPC with equal time assumptions (travel deducted from
+route only; solo assumes no throttle - optimistic). Per plan: `vendor`
+(received on the spot), `auction_est` (sale-weighted estimate, NOT
+guaranteed), `speculative` (gross - net, may never sell), `conservative`
+(vendor + fast movers `sr>=5%` only).
+
+**Calibrating farm pace (P2)**: `--kpm`/`--travel-sec` are YOUR measurements,
+not data. Measure in-game: kill one camp for 5 min and count (kpm), then
+time one full rotation loop (travel). Start `--kpm 20 --travel-sec 60` and
+replace after the first session. Compare solo vs route lines before committing.
+
+Price freshness is printed every run (`as of ...` + STALE warning past 30d).
+Prices come from `tsm_region_price` - the live regional table the DfA
+estimate also reads - so the farm report and the in-game price quote one
+source and one vintage. `--price-source legacy` reads the frozen
+`market_snapshots` table and `--price-source csv` reads `csv/items.csv`,
+both for A/B. Expected revenue is never guaranteed or immediately spendable.
+
+Example commands: EV / transmog / jackpot / materials / routes:
+
+```powershell
+python -m woweconomy.analytics.farm_ranking zone_331.json --top 20
+python -m woweconomy.analytics.farm_ranking zone_331.json --sort jackpot
+python -m woweconomy.analytics.farm_ranking zone_331.json zone_719.json zone_16.json --top 30 --stops 5 --session 15 30 60 --travel-sec 90 --mog-kills 600 --out FarmReport.txt
+python scripts/find_drop.py "Joonho's Mercy"
+```
+
+## Layout
+
+- `woweconomy/services/wowhead.py` — zone/drop scraper
+- `woweconomy/services/blizzard_items.py` — Blizzard item client + store
+- `woweconomy/analytics/farm_ranking.py` — EV model + rankings + rotation
+- `woweconomy/analytics/market_analyzer.py` — TSM market state engine
+- `scripts/run_all.py` — corre o pipeline todo por etapas (`--scrape`, `--only`, `--skip`, `--dry-run`)
+- `scripts/repair_zone.py` — zone JSON cleanup + cache seeding
+- `scripts/find_drop.py` — item → NPC lookup
+- `scripts/find_mob.py` — NPC → drops lookup (`python scripts/find_mob.py "Ashenvale Bear"`)
+- `scripts/relocate.py` — best spot per item across all scraped zones
+  (`python scripts/relocate.py --top 20`)
+- `scripts/plan_route.py` — rota por zona alternando STEADY/JACKPOT
+  (`python scripts/plan_route.py --zone 331 --stops 5 --minutes 60`)
+- `scripts/enrich_items.py` — Blizzard enrichment runner
+- `csv/items.csv` / `tsm_markets.db` — TSM snapshots (`avgSalePrice` based)
+
+## DFA Sentinel ML (validated predictions)
+
+The game-facing estimates come from a versioned prediction layer on top of the
+existing Journalator/TSM pipeline:
+
+```powershell
+python -m pip install -r requirements-ml.txt
+python scripts/dfa_ml.py sentinel            # train, validate, promote
+python scripts/dfa_pricing_export.py         # rebuild the addon dataset
+```
+
+It trains calibrated sale probabilities (24h/48h/168h), a realized-price model,
+and two separate market-risk targets (undercut pressure and price decline),
+against simple baselines on a chronological holdout. Time to sale is reported
+but is not exported while its censoring-aware C-index stays below 0.60.
+
+Every exported price carries an **80 % split-conformal interval** and the
+coverage that interval actually delivered on a held-out block. The tooltip
+prints both, for example:
+
+```text
+DFA estimate: 1.57g
+  80% range: 0.83g - 2.99g (77% of 103 sales)
+Expected realized: 1.57g
+  80% range: 0.73g - 3.37g (85% of 119 sales)
+```
+
+A missing interval is `nil`, never a zero-width range; an old dataset simply
+shows the point estimate.
+
+Artifacts: `models/dfa_sentinel/<version>/` + atomic `CURRENT`.
+Metrics: `reports/dfa_sentinel/sentinel_report.json`.
+Full audit, measured numbers and limitations:
+[reports/dfa_sentinel_ml.md](reports/dfa_sentinel_ml.md).
+`watch.py` retrains only when enough new confirmed labels exist.
+#   G o l d b o u n d D f a A d d o n A n d M L  
+ 
