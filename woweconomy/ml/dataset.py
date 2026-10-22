@@ -64,6 +64,12 @@ class DatasetReport:
     realms: int = 0
     first_ts: int = 0
     last_ts: int = 0
+    #: the rolling window the raw stores are trimmed to, in days (0 = no trim)
+    retention_days: int = 0
+    #: postings older than this were dropped, because their market features
+    #: may no longer exist in the operational stores
+    cutoff_ts: int = 0
+    rows_dropped_before_cutoff: int = 0
     notes: List[str] = field(default_factory=list)
 
     def summary(self) -> Dict[str, object]:
@@ -83,6 +89,9 @@ class DatasetReport:
             "time_to_sale_censored": self.time_to_sale_censored,
             "first_ts": self.first_ts,
             "last_ts": self.last_ts,
+            "retention_days": self.retention_days,
+            "cutoff_ts": self.cutoff_ts,
+            "rows_dropped_before_cutoff": self.rows_dropped_before_cutoff,
             "notes": list(self.notes),
         }
 

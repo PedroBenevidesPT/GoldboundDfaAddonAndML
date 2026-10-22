@@ -508,13 +508,20 @@ function Auctionator.OnPriceSet(frame)
 		Log("onpriceset: skipped (no frame)")
 		return
 	end
-	
+	if private.userChose then
+		-- The player picked this price, either by typing it in or by
+		-- clicking a row in Auctionator's price list.  Auctionator is
+		-- writing that choice now; putting the estimate back would
+		-- silently undo it, so the fill stops here until the item changes.
+		Log("onpriceset: skipped (player chose a price for this item)")
+		return
+	end
 	if not GetItemId(frame) then
 		-- an empty frame: there is nothing to price
 		Log("onpriceset: skipped (no item id)")
 		return
 	end
-	
+
 	Log("onpriceset: calling ApplyEstimate")
 	Auctionator.ApplyEstimate(frame)
 end
@@ -608,15 +615,15 @@ local function HookEventBus()
 				if private.lastFill then
 					private.lastFill.confirmed = false
 				end
-			-- PriceSelected (clicking a row in Auctionator's price list) no longer
-			-- sets userChose: the DFA estimate always wins unless the player
-			-- manually types in the price box.  This makes the fill reliable
-			-- after a scan and prevents Auctionator's own price from sticking.
-			-- elseif eventName == events.PriceSelected then
-			-- 	private.userChose = true
-			-- 	if private.lastFill then
-			-- 		private.lastFill.confirmed = false
-			-- 	end
+			elseif eventName == events.PriceSelected then
+				-- the player picked a row from Auctionator's price list.
+				-- That is a choice of theirs, exactly like typing in the
+				-- box: Auctionator is about to set the price they picked,
+				-- and our fill must not put the estimate back on top of it.
+				private.userChose = true
+				if private.lastFill then
+					private.lastFill.confirmed = false
+				end
 			end
 		end
 		return original(self, source, eventName, ...)

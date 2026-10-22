@@ -184,6 +184,27 @@ class DfaLearningEngine:
         self.observation_end = link_report.observation_end
         logger.info("linked %d postings", len(outcomes))
 
+        # A posting older than the retention window has no market history left
+        # to describe it: the TSM snapshots that would supply its features have
+        # been trimmed.  Keeping such a row would train on rows whose features
+        # are silently absent, so they are dropped here and counted, rather
+        # than imputed.  Labels are unaffected -- they come from the journal
+        # archive, which retention does not touch.
+        dropped = 0
+        cutoff = 0
+        if cfg.retention_days:
+            cutoff = int(self.observation_end) - cfg.retention_days * 86400
+            before = len(outcomes)
+            outcomes = [o for o in outcomes if o.posting.time >= cutoff]
+            dropped = before - len(outcomes)
+            if dropped:
+                logger.info(
+                    "dropped %d postings older than the %dd retention cutoff "
+                    "(%s)", dropped, cfg.retention_days,
+                    datetime.fromtimestamp(cutoff, tz=timezone.utc).strftime(
+                        "%Y-%m-%dT%H:%M:%SZ"),
+                )
+
         # the DfA demand needs the item ids of the rows, so it is loaded
         # once the item universe is known
         item_ids = sorted({o.posting.item_id for o in outcomes if o.posting.item_id})
@@ -198,6 +219,9 @@ class DfaLearningEngine:
                                  freshness_cap_h=cfg.reference_freshness_cap_h)
         frame, report = build_dataset(outcomes, builder, cfg.horizons_h,
                                       link_report.observation_end)
+        report.retention_days = int(cfg.retention_days)
+        report.cutoff_ts = int(cutoff)
+        report.rows_dropped_before_cutoff = int(dropped)
         self.frame = frame
         self.dataset_report = report
         return frame, report, link_report

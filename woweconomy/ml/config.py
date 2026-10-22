@@ -57,6 +57,11 @@ class MLConfig:
 
     # --- behaviour ----------------------------------------------------
     horizons_h: Tuple[int, ...] = DEFAULT_HORIZONS_H
+    #: The rolling window the operational stores are trimmed to.  A posting
+    #: older than this is dropped from the dataset, because the TSM snapshots
+    #: that would give it market features are no longer retained.  Set to 0 to
+    #: keep every posting the journal archive still holds.
+    retention_days: int = 30
     #: A TSM reference is only trusted when it is at most this old.  Beyond
     #: it the reference is stale and the freshness feature says so.
     reference_freshness_cap_h: float = 72.0
