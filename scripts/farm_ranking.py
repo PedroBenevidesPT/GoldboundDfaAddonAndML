@@ -1,25 +1,37 @@
 """The farm ranking, as one command.
 
-There was already one implementation of this -- `woweconomy.analytics.
-farm_ranking` -- and one broken copy of it at the repo root that imported a
-module which does not exist (`woweconomy.analytics.analytics`), swallowed the
-error into a text file, and left that file behind containing the literal
-strings "Test Item", "Test Item 2", "Test Item 3".  That is the state a
-duplicate reaches: it looks like a second tool, it never ran, and its output
-looked like a result.
+There was one implementation of the ranking -- `woweconomy.analytics.
+farm_ranking` -- and a second entry point at the repo root that imported
+`woweconomy.analytics.analytics`, a module that has never existed:
 
-This is the only entry point.  It does no ranking of its own: it loads the
-zone drop tables and the market, calls the module, and prints what comes
-back.  Every number here is produced by `farm_ranking`, so the CLI and the
-tests cannot disagree about what the ranking means.
+    ModuleNotFoundError: No module named 'woweconomy.analytics.analytics'
 
-    python scripts/farm_ranking.py zone                 # full zone ranking
-    python scripts/farm_ranking.py zone --zone 331 --zone 16
+It caught that into a text file, so running it produced no error and no
+ranking, but left `fazenda_report.txt` behind containing
+
+    1. Test Item
+    2. Test Item 2
+    3. Test Item 3
+
+which is what a duplicate reaches: it looks like a second tool, it never ran,
+and its output looked like a result.
+
+This script ranks nothing and parses nothing of its own for the zone report.
+It dispatches:
+
+* with zone files (or no subcommand), it hands the whole command line to
+  :func:`woweconomy.analytics.farm_ranking.main`, which owns every flag --
+  `--price-source`, `--blizz-db`, `--no-era-filter`, `--sort`, `--stops`,
+  `--kpm`, `--session`, `--travel-sec`, `--mog-kills`, `--price-base`,
+  `--price-rate`, `--price-floor`, `--out`.  One parser, one meaning.
+* with `mats`, `expensive`, `mogs` or `jackpots`, it prints one of the
+  narrower leaderboards the same module already computes.
+
+    python scripts/farm_ranking.py zone_331.json
+    python scripts/farm_ranking.py zone_331.json zone_719.json --top 20
+    python scripts/farm_ranking.py zone_331.json --out FarmReport.txt
     python scripts/farm_ranking.py mats --top 20
-    python scripts/farm_ranking.py expensive --top 10
     python scripts/farm_ranking.py mogs --top 10
-    python scripts/farm_ranking.py jackpots --top 10
-    python scripts/farm_ranking.py zone --json out.json
 """
 from __future__ import annotations
 
@@ -36,6 +48,10 @@ from woweconomy.analytics import farm_ranking as fr            # noqa: E402
 
 DEFAULT_TSM = ROOT / "tsm_markets.db"
 ZONES_DIR = ROOT / "woweconomy" / "wowhead_zones"
+
+#: The narrower leaderboards.  Anything else is a zone file, handled by the
+#: module's own parser.
+LEADERBOARDS = ("mats", "expensive", "mogs", "jackpots")
 
 
 def zone_paths(zone_ids):
@@ -70,18 +86,15 @@ def _rows(items, keys):
     return out
 
 
-def main(argv=None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__,
-                                     formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("command",
-                        choices=["zone", "mats", "expensive", "mogs", "jackpots"])
+def leaderboard(command: str, argv) -> int:
+    parser = argparse.ArgumentParser(
+        prog=f"farm_ranking {command}",
+        description=f"Print the {command} leaderboard.")
     parser.add_argument("--zone", action="append", default=[], type=int,
                         help="zone id (repeatable); default is every zone on disk")
     parser.add_argument("--top", type=int, default=15)
     parser.add_argument("--db", default=str(DEFAULT_TSM),
                         help="the TSM market database")
-    parser.add_argument("--kills-per-minute", type=float, default=20.0,
-                        help="used by the zone report to convert EV/kill to EV/hour")
     parser.add_argument("--json", default="", metavar="PATH",
                         help="also write the result as JSON")
     args = parser.parse_args(argv)
@@ -104,42 +117,36 @@ def main(argv=None) -> int:
         return 2
     drops = fr.load_zone_drops(paths)
 
-    payload = None
-    if args.command == "zone":
-        ranking = fr.rank_zone(paths, market)
-        fr.print_report(ranking, kills_per_minute=args.kills_per_minute)
-        payload = {"zones": [str(p) for p in paths],
-                   "farms": _rows(ranking.farms, ("npc_id", "npc_name",
-                                                  "zone", "ev_per_kill",
-                                                  "ev_per_hour", "drops"))}
-    elif args.command == "mats":
+    if command == "mats":
         rows = fr.top_mats(drops=drops, market=market, top_n=args.top)
-        for index, row in enumerate(rows, 1):
-            print(f"{index:>3}. {row}")
-        payload = _rows(rows, ("item_id", "item_name", "npc_name", "ev",
-                               "units_per_kill", "drop_rate"))
-    elif args.command == "expensive":
+        keys = ("item_id", "item_name", "npc_name", "ev", "units_per_kill",
+                "drop_rate")
+    elif command == "expensive":
         rows = fr.top_expensive(drops=drops, market=market, top_n=args.top)
-        for index, row in enumerate(rows, 1):
-            print(f"{index:>3}. {row}")
-        payload = _rows(rows, ("item_id", "item_name", "price", "sale_rate"))
-    elif args.command == "mogs":
+        keys = ("item_id", "item_name", "price", "sale_rate")
+    elif command == "mogs":
         rows = fr.top_mogs(drops=drops, market=market, top_n=args.top)
-        for index, row in enumerate(rows, 1):
-            print(f"{index:>3}. {row}")
-        payload = _rows(rows, ("item_id", "item_name", "price", "drop_rate",
-                               "sold_per_day"))
+        keys = ("item_id", "item_name", "price", "drop_rate", "sold_per_day")
     else:
         rows = fr.top_jackpots(drops=drops, market=market, top_n=args.top)
-        for index, row in enumerate(rows, 1):
-            print(f"{index:>3}. {row}")
-        payload = _rows(rows, ("item_id", "item_name", "price", "drop_rate"))
+        keys = ("item_id", "item_name", "price", "drop_rate")
 
+    for index, row in enumerate(rows, 1):
+        print(f"{index:>3}. {row}")
     if args.json:
         Path(args.json).write_text(
-            json.dumps(payload, indent=2, default=str), encoding="utf-8")
+            json.dumps(_rows(rows, keys), indent=2, default=str),
+            encoding="utf-8")
         print(f"wrote {args.json}", file=sys.stderr)
     return 0
+
+
+def main(argv=None) -> int:
+    argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] in LEADERBOARDS:
+        return leaderboard(argv[0], argv[1:])
+    # Everything else is a zone report, and the module owns those flags.
+    return fr.main(argv)
 
 
 if __name__ == "__main__":

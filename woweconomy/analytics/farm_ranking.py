@@ -1457,13 +1457,23 @@ def print_report(r: ZoneRanking, kills_per_minute: float = 20.0) -> None:
               f"speculative={_g(s.speculative_gold)} conservative={_g(s.conservative_gold)}")
 
 
-if __name__ == "__main__":
-    #   python -m woweconomy.analytics.farm_ranking zone_331.json [zone_719.json ...]
-    #   --market-csv csv/items.csv (default) | --db tsm_markets.db
-    #   --top 10 --stops 3 --kpm 20
+def main(argv=None) -> int:
+    """The farm-ranking command line.
+
+    One implementation, called by ``scripts/farm_ranking.py``.  It lives here
+    rather than in the script so that the flags and the ranking cannot drift
+    apart: there used to be a second entry point at the repo root that
+    imported a module which did not exist, caught the error, and wrote a
+    report full of "Test Item" placeholders.
+
+        python scripts/farm_ranking.py zone_331.json --db tsm_markets.db
+        python scripts/farm_ranking.py zone_331.json --top 20 --out report.txt
+    """
     import argparse
 
-    ap = argparse.ArgumentParser(description="Rank farms for scraped zones.")
+    ap = argparse.ArgumentParser(
+        prog="farm_ranking",
+        description="Rank farms for scraped zone files.")
     ap.add_argument("zones", nargs="+", help="wowhead zone JSON file(s)")
     ap.add_argument("--market-csv", default="csv/items.csv",
                     help="CSV market, used when --price-source csv")
@@ -1505,7 +1515,7 @@ if __name__ == "__main__":
                     help="list-price floor as multiple of vendor sell (0 = off)")
     ap.add_argument("--out", default="",
                     help="write the full report to this .txt file (utf-8)")
-    args = ap.parse_args()
+    args = ap.parse_args(argv)
 
     logging.basicConfig(level=logging.WARNING)
     db_path = args.db or ("tsm_markets.db"
@@ -1593,3 +1603,8 @@ if __name__ == "__main__":
         print(f"Report written to {args.out}")
     else:
         print_report(ranking, kills_per_minute=args.kpm)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
