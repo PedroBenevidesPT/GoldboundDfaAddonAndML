@@ -167,8 +167,31 @@ def space_payload(*paths: Path | str) -> Dict[str, object]:
 
 
 def _signed(n: int) -> str:
-    """A delta with its sign kept, so a growth is never read as a reclaim."""
+    """A delta with its sign kept, so a growth is never read as a reclaim.
+
+    Zero has no sign.  The previous form fell through to the ``-`` branch
+    and printed ``-0.00B``, which reads as a small reclaim that never
+    happened.
+    """
+    if n == 0:
+        return fmt_bytes(0)
     return ("+" if n > 0 else "-") + fmt_bytes(abs(n))
+
+
+def _net_note(net_bytes: int) -> str:
+    """Say plainly which way the disk moves, since the sign invites a misread.
+
+    ``net_bytes`` is the *reclaim*: raw freed minus what the aggregate and
+    the archive still cost.  The report prints the disk **delta**, which is
+    its negation, so a shrink shows as a negative change.  Printing the
+    reclaim under a label that says "change" is how a 2 GB growth gets read
+    as a 2 GB win.
+    """
+    if net_bytes < 0:
+        return "  (grows: the aggregate costs more than the deletion frees)"
+    if net_bytes > 0:
+        return "  (shrinks)"
+    return "  (no change)"
 
 
 def compare_space(baseline: Dict[str, object],
@@ -292,7 +315,8 @@ class Rehearsal:
             f"  raw bytes freed    : {fmt_bytes(self.raw_bytes)}",
             f"  aggregate on disk  : {fmt_bytes(self.aggregate_bytes)} (kept)",
             f"  archive estimate   : {fmt_bytes(self.archive_bytes_est)}",
-            f"  net disk change    : {fmt_bytes(self.net_bytes)}",
+            f"  net disk change    : {_signed(-self.net_bytes)}"
+            f"{_net_note(self.net_bytes)}",
             "",
             f"  {'database':14s} {'table':24s} {'rows':>10s} {'freed':>9s} "
             f"{'survives as':>16s} {'archive':>9s}",

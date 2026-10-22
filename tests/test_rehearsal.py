@@ -18,6 +18,8 @@ from woweconomy.rehearsal import (
     COVERED,
     DERIVED,
     UNCOVERED,
+    _net_note,
+    _signed,
     compare_space,
     rehearse,
     space_payload,
@@ -264,6 +266,35 @@ def test_the_summary_names_the_tables_that_lose_their_history(store):
     text = report.summary()
     assert "comparative dry run" in text
     assert "net disk change" in text
+
+
+def test_the_net_line_prints_the_disk_delta_and_says_which_way(store):
+    """A reclaim must not print as a positive "change" under a change label.
+
+    ``net_bytes`` is a reclaim; the line reports the disk *delta*, which is
+    its negation, and then spells the direction out.  The two must never
+    disagree, because "net disk change: 2.0 GB" on a run that grew the
+    database is the exact misread this line exists to prevent.
+    """
+    intel, tsm, agg = store
+    report = rehearse(intel, tsm, agg, days=30, now=NOW)
+    line = next(l for l in report.summary().splitlines()
+                if "net disk change" in l)
+    body = line.split(":", 1)[1].strip()
+    if report.net_bytes > 0:            # reclaimed space: disk went down
+        assert body.startswith("-"), line
+        assert "shrinks" in body, line
+    elif report.net_bytes < 0:          # the aggregate cost more than it freed
+        assert body.startswith("+"), line
+        assert "grows" in body, line
+    else:
+        assert "no change" in body, line
+
+
+def test_a_zero_delta_has_no_sign():
+    """Zero is not a small reclaim.  The old form printed ``-0.00B``."""
+    assert not _signed(0).startswith(("-", "+"))
+    assert _net_note(0) == "  (no change)"
 
 
 def test_a_window_that_deletes_nothing_says_so(store):
