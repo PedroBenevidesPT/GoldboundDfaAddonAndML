@@ -51,8 +51,10 @@ half-written dataset or a half-copied Lua file.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -64,11 +66,17 @@ ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from woweconomy.intel import store                      # noqa: E402
-from woweconomy.pipeline import leases                   # noqa: E402
+from woweconomy.intel import alerts                      # noqa: E402
+from woweconomy.intel import store                       # noqa: E402
+from woweconomy.pipeline import leases                    # noqa: E402
 
 PY = sys.executable
 HOUR = 3600
+
+#: The dataset the addon loads.  A "new dataset" alert is about *this file
+#: changing*, not about the export having run: the export runs on a cadence
+#: and usually rewrites identical bytes.
+DATASET = ROOT / "DFA_Estimate" / "Data" / "DFA_Estimate_Data.lua"
 
 
 # --------------------------------------------------------------------- tasks
@@ -176,6 +184,84 @@ def _order(tasks: Dict[str, TaskDef]) -> List[str]:
     return ordered
 
 
+# ------------------------------------------------------------------- notices
+def dataset_fingerprint(path: Path = DATASET) -> str:
+    """The sha256 of the exported dataset, or "" when it does not exist."""
+    if not Path(path).exists():
+        return ""
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+#: Scalar fields worth quoting in a "new dataset" alert.  They are read from
+#: the generated Lua rather than from the exporter's memory, so the alert
+#: describes the bytes that actually shipped.
+_DATASET_FIELDS = ("version", "engineVersion", "itemCount", "realmCount",
+                   "priceCount", "indexedRealms", "measuredRealms",
+                   "sentinelModel", "meanConfidence")
+
+
+def dataset_facts(path: Path = DATASET) -> Dict[str, str]:
+    facts: Dict[str, str] = {}
+    if not Path(path).exists():
+        return facts
+    text = Path(path).read_text(encoding="utf-8", errors="replace")
+    for field_name in _DATASET_FIELDS:
+        match = re.search(rf"^\s*{field_name}\s*=\s*(.+?),?\s*$", text,
+                          re.MULTILINE)
+        if match:
+            facts[field_name] = match.group(1).strip().rstrip(",")
+    # The status counts matter more than the totals: they say how many
+    # items carry a validated probability and how many fall back.
+    statuses = re.search(r"predictionStatus\s*=\s*\{(.*?)\}", text, re.DOTALL)
+    if statuses:
+        pairs = re.findall(r'\["([^"]+)"\]\s*=\s*(\d+)', statuses.group(1))
+        if pairs:
+            facts["predictionStatus"] = ", ".join(f"{k}: {v}"
+                                                  for k, v in pairs)
+    return facts
+
+
+def dataset_alert(facts: Dict[str, str], digest: str) -> "alerts.Alert":
+    lines = [f"{key}: {value}" for key, value in facts.items()
+             if key != "predictionStatus"]
+    if "predictionStatus" in facts:
+        lines.append(f"status: {facts['predictionStatus']}")
+    lines.append(f"sha256: {digest[:12]}")
+    return alerts.Alert(key="dataset:new",
+                        title="New DfA dataset published",
+                        lines=lines)
+
+
+def notify_new_dataset(con, *, notify: bool = True,
+                       path: Path = DATASET,
+                       now: Optional[float] = None) -> List[Dict[str, object]]:
+    """Post one alert when the exported dataset actually changed.
+
+    Decided by content hash, not by the export having run.  The export runs
+    every few hours and usually produces the same bytes; an alert per run
+    would be an alert nobody reads, and the one that mattered would be lost
+    in it.
+    """
+    digest = dataset_fingerprint(path)
+    if not digest:
+        return []
+    previous = str(leases.read_stat(con, "dataset:sha256", "") or "")
+    if digest == previous:
+        return []
+    state = leases.read_stat(con, "alerts:state", None) or {"alerted": {}}
+    delivered = alerts.deliver([dataset_alert(dataset_facts(path), digest)],
+                               state, int(now if now is not None else time.time()),
+                               notify=notify) or []
+    leases.publish_stat(con, "alerts:state", state)
+    # Only claim the dataset was announced if a channel actually took it.
+    # Publishing the digest unconditionally would mark an undelivered alert
+    # as delivered, and the next cycle would compare equal and stay silent --
+    # the alert would be lost for good because a webhook was down once.
+    if any(item.get("webhook") or item.get("toast") for item in delivered):
+        leases.publish_stat(con, "dataset:sha256", digest)
+    return delivered
+
+
 # ------------------------------------------------------------------- execution
 @dataclass
 class TaskResult:
@@ -195,8 +281,8 @@ class TaskResult:
 
 
 def run_task(con, task: TaskDef, *, runner: Optional[Callable] = None,
-             dry_run: bool = False,
-             owner: str = "") -> TaskResult:
+             dry_run: bool = False, owner: str = "",
+             notify: bool = True) -> TaskResult:
     """Acquire, run, record -- in that order, always.
 
     A task that cannot take its lease returns ``skipped`` and does nothing.
@@ -231,6 +317,15 @@ def run_task(con, task: TaskDef, *, runner: Optional[Callable] = None,
             leases.publish_stat(con, f"last_fail:{task.name}",
                                 {"at": int(finished), "exit": code}, token,
                                 now=finished)
+        # A new dataset is announced after the export, from the bytes that
+        # were written.  Failure here must not fail the task: the dataset is
+        # published, and a dead webhook does not un-publish it.
+        if ok and task.name == "export" and notify:
+            try:
+                notices = notify_new_dataset(con, now=finished)
+                detail["dataset_alert"] = notices
+            except Exception as exc:  # pragma: no cover - channel failure
+                print(f"dataset alert failed: {exc}", file=sys.stderr)
         return TaskResult(task.name, ok, finished - started, exit_code=code,
                           detail=detail)
     finally:
@@ -284,7 +379,8 @@ def _subprocess_runner(task: TaskDef):
 def cycle(con, tasks: Dict[str, TaskDef], *, force: bool = False,
           only: Optional[Sequence[str]] = None,
           runner: Optional[Callable] = None,
-          dry_run: bool = False, now: Optional[float] = None
+          dry_run: bool = False, now: Optional[float] = None,
+          notify: bool = True
           ) -> List[TaskResult]:
     """One pass over whatever is due.
 
@@ -302,7 +398,7 @@ def cycle(con, tasks: Dict[str, TaskDef], *, force: bool = False,
     results: List[TaskResult] = []
     for name in names:
         results.append(run_task(con, tasks[name], runner=runner,
-                                dry_run=dry_run))
+                                dry_run=dry_run, notify=notify))
     return results
 
 
@@ -371,6 +467,8 @@ def build_parser() -> argparse.ArgumentParser:
                         help="how often --loop looks for due work (default 60)")
     parser.add_argument("--db", default=str(ROOT / "data" / "intel.sqlite"),
                         help="the intelligence database holding the lease tables")
+    parser.add_argument("--no-notify", action="store_true",
+                        help="do not post the new-dataset alert")
     return parser
 
 
@@ -390,8 +488,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             print(f"  {name:<11} {' '.join(tasks[name].command()[1:])}")
         return 0
 
+    notify = not args.no_notify
     if not args.loop:
-        results = cycle(con, tasks, force=args.force, only=args.task or None)
+        results = cycle(con, tasks, force=args.force, only=args.task or None,
+                        notify=notify)
         for result in results:
             print(result.line())
         if not results:
@@ -401,7 +501,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     try:
         while True:
             for result in cycle(con, tasks, force=False,
-                                only=args.task or None):
+                                only=args.task or None, notify=notify):
                 print(time.strftime("%H:%M:%S"), result.line(), flush=True)
             time.sleep(max(5.0, float(args.interval)))
     except KeyboardInterrupt:
