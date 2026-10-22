@@ -1,1 +1,8 @@
 .env
+
+# Derived retention artefacts.  Both are rebuildable from the operational
+# databases and are large enough that committing them would be a mistake.
+data/aggregates.sqlite
+data/aggregates.sqlite-wal
+data/aggregates.sqlite-shm
+archives/

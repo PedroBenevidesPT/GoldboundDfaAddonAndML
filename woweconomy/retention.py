@@ -38,16 +38,26 @@ live one.
 from __future__ import annotations
 
 import gzip
+import hashlib
 import json
 import logging
+import os
 import sqlite3
 import time
+import zlib
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional, Sequence, Tuple
 
 logger = logging.getLogger(__name__)
+
+#: The archive is a directory of gzipped JSONL plus one manifest.  The version
+#: is checked on read, so an archive written by a future format is refused
+#: rather than half-understood.
+ARCHIVE_FORMAT = "dfa-archive"
+ARCHIVE_VERSION = 1
+MANIFEST_NAME = "manifest.json"
 
 #: Default rolling window.  The operational stores keep at most this much raw
 #: history.  See ``docs/retention.md`` for the measurements behind the choice.
@@ -187,15 +197,22 @@ POLICY: Tuple[SourcePolicy, ...] = (
         expires_when="its snapshot is expired",
         protection="rows of a kept snapshot are kept",
         bytes_per_row=99.1, needed_for_replay=True,
-        rationale="the second largest table: every changed price per import",
+        rationale="the only record of how a price moved: one row per item per "
+                  "import, written only when the price changed.  Deleting it "
+                  "removes the ability to reconstruct a past price level",
     ),
-    SourcePolicy(
-        "tsm_realm_price", "tsm_markets.db", HISTORY, "tsm_snapshot.updated_at",
-        expires_when="its snapshot is expired",
-        protection="rows of a kept snapshot are kept, so names stay resolvable",
-        bytes_per_row=136.3, needed_for_replay=True,
-        rationale="per-realm item rows, including the names the ML path reads",
-    ),
+    # NOT a history table.  Measured: 1,193,857 rows for 1,193,857 distinct
+    # (scope, item_id) pairs, enforced by a unique index -- it is an upsert
+    # mirror of the current price per item, and its snapshot_id is the last
+    # time the row was *written*, not the last time the price *changed* (a
+    # traced item carried snapshot_id 1177 while its only price_change row was
+    # snapshot 1).  Its updated_at is therefore a write timestamp and must
+    # never be used as a retention boundary: expiring on it would delete the
+    # current price of every item that has simply not been touched recently.
+    SourcePolicy("tsm_realm_price", "tsm_markets.db", CURRENT, "updated_at",
+                 rationale="current price per item per realm; one row each, "
+                           "upserted.  updated_at is a write time, not an "
+                           "observation time, so it cannot drive expiry"),
     SourcePolicy("tsm_region_price", "tsm_markets.db", CURRENT, "updated_at",
                  rationale="single current region state (one snapshot only)"),
     SourcePolicy("tsm_commodity_price", "tsm_markets.db", CURRENT, "updated_at",
@@ -286,6 +303,204 @@ def fmt_bytes(n: float) -> str:
     return f"{n:.2f}TB"
 
 
+def _sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as fh:
+        for chunk in iter(lambda: fh.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def read_manifest(archive_dir: Path | str) -> Dict[str, object]:
+    """The archive's manifest, or an empty one if the directory is new."""
+    path = Path(archive_dir) / MANIFEST_NAME
+    if not path.exists():
+        return {
+            "format": ARCHIVE_FORMAT,
+            "version": ARCHIVE_VERSION,
+            "created_at": _iso(int(time.time())),
+            "runs": 0,
+            "files": [],
+        }
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("format") != ARCHIVE_FORMAT:
+        raise ValueError(f"{path} is not a {ARCHIVE_FORMAT} manifest")
+    if int(data.get("version", 0)) > ARCHIVE_VERSION:
+        raise ValueError(
+            f"{path} is version {data['version']}; this code reads up to "
+            f"{ARCHIVE_VERSION}"
+        )
+    return data
+
+
+@dataclass
+class ArchiveFileResult:
+    name: str
+    ok: bool
+    rows: int = 0
+    bytes: int = 0
+    problems: List[str] = field(default_factory=list)
+
+
+@dataclass
+class ArchiveVerification:
+    """Whether an archive is what its manifest says it is."""
+
+    archive_dir: str
+    files_checked: int = 0
+    files_ok: int = 0
+    rows: int = 0
+    bytes: int = 0
+    problems: List[str] = field(default_factory=list)
+    files: List[ArchiveFileResult] = field(default_factory=list)
+    orphans: List[str] = field(default_factory=list)
+    elapsed_s: float = 0.0
+
+    @property
+    def ok(self) -> bool:
+        return not self.problems and not self.orphans and all(
+            f.ok for f in self.files)
+
+    def to_dict(self) -> Dict[str, object]:
+        return {
+            "archive_dir": self.archive_dir,
+            "ok": self.ok,
+            "files_checked": self.files_checked,
+            "files_ok": self.files_ok,
+            "rows": self.rows,
+            "bytes": self.bytes,
+            "orphans": self.orphans,
+            "problems": self.problems,
+            "files": [
+                {"name": f.name, "ok": f.ok, "rows": f.rows,
+                 "bytes": f.bytes, "problems": f.problems}
+                for f in self.files
+            ],
+            "elapsed_s": round(self.elapsed_s, 2),
+        }
+
+    def summary(self) -> str:
+        lines = [
+            f"archive verification: {'PASS' if self.ok else 'FAIL'}",
+            f"  {self.archive_dir}",
+            f"  {self.files_ok}/{self.files_checked} files intact, "
+            f"{self.rows:,} rows, {fmt_bytes(self.bytes)}",
+        ]
+        for f in self.files:
+            if not f.ok:
+                lines.append(f"  BROKEN {f.name}: {'; '.join(f.problems)}")
+        for name in self.orphans:
+            lines.append(f"  ORPHAN {name} is in the directory but not in the "
+                         f"manifest")
+        for p in self.problems:
+            lines.append(f"  ERROR {p}")
+        return "\n".join(lines)
+
+
+def verify_archive(archive_dir: Path | str,
+                   check_content_hash: bool = True) -> ArchiveVerification:
+    """Re-read an archive and check it against its manifest.
+
+    Four things are checked per file: it exists, its byte size matches, its
+    SHA-256 matches, and decompressing it yields exactly the recorded number of
+    data rows with a header naming the same table and columns.  With
+    ``check_content_hash`` the uncompressed payload is hashed as well, which
+    catches a gzip that decompresses cleanly to different bytes.
+
+    An archive that has not been verified is not evidence, so this is meant to
+    run before anything is deleted, not after.
+    """
+    started = time.perf_counter()
+    root = Path(archive_dir)
+    result = ArchiveVerification(archive_dir=str(root))
+    if not root.exists():
+        result.problems.append(f"{root} does not exist")
+        result.elapsed_s = time.perf_counter() - started
+        return result
+    try:
+        manifest = read_manifest(root)
+    except (ValueError, json.JSONDecodeError) as exc:
+        result.problems.append(str(exc))
+        result.elapsed_s = time.perf_counter() - started
+        return result
+
+    listed = set()
+    for entry in manifest.get("files", []):
+        name = entry["name"]
+        listed.add(name)
+        path = root / name
+        fr = ArchiveFileResult(name=name, ok=True)
+        result.files.append(fr)
+        result.files_checked += 1
+        if not path.exists():
+            fr.ok = False
+            fr.problems.append("missing")
+            continue
+        size = path.stat().st_size
+        fr.bytes = size
+        if size != int(entry["bytes"]):
+            fr.ok = False
+            fr.problems.append(
+                f"size {size} != manifest {entry['bytes']}")
+        file_hash = _sha256_file(path)
+        if file_hash != entry["file_sha256"]:
+            fr.ok = False
+            fr.problems.append("file sha256 differs from the manifest")
+
+        h = hashlib.sha256()
+        rows = 0
+        header: Optional[dict] = None
+        try:
+            # newline="" so the payload hashed on read is byte-identical to
+            # the payload hashed on write
+            with gzip.open(path, "rt", encoding="utf-8", newline="") as fh:
+                for i, line in enumerate(fh):
+                    if check_content_hash:
+                        h.update(line.encode("utf-8"))
+                    if i == 0:
+                        header = json.loads(line)
+                        continue
+                    rows += 1
+        except (OSError, EOFError, UnicodeDecodeError, json.JSONDecodeError,
+                zlib.error) as exc:
+            fr.ok = False
+            fr.problems.append(f"cannot read: {exc}")
+            continue
+
+        fr.rows = rows
+        if header is None:
+            fr.ok = False
+            fr.problems.append("no header line")
+        else:
+            if header.get("table") != entry["table"]:
+                fr.ok = False
+                fr.problems.append(
+                    f"header table {header.get('table')!r} != {entry['table']!r}")
+            if header.get("columns") != entry["columns"]:
+                fr.ok = False
+                fr.problems.append("header columns differ from the manifest")
+        if rows != int(entry["rows"]):
+            fr.ok = False
+            fr.problems.append(f"row count {rows} != manifest {entry['rows']}")
+        if check_content_hash and h.hexdigest() != entry["content_sha256"]:
+            fr.ok = False
+            fr.problems.append("content sha256 differs from the manifest")
+
+        if fr.ok:
+            result.files_ok += 1
+            result.rows += rows
+            result.bytes += size
+
+    for path in sorted(root.glob("*.jsonl.gz")):
+        if path.name not in listed:
+            result.orphans.append(path.name)
+    for path in sorted(root.glob("*.part")):
+        result.orphans.append(path.name)
+
+    result.elapsed_s = time.perf_counter() - started
+    return result
+
+
 def epoch_expr(con: sqlite3.Connection, table: str, column: str) -> str:
     """The SQL that yields ``column`` as an integer epoch, whatever it stores.
 
@@ -340,7 +555,12 @@ class SourceResult:
     protected: int = 0
     estimated_bytes: int = 0
     archived: str = ""
+    #: rows actually written to the archive file, which under a row budget is
+    #: what was deleted (apply) or what a deletion would have taken (archive)
+    archived_rows: int = 0
     note: str = ""
+    #: True when ``max_rows`` stopped this table before it was finished
+    limited: bool = False
 
     def to_dict(self) -> Dict[str, object]:
         return {
@@ -351,7 +571,9 @@ class SourceResult:
             "protected": self.protected,
             "estimated_bytes": self.estimated_bytes,
             "archived": self.archived,
+            "archived_rows": self.archived_rows,
             "note": self.note,
+            "limited": self.limited,
         }
 
 
@@ -362,12 +584,17 @@ class RetentionReport:
     days: int
     cutoff: int
     dry_run: bool
+    #: True when the run wrote an archive and deliberately deleted nothing
+    archive_only: bool = False
     sources: List[SourceResult] = field(default_factory=list)
     errors: List[str] = field(default_factory=list)
     started: float = field(default_factory=time.time)
     finished: float = 0.0
     free_bytes_before: Dict[str, int] = field(default_factory=dict)
     free_bytes_after: Dict[str, int] = field(default_factory=dict)
+    archive_dir: str = ""
+    #: result of verifying the archive that this run wrote, if any
+    archive_verification: Dict[str, object] = field(default_factory=dict)
 
     @property
     def cutoff_iso(self) -> str:
@@ -382,6 +609,10 @@ class RetentionReport:
         return sum(s.deleted for s in self.sources)
 
     @property
+    def total_archived_rows(self) -> int:
+        return sum(s.archived_rows for s in self.sources)
+
+    @property
     def total_bytes(self) -> int:
         return sum(s.estimated_bytes for s in self.sources)
 
@@ -391,6 +622,10 @@ class RetentionReport:
             "cutoff_epoch": self.cutoff,
             "cutoff_iso": self.cutoff_iso,
             "dry_run": self.dry_run,
+            "archive_only": self.archive_only,
+            "archive_dir": self.archive_dir,
+            "archive_verification": self.archive_verification,
+            "total_archived_rows": self.total_archived_rows,
             "started_iso": _iso(int(self.started)),
             "finished_iso": _iso(int(self.finished or time.time())),
             "elapsed_s": round((self.finished or time.time()) - self.started, 2),
@@ -404,7 +639,12 @@ class RetentionReport:
         }
 
     def summary(self) -> str:
-        verb = "would delete" if self.dry_run else "deleted"
+        if self.archive_only:
+            verb = "archived (nothing deleted)"
+        elif self.dry_run:
+            verb = "would delete"
+        else:
+            verb = "deleted"
         lines = [
             f"retention {self.days}d   cutoff {self.cutoff_iso}",
             f"{verb}: {self.total_eligible:,} rows ({fmt_bytes(self.total_bytes)})",
@@ -421,6 +661,19 @@ class RetentionReport:
             )
         if self.total_eligible == 0:
             lines.append("  nothing is older than the cutoff")
+        limited = [s for s in self.sources if s.limited]
+        if limited:
+            done = sum(s.deleted or s.archived_rows for s in limited)
+            total = sum(s.eligible for s in limited)
+            lines.append(f"  limited: {done:,} of {total:,} eligible rows "
+                         f"in {len(limited)} table(s); rerun to continue")
+        if self.archive_only:
+            lines.append(f"  wrote {self.total_archived_rows:,} rows to "
+                         f"{self.archive_dir}")
+            if self.archive_verification:
+                ok = self.archive_verification.get("ok")
+                lines.append(f"  archive verification: "
+                             f"{'PASS' if ok else 'FAIL'}")
         for s in self.sources:
             if s.note and s.eligible:
                 lines.append(f"  note {s.table}: {s.note}")
@@ -437,9 +690,16 @@ class Retention:
                  now: Optional[int] = None,
                  batch: int = BATCH_ROWS,
                  archive_dir: Optional[Path | str] = None,
-                 allow_replay_loss: bool = False) -> None:
+                 allow_replay_loss: bool = False,
+                 only_tables: Optional[Sequence[str]] = None,
+                 max_rows: Optional[int] = None,
+                 archive_only: bool = False) -> None:
         if days <= 0:
             raise ValueError("retention days must be positive")
+        if max_rows is not None and max_rows <= 0:
+            raise ValueError("max_rows must be positive when given")
+        if archive_only and not archive_dir:
+            raise ValueError("archive_only needs an archive_dir to write to")
         self.intel_db = Path(intel_db)
         self.tsm_db = Path(tsm_db)
         self.days = int(days)
@@ -447,7 +707,18 @@ class Retention:
         self.batch = int(batch)
         self.archive_dir = Path(archive_dir) if archive_dir else None
         self.allow_replay_loss = bool(allow_replay_loss)
+        #: write the archive but delete nothing.  This is the step that has to
+        #: pass before a real deletion is considered.
+        self.archive_only = bool(archive_only)
+        #: stage the work: restrict to these tables, and stop after this many
+        #: rows.  A first real run should be small enough to inspect.
+        self.only_tables = set(only_tables) if only_tables else None
+        self.max_rows = int(max_rows) if max_rows is not None else None
         self.cutoff = self.now - self.days * 86400
+        #: remaining row budget for this run
+        self._budget: Optional[int] = self.max_rows
+        #: archive entries written by the current run, flushed to the manifest
+        self._archived: List[Dict[str, object]] = []
 
     # -- connection ------------------------------------------------------
     @staticmethod
@@ -523,8 +794,12 @@ class Retention:
     def tasks(self, con: sqlite3.Connection, database: str) -> List[DeleteTask]:
         """Every deletion this run would perform, in dependency order."""
         if database == "intel.sqlite":
-            return self._intel_tasks(con)
-        return self._tsm_tasks(con)
+            found = self._intel_tasks(con)
+        else:
+            found = self._tsm_tasks(con)
+        if self.only_tables:
+            found = [t for t in found if t.table in self.only_tables]
+        return found
 
     def _intel_tasks(self, con: sqlite3.Connection) -> List[DeleteTask]:
         expired_ah, kept_ah = self._expired_ah_snapshots(con)
@@ -589,10 +864,11 @@ class Retention:
         out: List[DeleteTask] = []
         if expired:
             marks, params = self._in_list(expired)
-            for table in ("tsm_price_change", "tsm_realm_price"):
-                out.append(DeleteTask("tsm_markets.db", table,
-                                      f"snapshot_id IN ({marks})", params,
-                                      note=f"{kept} current snapshots kept"))
+            # only tsm_price_change expires.  tsm_realm_price is the current
+            # state per item (one row each, upserted), so it is never deleted.
+            out.append(DeleteTask("tsm_markets.db", "tsm_price_change",
+                                  f"snapshot_id IN ({marks})", params,
+                                  note=f"{kept} current snapshots kept"))
             out.append(DeleteTask("tsm_markets.db", "tsm_snapshot",
                                   f"snapshot_id IN ({marks})", params,
                                   age_where=f"{epoch_expr(con, 'tsm_snapshot', 'updated_at')} < ?",
@@ -621,66 +897,182 @@ class Retention:
         return out
 
     # -- archive ---------------------------------------------------------
-    def _archive(self, con: sqlite3.Connection, task: DeleteTask) -> str:
-        """Write the expired rows to gzipped JSONL before they are deleted."""
+    def _archive(self, con: sqlite3.Connection, task: DeleteTask,
+                 limit: Optional[int] = None) -> Dict[str, object]:
+        """Write the expired rows to gzipped JSONL before they are deleted.
+
+        The rows are selected ``ORDER BY rowid``, the same order ``_delete``
+        removes them in, so under a row budget the archive holds exactly the
+        rows that were deleted and no more.
+
+        The file is written to ``.part`` and renamed into place only once it is
+        complete, so an interrupted run leaves either the old file or the new
+        one, never a truncated one.  The caller records the returned entry in
+        the manifest; nothing is in the manifest that was not fully written.
+        """
         assert self.archive_dir is not None
         self.archive_dir.mkdir(parents=True, exist_ok=True)
         stamp = _iso(self.cutoff).replace(":", "")
-        path = self.archive_dir / f"{task.database}.{task.table}.{stamp}.jsonl.gz"
-        cur = con.execute(
-            f'SELECT * FROM "{task.table}" WHERE {task.where}', task.params
-        )
+        name = f"{task.database}.{task.table}.{stamp}.jsonl.gz"
+        path = self.archive_dir / name
+        part = path.with_suffix(path.suffix + ".part")
+
+        sql = f'SELECT * FROM "{task.table}" WHERE {task.where} ORDER BY rowid'
+        params: Tuple[object, ...] = tuple(task.params)
+        if limit is not None:
+            sql += " LIMIT ?"
+            params = params + (int(limit),)
+        cur = con.execute(sql, params)
         columns = [d[0] for d in cur.description]
+        header = {
+            "table": task.table,
+            "database": task.database,
+            "cutoff_epoch": self.cutoff,
+            "cutoff_iso": _iso(self.cutoff),
+            "columns": columns,
+        }
         written = 0
-        with gzip.open(path, "wt", encoding="utf-8", compresslevel=6) as fh:
-            fh.write(json.dumps({
-                "table": task.table,
-                "database": task.database,
-                "cutoff_epoch": self.cutoff,
-                "cutoff_iso": _iso(self.cutoff),
-                "columns": columns,
-            }) + "\n")
-            for row in cur:
-                fh.write(json.dumps(dict(zip(columns, row)), default=str) + "\n")
-                written += 1
-        logger.info("archived %d rows from %s to %s", written, task.table, path)
-        return str(path)
+        digest = hashlib.sha256()
+        try:
+            with open(part, "wb") as raw:
+                with gzip.GzipFile(fileobj=raw, mode="wb",
+                                   compresslevel=6, mtime=0) as gz:
+                    for line in [json.dumps(header) + "\n"]:
+                        payload = line.encode("utf-8")
+                        gz.write(payload)
+                        digest.update(payload)
+                    for row in cur:
+                        payload = (json.dumps(
+                            dict(zip(columns, row)), default=str) + "\n"
+                        ).encode("utf-8")
+                        gz.write(payload)
+                        digest.update(payload)
+                        written += 1
+            os.replace(part, path)
+        except BaseException:
+            # an interrupted archive must not look complete
+            try:
+                part.unlink()
+            except OSError:
+                pass
+            raise
+
+        size = path.stat().st_size
+        logger.info("archived %d rows from %s to %s (%.1f MB)", written,
+                    task.table, path, size / 1e6)
+        return {
+            "name": name,
+            "database": task.database,
+            "table": task.table,
+            "cutoff_epoch": self.cutoff,
+            "cutoff_iso": _iso(self.cutoff),
+            "columns": columns,
+            "rows": written,
+            "bytes": size,
+            # of the *uncompressed* payload, so it can be checked without
+            # decompressing the whole file again
+            "content_sha256": digest.hexdigest(),
+            "file_sha256": _sha256_file(path),
+        }
+
+    def _write_manifest(self) -> None:
+        """Merge this run's archive entries into the directory's manifest."""
+        if self.archive_dir is None or not self._archived:
+            return
+        manifest = read_manifest(self.archive_dir)
+        by_name = {entry["name"]: entry for entry in manifest["files"]}
+        for entry in self._archived:
+            by_name[entry["name"]] = entry
+        manifest["files"] = sorted(by_name.values(), key=lambda e: e["name"])
+        manifest["updated_at"] = _iso(int(time.time()))
+        manifest["runs"] = int(manifest.get("runs", 0)) + 1
+        path = self.archive_dir / MANIFEST_NAME
+        tmp = path.with_suffix(".json.part")
+        tmp.write_text(json.dumps(manifest, indent=2, default=str),
+                       encoding="utf-8")
+        os.replace(tmp, path)
 
     # -- execution -------------------------------------------------------
     def _delete(self, con: sqlite3.Connection, task: DeleteTask) -> int:
+        """Delete in batches, stopping when the row budget is exhausted.
+
+        The budget is what makes a first real run safe: a caller can say "at
+        most 50,000 rows this time" and inspect the result before the rest.
+        """
         total = 0
         while True:
+            limit = self.batch
+            if self._budget is not None:
+                if self._budget <= 0:
+                    break
+                limit = min(limit, self._budget)
             cur = con.execute(
                 f'DELETE FROM "{task.table}" WHERE rowid IN '
-                f'(SELECT rowid FROM "{task.table}" WHERE {task.where} LIMIT ?)',
-                tuple(task.params) + (self.batch,),
+                f'(SELECT rowid FROM "{task.table}" WHERE {task.where} '
+                f'ORDER BY rowid LIMIT ?)',
+                tuple(task.params) + (limit,),
             )
             removed = cur.rowcount if cur.rowcount and cur.rowcount > 0 else 0
             total += removed
-            if removed < self.batch:
+            if self._budget is not None:
+                self._budget -= removed
+            if removed < limit:
                 break
         return total
 
-    def _run(self, dry_run: bool) -> RetentionReport:
-        report = RetentionReport(days=self.days, cutoff=self.cutoff, dry_run=dry_run)
+    def _run(self, mode: str) -> RetentionReport:
+        """Run in ``plan``, ``archive`` or ``apply`` mode.
+
+        ``plan`` reads only.  ``archive`` writes the external archive and the
+        manifest but deletes nothing, and takes no write lock on the
+        databases.  ``apply`` archives when asked to and then deletes.
+        """
+        if mode not in ("plan", "archive", "apply"):
+            raise ValueError(f"unknown mode {mode!r}")
+        report = RetentionReport(
+            days=self.days,
+            cutoff=self.cutoff,
+            dry_run=mode != "apply",
+            archive_only=mode == "archive",
+        )
+        if self.archive_dir is not None:
+            report.archive_dir = str(self.archive_dir)
+        self._archived = []
         for path, database in ((self.intel_db, "intel.sqlite"),
                                (self.tsm_db, "tsm_markets.db")):
             if not path.exists():
                 report.errors.append(f"missing database {path}")
                 continue
             try:
-                self._run_one(path, database, report, dry_run)
+                self._run_one(path, database, report, mode)
             except PolicyRefusal as exc:
                 report.errors.append(f"{database}: {exc}")
                 logger.error("retention refused on %s: %s", database, exc)
             except sqlite3.Error as exc:
                 report.errors.append(f"{database}: {exc}")
                 logger.exception("retention failed on %s", database)
+        if mode != "plan":
+            self._write_manifest()
+        if mode == "archive" and self.archive_dir is not None:
+            # An archive that has not been read back is not evidence, so the
+            # verification is part of the run rather than a later chore.
+            if (self.archive_dir / MANIFEST_NAME).exists():
+                verification = verify_archive(self.archive_dir)
+                report.archive_verification = verification.to_dict()
+                if not verification.ok:
+                    report.errors.append(
+                        "archive verification failed: "
+                        + "; ".join(verification.problems
+                                    + [f"orphan {o}" for o in verification.orphans]
+                                    + [f"broken {f.name}" for f in verification.files
+                                       if not f.ok]))
+            elif self._archived:
+                report.errors.append("archive manifest was not written")
         report.finished = time.time()
         return report
 
     def _run_one(self, path: Path, database: str,
-                 report: RetentionReport, dry_run: bool) -> None:
+                 report: RetentionReport, mode: str) -> None:
         con = self._open(path)
         try:
             report.free_bytes_before[str(path)] = self._free_bytes(con)
@@ -689,7 +1081,7 @@ class Retention:
             # Refuse to destroy anything a past evaluation could not be
             # recomputed from, unless an archive was asked for or the caller
             # accepted the loss explicitly.
-            if not dry_run and not self.archive_dir and not self.allow_replay_loss:
+            if mode == "apply" and not self.archive_dir and not self.allow_replay_loss:
                 blocking = [
                     t.table for t in tasks
                     if t.policy.needed_for_replay
@@ -704,17 +1096,16 @@ class Retention:
                         "evaluations can no longer be reproduced from raw data."
                     )
 
-            if dry_run:
-                # A dry run must not take a write lock: the watcher writes to
-                # these databases continuously, and BEGIN IMMEDIATE would
-                # block it for the whole scan.
+            if mode != "apply":
+                # Neither a plan nor an archive writes to the database, so
+                # neither takes a write lock: the watcher keeps writing.
                 for task in tasks:
-                    self._record(report, con, task, dry_run=True)
+                    self._record(report, con, task, mode)
             else:
                 con.execute("BEGIN IMMEDIATE")
                 try:
                     for task in tasks:
-                        self._record(report, con, task, dry_run=False)
+                        self._record(report, con, task, mode)
                     con.execute("COMMIT")
                 except (sqlite3.Error, OSError):
                     con.execute("ROLLBACK")
@@ -724,31 +1115,59 @@ class Retention:
             con.close()
 
     def _record(self, report: RetentionReport, con: sqlite3.Connection,
-                task: DeleteTask, dry_run: bool) -> None:
-        """Count, and if applying, archive then delete one table."""
+                task: DeleteTask, mode: str) -> None:
+        """Count, and if archiving or applying, act on one table."""
         res = SourceResult(database=task.database, table=task.table,
                            note=task.note)
         res.eligible = self._count(con, task.table, task.where, task.params)
         res.estimated_bytes = int(res.eligible * task.policy.bytes_per_row)
         aged = self._count(con, task.table, task.age_where, task.age_params)
         res.protected = max(0, aged - res.eligible)
-        if dry_run:
-            res.deleted = res.eligible
+        # the budget applies to a plan too, so the report shows what a
+        # limited run would actually do rather than the unattainable total
+        take = res.eligible
+        if self._budget is not None:
+            take = max(0, min(res.eligible, self._budget))
+            if take < res.eligible:
+                res.limited = True
+        if mode == "plan":
+            res.deleted = take
+            if self._budget is not None:
+                self._budget -= take
+        elif mode == "archive":
+            if self.archive_dir and take:
+                entry = self._archive(con, task, limit=take)
+                self._archived.append(entry)
+                res.archived = str(entry["name"])
+                res.archived_rows = int(entry["rows"])
+            if self._budget is not None:
+                self._budget -= take
         else:
-            if self.archive_dir and res.eligible:
-                res.archived = self._archive(con, task)
+            if self.archive_dir and take:
+                entry = self._archive(con, task, limit=take)
+                self._archived.append(entry)
+                res.archived = str(entry["name"])
+                res.archived_rows = int(entry["rows"])
             res.deleted = self._delete(con, task)
+            if res.deleted < res.eligible:
+                res.limited = True
             logger.info("retention deleted %d rows from %s.%s",
                         res.deleted, task.database, task.table)
         report.sources.append(res)
 
     def plan(self) -> RetentionReport:
         """Count what ``apply()`` would delete.  Touches nothing."""
-        return self._run(dry_run=True)
+        return self._run("plan")
+
+    def archive(self) -> RetentionReport:
+        """Write and verify the external archive.  Deletes nothing."""
+        if self.archive_dir is None:
+            raise ValueError("archive() needs an archive_dir")
+        return self._run("archive")
 
     def apply(self) -> RetentionReport:
         """Delete expired rows.  Safe to run repeatedly."""
-        return self._run(dry_run=False)
+        return self._run("apply")
 
 
 def render_policy() -> str:

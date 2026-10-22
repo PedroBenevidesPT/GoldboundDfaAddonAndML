@@ -563,3 +563,99 @@ def test_a_non_positive_window_is_rejected(stores):
     intel, tsm = stores
     with pytest.raises(ValueError):
         Retention(intel, tsm, days=0)
+
+
+# ---------------------------------------------------------------------------
+# staged deletion: bounded in tables and in rows
+# ---------------------------------------------------------------------------
+#
+# A first real run should be small enough to inspect.  These tests pin the two
+# bounds and the property that makes them safe: a limited run deletes exactly
+# what it archived, and a second run continues where the first stopped.
+
+def _seed_many(stores, scans: int = 3, auctions: int = 5):
+    intel, tsm = stores
+    now = 1_797_408_000
+    con = sqlite3.connect(intel)
+    for i in range(scans):
+        _seed_scan(con, f"s{i}", "realm-a", now - 60 * DAY - i * DAY, auctions)
+    con.commit()
+    con.close()
+    return intel, tsm, now
+
+
+def test_max_rows_caps_the_deletion(stores):
+    intel, _tsm, now = _seed_many(stores)
+    before = _count(intel, "ah_auction")
+    report = Retention(intel, _tsm, days=30, now=now, max_rows=4,
+                       allow_replay_loss=True).apply()
+    assert report.total_deleted == 4
+    assert _count(intel, "ah_auction") == before - 4
+
+
+def test_a_limited_run_reports_that_it_was_limited(stores):
+    intel, tsm, now = _seed_many(stores)
+    report = Retention(intel, tsm, days=30, now=now, max_rows=4,
+                       allow_replay_loss=True).apply()
+    limited = [s for s in report.sources if s.limited]
+    assert limited, "the report must say the run was cut short"
+    assert "limited" in report.summary()
+
+
+def test_repeating_a_limited_run_eventually_finishes(stores):
+    intel, tsm, now = _seed_many(stores)
+    total = 0
+    for _ in range(50):
+        report = Retention(intel, tsm, days=30, now=now, max_rows=3,
+                             allow_replay_loss=True).apply()
+        if report.total_deleted == 0:
+            break
+        total += report.total_deleted
+    # the second run must now find nothing
+    final = Retention(intel, tsm, days=30, now=now).plan()
+    assert final.total_eligible == 0
+    assert total > 0
+
+
+def test_only_table_restricts_the_run(stores):
+    intel, tsm, now = _seed_many(stores)
+    con = sqlite3.connect(tsm)
+    _seed_tsm(con, 1, "realm-a", "realm_items", now - 60 * DAY)
+    _seed_tsm(con, 2, "realm-a", "realm_items", now - 59 * DAY)
+    con.commit()
+    con.close()
+
+    report = Retention(intel, tsm, days=30, now=now,
+                       only_tables=["tsm_price_change"],
+                       allow_replay_loss=True).apply()
+    assert {s.table for s in report.sources} == {"tsm_price_change"}
+    # the intel side was untouched
+    assert _count(intel, "ah_auction") > 0
+
+
+def test_a_limited_run_archives_exactly_what_it_deleted(stores, tmp_path):
+    intel, tsm, now = _seed_many(stores)
+    archive = tmp_path / "archive"
+    report = Retention(intel, tsm, days=30, now=now, max_rows=4,
+                       archive_dir=archive).apply()
+
+    archived = 0
+    for path in archive.glob("*.jsonl.gz"):
+        with gzip.open(path, "rt", encoding="utf-8") as fh:
+            next(fh)  # header
+            archived += sum(1 for _ in fh)
+    assert archived == report.total_deleted
+
+
+def test_a_dry_run_with_a_budget_reports_the_bounded_number(stores):
+    intel, tsm, now = _seed_many(stores)
+    report = Retention(intel, tsm, days=30, now=now, max_rows=4,
+                       allow_replay_loss=True).plan()
+    assert report.total_eligible > 4
+    assert sum(s.deleted for s in report.sources) == 4
+
+
+def test_a_non_positive_row_budget_is_rejected(stores):
+    intel, tsm = stores
+    with pytest.raises(ValueError):
+        Retention(intel, tsm, max_rows=0)
