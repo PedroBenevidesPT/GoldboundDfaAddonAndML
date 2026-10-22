@@ -82,3 +82,4 @@ reports/step3_archive_only.json
 .DS_Store
 Thumbs.db
 *.swp
+reports/dryrun_*.json
