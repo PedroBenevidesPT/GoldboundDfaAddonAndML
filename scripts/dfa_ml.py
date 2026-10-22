@@ -120,10 +120,19 @@ def cmd_sentinel(config: MLConfig, args) -> int:
     engine = DfaLearningEngine(config)
     engine.load()
     frame, report, link = engine.build_rows()
+    if getattr(args, "frame_cache", None):
+        # The watcher keeps appending snapshots, so two runs a minute apart
+        # do not see the same rows and their test blocks are not comparable.
+        # Freezing the frame makes "identical chronological windows" a fact
+        # rather than a hope.
+        from woweconomy.ml.frame_cache import load_or_build_frame
+        frame = load_or_build_frame(Path(args.frame_cache), frame)
     cfg = SentinelConfig(tsm_db=Path(config.tsm_db),
                          models_root=Path(args.sentinel_dir) if args.sentinel_dir
                          else Path(config.models_dir).parent / "dfa_sentinel",
-                         reports_dir=Path(config.reports_dir).parent / "dfa_sentinel",
+                         reports_dir=Path(args.sentinel_reports_dir)
+                         if getattr(args, "sentinel_reports_dir", None)
+                         else Path(config.reports_dir).parent / "dfa_sentinel",
                          iterations=args.sentinel_iterations or config.iterations)
     cfg.ensure_dirs()
     decision, reason = retrain_decision(cfg, frame, engine.observation_end)
@@ -252,8 +261,16 @@ def main() -> int:
                              "check run in seconds")
     parser.add_argument("--sentinel-dir", default=None,
                         help="where the versioned Sentinel artifacts live")
+    parser.add_argument("--sentinel-reports-dir", default=None,
+                        help="where the Sentinel report is written; an isolated "
+                             "run must not overwrite the active report")
     parser.add_argument("--sentinel-iterations", type=int, default=None,
                         help="trees for the Sentinel candidates")
+    parser.add_argument("--frame-cache", default=None,
+                        help="with sentinel: read the feature frame from this "
+                             "parquet file instead of rebuilding it, so two "
+                             "runs are scored on exactly the same listings. "
+                             "The file is written when it does not exist yet.")
     parser.add_argument("--comparison-bootstrap", type=int, default=400,
                         help="paired bootstrap draws for the comparison command")
     parser.add_argument("--if-needed", action="store_true",

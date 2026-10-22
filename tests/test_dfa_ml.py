@@ -87,6 +87,27 @@ def test_the_most_recent_listing_is_used_when_the_price_does_not_match():
     assert sales[0].price_exact is False
 
 
+def test_two_listings_at_the_same_price_are_not_an_exact_match():
+    """The price is identified; the *listing* is not.
+
+    Claiming ``price_exact`` here would attach the elapsed time to an
+    arbitrary one of two indistinguishable postings and then report the
+    match as precise.  The price label survives; the identity does not.
+    """
+    archive = JournalArchive()
+    archive.postings.append(make_posting(1000, buyout=1800))
+    archive.postings.append(make_posting(2000, buyout=1800))
+    archive.invoices.append(make_invoice(3000, value=1800))
+    outcomes, report = link_postings(archive)
+    sales = [o for o in outcomes if o.outcome == SALE]
+    assert len(sales) == 1
+    assert sales[0].price_ambiguous is True
+    assert sales[0].price_exact is False
+    summary = report.summary()
+    assert summary["ambiguous_price_matches"] == 1
+    assert summary["price_exact_rate"] == 0.0
+
+
 def test_a_listing_with_no_observed_outcome_is_censored_not_failed():
     archive = JournalArchive()
     archive.postings.append(make_posting(1000))

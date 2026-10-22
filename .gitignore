@@ -57,7 +57,12 @@ storage_audit*.json
 storage_audit*.txt
 attic/
 data/_phase*/
-*.joblib
+# A model bundle is published by writing a `.staging-*` directory and then
+# renaming it into place, so an interrupted train leaves one behind.  It is
+# by definition incomplete -- ignoring it by name is safer than a blanket
+# `*.joblib`, which would drop a bundle's calibrators while keeping its
+# manifest and leave a version that loads and then fails.
+models/**/.staging-*
 
 # Editor / OS noise.
 .DS_Store

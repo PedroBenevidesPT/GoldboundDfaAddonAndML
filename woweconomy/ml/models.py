@@ -49,6 +49,13 @@ except ImportError:  # pragma: no cover
 NON_FEATURE_COLUMNS = (
     "item_id", "realm", "item_name", "ts", "date", "outcome", "elapsed_h",
     "inferred_duration_h", "ask_unit", "qty", "ambiguous",
+    # ``price_exact`` / ``price_ambiguous`` describe how a *sale* was
+    # matched back to a posting.  They are post-outcome facts: a listing
+    # that never sold has no sale to match, so ``price_exact == 1`` is
+    # almost the label itself (single-feature AUC 0.997 against
+    # ``sold_within_48h``).  They exist for the matching audit and must
+    # never reach a model.
+    "price_exact", "price_ambiguous",
     "y_gross_unit", "y_net_unit", "y_net_unit_log", "y_gross_unit_log",
     "y_net_gold", "fee_ratio_observed", "tts_hours", "tts_censored",
     # the raw references: kept for the credibility analysis, never a

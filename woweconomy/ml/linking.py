@@ -82,6 +82,10 @@ class ListingOutcome:
     ambiguous: int = 1
     #: the sale total matched the posting's buyout exactly
     price_exact: bool = False
+    #: more than one outstanding posting had the same total, so the
+    #: *specific* listing that sold is not identified even though the
+    #: price is.  The price label survives; the elapsed time does not.
+    price_ambiguous: bool = False
 
     @property
     def item_id(self) -> Optional[int]:
@@ -109,6 +113,7 @@ class LinkReport:
     censored: int = 0
     unresolved_item: int = 0
     ambiguous_matches: int = 0
+    ambiguous_price_matches: int = 0
     sold_at_ask: int = 0
     price_exact_matches: int = 0
     orphan_outcomes: int = 0
@@ -130,6 +135,10 @@ class LinkReport:
             if self.matched_sale else None,
             "price_exact_matches": self.price_exact_matches,
             "price_exact_rate": round(self.price_exact_matches / self.matched_sale, 4)
+            if self.matched_sale else None,
+            "ambiguous_price_matches": self.ambiguous_price_matches,
+            "ambiguous_price_rate": round(
+                self.ambiguous_price_matches / self.matched_sale, 4)
             if self.matched_sale else None,
             "orphan_outcomes": self.orphan_outcomes,
             "observation_end": self.observation_end,
@@ -221,13 +230,20 @@ def link_postings(archive: JournalArchive,
                 continue
             chosen: Optional[Posting] = None
             exact = False
+            price_ambiguous = False
             if kind == "sale":
                 total = int(payload.value)
                 matches = [p for p in candidates
                            if p.unit_buyout and p.unit_buyout * p.qty == total]
                 if matches:
                     chosen = matches[-1]      # the most recent exact listing
-                    exact = True
+                    # Two outstanding postings with the same total are not
+                    # the same evidence: the price is identified, the
+                    # *listing* is not.  Saying "exact" here would claim a
+                    # precision the data does not have, and the elapsed
+                    # time would then be attached to an arbitrary posting.
+                    exact = len(matches) == 1
+                    price_ambiguous = len(matches) > 1
             if chosen is None:
                 chosen = candidates[-1]      # the most recent listing outstanding
             available.remove(chosen)
@@ -236,13 +252,16 @@ def link_postings(archive: JournalArchive,
             if kind == "sale":
                 out = ListingOutcome(posting=chosen, outcome=SALE,
                                      outcome_time=when, elapsed=when - chosen.time,
-                                     price_exact=exact)
+                                     price_exact=exact,
+                                     price_ambiguous=price_ambiguous)
                 out.unit_price = int(payload.value) // max(1, chosen.qty)
                 out.consignment = int(payload.consignment)
                 out.deposit = int(payload.deposit)
                 report.matched_sale += 1
                 if exact:
                     report.price_exact_matches += 1
+                if price_ambiguous:
+                    report.ambiguous_price_matches += 1
                 if chosen.unit_buyout > 0 and abs(out.unit_price - chosen.unit_buyout) <= 1:
                     report.sold_at_ask += 1
             else:

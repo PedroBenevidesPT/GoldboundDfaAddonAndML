@@ -137,6 +137,13 @@ def build_dataset(outcomes: Sequence[ListingOutcome],
         record["ask_unit"] = float(post.unit_buyout)
         record["qty"] = float(post.qty)
         record["ambiguous"] = float(out.ambiguous)
+        #: whether the *specific* listing behind a sale is identified.
+        #: ``price_exact`` says the total matched one outstanding posting;
+        #: ``price_ambiguous`` says two or more postings shared that total,
+        #: so the price is right but the elapsed time is attached to an
+        #: arbitrary one of them.
+        record["price_exact"] = float(out.price_exact)
+        record["price_ambiguous"] = float(out.price_ambiguous)
 
         # ---- Model A: the price -----------------------------------------
         if out.outcome == SALE:

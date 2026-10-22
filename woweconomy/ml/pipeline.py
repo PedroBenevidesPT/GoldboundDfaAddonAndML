@@ -924,15 +924,23 @@ class DfaLearningEngine:
         cats = categorical_columns(frame)
         numeric = feature_columns(frame)
         all_features = base_columns(frame)
-        sale_rate = self.make_curve(curve)
-        if sale_rate is None:
+        global_curve_fn = self.make_curve(curve)
+        if global_curve_fn is None:
             return {"error": "no demand curve"}
-        curve_fn = self.make_curve(curve)
 
         rows: List[Dict[str, object]] = []
+        fold_curves: List[str] = []
         for fold in split.folds:
+            # The curve must be fitted on the fold's *training* rows.  Using
+            # one curve fitted on the whole frame -- including the rows it
+            # is then applied to -- makes the comparison in-sample and
+            # inflates the improvement by construction.
+            fold_curve = self.demand_curve(fold.train)
+            fold_fn = self.make_curve(fold_curve)
+            sale_rate = fold_fn or global_curve_fn
+            fold_curves.append("fold_train" if fold_fn else "global_fallback")
             strategy, valid = self._fold_strategy(fold, all_features, cats,
-                                                  curve_fn, numeric)
+                                                  fold_fn or global_curve_fn, numeric)
             if strategy is None:
                 continue
             for _, row in valid.iterrows():
@@ -962,22 +970,110 @@ class DfaLearningEngine:
         if not rows:
             return {"error": "no listing could be valued"}
         out = pd.DataFrame(rows)
-        actual = float(out["actual_expected"].mean())
-        recommended = float(out["recommended_expected"].mean())
+        # One row set for the point estimate *and* the interval.  A
+        # ``sale_rate`` that cannot be interpolated at some ratio yields
+        # NaN, and pandas' ``.mean()`` skips it while numpy's does not: the
+        # published ratio was therefore computed over more rows than the
+        # interval, and the interval came out as [nan, nan].
+        actual_values, recommended_values = self._finite_pairs(out)
+        actual = float(actual_values.mean()) if len(actual_values) else 0.0
+        recommended = (float(recommended_values.mean())
+                       if len(recommended_values) else 0.0)
+        ratio = (recommended / actual) if actual > 0 else None
+
+        # A ratio of means with no interval is a point estimate pretending
+        # to be a result.  The bootstrap is seeded, so the interval is
+        # reproducible from the same rows.
+        ci = self._bootstrap_ratio(out, seed=self.bootstrap_seed)
+        supported = bool(
+            ci is not None and ci[0] > 1.0
+            and len(actual_values) >= self.min_strategy_rows
+            and all(source == "fold_train" for source in fold_curves))
+        best_band = _best_measured_band(curve)
+
         return {
             "listings": int(len(out)),
+            "folds": len(fold_curves),
+            "curve_source": sorted(set(fold_curves)),
             "median_actual_ratio": float(out["actual_ratio"].median()),
             "median_recommended_ratio": float(out["recommended_ratio"].median()),
             "expected_gold_actual": actual,
             "expected_gold_recommended": recommended,
-            "improvement": recommended / actual if actual > 0 else None,
-            "share_in_the_optimal_band": float(
-                ((out["recommended_ratio"] >= 1.0)
-                 & (out["recommended_ratio"] <= 2.0)).mean()),
-            "note": ("the sale rate is interpolated from the measured demand "
-                     "curve, so this is an estimate over a relationship the data "
-                     "observed; it is not a realised result"),
+            #: only published when the interval excludes "no improvement"
+            "improvement": ratio if supported else None,
+            "improvement_point_estimate": ratio,
+            "improvement_ci": list(ci) if ci is not None else None,
+            "improvement_ci_level": 0.95,
+            "improvement_ci_method": "percentile bootstrap over listings, seeded",
+            "status": "supported" if supported else "insufficient_evidence",
+            "reason": ("the 95% interval on the improvement excludes 1.0 and "
+                       "every fold's curve was fitted out of sample"
+                       if supported else
+                       "the interval on the improvement includes 1.0, the "
+                       "sample is too small, or a fold fell back to the "
+                       "in-sample curve"),
+            "best_measured_band": best_band,
+            "note": ("the sale rate is interpolated from a demand curve fitted "
+                     "on the fold's training rows only; it is still an estimate "
+                     "over an observed relationship, not a realised result"),
         }
+
+    #: Below this many replayed listings the bootstrap is not informative.
+    min_strategy_rows: int = 200
+    #: Fixed, so the interval is reproducible across runs.
+    bootstrap_seed: int = 20261022
+
+    @staticmethod
+    def _finite_pairs(out: "pd.DataFrame"):
+        """The rows where both expected values are numbers.
+
+        A NaN cannot be bootstrapped and must not be silently dropped by
+        one statistic while another keeps it.
+        """
+        actual = pd.to_numeric(out["actual_expected"], errors="coerce").to_numpy(
+            dtype=float)
+        recommended = pd.to_numeric(out["recommended_expected"],
+                                    errors="coerce").to_numpy(dtype=float)
+        keep = np.isfinite(actual) & np.isfinite(recommended)
+        return actual[keep], recommended[keep]
+
+    @staticmethod
+    def _bootstrap_ratio(out: "pd.DataFrame", seed: int,
+                         draws: int = 1000) -> Optional[tuple]:
+        """95% percentile interval on ``mean(recommended) / mean(actual)``."""
+        actual, recommended = DfaLearningEngine._finite_pairs(out)
+        if len(actual) < 20:
+            return None
+        rng = np.random.default_rng(seed)
+        values = []
+        for _ in range(draws):
+            idx = rng.integers(0, len(actual), len(actual))
+            base = actual[idx].mean()
+            if base <= 0:
+                continue
+            values.append(recommended[idx].mean() / base)
+        if len(values) < draws // 2:
+            return None
+        return (float(np.percentile(values, 2.5)),
+                float(np.percentile(values, 97.5)))
+
+
+def _best_measured_band(curve: Optional[Dict[str, object]]) -> Optional[Dict[str, object]]:
+    """The band with the highest measured expected gold, and its sample size.
+
+    Descriptive, not prescriptive: it says which band collected the most
+    in the measurement, not which ask is optimal.  The sample size travels
+    with it so a reader can see how thin the evidence is.
+    """
+    if not curve or not curve.get("bands"):
+        return None
+    bands = [b for b in curve["bands"] if b.get("expected_gold_ratio") is not None]
+    if not bands:
+        return None
+    best = max(bands, key=lambda b: float(b["expected_gold_ratio"]))
+    return {"band": best.get("band"), "mid_ratio": best.get("mid_ratio"),
+            "sale_rate": best.get("sale_rate"), "n": best.get("n"),
+            "expected_gold_ratio": best.get("expected_gold_ratio")}
 
 
 def _median_of(rows: List[Dict[str, object]], key: str) -> Optional[float]:

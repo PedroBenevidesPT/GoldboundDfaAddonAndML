@@ -45,6 +45,7 @@ import pandas as pd
 
 from .config import COPPER_PER_GOLD
 from .features import ASK_FEATURES
+from . import label_audit
 from .intervals import (CalibratedInterval, SegmentedInterval,
                         calibrate_interval, calibrate_segmented_interval)
 from .models import (
@@ -272,14 +273,36 @@ class Calibrator:
     n: int = 0
     note: str = ""
 
+    @property
+    def floor(self) -> float:
+        """The smallest probability this calibrator has evidence for.
+
+        Isotonic regression saturates: outside the observed score range it
+        returns exactly 0 or exactly 1, and a clip at ``1e-6`` then turns
+        that into "one in a million".  With ~800 calibration rows that is
+        an assertion the data cannot support, and a single wrong row at
+        ``p = 1e-6`` costs 13.8 nats -- more log loss than the rest of the
+        test set combined.
+
+        Laplace's rule of succession gives ``1 / (n + 2)``: the smallest
+        probability you can defend after seeing ``n`` outcomes.  Below
+        that the model is claiming certainty it never observed.
+        """
+        if self.payload is None or self.n <= 0:
+            return 1e-6
+        return max(1e-6, 1.0 / (float(self.n) + 2.0))
+
     def transform(self, probabilities: np.ndarray) -> np.ndarray:
         p = np.clip(np.asarray(probabilities, dtype=float), 1e-6, 1 - 1e-6)
         if self.method == "isotonic" and self.payload is not None:
-            return np.clip(self.payload.predict(p), 1e-6, 1 - 1e-6)
-        if self.method == "platt" and self.payload is not None:
+            out = self.payload.predict(p)
+        elif self.method == "platt" and self.payload is not None:
             logit = np.log(p / (1.0 - p)).reshape(-1, 1)
-            return np.clip(self.payload.predict_proba(logit)[:, 1], 1e-6, 1 - 1e-6)
-        return p
+            out = self.payload.predict_proba(logit)[:, 1]
+        else:
+            return p
+        floor = self.floor
+        return np.clip(out, floor, 1.0 - floor)
 
 
 def fit_calibrator(y: np.ndarray, p: np.ndarray,
@@ -315,6 +338,41 @@ def fit_calibrator(y: np.ndarray, p: np.ndarray,
         logger.warning("Platt calibration failed: %s", exc)
         return Calibrator(method="identity", n=int(len(y)),
                           note=f"calibration failed: {exc}")
+
+
+def crossfit_calibrated_probabilities(y: np.ndarray, p: np.ndarray, *,
+                                      folds: int = 5,
+                                      min_rows: int = 40) -> np.ndarray:
+    """Calibrated probabilities where no row is scored by its own calibrator.
+
+    Isotonic regression fitted on ``(p, y)`` reproduces ``y`` almost
+    exactly, so scoring a candidate on the block its calibrator was fitted
+    on drives log loss to ~1e-6 for *every* candidate and makes the
+    selection score meaningless.  Each row here gets a probability from a
+    calibrator that never saw it.
+
+    The folds are contiguous, not random: the calibration block is ordered
+    in time, and shuffling would let a later row inform an earlier one.
+    """
+    y = np.asarray(y, dtype=float)
+    p = np.clip(np.asarray(p, dtype=float), 1e-6, 1 - 1e-6)
+    n = len(y)
+    if n == 0:
+        return p
+    k = max(2, min(int(folds), n))
+    edges = np.linspace(0, n, k + 1).astype(int)
+    out = p.copy()
+    for i in range(k):
+        lo, hi = int(edges[i]), int(edges[i + 1])
+        if hi <= lo:
+            continue
+        mask = np.ones(n, dtype=bool)
+        mask[lo:hi] = False
+        if int(mask.sum()) < min_rows or len(np.unique(y[mask])) < 2:
+            continue
+        cal = fit_calibrator(y[mask], p[mask], min_rows=min_rows)
+        out[lo:hi] = cal.transform(p[lo:hi])
+    return out
 
 
 def expected_calibration_error(y: np.ndarray, p: np.ndarray, bins: int = 10) -> float:
@@ -474,6 +532,19 @@ class TargetReport:
     residual_sigma: Optional[float] = None
     files: Dict[str, str] = field(default_factory=dict)
     notes: List[str] = field(default_factory=list)
+    #: which block and metric chose the candidate, so the choice can be
+    #: audited without re-running the fit
+    selection_block: str = ""
+    selection_metric: str = ""
+    selection_value: Optional[float] = None
+    selection_baseline_value: Optional[float] = None
+    selection_margin: Optional[float] = None
+    #: every candidate's cross-fitted score on the selection block, so the
+    #: comparison behind ``selection_*`` is visible rather than implied
+    selection_scores: Dict[str, Dict[str, float]] = field(default_factory=dict)
+    #: whether the held-out block agrees with the calibration-block choice
+    #: on the selection metric; ``None`` when it could not be measured
+    test_confirmation: Optional[bool] = None
 
     def as_dict(self) -> Dict[str, object]:
         return asdict(self)
@@ -633,6 +704,133 @@ def _prepare_horizon_frame(frame: pd.DataFrame, horizon: int,
     return usable
 
 
+@dataclass(frozen=True)
+class Selection:
+    """The outcome of choosing between a baseline and learned candidates."""
+
+    name: str
+    metric: str
+    value: float
+    baseline_value: float
+    margin: float
+    reason: str
+
+    @property
+    def chose_baseline(self) -> bool:
+        return self.name == "item_rate_baseline"
+
+
+#: The name the baseline always has in a selection.
+BASELINE_NAME = "item_rate_baseline"
+
+#: Two scores closer than this are the same score.  Float noise must not
+#: decide which model ships.
+SELECTION_TOLERANCE = 1e-9
+
+#: Target statuses whose probability may be exported as a probability.
+#: ``validated_unconfirmed`` is deliberately absent: a model whose
+#: calibration-block advantage did not replicate on the held-out block has
+#: not demonstrated value, so the caller falls back to the baseline rather
+#: than showing the player a number nobody has checked.  ``degenerate`` is
+#: absent for the same reason -- two horizons with identical labels are one
+#: measurement reported twice.
+PROBABILITY_STATUSES = ("validated", "trained_no_measured_gain", "baseline_only")
+
+
+def select_candidate(baseline_value: float,
+                     candidates: Dict[str, Dict[str, float]],
+                     *, metric: str = "logloss",
+                     tiebreak: str = "brier",
+                     min_gain: float = 0.0,
+                     tolerance: float = SELECTION_TOLERANCE) -> Selection:
+    """Pick one candidate, deterministically, from an **untouched** block.
+
+    Rules, in order:
+
+    1. a candidate whose primary metric is not finite is ineligible;
+    2. a candidate must beat the baseline by ``min_gain`` to be eligible
+       at all -- a model that is only "less bad" is not an improvement;
+    3. among eligible candidates the lowest primary metric wins;
+    4. a tie (within ``tolerance``) is broken by the secondary metric,
+       then by name in sorted order, so the answer never depends on
+       dictionary insertion order or on which thread finished first.
+
+    ``baseline_value`` must come from the same block as the candidates.
+    Selecting on the test block and then reporting test metrics on the
+    winner is not a measurement; it is a maximum over a sample.
+    """
+    best_name = BASELINE_NAME
+    best_value = float(baseline_value)
+    best_tie = float("inf")
+
+    for name in sorted(candidates):
+        metrics = candidates[name] or {}
+        value = metrics.get(metric)
+        if value is None or not math.isfinite(float(value)):
+            continue
+        value = float(value)
+        tie = metrics.get(tiebreak, float("inf"))
+        tie = float(tie) if isinstance(tie, (int, float)) and math.isfinite(float(tie)) \
+            else float("inf")
+
+        if best_name == BASELINE_NAME:
+            if value < best_value - tolerance:
+                best_name, best_value, best_tie = name, value, tie
+            continue
+        if value < best_value - tolerance:
+            best_name, best_value, best_tie = name, value, tie
+        elif abs(value - best_value) <= tolerance and tie < best_tie - tolerance:
+            best_name, best_value, best_tie = name, value, tie
+
+    margin = float(baseline_value) - best_value
+    if best_name != BASELINE_NAME and margin < min_gain:
+        return Selection(
+            name=BASELINE_NAME, metric=metric, value=float(baseline_value),
+            baseline_value=float(baseline_value), margin=margin,
+            reason=(f"the best candidate beat the baseline by only {margin:.6f} "
+                    f"{metric}, below the {min_gain:.6f} required"))
+    if best_name == BASELINE_NAME:
+        return Selection(
+            name=BASELINE_NAME, metric=metric, value=float(baseline_value),
+            baseline_value=float(baseline_value), margin=margin,
+            reason="no candidate beat the simple baseline on the selection block")
+    return Selection(
+        name=best_name, metric=metric, value=best_value,
+        baseline_value=float(baseline_value), margin=margin,
+        reason=f"{best_name} won on {metric} by {margin:.6f}")
+
+
+def _test_confirms(model_metrics: Dict[str, float],
+                   baseline_metrics: Dict[str, float],
+                   metric: str) -> Optional[bool]:
+    """Does the held-out block agree that the model beats the baseline?
+
+    This is *reporting*, not selection: the winner was already chosen on
+    the calibration block.  A model whose advantage does not replicate is
+    not promoted, but the test score never picks the winner -- otherwise
+    the reported number would be the maximum of a sample.
+    """
+    if metric not in model_metrics or metric not in baseline_metrics:
+        return None
+    best = model_metrics.get(metric)
+    base = baseline_metrics.get(metric)
+    if best is None or base is None:
+        return None
+    best, base = float(best), float(base)
+    if not (math.isfinite(best) and math.isfinite(base)):
+        return None
+    return best < base - SELECTION_TOLERANCE
+
+
+def _apply_selection(report: TargetReport, selection: Selection,
+                     block: str) -> None:
+    report.selection_block = block
+    report.selection_metric = selection.metric
+    report.selection_value = selection.value
+    report.selection_baseline_value = selection.baseline_value
+    report.selection_margin = selection.margin
+
+
 def train_sale_target(frame: pd.DataFrame, horizon: int, observation_end: int,
                       cfg: SentinelConfig, directory: Path) -> Tuple[TargetReport, Optional[Dict[str, object]]]:
     report = TargetReport(horizon_h=horizon)
@@ -691,20 +889,33 @@ def train_sale_target(frame: pd.DataFrame, horizon: int, observation_end: int,
     base_test = _apply_item_rate(rates, split.test)
     report.baseline_metrics = classification_metrics(
         split.test[label].to_numpy(dtype=float), base_test)
+    #: the same baseline on the block the selection is allowed to read.
+    #: Without it, "beats the baseline" would be measured on the test set.
+    #: It is cross-fitted exactly like the learned candidates so both sides
+    #: of the comparison get the same treatment.
+    y_cal = split.calibration[label].to_numpy(dtype=float)
+    baseline_calibration = classification_metrics(
+        y_cal, crossfit_calibrated_probabilities(y_cal, base_cal))
     report.candidates["item_rate_baseline"] = report.baseline_metrics
+    report.selection_scores["item_rate_baseline"] = baseline_calibration
 
     candidates: Dict[str, Dict[str, object]] = {}
     # --- scikit-learn logistic -------------------------------------------
     try:
         logistic = _fit_logistic(split.train, feats, label, cfg.seed)
         p_cal = _sklearn_predict(logistic, split.calibration, feats)
-        cal = fit_calibrator(split.calibration[label].to_numpy(dtype=float), p_cal)
+        cal = fit_calibrator(y_cal, p_cal)
         p_test = cal.transform(_sklearn_predict(logistic, split.test, feats))
         metrics = classification_metrics(split.test[label].to_numpy(dtype=float), p_test)
+        #: scored out of fold; ``cal`` above saw every calibration row
+        calibration_metrics = classification_metrics(
+            y_cal, crossfit_calibrated_probabilities(y_cal, p_cal))
         report.candidates["logistic_regression"] = metrics
+        report.selection_scores["logistic_regression"] = calibration_metrics
         candidates["logistic_regression"] = {
             "model_type": "logistic", "model": logistic, "calibrator": cal,
             "stem": f"sale_{horizon}h", "metrics": metrics,
+            "calibration_metrics": calibration_metrics,
         }
     except Exception as exc:  # pragma: no cover - numerical guard
         report.notes.append(f"logistic regression failed: {exc}")
@@ -715,41 +926,49 @@ def train_sale_target(frame: pd.DataFrame, horizon: int, observation_end: int,
             boost = _fit_catboost_classifier(split.train, feats, cats, label,
                                              cfg.iterations, cfg.seed)
             p_cal = _catboost_predict(boost, split.calibration, feats, cats)
-            cal = fit_calibrator(split.calibration[label].to_numpy(dtype=float), p_cal)
+            cal = fit_calibrator(y_cal, p_cal)
             p_test = cal.transform(_catboost_predict(boost, split.test, feats, cats))
             metrics = classification_metrics(split.test[label].to_numpy(dtype=float), p_test)
+            calibration_metrics = classification_metrics(
+                y_cal, crossfit_calibrated_probabilities(y_cal, p_cal))
             report.candidates["catboost"] = metrics
+            report.selection_scores["catboost"] = calibration_metrics
             candidates["catboost"] = {
                 "model_type": "catboost", "model": boost, "calibrator": cal,
                 "stem": f"sale_{horizon}h", "metrics": metrics,
+                "calibration_metrics": calibration_metrics,
             }
         except Exception as exc:  # pragma: no cover
             report.notes.append(f"CatBoost classifier failed: {exc}")
     else:
         report.notes.append("CatBoost is not installed; only the scikit-learn candidate was fitted")
 
-    # --- selection: lowest log loss on the untouched test block ----------
+    # --- selection: lowest log loss on the calibration block -------------
     # Log loss is the primary selection metric because it is strictly
     # proper and punishes a confident wrong probability, which is exactly
-    # the failure Brier can hide.  Brier is reported beside it, and the
-    # improvement test still uses Brier against the simple baseline.
-    best_name = "item_rate_baseline"
-    best_loss = report.baseline_metrics.get("logloss", float("inf"))
-    best_brier = report.baseline_metrics.get("brier", float("inf"))
-    for name, candidate in candidates.items():
-        metrics = candidate["metrics"]  # type: ignore[assignment]
-        value = metrics.get("logloss", float("inf"))
-        if value < best_loss - 1e-9 or (
-                abs(value - best_loss) <= 1e-9
-                and metrics.get("brier", float("inf")) < best_brier):
-            best_name, best_loss, best_brier = name, value, metrics.get("brier", best_brier)
+    # the failure Brier can hide.  Brier is the tie-break.
+    #
+    # The choice is made on the **calibration** block, never on the test
+    # block: choosing the winner by its test score and then reporting that
+    # same score measures the maximum of a sample, not the model.  The
+    # test block stays untouched until the winner has been chosen.
+    selection = select_candidate(
+        baseline_calibration.get("logloss", float("inf")),
+        {name: c["calibration_metrics"] for name, c in candidates.items()},  # type: ignore[misc]
+        metric="logloss", tiebreak="brier",
+        min_gain=cfg.min_probability_gain)
+    best_name = selection.name
+    _apply_selection(report, selection, "calibration")
+    if best_name != BASELINE_NAME:
+        report.notes.append(
+            f"selected on calibration ({selection.metric}={selection.value:.6f}); "
+            f"the test metrics below are out of sample for the choice")
     report.model_type = best_name
     report.metrics = (report.baseline_metrics if best_name == "item_rate_baseline"
                       else candidates[best_name]["metrics"])  # type: ignore[assignment]
-    if best_name == "item_rate_baseline":
+    if best_name == BASELINE_NAME:
         report.improvement = False
-        report.reason = ("the simple item-rate baseline was as good as, or better than, "
-                         "the learned candidates on the chronological holdout")
+        report.reason = selection.reason
         payload = {
             "model_type": "baseline_item_rate", "rates": rates,
             "stem": f"sale_{horizon}h", "calibrator": Calibrator(),
@@ -761,9 +980,25 @@ def train_sale_target(frame: pd.DataFrame, horizon: int, observation_end: int,
         return report, {**payload, "features": feats, "cats": cats, "files": files}
 
     payload = candidates[best_name]
-    baseline_brier = report.baseline_metrics.get("brier", float("inf"))
-    report.improvement = bool(baseline_brier - best_brier >= cfg.min_probability_gain)
-    report.status = "validated" if report.improvement else "trained_no_measured_gain"
+    #: The decision to ship was made on the calibration block above.  The
+    #: test block is asked only whether that advantage replicates; it never
+    #: chooses the winner.  A model that wins on calibration but loses on
+    #: the held-out block has not demonstrated value, so it is not promoted
+    #: as validated -- ``baseline_only`` stays the honest label.
+    report.improvement = selection.margin >= cfg.min_probability_gain
+    report.test_confirmation = _test_confirms(
+        report.metrics, report.baseline_metrics, selection.metric)
+    if report.test_confirmation is False:
+        report.status = "validated_unconfirmed"
+        report.improvement = False
+        report.reason = (
+            f"{best_name} beat the baseline on the calibration block "
+            f"({selection.metric} {selection.value:.4f} vs "
+            f"{selection.baseline_value:.4f}) but did not replicate on the "
+            f"held-out block ({report.metrics.get(selection.metric):.4f} vs "
+            f"{report.baseline_metrics.get(selection.metric):.4f})")
+    else:
+        report.status = "validated" if report.improvement else "trained_no_measured_gain"
     report.model_type = str(payload.get("model_type") or best_name)
     report.calibrated = payload["calibrator"].method  # type: ignore[union-attr]
     payload["features"] = feats
@@ -1354,19 +1589,28 @@ def train_risk_target(examples: pd.DataFrame, target: str, horizon: int,
     baseline_test = np.full(len(split.test), base_rate)
     report.baseline_metrics = classification_metrics(
         split.test[target].to_numpy(dtype=float), baseline_test)
+    y_cal = split.calibration[target].to_numpy(dtype=float)
+    baseline_calibration = classification_metrics(
+        y_cal, crossfit_calibrated_probabilities(
+            y_cal, np.full(len(split.calibration), base_rate)))
     report.candidates["base_rate_baseline"] = report.baseline_metrics
+    report.selection_scores["base_rate_baseline"] = baseline_calibration
 
     candidates: Dict[str, Dict[str, object]] = {}
     try:
         logistic = _fit_logistic(split.train, feats, target, cfg.seed)
         p_cal = _sklearn_predict(logistic, split.calibration, feats)
-        cal = fit_calibrator(split.calibration[target].to_numpy(dtype=float), p_cal)
+        cal = fit_calibrator(y_cal, p_cal)
         p_test = cal.transform(_sklearn_predict(logistic, split.test, feats))
         metrics = classification_metrics(split.test[target].to_numpy(dtype=float), p_test)
+        calibration_metrics = classification_metrics(
+            y_cal, crossfit_calibrated_probabilities(y_cal, p_cal))
         report.candidates["logistic_regression"] = metrics
+        report.selection_scores["logistic_regression"] = calibration_metrics
         candidates["logistic_regression"] = {
             "model_type": "logistic", "model": logistic, "calibrator": cal,
             "stem": f"risk_{target}_{horizon}h", "metrics": metrics,
+            "calibration_metrics": calibration_metrics,
         }
     except Exception as exc:  # pragma: no cover
         report.notes.append(f"logistic risk model failed: {exc}")
@@ -1376,33 +1620,33 @@ def train_risk_target(examples: pd.DataFrame, target: str, horizon: int,
             boost = _fit_catboost_classifier(split.train, feats, [], target,
                                              cfg.iterations, cfg.seed)
             p_cal = _catboost_predict(boost, split.calibration, feats, [])
-            cal = fit_calibrator(split.calibration[target].to_numpy(dtype=float), p_cal)
+            cal = fit_calibrator(y_cal, p_cal)
             p_test = cal.transform(_catboost_predict(boost, split.test, feats, []))
             metrics = classification_metrics(split.test[target].to_numpy(dtype=float), p_test)
+            calibration_metrics = classification_metrics(
+                y_cal, crossfit_calibrated_probabilities(y_cal, p_cal))
             report.candidates["catboost"] = metrics
+            report.selection_scores["catboost"] = calibration_metrics
             candidates["catboost"] = {
                 "model_type": "catboost", "model": boost, "calibrator": cal,
                 "stem": f"risk_{target}_{horizon}h", "metrics": metrics,
+                "calibration_metrics": calibration_metrics,
             }
         except Exception as exc:  # pragma: no cover
             report.notes.append(f"CatBoost risk model failed: {exc}")
 
-    best_name = "base_rate_baseline"
-    best_loss = report.baseline_metrics.get("logloss", float("inf"))
-    best_brier = report.baseline_metrics.get("brier", float("inf"))
-    for name, candidate in candidates.items():
-        metrics = candidate["metrics"]  # type: ignore[assignment]
-        value = metrics.get("logloss", float("inf"))
-        if value < best_loss - 1e-9 or (
-                abs(value - best_loss) <= 1e-9
-                and metrics.get("brier", float("inf")) < best_brier):
-            best_name, best_loss, best_brier = name, value, metrics.get("brier", best_brier)
+    selection = select_candidate(
+        baseline_calibration.get("logloss", float("inf")),
+        {name: c["calibration_metrics"] for name, c in candidates.items()},  # type: ignore[misc]
+        metric="logloss", tiebreak="brier", min_gain=cfg.min_risk_gain)
+    best_name = selection.name
+    _apply_selection(report, selection, "calibration")
     report.model_type = best_name
     report.metrics = (report.baseline_metrics if best_name == "base_rate_baseline"
                       else candidates[best_name]["metrics"])  # type: ignore[assignment]
     if best_name == "base_rate_baseline":
         report.status = "baseline_only"
-        report.reason = "the base rate matched or beat the learned risk models"
+        report.reason = selection.reason
         payload = {"model_type": "baseline_rate", "rate": base_rate,
                    "stem": f"risk_{target}_{horizon}h", "calibrator": Calibrator()}
         files = _write_predictions(payload, directory, feats, [])
@@ -1410,9 +1654,20 @@ def train_risk_target(examples: pd.DataFrame, target: str, horizon: int,
         report.files = files
         return report, payload
     payload = candidates[best_name]
-    baseline_brier = report.baseline_metrics.get("brier", float("inf"))
-    report.improvement = bool(baseline_brier - best_brier >= cfg.min_risk_gain)
-    report.status = "validated" if report.improvement else "trained_no_measured_gain"
+    report.improvement = selection.margin >= cfg.min_risk_gain
+    report.test_confirmation = _test_confirms(
+        report.metrics, report.baseline_metrics, selection.metric)
+    if report.test_confirmation is False:
+        report.status = "validated_unconfirmed"
+        report.improvement = False
+        report.reason = (
+            f"{best_name} beat the baseline on the calibration block "
+            f"({selection.metric} {selection.value:.4f} vs "
+            f"{selection.baseline_value:.4f}) but did not replicate on the "
+            f"held-out block ({report.metrics.get(selection.metric):.4f} vs "
+            f"{report.baseline_metrics.get(selection.metric):.4f})")
+    else:
+        report.status = "validated" if report.improvement else "trained_no_measured_gain"
     report.model_type = str(payload.get("model_type") or best_name)
     report.calibrated = payload["calibrator"].method  # type: ignore[union-attr]
     payload["features"] = feats
@@ -1615,9 +1870,26 @@ class SentinelTrainer:
         reports: Dict[str, TargetReport] = {}
         payloads: Dict[str, Dict[str, object]] = {}
         try:
+            # Measure the horizons before training them.  An auction lasts
+            # at most 48 hours, so a 168h label is the 48h label: training
+            # both and reporting two "validated" models manufactures a
+            # distinction the market does not have.
+            equivalence = label_audit.label_agreement(frame, cfg.horizons_h)
+            degenerate = label_audit.degenerate_horizons(frame, cfg.horizons_h)
+            closure = label_audit.horizon_closure(frame, observation_end)
             for horizon in cfg.horizons_h:
                 report, payload = train_sale_target(frame, horizon, observation_end,
                                                     cfg, staging)
+                if horizon in degenerate:
+                    report.status = "degenerate"
+                    report.improvement = False
+                    report.reason = (
+                        f"the labels are identical to the {degenerate[horizon]}h "
+                        f"target (agreement >= {label_audit.DEFAULT_AGREEMENT}); "
+                        "this is the same question, not an independent model")
+                    report.notes.append(
+                        "trained for artifact compatibility, but not eligible "
+                        "for promotion as a separate model")
                 reports[f"sale_{horizon}h"] = report
                 if payload is not None:
                     payloads[f"sale_{horizon}h"] = payload
@@ -1666,6 +1938,22 @@ class SentinelTrainer:
                     realm_coverage[str(realm)] = entry
 
             validated = sum(1 for r in reports.values() if r.status == "validated")
+            #: The sale probability is the headline number the addon shows.
+            #: If *it* did not replicate, the artifact must not advertise
+            #: itself as validated just because the risk targets did.
+            sale_reports = {k: r for k, r in reports.items() if k.startswith("sale_")}
+            sale_validated = sum(1 for r in sale_reports.values()
+                                 if r.status == "validated")
+            sale_unconfirmed = sum(1 for r in sale_reports.values()
+                                   if r.status == "validated_unconfirmed")
+            if sale_validated:
+                overall = "validated"
+            elif sale_unconfirmed:
+                overall = "sale_probability_unconfirmed"
+            elif validated:
+                overall = "auxiliary_targets_only"
+            else:
+                overall = "insufficient_or_baseline_only"
             manifest: Dict[str, object] = {
                 "schema": SENTINEL_SCHEMA,
                 "feature_schema": FEATURE_SCHEMA,
@@ -1692,9 +1980,14 @@ class SentinelTrainer:
                     "risk_examples": int(len(risk_examples)) if risk_examples is not None else 0,
                 },
                 "targets": {key: report.as_dict() for key, report in reports.items()},
+                "horizon_equivalence": equivalence,
+                "horizon_closure": closure,
+                "degenerate_horizons": {str(k): v for k, v in degenerate.items()},
                 "realm_coverage": realm_coverage,
                 "validated_targets": validated,
-                "status": ("validated" if validated else "insufficient_or_baseline_only"),
+                "sale_targets_validated": sale_validated,
+                "sale_targets_unconfirmed": sale_unconfirmed,
+                "status": overall,
             }
             manifest["checksums"] = _manifest_checksums(staging)
             _atomic_write_text(staging / "manifest.json", json.dumps(manifest, indent=2))
@@ -2038,7 +2331,7 @@ class SentinelPredictor:
         key = f"{target}_{horizon}h"
         status, _reason = self.target_status(key)
         payload = self._payload(key)
-        if status not in ("validated", "trained_no_measured_gain", "baseline_only") or payload is None:
+        if status not in PROBABILITY_STATUSES or payload is None:
             return None
         if risk_features is None:
             prediction.flags.append(f"{target}-unknown")

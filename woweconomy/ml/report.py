@@ -508,19 +508,28 @@ def write_report(config: MLConfig, payload: Dict[str, object]) -> Path:
         ]
         lines.extend(_table(["", "median ask", "expected gold per listing"], rows))
         improvement = value.get("improvement")
+        ci = value.get("improvement_ci")
+        point = value.get("improvement_point_estimate")
         if improvement:
             add(f"**The expected gold per listing improves by "
                 f"{_pct(improvement - 1)}** over the asking behaviour that was "
-                f"actually used, and {_pct(value.get('share_in_the_optimal_band'))} "
-                "of the recommendations land in the band the curve says is the "
-                "best (1x to 2x the regional sale average).")
+                f"actually used (95% interval "
+                f"{_pct(ci[0] - 1)} to {_pct(ci[1] - 1)}).")
             add("")
-            add("The account's own median listing asks "
-                f"{_num(value.get('median_actual_ratio'), 2)}x the regional sale "
-                f"average; the strategy's median is "
-                f"{_num(value.get('median_recommended_ratio'), 2)}x.  The whole "
-                "difference is the inflated asking reference, taken out of the "
-                "price and put into the sale rate.")
+            band = value.get("best_measured_band") or {}
+            if band:
+                add(f"The band with the highest measured expected gold is "
+                    f"{band.get('band')} ({band.get('n')} listings).  This is "
+                    "descriptive: it says which band collected the most in the "
+                    "measurement, not which ask is optimal.")
+                add("")
+        elif point is not None:
+            interval = (f"95% interval {_pct(ci[0] - 1)} to {_pct(ci[1] - 1)}"
+                        if ci else "no interval could be computed")
+            add(f"**No improvement is claimed.**  The point estimate is "
+                f"{_pct(point - 1)} but {interval}, which does not exclude "
+                "no improvement; the recommendation is withheld rather than "
+                "reported as a result.")
             add("")
         add(f"Over {value.get('listings'):,} replayed listings.  "
             + str(value.get("note", "")).capitalize() + ".")
