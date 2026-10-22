@@ -37,6 +37,23 @@ local FLAG_TEXT = {
 	["low-confidence"] = "low confidence",
 }
 
+-- The dataset's status is a model-lifecycle token: it says which estimator
+-- produced the number and how much of it was measured.  That vocabulary
+-- belongs to the reports and the artifact, not to a tooltip, so the token
+-- is translated here and nowhere else.  The dataset still carries
+-- "baseline_only" unchanged -- only the sentence a player reads changes.
+-- A token with no entry is shown as it arrived rather than swallowed, so a
+-- status added upstream is visible instead of silently disappearing.
+local STATUS_TEXT = {
+	["baseline_only"] = "item sale rate, no learned model",
+	["trained_no_measured_gain"] = "no better than a simple rate",
+	["validated_ranking_only"] = "ranking only, no duration",
+	["unsupported_signal"] = "no signal the data can support",
+	["insufficient_data"] = "too little evidence",
+	["stale"] = "out of date",
+	["unknown"] = "not available",
+}
+
 local unpack = _G.unpack or table.unpack
 
 
@@ -253,12 +270,19 @@ function Tooltip.GetLines(itemId)
 		lines[#lines + 1] = ("Price-decline risk (24h): %d%%"):format(
 			math.floor(record.decline * 100))
 	end
-	if record.status and record.status ~= "validated" then
-		local text = ("Prediction: %s"):format(tostring(record.status))
-		if record.fallback and record.fallback ~= "" then
-			text = text .. " (" .. record.fallback .. ")"
+	-- The status is a lifecycle token, not a sentence.  A record from a
+	-- dataset that predates schema 2 has none and gets no line, and the
+	-- fully validated case -- the normal one -- stays silent.
+	local status = record.status
+	if status ~= nil and status ~= "validated" then
+		local token = tostring(status)
+		if token ~= "" then
+			local text = ("Prediction: %s"):format(STATUS_TEXT[token] or token)
+			if record.fallback and record.fallback ~= "" then
+				text = text .. " (" .. record.fallback .. ")"
+			end
+			lines[#lines + 1] = text
 		end
-		lines[#lines + 1] = text
 	end
 	if record.n and record.n > 0 then
 		lines[#lines + 1] = ("Evidence: %d sale(s) of this item here"):format(record.n)
