@@ -522,7 +522,24 @@ def _catboost_predict(model, frame: pd.DataFrame, features: Sequence[str],
 
 
 def _sklearn_predict(model, frame: pd.DataFrame, features: Sequence[str]) -> np.ndarray:
-    return np.asarray(model.predict(align_features(frame, features, ())), dtype=float)
+    """The model's score for one row: a probability for a classifier.
+
+    ``predict`` on a scikit-learn classifier returns the *class label*, so
+    using it as a probability turns every downstream number into a hard
+    0/1 decision.  The calibrator then sees only two distinct inputs and
+    collapses to two knots, and the exported sale probability can no
+    longer tell one item from another.  The estimator decides: a model
+    that can produce probabilities is asked for them, a regressor keeps
+    its prediction.
+    """
+    aligned = align_features(frame, features, ())
+    if hasattr(model, "predict_proba"):
+        proba = np.asarray(model.predict_proba(aligned), dtype=float)
+        if proba.ndim == 2 and proba.shape[1] >= 2:
+            # classes_ is sorted, so column 1 is P(class == 1).
+            return proba[:, 1]
+        return proba.ravel()
+    return np.asarray(model.predict(aligned), dtype=float)
 
 
 def _write_joblib(path: Path, payload: object) -> None:
