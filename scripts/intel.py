@@ -55,29 +55,153 @@ def cmd_ah_ingest(args) -> int:
     return 0
 
 
+def _all_connected_realms(con, region: str) -> list:
+    """Every connected realm in ``ah_realm``, with one representative name.
+
+    The auction house is shared per connected realm, so the unit of work is
+    the group, not the realm: 267 EU realms are 92 books.  The
+    representative is the alphabetically first member, chosen rather than
+    picked arbitrarily so the stored ``realm`` column is stable across runs
+    and a snapshot's name does not drift when the API reorders its payload.
+
+    Returns ``[(connected_realm_id, representative_name, [member names])]``.
+    """
+    rows = con.execute(
+        "SELECT connected_realm_id, realm_name FROM ah_realm"
+        " WHERE region = ? AND connected_realm_id IS NOT NULL"
+        " ORDER BY connected_realm_id, realm_name", (region,)).fetchall()
+    grouped: dict = {}
+    for cr_id, name in rows:
+        grouped.setdefault(int(cr_id), []).append(str(name))
+    return [(cr_id, names[0], names) for cr_id, names in sorted(grouped.items())]
+
+
+def _last_modified_for(con, region: str, cr_id: int) -> str:
+    """The newest ``api_last_modified`` already stored for this book.
+
+    Read from the database rather than kept in memory so a fresh process
+    asks a conditional question on its first request: without it every run
+    would download 92 full books to learn that nothing had changed.
+    """
+    row = con.execute(
+        "SELECT api_last_modified FROM ah_snapshot"
+        " WHERE region = ? AND connected_realm_id = ? AND realm <> ''"
+        " ORDER BY captured_at DESC LIMIT 1", (region, cr_id)).fetchone()
+    return str(row[0]) if row and row[0] else ""
+
+
 def cmd_ah_fetch(args) -> int:
     con = store.connect(args.db)
     client = ah.AuctionHouseClient(region=args.region)
     if args.sync_realms:
         count = ah.sync_realm_index(con, client)
         print(f"realm index: {count} realms", file=sys.stderr)
-    realm_id = args.connected_realm_id or ah.connected_realm_id(
-        con, args.realm, args.region)
-    if not realm_id:
-        print("unknown connected realm; run with --sync-realms first",
-              file=sys.stderr)
-        return 2
-    payload, modified = client.fetch_auctions(realm_id, args.modified_since or "")
-    if payload is None:
-        print("304: unchanged", file=sys.stderr)
-        return 0
-    parsed = ah.parse_payload(payload, region=args.region, realm=args.realm,
-                              realm_slug=args.realm_slug or "",
-                              connected_realm_id=int(realm_id),
-                              source="blizzard_api",
-                              api_last_modified=modified)
-    _print(ah.ingest_bundle(con, parsed).__dict__)
+
+    if not args.commodities_only:
+        if args.all_realms:
+            return _fetch_all_realms(args, con, client)
+        if not args.realm:
+            print("--realm is required unless --commodities-only or"
+                  " --all-realms is given", file=sys.stderr)
+            return 2
+        realm_id = args.connected_realm_id or ah.connected_realm_id(
+            con, args.realm, args.region)
+        if not realm_id:
+            print("unknown connected realm; run with --sync-realms first",
+                  file=sys.stderr)
+            return 2
+        payload, modified = client.fetch_auctions(realm_id, args.modified_since or "")
+        if payload is None:
+            print("304: unchanged", file=sys.stderr)
+        else:
+            parsed = ah.parse_payload(payload, region=args.region, realm=args.realm,
+                                      realm_slug=args.realm_slug or "",
+                                      connected_realm_id=int(realm_id),
+                                      source="blizzard_api",
+                                      api_last_modified=modified)
+            _print(ah.ingest_bundle(con, parsed).__dict__)
+
+    if args.commodities or args.commodities_only:
+        # Region-wide: one book, no connected realm.  A failure here must
+        # not lose the realm snapshot that was just written, so it returns
+        # its own exit code instead of raising.
+        try:
+            payload, modified = client.fetch_commodities(
+                args.commodities_since or "")
+        except Exception as exc:  # pragma: no cover - transport failure
+            print(f"commodities: {exc}", file=sys.stderr)
+            return 3
+        if payload is None:
+            print("commodities: 304 unchanged", file=sys.stderr)
+        else:
+            parsed = ah.parse_commodities(payload, region=args.region,
+                                          api_last_modified=modified)
+            if parsed.commodity_count == 0:
+                # An empty commodity book is a failed fetch, not a market
+                # with nothing for sale.  Refuse to write it.
+                print("commodities: payload contained no commodity rows",
+                      file=sys.stderr)
+                return 4
+            _print(ah.ingest_bundle(con, parsed).__dict__)
     return 0
+
+
+def _fetch_all_realms(args, con, client) -> int:
+    """Fetch every connected realm's auction book, one at a time.
+
+    Sequential on purpose: the pacer inside the client already enforces the
+    per-second ceiling, and concurrency here would multiply the 28 MB
+    payloads resident in memory for no gain -- the bottleneck is the
+    download, not the parsing.
+
+    A failure on one book must not abort the run: the other 91 are still
+    worth having, and the exit code reports that something failed so the
+    caller can retry rather than assume a clean sweep.
+    """
+    import time
+    books = _all_connected_realms(con, args.region)
+    if not books:
+        print("no realms known; run with --sync-realms first", file=sys.stderr)
+        return 2
+    if args.limit:
+        books = books[:int(args.limit)]
+
+    fetched = unchanged = failed = 0
+    rows_written = 0
+    started = time.time()
+    for index, (cr_id, name, members) in enumerate(books, 1):
+        since = args.modified_since or _last_modified_for(con, args.region, cr_id)
+        try:
+            payload, modified = client.fetch_auctions(cr_id, since)
+        except Exception as exc:  # transport/parse failure on one book
+            failed += 1
+            print(f"[{index}/{len(books)}] {name} (cr={cr_id}): {exc}",
+                  file=sys.stderr)
+            continue
+        if payload is None:
+            unchanged += 1
+            print(f"[{index}/{len(books)}] {name} (cr={cr_id}): 304",
+                  file=sys.stderr)
+            continue
+        parsed = ah.parse_payload(payload, region=args.region, realm=name,
+                                  realm_slug=members[0].lower().replace(" ", "-"),
+                                  connected_realm_id=int(cr_id),
+                                  source="blizzard_api",
+                                  api_last_modified=modified)
+        result = ah.ingest_bundle(con, parsed)
+        fetched += 1
+        rows_written += result.auctions
+        print(f"[{index}/{len(books)}] {name} (cr={cr_id}): "
+              f"{result.auctions} auctions", file=sys.stderr)
+        if args.delay:
+            time.sleep(float(args.delay))
+
+    summary = {"connected_realms": len(books), "fetched": fetched,
+               "unchanged": unchanged, "failed": failed,
+               "auctions": rows_written,
+               "seconds": round(time.time() - started, 1)}
+    _print(summary)
+    return 1 if failed else 0
 
 
 def cmd_addon_import(args) -> int:
@@ -346,7 +470,14 @@ def cmd_ledger_append(args) -> int:
     return 0
 
 
-def main(argv=None) -> int:
+def build_parser() -> argparse.ArgumentParser:
+    """The command line, exposed so a caller can check its own argv.
+
+    The watcher builds ``intel.py`` argv as strings, so a flag placed in
+    the wrong position (``--region`` is global and must precede the
+    subcommand) is invisible until the subprocess exits 2 at run time.
+    Tests parse the watcher's argv through this parser instead.
+    """
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--db", default=str(store.DEFAULT_DB))
     parser.add_argument("--tsm-db", default=str(ROOT / "tsm_markets.db"))
@@ -364,11 +495,26 @@ def main(argv=None) -> int:
     p.set_defaults(func=cmd_ah_ingest)
 
     p = sub.add_parser("ah-fetch", help="fetch a connected realm's auctions")
-    p.add_argument("--realm", required=True)
+    p.add_argument("--realm", default="",
+                   help="connected realm name (required unless --commodities-only"
+                        " or --all-realms)")
     p.add_argument("--realm-slug", default="")
     p.add_argument("--connected-realm-id", type=int)
     p.add_argument("--modified-since", default="")
     p.add_argument("--sync-realms", action="store_true")
+    p.add_argument("--all-realms", action="store_true",
+                   help="fetch every connected realm in ah_realm, one book each")
+    p.add_argument("--limit", type=int, default=0,
+                   help="with --all-realms, stop after N books (for a smoke run)")
+    p.add_argument("--delay", type=float, default=0.0,
+                   help="seconds to sleep between books (the client already"
+                        " enforces the per-second ceiling)")
+    p.add_argument("--commodities", action="store_true",
+                   help="also fetch the region-wide commodity book")
+    p.add_argument("--commodities-only", action="store_true",
+                   help="fetch only the region-wide commodity book")
+    p.add_argument("--commodities-since", default="",
+                   help="If-Modified-Since for the commodity request")
     p.set_defaults(func=cmd_ah_fetch)
 
     p = sub.add_parser("addon-import", help="import the addon export")
@@ -476,8 +622,11 @@ def main(argv=None) -> int:
     p.add_argument("--kind", required=True, choices=ledger.KINDS)
     p.add_argument("--json", required=True)
     p.set_defaults(func=cmd_ledger_append)
+    return parser
 
-    args = parser.parse_args(argv)
+
+def main(argv=None) -> int:
+    args = build_parser().parse_args(argv)
     return args.func(args)
 
 
