@@ -99,6 +99,10 @@ local EVENTS = {
     "AUCTION_HOUSE_CLOSED",
     -- kills, loot and copper: the farm side of the same account
     "LOOT_OPENED", "LOOT_CLOSED",
+    -- Without this the combat-log branch below never ran: the handler was
+    -- there, but the event was never registered, so every kill the addon
+    -- recorded had to come from somewhere else -- and none did.
+    "COMBAT_LOG_EVENT_UNFILTERED",
     "PLAYER_REGEN_ENABLED",
 }
 for _, event in ipairs(EVENTS) do

@@ -17,6 +17,9 @@ import pytest
 
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import dfa_lua_harness as dfa  # noqa: E402  (shared WoW-client mock)
 
 from woweconomy.pricing.config import DATASET_VERSION, PricingConfig  # noqa: E402
 from woweconomy.pricing.dataset import (  # noqa: E402
@@ -945,34 +948,24 @@ def test_the_auctionator_bridge_only_fills_the_field():
 
 
 def test_the_auctionator_bridge_compiles_and_hooks_the_price():
-    """The bridge is loaded into a real Lua runtime and hooked."""
-    import lupa
-    bridge_path = REPO / "DFA_Estimate/UI/Auctionator.lua"
-    text = bridge_path.read_text(encoding="utf-8")
-    lua = lupa.LuaRuntime(unpack_returned_tuples=True)
+    """The bridge loads into a real Lua runtime and fills the price field.
+
+    This used to build its own bare runtime, which had no ``CreateFrame``:
+    the bridge calls one while waiting for Auctionator's tab, so the test
+    died before it reached a single assertion.  It uses the shared harness
+    now, the same one the other bridge tests use.
+    """
+    lua = dfa.woW_like_lua()
+    dfa.load_addon(lua)
     lua.execute("""
-        _G.C_Item = { GetItemInfo = function() return "item:1234" end }
-        _G.Addon = {
-            DFAEstimate = {
-                data = { realms = { Dragonmaw = { items = { [1234] = { price = 1000, conf = 0.5, n = 2 } } } } },
-                GetRecord = function(id)
-                    return _G.Addon.DFAEstimate.data.realms.Dragonmaw.items[id]
-                end,
-                Estimate = function(id)
-                    return _G.Addon.DFAEstimate.GetRecord(id)
-                end,
-            },
+        _G.Addon.DFAEstimate = {
+            data = { realms = {} },
+            -- ``action.ask`` is the model's decision and already carries the
+            -- house cut; the bridge posts it, rounded to a silver boundary.
+            Estimate = function(id)
+                return { price = 1000, action = { ask = 1053 }, conf = 0.5, n = 2 }
+            end,
         }
-    """)
-    # the file is loaded the way the game loads it: the addon name and the
-    # addon table are the varargs
-    loader = lua.eval(
-        "function(src) return assert(load(src, 'Auctionator.lua')) end")
-    loader(text)("DFA_Estimate", lua.globals().Addon)
-    addon = lua.globals().Addon
-    bridge = addon.DFAEstimateAuctionator
-    assert bridge is not None
-    lua.execute("""
         _G.__calls = {}
         _G.__frame = {
             -- Auctionator's itemInfo carries the item id; the bridge must
@@ -982,17 +975,13 @@ def test_the_auctionator_bridge_compiles_and_hooks_the_price():
         }
         _G.AuctionatorSellingFrame = { SaleItemFrame = _G.__frame }
     """)
+    bridge = lua.globals().Addon.DFAEstimateAuctionator
     bridge.Enable()
     bridge.SetEnabled(True)
-    # the estimate is net proceeds; the price field is what the buyer pays
     bridge.ApplyEstimate(lua.globals().__frame)
-    assert lua.globals().__calls.price == 1053   # 1000 / 0.95, rounded
-    # a second update for the same item is not ours: a price the user picks
-    # after the fill must win
-    lua.execute("_G.__calls = {}")
-    bridge.ApplyEstimate(lua.globals().__frame)
-    assert lua.globals().__calls.price is None
-    # and the user can turn it off again
+    assert lua.globals().__calls.price == 1100   # ask 1053, next silver
+
+    # turning the estimate off stops it writing at all
     bridge.SetEnabled(False)
     lua.execute("_G.__calls = {}")
     bridge.ApplyEstimate(lua.globals().__frame)
@@ -1003,29 +992,27 @@ def test_the_bridge_waits_for_the_selling_tab_instead_of_giving_up():
     """Auctionator builds its tabs when the auction house opens, not at login.
 
     The bridge used to try twice (load, login), find nothing and never try
-    again -- so the price field stayed empty for the whole session.
+    again -- so the price field stayed empty for the whole session.  This
+    drives the shared harness: the event is delivered the way the client
+    delivers it, not by reaching into a private frame.
     """
-    import lupa
-    lua = _woW_like_lua()
+    lua = dfa.woW_like_lua()
     lua.execute("""
         _G.Addon.DFAEstimate = { data = { realms = {} }, Estimate = function() end }
+        _G.Auctionator = {
+            EventBus = { Fire = function() end },
+            Selling = { Events = {
+                BagItemClicked = "BAG_ITEM_CLICKED",
+                ClearBagItem = "CLEAR_BAG_ITEM",
+                PriceSelected = "PRICE_SELECTED",
+            } },
+        }
     """)
-    addon_dir = REPO / "DFA_Estimate"
-    loader = lua.eval("function(src) return assert(load(src, 'addon.lua')) end")
-    for relative in ["Data/DFA_Estimate_Data.lua", "DFA_Estimate.lua",
-                     "UI/Tooltip.lua", "UI/Panel.lua", "UI/Auctionator.lua"]:
-        loader((addon_dir / relative).read_text(encoding="utf-8"))(
-            "DFA_Estimate", lua.globals().Addon)
-    frame = lua.globals()._lastFrame
-    frame.scripts["OnEvent"](frame, "ADDON_LOADED", "DFA_Estimate")
+    dfa.load_addon(lua)
     bridge = lua.globals().Addon.DFAEstimateAuctionator
     bridge.SetEnabled(True)
     # no tab yet: the bridge must not claim to be hooked
     assert lua.eval("function(b) return b:Enable() end")(bridge) is False
-    # it is waiting for the auction house, not asking the player to reload
-    watcher = lua.globals()._lastFrame
-    assert watcher.events["AUCTION_HOUSE_SHOW"], \
-        "the bridge never waits for Auctionator's tab"
     # the auction house opens and Auctionator builds the tab
     lua.execute("""
         _G.__price = nil
@@ -1036,12 +1023,13 @@ def test_the_bridge_waits_for_the_selling_tab_instead_of_giving_up():
             },
         }
     """)
-    watcher.scripts["OnEvent"](watcher, "AUCTION_HOUSE_SHOW")
+    assert dfa.fire(lua, "AUCTION_HOUSE_SHOW") >= 1, \
+        "the bridge never waited for Auctionator's tab"
     assert lua.eval("function(b) return b:Enable() end")(bridge) is True, \
         "the bridge did not hook the tab once it existed"
     # the original field update still runs, so the hook is transparent
-    lua.globals().AuctionatorSellingFrame.SaleItemFrame.UpdateSalesPrice(
-        lua.globals().AuctionatorSellingFrame.SaleItemFrame, 111)
+    frame = lua.globals().AuctionatorSellingFrame.SaleItemFrame
+    frame.UpdateSalesPrice(frame, 111)
     assert lua.globals().__price == 111
 
 

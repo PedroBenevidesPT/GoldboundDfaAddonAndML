@@ -9,6 +9,8 @@ from pathlib import Path
 
 import pytest
 
+from woweconomy import addons as addon_manifest
+
 ROOT = Path(__file__).resolve().parent.parent
 HARNESS = ROOT / "scripts" / "auction_intel_harness.py"
 
@@ -58,8 +60,6 @@ def test_the_installed_copy_is_the_one_that_was_tested():
     if not installed.exists():
         pytest.skip("the game is not installed on this machine")
     project = ROOT / "DFA_AuctionIntelligence"
-    for name in ("Core.lua", "DataStore.lua", "JournalatorAdapter.lua",
-                 "Export.lua", "Localization.lua", "Inventory.lua",
-                 "Undercut.lua", "Sellers.lua", "Mail.lua", "HUD.lua",
-                 "Kills.lua", "Diagnostics.lua", "DFA_AuctionIntelligence.toc"):
+    for name in addon_manifest.toc_files(
+            project / "DFA_AuctionIntelligence.toc"):
         assert (project / name).read_bytes() == (installed / name).read_bytes(), name

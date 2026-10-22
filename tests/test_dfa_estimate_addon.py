@@ -6,123 +6,21 @@ frame, so a regression there is exactly what the user reported as
 runtime and verify the fill path, the reseed behavior and the user-choice
 guardrail. The Lua source under test is the file that goes into the addon
 folder, never a stub.
+
+The runtime itself lives in ``tests/dfa_lua_harness.py``, shared with the
+pricing-export tests: two hand-rolled mock clients had drifted apart and one
+of them could not load the addon at all.
 """
+from __future__ import annotations
+
 import math
 from pathlib import Path
 
-import lupa
 import pytest
 
-ROOT = Path(__file__).resolve().parent.parent
-BRIDGE = ROOT / "DFA_Estimate" / "UI" / "Auctionator.lua"
-PANEL = ROOT / "DFA_Estimate" / "UI" / "Panel.lua"
-TOOLTIP = ROOT / "DFA_Estimate" / "UI" / "Tooltip.lua"
-MAIN = ROOT / "DFA_Estimate" / "DFA_Estimate.lua"
-DATA = ROOT / "DFA_Estimate" / "Data" / "DFA_Estimate_Data.lua"
-LOCALIZATION = ROOT / "DFA_Estimate" / "Localization.lua"
-
-
-def _woW_like_lua():
-    lua = lupa.LuaRuntime(unpack_returned_tuples=True)
-    lua.execute("""
-        _G.Enum = { TooltipDataType = { Item = 7 } }
-        _G.TooltipDataProcessor = {
-            AddTooltipPostCall = function(kind, callback)
-                _G.__post = { kind = kind, callback = callback }
-            end,
-        }
-        function CreateFrame(name, template, parent, showOnLoad)
-            local frame = { name = name, scripts = {}, events = {}, OnEvent = function() end }
-            if template then
-                frame:SetScript = function(self, script, handler)
-                    self.scripts[script] = handler
-                end
-                frame:GetScript = function(self, script)
-                    return self.scripts[script]
-                end
-                frame:SetParent = function(self, parent)
-                    self.parent = parent
-                end
-                frame:SetSize = function(self, w, h)
-                end
-                frame:SetPoint = function(self, anchor, x, y)
-                end
-                frame:SetText = function(self, text)
-                    self.__text = text
-                end
-                frame:SetWidth = function(self, w)
-                end
-                frame:SetHeight = function(self, h)
-                end
-                frame:IsShown = function(self)
-                    return true
-                end
-                frame:GetRegions = function(self)
-                    return { { GetText = function() return self.__text end } }
-                end
-                frame:GetText = function(self)
-                    return self.__text
-                end
-                frame:HookScript = function(self, script, handler)
-                    local current = self.scripts[script]
-                    if type(current) ~= "function" then
-                        self.scripts[script] = handler
-                    else
-                        self.scripts[script] = function(...)
-                            handler(...)
-                            return current(...)
-                        end
-                    end
-                end
-                frame.HookScript = frame.HookScript
-                frame.__index = frame
-                setmetatable(frame, frame)
-            end
-            return frame
-        end
-        _G.StaticPopup_Hide = function() end
-        _G.PlaySoundFile = function() return true end
-        _G.Mixin = function(obj, ...)
-            for _, mixin in ipairs({...}) do
-                for name, value in pairs(mixin) do
-                    if type(value) == "function" then
-                        obj[name] = value
-                    end
-                end
-            end
-            return obj
-        end
-        _G.ClearCursor = function() end
-        _G.DFA_ESTIMATE = nil
-        _G.DFA_ESTIMATE_SOURCE = nil
-        _G.GetRealmName = function() return _G.DFA_TEST_REALM end
-        _G.time = function() return 1792450000 end
-        _G.C_Item = { GetItemInfo = function() return "item:1234", "item:1234" end }
-        _G.issecretvalue = function() return false end
-        _G.AuctionHouseFrame = { IsShown = function() return true end }
-        _G.hooksecurefunc = function() end
-    """)
-    return lua
-
-
-def _load_addon(lua):
-    addon_dir = ROOT / "DFA_Estimate"
-    lua.execute("""
-        _G.Addon = _G.Addon or {}
-        _G.DFA_ESTIMATE_DB = _G.DFA_ESTIMATE_DB or {}
-        _G.Addon.DFAEstimateAuctionator = {}
-    """)
-    lua.eval("function(src) return assert(load(src, 'addon.lua')) end")(
-        DATA.read_text(encoding="utf-8"))("DFA_Estimate", lua.globals().Addon)
-    lua.eval("function(src) return assert(load(src, 'addon.lua')) end")(
-        MAIN.read_text(encoding="utf-8"))("DFA_Estimate", lua.globals().Addon)
-    lua.eval("function(src) return assert(load(src, 'addon.lua')) end")(
-        TOOLTIP.read_text(encoding="utf-8"))("DFA_Estimate", lua.globals().Addon)
-    lua.eval("function(src) return assert(load(src, 'addon.lua')) end")(
-        PANEL.read_text(encoding="utf-8"))("DFA_Estimate", lua.globals().Addon)
-    lua.eval("function(src) return assert(load(src, 'addon.lua')) end")(
-        BRIDGE.read_text(encoding="utf-8"))("DFA_Estimate", lua.globals().Addon)
-
+from woweconomy import addons as addon_manifest
+from dfa_lua_harness import (BRIDGE, DATA, MAIN, PANEL, ROOT, TOOLTIP,
+                             fire, load_addon, woW_like_lua)
 
 def test_the_bridge_file_is_complete_and_scanned():
     """Every file the test loads is the one outside this harness.
@@ -146,7 +44,12 @@ def test_the_bridge_fills_the_price_field_and_reseeds_it():
     the database price and the searched-market price that arrive after the
     item is selected, unless the player typed a price themselves.
     """
-    lua = _woW_like_lua()
+    lua = woW_like_lua()
+    load_addon(lua)
+    # The stub goes in *after* the addon loads: the real dataset assigns
+    # ``Addon.DFAEstimate`` while it loads, so a stub installed first is
+    # silently replaced and the test then measures the shipped dataset
+    # instead of the one it declared.
     lua.execute("""
         _G.Addon.DFAEstimate = {
             data = {
@@ -158,21 +61,28 @@ def test_the_bridge_fills_the_price_field_and_reseeds_it():
                     },
                 },
             },
-            Estimate = function(self, itemId)
-                local realm = self.data.realms.Dragonmaw
-                return realm and realm.items[itemId]
+            -- ``Estimate(itemId)``, matching the addon: it takes no self.
+            -- A stub with a spurious ``self`` made ``self`` the item id and
+            -- the bridge looked broken when the stub was.
+            Estimate = function(itemId)
+                -- ``action.ask`` is the model's decision and already carries
+                -- the house cut; the bridge prefers it over ``price``.
+                return { price = 1000, action = { ask = 1053 },
+                         conf = 0.5, n = 2 }
             end,
         }
     """)
-    _load_addon(lua)
     addon = lua.globals().Addon
     bridge = addon.DFAEstimateAuctionator
 
     lua.execute("""
         _G.__calls = {}
+        -- GoldBox is a real EditBox in game: it has SetScript, SetText and
+        -- GetScript.  A bare table broke the price-box watch, which is
+        -- part of what this test is meant to cover.
         _G.__frame = {
             itemInfo = { itemID = 1234, location = {} },
-            Price = { MoneyInput = { GoldBox = { GetScript = function() return nil end } } },
+            Price = { MoneyInput = { GoldBox = CreateFrame("EditBox", nil, nil, nil) } },
             UpdateSalesPrice = function(self, price)
                 _G.__calls.price = price
                 self.__price = price
@@ -186,7 +96,7 @@ def test_the_bridge_fills_the_price_field_and_reseeds_it():
     # first fill: the estimate wins
     frame = lua.globals().__frame
     assert bridge.ApplyEstimate(frame) is True
-    assert lua.globals().__calls.price == 1053   # 1000 / 0.95, rounded up to silver
+    assert lua.globals().__calls.price == 1100   # ask 1053, rounded up to the next silver
     assert bridge.GetLastFill().itemId == 1234
     assert bridge.GetLastFill().confirmed is True
 
@@ -198,17 +108,24 @@ def test_the_bridge_fills_the_price_field_and_reseeds_it():
     frame.UpdateSalesPrice(frame, 999)
     assert lua.globals().__calls.price == 999      # Auctionator's own update ran
     bridge.ApplyEstimate(frame)                     # the hook calls OnPriceSet
-    assert lua.globals().__calls.price == 1053     # our estimate reseeded it
+    assert lua.globals().__calls.price == 1100     # our estimate reseeded it
 
-    # but a price the user typed after the fill must win
+    # but a price the player chose after the fill must win.  This is the
+    # real flow: typing (or clicking a row in Auctionator's price list)
+    # raises OnTextChanged, Auctionator then writes the choice, and the
+    # bridge's own hook runs.  The guard lives in OnPriceSet, which is the
+    # entry point the client calls -- calling ApplyEstimate directly would
+    # test a path that does not exist in game.
     lua.execute("""
         _G.__calls = {}
-        _G.__filled = nil
+        local f = _G.__frame
+        f.Price.MoneyInput.GoldBox:SetText('2000')      -- the player types
+        f.UpdateSalesPrice(f, 2000)                     -- Auctionator writes it
+        Addon.DFAEstimateAuctionator.OnPriceSet(f)      -- the hook fires
     """)
-    frame.Price.MoneyInput.GoldBox:SetText("2000")
     assert bridge.GetLastFill().confirmed is False
-    bridge.ApplyEstimate(frame)
-    assert lua.globals().__calls.price == 2000
+    assert lua.globals().__calls.price == 2000, \
+        "the bridge overwrote a price the player chose"
 
 
 def test_the_bridge_never_touches_undercutting_or_posting():
@@ -234,11 +151,23 @@ def test_the_bridge_waits_for_the_selling_tab_and_then_hooks_it():
     The bridge must keep trying until the tab exists, and once it exists the
     mixin UpdateSalesPrice hook must be in place so a reseed actually fires.
     """
-    lua = _woW_like_lua()
+    lua = woW_like_lua()
     lua.execute("""
         _G.Addon = { DFAEstimate = { data = { realms = {} }, Estimate = function() end } }
+        -- Auctionator's own surface, as far as the bridge uses it: the event
+        -- bus it hooks and the event names it compares.  Without these,
+        -- Enable() gives up before it ever reaches the selling tab, which is
+        -- what this test is about.
+        _G.Auctionator = {
+            EventBus = { Fire = function() end },
+            Selling = { Events = {
+                BagItemClicked = "BAG_ITEM_CLICKED",
+                ClearBagItem = "CLEAR_BAG_ITEM",
+                PriceSelected = "PRICE_SELECTED",
+            } },
+        }
     """)
-    _load_addon(lua)
+    load_addon(lua)
     bridge = lua.globals().Addon.DFAEstimateAuctionator
     bridge.SetEnabled(True)
 
@@ -252,7 +181,7 @@ def test_the_bridge_waits_for_the_selling_tab_and_then_hooks_it():
         _G.AuctionatorSellingFrame = {
             SaleItemFrame = {
                 itemInfo = { itemID = 1234, location = {} },
-                Price = { MoneyInput = { GoldBox = { GetScript = function() return nil end } } },
+                Price = { MoneyInput = { GoldBox = CreateFrame("EditBox", nil, nil, nil) } },
                 UpdateSalesPrice = function(self, price) self.__price = price end,
             },
         }
@@ -261,8 +190,11 @@ def test_the_bridge_waits_for_the_selling_tab_and_then_hooks_it():
         }
     """)
 
-    watch = lua.globals().Addon.DFAEstimateAuctionator.watch
-    watch.scripts["OnEvent"](watch, "AUCTION_HOUSE_SHOW")
+    # The watch frame is private to the bridge, which is correct -- nothing
+    # outside it should drive that frame.  Deliver the event through the
+    # harness instead, the way the client would.
+    fired = fire(lua, "AUCTION_HOUSE_SHOW")
+    assert fired >= 1, "nothing was watching for the auction house to open"
 
     assert bridge.Enable(bridge) is True
     assert bridge.GetDiagnostics().hooked is True
@@ -274,21 +206,31 @@ def test_the_tooltip_uses_tooltips_post_call_not_sethyperlink():
     Hooking SetHyperlink misses the bags, bank and auction house tooltips.
     The modern path is AddTooltipPostCall with the Item kind.
     """
-    lua = _woW_like_lua()
-    _load_addon(lua)
+    lua = woW_like_lua()
+    load_addon(lua)
     post = lua.globals().__post
     assert post is not None
     assert post.kind == 7
 
 
-def test_the_addon_initializes_without_a_localization_file_error():
-    """The addon folder must load cleanly from the project, including the
-    localization file listed in the toc.
+def test_the_addon_initializes_without_a_missing_file_error():
+    """Every file the toc names must exist, and nothing else may be assumed.
+
+    This used to assert a hard-coded ``Localization.lua`` that this addon
+    never had (it is not in the toc and was never tracked), so the test
+    failed while the addon was fine -- and it would have passed while the
+    toc named a file that did not exist.  Driving the check from the toc
+    tests the addon instead of the list.
     """
-    assert LOCALIZATION.exists(), "Localization.lua must exist for the toc"
-    assert DATA.exists(), "DFA_Estimate_Data.lua must exist for the toc"
-    for path in MAIN, TOOLTIP, PANEL, BRIDGE:
-        assert path.exists(), f"{path.name} must exist"
+    toc = ROOT / "DFA_Estimate" / "DFA_Estimate.toc"
+    assert toc.exists()
+    listed = addon_manifest.toc_files(toc)
+    assert listed, "the toc must load at least one file"
+    assert addon_manifest.missing_files(ROOT / "DFA_Estimate") == []
+    # the four the bridge work depends on are among them
+    for required in ("DFA_Estimate.lua", "Data/DFA_Estimate_Data.lua",
+                     "UI/Tooltip.lua", "UI/Panel.lua", "UI/Auctionator.lua"):
+        assert required in listed, f"{required} is not loaded by the toc"
 
 
 def test_the_installed_copy_matches_the_project_after_a_deploy():
@@ -298,10 +240,6 @@ def test_the_installed_copy_matches_the_project_after_a_deploy():
     if not installed.exists():
         pytest.skip("the game is not installed on this machine")
     project = ROOT / "DFA_Estimate"
-    names = ["Localization.lua", "DFA_Estimate.lua",
-             "Data/DFA_Estimate_Data.lua", "UI/Tooltip.lua",
-             "UI/Panel.lua", "UI/Auctionator.lua",
-             "Integration/LootAppraiser.lua", "Integration/MobInfo2.lua",
-             "DFA_Estimate.toc"]
+    names = addon_manifest.toc_files(project / "DFA_Estimate.toc")
     for name in names:
         assert (project / name).read_bytes() == (installed / name).read_bytes(), name
