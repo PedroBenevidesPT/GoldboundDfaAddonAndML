@@ -46,6 +46,7 @@ import pandas as pd
 from .config import COPPER_PER_GOLD
 from .features import ASK_FEATURES
 from . import label_audit
+from . import snapshot_panel
 from .intervals import (CalibratedInterval, SegmentedInterval,
                         calibrate_interval, calibrate_segmented_interval)
 from .models import (
@@ -144,7 +145,21 @@ class SentinelConfig:
 
     models_root: Path = Path(r"C:\FarmAnalysis\models\dfa_sentinel")
     tsm_db: Path = Path(r"C:\FarmAnalysis\tsm_markets.db")
+    #: Our own auction-house store.  ``panel_source`` decides which of the
+    #: two supplies the market panel behind the risk targets.
+    intel_db: Path = Path(r"C:\FarmAnalysis\data\intel.sqlite")
     reports_dir: Path = Path(r"C:\FarmAnalysis\reports\dfa_sentinel")
+    #: ``"tsm"`` keeps the historical behaviour; ``"blizzard"`` builds the
+    #: panel from our own snapshots (every fetched book, variants kept
+    #: apart); ``"auto"`` prefers Blizzard once it can actually teach a
+    #: temporal target, and falls back to TSM otherwise.
+    panel_source: str = "auto"
+    min_blizzard_panel_rows: int = 1_000
+    #: A panel must span the horizon it is asked about.  A sweep that has
+    #: only been running for a day cannot close a 48h target no matter how
+    #: many rows it holds, so span -- not row count -- is the gate.  72h
+    #: leaves a margin over the longest horizon the risk models use.
+    min_blizzard_span_h: float = 72.0
 
     horizons_h: Tuple[int, ...] = DEFAULT_HORIZONS_H
     risk_horizons_h: Tuple[int, ...] = RISK_HORIZONS_H
@@ -1396,6 +1411,56 @@ def load_snapshot_panel(tsm_db: Path,
     return frame.sort_values(["scope", "item_id", "ts"], kind="mergesort")
 
 
+def load_panel(cfg: "SentinelConfig",
+               item_ids: Optional[Sequence[int]] = None
+               ) -> Tuple[pd.DataFrame, str]:
+    """The market panel behind the risk targets, and a note about where it came from.
+
+    Two sources exist and they are not equivalent:
+
+    * ``tsm`` -- TSM's own snapshots, restricted to the realms and items the
+      account has traded.  This is what the shipped models were trained on.
+    * ``blizzard`` -- our own `ah_snapshot`/`ah_auction`, which covers every
+      connected realm the fetcher has swept and keeps variants apart.
+
+    ``auto`` prefers Blizzard once it has enough rows, and says so in the
+    returned note either way.  Which panel a model was fitted on is part of
+    the model, so it is recorded rather than left to be inferred from a
+    filename.
+    """
+    source = str(getattr(cfg, "panel_source", "tsm") or "tsm").lower()
+    if source not in ("tsm", "blizzard", "auto"):
+        raise ValueError(f"unknown panel_source: {cfg.panel_source!r}")
+
+    blizzard_note = ""
+    if source in ("blizzard", "auto"):
+        panel, report = snapshot_panel.load_market_panel(
+            cfg.intel_db, item_ids=item_ids)
+        blizzard_note = report.summary()
+        if report.notes:
+            blizzard_note += "; " + "; ".join(report.notes)
+        if source == "blizzard":
+            return panel, "panel=blizzard: " + blizzard_note
+        enough_rows = len(panel) >= int(getattr(cfg, "min_blizzard_panel_rows", 1))
+        enough_span = report.span_hours >= float(
+            getattr(cfg, "min_blizzard_span_h", 72.0))
+        if enough_rows and enough_span:
+            return panel, "panel=blizzard: " + blizzard_note
+        # Not enough of our own observations yet.  Falling back is a
+        # decision, so it is written down: the alternative is a risk model
+        # that silently trains on a panel too short to close its horizon
+        # and then reports "no signal" as if the market had none.
+        why = ("span" if not enough_span else "rows")
+        note = (f"panel=tsm (blizzard panel too short: {why}; "
+                + blizzard_note
+                + f"; need {cfg.min_blizzard_panel_rows} rows and"
+                  f" {cfg.min_blizzard_span_h:g} h)")
+    else:
+        note = "panel=tsm"
+
+    return load_snapshot_panel(cfg.tsm_db, item_ids=item_ids), note
+
+
 def _parse_ts(value: object) -> float:
     if value is None:
         return float("nan")
@@ -1439,8 +1504,27 @@ def _snapshot_features(row: pd.Series, previous: Optional[pd.Series],
             _safe_log(market) - _safe_log(previous.get("market"))
             if previous is not None and _valid(market) and _valid(previous.get("market"))
             else np.nan),
-        "risk_scope_code": float(abs(hash(str(row.get("scope", "")))) % 997),
+        "risk_scope_code": _scope_code(row.get("scope")),
     }
+
+
+def _scope_code(scope: object) -> float:
+    """A stable code for a realm, so the same data trains the same model.
+
+    This used to be ``abs(hash(str(scope))) % 997``.  Python salts ``hash``
+    for strings per process, so the code for ``dragonmaw`` was 210 in one
+    run and 493 in the next: the feature matrix changed on every training
+    run while the data did not, which makes two runs incomparable and makes
+    "the model got worse" indistinguishable from "the realm got a new
+    number".  ``crc32`` is deterministic and needs no dependency.
+    """
+    import zlib
+    if scope is None:
+        return np.nan
+    text = str(scope)
+    if not text:
+        return np.nan
+    return float(zlib.crc32(text.encode("utf-8")) % 997)
 
 
 def _valid(value: object) -> bool:
@@ -1464,7 +1548,19 @@ def build_risk_examples(panel: pd.DataFrame,
     if panel.empty:
         return pd.DataFrame()
     records: List[Dict[str, object]] = []
-    for (scope, item_id), group in panel.groupby(["scope", "item_id"], sort=False):
+    # Group by variant when the panel carries one.  Two listings of item
+    # 82800 are a caged pet and a different caged pet; a "cheapest listing
+    # for this item" built across both describes neither, and the target is
+    # about whether *this* good got undercut.  Panels without a variant
+    # column (the TSM one) keep the item-only grouping.
+    keys = ["scope", "item_id"]
+    if "variant_key" in panel.columns:
+        keys = ["scope", "item_id", "variant_key"]
+    # Sorted keys, so the row order does not depend on the order the panel
+    # happened to arrive in: a chronological split taken over an unordered
+    # frame is a different split on every run.
+    for key, group in panel.groupby(keys, sort=True):
+        scope, item_id = key[0], key[1]
         group = group.sort_values("ts").reset_index(drop=True)
         times = group["ts"].to_numpy(dtype=np.int64)
         for index in range(len(group) - 1):
@@ -1495,8 +1591,14 @@ def build_risk_examples(panel: pd.DataFrame,
                     "price_decline": int(future["market"] < current["market"] * 0.95),
                     "future_ts": int(future["ts"]),
                 })
+                if len(key) > 2:
+                    record["variant_key"] = str(key[2])
                 records.append(record)
-    return pd.DataFrame.from_records(records)
+    if not records:
+        return pd.DataFrame()
+    frame = pd.DataFrame.from_records(records)
+    return frame.sort_values(["ts", "scope", "item_id"], kind="mergesort"
+                             ).reset_index(drop=True)
 
 
 RISK_FEATURES: Tuple[str, ...] = (
@@ -1868,6 +1970,7 @@ class SentinelTrainer:
         staging = cfg.models_root / f".staging-{version}"
         staging.mkdir(parents=True, exist_ok=False)
         reports: Dict[str, TargetReport] = {}
+        panel_notes: List[str] = []
         payloads: Dict[str, Dict[str, object]] = {}
         try:
             # Measure the horizons before training them.  An auction lasts
@@ -1906,7 +2009,9 @@ class SentinelTrainer:
                 if panel is None:
                     item_ids = (sorted({int(v) for v in frame["item_id"].dropna().unique()})
                                 if "item_id" in frame.columns else None)
-                    panel = load_snapshot_panel(cfg.tsm_db, item_ids=item_ids)
+                    panel, panel_note = load_panel(cfg, item_ids=item_ids)
+                    if panel_note:
+                        panel_notes.append(panel_note)
                 risk_examples = build_risk_examples(panel, cfg.risk_horizons_h)
             for target in RISK_TARGETS:
                 for horizon in cfg.risk_horizons_h:
@@ -1978,6 +2083,11 @@ class SentinelTrainer:
                     "observation_end": int(observation_end),
                     "realms": int(frame["realm"].nunique()) if "realm" in frame.columns else 0,
                     "risk_examples": int(len(risk_examples)) if risk_examples is not None else 0,
+                    # Which panel the risk targets were fitted on.  A model
+                    # is only comparable to another trained on the same
+                    # evidence, so the source travels with the manifest.
+                    "panel_source": str(cfg.panel_source),
+                    "panel_notes": list(panel_notes),
                 },
                 "targets": {key: report.as_dict() for key, report in reports.items()},
                 "horizon_equivalence": equivalence,
