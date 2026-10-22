@@ -303,6 +303,43 @@ CREATE TABLE IF NOT EXISTS import_log (
     detail      TEXT NOT NULL DEFAULT '',
     PRIMARY KEY (kind, ref)
 );
+
+-- Coordination between pipeline workers.  See ``woweconomy/pipeline/leases``.
+-- A lease is a row with an owner token and an expiry: acquiring it is a
+-- conditional write, so two workers cannot both win, and a worker that dies
+-- leaves an expiring row rather than a permanent lock.  The run log is the
+-- durable record of what actually happened; it is deliberately in SQLite so
+-- losing an in-memory or Redis-only view of the pipeline never loses a fact.
+CREATE TABLE IF NOT EXISTS pipeline_lease (
+    name         TEXT PRIMARY KEY,
+    owner        TEXT NOT NULL,
+    acquired_at  INTEGER NOT NULL,
+    expires_at   INTEGER NOT NULL,
+    heartbeat_at INTEGER NOT NULL,
+    runs         INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS pipeline_run (
+    run_id      TEXT PRIMARY KEY,
+    task        TEXT NOT NULL,
+    owner       TEXT NOT NULL,
+    started_at  INTEGER NOT NULL,
+    finished_at INTEGER,
+    ok          INTEGER,
+    detail      TEXT NOT NULL DEFAULT ''
+);
+CREATE INDEX IF NOT EXISTS idx_pipeline_run_task
+    ON pipeline_run(task, started_at DESC);
+
+-- The latest value of each named statistic a worker publishes for the
+-- others (last fetch per book, dataset size, model vintage...).  A single
+-- row per key: the history lives in pipeline_run, this is the "now".
+CREATE TABLE IF NOT EXISTS pipeline_stat (
+    key        TEXT PRIMARY KEY,
+    value      TEXT NOT NULL,
+    updated_at INTEGER NOT NULL,
+    owner      TEXT NOT NULL DEFAULT ''
+);
 """
 
 
