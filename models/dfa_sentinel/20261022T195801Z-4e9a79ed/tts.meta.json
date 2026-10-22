@@ -70,7 +70,10 @@
     "calibrator": "tts.calibrator.joblib"
   },
   "calibration": [
-    1.6703846504297049,
-    0.2046994392561656
-  ]
+    0.6508805259190122,
+    0.43726119565358446
+  ],
+  "label_semantics": "SurvivalAft interval: [duration, duration] for an observed sale, [duration, -1] for right censoring",
+  "ranking_supported": true,
+  "point_supported": false
 }
