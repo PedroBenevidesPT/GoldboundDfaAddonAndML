@@ -64,6 +64,20 @@ data/_phase*/
 # manifest and leave a version that loads and then fails.
 models/**/.staging-*
 
+# Written analysis lives in `reports/` and is tracked.  The JSON that the
+# rehearsal and evaluation scripts emit is not: it contains absolute paths
+# and byte counts from this machine, so a committed copy is wrong the next
+# time anyone runs the script.  Regenerate it.
+/dryrun_*.json
+/runtime_baseline.json
+/retention_dryrun.json
+reports/mog_eval.json
+reports/space_baseline.json
+reports/step3_archive_only.json
+
+# Assistant session state (memory notes), not project source.
+.workbuddy-ai/
+
 # Editor / OS noise.
 .DS_Store
 Thumbs.db
