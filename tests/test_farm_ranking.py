@@ -395,3 +395,49 @@ def test_top_mats_units():
     mkt = {100: ItemMarket(100, "Light Leather", 14250.0, 0.308, 6820.0)}
     leaders = top_mats([mkdrop(rate=0.5, qty=4.0, name="Light Leather")], mkt)
     assert leaders[0].units_per_kill == pytest.approx(2.0)
+
+
+# ---------------------------------------------------------------------------
+# The command-line entry point is a thin shell over this module
+# ---------------------------------------------------------------------------
+
+def test_an_unknown_zone_id_is_refused_rather_than_skipped():
+    import importlib.util
+    from pathlib import Path
+
+    path = Path(__file__).resolve().parent.parent / "scripts" / "farm_ranking.py"
+    spec = importlib.util.spec_from_file_location("farm_ranking_cli", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    with pytest.raises(SystemExit, match="no zone file"):
+        module.zone_paths([10 ** 9])
+
+
+def test_the_cli_will_not_rank_against_an_empty_market(tmp_path):
+    """Zero prices would make every EV zero and read as "nothing pays"."""
+    import importlib.util
+    import sqlite3
+    from pathlib import Path
+
+    path = Path(__file__).resolve().parent.parent / "scripts" / "farm_ranking.py"
+    spec = importlib.util.spec_from_file_location("farm_ranking_cli2", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    empty = tmp_path / "tsm.db"
+    con = sqlite3.connect(empty)
+    con.execute("CREATE TABLE tsm_region (item_id INTEGER, avg_sale_price REAL)")
+    con.commit()
+    con.close()
+    assert module.main(["mats", "--db", str(empty)]) == 2
+
+
+def test_a_missing_market_database_is_an_error_not_an_empty_ranking(tmp_path):
+    import importlib.util
+    from pathlib import Path
+
+    path = Path(__file__).resolve().parent.parent / "scripts" / "farm_ranking.py"
+    spec = importlib.util.spec_from_file_location("farm_ranking_cli3", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    assert module.main(["mats", "--db", str(tmp_path / "absent.db")]) == 2
