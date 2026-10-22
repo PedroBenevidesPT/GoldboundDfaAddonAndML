@@ -1,0 +1,175 @@
+--missing-only: 30 já têm snapshot, 62 por buscar
+62 ficheiros | 62 mercados (grupos connected) | 0 ficheiros de região
+CSV: https://public-data.tradeskillmaster.com/retail/eu | base: tsm_markets.db | mapa: 267 slugs
+  nazjatar/realm_items               https://public-data.tradeskillmaster.com/retail/eu/realm/nazjatar/items.csv
+  die-arguswacht/realm_items         https://public-data.tradeskillmaster.com/retail/eu/realm/die-arguswacht/items.csv
+  uldaman/realm_items                https://public-data.tradeskillmaster.com/retail/eu/realm/uldaman/items.csv
+  confrérie-du-thorium/realm_items   https://public-data.tradeskillmaster.com/retail/eu/realm/confr%C3%A9rie-du-thorium/items.csv
+  outland/realm_items                https://public-data.tradeskillmaster.com/retail/eu/realm/outland/items.csv
+  archimonde/realm_items             https://public-data.tradeskillmaster.com/retail/eu/realm/archimonde/items.csv
+  kazzak/realm_items                 https://public-data.tradeskillmaster.com/retail/eu/realm/kazzak/items.csv
+  chamber-of-aspects/realm_items     https://public-data.tradeskillmaster.com/retail/eu/realm/chamber-of-aspects/items.csv
+  wildhammer/realm_items             https://public-data.tradeskillmaster.com/retail/eu/realm/wildhammer/items.csv
+  elune/realm_items                  https://public-data.tradeskillmaster.com/retail/eu/realm/elune/items.csv
+  nemesis/realm_items                https://public-data.tradeskillmaster.com/retail/eu/realm/nemesis/items.csv
+  aggramar/realm_items               https://public-data.tradeskillmaster.com/retail/eu/realm/aggramar/items.csv
+  ravencrest/realm_items             https://public-data.tradeskillmaster.com/retail/eu/realm/ravencrest/items.csv
+  suramar/realm_items                https://public-data.tradeskillmaster.com/retail/eu/realm/suramar/items.csv
+  ysondre/realm_items                https://public-data.tradeskillmaster.com/retail/eu/realm/ysondre/items.csv
+  dun-modr/realm_items               https://public-data.tradeskillmaster.com/retail/eu/realm/dun-modr/items.csv
+  zuljin/realm_items                 https://public-data.tradeskillmaster.com/retail/eu/realm/zuljin/items.csv
+  tyrande/realm_items                https://public-data.tradeskillmaster.com/retail/eu/realm/tyrande/items.csv
+  exodar/realm_items                 https://public-data.tradeskillmaster.com/retail/eu/realm/exodar/items.csv
+  lightbringer/realm_items           https://public-data.tradeskillmaster.com/retail/eu/realm/lightbringer/items.csv
+  hyjal/realm_items                  https://public-data.tradeskillmaster.com/retail/eu/realm/hyjal/items.csv
+  bronze-dragonflight/realm_items    https://public-data.tradeskillmaster.com/retail/eu/realm/bronze-dragonflight/items.csv
+  quelthalas/realm_items             https://public-data.tradeskillmaster.com/retail/eu/realm/quelthalas/items.csv
+  ungoro/realm_items                 https://public-data.tradeskillmaster.com/retail/eu/realm/ungoro/items.csv
+  garrosh/realm_items                https://public-data.tradeskillmaster.com/retail/eu/realm/garrosh/items.csv
+  turalyon/realm_items               https://public-data.tradeskillmaster.com/retail/eu/realm/turalyon/items.csv
+  todeswache/realm_items             https://public-data.tradeskillmaster.com/retail/eu/realm/todeswache/items.csv
+  arygos/realm_items                 https://public-data.tradeskillmaster.com/retail/eu/realm/arygos/items.csv
+  norgannon/realm_items              https://public-data.tradeskillmaster.com/retail/eu/realm/norgannon/items.csv
+  blades-edge/realm_items            https://public-data.tradeskillmaster.com/retail/eu/realm/blades-edge/items.csv
+  azuremyst/realm_items              https://public-data.tradeskillmaster.com/retail/eu/realm/azuremyst/items.csv
+  hellfire/realm_items               https://public-data.tradeskillmaster.com/retail/eu/realm/hellfire/items.csv
+  karazhan/realm_items               https://public-data.tradeskillmaster.com/retail/eu/realm/karazhan/items.csv
+  auchindoun/realm_items             https://public-data.tradeskillmaster.com/retail/eu/realm/auchindoun/items.csv
+  gordunni/realm_items               https://public-data.tradeskillmaster.com/retail/eu/realm/gordunni/items.csv
+  soulflayer/realm_items             https://public-data.tradeskillmaster.com/retail/eu/realm/soulflayer/items.csv
+  deathguard/realm_items             https://public-data.tradeskillmaster.com/retail/eu/realm/deathguard/items.csv
+  galakrond/realm_items              https://public-data.tradeskillmaster.com/retail/eu/realm/galakrond/items.csv
+  howling-fjord/realm_items          https://public-data.tradeskillmaster.com/retail/eu/realm/howling-fjord/items.csv
+  die-aldor/realm_items              https://public-data.tradeskillmaster.com/retail/eu/realm/die-aldor/items.csv
+  marécage-de-zangar/realm_items     https://public-data.tradeskillmaster.com/retail/eu/realm/mar%C3%A9cage-de-zangar/items.csv
+  fordragon/realm_items              https://public-data.tradeskillmaster.com/retail/eu/realm/fordragon/items.csv
+  naxxramas/realm_items              https://public-data.tradeskillmaster.com/retail/eu/realm/naxxramas/items.csv
+  azuregos/realm_items               https://public-data.tradeskillmaster.com/retail/eu/realm/azuregos/items.csv
+  ashenvale/realm_items              https://public-data.tradeskillmaster.com/retail/eu/realm/ashenvale/items.csv
+  eversong/realm_items               https://public-data.tradeskillmaster.com/retail/eu/realm/eversong/items.csv
+  goldrinn/realm_items               https://public-data.tradeskillmaster.com/retail/eu/realm/goldrinn/items.csv
+  blackscar/realm_items              https://public-data.tradeskillmaster.com/retail/eu/realm/blackscar/items.csv
+  stormscale/realm_items             https://public-data.tradeskillmaster.com/retail/eu/realm/stormscale/items.csv
+  terenas/realm_items                https://public-data.tradeskillmaster.com/retail/eu/realm/terenas/items.csv
+  genjuros/realm_items               https://public-data.tradeskillmaster.com/retail/eu/realm/genjuros/items.csv
+  shadowsong/realm_items             https://public-data.tradeskillmaster.com/retail/eu/realm/shadowsong/items.csv
+  aegwynn/realm_items                https://public-data.tradeskillmaster.com/retail/eu/realm/aegwynn/items.csv
+  magtheridon/realm_items            https://public-data.tradeskillmaster.com/retail/eu/realm/magtheridon/items.csv
+  ragnaros/realm_items               https://public-data.tradeskillmaster.com/retail/eu/realm/ragnaros/items.csv
+  antonidas/realm_items              https://public-data.tradeskillmaster.com/retail/eu/realm/antonidas/items.csv
+  khaz-modan/realm_items             https://public-data.tradeskillmaster.com/retail/eu/realm/khaz-modan/items.csv
+  echsenkessel/realm_items           https://public-data.tradeskillmaster.com/retail/eu/realm/echsenkessel/items.csv
+  eredar/realm_items                 https://public-data.tradeskillmaster.com/retail/eu/realm/eredar/items.csv
+  nethersturm/realm_items            https://public-data.tradeskillmaster.com/retail/eu/realm/nethersturm/items.csv
+  frostwolf/realm_items              https://public-data.tradeskillmaster.com/retail/eu/realm/frostwolf/items.csv
+  alakir/realm_items                 https://public-data.tradeskillmaster.com/retail/eu/realm/alakir/items.csv
+  +  nazjatar/realm_items                12,957 linhas | 12,957 mudanças | 2026-10-18T11:36:05Z
+  +  die-arguswacht/realm_items          14,182 linhas | 14,182 mudanças | 2026-10-18T09:36:04Z
+  +  uldaman/realm_items                  9,751 linhas |  9,751 mudanças | 2026-10-18T09:36:04Z
+  +  confrérie-du-thorium/realm_items    16,011 linhas | 16,011 mudanças | 2026-10-18T09:36:04Z
+  +  outland/realm_items                 13,916 linhas | 13,916 mudanças | 2026-10-18T08:36:07Z
+  +  archimonde/realm_items              14,396 linhas | 14,396 mudanças | 2026-10-18T11:36:05Z
+  +  kazzak/realm_items                  17,729 linhas | 17,729 mudanças | 2026-10-18T09:36:04Z
+  +  chamber-of-aspects/realm_items      11,513 linhas | 11,513 mudanças | 2026-10-18T08:36:07Z
+  +  wildhammer/realm_items               9,610 linhas |  9,610 mudanças | 2026-10-18T08:36:07Z
+  +  elune/realm_items                    9,858 linhas |  9,858 mudanças | 2026-10-18T11:36:05Z
+  +  nemesis/realm_items                 10,487 linhas | 10,487 mudanças | 2026-10-18T09:36:04Z
+  +  aggramar/realm_items                10,984 linhas | 10,984 mudanças | 2026-10-18T08:36:06Z
+  +  ravencrest/realm_items              17,526 linhas | 17,526 mudanças | 2026-10-18T08:36:07Z
+  +  suramar/realm_items                  6,929 linhas |  6,929 mudanças | 2026-10-18T08:36:07Z
+  +  ysondre/realm_items                 12,661 linhas | 12,661 mudanças | 2026-10-18T09:36:04Z
+  +  dun-modr/realm_items                14,032 linhas | 14,032 mudanças | 2026-10-18T08:36:06Z
+  +  zuljin/realm_items                  15,664 linhas | 15,664 mudanças | 2026-10-18T09:36:04Z
+  +  tyrande/realm_items                  9,831 linhas |  9,831 mudanças | 2026-10-18T09:36:04Z
+  +  exodar/realm_items                  11,634 linhas | 11,634 mudanças | 2026-10-18T09:36:04Z
+  +  lightbringer/realm_items             8,676 linhas |  8,676 mudanças | 2026-10-18T08:36:06Z
+  !! hyjal/realm_items                  429 cooldown de 3600s; tenta mais tarde
+  !! bronze-dragonflight/realm_items    aborted
+  !! quelthalas/realm_items             aborted
+  !! ungoro/realm_items                 aborted
+  !! garrosh/realm_items                aborted
+  !! turalyon/realm_items               aborted
+  !! todeswache/realm_items             aborted
+  !! arygos/realm_items                 aborted
+  !! norgannon/realm_items              aborted
+  !! blades-edge/realm_items            aborted
+  !! azuremyst/realm_items              aborted
+  !! hellfire/realm_items               aborted
+  !! karazhan/realm_items               aborted
+  !! auchindoun/realm_items             aborted
+  !! gordunni/realm_items               aborted
+  !! soulflayer/realm_items             aborted
+  !! deathguard/realm_items             aborted
+  !! galakrond/realm_items              aborted
+  !! howling-fjord/realm_items          aborted
+  !! die-aldor/realm_items              aborted
+  !! marécage-de-zangar/realm_items     aborted
+  !! fordragon/realm_items              aborted
+  !! naxxramas/realm_items              aborted
+  !! azuregos/realm_items               aborted
+  !! ashenvale/realm_items              aborted
+  !! eversong/realm_items               aborted
+  !! goldrinn/realm_items               aborted
+  !! blackscar/realm_items              aborted
+  !! stormscale/realm_items             aborted
+  !! terenas/realm_items                aborted
+  !! genjuros/realm_items               aborted
+  !! shadowsong/realm_items             aborted
+  !! aegwynn/realm_items                aborted
+  !! magtheridon/realm_items            aborted
+  !! ragnaros/realm_items               aborted
+  !! antonidas/realm_items              aborted
+  !! khaz-modan/realm_items             aborted
+  !! echsenkessel/realm_items           aborted
+  !! eredar/realm_items                 aborted
+  !! nethersturm/realm_items            aborted
+  !! frostwolf/realm_items              aborted
+  !! alakir/realm_items                 aborted
+------------------------------------------------------------------------------
+ficheiros 62 | novos/alterados 20 | inalterados 0 | falhas 42 | ABORTADO por rate limit
+linhas importadas 248,347 | linhas alteradas 248,347
+snapshots -> C:\FarmAnalysis\data\tsm\snapshots
+falhas:
+  - hyjal/realm_items: 429 cooldown de 3600s; tenta mais tarde
+  - bronze-dragonflight/realm_items: aborted
+  - quelthalas/realm_items: aborted
+  - ungoro/realm_items: aborted
+  - garrosh/realm_items: aborted
+  - turalyon/realm_items: aborted
+  - todeswache/realm_items: aborted
+  - arygos/realm_items: aborted
+  - norgannon/realm_items: aborted
+  - blades-edge/realm_items: aborted
+  - azuremyst/realm_items: aborted
+  - hellfire/realm_items: aborted
+  - karazhan/realm_items: aborted
+  - auchindoun/realm_items: aborted
+  - gordunni/realm_items: aborted
+  - soulflayer/realm_items: aborted
+  - deathguard/realm_items: aborted
+  - galakrond/realm_items: aborted
+  - howling-fjord/realm_items: aborted
+  - die-aldor/realm_items: aborted
+  - marécage-de-zangar/realm_items: aborted
+  - fordragon/realm_items: aborted
+  - naxxramas/realm_items: aborted
+  - azuregos/realm_items: aborted
+  - ashenvale/realm_items: aborted
+  - eversong/realm_items: aborted
+  - goldrinn/realm_items: aborted
+  - blackscar/realm_items: aborted
+  - stormscale/realm_items: aborted
+  - terenas/realm_items: aborted
+  - genjuros/realm_items: aborted
+  - shadowsong/realm_items: aborted
+  - aegwynn/realm_items: aborted
+  - magtheridon/realm_items: aborted
+  - ragnaros/realm_items: aborted
+  - antonidas/realm_items: aborted
+  - khaz-modan/realm_items: aborted
+  - echsenkessel/realm_items: aborted
+  - eredar/realm_items: aborted
+  - nethersturm/realm_items: aborted
+  - frostwolf/realm_items: aborted
+  - alakir/realm_items: aborted
+rc=0

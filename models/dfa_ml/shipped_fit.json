@@ -1,0 +1,115 @@
+{
+ "version": 3,
+ "fingerprint": "345fb5bc3a0fc398fc3a72c73fd94826baf9f7d1561283625096dbb531b2b852",
+ "model": {
+  "intercept": -0.42308777344229814,
+  "coefficients": [
+   0.23771516408571974,
+   0.23914658527260851,
+   0.5439192871619192
+  ],
+  "medians": [
+   9.902737271145424,
+   9.909916840301031,
+   9.800956363888462
+  ],
+  "references": [
+   "dbregionmarketavg",
+   "dbregionhistorical",
+   "dbregionsaleavg"
+  ],
+  "residual_sigma": 0.689514253598151,
+  "n_train": 496,
+  "n_complete": 496,
+  "within_25": 0.4199395770392749,
+  "within_50": 0.6888217522658611,
+  "interval_level": 0.8,
+  "interval_half_width": 0.7197012291401856,
+  "interval_coverage": 0.8484848484848485,
+  "interval_n": 132,
+  "interval_method": "split-conformal"
+ },
+ "evaluation": {
+  "n": 496,
+  "rmse_log": 0.6895142535981511,
+  "mae_log": 0.44206151072622196,
+  "median_ratio": 0.9835814493620387,
+  "within_25pct": 0.4959677419354839,
+  "within_50pct": 0.7237903225806451
+ },
+ "evaluation_out_of_sample": {
+  "n": 331,
+  "rmse_log": 0.7109862193394209,
+  "mae_log": 0.4787690099208427,
+  "median_ratio": 0.962116597574065,
+  "within_25pct": 0.4199395770392749,
+  "within_50pct": 0.6888217522658611,
+  "method": "walk-forward, pooled",
+  "interval_level": 0.8,
+  "interval_half_width_log": 0.7197012291401856,
+  "interval_method": "split-conformal",
+  "interval_calibration_n": 199,
+  "interval_coverage": 0.8484848484848485,
+  "interval_test_n": 132,
+  "interval_note": ""
+ },
+ "price_interval": {
+  "level": 0.8,
+  "half_width_log": 0.6368121870822829,
+  "method": "split-conformal",
+  "calibration_n": 109,
+  "coverage": 0.7804878048780488,
+  "test_n": 123,
+  "note": "",
+  "fit_rows": 264,
+  "calibration_rows": 109,
+  "test_rows": 123
+ },
+ "curve": [
+  {
+   "ratio": 0.2495,
+   "p": 0.5682,
+   "n": 88
+  },
+  {
+   "ratio": 0.6,
+   "p": 0.6444,
+   "n": 90
+  },
+  {
+   "ratio": 0.775,
+   "p": 0.6311,
+   "n": 103
+  },
+  {
+   "ratio": 0.925,
+   "p": 0.6099,
+   "n": 141
+  },
+  {
+   "ratio": 1.075,
+   "p": 0.5508,
+   "n": 118
+  },
+  {
+   "ratio": 1.275,
+   "p": 0.4254,
+   "n": 134
+  },
+  {
+   "ratio": 1.7,
+   "p": 0.2461,
+   "n": 191
+  },
+  {
+   "ratio": 2.5,
+   "p": 0.0673,
+   "n": 312
+  },
+  {
+   "ratio": 4.5,
+   "p": 0.0204,
+   "n": 2112
+  }
+ ]
+}

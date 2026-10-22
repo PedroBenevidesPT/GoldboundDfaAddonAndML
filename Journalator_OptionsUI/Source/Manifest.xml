@@ -1,0 +1,12 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file="Main.lua" />
+  <Script file="BasicOptions.lua" />
+  <Script file="Tooltips.lua" />
+  <Script file="Monitors.lua" />
+  <Script file="IgnoreTransfers.lua" />
+
+  <Include file="BasicOptions.xml" />
+  <Include file="Tooltips.xml" />
+  <Include file="Monitors.xml" />
+  <Include file="IgnoreTransfers.xml" />
+</Ui>

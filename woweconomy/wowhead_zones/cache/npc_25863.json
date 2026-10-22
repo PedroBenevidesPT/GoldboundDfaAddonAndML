@@ -1,0 +1,16 @@
+{
+ "npc_id": 25863,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Twilight Firesworn <Twilight's Hammer>",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 35277,
+   "item_name": "Twilight Correspondence",
+   "drop_rate": 1.0,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=35277/twilight-correspondence"
+  }
+ ]
+}

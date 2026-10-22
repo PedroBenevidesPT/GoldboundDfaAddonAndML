@@ -1,0 +1,51 @@
+[  120.6s] engine.load                   119.83s
+[  133.7s] fit_shipped_model              13.04s
+[  134.4s] calibrate_price_interval        0.75s
+[  145.9s] build_dataset                  11.50s
+[  145.9s] build_realm_index               0.01s
+[  145.9s] to_lua                          0.01s
+[  146.0s] validate_dataset                0.01s
+[  146.0s] write_file                      0.00s
+{
+  "total_seconds": 145.95,
+  "stages": [
+    {
+      "stage": "engine.load",
+      "seconds": 119.83
+    },
+    {
+      "stage": "fit_shipped_model",
+      "seconds": 13.04
+    },
+    {
+      "stage": "calibrate_price_interval",
+      "seconds": 0.75
+    },
+    {
+      "stage": "build_dataset",
+      "seconds": 11.5
+    },
+    {
+      "stage": "build_realm_index",
+      "seconds": 0.01
+    },
+    {
+      "stage": "to_lua",
+      "seconds": 0.01
+    },
+    {
+      "stage": "validate_dataset",
+      "seconds": 0.01
+    },
+    {
+      "stage": "write_file",
+      "seconds": 0.0
+    }
+  ],
+  "records": 237,
+  "realms_with_records": 8,
+  "realm_index": 267,
+  "region_prices": 31184,
+  "bytes": 711568,
+  "checksum": "abc30422f84b7f6a"
+}

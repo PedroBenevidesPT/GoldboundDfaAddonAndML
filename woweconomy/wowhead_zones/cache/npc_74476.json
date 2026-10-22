@@ -1,0 +1,305 @@
+{
+ "npc_id": 74476,
+ "zone": 719,
+ "zone_name": "blackfathom-deeps",
+ "npc_name": "Domina <Mistress of Shadows>",
+ "items": [
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 7072,
+   "item_name": "Naga Scale",
+   "item_type": "Trade Good",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7072/naga-scale"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 5524,
+   "item_name": "Thick-Shelled Clam",
+   "item_type": "Trade Good",
+   "drop_rate": 0.34,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=5524/thick-shelled-clam"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6308,
+   "item_name": "Raw Bristle Whisker Catfish",
+   "item_type": "Meat",
+   "drop_rate": 0.25,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=6308/raw-bristle-whisker-catfish"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 1205,
+   "item_name": "Melon Juice",
+   "item_type": "Food or Drink",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1205/melon-juice"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 4999,
+   "item_name": "Azora's Will",
+   "item_type": "Ring",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4999/azoras-will?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 790,
+   "item_name": "Forester's Axe",
+   "item_type": "One-Handed Axe",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=790/foresters-axe?bonus=6655"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 1206,
+   "item_name": "Moss Agate",
+   "item_type": "Jewelcrafting",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1206/moss-agate"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 14374,
+   "item_name": "Sanguine Sandals",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14374/sanguine-sandals?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 14157,
+   "item_name": "Pagan Mantle",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0019,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14157/pagan-mantle"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 14185,
+   "item_name": "Watcher's Cinch",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0019,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14185/watchers-cinch?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 3740,
+   "item_name": "Decapitating Sword",
+   "item_type": "One-Handed Sword",
+   "drop_rate": 0.0018,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3740/decapitating-sword?bonus=6655"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9769,
+   "item_name": "Greenweave Branch",
+   "item_type": "Off-hand Frill",
+   "drop_rate": 0.0018,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9769/greenweave-branch?bonus=6655"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 14565,
+   "item_name": "Prospector's Woolies",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0018,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14565/prospectors-woolies?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 15122,
+   "item_name": "Robust Bracers",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0018,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15122/robust-bracers?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 15506,
+   "item_name": "Grunt's Ankle Wraps",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15506/grunts-ankle-wraps?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 15018,
+   "item_name": "Lupine Vest",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15018/lupine-vest?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 4409,
+   "item_name": "Schematic: Small Seaforium Charge",
+   "item_type": "Engineering Schematic",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4409/schematic-small-seaforium-charge"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 3415,
+   "item_name": "Staff of the Friar",
+   "item_type": "Staff",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3415/staff-of-the-friar?bonus=6710"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 14743,
+   "item_name": "Hulking Bands",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0016,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14743/hulking-bands?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 2072,
+   "item_name": "Dwarven Magestaff",
+   "item_type": "Staff",
+   "drop_rate": 0.0015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2072/dwarven-magestaff?bonus=6655"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 14742,
+   "item_name": "Hulking Boots",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14742/hulking-boots?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 789,
+   "item_name": "Stout Battlehammer",
+   "item_type": "One-Handed Mace",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=789/stout-battlehammer?bonus=6655"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 14179,
+   "item_name": "Watcher's Cape",
+   "item_type": "Cloak",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14179/watchers-cape?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9768,
+   "item_name": "Greenweave Bracers",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9768/greenweave-bracers?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 4568,
+   "item_name": "Grunt Axe",
+   "item_type": "One-Handed Axe",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4568/grunt-axe?bonus=6655"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 17057,
+   "item_name": "Shiny Fish Scales",
+   "item_type": "Reagent",
+   "drop_rate": 0.34,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=17057/shiny-fish-scales"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 17058,
+   "item_name": "Fish Oil",
+   "item_type": "Reagent",
+   "drop_rate": 0.25,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=17058/fish-oil"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 1820,
+   "item_name": "Wooden Maul",
+   "item_type": "Two-Handed Mace",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1820/wooden-maul?bonus=6657"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 2782,
+   "item_name": "Mishandled Recurve Bow",
+   "item_type": "Bow",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2782/mishandled-recurve-bow?bonus=6657"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 1799,
+   "item_name": "Rawhide Gloves",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1799/rawhide-gloves?bonus=6656"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 1800,
+   "item_name": "Rawhide Pants",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1800/rawhide-pants?bonus=6656"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 1821,
+   "item_name": "Warped Blade",
+   "item_type": "One-Handed Sword",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1821/warped-blade?bonus=6657"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 1751,
+   "item_name": "Linked Chain Pants",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1751/linked-chain-pants?bonus=6656"
+  }
+ ]
+}

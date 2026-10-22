@@ -1,0 +1,602 @@
+
+=== blackfathom-deeps — 35 NPCs ===
+
+-- TOP FARMS (EV gross | real = gross x sell-through, per kill) --
+   conf = evidence share x price freshness (coverage, NOT a sale P)
+ 1. Guardian of the Deep [74508] EV=167g real=19g (22,674g/h) drops=78 vendor=0g conf=28% JP=Heavy Hide                   14g
+       99.00% x 1.0 [skin] Heavy Hide                     u=      58g EV=14g
+       99.00% x 2.5 [skin] Heavy Leather                  u=       7g EV=4g
+        3.85% x 1.0 [drop] Spiked Chain Leggings          u=   1,426g EV=0g
+ 2. Blindlight Bilefin [74721] EV=280g real=3g (3,761g/h) drops=209 vendor=0g conf=28% JP=Staff of the Friar           1g
+        3.08% x 1.0 [drop] Staff of the Friar             u=   1,899g EV=1g
+        1.76% x 1.0 [drop] Slayer's Cape                  u=   2,771g EV=0g
+        4.85% x 1.0 [drop] Sentry's Sash                  u=     777g EV=0g
+ 3. Ghamoo-Ra [74446] EV=137g real=3g (3,121g/h) drops=155 vendor=0g conf=27% JP=Staff of the Friar           1g
+        3.08% x 1.0 [drop] Staff of the Friar             u=   1,899g EV=1g
+       63.00% x 1.5 [skin] Medium Leather                 u=       3g EV=1g
+       36.00% x 1.5 [skin] Light Leather                  u=       1g EV=0g
+ 4. Twilight Storm Mender [75285] EV=213g real=2g (2,167g/h) drops=162 vendor=0g conf=27% JP=War Paint Shield             0g
+        4.65% x 1.0 [drop] War Paint Shield               u=     627g EV=0g
+        4.65% x 1.0 [drop] Sentry's Sash                  u=     777g EV=0g
+        4.65% x 1.0 [drop] Spiked Chain Gauntlets         u=     856g EV=0g
+ 5. Pahboo-Ra <Son of Ghamoo-Ra> [76954] EV=81g real=2g (2,045g/h) drops=84 vendor=0g conf=27% JP=Medium Leather               1g
+       63.00% x 1.5 [skin] Medium Leather                 u=       3g EV=1g
+        4.55% x 1.0 [drop] War Paint Shoulder Pads        u=     483g EV=0g
+        4.55% x 1.0 [drop] Pagan Rod                      u=     654g EV=0g
+ 6. Razorshell Snapjaw [74722] EV=21g real=2g (1,847g/h) drops=144 vendor=0g conf=28% JP=Medium Leather               0g
+       39.00% x 1.5 [skin] Medium Leather                 u=       3g EV=0g
+        3.00% x 1.0 [drop] Moss Agate                     u=      17g EV=0g
+       51.00% x 1.5 [skin] Light Leather                  u=       1g EV=0g
+ 7. Subjugator Kor'ul [74565] EV=64g real=1g (1,488g/h) drops=25 vendor=0g conf=28% JP=Staff of the Friar           1g
+        3.00% x 1.0 [drop] Staff of the Friar             u=   1,899g EV=1g
+       35.00% x 1.0 [drop] Thick-Shelled Clam             u=       1g EV=0g
+        3.00% x 1.0 [drop] Wrangler's Boots               u=     190g EV=0g
+ 8. Domina <Mistress of Shadows> [74476] EV=21g real=1g (1,388g/h) drops=25 vendor=0g conf=28% JP=Naga Scale                   1g
+        4.00% x 1.0 [drop] Naga Scale                     u=     300g EV=1g
+       34.00% x 1.0 [drop] Thick-Shelled Clam             u=       1g EV=0g
+       0.170% x 1.0 [drop] Staff of the Friar             u=   1,899g EV=0g
+ 9. Twilight Shadow [76036] EV=44g real=1g (1,377g/h) drops=171 vendor=0g conf=27% JP=Moss Agate                   1g
+        5.00% x 1.0 [drop] Moss Agate                     u=      17g EV=1g
+        5.00% x 1.0 [drop] Ritual Shroud                  u=     471g EV=0g
+       38.00% x 3.0 [drop] Wool Cloth                     u=       0g EV=0g
+10. Blindlight Murloc [74984] EV=88g real=1g (1,202g/h) drops=112 vendor=0g conf=28% JP=Grunt's Chestpiece           0g
+        2.94% x 1.0 [drop] Grunt's Chestpiece             u=     883g EV=0g
+        2.94% x 1.0 [drop] War Paint Shield               u=     627g EV=0g
+        2.94% x 1.0 [drop] Robust Girdle                  u=     600g EV=0g
+11. Blindlight Murloc [75658] EV=11g real=1g (962g/h) drops=243 vendor=0g conf=27% JP=Moss Agate                   0g
+        2.00% x 1.0 [drop] Moss Agate                     u=      17g EV=0g
+        4.00% x 3.0 [drop] Mageroyal                      u=       2g EV=0g
+       40.00% x 2.0 [drop] Raw Bristle Whisker Catfish    u=       0g EV=0g
+12. Twilight Aquamancer [76039] EV=47g real=1g (763g/h) drops=165 vendor=0g conf=27% JP=Bristlebark Buckler          0g
+        2.56% x 1.0 [drop] Bristlebark Buckler            u=     695g EV=0g
+        1.00% x 1.0 [drop] Moss Agate                     u=      17g EV=0g
+        2.56% x 1.0 [drop] Hulking Spaulders              u=     476g EV=0g
+13. Twilight Storm Mender [74380] EV=43g real=1g (754g/h) drops=186 vendor=0g conf=28% JP=Feral Shoulder Pads          0g
+        5.00% x 1.0 [drop] Feral Shoulder Pads            u=     250g EV=0g
+       22.00% x 1.0 [pick] Lesser Moonstone               u=       2g EV=0g
+        2.00% x 1.0 [drop] Hulking Spaulders              u=     476g EV=0g
+14. Twilight Shadowmage [74382] EV=44g real=1g (723g/h) drops=145 vendor=0g conf=28% JP=Grimclaw                     0g
+       0.170% x 1.0 [drop] Grimclaw                       u=   9,716g EV=0g
+        4.00% x 1.0 [drop] Outrunner's Pauldrons          u=     206g EV=0g
+       0.600% x 1.0 [drop] Moss Agate                     u=      17g EV=0g
+15. Clattering Crawler [3812] EV=7g real=0g (595g/h) drops=70 vendor=0g conf=28% JP=Crawler Meat                 0g
+       39.00% x 1.0 [drop] Crawler Meat                   u=       2g EV=0g
+       0.040% x 1.0 [drop] Prospector's Boots             u=   7,600g EV=0g
+       38.00% x 1.0 [drop] Crawler Claw                   u=       0g EV=0g
+16. Twilight Aquamancer [74353] EV=27g real=0g (586g/h) drops=197 vendor=0g conf=27% JP=Lesser Moonstone             0g
+       20.00% x 1.0 [drop] Lesser Moonstone               u=       2g EV=0g
+        3.00% x 1.0 [drop] Feral Shoulder Pads            u=     250g EV=0g
+       0.500% x 1.0 [drop] Moss Agate                     u=      17g EV=0g
+17. Twilight Disciple [75286] EV=25g real=0g (577g/h) drops=228 vendor=0g conf=27% JP=Moss Agate                   0g
+        1.00% x 1.0 [drop] Moss Agate                     u=      17g EV=0g
+       0.600% x 1.0 [drop] Feral Harness                  u=     391g EV=0g
+       49.00% x 3.0 [drop] Wool Cloth                     u=       0g EV=0g
+18. Twilight Storm Mender [74980] EV=18g real=0g (555g/h) drops=132 vendor=0g conf=28% JP=Moss Agate                   0g
+        1.20% x 1.0 [drop] Moss Agate                     u=      17g EV=0g
+       59.00% x 3.0 [drop] Wool Cloth                     u=       0g EV=0g
+       0.300% x 1.0 [drop] Feral Harness                  u=     391g EV=0g
+19. Twilight Disciple [77232] EV=35g real=0g (515g/h) drops=111 vendor=0g conf=28% JP=Axe of the Enforcer          0g
+       0.060% x 1.0 [drop] Axe of the Enforcer            u=  45,977g EV=0g
+       34.00% x 3.0 [drop] Wool Cloth                     u=       0g EV=0g
+       28.00% x 3.5 [drop] Linen Cloth                    u=       0g EV=0g
+20. Spined Crawler [3814] EV=3g real=0g (514g/h) drops=64 vendor=0g conf=28% JP=Crawler Meat                 0g
+       44.00% x 1.0 [drop] Crawler Meat                   u=       2g EV=0g
+       37.00% x 1.0 [drop] Crawler Claw                   u=       0g EV=0g
+      0.0028% x 1.0 [drop] Prospector's Boots             u=   7,600g EV=0g
+21. Blindlight Murloc [74720] EV=20g real=0g (482g/h) drops=176 vendor=0g conf=28% JP=Thick-Shelled Clam           0g
+       39.00% x 1.0 [drop] Thick-Shelled Clam             u=       1g EV=0g
+       30.00% x 1.5 [drop] Raw Bristle Whisker Catfish    u=       0g EV=0g
+       10.00% x 1.0 [drop] Lesser Moonstone               u=       2g EV=0g
+22. Executioner Gore [74518] EV=53g real=0g (447g/h) drops=1 vendor=0g conf=28% JP=Gorestained Garb             0g
+       82.00% x 1.0 [drop] Gorestained Garb               u=      68g EV=0g
+23. Twilight Disciple [74983] EV=28g real=0g (442g/h) drops=117 vendor=0g conf=28% JP=Grimclaw                     0g
+       0.070% x 1.0 [drop] Grimclaw                       u=   9,716g EV=0g
+        9.00% x 1.0 [drop] Scholarly Robes                u=      66g EV=0g
+       0.300% x 1.0 [drop] Evocator's Blade               u=   1,154g EV=0g
+24. Twilight Shadow [74363] EV=23g real=0g (436g/h) drops=199 vendor=0g conf=27% JP=Schematic: Shadow Goggles    0g
+        2.00% x 1.0 [drop] Schematic: Shadow Goggles      u=     177g EV=0g
+       41.00% x 3.0 [drop] Wool Cloth                     u=       0g EV=0g
+       0.300% x 1.0 [drop] Moss Agate                     u=      17g EV=0g
+25. Blindlight Razorjaw [75980] EV=24g real=0g (433g/h) drops=126 vendor=0g conf=28% JP=Thick-Shelled Clam           0g
+       41.00% x 1.0 [drop] Thick-Shelled Clam             u=       1g EV=0g
+       0.010% x 1.0 [drop] Axe of the Enforcer            u=  45,977g EV=0g
+       12.00% x 1.5 [drop] Raw Bristle Whisker Catfish    u=       0g EV=0g
+26. Twilight Storm Mender [76037] EV=25g real=0g (368g/h) drops=170 vendor=0g conf=27% JP=Wool Cloth                   0g
+       52.00% x 3.0 [drop] Wool Cloth                     u=       0g EV=0g
+       0.300% x 1.0 [drop] Moss Agate                     u=      17g EV=0g
+       0.600% x 1.0 [drop] Mystic's Robe                  u=     820g EV=0g
+27. Twilight Shadowmage [76038] EV=18g real=0g (362g/h) drops=116 vendor=0g conf=28% JP=Wool Cloth                   0g
+       61.00% x 3.0 [drop] Wool Cloth                     u=       0g EV=0g
+       0.300% x 1.0 [drop] Manual: Strong Anti-Venom      u=     950g EV=0g
+       0.300% x 1.0 [drop] Sentry's Armsplints            u=     988g EV=0g
+28. Blindlight Rotmouth [74719] EV=10g real=0g (352g/h) drops=144 vendor=0g conf=28% JP=Thick-Shelled Clam           0g
+       40.00% x 1.0 [drop] Thick-Shelled Clam             u=       1g EV=0g
+       0.600% x 1.0 [drop] Moss Agate                     u=      17g EV=0g
+       0.030% x 1.0 [drop] Grimclaw                       u=   9,716g EV=0g
+29. Wrathtail Wave Rider [3713] EV=11g real=0g (323g/h) drops=236 vendor=0g conf=28% JP=Prospector's Boots           0g
+       0.050% x 1.0 [drop] Prospector's Boots             u=   7,600g EV=0g
+       21.00% x 1.0 [drop] Thick-Shelled Clam             u=       1g EV=0g
+       24.00% x 2.0 [drop] Wool Cloth                     u=       0g EV=0g
+30. Wrathtail Sorceress [3717] EV=11g real=0g (317g/h) drops=241 vendor=0g conf=28% JP=Prospector's Boots           0g
+       0.050% x 1.0 [drop] Prospector's Boots             u=   7,600g EV=0g
+       21.00% x 1.0 [drop] Thick-Shelled Clam             u=       1g EV=0g
+       24.00% x 2.0 [drop] Wool Cloth                     u=       0g EV=0g
+
+-- TOP MOGS (one row per item, best farm source) --
+ 1. Axe of the Enforcer                       0.060% u=  45,977g <= Twilight Disciple
+ 2. Prospector's Boots                        0.050% u=   7,600g <= Wrathtail Wave Rider
+ 3. Doomspike                                 0.190% u=   3,591g <= Twilight Storm Mender
+ 4. Slayer's Cape                              1.76% u=   2,771g <= Blindlight Bilefin
+ 5. Buccaneer's Vest                          0.010% u=   1,967g <= Blindlight Murloc
+ 6. Prospector Axe                           0.0050% u=   1,901g <= Wrathtail Sorceress
+ 7. Staff of the Friar                         3.08% u=   1,899g <= Blindlight Bilefin
+ 8. Spiked Chain Leggings                      3.85% u=   1,426g <= Guardian of the Deep
+ 9. Night Watch Shortsword                   0.0031% u=   1,425g <= Wrathtail Sorceress
+10. Prospector's Mitts                        0.070% u=   1,218g <= Wrathtail Sorceress
+11. Evocator's Blade                          0.300% u=   1,154g <= Twilight Disciple
+12. Hulking Chestguard                        0.010% u=   1,149g <= Twilight Shadow
+13. Mystic's Wrap                             0.300% u=   1,146g <= Twilight Shadowmage
+14. Greenweave Branch                         0.180% u=   1,128g <= Domina <Mistress of Shadows>
+15. Sentry's Gloves                           0.050% u=   1,056g <= Twilight Shadow
+16. Ironpatch Blade                          0.0034% u=   1,000g <= Wrathtail Sorceress
+17. Sentry's Armsplints                       0.300% u=     988g <= Twilight Shadowmage
+18. Grunt's Shield                             1.60% u=     975g <= Blindlight Bilefin
+19. Raincaller Cuffs                          0.060% u=     951g <= Twilight Storm Mender
+20. Slayer's Sash                             0.010% u=     951g <= Twilight Aquamancer
+21. Manual: Strong Anti-Venom                 0.300% u=     950g <= Twilight Shadowmage
+22. Prospector's Chestpiece                   0.110% u=     931g <= Twilight Storm Mender
+23. Stormbringer Belt                        0.0049% u=     925g <= Wrathtail Wave Rider
+24. Sentry's Slippers                          2.20% u=     903g <= Blindlight Bilefin
+25. Grunt's Chestpiece                         2.94% u=     883g <= Blindlight Murloc
+26. Spiked Chain Gauntlets                     4.65% u=     856g <= Twilight Storm Mender
+27. Watcher's Mantle                           2.64% u=     844g <= Blindlight Bilefin
+28. Martyr's Chain                            0.040% u=     843g <= Blue Shale Crawler
+29. Ritual Tunic                              0.090% u=     836g <= Twilight Storm Mender
+30. Mystic's Robe                             0.600% u=     820g <= Twilight Storm Mender
+
+-- TOP JACKPOTS (rare <10%, pricey, actually selling) --
+ 1. [3415] Staff of the Friar               3.08% x 1.0 u=   1,899g E=1g Pdrop100=96% sr=1.9% spd=0.0 vend=1g (Blindlight Bilefin)
+ 2. [3415] Staff of the Friar               3.08% x 1.0 u=   1,899g E=1g Pdrop100=96% sr=1.9% spd=0.0 vend=1g (Ghamoo-Ra)
+ 3. [3415] Staff of the Friar               3.00% x 1.0 u=   1,899g E=1g Pdrop100=95% sr=1.9% spd=0.0 vend=1g (Subjugator Kor'ul)
+ 4. [7072] Naga Scale                       4.00% x 1.0 u=     300g E=1g Pdrop100=98% sr=7.8% spd=2.6 vend=0g (Domina <Mistress of Shadows>)
+ 5. [1206] Moss Agate                       5.00% x 1.0 u=      17g E=1g Pdrop100=99% sr=68.1% spd=1581.3 vend=0g (Twilight Shadow)
+ 6. [15521] Spiked Chain Leggings            3.85% x 1.0 u=   1,426g E=0g Pdrop100=98% sr=0.7% spd=0.0 vend=0g (Guardian of the Deep)
+ 7. [14127] Ritual Shroud                    5.00% x 1.0 u=     471g E=0g Pdrop100=99% sr=1.6% spd=0.0 vend=0g (Twilight Shadow)
+ 8. [14752] Slayer's Cape                    1.76% x 1.0 u=   2,771g E=0g Pdrop100=83% sr=0.7% spd=0.0 vend=0g (Blindlight Bilefin)
+ 9. [1206] Moss Agate                       3.00% x 1.0 u=      17g E=0g Pdrop100=95% sr=68.1% spd=1581.3 vend=0g (Razorshell Snapjaw)
+10. [15514] Grunt's Chestpiece               2.94% x 1.0 u=     883g E=0g Pdrop100=95% sr=1.2% spd=0.0 vend=0g (Blindlight Murloc)
+11. [15528] Sentry's Sash                    4.85% x 1.0 u=     777g E=0g Pdrop100=99% sr=0.8% spd=0.0 vend=0g (Blindlight Bilefin)
+12. [14729] War Paint Shield                 4.65% x 1.0 u=     627g E=0g Pdrop100=99% sr=1.0% spd=0.0 vend=0g (Twilight Storm Mender)
+13. [15528] Sentry's Sash                    4.65% x 1.0 u=     777g E=0g Pdrop100=99% sr=0.8% spd=0.0 vend=0g (Twilight Storm Mender)
+14. [15520] Spiked Chain Gauntlets           4.65% x 1.0 u=     856g E=0g Pdrop100=99% sr=0.7% spd=0.0 vend=0g (Twilight Storm Mender)
+15. [1454] Axe of the Enforcer             0.060% x 1.0 u=  45,977g E=0g Pdrop100=6% sr=0.9% spd=0.0 vend=1g (Twilight Disciple)
+16. [14185] Watcher's Cinch                  3.96% x 1.0 u=     528g E=0g Pdrop100=98% sr=1.1% spd=0.0 vend=0g (Blindlight Bilefin)
+17. [1206] Moss Agate                       2.00% x 1.0 u=      17g E=0g Pdrop100=87% sr=68.1% spd=1581.3 vend=0g (Blindlight Murloc)
+18. [14182] Watcher's Mantle                 2.64% x 1.0 u=     844g E=0g Pdrop100=93% sr=1.0% spd=0.0 vend=0g (Blindlight Bilefin)
+19. [14728] War Paint Shoulder Pads          4.55% x 1.0 u=     483g E=0g Pdrop100=99% sr=1.0% spd=0.0 vend=0g (Pahboo-Ra <Son of Ghamoo-Ra>)
+20. [14182] Watcher's Mantle                 2.33% x 1.0 u=     844g E=0g Pdrop100=90% sr=1.0% spd=0.0 vend=0g (Twilight Storm Mender)
+21. [15894] Bristlebark Buckler              2.56% x 1.0 u=     695g E=0g Pdrop100=93% sr=1.1% spd=0.0 vend=0g (Twilight Aquamancer)
+22. [14377] Sanguine Handwraps               4.65% x 1.0 u=     412g E=0g Pdrop100=99% sr=1.0% spd=0.0 vend=0g (Twilight Storm Mender)
+23. [14729] War Paint Shield                 2.94% x 1.0 u=     627g E=0g Pdrop100=95% sr=1.0% spd=0.0 vend=0g (Blindlight Murloc)
+24. [4410] Schematic: Shadow Goggles        4.65% x 1.0 u=     177g E=0g Pdrop100=99% sr=2.1% spd=0.0 vend=0g (Twilight Storm Mender)
+25. [2882] Plans: Silvered Bronze Shoulde   3.85% x 1.0 u=     254g E=0g Pdrop100=98% sr=1.6% spd=0.0 vend=0g (Guardian of the Deep)
+26. [15511] Grunt's Legguards                3.00% x 1.0 u=     267g E=0g Pdrop100=95% sr=1.9% spd=0.0 vend=0g (Razorshell Snapjaw)
+27. [1481] Grimclaw                        0.170% x 1.0 u=   9,716g E=0g Pdrop100=16% sr=0.9% spd=0.0 vend=0g (Twilight Shadowmage)
+28. [15974] Pagan Rod                        4.55% x 1.0 u=     654g E=0g Pdrop100=99% sr=0.5% spd=0.0 vend=0g (Pahboo-Ra <Son of Ghamoo-Ra>)
+29. [785] Mageroyal                        4.00% x 3.0 u=       2g E=0g Pdrop100=98% sr=63.0% spd=9080.8 vend=0g (Blindlight Murloc)
+30. [4500] Traveler's Backpack              4.55% x 1.0 u=      17g E=0g Pdrop100=99% sr=18.1% spd=1.1 vend=1g (Pahboo-Ra <Son of Ghamoo-Ra>)
+
+-- ROTATION (3 camps, revisit after 3 stops) --
+Camp 1: Guardian of the Deep, Blindlight Bilefin, Ghamoo-Ra (avg real EV 8g/kill)
+Camp 2: Twilight Storm Mender, Pahboo-Ra <Son of Ghamoo-Ra>, Razorshell Snapjaw (avg real EV 2g/kill)
+Camp 3: Subjugator Kor'ul, Domina <Mistress of Shadows>, Twilight Shadow (avg real EV 1g/kill)
+
+-- TOP MATS (units/kill per NPC) --
+ 1. LEATHER     3.46u/kill EV       18g <= Guardian of the Deep (blackfathom-deeps)
+ 2. LEATHER     0.04u/kill EV        1g <= Domina <Mistress of Shadows> (blackfathom-deeps)
+ 3. LEATHER     1.49u/kill EV        1g <= Ghamoo-Ra (blackfathom-deeps)
+ 4. LEATHER     1.40u/kill EV        1g <= Pahboo-Ra <Son of Ghamoo-Ra> (blackfathom-deeps)
+ 5. LEATHER     1.45u/kill EV        1g <= Razorshell Snapjaw (blackfathom-deeps)
+ 6. HERB        0.05u/kill EV        1g <= Twilight Shadow (blackfathom-deeps)
+ 7. MEAT        0.56u/kill EV        0g <= Guardian of the Deep (blackfathom-deeps)
+ 8. MEAT        0.93u/kill EV        0g <= Razorshell Snapjaw (blackfathom-deeps)
+ 9. ORE         0.82u/kill EV        0g <= Executioner Gore (blackfathom-deeps)
+10. MEAT        0.44u/kill EV        0g <= Spined Crawler (blackfathom-deeps)
+11. MEAT        0.39u/kill EV        0g <= Clattering Crawler (blackfathom-deeps)
+12. HERB        0.03u/kill EV        0g <= Razorshell Snapjaw (blackfathom-deeps)
+13. HERB        0.27u/kill EV        0g <= Blindlight Murloc (blackfathom-deeps)
+14. ORE         0.18u/kill EV        0g <= Twilight Aquamancer (blackfathom-deeps)
+15. MEAT        0.75u/kill EV        0g <= Pahboo-Ra <Son of Ghamoo-Ra> (blackfathom-deeps)
+16. MEAT        0.68u/kill EV        0g <= Ghamoo-Ra (blackfathom-deeps)
+17. MEAT        0.84u/kill EV        0g <= Blindlight Murloc (blackfathom-deeps)
+18. ORE         0.47u/kill EV        0g <= Twilight Storm Mender (blackfathom-deeps)
+19. HERB        0.01u/kill EV        0g <= Twilight Storm Mender (blackfathom-deeps)
+20. MEAT        0.67u/kill EV        0g <= Blindlight Murloc (blackfathom-deeps)
+21. MEAT        0.60u/kill EV        0g <= Blue Shale Crawler (blackfathom-deeps)
+22. MEAT        0.72u/kill EV        0g <= Domina <Mistress of Shadows> (blackfathom-deeps)
+23. HERB        0.01u/kill EV        0g <= Blindlight Bilefin (blackfathom-deeps)
+24. CLOTH       2.62u/kill EV        0g <= Twilight Storm Mender (blackfathom-deeps)
+25. MEAT        0.87u/kill EV        0g <= Blindlight Murloc (blackfathom-deeps)
+26. ORE         0.28u/kill EV        0g <= Twilight Aquamancer (blackfathom-deeps)
+27. MEAT        0.59u/kill EV        0g <= Blindlight Razorjaw (blackfathom-deeps)
+28. HERB        0.01u/kill EV        0g <= Twilight Aquamancer (blackfathom-deeps)
+29. HERB        0.01u/kill EV        0g <= Twilight Disciple (blackfathom-deeps)
+30. MEAT        0.56u/kill EV        0g <= Blindlight Bilefin (blackfathom-deeps)
+
+-- TOP MOG FARMS (montra value vs realizable EV vs P(any sells)) --
+ 1. Blindlight Murloc [75658] 160 mogs montra=31,890g realiz=0g P=94.3% days=n/a
+      0.0015% Doomspike                              u=   3,591g
+       0.010% Buccaneer's Vest                       u=   1,967g
+      0.0015% Staff of the Friar                     u=   1,899g
+ 2. Wrathtail Wave Rider [3713] 165 mogs montra=47,871g realiz=0g P=89.5% days=n/a
+       0.050% Prospector's Boots                     u=   7,600g
+      0.0027% Prospector Axe                         u=   1,901g
+       0.040% Prospector's Mitts                     u=   1,218g
+ 3. Wrathtail Sorceress [3717] 169 mogs montra=45,999g realiz=0g P=88.8% days=n/a
+       0.050% Prospector's Boots                     u=   7,600g
+      0.0050% Prospector Axe                         u=   1,901g
+      0.0031% Night Watch Shortsword                 u=   1,425g
+ 4. Twilight Aquamancer [76039] 123 mogs montra=45,594g realiz=0g P=73.7% days=n/a
+       0.010% Crested Scepter                        u=  14,250g
+       0.020% Staff of the Friar                     u=   1,899g
+       0.010% Spiked Chain Leggings                  u=   1,426g
+ 5. Twilight Disciple [75286] 162 mogs montra=51,448g realiz=0g P=62.4% days=n/a
+      0.0045% Doomspike                              u=   3,591g
+       0.010% Staff of the Friar                     u=   1,899g
+       0.010% Spiked Chain Leggings                  u=   1,426g
+ 6. Twilight Storm Mender [74980] 99 mogs montra=32,427g realiz=0g P=61.5% days=n/a
+       0.020% Doomspike                              u=   3,591g
+       0.020% Slayer's Cape                          u=   2,771g
+       0.010% Staff of the Friar                     u=   1,899g
+ 7. Tormented Sacrifice [75135] 128 mogs montra=98,215g realiz=0g P=61.5% days=n/a
+       0.010% Axe of the Enforcer                    u=  45,977g
+      0.0033% Crested Scepter                        u=  14,250g
+       0.010% Doomspike                              u=   3,591g
+ 8. Blindlight Murloc [74984] 91 mogs montra=26,686g realiz=1g P=61.5% days=n/a
+       0.010% Doomspike                              u=   3,591g
+      0.0029% Evocator's Blade                       u=   1,154g
+       0.010% Mystic's Wrap                          u=   1,146g
+ 9. Twilight Storm Mender [75285] 118 mogs montra=97,195g realiz=1g P=57.5% days=n/a
+       0.010% Axe of the Enforcer                    u=  45,977g
+       0.020% Crested Scepter                        u=  14,250g
+       0.010% Staff of the Friar                     u=   1,899g
+10. Twilight Shadowmage [74382] 112 mogs montra=30,407g realiz=0g P=55.0% days=n/a
+       0.050% Spiked Chain Leggings                  u=   1,426g
+      0.0049% Evocator's Blade                       u=   1,154g
+       0.300% Mystic's Wrap                          u=   1,146g
+11. Twilight Shadowmage [76038] 89 mogs montra=21,732g realiz=0g P=54.7% days=n/a
+       0.010% Mystic's Wrap                          u=   1,146g
+       0.080% Greenweave Branch                      u=   1,128g
+       0.010% Sentry's Gloves                        u=   1,056g
+12. Blindlight Murloc [74720] 123 mogs montra=39,066g realiz=0g P=49.8% days=n/a
+       0.010% Doomspike                              u=   3,591g
+       0.010% Slayer's Cape                          u=   2,771g
+       0.010% Staff of the Friar                     u=   1,899g
+13. Blindlight Bilefin [74721] 153 mogs montra=107,782g realiz=3g P=49.5% days=n/a
+       0.010% Axe of the Enforcer                    u=  45,977g
+      0.0013% Crested Scepter                        u=  14,250g
+        1.76% Slayer's Cape                          u=   2,771g
+14. Twilight Disciple [77232] 86 mogs montra=66,201g realiz=0g P=48.9% days=n/a
+       0.060% Axe of the Enforcer                    u=  45,977g
+       0.010% Evocator's Blade                       u=   1,154g
+       0.010% Sentry's Armsplints                    u=     988g
+15. Twilight Aquamancer [74353] 145 mogs montra=61,943g realiz=0g P=48.7% days=n/a
+      0.0028% Crested Scepter                        u=  14,250g
+      0.0028% Doomspike                              u=   3,591g
+       0.050% Slayer's Cape                          u=   2,771g
+16. Twilight Aquamancer [75058] 91 mogs montra=27,303g realiz=0g P=48.3% days=n/a
+       0.010% Staff of the Friar                     u=   1,899g
+       0.090% Spiked Chain Leggings                  u=   1,426g
+       0.010% Mystic's Wrap                          u=   1,146g
+17. Twilight Shadow [74363] 144 mogs montra=46,050g realiz=0g P=48.3% days=n/a
+       0.010% Doomspike                              u=   3,591g
+      0.0038% Slayer's Cape                          u=   2,771g
+       0.010% Evocator's Blade                       u=   1,154g
+18. Twilight Storm Mender [74380] 133 mogs montra=43,505g realiz=0g P=43.5% days=n/a
+      0.0027% Doomspike                              u=   3,591g
+       0.010% Slayer's Cape                          u=   2,771g
+       0.030% Staff of the Friar                     u=   1,899g
+19. Blindlight Rotmouth [74719] 110 mogs montra=35,351g realiz=0g P=39.5% days=n/a
+       0.010% Doomspike                              u=   3,591g
+       0.010% Slayer's Cape                          u=   2,771g
+       0.020% Staff of the Friar                     u=   1,899g
+20. Twilight Storm Mender [76037] 129 mogs montra=44,785g realiz=0g P=39.2% days=n/a
+       0.190% Doomspike                              u=   3,591g
+       0.020% Slayer's Cape                          u=   2,771g
+       0.010% Staff of the Friar                     u=   1,899g
+21. Subjugator Kor'ul [74565] 15 mogs montra=3,532g realiz=1g P=38.8% days=n/a
+        3.00% Staff of the Friar                     u=   1,899g
+       0.120% Sanguine Handwraps                     u=     412g
+       0.200% Pagan Britches                         u=     234g
+22. Blindlight Razorjaw [75980] 94 mogs montra=73,180g realiz=0g P=38.4% days=n/a
+       0.010% Axe of the Enforcer                    u=  45,977g
+      0.0035% Staff of the Friar                     u=   1,899g
+       0.010% Evocator's Blade                       u=   1,154g
+23. Twilight Shadow [76036] 121 mogs montra=37,937g realiz=1g P=35.2% days=n/a
+       0.010% Slayer's Cape                          u=   2,771g
+       0.030% Staff of the Friar                     u=   1,899g
+       0.010% Hulking Chestguard                     u=   1,149g
+24. Pahboo-Ra <Son of Ghamoo-Ra> [76954] 63 mogs montra=35,178g realiz=1g P=29.3% days=n/a
+       0.010% Crested Scepter                        u=  14,250g
+       0.010% Doomspike                              u=   3,591g
+       0.010% Slayer's Cape                          u=   2,771g
+25. Domina <Mistress of Shadows> [74476] 19 mogs montra=5,692g realiz=0g P=28.6% days=n/a
+       0.170% Staff of the Friar                     u=   1,899g
+       0.180% Greenweave Branch                      u=   1,128g
+       0.190% Watcher's Cinch                        u=     528g
+26. Twilight Disciple [74983] 86 mogs montra=68,199g realiz=0g P=24.0% days=n/a
+       0.010% Axe of the Enforcer                    u=  45,977g
+       0.090% Staff of the Friar                     u=   1,899g
+       0.300% Evocator's Blade                       u=   1,154g
+27. Blue Shale Crawler [74509] 33 mogs montra=5,698g realiz=0g P=19.8% days=n/a
+       0.040% Martyr's Chain                         u=     843g
+       0.300% Pathfinder Bracers                     u=     488g
+       0.170% Ritual Shroud                          u=     471g
+28. Ghamoo-Ra [74446] 121 mogs montra=96,202g realiz=2g P=17.9% days=n/a
+      0.0015% Axe of the Enforcer                    u=  45,977g
+       0.010% Crested Scepter                        u=  14,250g
+        3.08% Staff of the Friar                     u=   1,899g
+29. Guardian of the Deep [74508] 58 mogs montra=13,103g realiz=1g P=17.5% days=n/a
+        3.85% Spiked Chain Leggings                  u=   1,426g
+       0.010% Spiked Chain Gauntlets                 u=     856g
+       0.020% Raincaller Cloak                       u=     780g
+30. Twilight Disciple [74351] 57 mogs montra=14,316g realiz=0g P=13.9% days=n/a
+       0.160% Mystic's Wrap                          u=   1,146g
+      0.0045% Greenweave Branch                      u=   1,128g
+       0.010% Sentry's Armsplints                    u=     988g
+
+Prices as of 2026-07-27T00:59:53Z STALE - refresh prices
+
+-- TOP VENDOR FARMS (immediate gold, no AH) --
+ 1. Executioner Gore [74518] 0g/kill
+ 2. Blindlight Bilefin [74721] 0g/kill
+ 3. Guardian of the Deep [74508] 0g/kill
+ 4. Pahboo-Ra <Son of Ghamoo-Ra> [76954] 0g/kill
+ 5. Twilight Storm Mender [75285] 0g/kill
+ 6. Ghamoo-Ra [74446] 0g/kill
+ 7. Twilight Storm Mender [74380] 0g/kill
+ 8. Twilight Shadow [76036] 0g/kill
+ 9. Subjugator Kor'ul [74565] 0g/kill
+10. Twilight Aquamancer [76039] 0g/kill
+11. Twilight Aquamancer [74353] 0g/kill
+12. Twilight Disciple [74983] 0g/kill
+13. Blindlight Murloc [74984] 0g/kill
+14. Twilight Disciple [75286] 0g/kill
+15. Twilight Storm Mender [76037] 0g/kill
+16. Twilight Shadowmage [74382] 0g/kill
+17. Razorshell Snapjaw [74722] 0g/kill
+18. Twilight Shadow [74363] 0g/kill
+19. Blindlight Murloc [75658] 0g/kill
+20. Twilight Disciple [77232] 0g/kill
+21. Twilight Shadowmage [76038] 0g/kill
+22. Twilight Storm Mender [74980] 0g/kill
+23. Blindlight Razorjaw [75980] 0g/kill
+24. Twilight Aquamancer [75058] 0g/kill
+25. Tormented Sacrifice [75135] 0g/kill
+26. Blindlight Murloc [74720] 0g/kill
+27. Twilight Disciple [74351] 0g/kill
+28. Blue Shale Crawler [74509] 0g/kill
+29. Blindlight Rotmouth [74719] 0g/kill
+30. Domina <Mistress of Shadows> [74476] 0g/kill
+
+-- TOP RECIPES (profession collectibles, sale-weighted EV) --
+ 1. Schematic: Shadow Goggles                  4.65% u=     177g E=0g (Twilight Storm Mender)
+ 2. Plans: Silvered Bronze Shoulders           3.85% u=     254g E=0g (Guardian of the Deep)
+ 3. Schematic: Shadow Goggles                  2.00% u=     177g E=0g (Twilight Shadow)
+ 4. Manual: Strong Anti-Venom                 0.300% u=     950g E=0g (Twilight Shadowmage)
+ 5. Pattern: Hillman's Leather Vest            2.94% u=      94g E=0g (Blindlight Murloc)
+ 6. Schematic: EZ-Thro Dynamite                1.76% u=      48g E=0g (Blindlight Bilefin)
+ 7. Pattern: Reinforced Woolen Shoulders      0.600% u=     189g E=0g (Twilight Storm Mender)
+ 8. Plans: Silvered Bronze Leggings           0.150% u=     471g E=0g (Twilight Storm Mender)
+ 9. Formula: Enchant Shield - Lesser Protect  0.400% u=     238g E=0g (Blindlight Razorjaw)
+10. Plans: Silvered Bronze Shoulders          0.400% u=     254g E=0g (Twilight Aquamancer)
+11. Pattern: Fine Leather Pants               0.300% u=     250g E=0g (Twilight Storm Mender)
+12. Pattern: Phoenix Pants                    0.400% u=     201g E=0g (Blindlight Murloc)
+13. Plans: Iron Shield Spike                  0.170% u=     259g E=0g (Twilight Shadowmage)
+14. Plans: Silvered Bronze Breastplate        0.180% u=     249g E=0g (Guardian of the Deep)
+15. Pattern: Stylish Blue Shirt               0.070% u=     523g E=0g (Twilight Storm Mender)
+16. Plans: Runed Copper Breastplate           0.300% u=      90g E=0g (Blue Shale Crawler)
+17. Pattern: Colorful Kilt                    0.130% u=     398g E=0g (Twilight Shadowmage)
+18. Plans: Mighty Iron Hammer                 0.110% u=     278g E=0g (Subjugator Kor'ul)
+19. Pattern: Stylish Green Shirt              0.060% u=     500g E=0g (Blue Shale Crawler)
+20. Plans: Silvered Bronze Breastplate        0.110% u=     249g E=0g (Twilight Shadow)
+21. Plans: Iron Shield Spike                  0.090% u=     259g E=0g (Blue Shale Crawler)
+22. Plans: Silvered Bronze Breastplate        0.100% u=     249g E=0g (Twilight Storm Mender)
+23. Plans: Silvered Bronze Leggings           0.040% u=     471g E=0g (Twilight Shadow)
+24. Pattern: Reinforced Woolen Shoulders      0.140% u=     189g E=0g (Twilight Storm Mender)
+25. Schematic: Shadow Goggles                 0.130% u=     177g E=0g (Twilight Shadowmage)
+26. Pattern: Stylish Blue Shirt               0.040% u=     523g E=0g (Twilight Disciple)
+27. Pattern: Pilferer's Gloves                0.130% u=     166g E=0g (Ghamoo-Ra)
+28. Manual: Strong Anti-Venom                 0.020% u=     950g E=0g (Blindlight Murloc)
+29. Manual: Strong Anti-Venom                 0.020% u=     950g E=0g (Twilight Disciple)
+30. Plans: Silvered Bronze Leggings           0.030% u=     471g E=0g (Twilight Aquamancer)
+
+-- TOP BOE (Blizzard-verified Bind-on-Equip, sale-weighted EV) --
+ 1. Staff of the Friar                         3.08% u=   1,899g E=1g (Blindlight Bilefin)
+ 2. Staff of the Friar                         3.08% u=   1,899g E=1g (Ghamoo-Ra)
+ 3. Staff of the Friar                         3.00% u=   1,899g E=1g (Subjugator Kor'ul)
+ 4. Gorestained Garb                          82.00% u=      68g E=0g (Executioner Gore)
+ 5. Spiked Chain Leggings                      3.85% u=   1,426g E=0g (Guardian of the Deep)
+ 6. Ritual Shroud                              5.00% u=     471g E=0g (Twilight Shadow)
+ 7. Slayer's Cape                              1.76% u=   2,771g E=0g (Blindlight Bilefin)
+ 8. Grunt's Chestpiece                         2.94% u=     883g E=0g (Blindlight Murloc)
+ 9. Sentry's Sash                              4.85% u=     777g E=0g (Blindlight Bilefin)
+10. War Paint Shield                           4.65% u=     627g E=0g (Twilight Storm Mender)
+11. Sentry's Sash                              4.65% u=     777g E=0g (Twilight Storm Mender)
+12. Spiked Chain Gauntlets                     4.65% u=     856g E=0g (Twilight Storm Mender)
+13. Axe of the Enforcer                       0.060% u=  45,977g E=0g (Twilight Disciple)
+14. Threshadon Fang                           51.00% u=      33g E=0g (Guardian of the Deep)
+15. Watcher's Cinch                            3.96% u=     528g E=0g (Blindlight Bilefin)
+16. Watcher's Mantle                           2.64% u=     844g E=0g (Blindlight Bilefin)
+17. War Paint Shoulder Pads                    4.55% u=     483g E=0g (Pahboo-Ra <Son of Ghamoo-Ra>)
+18. Watcher's Mantle                           2.33% u=     844g E=0g (Twilight Storm Mender)
+19. Bristlebark Buckler                        2.56% u=     695g E=0g (Twilight Aquamancer)
+20. Sanguine Handwraps                         4.65% u=     412g E=0g (Twilight Storm Mender)
+21. War Paint Shield                           2.94% u=     627g E=0g (Blindlight Murloc)
+22. Grunt's Legguards                          3.00% u=     267g E=0g (Razorshell Snapjaw)
+23. Grimclaw                                  0.170% u=   9,716g E=0g (Twilight Shadowmage)
+24. Pagan Rod                                  4.55% u=     654g E=0g (Pahboo-Ra <Son of Ghamoo-Ra>)
+25. War Paint Chestpiece                       3.08% u=     470g E=0g (Ghamoo-Ra)
+26. Staff of the Blessed Seer                  1.60% u=     677g E=0g (Blindlight Bilefin)
+27. Feral Shoulder Pads                        5.00% u=     250g E=0g (Twilight Storm Mender)
+28. Sentry's Slippers                          2.20% u=     903g E=0g (Blindlight Bilefin)
+29. Rawhide Gloves                            10.00% u=      81g E=0g (Twilight Shadowmage)
+30. War Paint Shield                           1.76% u=     627g E=0g (Blindlight Bilefin)
+
+-- TOP MIXED (>=2 pillars: vendor / mats / mogs) --
+ 1. Guardian of the Deep [74508] total=19g (vendor=0g mats=18g mogs=0g)
+ 2. Blindlight Bilefin [74721] total=3g (vendor=0g mats=0g mogs=3g)
+ 3. Ghamoo-Ra [74446] total=3g (vendor=0g mats=1g mogs=2g)
+ 4. Pahboo-Ra <Son of Ghamoo-Ra> [76954] total=2g (vendor=0g mats=1g mogs=1g)
+ 5. Twilight Storm Mender [75285] total=2g (vendor=0g mats=0g mogs=1g)
+ 6. Razorshell Snapjaw [74722] total=2g (vendor=0g mats=1g mogs=0g)
+ 7. Subjugator Kor'ul [74565] total=1g (vendor=0g mats=0g mogs=1g)
+ 8. Twilight Shadow [76036] total=1g (vendor=0g mats=1g mogs=0g)
+ 9. Domina <Mistress of Shadows> [74476] total=1g (vendor=0g mats=1g mogs=0g)
+10. Blindlight Murloc [74984] total=1g (vendor=0g mats=0g mogs=1g)
+11. Blindlight Murloc [75658] total=1g (vendor=0g mats=0g mogs=0g)
+12. Executioner Gore [74518] total=1g (vendor=0g mats=0g mogs=0g)
+13. Twilight Aquamancer [76039] total=1g (vendor=0g mats=0g mogs=0g)
+14. Twilight Storm Mender [74380] total=1g (vendor=0g mats=0g mogs=0g)
+15. Twilight Aquamancer [74353] total=1g (vendor=0g mats=0g mogs=0g)
+16. Twilight Disciple [75286] total=1g (vendor=0g mats=0g mogs=0g)
+17. Twilight Shadowmage [74382] total=0g (vendor=0g mats=0g mogs=0g)
+18. Twilight Storm Mender [74980] total=0g (vendor=0g mats=0g mogs=0g)
+19. Clattering Crawler [3812] total=0g (vendor=0g mats=0g mogs=0g)
+20. Twilight Disciple [77232] total=0g (vendor=0g mats=0g mogs=0g)
+21. Blindlight Murloc [74720] total=0g (vendor=0g mats=0g mogs=0g)
+22. Spined Crawler [3814] total=0g (vendor=0g mats=0g mogs=0g)
+23. Blindlight Razorjaw [75980] total=0g (vendor=0g mats=0g mogs=0g)
+24. Twilight Disciple [74983] total=0g (vendor=0g mats=0g mogs=0g)
+25. Twilight Storm Mender [76037] total=0g (vendor=0g mats=0g mogs=0g)
+26. Twilight Shadow [74363] total=0g (vendor=0g mats=0g mogs=0g)
+27. Twilight Shadowmage [76038] total=0g (vendor=0g mats=0g mogs=0g)
+28. Blindlight Rotmouth [74719] total=0g (vendor=0g mats=0g mogs=0g)
+29. Wrathtail Wave Rider [3713] total=0g (vendor=0g mats=0g mogs=0g)
+30. Wrathtail Sorceress [3717] total=0g (vendor=0g mats=0g mogs=0g)
+
+-- MOG VIEWS --
+  by EV/kill:
+   1. Staff of the Friar                       E=1g u=   1,899g <= Blindlight Bilefin
+   2. Spiked Chain Leggings                    E=0g u=   1,426g <= Guardian of the Deep
+   3. Ritual Shroud                            E=0g u=     471g <= Twilight Shadow
+   4. Slayer's Cape                            E=0g u=   2,771g <= Blindlight Bilefin
+   5. Grunt's Chestpiece                       E=0g u=     883g <= Blindlight Murloc
+   6. Sentry's Sash                            E=0g u=     777g <= Blindlight Bilefin
+   7. War Paint Shield                         E=0g u=     627g <= Twilight Storm Mender
+   8. Spiked Chain Gauntlets                   E=0g u=     856g <= Twilight Storm Mender
+   9. Axe of the Enforcer                      E=0g u=  45,977g <= Twilight Disciple
+  10. Watcher's Cinch                          E=0g u=     528g <= Blindlight Bilefin
+  11. Watcher's Mantle                         E=0g u=     844g <= Blindlight Bilefin
+  12. War Paint Shoulder Pads                  E=0g u=     483g <= Pahboo-Ra <Son of Ghamoo-Ra>
+  13. Sanguine Handwraps                       E=0g u=     412g <= Twilight Storm Mender
+  14. Grunt's Legguards                        E=0g u=     267g <= Razorshell Snapjaw
+  15. Pagan Rod                                E=0g u=     654g <= Pahboo-Ra <Son of Ghamoo-Ra>
+  16. Mageroyal                                E=0g u=       2g <= Blindlight Murloc
+  17. Traveler's Backpack                      E=0g u=      17g <= Pahboo-Ra <Son of Ghamoo-Ra>
+  18. War Paint Chestpiece                     E=0g u=     470g <= Ghamoo-Ra
+  19. Staff of the Blessed Seer                E=0g u=     677g <= Blindlight Bilefin
+  20. Feral Shoulder Pads                      E=0g u=     250g <= Twilight Storm Mender
+  21. Sentry's Slippers                        E=0g u=     903g <= Blindlight Bilefin
+  22. Grunt's Shield                           E=0g u=     975g <= Blindlight Bilefin
+  23. Robust Girdle                            E=0g u=     600g <= Blindlight Murloc
+  24. Grunt's Handwraps                        E=0g u=     204g <= Guardian of the Deep
+  25. Wrangler's Gloves                        E=0g u=     413g <= Twilight Storm Mender
+  26. Mystic's Shoulder Pads                   E=0g u=     176g <= Pahboo-Ra <Son of Ghamoo-Ra>
+  27. Prospector's Boots                       E=0g u=   7,600g <= Wrathtail Wave Rider
+  28. Hulking Spaulders                        E=0g u=     476g <= Twilight Aquamancer
+  29. Outrunner's Pauldrons                    E=0g u=     206g <= Twilight Shadowmage
+  30. Spiked Chain Slippers                    E=0g u=     661g <= Blindlight Bilefin
+  fast movers (sale_rate >= 5%):
+   1. Traveler's Backpack                      sr=18.1% u=      17g <= Pahboo-Ra <Son of Ghamoo-Ra>
+   2. Raw Spotted Yellowtail                   sr=16.7% u=      13g <= Wrathtail Wave Rider
+   3. Large Knapsack                           sr=6.6% u=       8g <= Twilight Shadowmage
+   4. Journeyman's Backpack                    sr=13.8% u=       5g <= Twilight Aquamancer
+   5. Swiftthistle                             sr=76.8% u=       3g <= Blindlight Murloc
+   6. Jade                                     sr=64.1% u=       2g <= Blindlight Murloc
+   7. Mageroyal                                sr=63.0% u=       2g <= Blindlight Murloc
+   8. Small Lustrous Pearl                     sr=20.1% u=       1g <= Blindlight Murloc
+   9. Thick-Shelled Clam                       sr=26.3% u=       1g <= Spined Crawler
+  10. Moonberry Juice                          sr=14.3% u=       0g <= Wrathtail Sorceress
+  11. Raw Spinefin Halibut                     sr=7.5% u=       0g <= Wrathtail Sorceress
+  12. Raw Slitherskin Mackerel                 sr=48.1% u=       0g <= Wrathtail Wave Rider
+  13. Raw Longjaw Mud Snapper                  sr=62.8% u=       0g <= Wrathtail Wave Rider
+  14. Refreshing Spring Water                  sr=15.8% u=       0g <= Blue Shale Crawler
+  15. Homemade Cherry Pie                      sr=24.8% u=       0g <= Tormented Sacrifice
+  16. Ice Cold Milk                            sr=20.4% u=       0g <= Wrathtail Wave Rider
+  17. Morning Glory Dew                        sr=34.7% u=       0g <= Wrathtail Wave Rider
+  18. Dried King Bolete                        sr=34.7% u=       0g <= Twilight Shadowmage
+  19. Delicious Cave Mold                      sr=11.2% u=       0g <= Twilight Shadowmage
+  20. Melon Juice                              sr=22.1% u=       0g <= Blindlight Rotmouth
+  21. Sweet Nectar                             sr=24.5% u=       0g <= Twilight Shadowmage
+  high-value, low liquidity (sale_rate < 1%):
+   1. Axe of the Enforcer                      sr=0.90% u=  45,977g <= Twilight Disciple
+   2. Doomspike                                sr=0.30% u=   3,591g <= Twilight Storm Mender
+   3. Slayer's Cape                            sr=0.70% u=   2,771g <= Blindlight Bilefin
+   4. Spiked Chain Leggings                    sr=0.70% u=   1,426g <= Guardian of the Deep
+   5. Night Watch Shortsword                   sr=0.80% u=   1,425g <= Wrathtail Sorceress
+   6. Hulking Chestguard                       sr=0.80% u=   1,149g <= Twilight Shadow
+   7. Greenweave Branch                        sr=0.80% u=   1,128g <= Domina <Mistress of Shadows>
+   8. Sentry's Gloves                          sr=0.20% u=   1,056g <= Twilight Shadow
+   9. Ironpatch Blade                          sr=0.30% u=   1,000g <= Wrathtail Sorceress
+  10. Grunt's Shield                           sr=0.70% u=     975g <= Blindlight Bilefin
+  11. Raincaller Cuffs                         sr=0.40% u=     951g <= Twilight Storm Mender
+  12. Stormbringer Belt                        sr=0.80% u=     925g <= Wrathtail Wave Rider
+  13. Sentry's Slippers                        sr=0.60% u=     903g <= Blindlight Bilefin
+  14. Spiked Chain Gauntlets                   sr=0.70% u=     856g <= Twilight Storm Mender
+  15. Martyr's Chain                           sr=0.70% u=     843g <= Blue Shale Crawler
+  16. Mystic's Robe                            sr=0.60% u=     820g <= Twilight Storm Mender
+  17. Slayer's Cuffs                           sr=0.70% u=     813g <= Twilight Disciple
+  18. Magefist Gloves                          sr=0.50% u=     810g <= Wrathtail Wave Rider
+  19. Raincaller Cloak                         sr=0.60% u=     780g <= Twilight Shadowmage
+  20. Sentry's Sash                            sr=0.80% u=     777g <= Blindlight Bilefin
+  21. Pagan Wraps                              sr=0.50% u=     770g <= Twilight Storm Mender
+  22. Cutthroat's Armguards                    sr=0.80% u=     731g <= Clattering Crawler
+  23. Robust Buckler                           sr=0.70% u=     666g <= Blindlight Bilefin
+  24. Wrangler's Mantle                        sr=0.60% u=     666g <= Blindlight Bilefin
+  25. Spiked Chain Shoulder Pads               sr=0.70% u=     665g <= Twilight Shadowmage
+  26. Spiked Chain Slippers                    sr=0.60% u=     661g <= Blindlight Bilefin
+  27. Pagan Rod                                sr=0.50% u=     654g <= Pahboo-Ra <Son of Ghamoo-Ra>
+  28. Sanguine Mantle                          sr=0.90% u=     633g <= Twilight Storm Mender
+  29. Pagan Vest                               sr=0.90% u=     629g <= Guardian of the Deep
+  30. Raincaller Cord                          sr=0.30% u=     612g <= Ghamoo-Ra
+  vendor fallback:
+   1. Thistlefur Cap                           vendor=3g u=     305g
+   2. Archer's Longbow                         vendor=2g u=      32g
+   3. Enduring Bracers                         vendor=2g u=     177g
+   4. Ghostwalker Belt                         vendor=2g u=     134g
+   5. Cutthroat's Buckler                      vendor=2g u=     240g
+   6. Viking Sword                             vendor=1g u=      69g
+   7. Dokebi Leggings                          vendor=1g u=     149g
+   8. Cavalier Two-Hander                      vendor=1g u=      71g
+   9. Holy Shroud                              vendor=1g u=     128g
+  10. Dwarven Magestaff                        vendor=1g u=     115g
+  11. Cross Dagger                             vendor=1g u=      66g
+  12. Traveler's Backpack                      vendor=1g u=      17g
+  13. Precision Bow                            vendor=1g u=      72g
+  14. Dokebi Mantle                            vendor=1g u=      58g
+  15. Pathfinder Guard                         vendor=1g u=     475g
+  16. Staff of the Blessed Seer                vendor=1g u=     677g
+  17. Polished Zweihander                      vendor=1g u=      54g
+  18. Sentry's Headdress                       vendor=1g u=     238g
+  19. Twisted Sabre                            vendor=1g u=     656g
+  20. Staff of the Friar                       vendor=1g u=   1,899g
+  21. Fighter Broadsword                       vendor=1g u=      89g
+  22. Ranger Bow                               vendor=1g u=     285g
+  23. Hulking Chestguard                       vendor=1g u=   1,149g
+  24. Journeyman's Backpack                    vendor=1g u=       5g
+  25. Hefty Battlehammer                       vendor=1g u=      97g
+  26. Twisted Chanter's Staff                  vendor=1g u=     361g
+  27. Diamond Hammer                           vendor=1g u=     130g
+  28. Doomspike                                vendor=1g u=   3,591g
+  29. Battle Knife                             vendor=1g u=      53g
+  30. Evocator's Blade                         vendor=1g u=   1,154g
+
+-- BEST GOLDBOUND SESSION (travel-aware, kills spread over stops) --
+   (assumptions: measure YOUR kpm/travel in-game; defaults below)
+  route (3 stops): 15min -> 240 kills | vendor=20g auction_est=886g speculative=26,548g conservative=651g
+  route (3 stops): 30min -> 540 kills | vendor=46g auction_est=1,993g speculative=59,733g conservative=1,466g
+  route (3 stops): 60min -> 1140 kills | vendor=97g auction_est=4,208g speculative=126,102g conservative=3,095g
+  solo: Guardian of the Deep: 15min -> 300 kills | vendor=41g auction_est=5,669g speculative=44,555g conservative=5,466g
+  solo: Guardian of the Deep: 30min -> 600 kills | vendor=81g auction_est=11,337g speculative=89,110g conservative=10,932g
+  solo: Guardian of the Deep: 60min -> 1200 kills | vendor=162g auction_est=22,674g speculative=178,221g conservative=21,863g

@@ -1,0 +1,116 @@
+{
+ "npc_id": 121820,
+ "zone": 16,
+ "zone_name": "azshara",
+ "npc_name": "Azuregos",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 150545,
+   "item_name": "Ring of Ancient Arcana",
+   "item_type": "Ring",
+   "drop_rate": 0.26,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=150545/ring-of-ancient-arcana"
+  },
+  {
+   "category": "drops",
+   "item_id": 150417,
+   "item_name": "Drape of Benediction",
+   "item_type": "Cloak",
+   "drop_rate": 0.19,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=150417/drape-of-benediction"
+  },
+  {
+   "category": "drops",
+   "item_id": 150544,
+   "item_name": "Mana-Frosted Pauldrons",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.1,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=150544/mana-frosted-pauldrons"
+  },
+  {
+   "category": "drops",
+   "item_id": 150423,
+   "item_name": "Fang of the Mystics",
+   "item_type": "Dagger",
+   "drop_rate": 0.09,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=150423/fang-of-the-mystics"
+  },
+  {
+   "category": "drops",
+   "item_id": 150543,
+   "item_name": "Sapphire-Encrusted Tunic",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.07,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=150543/sapphire-encrusted-tunic"
+  },
+  {
+   "category": "drops",
+   "item_id": 150419,
+   "item_name": "Crystal Adorned Crown",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=150419/crystal-adorned-crown"
+  },
+  {
+   "category": "drops",
+   "item_id": 150422,
+   "item_name": "Unmelting Ice Girdle",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=150422/unmelting-ice-girdle"
+  },
+  {
+   "category": "drops",
+   "item_id": 150424,
+   "item_name": "Cold Snap",
+   "item_type": "Wand",
+   "drop_rate": 0.05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=150424/cold-snap"
+  },
+  {
+   "category": "drops",
+   "item_id": 150425,
+   "item_name": "Snowblind Shoes",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=150425/snowblind-shoes"
+  },
+  {
+   "category": "drops",
+   "item_id": 150421,
+   "item_name": "Typhoon",
+   "item_type": "Two-Handed Sword",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=150421/typhoon"
+  },
+  {
+   "category": "drops",
+   "item_id": 150428,
+   "item_name": "Eskhandar's Left Claw",
+   "item_type": "Fist Weapon",
+   "drop_rate": 0.02,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=150428/eskhandars-left-claw"
+  },
+  {
+   "category": "drops",
+   "item_id": 183702,
+   "item_name": "Nature's Splendor",
+   "item_type": "Miscellaneous Item",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=183702/natures-splendor"
+  }
+ ]
+}

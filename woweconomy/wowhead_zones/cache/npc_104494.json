@@ -1,0 +1,17 @@
+{
+ "npc_id": 104494,
+ "zone": 16,
+ "zone_name": "azshara",
+ "npc_name": "Felfire Imp",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 132204,
+   "item_name": "Sticky Volatile Substance",
+   "item_type": "Consumable",
+   "drop_rate": 1.0,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=132204/sticky-volatile-substance"
+  }
+ ]
+}

@@ -1,0 +1,305 @@
+{
+ "npc_id": 3809,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Ashenvale Bear",
+ "items": [
+  {
+   "category": "drops+skinning",
+   "item_id": 3730,
+   "item_name": "Big Bear Meat",
+   "item_type": "",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3730/big-bear-meat"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 3173,
+   "item_name": "Bear Meat",
+   "item_type": "",
+   "drop_rate": 0.36,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3173/bear-meat"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 11415,
+   "item_name": "Mixed Berries",
+   "item_type": "",
+   "drop_rate": 0.008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=11415/mixed-berries"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 5635,
+   "item_name": "Sharp Claw",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=5635/sharp-claw"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1210,
+   "item_name": "Shadowgem",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1210/shadowgem"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 15307,
+   "item_name": "Feral Buckler",
+   "item_type": "",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15307/feral-buckler?bonus=6655"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 4576,
+   "item_name": "Light Bow",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4576/light-bow?bonus=6655"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 9768,
+   "item_name": "Greenweave Bracers",
+   "item_type": "",
+   "drop_rate": 0.0006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9768/greenweave-bracers?bonus=6654"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1725,
+   "item_name": "Large Knapsack",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1725/large-knapsack"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 11406,
+   "item_name": "Rotting Bear Carcass",
+   "item_type": "",
+   "drop_rate": 0.07,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=11406/rotting-bear-carcass"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 3170,
+   "item_name": "Large Bear Tooth",
+   "item_type": "",
+   "drop_rate": 0.016,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3170/large-bear-tooth"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 11411,
+   "item_name": "Large Bear Bone",
+   "item_type": "",
+   "drop_rate": 0.015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=11411/large-bear-bone"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 3169,
+   "item_name": "Chipped Bear Tooth",
+   "item_type": "",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3169/chipped-bear-tooth"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1812,
+   "item_name": "Short-Handled Battle Axe",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1812/short-handled-battle-axe?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1811,
+   "item_name": "Blunt Claymore",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1811/blunt-claymore?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 33549,
+   "item_name": "Thick Tail Hair",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=33549/thick-tail-hair"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1813,
+   "item_name": "Chipped Quarterstaff",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1813/chipped-quarterstaff?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 2781,
+   "item_name": "Dirty Blunderbuss",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2781/dirty-blunderbuss?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 2780,
+   "item_name": "Light Hunting Bow",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2780/light-hunting-bow?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1793,
+   "item_name": "Patched Leather Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1793/patched-leather-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1814,
+   "item_name": "Battered Mallet",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1814/battered-mallet?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 3376,
+   "item_name": "Canvas Belt",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3376/canvas-belt?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1739,
+   "item_name": "Laced Mail Boots",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1739/laced-mail-boots?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1815,
+   "item_name": "Ornamental Mace",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1815/ornamental-mace?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 4865,
+   "item_name": "Ruined Pelt",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4865/ruined-pelt"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 2220,
+   "item_name": "Box Shield",
+   "item_type": "",
+   "drop_rate": 0.0006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2220/box-shield?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1746,
+   "item_name": "Linked Chain Belt",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1746/linked-chain-belt?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 2219,
+   "item_name": "Small Round Shield",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2219/small-round-shield?bonus=6657"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2318,
+   "item_name": "Light Leather",
+   "item_type": "",
+   "drop_rate": 0.68,
+   "qty": 3.0,
+   "source_url": "https://www.wowhead.com/item=2318/light-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2319,
+   "item_name": "Medium Leather",
+   "item_type": "",
+   "drop_rate": 0.25,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=2319/medium-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 783,
+   "item_name": "Light Hide",
+   "item_type": "",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=783/light-hide"
+  },
+  {
+   "category": "skinning",
+   "item_id": 4232,
+   "item_name": "Medium Hide",
+   "item_type": "",
+   "drop_rate": 0.018000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4232/medium-hide"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2934,
+   "item_name": "Ruined Leather Scraps",
+   "item_type": "",
+   "drop_rate": 0.01,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=2934/ruined-leather-scraps"
+  }
+ ]
+}

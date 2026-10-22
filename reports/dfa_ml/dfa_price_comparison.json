@@ -1,0 +1,477 @@
+{
+  "schema": "dfa-price-comparison/1",
+  "generated_at": "2026-10-21T16:17:18.825013+00:00",
+  "target": "y_net_unit_log",
+  "level": 0.8,
+  "rules": {
+    "split": "chronological train -> calibration -> final test",
+    "model_fit": "training block only",
+    "interval_calibration": "calibration block only",
+    "evaluation": "final test block only",
+    "test_used_for_selection": false,
+    "same_test_observations": true
+  },
+  "split": {
+    "train_ts": [
+      1792134314,
+      1792351094
+    ],
+    "calibration_ts": [
+      1792351100,
+      1792450367
+    ],
+    "test_ts": [
+      1792450378,
+      1792585215
+    ],
+    "train_rows": 263,
+    "calibration_rows": 96,
+    "test_rows": 120,
+    "common_test_rows": 120,
+    "dropped_for_missing_prediction": 0,
+    "train_items": 144,
+    "test_items": 73,
+    "features": 52,
+    "categoricals": 4
+  },
+  "models": {
+    "record_price_catboost": {
+      "rmse_log": 0.6270512560320344,
+      "mae_log": 0.43641284097559624,
+      "bias_log": 0.14805701865090867,
+      "median_ratio": 1.1591658833771348,
+      "within_25pct": 0.39166666666666666,
+      "within_50pct": 0.6583333333333333,
+      "mae_gold": 13.068647083581887,
+      "smape_gold": 0.40249715546640125,
+      "n": 120,
+      "n_items": 73,
+      "mae_log_ci95": [
+        0.35927883228424506,
+        0.529750396313533
+      ],
+      "interval": {
+        "available": true,
+        "level": 0.8,
+        "half_width_log": 0.819193655051901,
+        "calibration_n": 96,
+        "coverage": 0.8333333333333334,
+        "coverage_ci95": [
+          0.756545606089762,
+          0.8894408798729518
+        ],
+        "test_n": 120,
+        "method": "split-conformal"
+      },
+      "family": "catboost",
+      "note": "price_iterations=600",
+      "delta_vs_item_median": {
+        "mean_delta_mae_log": -0.47791152479263616,
+        "ci95": [
+          -0.7058722557092574,
+          -0.27570518048295406
+        ],
+        "probability_better": 1.0
+      }
+    },
+    "sentinel_price_catboost": {
+      "rmse_log": 0.5953296000530238,
+      "mae_log": 0.4210798654375844,
+      "bias_log": 0.17938503587265425,
+      "median_ratio": 1.2446439562106524,
+      "within_25pct": 0.4,
+      "within_50pct": 0.65,
+      "mae_gold": 12.24676736282498,
+      "smape_gold": 0.3917265933209894,
+      "n": 120,
+      "n_items": 73,
+      "mae_log_ci95": [
+        0.34808787736477775,
+        0.502675786094704
+      ],
+      "interval": {
+        "available": true,
+        "level": 0.8,
+        "half_width_log": 0.7987148013931957,
+        "calibration_n": 96,
+        "coverage": 0.8583333333333333,
+        "coverage_ci95": [
+          0.7848035127258367,
+          0.9096319596840804
+        ],
+        "test_n": 120,
+        "method": "split-conformal"
+      },
+      "family": "catboost",
+      "note": "sentinel_iterations=300",
+      "delta_vs_item_median": {
+        "mean_delta_mae_log": -0.493244500330648,
+        "ci95": [
+          -0.6881858404550226,
+          -0.27230972289712074
+        ],
+        "probability_better": 1.0
+      }
+    },
+    "regional_sale_avg_baseline": {
+      "rmse_log": 0.7758587332113265,
+      "mae_log": 0.5161435563201927,
+      "bias_log": 0.026337256072331172,
+      "median_ratio": 1.1130110619993767,
+      "within_25pct": 0.4083333333333333,
+      "within_50pct": 0.6416666666666667,
+      "mae_gold": 18.154420749999996,
+      "smape_gold": 0.4555676961618408,
+      "n": 120,
+      "n_items": 73,
+      "mae_log_ci95": [
+        0.42427565133307715,
+        0.6141028645356439
+      ],
+      "interval": {
+        "available": true,
+        "level": 0.8,
+        "half_width_log": 1.0283654985215644,
+        "calibration_n": 96,
+        "coverage": 0.8666666666666667,
+        "coverage_ci95": [
+          0.7943505063345165,
+          0.9162346282244686
+        ],
+        "test_n": 120,
+        "method": "split-conformal"
+      },
+      "family": "baseline",
+      "note": "log(regional sale average * (1 - consignment))",
+      "delta_vs_item_median": {
+        "mean_delta_mae_log": -0.39818080944803974,
+        "ci95": [
+          -0.6069373812501931,
+          -0.19929215817695678
+        ],
+        "probability_better": 1.0
+      }
+    },
+    "item_median_baseline": {
+      "rmse_log": 1.5573437673207384,
+      "mae_log": 0.9143243657682324,
+      "bias_log": -0.3085922620588685,
+      "median_ratio": 1.0,
+      "within_25pct": 0.39166666666666666,
+      "within_50pct": 0.6083333333333333,
+      "mae_gold": 23.958169318795665,
+      "smape_gold": 0.6318306493881509,
+      "n": 120,
+      "n_items": 73,
+      "mae_log_ci95": [
+        0.6928118839899052,
+        1.1733904037650311
+      ],
+      "interval": {
+        "available": true,
+        "level": 0.8,
+        "half_width_log": 1.203121164868607,
+        "calibration_n": 96,
+        "coverage": 0.7583333333333333,
+        "coverage_ci95": [
+          0.6744968590361364,
+          0.8261426675849666
+        ],
+        "test_n": 120,
+        "method": "split-conformal"
+      },
+      "family": "baseline",
+      "note": "median log realized price per item, global fallback",
+      "delta_vs_item_median": {
+        "mean_delta_mae_log": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "probability_better": 0.0
+      }
+    },
+    "shipped_linear": {
+      "rmse_log": 0.5948815952890713,
+      "mae_log": 0.43052999755610327,
+      "bias_log": 0.18072545902677833,
+      "median_ratio": 1.1353379004351942,
+      "within_25pct": 0.4083333333333333,
+      "within_50pct": 0.6333333333333333,
+      "mae_gold": 7.403088363265277,
+      "smape_gold": 0.40215348416787855,
+      "n": 120,
+      "n_items": 73,
+      "mae_log_ci95": [
+        0.36175360974185766,
+        0.5096319337062692
+      ],
+      "interval": {
+        "available": true,
+        "level": 0.8,
+        "half_width_log": 0.9755231573695813,
+        "calibration_n": 96,
+        "coverage": 0.9083333333333333,
+        "coverage_ci95": [
+          0.843290092093749,
+          0.9480433532105753
+        ],
+        "test_n": 120,
+        "method": "split-conformal"
+      },
+      "family": "linear",
+      "note": "linear model on the three regional references",
+      "delta_vs_item_median": {
+        "mean_delta_mae_log": -0.4837943682121291,
+        "ci95": [
+          -0.7281684962112593,
+          -0.2797950572419306
+        ],
+        "probability_better": 1.0
+      }
+    }
+  },
+  "pairwise": [
+    {
+      "a": "record_price_catboost",
+      "b": "sentinel_price_catboost",
+      "mean_delta_mae_log": 0.015332975538011844,
+      "ci95": [
+        -0.01031978880375231,
+        0.042536284629609046
+      ],
+      "probability_a_better": 0.1225
+    },
+    {
+      "a": "record_price_catboost",
+      "b": "regional_sale_avg_baseline",
+      "mean_delta_mae_log": -0.07973071534459644,
+      "ci95": [
+        -0.152734728313254,
+        -0.006751510076565702
+      ],
+      "probability_a_better": 0.9825
+    },
+    {
+      "a": "record_price_catboost",
+      "b": "item_median_baseline",
+      "mean_delta_mae_log": -0.47791152479263616,
+      "ci95": [
+        -0.700027447735744,
+        -0.2861014687040797
+      ],
+      "probability_a_better": 1.0
+    },
+    {
+      "a": "record_price_catboost",
+      "b": "shipped_linear",
+      "mean_delta_mae_log": 0.005882843419492989,
+      "ci95": [
+        -0.05405842893759137,
+        0.06197978367736341
+      ],
+      "probability_a_better": 0.44
+    },
+    {
+      "a": "sentinel_price_catboost",
+      "b": "regional_sale_avg_baseline",
+      "mean_delta_mae_log": -0.09506369088260828,
+      "ci95": [
+        -0.16757451481664176,
+        -0.02890263906051962
+      ],
+      "probability_a_better": 1.0
+    },
+    {
+      "a": "sentinel_price_catboost",
+      "b": "item_median_baseline",
+      "mean_delta_mae_log": -0.493244500330648,
+      "ci95": [
+        -0.7032128942174947,
+        -0.27351518762700516
+      ],
+      "probability_a_better": 1.0
+    },
+    {
+      "a": "sentinel_price_catboost",
+      "b": "shipped_linear",
+      "mean_delta_mae_log": -0.009450132118518854,
+      "ci95": [
+        -0.05788470535268091,
+        0.04577999597005952
+      ],
+      "probability_a_better": 0.6225
+    },
+    {
+      "a": "regional_sale_avg_baseline",
+      "b": "item_median_baseline",
+      "mean_delta_mae_log": -0.39818080944803974,
+      "ci95": [
+        -0.6149949479685873,
+        -0.20086827653172312
+      ],
+      "probability_a_better": 1.0
+    },
+    {
+      "a": "regional_sale_avg_baseline",
+      "b": "shipped_linear",
+      "mean_delta_mae_log": 0.08561355876408942,
+      "ci95": [
+        0.013448826095180591,
+        0.17241266849443485
+      ],
+      "probability_a_better": 0.0
+    },
+    {
+      "a": "item_median_baseline",
+      "b": "shipped_linear",
+      "mean_delta_mae_log": 0.4837943682121291,
+      "ci95": [
+        0.2669983300498882,
+        0.7361594767420675
+      ],
+      "probability_a_better": 0.0
+    }
+  ],
+  "segments": {
+    "consumables": {
+      "n": 8,
+      "share": 0.06666666666666667,
+      "models": {
+        "record_price_catboost": {
+          "mae_log": 0.4638872853010846,
+          "bias_log": 0.4275933072449464,
+          "interval_coverage": 0.875
+        },
+        "sentinel_price_catboost": {
+          "mae_log": 0.4970037862485863,
+          "bias_log": 0.47905040536729393,
+          "interval_coverage": 0.875
+        },
+        "regional_sale_avg_baseline": {
+          "mae_log": 0.4326048261737636,
+          "bias_log": 0.15949422026492277,
+          "interval_coverage": 0.875
+        },
+        "item_median_baseline": {
+          "mae_log": 0.681009843089826,
+          "bias_log": 0.39104652982380383,
+          "interval_coverage": 0.875
+        },
+        "shipped_linear": {
+          "mae_log": 0.4161956856472665,
+          "bias_log": 0.3435623946599021,
+          "interval_coverage": 0.875
+        }
+      }
+    },
+    "materials": {
+      "n": 34,
+      "share": 0.2833333333333333,
+      "models": {
+        "record_price_catboost": {
+          "mae_log": 0.38246102265238324,
+          "bias_log": 0.009281499439510654,
+          "interval_coverage": 0.8529411764705882
+        },
+        "sentinel_price_catboost": {
+          "mae_log": 0.35518614422452977,
+          "bias_log": 0.04598918747228165,
+          "interval_coverage": 0.9117647058823529
+        },
+        "regional_sale_avg_baseline": {
+          "mae_log": 0.4281066377842981,
+          "bias_log": -0.09874183268544827,
+          "interval_coverage": 0.9411764705882353
+        },
+        "item_median_baseline": {
+          "mae_log": 0.6230737363944027,
+          "bias_log": -0.22185135188777994,
+          "interval_coverage": 0.9117647058823529
+        },
+        "shipped_linear": {
+          "mae_log": 0.33902835522950264,
+          "bias_log": -0.0156172962239075,
+          "interval_coverage": 0.9705882352941176
+        }
+      }
+    },
+    "other": {
+      "n": 78,
+      "share": 0.65,
+      "models": {
+        "record_price_catboost": {
+          "mae_log": 0.45711240851899804,
+          "bias_log": 0.17987852306674498,
+          "interval_coverage": 0.8205128205128205
+        },
+        "sentinel_price_catboost": {
+          "mae_log": 0.44201570075496704,
+          "bias_log": 0.2067970344579819,
+          "interval_coverage": 0.8333333333333334
+        },
+        "regional_sale_avg_baseline": {
+          "mae_log": 0.5630866982611139,
+          "bias_log": 0.06720178561366155,
+          "interval_coverage": 0.8333333333333334
+        },
+        "item_median_baseline": {
+          "mae_log": 1.065209462949482,
+          "bias_log": -0.418160227198335,
+          "interval_coverage": 0.6794871794871795
+        },
+        "shipped_linear": {
+          "mae_log": 0.4718855146634765,
+          "bias_log": 0.24960953843009015,
+          "interval_coverage": 0.8846153846153846
+        }
+      }
+    }
+  },
+  "historical_reference": {
+    "n": 120,
+    "share_of_test": 1.0,
+    "metrics": {
+      "rmse_log": 0.7758587332113265,
+      "mae_log": 0.5161435563201927,
+      "bias_log": 0.026337256072331172,
+      "median_ratio": 1.1130110619993767,
+      "within_25pct": 0.4083333333333333,
+      "within_50pct": 0.6416666666666667,
+      "mae_gold": 18.154420749999996,
+      "smape_gold": 0.4555676961618408,
+      "n": 120,
+      "n_items": 73,
+      "mae_log_ci95": [
+        0.42427565133307715,
+        0.6141028645356439
+      ],
+      "interval": {
+        "available": true,
+        "level": 0.8,
+        "half_width_log": 1.0283654985215644,
+        "calibration_n": 96,
+        "coverage": 0.8666666666666667,
+        "coverage_ci95": [
+          0.7943505063345165,
+          0.9162346282244686
+        ],
+        "test_n": 120,
+        "method": "split-conformal"
+      },
+      "family": "baseline",
+      "note": "log(regional sale average * (1 - consignment))",
+      "delta_vs_item_median": {
+        "mean_delta_mae_log": -0.39818080944803974,
+        "ci95": [
+          -0.6069373812501931,
+          -0.19929215817695678
+        ],
+        "probability_better": 1.0
+      }
+    }
+  },
+  "data_quality": {
+    "observation_end": 1792593918
+  }
+}

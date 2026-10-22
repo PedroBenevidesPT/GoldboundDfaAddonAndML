@@ -1,0 +1,20 @@
+{
+  "measured_at": "2026-10-19T14:28:23Z",
+  "sample": 177,
+  "source": "journal_stats (vendas da conta) vs fontes TSM de hoje",
+  "family_weight": {
+    "regional_ask": 0.7775,
+    "regional_sales": 0.7814,
+    "local_ask": 0.4255
+  },
+  "family_error": {
+    "regional_ask": 0.2863,
+    "regional_sales": 0.2797,
+    "local_ask": 1.3501
+  },
+  "coverage": {
+    "regional_ask": 1.0,
+    "regional_sales": 1.0,
+    "local_ask": 0.158
+  }
+}

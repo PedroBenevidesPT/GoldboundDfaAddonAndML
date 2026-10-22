@@ -1,0 +1,476 @@
+{
+ "npc_id": 33688,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Raging Ancient",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 1529,
+   "item_name": "Jade",
+   "item_type": "",
+   "drop_rate": 0.0018,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1529/jade"
+  },
+  {
+   "category": "drops",
+   "item_id": 12803,
+   "item_name": "Living Essence",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=12803/living-essence"
+  },
+  {
+   "category": "drops",
+   "item_id": 15286,
+   "item_name": "Long Redwood Bow",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15286/long-redwood-bow?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15150,
+   "item_name": "Ghostwalker Pads",
+   "item_type": "",
+   "drop_rate": 0.0009,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15150/ghostwalker-pads?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 5213,
+   "item_name": "Scorching Wand",
+   "item_type": "",
+   "drop_rate": 0.0009,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=5213/scorching-wand?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 12029,
+   "item_name": "Greenstone Talisman",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=12029/greenstone-talisman?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15553,
+   "item_name": "Thick Scale Shoulder Pads",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15553/thick-scale-shoulder-pads?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 8188,
+   "item_name": "Explosive Shotgun",
+   "item_type": "",
+   "drop_rate": 0.0006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8188/explosive-shotgun?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 3197,
+   "item_name": "Stonecutter Claymore",
+   "item_type": "",
+   "drop_rate": 0.0006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3197/stonecutter-claymore?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15536,
+   "item_name": "Wicked Chain Chestpiece",
+   "item_type": "",
+   "drop_rate": 0.0006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15536/wicked-chain-chestpiece?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10286,
+   "item_name": "Heart of the Wild",
+   "item_type": "",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10286/heart-of-the-wild"
+  },
+  {
+   "category": "drops",
+   "item_id": 15357,
+   "item_name": "Headhunter's Spaulders",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15357/headhunters-spaulders?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15575,
+   "item_name": "Sparkleshell Belt",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15575/sparkleshell-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15308,
+   "item_name": "Feral Cord",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15308/feral-cord?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 55974,
+   "item_name": "Inert Elemental Particle",
+   "item_type": "",
+   "drop_rate": 0.013999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=55974/inert-elemental-particle"
+  },
+  {
+   "category": "drops",
+   "item_id": 3779,
+   "item_name": "Hefty War Axe",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3779/hefty-war-axe?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3787,
+   "item_name": "Stone Club",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3787/stone-club?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3778,
+   "item_name": "Taut Compound Bow",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3778/taut-compound-bow?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3780,
+   "item_name": "Long-Barreled Musket",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3780/long-barreled-musket?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3784,
+   "item_name": "Metal Stave",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3784/metal-stave?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3786,
+   "item_name": "Shiny Dirk",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3786/shiny-dirk?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3781,
+   "item_name": "Broad Claymore",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3781/broad-claymore?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3800,
+   "item_name": "Hardened Leather Belt",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3800/hardened-leather-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3795,
+   "item_name": "Interlaced Cloak",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3795/interlaced-cloak?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3817,
+   "item_name": "Reinforced Buckler",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3817/reinforced-buckler?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3799,
+   "item_name": "Interlaced Vest",
+   "item_type": "",
+   "drop_rate": 0.0019,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3799/interlaced-vest?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3785,
+   "item_name": "Keen Axe",
+   "item_type": "",
+   "drop_rate": 0.0019,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3785/keen-axe?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3783,
+   "item_name": "Light Scimitar",
+   "item_type": "",
+   "drop_rate": 0.0019,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3783/light-scimitar?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3812,
+   "item_name": "Double Mail Gloves",
+   "item_type": "",
+   "drop_rate": 0.0018,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3812/double-mail-gloves?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3794,
+   "item_name": "Interlaced Bracers",
+   "item_type": "",
+   "drop_rate": 0.0018,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3794/interlaced-bracers?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3798,
+   "item_name": "Interlaced Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3798/interlaced-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3808,
+   "item_name": "Double Mail Belt",
+   "item_type": "",
+   "drop_rate": 0.0016,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3808/double-mail-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3804,
+   "item_name": "Hardened Leather Gloves",
+   "item_type": "",
+   "drop_rate": 0.0016,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3804/hardened-leather-gloves?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3797,
+   "item_name": "Interlaced Pants",
+   "item_type": "",
+   "drop_rate": 0.0016,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3797/interlaced-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3816,
+   "item_name": "Reflective Heater",
+   "item_type": "",
+   "drop_rate": 0.0016,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3816/reflective-heater?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3813,
+   "item_name": "Double Mail Pants",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3813/double-mail-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3814,
+   "item_name": "Double Mail Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3814/double-mail-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3815,
+   "item_name": "Double Mail Vest",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3815/double-mail-vest?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3801,
+   "item_name": "Hardened Leather Boots",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3801/hardened-leather-boots?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 8747,
+   "item_name": "Hardened Leather Helm",
+   "item_type": "",
+   "drop_rate": 0.0013,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8747/hardened-leather-helm?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3805,
+   "item_name": "Hardened Leather Pants",
+   "item_type": "",
+   "drop_rate": 0.0013,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3805/hardened-leather-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3782,
+   "item_name": "Large War Club",
+   "item_type": "",
+   "drop_rate": 0.0013,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3782/large-war-club?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3806,
+   "item_name": "Hardened Leather Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3806/hardened-leather-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3811,
+   "item_name": "Double-Stitched Cloak",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3811/double-stitched-cloak?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3803,
+   "item_name": "Hardened Cloak",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3803/hardened-cloak?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3807,
+   "item_name": "Hardened Leather Tunic",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3807/hardened-leather-tunic?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3809,
+   "item_name": "Double Mail Boots",
+   "item_type": "",
+   "drop_rate": 0.0009,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3809/double-mail-boots?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 8748,
+   "item_name": "Double Mail Coif",
+   "item_type": "",
+   "drop_rate": 0.0009,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8748/double-mail-coif?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3802,
+   "item_name": "Hardened Leather Bracers",
+   "item_type": "",
+   "drop_rate": 0.0009,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3802/hardened-leather-bracers?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3793,
+   "item_name": "Interlaced Boots",
+   "item_type": "",
+   "drop_rate": 0.0006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3793/interlaced-boots?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 8746,
+   "item_name": "Interlaced Cowl",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8746/interlaced-cowl?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 60486,
+   "item_name": "Shimmering Shards",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=60486/shimmering-shards"
+  }
+ ]
+}

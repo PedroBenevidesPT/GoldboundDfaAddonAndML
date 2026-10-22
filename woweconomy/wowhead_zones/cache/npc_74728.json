@@ -1,0 +1,44 @@
+{
+ "npc_id": 74728,
+ "zone": 719,
+ "zone_name": "blackfathom-deeps",
+ "npc_name": "Twilight Lord Bathiel",
+ "items": [
+  {
+   "category": "pickpocketing",
+   "item_id": 4538,
+   "item_name": "Snapvine Watermelon",
+   "item_type": "Food or Drink",
+   "drop_rate": 0.28,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4538/snapvine-watermelon"
+  },
+  {
+   "category": "pickpocketing",
+   "item_id": 422,
+   "item_name": "Dwarven Mild",
+   "item_type": "Food or Drink",
+   "drop_rate": 0.08,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=422/dwarven-mild"
+  },
+  {
+   "category": "pickpocketing",
+   "item_id": 929,
+   "item_name": "Healing Potion",
+   "item_type": "Potion",
+   "drop_rate": 0.05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=929/healing-potion"
+  },
+  {
+   "category": "pickpocketing",
+   "item_id": 4542,
+   "item_name": "Moist Cornbread",
+   "item_type": "Food or Drink",
+   "drop_rate": 0.03,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4542/moist-cornbread"
+  }
+ ]
+}

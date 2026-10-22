@@ -1,0 +1,332 @@
+{
+ "npc_id": 140801,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Forsaken Assassin",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 124437,
+   "item_name": "Shal'dorei Silk",
+   "item_type": "",
+   "drop_rate": 0.64,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=124437/shaldorei-silk"
+  },
+  {
+   "category": "drops",
+   "item_id": 141569,
+   "item_name": "Samnoh's Exceptional Leggings",
+   "item_type": "",
+   "drop_rate": 0.0009,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=141569/samnohs-exceptional-leggings"
+  },
+  {
+   "category": "drops",
+   "item_id": 121344,
+   "item_name": "Sunbleached Cord",
+   "item_type": "",
+   "drop_rate": 0.1,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121344/sunbleached-cord?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121339,
+   "item_name": "Kvaldir Skinning Knife",
+   "item_type": "",
+   "drop_rate": 0.02,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121339/kvaldir-skinning-knife?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 121336,
+   "item_name": "Mossy Longbow",
+   "item_type": "",
+   "drop_rate": 0.012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121336/mossy-longbow?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 121347,
+   "item_name": "Rust-Encrusted Wristguards",
+   "item_type": "",
+   "drop_rate": 0.012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121347/rust-encrusted-wristguards?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121354,
+   "item_name": "Rust-Encrusted Spaulders",
+   "item_type": "",
+   "drop_rate": 0.011000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121354/rust-encrusted-spaulders?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121368,
+   "item_name": "Sunbleached Shirt",
+   "item_type": "",
+   "drop_rate": 0.011000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121368/sunbleached-shirt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121367,
+   "item_name": "Warped-Plate Breastplate",
+   "item_type": "",
+   "drop_rate": 0.011000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121367/warped-plate-breastplate?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121350,
+   "item_name": "Rust-Encrusted Leggings",
+   "item_type": "",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121350/rust-encrusted-leggings?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121351,
+   "item_name": "Sunbleached Pants",
+   "item_type": "",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121351/sunbleached-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121340,
+   "item_name": "Lightning-Struck Hammer",
+   "item_type": "",
+   "drop_rate": 0.008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121340/lightning-struck-hammer?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 121338,
+   "item_name": "Bent-Blade Axe",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121338/bent-blade-axe?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 121333,
+   "item_name": "Poorly Weighted Blackjack",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121333/poorly-weighted-blackjack?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 121364,
+   "item_name": "Sunbleached Cowl",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121364/sunbleached-cowl?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121334,
+   "item_name": "Mining Sword",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121334/mining-sword?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 121337,
+   "item_name": "Permanently Jammed Blunderbuss",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121337/permanently-jammed-blunderbuss?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 121371,
+   "item_name": "Rust-Encrusted Sabatons",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121371/rust-encrusted-sabatons?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121353,
+   "item_name": "Warped-Plate Pauldrons",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121353/warped-plate-pauldrons?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121346,
+   "item_name": "Warped-Plate Vambraces",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121346/warped-plate-vambraces?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121373,
+   "item_name": "Weatherworn Boots",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121373/weatherworn-boots?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121362,
+   "item_name": "Weatherworn Hood",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121362/weatherworn-hood?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121369,
+   "item_name": "Weatherworn Vest",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121369/weatherworn-vest?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121349,
+   "item_name": "Weatherworn Wristguards",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121349/weatherworn-wristguards?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121341,
+   "item_name": "Robble's Staff of Discourse",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121341/robbles-staff-of-discourse?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 121358,
+   "item_name": "Sunbleached Handwraps",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121358/sunbleached-handwraps?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121363,
+   "item_name": "Warped-Plate Helmet",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121363/warped-plate-helmet?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121359,
+   "item_name": "Weatherworn Gloves",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121359/weatherworn-gloves?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121372,
+   "item_name": "Sunbleached Sandals",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121372/sunbleached-sandals?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121352,
+   "item_name": "Weatherworn Pants",
+   "item_type": "",
+   "drop_rate": 0.0018,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121352/weatherworn-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121361,
+   "item_name": "Rust-Encrusted Coif",
+   "item_type": "",
+   "drop_rate": 0.0015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121361/rust-encrusted-coif?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121345,
+   "item_name": "Weatherworn Belt",
+   "item_type": "",
+   "drop_rate": 0.0013,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121345/weatherworn-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121366,
+   "item_name": "Rust-Encrusted Hauberk",
+   "item_type": "",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121366/rust-encrusted-hauberk?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121343,
+   "item_name": "Warped-Plate Belt",
+   "item_type": "",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121343/warped-plate-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121370,
+   "item_name": "Warped-Plate Stompers",
+   "item_type": "",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121370/warped-plate-stompers?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121365,
+   "item_name": "Warped-Plate Leggings",
+   "item_type": "",
+   "drop_rate": 0.0009,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121365/warped-plate-leggings?bonus=6656"
+  }
+ ]
+}

@@ -1,0 +1,245 @@
+
+=== azshara vs COLECIONADORES ===
+amostra: appearances=2356, mounts=2018, recipes=2018 contas (share that still LACKS the item)
+precos: db:tsm_markets.db
+aparencias por id: 44472 ids em falta, 2356 contas (dfa.db::missing)
+binding/era: tsm_markets.db -- 176702 itens, por item id
+AVISO: os demand_*.csv sao de 2018 contas mas o dfa.db ja tem 2357 -- os missing_pct estao velhos. Refresca com:
+  python -m woweconomy.services.dataforazeroth report --out-dir C:\economics\woweconomy\dfa
+itens: 1052 | com procura: 912 | gap forte (>= 50%): 647
+join: 860 por aparencia (id) | 52 por nome | 140 sem par
+EV da zona: 15g/kill | atribuivel a coleccionadores: 43% (6g/kill)
+
+-- DROPS POR MOB (81 mobs) --
+   a lista esta' ordenada pela MONTRA: o mob cujo drop mais falta a
+   amostra vem primeiro, e dentro de cada mob o primeiro drop e' a montra
+   mob                          EV/kill  EV coleccao  falta%  falta/kill%  pago/tot
+   sem/amostra  falta%   drop%    preco   EV/kill  drop
+   Weakened Mosshoof Stag              2g     85.0s   64.8%   73.1% 305/340
+   2332/2356   99.0%   0.050%    2,719g     2.2s  Battle Shield
+   2319/2356   98.4%   0.060%    4,964g     2.7s  Charger's Cloak
+   2312/2356   98.1%  0.0011%      734g       1c  Brackwater Girdle
+   Talrendis Scout                  75.5s     58.4s   77.0%   30.2% 301/349
+   2332/2356   99.0%   0.020%    2,719g      87c  Battle Shield
+   2312/2356   98.1%   0.020%      734g      15c  Brackwater Girdle
+   2311/2356   98.1%   0.020%      665g       8c  Brackwater Gauntlets
+   Greystone Basilisk                  2g        1g   67.8%   72.8% 257/294
+   2319/2356   98.4%  0.0005%    4,964g       2c  Charger's Cloak
+   2312/2356   98.1%   0.020%      734g      15c  Brackwater Girdle
+   2311/2356   98.1%   0.020%      665g       8c  Brackwater Gauntlets
+   Mistwing Cliffdweller               1g     96.9s   68.2%   71.7% 220/241
+   2319/2356   98.4%  0.0005%    4,964g       2c  Charger's Cloak
+   2312/2356   98.1%   0.020%      734g      15c  Brackwater Girdle
+   2311/2356   98.1%   0.050%      665g      20c  Brackwater Gauntlets
+   Static-Charged Hippogryph           4g        1g   67.0%   81.6% 246/274
+   2312/2356   98.1%   0.020%      734g      15c  Brackwater Girdle
+   2311/2356   98.1%   0.030%      665g      12c  Brackwater Gauntlets
+   2310/2356   98.0%   0.040%      488g      25c  Brackwater Bracers
+   Scalebeard                          2g        1g   66.6%   83.8% 201/211
+   2312/2356   98.1%   0.020%      734g      15c  Brackwater Girdle
+   2236/2356   94.9%    1.30%      222g     1.7s  Banded Pauldrons
+   2233/2356   94.8%   0.030%      111g       4c  Phalanx Leggings
+   Subject Four                        1g     74.8s   67.9%   70.0%  99/107
+   2312/2356   98.1%   0.030%      734g      22c  Brackwater Girdle
+   2311/2356   98.1%   0.130%      665g      52c  Brackwater Gauntlets
+   2310/2356   98.0%   0.060%      488g      38c  Brackwater Bracers
+   Restless Spirit                  72.5s     52.3s   66.2%   39.2% 208/224
+   2312/2356   98.1%   0.060%      734g      44c  Brackwater Girdle
+   2311/2356   98.1%   0.030%      665g      12c  Brackwater Gauntlets
+   2310/2356   98.0%   0.090%      488g      57c  Brackwater Bracers
+   Blackmaw Shaman                  72.1s     57.1s   66.6%   49.1% 197/223
+   2312/2356   98.1%   0.060%      734g      44c  Brackwater Girdle
+   2311/2356   98.1%   0.060%      665g      24c  Brackwater Gauntlets
+   2309/2356   98.0%   0.200%      633g     2.2s  War Torn Greaves
+   Spitelash Seacaller              71.5s     54.3s   76.6%   44.3% 200/226
+   2312/2356   98.1%   0.030%      734g      22c  Brackwater Girdle
+   2311/2356   98.1%   0.050%      665g      20c  Brackwater Gauntlets
+   2310/2356   98.0%   0.300%      488g     1.9s  Brackwater Bracers
+   Spitelash Stormfury              68.0s     47.3s   69.7%   40.6% 220/248
+   2312/2356   98.1%   0.080%      734g      59c  Brackwater Girdle
+   2311/2356   98.1%   0.060%      665g      24c  Brackwater Gauntlets
+   2310/2356   98.0%   0.020%      488g      13c  Brackwater Bracers
+   Lady Vesthra                     65.8s     49.7s   69.0%   16.8% 134/154
+   2312/2356   98.1%   0.040%      734g      29c  Brackwater Girdle
+   2311/2356   98.1%   0.090%      665g      36c  Brackwater Gauntlets
+   2310/2356   98.0%   0.070%      488g      44c  Brackwater Bracers
+   Blackmaw Warrior                 65.7s     51.4s   70.1%   43.9% 214/245
+   2312/2356   98.1%   0.090%      734g      66c  Brackwater Girdle
+   2311/2356   98.1%   0.140%      665g      56c  Brackwater Gauntlets
+   2309/2356   98.0%   0.020%      633g      22c  War Torn Greaves
+   Lady Silisthra                   52.7s     40.0s   73.3%   16.4% 129/148
+   2312/2356   98.1%   0.070%      734g      51c  Brackwater Girdle
+   2311/2356   98.1%   0.080%      665g      32c  Brackwater Gauntlets
+   2310/2356   98.0%   0.160%      488g     1.0s  Brackwater Bracers
+   Netgun Gnome                     48.7s     34.5s   63.4%   26.6% 158/184
+   2312/2356   98.1%   0.060%      734g      44c  Brackwater Girdle
+   2311/2356   98.1%   0.090%      665g      36c  Brackwater Gauntlets
+   2310/2356   98.0%   0.020%      488g      13c  Brackwater Bracers
+   Talrendis Saboteur               47.7s     31.9s   71.6%   23.2% 221/256
+   2312/2356   98.1%   0.010%      734g       7c  Brackwater Girdle
+   2311/2356   98.1%   0.020%      665g       8c  Brackwater Gauntlets
+   2310/2356   98.0%   0.080%      488g      51c  Brackwater Bracers
+   Zapper Gnome                     45.9s     33.0s   68.4%   30.8% 183/212
+   2312/2356   98.1%   0.090%      734g      66c  Brackwater Girdle
+   2311/2356   98.1%   0.070%      665g      28c  Brackwater Gauntlets
+   2310/2356   98.0%   0.040%      488g      25c  Brackwater Bracers
+   Spitelash Siren                  43.4s     28.8s   77.4%   24.4% 153/177
+   2312/2356   98.1%   0.080%      734g      59c  Brackwater Girdle
+   2311/2356   98.1%   0.060%      665g      24c  Brackwater Gauntlets
+   2309/2356   98.0%   0.010%      633g      11c  War Torn Greaves
+   Blackmaw Pathfinder              39.9s     29.6s   63.4%   27.0% 162/183
+   2312/2356   98.1%   0.120%      734g      88c  Brackwater Girdle
+   2311/2356   98.1%   0.040%      665g      16c  Brackwater Gauntlets
+   2309/2356   98.0%   0.010%      633g      11c  War Torn Greaves
+   Spitelash Priestess              37.0s     23.0s   61.2%   13.7% 179/201
+   2312/2356   98.1%   0.020%      734g      15c  Brackwater Girdle
+   2311/2356   98.1%   0.020%      665g       8c  Brackwater Gauntlets
+   2310/2356   98.0%   0.090%      488g      57c  Brackwater Bracers
+   Marius Tanolaar                  36.8s     26.0s   62.4%   18.8% 113/131
+   2312/2356   98.1%   0.050%      734g      37c  Brackwater Girdle
+   2311/2356   98.1%   0.070%      665g      28c  Brackwater Gauntlets
+   2310/2356   98.0%   0.040%      488g      25c  Brackwater Bracers
+   Warlord Krellian                 32.3s     21.4s   68.8%   12.1% 116/134
+   2312/2356   98.1%   0.040%      734g      29c  Brackwater Girdle
+   2311/2356   98.1%   0.030%      665g      12c  Brackwater Gauntlets
+   2310/2356   98.0%   0.060%      488g      38c  Brackwater Bracers
+   Makrinni Scrabbler               31.8s     17.6s   65.1%   15.9% 222/252
+   2312/2356   98.1%  0.0008%      734g       1c  Brackwater Girdle
+   2299/2356   97.6%   0.030%    1,057g      29c  Grizzly Slippers
+   2299/2356   97.6%  0.0008%    1,000g       0c  Stormbringer Belt
+   Legashi Rogue                    30.9s     22.6s   63.1%   34.7% 102/115
+   2312/2356   98.1%  0.0050%      734g       4c  Brackwater Girdle
+   2311/2356   98.1%   0.020%      665g       8c  Brackwater Gauntlets
+   2299/2356   97.6%   0.010%    1,057g      10c  Grizzly Slippers
+   Spitelash Warrior                30.5s     17.6s   72.3%    9.1% 194/223
+   2312/2356   98.1%   0.020%      734g      15c  Brackwater Girdle
+   2311/2356   98.1%   0.040%      665g      16c  Brackwater Gauntlets
+   2302/2356   97.7%  0.0013%      912g       1c  War Torn Handgrips
+   Spitelash Invader                21.9s     13.1s   71.4%    6.3%  85/99
+   2312/2356   98.1%   0.030%      734g      22c  Brackwater Girdle
+   2311/2356   98.1%   0.030%      665g      12c  Brackwater Gauntlets
+   2310/2356   98.0%   0.060%      488g      38c  Brackwater Bracers
+   Bingham Gadgetspring             14.3s     10.0s   70.7%    5.8%  92/105
+   2312/2356   98.1%   0.060%      734g      44c  Brackwater Girdle
+   2311/2356   98.1%   0.090%      665g      36c  Brackwater Gauntlets
+   2309/2356   98.0%   0.050%      633g      54c  War Torn Greaves
+   Thunderhead Hippogryph              4g        2g   74.2%   83.5% 214/239
+   2311/2356   98.1%  0.0015%      665g       1c  Brackwater Gauntlets
+   2309/2356   98.0%  0.0010%      633g       1c  War Torn Greaves
+   2296/2356   97.5%  0.0015%      568g       2c  Native Bands
+   Talrendis Biologist              70.4s     46.5s   62.2%   35.4% 184/214
+   2311/2356   98.1%  0.0031%      665g       1c  Brackwater Gauntlets
+   2299/2356   97.6%  0.0031%    1,057g       3c  Grizzly Slippers
+   2298/2356   97.5%   0.040%      950g      72c  Ceremonial Leather Ankleguards
+   Talrendis Sentinel               54.2s     37.0s   63.1%   35.4% 183/213
+   2311/2356   98.1%  0.0023%      665g       1c  Brackwater Gauntlets
+   2297/2356   97.5%  0.0023%      951g       1c  Tribal Boots
+   2291/2356   97.2%   0.020%      266g       6c  War Paint Shoulder Pads
+   'sem' = contas cuja resposta nao trazia a aparencia do drop
+   (MINIMO: quem tem a aparencia por outro item conta como 'tem');
+   falta% do mob = media dos drops pesada pelo drop%; falta/kill% =
+   P(uma kill largar >= 1 item que a amostra nao tem); pago = drops
+   com audiencia E preco.  --mob-drops 0 mostra todos os drops do mob;
+   o EV de um mob conta os drops DELE (um item largado por dois mobs
+   entra nos dois) -- nao e' uma soma unica do EV da zona.
+
+-- BoE QUE A AMOSTRA AINDA NAO TEM (859 de 866) --
+   sem/amostra  falta%   drop%    preco   EV/kill     sr    spd  item
+ 2332/2356   99.0%   0.050%    2,719g     2.2s  1.60%   0.0  Battle Shield                    <= Weakened Mosshoof Stag
+ 2319/2356   98.4%   0.060%    4,964g     2.7s  0.90%   0.0  Charger's Cloak                  <= Weakened Mosshoof Stag
+ 2312/2356   98.1%   0.120%      734g      88c  1.00%   0.0  Brackwater Girdle                <= Blackmaw Pathfinder
+ 2311/2356   98.1%   0.140%      665g      56c  0.60%   0.0  Brackwater Gauntlets             <= Blackmaw Warrior
+ 2310/2356   98.0%   0.300%      488g     1.9s  1.30%   0.0  Brackwater Bracers               <= Spitelash Seacaller
+ 2309/2356   98.0%   0.300%      633g     3.2s  1.70%   0.0  War Torn Greaves                 <= Lady Vesthra
+ 2309/2356   98.0%   0.080%       20g       1c  0.50%   0.0  Charger's Bindings               <= Weakened Mosshoof Stag
+ 2305/2356   97.8%   0.120%    1,901g     1.8s  0.80%   0.0  Tribal Buckler                   <= Warlord Krellian
+ 2302/2356   97.7%   0.180%      912g     1.5s  0.90%   0.0  War Torn Handgrips               <= Lady Vesthra
+ 2299/2356   97.6%   0.300%    1,057g     2.9s  0.90%   0.0  Grizzly Slippers                 <= Lady Vesthra
+ 2299/2356   97.6%   0.020%    1,000g       4c  0.20%   0.0  Stormbringer Belt                <= Talrendis Lorekeeper
+ 2298/2356   97.5%   0.190%      950g     3.4s  1.90%   0.0  Ceremonial Leather Ankleguards   <= Gatekeeper Rageroar
+ 2297/2356   97.5%   0.080%    1,000g      88c  1.10%   0.0  Burnt Buckler                    <= Sand Crawler
+ 2297/2356   97.5%   0.400%      951g     1.9s  0.50%   0.0  Tribal Boots                     <= Lady Silisthra
+ 2296/2356   97.5%   0.140%      738g     1.2s  1.20%   0.0  Aboriginal Bands                 <= Spitelash Stormfury
+ 2296/2356   97.5%   0.150%      568g     1.9s  2.20%   0.0  Native Bands                     <= Talrendis Scout
+ 2293/2356   97.3%   0.020%      377g       9c  1.20%   0.0  Warrior's Girdle                 <= Sand Crawler
+ 2292/2356   97.3%   0.150%      996g     1.5s  1.00%   0.0  Ancestral Boots                  <= Talrendis Scout
+ 2291/2356   97.2%   0.200%      600g     2.3s  1.90%   0.0  Native Handwraps                 <= Lady Vesthra
+ 2291/2356   97.2%   0.060%      266g      18c  1.10%   0.0  War Paint Shoulder Pads          <= Talrendis Defender
+ 2290/2356   97.2%   0.300%    1,950g     5.8s  1.00%   0.0  Brackwater Cloak                 <= Lady Silisthra
+ 2290/2356   97.2%   0.200%      584g     2.1s  1.80%   0.0  Ancestral Gloves                 <= Subject Four
+ 2289/2356   97.2%   0.170%      855g     1.6s  1.10%   0.0  Ancestral Bracers                <= Weakened Mosshoof Stag
+ 2287/2356   97.1%   0.120%    1,129g      95c  0.70%   0.0  Charger's Belt                   <= Weakened Mosshoof Stag
+ 2287/2356   97.1%   0.180%      783g     1.7s  1.20%   0.0  Beaded Sandals                   <= Talrendis Scout
+ 2286/2356   97.0%   0.110%      784g      95c  1.10%   0.0  Primal Mitts                     <= Talrendis Scout
+ 2286/2356   97.0%   0.200%      569g     1.0s  0.90%   0.0  Barbaric Cloth Belt              <= Warlord Krellian
+ 2285/2356   97.0%   0.170%    2,102g     5.0s  1.40%   0.0  Grizzly Cape                     <= Talrendis Scout
+ 2284/2356   96.9%   0.040%      903g      14c  0.40%   0.0  Primal Buckler                   <= Weakened Mosshoof Stag
+ 2284/2356   96.9%   0.040%      855g      41c  1.20%   0.0  Pioneer Buckler                  <= Sand Crawler
+   'sem' = contas cuja resposta nao trazia a aparencia do item
+   (minimo: quem tem a aparencia por outro item conta como 'tem')
+   EV/kill = drop% x preco x liquidez, deste item, neste mob
+
+-- PROCURA FORTE (coleccionadores ainda nao tem) --
+sem/amostra  miss%     drop%  own%  valor    preco    sr    spd  item
+ 2012/2018   99.7%   0.010%   0.33  99.4   14,251g sr= 1.3% spd=   0.0  Pattern: Chimeric Gloves           [reci] <= Legashi Satyr
+ 2011/2018   99.7%   0.020%   0.43  99.2   22,782g sr= 1.2% spd=   0.0  Pattern: Blue Dragonscale Breastpl [reci] <= Northwatch Bodyguard
+ 2002/2018   99.2%   0.030%   0.53  98.7    9,500g sr= 2.7% spd=   0.0  Pattern: Blue Dragonscale Shoulder [reci] <= Makrinni Razorclaw
+ 2332/2356   99.0%   0.050%   0.71  98.3    2,719g sr= 1.6% spd=   0.0  Battle Shield                      [appe] <= Weakened Mosshoof Stag
+ 2319/2356   98.4%   0.060%   1.29  97.2    4,964g sr= 0.9% spd=   0.0  Charger's Cloak                    [appe] <= Weakened Mosshoof Stag
+ 2312/2356   98.1%   0.120%   0.88  97.3      734g sr= 1.0% spd=   0.0  Brackwater Girdle                  [appe] <= Blackmaw Pathfinder
+ 2311/2356   98.1%   0.140%   0.88  97.2      665g sr= 0.6% spd=   0.0  Brackwater Gauntlets               [appe] <= Blackmaw Warrior
+ 2310/2356   98.0%   0.300%   1.04  97.0      488g sr= 1.3% spd=   0.0  Brackwater Bracers                 [appe] <= Spitelash Seacaller
+ 2309/2356   98.0%   0.300%   0.99  97.0      633g sr= 1.7% spd=   0.0  War Torn Greaves                   [appe] <= Lady Vesthra
+ 2309/2356   98.0%   0.080%   1.17  96.9       20g sr= 0.5% spd=   0.0  Charger's Bindings                 [appe] <= Weakened Mosshoof Stag
+ 2305/2356   97.8%   0.120%   1.05  96.8    1,901g sr= 0.8% spd=   0.0  Tribal Buckler                     [appe] <= Warlord Krellian
+ 2302/2356   97.7%   0.180%   1.11  96.6      912g sr= 0.9% spd=   0.0  War Torn Handgrips                 [appe] <= Lady Vesthra
+ 2299/2356   97.6%   0.300%   1.21  96.4    1,057g sr= 0.9% spd=   0.0  Grizzly Slippers                   [appe] <= Lady Vesthra
+ 2299/2356   97.6%   0.020%   1.06  96.5    1,000g sr= 0.2% spd=   0.0  Stormbringer Belt                  [appe] <= Talrendis Lorekeeper
+ 2298/2356   97.5%   0.190%   1.16  96.4      950g sr= 1.9% spd=   0.0  Ceremonial Leather Ankleguards     [appe] <= Gatekeeper Rageroar
+ 2297/2356   97.5%   0.400%   1.28  96.3      951g sr= 0.5% spd=   0.0  Tribal Boots                       [appe] <= Lady Silisthra
+ 2297/2356   97.5%   0.080%   1.48  96.0    1,000g sr= 1.1% spd=   0.0  Burnt Buckler                      [appe] <= Sand Crawler
+ 2296/2356   97.5%   0.150%   1.43  96.1      568g sr= 2.2% spd=   0.0  Native Bands                       [appe] <= Talrendis Scout
+ 2296/2356   97.5%   0.140%   1.23  96.3      738g sr= 1.2% spd=   0.0  Aboriginal Bands                   [appe] <= Spitelash Stormfury
+ 2293/2356   97.3%   0.020%   1.98  95.4      377g sr= 1.2% spd=   0.0  Warrior's Girdle                   [appe] <= Sand Crawler
+ 2292/2356   97.3%   0.150%   1.50  95.8      996g sr= 1.0% spd=   0.0  Ancestral Boots                    [appe] <= Talrendis Scout
+ 2291/2356   97.2%   0.200%   1.27  96.0      600g sr= 1.9% spd=   0.0  Native Handwraps                   [appe] <= Lady Vesthra
+ 2291/2356   97.2%   0.060%   1.09  96.2      266g sr= 1.1% spd=   0.0  War Paint Shoulder Pads            [appe] <= Talrendis Defender
+ 2290/2356   97.2%   0.200%   1.46  95.8      584g sr= 1.8% spd=   0.0  Ancestral Gloves                   [appe] <= Subject Four
+ 2290/2356   97.2%   0.300%   1.35  95.9    1,950g sr= 1.0% spd=   0.0  Brackwater Cloak                   [appe] <= Lady Silisthra
+ 2289/2356   97.2%   0.170%   2.13  95.1      855g sr= 1.1% spd=   0.0  Ancestral Bracers                  [appe] <= Weakened Mosshoof Stag
+ 1960/2018   97.1%   0.020%   2.03  95.2      111g sr= 2.1% spd=   0.0  Pattern: Hillman's Belt            [reci] <= Spitelash Warrior
+ 2287/2356   97.1%   0.180%   1.69  95.4      783g sr= 1.2% spd=   0.0  Beaded Sandals                     [appe] <= Talrendis Scout
+ 2287/2356   97.1%   0.120%   1.85  95.3    1,129g sr= 0.7% spd=   0.0  Charger's Belt                     [appe] <= Weakened Mosshoof Stag
+ 2286/2356   97.0%   0.110%   1.65  95.4      784g sr= 1.1% spd=   0.0  Primal Mitts                       [appe] <= Talrendis Scout
+
+-- NICHO (15-50%) --
+ 1159/2356   49.2%   0.170%  38.66  30.2      435g sr= 1.4% spd=   0.0  Aboriginal Cape                    [appe] <= Spitelash Stormfury
+ 1157/2356   49.1%   0.080%  32.28  33.3      113g sr= 1.3% spd=   0.0  Feral Gloves                       [appe] <= Mistwing Ravager
+ 1153/2356   48.9%    4.26%  50.78  24.1       48g sr= 2.3% spd=   0.0  Feeble Sword                       [appe] <= Spitelash Siren
+ 1152/2356   48.9%   0.300%  42.23  28.2      123g sr= 1.2% spd=   0.0  Rigid Bracelets                    [appe] <= Balboa
+ 1130/2356   48.0%   0.070%  46.24  25.8       18g sr= 1.4% spd=   0.0  Knight's Bracers                   [appe] <= Scalebeard
+ 1116/2356   47.4%   0.020%  45.26  25.9      222g sr= 0.5% spd=   0.0  Warrior's Cloak                    [appe] <= Sand Crawler
+  947/2018   46.9%   0.500%  36.94  29.6        0g sr=49.6% spd= 683.5  Minor Healing Potion               [reci] <= Talrendis Scout
+ 1099/2356   46.6%    3.70%  38.28  28.8       17g sr= 1.8% spd=   0.0  Opaque Wand                        [appe] <= Warlord Krellian
+ 1099/2356   46.6%    5.00%  38.28  28.8        4g sr= 0.5% spd=   0.0  Depleted Arcane Scepter            [appe] <= Pleasure Palace Golfer
+ 1078/2356   45.8%   0.010%  46.71  24.4       12g sr= 1.0% spd=   0.0  Spellbinder Gloves                 [appe] <= Sand Crawler
+ 1073/2356   45.5%   0.110%  41.33  26.7      367g sr= 0.8% spd=   0.0  Prospector's Buckler               [appe] <= Balboa
+ 1068/2356   45.3%    4.26%  43.07  25.8       12g sr= 1.0% spd=   0.0  Calico Belt                        [appe] <= Talrendis Lorekeeper
+ 1060/2356   45.0%    6.00%  50.71  22.2        9g sr= 1.8% spd=   0.0  Soldier's Gauntlets                [appe] <= Lady Sesspira
+ 1059/2356   44.9%   0.080%  33.76  29.8    1,050g sr= 2.2% spd=   0.0  Ceremonial Buckler                 [appe] <= Lady Silisthra
+ 1056/2356   44.8%    6.00%  48.00  23.3       11g sr= 0.2% spd=   0.0  Ruptured Plate Pauldrons           [appe] <= Pleasure Palace VIP
+ 1056/2356   44.8%   0.300%  48.00  23.3      200g sr= 0.0% spd=   0.0  Warped-Plate Pauldrons             [appe] <= Corrupted Arcane Assis
+ 1043/2356   44.3%   0.160%  48.59  22.8       44g sr= 1.4% spd=   0.0  Billy Club                         [appe] <= Weakened Mosshoof Stag
+ 1042/2356   44.2%    1.10%  34.89  28.8       15g sr= 0.7% spd=   0.0  Abjurer's Sash                     [appe] <= The Evalcharr
+ 1037/2356   44.0%   0.500%  33.79  29.1       31g sr= 1.0% spd=   0.0  Chieftain's Shoulders              [appe] <= General Fangferror
+ 1036/2356   44.0%    4.94%  45.12  24.1       33g sr= 1.2% spd=   0.0  Commoner's Sword                   [appe] <= Talrendis Defender
+ 1036/2356   44.0%    5.00%  45.12  24.1       28g sr= 0.3% spd=   0.0  Chipped-Blade Scimitar             [appe] <= Pleasure Palace Caddie
+ 1033/2356   43.8%   0.080%  38.44  27.0      949g sr= 0.4% spd=   0.0  Fists of Thane Kray-Tan            [appe] <= Corrupted Arcane Assis
+ 1031/2356   43.8%   0.080%  38.53  26.9      855g sr= 0.3% spd=   0.0  Samnoh's Exceptional Leggings      [appe] <= Corrupted Arcane Assis
+ 1030/2356   43.7%    1.10%  38.99  26.7       48g sr= 0.9% spd=   0.0  Cadet Bracers                      [appe] <= Varo'then's Ghost
+ 1027/2356   43.6%   0.110%  45.14  23.9       94g sr= 1.2% spd=   0.0  Beaded Orb                         [appe] <= Restless Spirit
+ 1027/2356   43.6%   0.090%  45.14  23.9      167g sr= 2.2% spd=   0.0  Ancestral Orb                      [appe] <= Restless Spirit
+ 1021/2356   43.3%   0.140%  39.54  26.2       67g sr= 2.9% spd=   0.0  Medicine Staff                     [appe] <= Sable Drake
+ 1016/2356   43.1%   0.300%  39.93  25.9       10g sr= 3.2% spd=   0.0  Heavy Mace                         [appe] <= Lady Vesthra
+ 1013/2356   43.0%   0.200%  38.95  26.2      254g sr= 0.3% spd=   0.0  Feral Bindings                     [appe] <= Lady Vesthra
+ 1013/2356   43.0%   0.180%  33.66  28.5      141g sr= 2.6% spd=   0.0  Mystic's Bracelets                 [appe] <= Lady Sesspira

@@ -1,0 +1,44 @@
+{
+ "npc_id": 74505,
+ "zone": 719,
+ "zone_name": "blackfathom-deeps",
+ "npc_name": "Thruk",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 120165,
+   "item_name": "Thruk's Fillet Knife",
+   "item_type": "Dagger",
+   "drop_rate": 0.5,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=120165/thruks-fillet-knife"
+  },
+  {
+   "category": "drops",
+   "item_id": 120164,
+   "item_name": "Thruk's Heavy Duty Fishing Pole",
+   "item_type": "Staff",
+   "drop_rate": 0.37,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=120164/thruks-heavy-duty-fishing-pole"
+  },
+  {
+   "category": "drops",
+   "item_id": 120163,
+   "item_name": "Thruk's Fishing Rod",
+   "item_type": "Fishing",
+   "drop_rate": 0.3,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=120163/thruks-fishing-rod"
+  },
+  {
+   "category": "drops",
+   "item_id": 151437,
+   "item_name": "Hook Charm Necklace",
+   "item_type": "Amulet",
+   "drop_rate": 0.21,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=151437/hook-charm-necklace"
+  }
+ ]
+}

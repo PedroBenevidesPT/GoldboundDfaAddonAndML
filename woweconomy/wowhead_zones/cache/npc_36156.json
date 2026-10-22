@@ -1,0 +1,17 @@
+{
+ "npc_id": 36156,
+ "zone": 16,
+ "zone_name": "azshara",
+ "npc_name": "Mutant Goblin",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 49300,
+   "item_name": "Secret Lab ID Card",
+   "item_type": "Junk",
+   "drop_rate": 0.98,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=49300/secret-lab-id-card"
+  }
+ ]
+}

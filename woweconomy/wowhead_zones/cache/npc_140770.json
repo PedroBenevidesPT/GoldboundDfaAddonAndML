@@ -1,0 +1,26 @@
+{
+ "npc_id": 140770,
+ "zone": 16,
+ "zone_name": "azshara",
+ "npc_name": "Trade Prince Gallywix",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 160929,
+   "item_name": "Cracked Cannon Ram",
+   "item_type": "Two-Handed Mace",
+   "drop_rate": 0.02,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160929/cracked-cannon-ram?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 160933,
+   "item_name": "Splintered Longbow",
+   "item_type": "Bow",
+   "drop_rate": 0.02,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160933/splintered-longbow?bonus=6657"
+  }
+ ]
+}

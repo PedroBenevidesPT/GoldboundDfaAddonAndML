@@ -1,0 +1,521 @@
+{
+ "npc_id": 3696,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Ran Bloodtooth",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 4306,
+   "item_name": "Silk Cloth",
+   "item_type": "",
+   "drop_rate": 0.21,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=4306/silk-cloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 2592,
+   "item_name": "Wool Cloth",
+   "item_type": "",
+   "drop_rate": 0.13,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=2592/wool-cloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 4538,
+   "item_name": "Snapvine Watermelon",
+   "item_type": "",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4538/snapvine-watermelon"
+  },
+  {
+   "category": "drops",
+   "item_id": 2589,
+   "item_name": "Linen Cloth",
+   "item_type": "",
+   "drop_rate": 0.02,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=2589/linen-cloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 1205,
+   "item_name": "Melon Juice",
+   "item_type": "",
+   "drop_rate": 0.019,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1205/melon-juice"
+  },
+  {
+   "category": "drops",
+   "item_id": 929,
+   "item_name": "Healing Potion",
+   "item_type": "",
+   "drop_rate": 0.011000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=929/healing-potion"
+  },
+  {
+   "category": "drops",
+   "item_id": 8953,
+   "item_name": "Deep Fried Plantains",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8953/deep-fried-plantains"
+  },
+  {
+   "category": "drops",
+   "item_id": 3827,
+   "item_name": "Mana Potion",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3827/mana-potion"
+  },
+  {
+   "category": "drops",
+   "item_id": 1708,
+   "item_name": "Sweet Nectar",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1708/sweet-nectar"
+  },
+  {
+   "category": "drops",
+   "item_id": 35948,
+   "item_name": "Savory Snowplum",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=35948/savory-snowplum"
+  },
+  {
+   "category": "drops",
+   "item_id": 15284,
+   "item_name": "Long Battle Bow",
+   "item_type": "",
+   "drop_rate": 0.0007000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15284/long-battle-bow?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15118,
+   "item_name": "Rigid Tunic",
+   "item_type": "",
+   "drop_rate": 0.0007000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15118/rigid-tunic?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15332,
+   "item_name": "Wrangler's Buckler",
+   "item_type": "",
+   "drop_rate": 0.0006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15332/wranglers-buckler?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 41731,
+   "item_name": "Yeti Milk",
+   "item_type": "",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=41731/yeti-milk"
+  },
+  {
+   "category": "drops",
+   "item_id": 15241,
+   "item_name": "Battle Knife",
+   "item_type": "",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15241/battle-knife?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 8186,
+   "item_name": "Dire Wand",
+   "item_type": "",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8186/dire-wand?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 11969,
+   "item_name": "Jacinth Circle",
+   "item_type": "",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=11969/jacinth-circle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15249,
+   "item_name": "Polished Zweihander",
+   "item_type": "",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15249/polished-zweihander?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 4539,
+   "item_name": "Goldenbark Apple",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4539/goldenbark-apple"
+  },
+  {
+   "category": "drops",
+   "item_id": 8766,
+   "item_name": "Morning Glory Dew",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8766/morning-glory-dew"
+  },
+  {
+   "category": "drops",
+   "item_id": 14562,
+   "item_name": "Prospector's Chestpiece",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14562/prospectors-chestpiece?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 2455,
+   "item_name": "Minor Mana Potion",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2455/minor-mana-potion"
+  },
+  {
+   "category": "drops",
+   "item_id": 4537,
+   "item_name": "Tel'Abim Banana",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4537/telabim-banana"
+  },
+  {
+   "category": "drops",
+   "item_id": 1759,
+   "item_name": "Reinforced Chain Pants",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1759/reinforced-chain-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1760,
+   "item_name": "Reinforced Chain Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1760/reinforced-chain-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1810,
+   "item_name": "Tough Leather Armor",
+   "item_type": "",
+   "drop_rate": 0.0015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1810/tough-leather-armor?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1826,
+   "item_name": "Rock Maul",
+   "item_type": "",
+   "drop_rate": 0.0013,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1826/rock-maul?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1808,
+   "item_name": "Tough Leather Pants",
+   "item_type": "",
+   "drop_rate": 0.0013,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1808/tough-leather-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 2785,
+   "item_name": "Stiff Recurve Bow",
+   "item_type": "",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2785/stiff-recurve-bow?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1809,
+   "item_name": "Tough Leather Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1809/tough-leather-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1825,
+   "item_name": "Bulky Bludgeon",
+   "item_type": "",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1825/bulky-bludgeon?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1782,
+   "item_name": "Cross-Stitched Cloak",
+   "item_type": "",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1782/cross-stitched-cloak?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 2786,
+   "item_name": "Oiled Blunderbuss",
+   "item_type": "",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2786/oiled-blunderbuss?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 2221,
+   "item_name": "Targe Shield",
+   "item_type": "",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2221/targe-shield?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 2766,
+   "item_name": "Deft Stiletto",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2766/deft-stiletto?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1761,
+   "item_name": "Reinforced Chain Vest",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1761/reinforced-chain-vest?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1829,
+   "item_name": "Short Cutlass",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1829/short-cutlass?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1828,
+   "item_name": "Stone War Axe",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1828/stone-war-axe?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1806,
+   "item_name": "Tough Cloak",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1806/tough-cloak?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1784,
+   "item_name": "Cross-Stitched Pants",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1784/cross-stitched-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1780,
+   "item_name": "Cross-Stitched Sandals",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1780/cross-stitched-sandals?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1786,
+   "item_name": "Cross-Stitched Vest",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1786/cross-stitched-vest?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1830,
+   "item_name": "Long Bastard Sword",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1830/long-bastard-sword?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1831,
+   "item_name": "Oaken War Staff",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1831/oaken-war-staff?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 2222,
+   "item_name": "Tower Shield",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2222/tower-shield?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1807,
+   "item_name": "Tough Leather Gloves",
+   "item_type": "",
+   "drop_rate": 0.0007000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1807/tough-leather-gloves?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1783,
+   "item_name": "Cross-Stitched Gloves",
+   "item_type": "",
+   "drop_rate": 0.0006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1783/cross-stitched-gloves?bonus=6656"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 1827,
+   "item_name": "Meat Cleaver",
+   "item_type": "",
+   "drop_rate": 0.0006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1827/meat-cleaver?bonus=6657"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 1803,
+   "item_name": "Tough Leather Belt",
+   "item_type": "",
+   "drop_rate": 0.0006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1803/tough-leather-belt?bonus=6656"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 1804,
+   "item_name": "Tough Leather Boots",
+   "item_type": "",
+   "drop_rate": 0.0006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1804/tough-leather-boots?bonus=6656"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 3381,
+   "item_name": "Cross-Stitched Bracers",
+   "item_type": "",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3381/cross-stitched-bracers?bonus=6656"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 1785,
+   "item_name": "Cross-Stitched Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1785/cross-stitched-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 1800,
+   "item_name": "Rawhide Pants",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1800/rawhide-pants?bonus=6656"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 1805,
+   "item_name": "Tough Leather Bracers",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1805/tough-leather-bracers?bonus=6656"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 1795,
+   "item_name": "Rawhide Belt",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1795/rawhide-belt?bonus=6656"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 2219,
+   "item_name": "Small Round Shield",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2219/small-round-shield?bonus=6657"
+  },
+  {
+   "category": "pickpocketing",
+   "item_id": 3770,
+   "item_name": "Mutton Chop",
+   "item_type": "",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3770/mutton-chop"
+  }
+ ]
+}

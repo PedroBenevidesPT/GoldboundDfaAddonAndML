@@ -1,0 +1,98 @@
+{
+ "npc_id": 6372,
+ "zone": 16,
+ "zone_name": "azshara",
+ "npc_name": "Makrinni Snapclaw",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 5523,
+   "item_name": "Small Barnacled Clam",
+   "item_type": "Trade Good",
+   "drop_rate": 0.07,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=5523/small-barnacled-clam"
+  },
+  {
+   "category": "drops",
+   "item_id": 2589,
+   "item_name": "Linen Cloth",
+   "item_type": "Cloth",
+   "drop_rate": 0.06,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=2589/linen-cloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 2592,
+   "item_name": "Wool Cloth",
+   "item_type": "Cloth",
+   "drop_rate": 0.017,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=2592/wool-cloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 6289,
+   "item_name": "Raw Longjaw Mud Snapper",
+   "item_type": "Meat",
+   "drop_rate": 0.009000000000000001,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=6289/raw-longjaw-mud-snapper"
+  },
+  {
+   "category": "drops",
+   "item_id": 1179,
+   "item_name": "Ice Cold Milk",
+   "item_type": "Food or Drink",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1179/ice-cold-milk"
+  },
+  {
+   "category": "drops",
+   "item_id": 858,
+   "item_name": "Lesser Healing Potion",
+   "item_type": "Potion",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=858/lesser-healing-potion"
+  },
+  {
+   "category": "drops",
+   "item_id": 6308,
+   "item_name": "Raw Bristle Whisker Catfish",
+   "item_type": "Meat",
+   "drop_rate": 0.002,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=6308/raw-bristle-whisker-catfish"
+  },
+  {
+   "category": "drops",
+   "item_id": 1210,
+   "item_name": "Shadowgem",
+   "item_type": "Jewelcrafting",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1210/shadowgem"
+  },
+  {
+   "category": "drops",
+   "item_id": 3377,
+   "item_name": "Canvas Bracers",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3377/canvas-bracers?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1813,
+   "item_name": "Chipped Quarterstaff",
+   "item_type": "Staff",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1813/chipped-quarterstaff?bonus=6657"
+  }
+ ]
+}

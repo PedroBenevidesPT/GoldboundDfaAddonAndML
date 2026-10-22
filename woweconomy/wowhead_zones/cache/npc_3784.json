@@ -1,0 +1,179 @@
+{
+ "npc_id": 3784,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Shadethicket Bark Ripper",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 3306,
+   "item_name": "Brackwater Vest",
+   "item_type": "",
+   "drop_rate": 0.015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3306/brackwater-vest?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14566,
+   "item_name": "Prospector's Pads",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14566/prospectors-pads?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10286,
+   "item_name": "Heart of the Wild",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10286/heart-of-the-wild"
+  },
+  {
+   "category": "drops",
+   "item_id": 14562,
+   "item_name": "Prospector's Chestpiece",
+   "item_type": "",
+   "drop_rate": 0.0016,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14562/prospectors-chestpiece?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 4568,
+   "item_name": "Grunt Axe",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4568/grunt-axe?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15311,
+   "item_name": "Feral Harness",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15311/feral-harness?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15230,
+   "item_name": "Ridge Cleaver",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15230/ridge-cleaver?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15115,
+   "item_name": "Rigid Gloves",
+   "item_type": "",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15115/rigid-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 55974,
+   "item_name": "Inert Elemental Particle",
+   "item_type": "",
+   "drop_rate": 0.18,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=55974/inert-elemental-particle"
+  },
+  {
+   "category": "drops",
+   "item_id": 60486,
+   "item_name": "Shimmering Shards",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=60486/shimmering-shards"
+  },
+  {
+   "category": "drops",
+   "item_id": 1746,
+   "item_name": "Linked Chain Belt",
+   "item_type": "",
+   "drop_rate": 0.0019,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1746/linked-chain-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1798,
+   "item_name": "Rawhide Cloak",
+   "item_type": "",
+   "drop_rate": 0.0019,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1798/rawhide-cloak?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 2783,
+   "item_name": "Shoddy Blunderbuss",
+   "item_type": "",
+   "drop_rate": 0.0019,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2783/shoddy-blunderbuss?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1775,
+   "item_name": "Brocade Gloves",
+   "item_type": "",
+   "drop_rate": 0.0016,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1775/brocade-gloves?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3379,
+   "item_name": "Brocade Bracers",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3379/brocade-bracers?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1752,
+   "item_name": "Linked Chain Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1752/linked-chain-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1753,
+   "item_name": "Linked Chain Vest",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1753/linked-chain-vest?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 24508,
+   "item_name": "Elemental Fragment",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=24508/elemental-fragment"
+  },
+  {
+   "category": "drops",
+   "item_id": 1749,
+   "item_name": "Linked Chain Cloak",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1749/linked-chain-cloak?bonus=6656"
+  }
+ ]
+}

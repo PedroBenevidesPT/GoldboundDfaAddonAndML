@@ -1,0 +1,17 @@
+{
+ "npc_id": 35558,
+ "zone": 16,
+ "zone_name": "azshara",
+ "npc_name": "Ectoplasmic Exhaust",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 48780,
+   "item_name": "Ectosplatter Sample",
+   "item_type": "Quest",
+   "drop_rate": 1.0,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=48780/ectosplatter-sample"
+  }
+ ]
+}

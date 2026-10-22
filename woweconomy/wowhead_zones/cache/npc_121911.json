@@ -1,0 +1,89 @@
+{
+ "npc_id": 121911,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Taerar",
+ "items": [
+  {
+   "category": "skinning",
+   "item_id": 15412,
+   "item_name": "Green Dragonscale",
+   "item_type": "",
+   "drop_rate": 0.92,
+   "qty": 2.5,
+   "source_url": "https://www.wowhead.com/item=15412/green-dragonscale"
+  },
+  {
+   "category": "skinning",
+   "item_id": 8170,
+   "item_name": "Rugged Leather",
+   "item_type": "",
+   "drop_rate": 0.72,
+   "qty": 2.5,
+   "source_url": "https://www.wowhead.com/item=8170/rugged-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 20381,
+   "item_name": "Dreamscale",
+   "item_type": "",
+   "drop_rate": 0.62,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=20381/dreamscale"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2934,
+   "item_name": "Ruined Leather Scraps",
+   "item_type": "",
+   "drop_rate": 0.09,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=2934/ruined-leather-scraps"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2318,
+   "item_name": "Light Leather",
+   "item_type": "",
+   "drop_rate": 0.07,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=2318/light-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 8165,
+   "item_name": "Worn Dragonscale",
+   "item_type": "",
+   "drop_rate": 0.05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8165/worn-dragonscale"
+  },
+  {
+   "category": "skinning",
+   "item_id": 8171,
+   "item_name": "Rugged Hide",
+   "item_type": "",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8171/rugged-hide"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2319,
+   "item_name": "Medium Leather",
+   "item_type": "",
+   "drop_rate": 0.012,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=2319/medium-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 4234,
+   "item_name": "Heavy Leather",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4234/heavy-leather"
+  }
+ ]
+}

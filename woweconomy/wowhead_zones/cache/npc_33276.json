@@ -1,0 +1,35 @@
+{
+ "npc_id": 33276,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Moon Priestess Maestra",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 2592,
+   "item_name": "Wool Cloth",
+   "item_type": "",
+   "drop_rate": 0.01,
+   "qty": 3.0,
+   "source_url": "https://www.wowhead.com/item=2592/wool-cloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 4538,
+   "item_name": "Snapvine Watermelon",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4538/snapvine-watermelon"
+  },
+  {
+   "category": "drops",
+   "item_id": 4306,
+   "item_name": "Silk Cloth",
+   "item_type": "",
+   "drop_rate": 0.0005,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=4306/silk-cloth"
+  }
+ ]
+}

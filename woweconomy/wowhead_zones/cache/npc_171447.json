@@ -1,0 +1,17 @@
+{
+ "npc_id": 171447,
+ "zone": 16,
+ "zone_name": "azshara",
+ "npc_name": "Infectious Zombie",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 180719,
+   "item_name": "Partially Digested Leather",
+   "item_type": "Quest",
+   "drop_rate": 1.0,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=180719/partially-digested-leather"
+  }
+ ]
+}

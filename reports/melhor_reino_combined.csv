@@ -1,0 +1,93 @@
+cluster,members,score,inventory_gold,inventory_rank,farm_gold,farm_rank,rare_gold,rare_rank
+Antonidas,Antonidas,0.7412,639.8,16,45383.4,2,1187761.5,2
+Echsenkessel,"Blackhand, Echsenkessel, Mal'Ganis, Taerar",0.7323,620.2,17,46591.8,1,920140.9,4
+Draenor,Draenor,0.7116,1092.9,4,42282.8,5,842305.8,5
+Kazzak,Kazzak,0.7074,553.1,21,41471.2,7,1473582.5,1
+Hyjal,Hyjal,0.6934,672.6,15,44519.0,3,722499.5,7
+Silvermoon,Silvermoon,0.6828,535.3,25,37106.0,13,932053.3,3
+Twisting Nether,Twisting Nether,0.6764,407.9,33,44244.9,4,836066.0,6
+Marécage de Zangar,"Cho'gall, Dalaran, Eldre'Thalas, Marécage de Zangar, Sinstralis",0.6716,1621.6,3,37324.2,12,578970.2,11
+Gordunni,Gordunni,0.6116,600.3,19,39770.0,8,553923.8,13
+Confrérie du Thorium,"Confrérie du Thorium, Conseil des Ombres, Culte de la Rive noire, Kirin Tor, La Croisade écarlate, Les Clairvoyants, Les Sentinelles",0.61,305.9,46,41844.8,6,523216.5,15
+Howling Fjord,Howling Fjord,0.6037,725.4,13,38868.4,10,468485.0,17
+Todeswache,"Der Mithrilorden, Der Rat von Dalaran, Die Nachtwache, Forscherliga, Todeswache, Zirkel des Cenarius",0.5926,430.9,31,39387.6,9,561577.4,12
+Blackmoore,"Blackmoore, Lordaeron, Tichondrius",0.5764,365.0,38,37788.3,11,681829.8,9
+Al'Akir,"Al'Akir, Burning Legion, Skullcrusher, Xavius",0.5657,498.0,27,37065.6,14,528664.5,14
+Karazhan,"Deathwing, Dragonblight, Ghostlands, Karazhan, Lightning's Blade, The Maelstrom",0.5443,1714.9,1,28332.6,24,346603.0,26
+Dentarg,"Dentarg, Tarren Mill",0.5381,835.7,10,31570.1,19,688935.0,8
+Eredar,Eredar,0.5214,542.5,24,34366.3,15,369748.2,24
+Thrall,"Ambossar, Kargath, Thrall",0.5147,382.2,35,33935.5,16,522264.1,16
+Ravencrest,Ravencrest,0.5131,605.6,18,31802.8,18,596135.5,10
+Hellfire,"Arathor, Hellfire, Kilrogg, Nagrand, Runetotem",0.4921,328.1,42,33103.6,17,436956.0,18
+Elune,"Elune, Varimathras",0.4718,511.1,26,30977.3,20,332310.5,27
+Drak'thul,"Burning Blade, Drak'thul",0.4671,428.8,32,30710.9,21,402079.6,20
+Blackrock,Blackrock,0.4653,564.1,20,29691.2,22,396530.7,21
+Scarshield Legion,"Darkmoon Faire, Defias Brotherhood, Earthen Ring, Ravenholdt, Scarshield Legion, Sporeggar, The Venture Co",0.4606,808.7,11,27887.4,26,362280.4,25
+Ysondre,Ysondre,0.4548,701.1,14,27959.3,25,393988.2,22
+Zul'jin,"Sanguino, Shen'dralar, Uldum, Zul'jin",0.4356,308.5,44,29077.1,23,403224.1,19
+Grim Batol,"Aggra (Português), Frostmane, Grim Batol",0.3851,373.1,36,25484.4,27,286582.7,31
+Nazjatar,"Aman'Thul, Anub'arak, Dalvengyr, Frostmourne, Nazjatar, Zuluhed",0.3682,1001.5,6,20180.7,35,243846.8,38
+Die Arguswacht,"Das Konsortium, Das Syndikat, Der abyssische Rat, Die Arguswacht, Die Silberne Hand, Die Todeskrallen, Die ewige Wacht, Kult der Verdammten",0.3627,338.2,41,23754.4,28,320784.6,29
+Archimonde,Archimonde,0.3598,549.4,22,22493.3,30,260021.1,35
+Argent Dawn,Argent Dawn,0.3458,168.7,76,20612.1,33,386471.1,23
+Rexxar,"Alleria, Rexxar",0.3433,343.4,40,22634.3,29,257300.1,36
+Kor'gall,"Bloodfeather, Burning Steppes, Darkspear, Executus, Kor'gall, Saurfang, Shattered Hand, Terokkar",0.3369,1005.1,5,18180.3,39,175180.5,51
+Blackscar,"Blackscar, Booty Bay, Borean Tundra, Deathweaver, Grom, Thermaplugg",0.3272,186.5,74,22333.0,31,274662.0,33
+Uldaman,"Drek'Thar, Eitrigg, Krasus, Uldaman",0.3241,981.0,7,17224.7,42,194539.2,46
+Dun Modr,"C'Thun, Dun Modr",0.3148,273.4,51,20720.1,32,283930.2,32
+Nefarian,"Destromath, Gilneas, Gorgonnash, Mannoroth, Nefarian, Nera'thor, Ulduar",0.3124,326.2,43,20303.3,34,263710.2,34
+Auchindoun,"Auchindoun, Dunemaul, Jaedenar, Sylvanas",0.3047,244.5,59,19838.7,36,328367.5,28
+Bronze Dragonflight,"Bronze Dragonflight, Nordrassil",0.3027,1643.7,2,11398.7,63,142716.0,57
+Arthas,"Arthas, Blutkessel, Durotan, Kel'Thuzad, Tirion, Vek'lor, Wrathbringer",0.2913,245.7,57,19580.3,37,208440.0,41
+Genjuros,"Bladefist, Darksorrow, Frostwhisper, Genjuros, Neptulon, Zenedar",0.2812,302.6,47,18516.5,38,191561.4,47
+Spinebreaker,"Dragonmaw, Haomarush, Spinebreaker, Stormreaver, Vashj",0.2633,269.0,52,17334.0,41,195169.5,45
+Nethersturm,"Alexstrasza, Madmortem, Nethersturm, Proudmoore",0.2587,191.3,73,17426.0,40,207472.4,43
+Wildhammer,"Thunderhorn, Wildhammer",0.2575,473.4,28,15605.8,46,177820.6,50
+Soulflayer,Soulflayer,0.2522,463.3,29,15064.1,48,207949.2,42
+Shadowsong,"Aszune, Shadowsong",0.2514,218.2,67,16706.7,44,202600.7,44
+Stormscale,Stormscale,0.2508,200.0,71,16203.7,45,290173.3,30
+Moonglade,"Moonglade, Steamwheedle Cartel, The Sha'tar",0.2504,384.2,34,15600.7,47,186915.6,48
+Blade's Edge,"Aerie Peak, Blade's Edge, Bronzebeard, Eonar, Vek'nilash",0.244,165.3,78,16900.3,43,140691.3,58
+Garrosh,"Garrosh, Nozdormu, Perenolde, Shattrath, Teldrassil",0.2321,238.5,62,14983.4,49,215752.5,40
+Garona,"Garona, Ner'zhul, Sargeras",0.2267,289.7,48,14822.3,50,123865.0,63
+Lothar,"Azshara, Baelgun, Krag'jin, Lothar",0.2246,369.9,37,13833.2,54,166018.7,53
+Anetheron,"Anetheron, Festung der Stürme, Gul'dan, Kil'jaeden, Nathrezim, Rajaxx",0.2238,306.6,45,14309.8,52,149481.0,54
+Khadgar,"Bloodhoof, Khadgar",0.2224,433.8,30,13369.4,56,145106.9,56
+Ragnaros,Ragnaros,0.2186,176.6,75,14113.5,53,252455.1,37
+Turalyon,"Doomhammer, Turalyon",0.2143,122.6,86,14368.4,51,219057.7,39
+Shattered Halls,"Ahn'Qiraj, Balnazzar, Boulderfist, Chromaggus, Daggerspine, Laughing Skull, Shattered Halls, Sunstrider, Talnivarr, Trollbane",0.211,897.7,8,9627.6,72,100092.8,75
+Goldrinn,"Goldrinn, Greymane, Lich King",0.2081,285.2,49,12994.0,57,186391.5,49
+Norgannon,"Dun Morogh, Norgannon",0.2009,197.2,72,13506.5,55,114436.2,68
+Kul Tiras,"Alonsus, Anachronos, Kul Tiras",0.2009,276.9,50,12949.9,58,116424.7,66
+Malygos,"Malfurion, Malygos",0.2,257.9,55,12680.2,60,166873.8,52
+Suramar,"Medivh, Suramar",0.1917,207.3,69,12713.1,59,115802.6,67
+Pozzo dell'Eternità,Pozzo dell'Eternità,0.1872,207.4,68,12146.6,61,148497.9,55
+Dethecus,"Dethecus, Mug'thol, Onyxia, Terrordar, Theradras",0.1853,761.6,12,8688.2,75,80535.8,82
+Terenas,"Emerald Dream, Terenas",0.1791,262.2,54,11312.8,65,123195.3,64
+Chamber of Aspects,Chamber of Aspects,0.177,129.8,85,12035.1,62,125713.1,62
+Arygos,"Arygos, Khaz'goroth",0.176,238.7,61,11324.6,64,109900.7,71
+Aegwynn,Aegwynn,0.173,544.6,23,9051.7,73,103717.2,73
+Azuremyst,"Azuremyst, Stormrage",0.1701,245.3,58,10687.1,66,129952.5,60
+Arak-arahm,"Arak-arahm, Kael'thas, Rashgarroth, Throk'Feroth",0.166,237.2,63,10551.8,68,110207.1,70
+Aggramar,"Aggramar, Hellscream",0.1617,167.5,77,10634.8,67,119125.5,65
+Fordragon,Fordragon,0.1596,890.5,9,5792.2,86,83677.7,80
+Die Aldor,Die Aldor,0.1567,141.4,83,10359.1,69,129310.0,61
+Frostwolf,Frostwolf,0.1562,204.6,70,10004.4,70,112045.6,69
+Khaz Modan,Khaz Modan,0.1537,230.4,64,9710.5,71,100451.7,74
+Quel'Thalas,"Azjol-Nerub, Quel'Thalas",0.149,347.0,39,8622.9,77,89466.6,77
+Lightbringer,"Lightbringer, Mazrigos",0.1478,262.9,53,8989.4,74,106219.0,72
+Galakrond,"Deepholm, Galakrond, Razuvious",0.1417,221.5,66,8640.2,76,130481.7,59
+Magtheridon,Magtheridon,0.137,241.0,60,8445.4,78,84066.5,79
+Tyrande,"Colinas Pardas, Los Errantes, Tyrande",0.1258,143.1,82,8214.1,79,88341.8,78
+Naxxramas,"Arathi, Illidan, Naxxramas, Temple noir",0.1149,248.2,56,6780.5,82,69186.0,83
+Eversong,Eversong,0.1124,114.4,88,7329.7,81,94210.3,76
+Un'Goro,"Area 52, Sen'jin, Un'Goro",0.1097,81.8,90,7410.9,80,83371.2,81
+Vol'jin,"Chants éternels, Vol'jin",0.0974,143.5,81,6134.5,83,68627.9,84
+Outland,Outland,0.0934,149.0,80,5799.8,84,66780.6,85
+Emeriss,"Agamaggan, Bloodscalp, Crushridge, Emeriss, Hakkar, Twilight's Hammer",0.09,130.3,84,5797.2,85,46774.3,88
+Nemesis,Nemesis,0.0852,159.9,79,5164.2,87,55192.0,87
+Azuregos,Azuregos,0.0824,224.7,65,4469.3,88,61314.8,86
+Exodar,"Exodar, Minahonda",0.0531,82.0,89,3328.8,89,35839.4,90
+Ysera,"Malorne, Ysera",0.0501,114.7,87,2834.2,90,42126.2,89
+Ashenvale,Ashenvale,0.0325,71.8,91,1868.2,91,25363.1,91
+Deathguard,Deathguard,0.0159,37.6,92,896.0,92,12480.4,92

@@ -1,0 +1,212 @@
+JOURNALATOR_LOCALES.deDE = function()
+  local L = {}
+
+  L["ADD_CHARACTER_TO_IGNORE"] = "Character zum Ignorieren hinzufügen"
+L["ADDITIONAL_COSTS_COLON"] = "Zusätzliche Kosten:"
+L["ALL_CHARACTERS"] = "Alle Charaktere"
+L["ALL_FACTIONS"] = "Alle Fraktionen"
+L["ALL_REALMS"] = "Alle Server"
+L["ALL_TIME"] = "Alle Zeiträume"
+L["AMOUNT_SOLD"] = "Verkaufte Menge"
+L["AMOUNT_UNSOLD"] = "Nicht verkaufte Menge"
+L["AUCTION_HOUSE"] = "Auktionshaus"
+L["BOUGHT_MIN_MAX_MEAN"] = "Gekauft (min: %s, max: %s, mean: %s)"
+L["BY_CHARACTER"] = "Nach Charakter"
+L["BY_DAY"] = "Nach Tag"
+L["BY_ITEM"] = "Nach Gegenstand"
+L["BY_MONTH"] = "Nach Monat"
+L["BY_QUEST"] = "Nach Quest"
+L["BY_SOURCE"] = "Nach Quelle"
+L["BY_TYPE"] = "Nach Typ"
+L["CANCELLED"] = "Abgebrochen"
+L["CHARACTER"] = "Charakter"
+L["COD"] = "C.O.D."
+L["COMMISSION_PAID"] = "Bezahlte Kommission"
+L["COMPUTE_STATISTICS"] = "Statistik berechnen"
+L["CONFIG_BASIC_OPTIONS_TEXT"] = "Grundlegende Optionen zur Aktivierung von Funktionen in Journalator."
+L["CONFIG_GROUP_JUNK"] = "Gruppieren von Junk-Gegenständen in der Registerkarte \"Verkaufen\"."
+--[[Translation missing --]]
+L["CONFIG_IGNORE_TRANSFERS"] = "Ignore Transfers"
+--[[Translation missing --]]
+L["CONFIG_IGNORE_TRANSFERS_TEXT"] = "Ignore any transfers between specific characters. This can be characters you own so any moving your assets around won't affect the totals or history views shown. Will not affect entries that involve a character not on the below list."
+--[[Translation missing --]]
+L["CONFIG_MONITORS"] = "Monitors"
+--[[Translation missing --]]
+L["CONFIG_MONITORS_TEXT"] = "Enable and disable different Journalator monitors for tracking activity ingame. A /reload is required to apply any changes."
+--[[Translation missing --]]
+L["CONFIG_SHOW_AH_STATUS"] = "Show auction house focussed details in status text in the main view."
+L["CONFIG_SHOW_MINIMAP_ICON"] = "Minimap-Symbol anzeigen"
+--[[Translation missing --]]
+L["CONFIG_TOOLTIP_BOUGHT_STATS"] = "Show the min/max/mean price that you paid for items in the item's tooltip."
+L["CONFIG_TOOLTIP_FAILURES"] = "Zeigt im Tooltip des Gegenstands an, wie viele Auktionen fehlgeschlagen sind."
+L["CONFIG_TOOLTIP_LAST_BOUGHT"] = "Zeigt den letzten Preis, zu dem Du einen Gegenstand ersteigert hast, im Tooltip des Gegenstands an."
+L["CONFIG_TOOLTIP_LAST_SOLD"] = "Zeigt den letzten Preis, für den Deine Auktion eines Gegenstands verkauft wurde, im Tooltip des Gegenstands an."
+L["CONFIG_TOOLTIP_SALE_RATE"] = "Zeigt Deine Verkaufsrate für einen Gegenstand im Tooltip des Gegenstands an."
+--[[Translation missing --]]
+L["CONFIG_TOOLTIP_SOLD_STATS"] = "Show the min/max/mean price that your items sold for in the item's tooltip."
+--[[Translation missing --]]
+L["CONFIG_TOOLTIPS_TEXT"] = "Choose which information is included in your tooltips"
+--[[Translation missing --]]
+L["CONFIG_UI_DISABLED"] = "Unable to open options. The Options UI addon is disabled"
+L["CONFIG_VENDORING"] = "Verkaufen"
+L["CRAFTER"] = "Hersteller"
+L["CRAFTER_NOTE"] = "Herstellernotiz"
+--[[Translation missing --]]
+L["CRAFTER_REAGENTS_COLON"] = "Crafter reagents:"
+L["CRAFTING_ORDERS"] = "Handwerksaufträge"
+L["CURRENCIES"] = "Währungen"
+L["CUSTOMER_NOTE"] = "Kundennotiz"
+--[[Translation missing --]]
+L["CUSTOMER_REAGENTS_COLON"] = "Customer reagents:"
+L["DAILY_PROFIT"] = "Täglicher Gewinn"
+L["DEPOSIT"] = "Anzahlung"
+L["DETAILED_STATUS"] = "Summe Verkauf: %s | AH-Gebühren: %s | Einzahlungen: %s | Einkäufe: %s | Nettogewinn: %s"
+--[[Translation missing --]]
+L["DISPLAY_DISABLED"] = "Unable to open display. The Display addon is disabled"
+--[[Translation missing --]]
+L["DROPS_COLON"] = "Drops:"
+--[[Translation missing --]]
+L["END"] = "End"
+L["ENGAGE_HEADER"] = "Mit Journalator in Kontakt treten "
+L["EXPERIENCE"] = "Erfahrung"
+L["EXPIRED"] = "Abgelaufen"
+L["FAILURES"] = "Fehler"
+L["FAILURES_TITLE"] = "Journalator - Fehlschläge"
+L["FINISHED_COMPUTING_STATISTICS"] = "Die Berechnung der Statistiken ist abgeschlossen."
+L["FULFILLING"] = "Erfüllte"
+L["FULFILLING_TITLE"] = "Journalator - Erfüllte"
+L["GROUP"] = "Gruppe"
+L["GUILD"] = "Gilde"
+L["IN"] = "Einnahmen"
+L["IN_COLON"] = "Einnahmen:"
+L["IN_INCLUDING_AH_CUT"] = "Einnahmen (inkl. AH-Anteil)"
+--[[Translation missing --]]
+L["INCLUDES_EXTRA_CRAFTS"] = "Includes extra crafts"
+L["INFO_TITLE"] = "Journalator - Info"
+L["INVOICES"] = "Rechnungen"
+L["INVOICES_TITLE"] = "Journalator - Rechnungen"
+L["IS_RECRAFT"] = "Ist Umfertigung?"
+--[[Translation missing --]]
+L["IS_REFUND"] = "Is Refund?"
+L["ITEM"] = "Gegenstand"
+L["ITEMS"] = "Gegenstände"
+--[[Translation missing --]]
+L["ITEMS_IN"] = "Items In"
+--[[Translation missing --]]
+L["ITEMS_OUT"] = "Items Out"
+L["JOURNALATOR"] = "Journalator"
+L["JUNK"] = "Schrott"
+L["LAST_3_MONTHS"] = "Letzte 3 Monate"
+L["LAST_6_MONTHS"] = "Letzte 6 Monate"
+L["LAST_BOUGHT"] = "Zuletzt gekauft"
+L["LAST_DAY"] = "Letzter Tag"
+L["LAST_HOUR"] = "Letzte Stunde"
+L["LAST_MONTH"] = "Letzter Monat"
+L["LAST_SOLD"] = "Zuletzt verkauft"
+L["LAST_WEEK"] = "Letze Woche"
+L["LAST_YEAR"] = "Letztes Jahr"
+L["LOADING_X_X"] = "Lade %d/%d"
+L["LOOTING"] = "Loot"
+L["LOOTING_TITLE"] = "Journalator - Loot"
+L["MAIL"] = "Post"
+L["MAIL_TITLE"] = "Journalator - Post"
+L["MEAN_PRICE"] = "Durchschnittlicher Preis"
+L["MINIMAP_ICON"] = "Minimap-Symbol"
+L["MONEY"] = "Geld"
+L["MONTHLY_PROFIT"] = "Monatlicher Gewinn"
+L["MULTIPLE_BUYERS"] = "Mehrere Käufer "
+L["MULTIPLE_SELLERS"] = "Mehrere Verkäufer "
+L["NAME_COLON"] = "Name:"
+L["NO_CRAFTER_REAGENTS"] = "Keine Reagenzien vom Hersteller"
+L["NO_CUSTOMER_REAGENTS"] = "Keine Reagenzien vom Kunden"
+L["NO_RECORDS_CRAFTER_REAGENTS"] = "Keine Aufzeichnungen für Reagenzien von Hersteller"
+L["NO_RECORDS_CUSTOMER_REAGENTS"] = "Keine Aufzeichnungen für Reagenzien von Kunden"
+L["NO_RECORDS_FOR_REAGENTS"] = "Keine Aufzeichnungen für Reagenzien"
+--[[Translation missing --]]
+L["OPEN_TO_SEE_STATS"] = "Open to see stats"
+L["OTHER"] = "Andere"
+L["OUT"] = "Ausgaben"
+L["OUT_COLON"] = "Ausgaben:"
+L["PERSONAL"] = "Persönlich"
+--[[Translation missing --]]
+L["PLACING"] = "Placing"
+--[[Translation missing --]]
+L["PLACING_TITLE"] = "Journalator - Placing"
+L["PLAYER"] = "Spieler"
+L["POSTING"] = "Verkauf"
+--[[Translation missing --]]
+L["POSTING_FEE"] = "Posting Fee"
+L["POSTING_TITLE"] = "Journalator - Verkauf"
+L["PROFESSION"] = "Beruf"
+L["PROFIT"] = "Gewinn"
+L["PUBLIC"] = "Öffentlich"
+L["QUESTING"] = "Quests"
+L["QUESTING_TITLE"] = "Journalator - Quests"
+L["REALM_COLON"] = "Server:"
+L["REASON"] = "Grund"
+L["RECEIVED"] = "Empfangen"
+L["RECIPIENT"] = "Empfänger"
+L["RECRAFT_X_TO_X"] = "Umfertigung %s zu %s"
+L["REJECTED"] = "Abgelehnt"
+L["REPAIRS"] = "Reparaturen"
+L["REPUTATION_COLON"] = "Ruf:"
+L["REQUIRED_COLON"] = "Erforderlich:"
+L["REQUIREMENTS"] = "Anforderungen"
+L["REWARDS_COLON"] = "Belohnungen:"
+L["RUNNING_TOTAL_X"] = "Laufender Gesamtbetrag: %s"
+L["SALE_RATE"] = "Verkaufsrate"
+L["SALE_RATES"] = "Verkaufsraten"
+L["SALE_RATES_TITLE"] = "Journalator - Verkaufsraten"
+--[[Translation missing --]]
+L["SEND_COST"] = "Send Cost"
+L["SENDER"] = "Sender"
+--[[Translation missing --]]
+L["SENT"] = "Sent"
+L["SOLD_MIN_MAX_MEAN"] = "Verkauft (min: %s, max: %s, mean: %s)"
+--[[Translation missing --]]
+L["SOME_CHARACTERS"] = "Some Characters"
+L["SOME_REALMS"] = "Bestimmte Server"
+L["SOURCE"] = "Quelle"
+L["START"] = "Start"
+L["STATISTICS"] = "Statistik"
+L["SUCCESSES"] = "Erfolgreiche"
+L["SUCCESSES_TITLE"] = "Journalator - Erfolgreiche"
+L["SUMMARY"] = "Zusammenfassung"
+L["SUMMARY_TITLE"] = "Journalator - Zusammenfassung"
+L["TAXIS"] = "Taxis"
+L["TIME_ELAPSED"] = "Verstrichene Zeit"
+--[[Translation missing --]]
+L["TIP"] = "Tip"
+L["TOTAL"] = "Gesamt"
+--[[Translation missing --]]
+L["TOTAL_QUANTITY_X"] = "Total Quantity: %s"
+--[[Translation missing --]]
+L["TRADES"] = "Trades"
+--[[Translation missing --]]
+L["TRADES_TITLE"] = "Journalator - Trades"
+--[[Translation missing --]]
+L["TRADING_POST"] = "Trading Post"
+--[[Translation missing --]]
+L["TRADING_POST_TITLE"] = "Journalator - Trading Post"
+L["TRAINER"] = "Lehrer"
+L["TRAINERS"] = "Lehrer"
+L["TYPE"] = "Typ"
+L["TYPE_OF_FAILURE"] = "Art des Fehlschlags"
+L["UNIT_PRICE_EXCLUDING_AH_CUT"] = "Preis (ohne AH-Anteil)"
+L["VENDORING"] = "Verkaufen"
+L["VENDORING_TITLE"] = "Journalator - Verkaufen"
+L["VENDORS"] = "Händler"
+--[[Translation missing --]]
+L["WEEKLY_PROFIT"] = "Weekly Profit"
+--[[Translation missing --]]
+L["WORLD_OBJECT"] = "World Object"
+L["WOW_TOKENS"] = "WoW-Marken"
+--[[Translation missing --]]
+L["WOW_TOKENS_TITLE"] = "Journalator - WoW Tokens"
+L["YOU_GAINED_X_WITH_XX"] = "Du hast %s Gewinn gemacht, mit %s Einnahmen und %s Ausgaben."
+L["YOU_LOST_X_WITH_XX"] = "Du hast %s Verlust gemacht, mit %s Einnahmen und %s Ausgaben."
+L["ZONE"] = "Zone"
+
+
+  return L
+end

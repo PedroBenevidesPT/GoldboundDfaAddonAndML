@@ -1,0 +1,267 @@
+187 ficheiros | 92 mercados (grupos connected) | 3 ficheiros de região
+CSV: https://public-data.tradeskillmaster.com/retail/eu | base: tsm_markets.db
+mapa de reinos: 267 slugs -> 92 mercados
+  +  garona/realm_items                   7,936 linhas |  7,936 mudanças | 2026-10-18T09:36:04Z
+  +  arakarahm/realm_items                7,853 linhas |  7,853 mudanças | 2026-10-18T08:36:07Z
+  +  voljin/realm_items                   8,776 linhas |  8,776 mudanças | 2026-10-18T06:36:05Z
+  +  dethecus/realm_items                10,669 linhas | 10,669 mudanças | 2026-10-18T09:36:04Z
+  +  lothar/realm_items                  10,320 linhas | 10,320 mudanças | 2026-10-18T08:36:07Z
+  +  arthas/realm_items                  12,622 linhas | 12,622 mudanças | 2026-10-18T09:36:04Z
+  +  blackmoore/realm_items              17,543 linhas | 17,543 mudanças | 2026-10-18T09:36:04Z
+  +  thrall/realm_items                  16,854 linhas | 16,854 mudanças | 2026-10-18T08:36:07Z
+  +  nefarian/realm_items                12,307 linhas | 12,307 mudanças | 2026-10-18T09:36:04Z
+  +  blackrock/realm_items               16,708 linhas | 16,708 mudanças | 2026-10-18T09:36:04Z
+  +  korgall/realm_items                 14,834 linhas | 14,834 mudanças | 2026-10-18T09:36:04Z
+  +  kul-tiras/realm_items               10,597 linhas | 10,597 mudanças | 2026-10-18T09:36:04Z
+  +  moonglade/realm_items               12,872 linhas | 12,872 mudanças | 2026-10-18T08:36:06Z
+  +  emeriss/realm_items                  9,683 linhas |  9,683 mudanças | 2026-10-18T08:36:07Z
+  +  khadgar/realm_items                  9,475 linhas |  9,475 mudanças | 2026-10-18T08:36:07Z
+  +  dentarg/realm_items                 17,863 linhas | 17,863 mudanças | 2026-10-18T08:36:07Z
+  +  drakthul/realm_items                15,540 linhas | 15,540 mudanças | 2026-10-18T08:36:07Z
+  +  ysera/realm_items                    9,202 linhas |  9,202 mudanças | 2026-10-18T08:36:06Z
+  +  malygos/realm_items                 11,947 linhas | 11,947 mudanças | 2026-10-18T08:36:07Z
+  +  scarshield-legion/realm_items       16,957 linhas | 16,957 mudanças | 2026-10-18T09:36:04Z
+  +  rexxar/realm_items                  13,636 linhas | 13,636 mudanças | 2026-10-18T06:36:05Z
+  +  anetheron/realm_items                8,744 linhas |  8,744 mudanças | 2026-10-18T08:36:07Z
+  !! nazjatar/realm_items               HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/nazjatar/items.csv
+  !! die-arguswacht/realm_items         HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/die-arguswacht/items.csv
+  !! uldaman/realm_items                HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/uldaman/items.csv
+  !! confrérie-du-thorium/realm_items   HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/confr%C3%A9rie-du-thorium/items.csv
+  !! outland/realm_items                HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/outland/items.csv
+  !! archimonde/realm_items             HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/archimonde/items.csv
+  !! grim-batol/realm_items             HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/grim-batol/items.csv
+  !! kazzak/realm_items                 HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/kazzak/items.csv
+  !! chamber-of-aspects/realm_items     HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/chamber-of-aspects/items.csv
+  !! pozzo-delleternità/realm_items     HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/pozzo-delleternit%C3%A0/items.csv
+  !! wildhammer/realm_items             HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/wildhammer/items.csv
+  !! elune/realm_items                  HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/elune/items.csv
+  !! nemesis/realm_items                HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/nemesis/items.csv
+  !! aggramar/realm_items               HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/aggramar/items.csv
+  !! ravencrest/realm_items             HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/ravencrest/items.csv
+  !! ysondre/realm_items                HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/ysondre/items.csv
+  !! dun-modr/realm_items               HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/dun-modr/items.csv
+  !! suramar/realm_items                HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/suramar/items.csv
+  !! tyrande/realm_items                HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/tyrande/items.csv
+  !! zuljin/realm_items                 HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/zuljin/items.csv
+  !! bronze-dragonflight/realm_items    HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/bronze-dragonflight/items.csv
+  !! exodar/realm_items                 HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/exodar/items.csv
+  !! lightbringer/realm_items           HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/lightbringer/items.csv
+  !! hyjal/realm_items                  HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/hyjal/items.csv
+  !! ungoro/realm_items                 HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/ungoro/items.csv
+  !! quelthalas/realm_items             HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/quelthalas/items.csv
+  !! garrosh/realm_items                HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/garrosh/items.csv
+  !! turalyon/realm_items               HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/turalyon/items.csv
+  !! todeswache/realm_items             HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/todeswache/items.csv
+  !! draenor/realm_items                HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/draenor/items.csv
+  !! arygos/realm_items                 HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/arygos/items.csv
+  !! norgannon/realm_items              HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/norgannon/items.csv
+  !! blades-edge/realm_items            HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/blades-edge/items.csv
+  !! azuremyst/realm_items              HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/azuremyst/items.csv
+  !! hellfire/realm_items               HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/hellfire/items.csv
+  !! karazhan/realm_items               HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/karazhan/items.csv
+  !! auchindoun/realm_items             HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/auchindoun/items.csv
+  !! shattered-halls/realm_items        HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/shattered-halls/items.csv
+  !! soulflayer/realm_items             HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/soulflayer/items.csv
+  !! gordunni/realm_items               HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/gordunni/items.csv
+  !! galakrond/realm_items              HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/galakrond/items.csv
+  !! deathguard/realm_items             HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/deathguard/items.csv
+  !! howling-fjord/realm_items          HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/howling-fjord/items.csv
+  !! die-aldor/realm_items              HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/die-aldor/items.csv
+  !! fordragon/realm_items              HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/fordragon/items.csv
+  !! marécage-de-zangar/realm_items     HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/mar%C3%A9cage-de-zangar/items.csv
+  !! azuregos/realm_items               HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/azuregos/items.csv
+  !! naxxramas/realm_items              HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/naxxramas/items.csv
+  !! ashenvale/realm_items              HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/ashenvale/items.csv
+  !! eversong/realm_items               HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/eversong/items.csv
+  !! goldrinn/realm_items               HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/goldrinn/items.csv
+  !! terenas/realm_items                HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/terenas/items.csv
+  !! blackscar/realm_items              HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/blackscar/items.csv
+  !! stormscale/realm_items             HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/stormscale/items.csv
+  !! silvermoon/realm_items             HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/silvermoon/items.csv
+  !! spinebreaker/realm_items           HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/spinebreaker/items.csv
+  !! genjuros/realm_items               HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/genjuros/items.csv
+  !! shadowsong/realm_items             HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/shadowsong/items.csv
+  !! twisting-nether/realm_items        HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/twisting-nether/items.csv
+  !! aegwynn/realm_items                HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/aegwynn/items.csv
+  !! magtheridon/realm_items            HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/magtheridon/items.csv
+  !! ragnaros/realm_items               HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/ragnaros/items.csv
+  !! antonidas/realm_items              HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/antonidas/items.csv
+  !! khaz-modan/realm_items             HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/khaz-modan/items.csv
+  !! eredar/realm_items                 HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/eredar/items.csv
+  !! echsenkessel/realm_items           HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/echsenkessel/items.csv
+  !! argent-dawn/realm_items            HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/argent-dawn/items.csv
+  !! nethersturm/realm_items            HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/nethersturm/items.csv
+  +  voljin/realm_pets                      886 linhas |    886 mudanças | 2026-10-18T06:36:05Z
+  !! frostwolf/realm_items              HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/frostwolf/items.csv
+  +  garona/realm_pets                      870 linhas |    870 mudanças | 2026-10-18T09:36:04Z
+  +  dethecus/realm_pets                    891 linhas |    891 mudanças | 2026-10-18T09:36:04Z
+  +  arakarahm/realm_pets                   868 linhas |    868 mudanças | 2026-10-18T08:36:07Z
+  +  arthas/realm_pets                      972 linhas |    972 mudanças | 2026-10-18T09:36:04Z
+  +  blackmoore/realm_pets                  978 linhas |    978 mudanças | 2026-10-18T06:36:05Z
+  +  blackrock/realm_pets                   978 linhas |    978 mudanças | 2026-10-18T09:36:04Z
+  +  thrall/realm_pets                      978 linhas |    978 mudanças | 2026-10-18T08:36:07Z
+  +  lothar/realm_pets                      927 linhas |    927 mudanças | 2026-10-18T08:36:07Z
+  +  korgall/realm_pets                     952 linhas |    952 mudanças | 2026-10-18T09:36:04Z
+  +  nefarian/realm_pets                    910 linhas |    910 mudanças | 2026-10-18T09:36:04Z
+  +  kul-tiras/realm_pets                   944 linhas |    944 mudanças | 2026-10-18T09:36:04Z
+  +  khadgar/realm_pets                     938 linhas |    938 mudanças | 2026-10-18T08:36:07Z
+  +  dentarg/realm_pets                     978 linhas |    978 mudanças | 2026-10-18T08:36:07Z
+  +  emeriss/realm_pets                     927 linhas |    927 mudanças | 2026-10-18T08:36:07Z
+  +  moonglade/realm_pets                   902 linhas |    902 mudanças | 2026-10-18T08:36:06Z
+  +  scarshield-legion/realm_pets           976 linhas |    976 mudanças | 2026-10-18T09:36:04Z
+  +  drakthul/realm_pets                    976 linhas |    976 mudanças | 2026-10-18T08:36:07Z
+  +  ysera/realm_pets                       881 linhas |    881 mudanças | 2026-10-18T08:36:06Z
+  +  malygos/realm_pets                     934 linhas |    934 mudanças | 2026-10-18T08:36:07Z
+  +  rexxar/realm_pets                      958 linhas |    958 mudanças | 2026-10-18T06:36:05Z
+  +  anetheron/realm_pets                   924 linhas |    924 mudanças | 2026-10-18T08:36:07Z
+  +  die-arguswacht/realm_pets              944 linhas |    944 mudanças | 2026-10-18T09:36:04Z
+  +  nazjatar/realm_pets                    971 linhas |    971 mudanças | 2026-10-18T08:36:06Z
+  +  uldaman/realm_pets                     929 linhas |    929 mudanças | 2026-10-18T09:36:04Z
+  +  confrérie-du-thorium/realm_pets        976 linhas |    976 mudanças | 2026-10-18T09:36:04Z
+  !! alakir/realm_items                 HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/alakir/items.csv
+  +  outland/realm_pets                     966 linhas |    966 mudanças | 2026-10-18T08:36:07Z
+  +  archimonde/realm_pets                  977 linhas |    977 mudanças | 2026-10-18T08:36:07Z
+  +  chamber-of-aspects/realm_pets          900 linhas |    900 mudanças | 2026-10-18T08:36:07Z
+  +  kazzak/realm_pets                      978 linhas |    978 mudanças | 2026-10-18T09:36:04Z
+  +  grim-batol/realm_pets                  946 linhas |    946 mudanças | 2026-10-18T09:36:04Z
+  +  pozzo-delleternità/realm_pets          933 linhas |    933 mudanças | 2026-10-18T09:36:04Z
+  +  wildhammer/realm_pets                  929 linhas |    929 mudanças | 2026-10-18T08:36:07Z
+  +  nemesis/realm_pets                     878 linhas |    878 mudanças | 2026-10-18T06:36:05Z
+  +  ravencrest/realm_pets                  978 linhas |    978 mudanças | 2026-10-18T08:36:07Z
+  +  elune/realm_pets                       967 linhas |    967 mudanças | 2026-10-18T08:36:07Z
+  +  aggramar/realm_pets                    964 linhas |    964 mudanças | 2026-10-18T08:36:06Z
+  +  suramar/realm_pets                     808 linhas |    808 mudanças | 2026-10-18T08:36:07Z
+  +  ysondre/realm_pets                     976 linhas |    976 mudanças | 2026-10-18T09:36:04Z
+  +  dun-modr/realm_pets                    957 linhas |    957 mudanças | 2026-10-18T08:36:06Z
+  +  tyrande/realm_pets                     900 linhas |    900 mudanças | 2026-10-18T09:36:04Z
+  +  zuljin/realm_pets                      977 linhas |    977 mudanças | 2026-10-18T09:36:04Z
+  +  exodar/realm_pets                      923 linhas |    923 mudanças | 2026-10-18T09:36:04Z
+  +  lightbringer/realm_pets                910 linhas |    910 mudanças | 2026-10-18T08:36:06Z
+  +  hyjal/realm_pets                       978 linhas |    978 mudanças | 2026-10-18T09:36:04Z
+  +  quelthalas/realm_pets                  957 linhas |    957 mudanças | 2026-10-18T08:36:07Z
+  +  ungoro/realm_pets                      890 linhas |    890 mudanças | 2026-10-18T09:36:04Z
+  +  garrosh/realm_pets                     973 linhas |    973 mudanças | 2026-10-18T08:36:07Z
+  +  bronze-dragonflight/realm_pets         857 linhas |    857 mudanças | 2026-10-18T09:36:04Z
+  +  draenor/realm_pets                     978 linhas |    978 mudanças | 2026-10-18T06:36:05Z
+  +  turalyon/realm_pets                    978 linhas |    978 mudanças | 2026-10-18T08:36:07Z
+  +  todeswache/realm_pets                  972 linhas |    972 mudanças | 2026-10-18T09:36:04Z
+  +  arygos/realm_pets                      915 linhas |    915 mudanças | 2026-10-18T08:36:06Z
+  +  norgannon/realm_pets                   951 linhas |    951 mudanças | 2026-10-18T08:36:07Z
+  +  azuremyst/realm_pets                   910 linhas |    910 mudanças | 2026-10-18T08:36:07Z
+  +  blades-edge/realm_pets                 978 linhas |    978 mudanças | 2026-10-18T09:36:04Z
+  +  hellfire/realm_pets                    965 linhas |    965 mudanças | 2026-10-18T08:36:07Z
+  +  karazhan/realm_pets                    947 linhas |    947 mudanças | 2026-10-18T08:36:07Z
+  +  auchindoun/realm_pets                  978 linhas |    978 mudanças | 2026-10-18T09:36:04Z
+  +  shattered-halls/realm_pets             928 linhas |    928 mudanças | 2026-10-18T08:36:06Z
+  +  soulflayer/realm_pets                  954 linhas |    954 mudanças | 2026-10-18T09:36:04Z
+  +  deathguard/realm_pets                  646 linhas |    646 mudanças | 2026-10-18T09:36:04Z
+  +  gordunni/realm_pets                    976 linhas |    976 mudanças | 2026-10-18T08:36:07Z
+  +  galakrond/realm_pets                   782 linhas |    782 mudanças | 2026-10-18T08:36:07Z
+  +  howling-fjord/realm_pets               973 linhas |    973 mudanças | 2026-10-18T08:36:07Z
+  +  die-aldor/realm_pets                   973 linhas |    973 mudanças | 2026-10-18T08:36:07Z
+  +  fordragon/realm_pets                   868 linhas |    868 mudanças | 2026-10-18T09:36:04Z
+  +  naxxramas/realm_pets                   883 linhas |    883 mudanças | 2026-10-18T08:36:07Z
+  +  marécage-de-zangar/realm_pets          978 linhas |    978 mudanças | 2026-10-18T09:36:04Z
+  +  azuregos/realm_pets                    827 linhas |    827 mudanças | 2026-10-18T09:36:04Z
+  +  ashenvale/realm_pets                   663 linhas |    663 mudanças | 2026-10-18T08:36:07Z
+  +  stormscale/realm_pets                  976 linhas |    976 mudanças | 2026-10-18T09:36:04Z
+  +  eversong/realm_pets                    891 linhas |    891 mudanças | 2026-10-18T09:36:04Z
+  +  blackscar/realm_pets                   930 linhas |    930 mudanças | 2026-10-18T08:36:07Z
+  +  goldrinn/realm_pets                    794 linhas |    794 mudanças | 2026-10-18T09:36:04Z
+  +  terenas/realm_pets                     947 linhas |    947 mudanças | 2026-10-18T09:36:04Z
+  +  silvermoon/realm_pets                  978 linhas |    978 mudanças | 2026-10-18T08:36:07Z
+  +  spinebreaker/realm_pets                919 linhas |    919 mudanças | 2026-10-18T09:36:04Z
+  +  twisting-nether/realm_pets             978 linhas |    978 mudanças | 2026-10-18T09:36:04Z
+  +  shadowsong/realm_pets                  921 linhas |    921 mudanças | 2026-10-18T08:36:06Z
+  +  genjuros/realm_pets                    942 linhas |    942 mudanças | 2026-10-18T08:36:07Z
+  +  aegwynn/realm_pets                     874 linhas |    874 mudanças | 2026-10-18T08:36:07Z
+  +  magtheridon/realm_pets                 962 linhas |    962 mudanças | 2026-10-18T09:36:04Z
+  +  antonidas/realm_pets                   978 linhas |    978 mudanças | 2026-10-18T09:36:04Z
+  +  ragnaros/realm_pets                    978 linhas |    978 mudanças | 2026-10-18T09:36:04Z
+  +  khaz-modan/realm_pets                  951 linhas |    951 mudanças | 2026-10-18T08:36:07Z
+  +  eredar/realm_pets                      978 linhas |    978 mudanças | 2026-10-18T08:36:06Z
+  +  nethersturm/realm_pets                 951 linhas |    951 mudanças | 2026-10-18T08:36:06Z
+  +  argent-dawn/realm_pets                 978 linhas |    978 mudanças | 2026-10-18T08:36:07Z
+  +  echsenkessel/realm_pets                978 linhas |    978 mudanças | 2026-10-18T09:36:04Z
+  +  frostwolf/realm_pets                   873 linhas |    873 mudanças | 2026-10-18T08:36:06Z
+  +  region/region_pets                     978 linhas |    978 mudanças | 2026-10-17T00:26:55Z
+  +  alakir/realm_pets                      977 linhas |    977 mudanças | 2026-10-18T09:36:04Z
+  +  region/commodities                  12,159 linhas | 12,159 mudanças | 2026-10-18T09:36:04Z
+  !! region/region_items                HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/region/items.csv
+------------------------------------------------------------------------------
+ficheiros 187 | novos/alterados 116 | inalterados 0 | falhas 71
+linhas importadas 371,742 | linhas alteradas 371,742
+snapshots -> C:\FarmAnalysis\data\tsm\snapshots
+falhas:
+  - nazjatar/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/nazjatar/items.csv
+  - die-arguswacht/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/die-arguswacht/items.csv
+  - uldaman/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/uldaman/items.csv
+  - confrérie-du-thorium/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/confr%C3%A9rie-du-thorium/items.csv
+  - outland/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/outland/items.csv
+  - archimonde/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/archimonde/items.csv
+  - grim-batol/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/grim-batol/items.csv
+  - kazzak/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/kazzak/items.csv
+  - chamber-of-aspects/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/chamber-of-aspects/items.csv
+  - pozzo-delleternità/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/pozzo-delleternit%C3%A0/items.csv
+  - wildhammer/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/wildhammer/items.csv
+  - elune/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/elune/items.csv
+  - nemesis/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/nemesis/items.csv
+  - aggramar/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/aggramar/items.csv
+  - ravencrest/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/ravencrest/items.csv
+  - ysondre/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/ysondre/items.csv
+  - dun-modr/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/dun-modr/items.csv
+  - suramar/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/suramar/items.csv
+  - tyrande/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/tyrande/items.csv
+  - zuljin/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/zuljin/items.csv
+  - bronze-dragonflight/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/bronze-dragonflight/items.csv
+  - exodar/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/exodar/items.csv
+  - lightbringer/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/lightbringer/items.csv
+  - hyjal/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/hyjal/items.csv
+  - ungoro/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/ungoro/items.csv
+  - quelthalas/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/quelthalas/items.csv
+  - garrosh/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/garrosh/items.csv
+  - turalyon/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/turalyon/items.csv
+  - todeswache/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/todeswache/items.csv
+  - draenor/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/draenor/items.csv
+  - arygos/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/arygos/items.csv
+  - norgannon/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/norgannon/items.csv
+  - blades-edge/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/blades-edge/items.csv
+  - azuremyst/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/azuremyst/items.csv
+  - hellfire/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/hellfire/items.csv
+  - karazhan/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/karazhan/items.csv
+  - auchindoun/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/auchindoun/items.csv
+  - shattered-halls/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/shattered-halls/items.csv
+  - soulflayer/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/soulflayer/items.csv
+  - gordunni/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/gordunni/items.csv
+  - galakrond/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/galakrond/items.csv
+  - deathguard/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/deathguard/items.csv
+  - howling-fjord/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/howling-fjord/items.csv
+  - die-aldor/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/die-aldor/items.csv
+  - fordragon/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/fordragon/items.csv
+  - marécage-de-zangar/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/mar%C3%A9cage-de-zangar/items.csv
+  - azuregos/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/azuregos/items.csv
+  - naxxramas/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/naxxramas/items.csv
+  - ashenvale/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/ashenvale/items.csv
+  - eversong/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/eversong/items.csv
+  - goldrinn/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/goldrinn/items.csv
+  - terenas/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/terenas/items.csv
+  - blackscar/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/blackscar/items.csv
+  - stormscale/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/stormscale/items.csv
+  - silvermoon/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/silvermoon/items.csv
+  - spinebreaker/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/spinebreaker/items.csv
+  - genjuros/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/genjuros/items.csv
+  - shadowsong/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/shadowsong/items.csv
+  - twisting-nether/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/twisting-nether/items.csv
+  - aegwynn/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/aegwynn/items.csv
+  - magtheridon/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/magtheridon/items.csv
+  - ragnaros/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/ragnaros/items.csv
+  - antonidas/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/antonidas/items.csv
+  - khaz-modan/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/khaz-modan/items.csv
+  - eredar/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/eredar/items.csv
+  - echsenkessel/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/echsenkessel/items.csv
+  - argent-dawn/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/argent-dawn/items.csv
+  - nethersturm/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/nethersturm/items.csv
+  - frostwolf/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/frostwolf/items.csv
+  - alakir/realm_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/realm/alakir/items.csv
+  - region/region_items: HTTPError: 429 Client Error: Too Many Requests for url: https://public-data.tradeskillmaster.com/retail/eu/region/items.csv
+rc=0

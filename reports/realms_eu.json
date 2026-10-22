@@ -1,0 +1,5508 @@
+{
+  "region": "eu",
+  "fetched_at": "2026-10-18T00:22:53",
+  "realms": [
+    {
+      "id": 1080,
+      "slug": "khadgar",
+      "name": "Khadgar"
+    },
+    {
+      "id": 1083,
+      "slug": "chromaggus",
+      "name": "Chromaggus"
+    },
+    {
+      "id": 1084,
+      "slug": "dentarg",
+      "name": "Dentarg"
+    },
+    {
+      "id": 1086,
+      "slug": "la-croisade-écarlate",
+      "name": "La Croisade écarlate"
+    },
+    {
+      "id": 547,
+      "slug": "runetotem",
+      "name": "Runetotem"
+    },
+    {
+      "id": 548,
+      "slug": "shadowsong",
+      "name": "Shadowsong"
+    },
+    {
+      "id": 549,
+      "slug": "silvermoon",
+      "name": "Silvermoon"
+    },
+    {
+      "id": 511,
+      "slug": "sunstrider",
+      "name": "Sunstrider"
+    },
+    {
+      "id": 1087,
+      "slug": "executus",
+      "name": "Executus"
+    },
+    {
+      "id": 1089,
+      "slug": "mazrigos",
+      "name": "Mazrigos"
+    },
+    {
+      "id": 1596,
+      "slug": "karazhan",
+      "name": "Karazhan"
+    },
+    {
+      "id": 1597,
+      "slug": "auchindoun",
+      "name": "Auchindoun"
+    },
+    {
+      "id": 1598,
+      "slug": "shattered-halls",
+      "name": "Shattered Halls"
+    },
+    {
+      "id": 1602,
+      "slug": "gordunni",
+      "name": "Gordunni"
+    },
+    {
+      "id": 1604,
+      "slug": "soulflayer",
+      "name": "Soulflayer"
+    },
+    {
+      "id": 1605,
+      "slug": "deathguard",
+      "name": "Deathguard"
+    },
+    {
+      "id": 1606,
+      "slug": "sporeggar",
+      "name": "Sporeggar"
+    },
+    {
+      "id": 1607,
+      "slug": "nethersturm",
+      "name": "Nethersturm"
+    },
+    {
+      "id": 1608,
+      "slug": "shattrath",
+      "name": "Shattrath"
+    },
+    {
+      "id": 1609,
+      "slug": "deepholm",
+      "name": "Deepholm"
+    },
+    {
+      "id": 1612,
+      "slug": "echsenkessel",
+      "name": "Echsenkessel"
+    },
+    {
+      "id": 1613,
+      "slug": "blutkessel",
+      "name": "Blutkessel"
+    },
+    {
+      "id": 1614,
+      "slug": "galakrond",
+      "name": "Galakrond"
+    },
+    {
+      "id": 1616,
+      "slug": "razuvious",
+      "name": "Razuvious"
+    },
+    {
+      "id": 1617,
+      "slug": "deathweaver",
+      "name": "Deathweaver"
+    },
+    {
+      "id": 551,
+      "slug": "terenas",
+      "name": "Terenas"
+    },
+    {
+      "id": 552,
+      "slug": "thunderhorn",
+      "name": "Thunderhorn"
+    },
+    {
+      "id": 553,
+      "slug": "turalyon",
+      "name": "Turalyon"
+    },
+    {
+      "id": 554,
+      "slug": "ravencrest",
+      "name": "Ravencrest"
+    },
+    {
+      "id": 556,
+      "slug": "shattered-hand",
+      "name": "Shattered Hand"
+    },
+    {
+      "id": 558,
+      "slug": "spinebreaker",
+      "name": "Spinebreaker"
+    },
+    {
+      "id": 560,
+      "slug": "stormscale",
+      "name": "Stormscale"
+    },
+    {
+      "id": 561,
+      "slug": "earthen-ring",
+      "name": "Earthen Ring"
+    },
+    {
+      "id": 562,
+      "slug": "alexstrasza",
+      "name": "Alexstrasza"
+    },
+    {
+      "id": 563,
+      "slug": "alleria",
+      "name": "Alleria"
+    },
+    {
+      "id": 564,
+      "slug": "antonidas",
+      "name": "Antonidas"
+    },
+    {
+      "id": 566,
+      "slug": "blackhand",
+      "name": "Blackhand"
+    },
+    {
+      "id": 567,
+      "slug": "gilneas",
+      "name": "Gilneas"
+    },
+    {
+      "id": 568,
+      "slug": "kargath",
+      "name": "Kargath"
+    },
+    {
+      "id": 569,
+      "slug": "khazgoroth",
+      "name": "Khaz'goroth"
+    },
+    {
+      "id": 571,
+      "slug": "madmortem",
+      "name": "Madmortem"
+    },
+    {
+      "id": 573,
+      "slug": "zuluhed",
+      "name": "Zuluhed"
+    },
+    {
+      "id": 574,
+      "slug": "nozdormu",
+      "name": "Nozdormu"
+    },
+    {
+      "id": 575,
+      "slug": "perenolde",
+      "name": "Perenolde"
+    },
+    {
+      "id": 577,
+      "slug": "aegwynn",
+      "name": "Aegwynn"
+    },
+    {
+      "id": 600,
+      "slug": "dun-morogh",
+      "name": "Dun Morogh"
+    },
+    {
+      "id": 604,
+      "slug": "thrall",
+      "name": "Thrall"
+    },
+    {
+      "id": 605,
+      "slug": "theradras",
+      "name": "Theradras"
+    },
+    {
+      "id": 606,
+      "slug": "genjuros",
+      "name": "Genjuros"
+    },
+    {
+      "id": 607,
+      "slug": "balnazzar",
+      "name": "Balnazzar"
+    },
+    {
+      "id": 609,
+      "slug": "wrathbringer",
+      "name": "Wrathbringer"
+    },
+    {
+      "id": 1090,
+      "slug": "talnivarr",
+      "name": "Talnivarr"
+    },
+    {
+      "id": 1091,
+      "slug": "emeriss",
+      "name": "Emeriss"
+    },
+    {
+      "id": 1092,
+      "slug": "drakthul",
+      "name": "Drak'thul"
+    },
+    {
+      "id": 1093,
+      "slug": "ahnqiraj",
+      "name": "Ahn'Qiraj"
+    },
+    {
+      "id": 1097,
+      "slug": "ysera",
+      "name": "Ysera"
+    },
+    {
+      "id": 1098,
+      "slug": "malygos",
+      "name": "Malygos"
+    },
+    {
+      "id": 1104,
+      "slug": "anetheron",
+      "name": "Anetheron"
+    },
+    {
+      "id": 1105,
+      "slug": "nazjatar",
+      "name": "Nazjatar"
+    },
+    {
+      "id": 1106,
+      "slug": "tichondrius",
+      "name": "Tichondrius"
+    },
+    {
+      "id": 1117,
+      "slug": "steamwheedle-cartel",
+      "name": "Steamwheedle Cartel"
+    },
+    {
+      "id": 1118,
+      "slug": "die-ewige-wacht",
+      "name": "Die ewige Wacht"
+    },
+    {
+      "id": 1119,
+      "slug": "die-todeskrallen",
+      "name": "Die Todeskrallen"
+    },
+    {
+      "id": 1121,
+      "slug": "die-arguswacht",
+      "name": "Die Arguswacht"
+    },
+    {
+      "id": 1122,
+      "slug": "uldaman",
+      "name": "Uldaman"
+    },
+    {
+      "id": 1127,
+      "slug": "confrérie-du-thorium",
+      "name": "Confrérie du Thorium"
+    },
+    {
+      "id": 507,
+      "slug": "dragonblight",
+      "name": "Dragonblight"
+    },
+    {
+      "id": 1306,
+      "slug": "tarren-mill",
+      "name": "Tarren Mill"
+    },
+    {
+      "id": 1381,
+      "slug": "cthun",
+      "name": "C'Thun"
+    },
+    {
+      "id": 1391,
+      "slug": "alonsus",
+      "name": "Alonsus"
+    },
+    {
+      "id": 1416,
+      "slug": "blades-edge",
+      "name": "Blade's Edge"
+    },
+    {
+      "id": 3070,
+      "slug": "zzzrdb-eu",
+      "name": "zzz_RDB EU"
+    },
+    {
+      "id": 505,
+      "slug": "doomhammer",
+      "name": "Doomhammer"
+    },
+    {
+      "id": 513,
+      "slug": "twilights-hammer",
+      "name": "Twilight's Hammer"
+    },
+    {
+      "id": 526,
+      "slug": "daggerspine",
+      "name": "Daggerspine"
+    },
+    {
+      "id": 546,
+      "slug": "sargeras",
+      "name": "Sargeras"
+    },
+    {
+      "id": 508,
+      "slug": "emerald-dream",
+      "name": "Emerald Dream"
+    },
+    {
+      "id": 623,
+      "slug": "quelthalas",
+      "name": "Quel'Thalas"
+    },
+    {
+      "id": 522,
+      "slug": "bloodscalp",
+      "name": "Bloodscalp"
+    },
+    {
+      "id": 523,
+      "slug": "burning-blade",
+      "name": "Burning Blade"
+    },
+    {
+      "id": 525,
+      "slug": "crushridge",
+      "name": "Crushridge"
+    },
+    {
+      "id": 528,
+      "slug": "dragonmaw",
+      "name": "Dragonmaw"
+    },
+    {
+      "id": 529,
+      "slug": "dunemaul",
+      "name": "Dunemaul"
+    },
+    {
+      "id": 531,
+      "slug": "dethecus",
+      "name": "Dethecus"
+    },
+    {
+      "id": 535,
+      "slug": "durotan",
+      "name": "Durotan"
+    },
+    {
+      "id": 500,
+      "slug": "aggramar",
+      "name": "Aggramar"
+    },
+    {
+      "id": 501,
+      "slug": "arathor",
+      "name": "Arathor"
+    },
+    {
+      "id": 503,
+      "slug": "azjolnerub",
+      "name": "Azjol-Nerub"
+    },
+    {
+      "id": 506,
+      "slug": "draenor",
+      "name": "Draenor"
+    },
+    {
+      "id": 510,
+      "slug": "voljin",
+      "name": "Vol'jin"
+    },
+    {
+      "id": 512,
+      "slug": "arakarahm",
+      "name": "Arak-arahm"
+    },
+    {
+      "id": 515,
+      "slug": "zenedar",
+      "name": "Zenedar"
+    },
+    {
+      "id": 518,
+      "slug": "agamaggan",
+      "name": "Agamaggan"
+    },
+    {
+      "id": 521,
+      "slug": "bladefist",
+      "name": "Bladefist"
+    },
+    {
+      "id": 1337,
+      "slug": "culte-de-la-rive-noire",
+      "name": "Culte de la Rive noire"
+    },
+    {
+      "id": 536,
+      "slug": "argent-dawn",
+      "name": "Argent Dawn"
+    },
+    {
+      "id": 610,
+      "slug": "onyxia",
+      "name": "Onyxia"
+    },
+    {
+      "id": 612,
+      "slug": "nefarian",
+      "name": "Nefarian"
+    },
+    {
+      "id": 614,
+      "slug": "das-syndikat",
+      "name": "Das Syndikat"
+    },
+    {
+      "id": 621,
+      "slug": "laughing-skull",
+      "name": "Laughing Skull"
+    },
+    {
+      "id": 624,
+      "slug": "neptulon",
+      "name": "Neptulon"
+    },
+    {
+      "id": 625,
+      "slug": "twisting-nether",
+      "name": "Twisting Nether"
+    },
+    {
+      "id": 627,
+      "slug": "the-maelstrom",
+      "name": "The Maelstrom"
+    },
+    {
+      "id": 630,
+      "slug": "bloodfeather",
+      "name": "Bloodfeather"
+    },
+    {
+      "id": 632,
+      "slug": "frostwhisper",
+      "name": "Frostwhisper"
+    },
+    {
+      "id": 633,
+      "slug": "korgall",
+      "name": "Kor'gall"
+    },
+    {
+      "id": 635,
+      "slug": "defias-brotherhood",
+      "name": "Defias Brotherhood"
+    },
+    {
+      "id": 642,
+      "slug": "rashgarroth",
+      "name": "Rashgarroth"
+    },
+    {
+      "id": 647,
+      "slug": "les-sentinelles",
+      "name": "Les Sentinelles"
+    },
+    {
+      "id": 1456,
+      "slug": "eu3a-account-realm",
+      "name": "EU3A Account Realm"
+    },
+    {
+      "id": 1460,
+      "slug": "eu4a-account-realm",
+      "name": "EU4A Account Realm"
+    },
+    {
+      "id": 1331,
+      "slug": "suramar",
+      "name": "Suramar"
+    },
+    {
+      "id": 1401,
+      "slug": "garrosh",
+      "name": "Garrosh"
+    },
+    {
+      "id": 1406,
+      "slug": "arygos",
+      "name": "Arygos"
+    },
+    {
+      "id": 1407,
+      "slug": "teldrassil",
+      "name": "Teldrassil"
+    },
+    {
+      "id": 1409,
+      "slug": "lordaeron",
+      "name": "Lordaeron"
+    },
+    {
+      "id": 1413,
+      "slug": "aggra-português",
+      "name": "Aggra (Português)"
+    },
+    {
+      "id": 1415,
+      "slug": "terokkar",
+      "name": "Terokkar"
+    },
+    {
+      "id": 565,
+      "slug": "baelgun",
+      "name": "Baelgun"
+    },
+    {
+      "id": 545,
+      "slug": "chogall",
+      "name": "Cho'gall"
+    },
+    {
+      "id": 618,
+      "slug": "nordrassil",
+      "name": "Nordrassil"
+    },
+    {
+      "id": 628,
+      "slug": "sylvanas",
+      "name": "Sylvanas"
+    },
+    {
+      "id": 641,
+      "slug": "drekthar",
+      "name": "Drek'Thar"
+    },
+    {
+      "id": 1588,
+      "slug": "ghostlands",
+      "name": "Ghostlands"
+    },
+    {
+      "id": 1595,
+      "slug": "the-shatar",
+      "name": "The Sha'tar"
+    },
+    {
+      "id": 1620,
+      "slug": "chants-éternels",
+      "name": "Chants éternels"
+    },
+    {
+      "id": 1621,
+      "slug": "marécage-de-zangar",
+      "name": "Marécage de Zangar"
+    },
+    {
+      "id": 1624,
+      "slug": "naxxramas",
+      "name": "Naxxramas"
+    },
+    {
+      "id": 578,
+      "slug": "arthas",
+      "name": "Arthas"
+    },
+    {
+      "id": 579,
+      "slug": "azshara",
+      "name": "Azshara"
+    },
+    {
+      "id": 580,
+      "slug": "blackmoore",
+      "name": "Blackmoore"
+    },
+    {
+      "id": 582,
+      "slug": "destromath",
+      "name": "Destromath"
+    },
+    {
+      "id": 583,
+      "slug": "eredar",
+      "name": "Eredar"
+    },
+    {
+      "id": 585,
+      "slug": "frostwolf",
+      "name": "Frostwolf"
+    },
+    {
+      "id": 589,
+      "slug": "kiljaeden",
+      "name": "Kil'jaeden"
+    },
+    {
+      "id": 590,
+      "slug": "malganis",
+      "name": "Mal'Ganis"
+    },
+    {
+      "id": 592,
+      "slug": "zirkel-des-cenarius",
+      "name": "Zirkel des Cenarius"
+    },
+    {
+      "id": 629,
+      "slug": "vashj",
+      "name": "Vashj"
+    },
+    {
+      "id": 542,
+      "slug": "hyjal",
+      "name": "Hyjal"
+    },
+    {
+      "id": 1323,
+      "slug": "ulduar",
+      "name": "Ulduar"
+    },
+    {
+      "id": 1615,
+      "slug": "howling-fjord",
+      "name": "Howling Fjord"
+    },
+    {
+      "id": 519,
+      "slug": "alakir",
+      "name": "Al'Akir"
+    },
+    {
+      "id": 559,
+      "slug": "stormreaver",
+      "name": "Stormreaver"
+    },
+    {
+      "id": 622,
+      "slug": "magtheridon",
+      "name": "Magtheridon"
+    },
+    {
+      "id": 637,
+      "slug": "lightnings-blade",
+      "name": "Lightning's Blade"
+    },
+    {
+      "id": 537,
+      "slug": "kirin-tor",
+      "name": "Kirin Tor"
+    },
+    {
+      "id": 539,
+      "slug": "archimonde",
+      "name": "Archimonde"
+    },
+    {
+      "id": 540,
+      "slug": "elune",
+      "name": "Elune"
+    },
+    {
+      "id": 1307,
+      "slug": "chamber-of-aspects",
+      "name": "Chamber of Aspects"
+    },
+    {
+      "id": 1308,
+      "slug": "ravenholdt",
+      "name": "Ravenholdt"
+    },
+    {
+      "id": 1309,
+      "slug": "pozzo-delleternità",
+      "name": "Pozzo dell'Eternità"
+    },
+    {
+      "id": 1310,
+      "slug": "eonar",
+      "name": "Eonar"
+    },
+    {
+      "id": 1298,
+      "slug": "veknilash",
+      "name": "Vek'nilash"
+    },
+    {
+      "id": 1300,
+      "slug": "frostmane",
+      "name": "Frostmane"
+    },
+    {
+      "id": 504,
+      "slug": "bloodhoof",
+      "name": "Bloodhoof"
+    },
+    {
+      "id": 543,
+      "slug": "kaelthas",
+      "name": "Kael'thas"
+    },
+    {
+      "id": 638,
+      "slug": "haomarush",
+      "name": "Haomarush"
+    },
+    {
+      "id": 640,
+      "slug": "khaz-modan",
+      "name": "Khaz Modan"
+    },
+    {
+      "id": 645,
+      "slug": "varimathras",
+      "name": "Varimathras"
+    },
+    {
+      "id": 646,
+      "slug": "hakkar",
+      "name": "Hakkar"
+    },
+    {
+      "id": 581,
+      "slug": "blackrock",
+      "name": "Blackrock"
+    },
+    {
+      "id": 588,
+      "slug": "kelthuzad",
+      "name": "Kel'Thuzad"
+    },
+    {
+      "id": 591,
+      "slug": "mannoroth",
+      "name": "Mannoroth"
+    },
+    {
+      "id": 593,
+      "slug": "proudmoore",
+      "name": "Proudmoore"
+    },
+    {
+      "id": 509,
+      "slug": "garona",
+      "name": "Garona"
+    },
+    {
+      "id": 1317,
+      "slug": "darkmoon-faire",
+      "name": "Darkmoon Faire"
+    },
+    {
+      "id": 1318,
+      "slug": "veklor",
+      "name": "Vek'lor"
+    },
+    {
+      "id": 1319,
+      "slug": "mugthol",
+      "name": "Mug'thol"
+    },
+    {
+      "id": 1320,
+      "slug": "taerar",
+      "name": "Taerar"
+    },
+    {
+      "id": 1321,
+      "slug": "dalvengyr",
+      "name": "Dalvengyr"
+    },
+    {
+      "id": 1322,
+      "slug": "rajaxx",
+      "name": "Rajaxx"
+    },
+    {
+      "id": 1324,
+      "slug": "malorne",
+      "name": "Malorne"
+    },
+    {
+      "id": 1326,
+      "slug": "der-abyssische-rat",
+      "name": "Der abyssische Rat"
+    },
+    {
+      "id": 1327,
+      "slug": "der-mithrilorden",
+      "name": "Der Mithrilorden"
+    },
+    {
+      "id": 1330,
+      "slug": "ambossar",
+      "name": "Ambossar"
+    },
+    {
+      "id": 1332,
+      "slug": "krasus",
+      "name": "Krasus"
+    },
+    {
+      "id": 1334,
+      "slug": "arathi",
+      "name": "Arathi"
+    },
+    {
+      "id": 1335,
+      "slug": "ysondre",
+      "name": "Ysondre"
+    },
+    {
+      "id": 1336,
+      "slug": "eldrethalas",
+      "name": "Eldre'Thalas"
+    },
+    {
+      "id": 1311,
+      "slug": "kilrogg",
+      "name": "Kilrogg"
+    },
+    {
+      "id": 1313,
+      "slug": "wildhammer",
+      "name": "Wildhammer"
+    },
+    {
+      "id": 1314,
+      "slug": "saurfang",
+      "name": "Saurfang"
+    },
+    {
+      "id": 1316,
+      "slug": "nemesis",
+      "name": "Nemesis"
+    },
+    {
+      "id": 1623,
+      "slug": "fordragon",
+      "name": "Fordragon"
+    },
+    {
+      "id": 1625,
+      "slug": "borean-tundra",
+      "name": "Borean Tundra"
+    },
+    {
+      "id": 1626,
+      "slug": "les-clairvoyants",
+      "name": "Les Clairvoyants"
+    },
+    {
+      "id": 557,
+      "slug": "skullcrusher",
+      "name": "Skullcrusher"
+    },
+    {
+      "id": 570,
+      "slug": "lothar",
+      "name": "Lothar"
+    },
+    {
+      "id": 533,
+      "slug": "sinstralis",
+      "name": "Sinstralis"
+    },
+    {
+      "id": 615,
+      "slug": "terrordar",
+      "name": "Terrordar"
+    },
+    {
+      "id": 1096,
+      "slug": "scarshield-legion",
+      "name": "Scarshield Legion"
+    },
+    {
+      "id": 1082,
+      "slug": "kul-tiras",
+      "name": "Kul Tiras"
+    },
+    {
+      "id": 550,
+      "slug": "stormrage",
+      "name": "Stormrage"
+    },
+    {
+      "id": 544,
+      "slug": "nerzhul",
+      "name": "Ner'zhul"
+    },
+    {
+      "id": 1378,
+      "slug": "dun-modr",
+      "name": "Dun Modr"
+    },
+    {
+      "id": 1379,
+      "slug": "zuljin",
+      "name": "Zul'jin"
+    },
+    {
+      "id": 1380,
+      "slug": "uldum",
+      "name": "Uldum"
+    },
+    {
+      "id": 1382,
+      "slug": "sanguino",
+      "name": "Sanguino"
+    },
+    {
+      "id": 1383,
+      "slug": "shendralar",
+      "name": "Shen'dralar"
+    },
+    {
+      "id": 1384,
+      "slug": "tyrande",
+      "name": "Tyrande"
+    },
+    {
+      "id": 1385,
+      "slug": "exodar",
+      "name": "Exodar"
+    },
+    {
+      "id": 1387,
+      "slug": "los-errantes",
+      "name": "Los Errantes"
+    },
+    {
+      "id": 1388,
+      "slug": "lightbringer",
+      "name": "Lightbringer"
+    },
+    {
+      "id": 1389,
+      "slug": "darkspear",
+      "name": "Darkspear"
+    },
+    {
+      "id": 1392,
+      "slug": "burning-steppes",
+      "name": "Burning Steppes"
+    },
+    {
+      "id": 1393,
+      "slug": "bronze-dragonflight",
+      "name": "Bronze Dragonflight"
+    },
+    {
+      "id": 1394,
+      "slug": "anachronos",
+      "name": "Anachronos"
+    },
+    {
+      "id": 1395,
+      "slug": "colinas-pardas",
+      "name": "Colinas Pardas"
+    },
+    {
+      "id": 1400,
+      "slug": "ungoro",
+      "name": "Un'Goro"
+    },
+    {
+      "id": 541,
+      "slug": "illidan",
+      "name": "Illidan"
+    },
+    {
+      "id": 1099,
+      "slug": "rexxar",
+      "name": "Rexxar"
+    },
+    {
+      "id": 1611,
+      "slug": "festung-der-stürme",
+      "name": "Festung der Stürme"
+    },
+    {
+      "id": 587,
+      "slug": "guldan",
+      "name": "Gul'dan"
+    },
+    {
+      "id": 502,
+      "slug": "aszune",
+      "name": "Aszune"
+    },
+    {
+      "id": 1312,
+      "slug": "aerie-peak",
+      "name": "Aerie Peak"
+    },
+    {
+      "id": 639,
+      "slug": "xavius",
+      "name": "Xavius"
+    },
+    {
+      "id": 643,
+      "slug": "throkferoth",
+      "name": "Throk'Feroth"
+    },
+    {
+      "id": 1386,
+      "slug": "minahonda",
+      "name": "Minahonda"
+    },
+    {
+      "id": 1328,
+      "slug": "tirion",
+      "name": "Tirion"
+    },
+    {
+      "id": 602,
+      "slug": "senjin",
+      "name": "Sen'jin"
+    },
+    {
+      "id": 1088,
+      "slug": "trollbane",
+      "name": "Trollbane"
+    },
+    {
+      "id": 601,
+      "slug": "amanthul",
+      "name": "Aman'Thul"
+    },
+    {
+      "id": 1448,
+      "slug": "eu1a-account-realm",
+      "name": "EU1A Account Realm"
+    },
+    {
+      "id": 1450,
+      "slug": "eu1b-account-realm",
+      "name": "EU1B Account Realm"
+    },
+    {
+      "id": 1464,
+      "slug": "eu5a-account-realm",
+      "name": "EU5A Account Realm"
+    },
+    {
+      "id": 1470,
+      "slug": "eu6b-account-realm",
+      "name": "EU6B Account Realm"
+    },
+    {
+      "id": 1081,
+      "slug": "bronzebeard",
+      "name": "Bronzebeard"
+    },
+    {
+      "id": 1618,
+      "slug": "die-aldor",
+      "name": "Die Aldor"
+    },
+    {
+      "id": 1622,
+      "slug": "temple-noir",
+      "name": "Temple noir"
+    },
+    {
+      "id": 1468,
+      "slug": "eu6a-account-realm",
+      "name": "EU6A Account Realm"
+    },
+    {
+      "id": 1925,
+      "slug": "eversong",
+      "name": "Eversong"
+    },
+    {
+      "id": 1926,
+      "slug": "thermaplugg",
+      "name": "Thermaplugg"
+    },
+    {
+      "id": 1927,
+      "slug": "grom",
+      "name": "Grom"
+    },
+    {
+      "id": 1928,
+      "slug": "goldrinn",
+      "name": "Goldrinn"
+    },
+    {
+      "id": 1929,
+      "slug": "blackscar",
+      "name": "Blackscar"
+    },
+    {
+      "id": 516,
+      "slug": "forscherliga",
+      "name": "Forscherliga"
+    },
+    {
+      "id": 1123,
+      "slug": "eitrigg",
+      "name": "Eitrigg"
+    },
+    {
+      "id": 1405,
+      "slug": "todeswache",
+      "name": "Todeswache"
+    },
+    {
+      "id": 538,
+      "slug": "dalaran",
+      "name": "Dalaran"
+    },
+    {
+      "id": 584,
+      "slug": "frostmourne",
+      "name": "Frostmourne"
+    },
+    {
+      "id": 572,
+      "slug": "malfurion",
+      "name": "Malfurion"
+    },
+    {
+      "id": 616,
+      "slug": "kragjin",
+      "name": "Krag'jin"
+    },
+    {
+      "id": 586,
+      "slug": "gorgonnash",
+      "name": "Gorgonnash"
+    },
+    {
+      "id": 524,
+      "slug": "burning-legion",
+      "name": "Burning Legion"
+    },
+    {
+      "id": 1417,
+      "slug": "azuremyst",
+      "name": "Azuremyst"
+    },
+    {
+      "id": 608,
+      "slug": "anubarak",
+      "name": "Anub'arak"
+    },
+    {
+      "id": 611,
+      "slug": "nerathor",
+      "name": "Nera'thor"
+    },
+    {
+      "id": 613,
+      "slug": "kult-der-verdammten",
+      "name": "Kult der Verdammten"
+    },
+    {
+      "id": 617,
+      "slug": "der-rat-von-dalaran",
+      "name": "Der Rat von Dalaran"
+    },
+    {
+      "id": 619,
+      "slug": "hellscream",
+      "name": "Hellscream"
+    },
+    {
+      "id": 626,
+      "slug": "ragnaros",
+      "name": "Ragnaros"
+    },
+    {
+      "id": 631,
+      "slug": "darksorrow",
+      "name": "Darksorrow"
+    },
+    {
+      "id": 636,
+      "slug": "the-venture-co",
+      "name": "The Venture Co"
+    },
+    {
+      "id": 1303,
+      "slug": "grim-batol",
+      "name": "Grim Batol"
+    },
+    {
+      "id": 1304,
+      "slug": "jaedenar",
+      "name": "Jaedenar"
+    },
+    {
+      "id": 1305,
+      "slug": "kazzak",
+      "name": "Kazzak"
+    },
+    {
+      "id": 1085,
+      "slug": "moonglade",
+      "name": "Moonglade"
+    },
+    {
+      "id": 644,
+      "slug": "conseil-des-ombres",
+      "name": "Conseil des Ombres"
+    },
+    {
+      "id": 594,
+      "slug": "nathrezim",
+      "name": "Nathrezim"
+    },
+    {
+      "id": 1619,
+      "slug": "das-konsortium",
+      "name": "Das Konsortium"
+    },
+    {
+      "id": 1299,
+      "slug": "boulderfist",
+      "name": "Boulderfist"
+    },
+    {
+      "id": 1629,
+      "slug": "eu7abgru",
+      "name": "EU7A-BG-RU"
+    },
+    {
+      "id": 527,
+      "slug": "deathwing",
+      "name": "Deathwing"
+    },
+    {
+      "id": 1466,
+      "slug": "eu5b-account-realm",
+      "name": "EU5B Account Realm"
+    },
+    {
+      "id": 1404,
+      "slug": "area-52",
+      "name": "Area 52"
+    },
+    {
+      "id": 1333,
+      "slug": "die-nachtwache",
+      "name": "Die Nachtwache"
+    },
+    {
+      "id": 3061,
+      "slug": "eu7a1inst",
+      "name": "EU7A1-INST"
+    },
+    {
+      "id": 3102,
+      "slug": "eu7b2inst",
+      "name": "EU7B2-INST"
+    },
+    {
+      "id": 3103,
+      "slug": "eu4b2inst",
+      "name": "EU4B2-INST"
+    },
+    {
+      "id": 3104,
+      "slug": "eu1a2inst",
+      "name": "EU1A2-INST"
+    },
+    {
+      "id": 3105,
+      "slug": "eu1b2inst",
+      "name": "EU1B2-INST"
+    },
+    {
+      "id": 3106,
+      "slug": "eu2a2inst",
+      "name": "EU2A2-INST"
+    },
+    {
+      "id": 3107,
+      "slug": "eu2b2inst",
+      "name": "EU2B2-INST"
+    },
+    {
+      "id": 3108,
+      "slug": "eu3a2inst",
+      "name": "EU3A2-INST"
+    },
+    {
+      "id": 3109,
+      "slug": "eu4a2inst",
+      "name": "EU4A2-INST"
+    },
+    {
+      "id": 3110,
+      "slug": "eu5a2inst",
+      "name": "EU5A2-INST"
+    },
+    {
+      "id": 3111,
+      "slug": "eu5b2inst",
+      "name": "EU5B2-INST"
+    },
+    {
+      "id": 3112,
+      "slug": "eu6a2inst",
+      "name": "EU6A2-INST"
+    },
+    {
+      "id": 3113,
+      "slug": "eu6b2inst",
+      "name": "EU6B2-INST"
+    },
+    {
+      "id": 3114,
+      "slug": "eu3b2inst",
+      "name": "EU3B2-INST"
+    },
+    {
+      "id": 1924,
+      "slug": "booty-bay",
+      "name": "Booty Bay"
+    },
+    {
+      "id": 1603,
+      "slug": "lich-king",
+      "name": "Lich King"
+    },
+    {
+      "id": 1587,
+      "slug": "hellfire",
+      "name": "Hellfire"
+    },
+    {
+      "id": 1301,
+      "slug": "outland",
+      "name": "Outland"
+    },
+    {
+      "id": 1610,
+      "slug": "greymane",
+      "name": "Greymane"
+    },
+    {
+      "id": 517,
+      "slug": "medivh",
+      "name": "Medivh"
+    },
+    {
+      "id": 576,
+      "slug": "die-silberne-hand",
+      "name": "Die Silberne Hand"
+    },
+    {
+      "id": 3199,
+      "slug": "rdb-eu",
+      "name": "RDB EU"
+    },
+    {
+      "id": 1589,
+      "slug": "nagrand",
+      "name": "Nagrand"
+    },
+    {
+      "id": 3090,
+      "slug": "eu-arena-pass-csbg",
+      "name": "EU Arena Pass CSBG"
+    },
+    {
+      "id": 3092,
+      "slug": "eu-arena-pass-csbg-2",
+      "name": "EU Arena Pass CSBG 2"
+    },
+    {
+      "id": 1631,
+      "slug": "eu7b1inst",
+      "name": "EU7B1-INST"
+    },
+    {
+      "id": 1463,
+      "slug": "eu4b1inst",
+      "name": "EU4B1-INST"
+    },
+    {
+      "id": 1449,
+      "slug": "eu1a1inst",
+      "name": "EU1A1-INST"
+    },
+    {
+      "id": 1451,
+      "slug": "eu1b1inst",
+      "name": "EU1B1-INST"
+    },
+    {
+      "id": 1453,
+      "slug": "eu2a1inst",
+      "name": "EU2A1-INST"
+    },
+    {
+      "id": 1455,
+      "slug": "eu2b1inst",
+      "name": "EU2B1-INST"
+    },
+    {
+      "id": 1457,
+      "slug": "eu3a1inst",
+      "name": "EU3A1-INST"
+    },
+    {
+      "id": 1461,
+      "slug": "eu4a1inst",
+      "name": "EU4A1-INST"
+    },
+    {
+      "id": 1465,
+      "slug": "eu5a1inst",
+      "name": "EU5A1-INST"
+    },
+    {
+      "id": 1467,
+      "slug": "eu5b1inst",
+      "name": "EU5B1-INST"
+    },
+    {
+      "id": 1469,
+      "slug": "eu6a1inst",
+      "name": "EU6A1-INST"
+    },
+    {
+      "id": 1471,
+      "slug": "eu6b1inst",
+      "name": "EU6B1-INST"
+    },
+    {
+      "id": 1459,
+      "slug": "eu3b1inst",
+      "name": "EU3B1-INST"
+    },
+    {
+      "id": 3151,
+      "slug": "eu7a2inst",
+      "name": "EU7A2-INST"
+    },
+    {
+      "id": 1922,
+      "slug": "azuregos",
+      "name": "Azuregos"
+    },
+    {
+      "id": 1923,
+      "slug": "ashenvale",
+      "name": "Ashenvale"
+    },
+    {
+      "id": 1452,
+      "slug": "eu2a-account-realm",
+      "name": "EU2A Account Realm"
+    },
+    {
+      "id": 1454,
+      "slug": "eu2b-account-realm",
+      "name": "EU2B Account Realm"
+    },
+    {
+      "id": 1458,
+      "slug": "eu3b-account-realm",
+      "name": "EU3B Account Realm"
+    },
+    {
+      "id": 1462,
+      "slug": "eu4b-account-realm",
+      "name": "EU4B Account Realm"
+    },
+    {
+      "id": 1408,
+      "slug": "norgannon",
+      "name": "Norgannon"
+    },
+    {
+      "id": 3767,
+      "slug": "eu4a3inst",
+      "name": "EU4A3-INST"
+    },
+    {
+      "id": 3768,
+      "slug": "eu4b3inst",
+      "name": "EU4B3-INST"
+    },
+    {
+      "id": 3769,
+      "slug": "eu5a3inst",
+      "name": "EU5A3-INST"
+    },
+    {
+      "id": 3770,
+      "slug": "eu5b3inst",
+      "name": "EU5B3-INST"
+    },
+    {
+      "id": 3771,
+      "slug": "eu6a3inst",
+      "name": "EU6A3-INST"
+    },
+    {
+      "id": 3772,
+      "slug": "eu6b3inst",
+      "name": "EU6B3-INST"
+    },
+    {
+      "id": 3773,
+      "slug": "eu7a3inst",
+      "name": "EU7A3-INST"
+    },
+    {
+      "id": 3774,
+      "slug": "eu7b3inst",
+      "name": "EU7B3-INST"
+    },
+    {
+      "id": 3889,
+      "slug": "eu4a4inst",
+      "name": "EU4A4-INST"
+    },
+    {
+      "id": 3890,
+      "slug": "eu4b4inst",
+      "name": "EU4B4-INST"
+    },
+    {
+      "id": 3891,
+      "slug": "eu5a4inst",
+      "name": "EU5A4-INST"
+    },
+    {
+      "id": 3892,
+      "slug": "eu5b4inst",
+      "name": "EU5B4-INST"
+    },
+    {
+      "id": 3893,
+      "slug": "eu6a4inst",
+      "name": "EU6A4-INST"
+    },
+    {
+      "id": 3894,
+      "slug": "eu6b4inst",
+      "name": "EU6B4-INST"
+    },
+    {
+      "id": 3895,
+      "slug": "eu7a4inst",
+      "name": "EU7A4-INST"
+    },
+    {
+      "id": 3896,
+      "slug": "eu7b4inst",
+      "name": "EU7B4-INST"
+    },
+    {
+      "id": 4233,
+      "slug": "eu4a1instbfa",
+      "name": "EU4A1-INST-BFA"
+    },
+    {
+      "id": 4234,
+      "slug": "eu4a2instbfa",
+      "name": "EU4A2-INST-BFA"
+    },
+    {
+      "id": 4235,
+      "slug": "eu4a3instbfa",
+      "name": "EU4A3-INST-BFA"
+    },
+    {
+      "id": 4236,
+      "slug": "eu4b1instbfa",
+      "name": "EU4B1-INST-BFA"
+    },
+    {
+      "id": 4237,
+      "slug": "eu4b2instbfa",
+      "name": "EU4B2-INST-BFA"
+    },
+    {
+      "id": 4238,
+      "slug": "eu4b3instbfa",
+      "name": "EU4B3-INST-BFA"
+    },
+    {
+      "id": 4239,
+      "slug": "eu5a1instbfa",
+      "name": "EU5A1-INST-BFA"
+    },
+    {
+      "id": 4240,
+      "slug": "eu5a2instbfa",
+      "name": "EU5A2-INST-BFA"
+    },
+    {
+      "id": 4241,
+      "slug": "eu5a3instbfa",
+      "name": "EU5A3-INST-BFA"
+    },
+    {
+      "id": 4242,
+      "slug": "eu5b1instbfa",
+      "name": "EU5B1-INST-BFA"
+    },
+    {
+      "id": 4243,
+      "slug": "eu5b2instbfa",
+      "name": "EU5B2-INST-BFA"
+    },
+    {
+      "id": 4244,
+      "slug": "eu5b3instbfa",
+      "name": "EU5B3-INST-BFA"
+    },
+    {
+      "id": 4245,
+      "slug": "eu6a1instbfa",
+      "name": "EU6A1-INST-BFA"
+    },
+    {
+      "id": 4246,
+      "slug": "eu6a2instbfa",
+      "name": "EU6A2-INST-BFA"
+    },
+    {
+      "id": 4247,
+      "slug": "eu6a3instbfa",
+      "name": "EU6A3-INST-BFA"
+    },
+    {
+      "id": 4248,
+      "slug": "eu6b1instbfa",
+      "name": "EU6B1-INST-BFA"
+    },
+    {
+      "id": 4249,
+      "slug": "eu6b2instbfa",
+      "name": "EU6B2-INST-BFA"
+    },
+    {
+      "id": 4250,
+      "slug": "eu6b3instbfa",
+      "name": "EU6B3-INST-BFA"
+    },
+    {
+      "id": 4251,
+      "slug": "eu7a1instbfa",
+      "name": "EU7A1-INST-BFA"
+    },
+    {
+      "id": 4252,
+      "slug": "eu7a2instbfa",
+      "name": "EU7A2-INST-BFA"
+    },
+    {
+      "id": 4253,
+      "slug": "eu7a3instbfa",
+      "name": "EU7A3-INST-BFA"
+    },
+    {
+      "id": 4254,
+      "slug": "eu7b1instbfa",
+      "name": "EU7B1-INST-BFA"
+    },
+    {
+      "id": 4255,
+      "slug": "eu7b2instbfa",
+      "name": "EU7B2-INST-BFA"
+    },
+    {
+      "id": 4256,
+      "slug": "eu7b3instbfa",
+      "name": "EU7B3-INST-BFA"
+    },
+    {
+      "id": 6510,
+      "slug": "eu4-auxiliary-70",
+      "name": "EU4 Auxiliary 70"
+    },
+    {
+      "id": 5048,
+      "slug": "eu4a4instsl",
+      "name": "EU4A4-INST-SL"
+    },
+    {
+      "id": 5049,
+      "slug": "eu5a4instsl",
+      "name": "EU5A4-INST-SL"
+    },
+    {
+      "id": 5050,
+      "slug": "eu6a4instsl",
+      "name": "EU6A4-INST-SL"
+    },
+    {
+      "id": 5051,
+      "slug": "eu7a4instsl",
+      "name": "EU7A4-INST-SL"
+    },
+    {
+      "id": 5052,
+      "slug": "eu4b4instsl",
+      "name": "EU4B4-INST-SL"
+    },
+    {
+      "id": 5053,
+      "slug": "eu5b4instsl",
+      "name": "EU5B4-INST-SL"
+    },
+    {
+      "id": 5054,
+      "slug": "eu6b4instsl",
+      "name": "EU6B4-INST-SL"
+    },
+    {
+      "id": 5055,
+      "slug": "eu7b4instsl",
+      "name": "EU7B4-INST-SL"
+    },
+    {
+      "id": 6720,
+      "slug": "eu4-100-partner",
+      "name": "EU4 100 Partner"
+    },
+    {
+      "id": 6910,
+      "slug": "eu5-auxiliary-70",
+      "name": "EU5 Auxiliary 70"
+    },
+    {
+      "id": 6911,
+      "slug": "eu6-auxiliary-70",
+      "name": "EU6 Auxiliary 70"
+    },
+    {
+      "id": 6912,
+      "slug": "eu7-auxiliary-70",
+      "name": "EU7 Auxiliary 70"
+    }
+  ],
+  "connected_realms": [
+    {
+      "id": 509,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 509,
+          "slug": "garona",
+          "name": "Garona",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 546,
+          "slug": "sargeras",
+          "name": "Sargeras",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 544,
+          "slug": "nerzhul",
+          "name": "Ner'zhul",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 510,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 510,
+          "slug": "voljin",
+          "name": "Vol'jin",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1620,
+          "slug": "chants-éternels",
+          "name": "Chants éternels",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 512,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 512,
+          "slug": "arakarahm",
+          "name": "Arak-arahm",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 642,
+          "slug": "rashgarroth",
+          "name": "Rashgarroth",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 543,
+          "slug": "kaelthas",
+          "name": "Kael'thas",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 643,
+          "slug": "throkferoth",
+          "name": "Throk'Feroth",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 531,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 531,
+          "slug": "dethecus",
+          "name": "Dethecus",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 605,
+          "slug": "theradras",
+          "name": "Theradras",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 610,
+          "slug": "onyxia",
+          "name": "Onyxia",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1319,
+          "slug": "mugthol",
+          "name": "Mug'thol",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 615,
+          "slug": "terrordar",
+          "name": "Terrordar",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 570,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 570,
+          "slug": "lothar",
+          "name": "Lothar",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 565,
+          "slug": "baelgun",
+          "name": "Baelgun",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 579,
+          "slug": "azshara",
+          "name": "Azshara",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 616,
+          "slug": "kragjin",
+          "name": "Krag'jin",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 578,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 578,
+          "slug": "arthas",
+          "name": "Arthas",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1613,
+          "slug": "blutkessel",
+          "name": "Blutkessel",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 609,
+          "slug": "wrathbringer",
+          "name": "Wrathbringer",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 535,
+          "slug": "durotan",
+          "name": "Durotan",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 588,
+          "slug": "kelthuzad",
+          "name": "Kel'Thuzad",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1318,
+          "slug": "veklor",
+          "name": "Vek'lor",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1328,
+          "slug": "tirion",
+          "name": "Tirion",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 580,
+      "has_queue": false,
+      "status": "UP",
+      "population": "FULL",
+      "members": [
+        {
+          "id": 580,
+          "slug": "blackmoore",
+          "name": "Blackmoore",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1106,
+          "slug": "tichondrius",
+          "name": "Tichondrius",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1409,
+          "slug": "lordaeron",
+          "name": "Lordaeron",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 581,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 581,
+          "slug": "blackrock",
+          "name": "Blackrock",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 604,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 604,
+          "slug": "thrall",
+          "name": "Thrall",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 568,
+          "slug": "kargath",
+          "name": "Kargath",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1330,
+          "slug": "ambossar",
+          "name": "Ambossar",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 612,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 612,
+          "slug": "nefarian",
+          "name": "Nefarian",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 567,
+          "slug": "gilneas",
+          "name": "Gilneas",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 582,
+          "slug": "destromath",
+          "name": "Destromath",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1323,
+          "slug": "ulduar",
+          "name": "Ulduar",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 591,
+          "slug": "mannoroth",
+          "name": "Mannoroth",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 586,
+          "slug": "gorgonnash",
+          "name": "Gorgonnash",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 611,
+          "slug": "nerathor",
+          "name": "Nera'thor",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 633,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 633,
+          "slug": "korgall",
+          "name": "Kor'gall",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1087,
+          "slug": "executus",
+          "name": "Executus",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 556,
+          "slug": "shattered-hand",
+          "name": "Shattered Hand",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 630,
+          "slug": "bloodfeather",
+          "name": "Bloodfeather",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1415,
+          "slug": "terokkar",
+          "name": "Terokkar",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1314,
+          "slug": "saurfang",
+          "name": "Saurfang",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1389,
+          "slug": "darkspear",
+          "name": "Darkspear",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1392,
+          "slug": "burning-steppes",
+          "name": "Burning Steppes",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1080,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1080,
+          "slug": "khadgar",
+          "name": "Khadgar",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 504,
+          "slug": "bloodhoof",
+          "name": "Bloodhoof",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1082,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1082,
+          "slug": "kul-tiras",
+          "name": "Kul Tiras",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1391,
+          "slug": "alonsus",
+          "name": "Alonsus",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1394,
+          "slug": "anachronos",
+          "name": "Anachronos",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1084,
+      "has_queue": false,
+      "status": "UP",
+      "population": "FULL",
+      "members": [
+        {
+          "id": 1084,
+          "slug": "dentarg",
+          "name": "Dentarg",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1306,
+          "slug": "tarren-mill",
+          "name": "Tarren Mill",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1085,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1085,
+          "slug": "moonglade",
+          "name": "Moonglade",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 1117,
+          "slug": "steamwheedle-cartel",
+          "name": "Steamwheedle Cartel",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 1595,
+          "slug": "the-shatar",
+          "name": "The Sha'tar",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1091,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1091,
+          "slug": "emeriss",
+          "name": "Emeriss",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 513,
+          "slug": "twilights-hammer",
+          "name": "Twilight's Hammer",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 522,
+          "slug": "bloodscalp",
+          "name": "Bloodscalp",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 525,
+          "slug": "crushridge",
+          "name": "Crushridge",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 518,
+          "slug": "agamaggan",
+          "name": "Agamaggan",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 646,
+          "slug": "hakkar",
+          "name": "Hakkar",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1092,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 1092,
+          "slug": "drakthul",
+          "name": "Drak'thul",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 523,
+          "slug": "burning-blade",
+          "name": "Burning Blade",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1096,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 1096,
+          "slug": "scarshield-legion",
+          "name": "Scarshield Legion",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 1606,
+          "slug": "sporeggar",
+          "name": "Sporeggar",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 561,
+          "slug": "earthen-ring",
+          "name": "Earthen Ring",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 635,
+          "slug": "defias-brotherhood",
+          "name": "Defias Brotherhood",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 1308,
+          "slug": "ravenholdt",
+          "name": "Ravenholdt",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 1317,
+          "slug": "darkmoon-faire",
+          "name": "Darkmoon Faire",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 636,
+          "slug": "the-venture-co",
+          "name": "The Venture Co",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1097,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1097,
+          "slug": "ysera",
+          "name": "Ysera",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1324,
+          "slug": "malorne",
+          "name": "Malorne",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1098,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 1098,
+          "slug": "malygos",
+          "name": "Malygos",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 572,
+          "slug": "malfurion",
+          "name": "Malfurion",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1099,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 1099,
+          "slug": "rexxar",
+          "name": "Rexxar",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 563,
+          "slug": "alleria",
+          "name": "Alleria",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1104,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1104,
+          "slug": "anetheron",
+          "name": "Anetheron",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 589,
+          "slug": "kiljaeden",
+          "name": "Kil'jaeden",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1322,
+          "slug": "rajaxx",
+          "name": "Rajaxx",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1611,
+          "slug": "festung-der-stürme",
+          "name": "Festung der Stürme",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 587,
+          "slug": "guldan",
+          "name": "Gul'dan",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 594,
+          "slug": "nathrezim",
+          "name": "Nathrezim",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1105,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 1105,
+          "slug": "nazjatar",
+          "name": "Nazjatar",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 573,
+          "slug": "zuluhed",
+          "name": "Zuluhed",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1321,
+          "slug": "dalvengyr",
+          "name": "Dalvengyr",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 601,
+          "slug": "amanthul",
+          "name": "Aman'Thul",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 584,
+          "slug": "frostmourne",
+          "name": "Frostmourne",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 608,
+          "slug": "anubarak",
+          "name": "Anub'arak",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1121,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 1121,
+          "slug": "die-arguswacht",
+          "name": "Die Arguswacht",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 1118,
+          "slug": "die-ewige-wacht",
+          "name": "Die ewige Wacht",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 1119,
+          "slug": "die-todeskrallen",
+          "name": "Die Todeskrallen",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 614,
+          "slug": "das-syndikat",
+          "name": "Das Syndikat",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 1326,
+          "slug": "der-abyssische-rat",
+          "name": "Der abyssische Rat",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 613,
+          "slug": "kult-der-verdammten",
+          "name": "Kult der Verdammten",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 1619,
+          "slug": "das-konsortium",
+          "name": "Das Konsortium",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 576,
+          "slug": "die-silberne-hand",
+          "name": "Die Silberne Hand",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1122,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 1122,
+          "slug": "uldaman",
+          "name": "Uldaman",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 641,
+          "slug": "drekthar",
+          "name": "Drek'Thar",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1332,
+          "slug": "krasus",
+          "name": "Krasus",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1123,
+          "slug": "eitrigg",
+          "name": "Eitrigg",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1127,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 1127,
+          "slug": "confrérie-du-thorium",
+          "name": "Confrérie du Thorium",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 1086,
+          "slug": "la-croisade-écarlate",
+          "name": "La Croisade écarlate",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 1337,
+          "slug": "culte-de-la-rive-noire",
+          "name": "Culte de la Rive noire",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 647,
+          "slug": "les-sentinelles",
+          "name": "Les Sentinelles",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 537,
+          "slug": "kirin-tor",
+          "name": "Kirin Tor",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 1626,
+          "slug": "les-clairvoyants",
+          "name": "Les Clairvoyants",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 644,
+          "slug": "conseil-des-ombres",
+          "name": "Conseil des Ombres",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1301,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 1301,
+          "slug": "outland",
+          "name": "Outland",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1302,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 539,
+          "slug": "archimonde",
+          "name": "Archimonde",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1303,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 1303,
+          "slug": "grim-batol",
+          "name": "Grim Batol",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1413,
+          "slug": "aggra-português",
+          "name": "Aggra (Português)",
+          "category": "English",
+          "locale": "ptPT",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1300,
+          "slug": "frostmane",
+          "name": "Frostmane",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1305,
+      "has_queue": false,
+      "status": "UP",
+      "population": "FULL",
+      "members": [
+        {
+          "id": 1305,
+          "slug": "kazzak",
+          "name": "Kazzak",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1307,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1307,
+          "slug": "chamber-of-aspects",
+          "name": "Chamber of Aspects",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1309,
+      "has_queue": false,
+      "status": "UP",
+      "population": "RECOMMENDED",
+      "members": [
+        {
+          "id": 1309,
+          "slug": "pozzo-delleternità",
+          "name": "Pozzo dell'Eternità",
+          "category": "Italian",
+          "locale": "itIT",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1313,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1313,
+          "slug": "wildhammer",
+          "name": "Wildhammer",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 552,
+          "slug": "thunderhorn",
+          "name": "Thunderhorn",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1315,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 540,
+          "slug": "elune",
+          "name": "Elune",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 645,
+          "slug": "varimathras",
+          "name": "Varimathras",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1316,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 1316,
+          "slug": "nemesis",
+          "name": "Nemesis",
+          "category": "Italian",
+          "locale": "itIT",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1325,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 500,
+          "slug": "aggramar",
+          "name": "Aggramar",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 619,
+          "slug": "hellscream",
+          "name": "Hellscream",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1329,
+      "has_queue": false,
+      "status": "UP",
+      "population": "FULL",
+      "members": [
+        {
+          "id": 554,
+          "slug": "ravencrest",
+          "name": "Ravencrest",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1331,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1331,
+          "slug": "suramar",
+          "name": "Suramar",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 517,
+          "slug": "medivh",
+          "name": "Medivh",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1335,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 1335,
+          "slug": "ysondre",
+          "name": "Ysondre",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1378,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 1378,
+          "slug": "dun-modr",
+          "name": "Dun Modr",
+          "category": "Spanish",
+          "locale": "esES",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1381,
+          "slug": "cthun",
+          "name": "C'Thun",
+          "category": "Spanish",
+          "locale": "esES",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1379,
+      "has_queue": false,
+      "status": "UP",
+      "population": "FULL",
+      "members": [
+        {
+          "id": 1379,
+          "slug": "zuljin",
+          "name": "Zul'jin",
+          "category": "Spanish",
+          "locale": "esES",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1380,
+          "slug": "uldum",
+          "name": "Uldum",
+          "category": "Spanish",
+          "locale": "esES",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1382,
+          "slug": "sanguino",
+          "name": "Sanguino",
+          "category": "Spanish",
+          "locale": "esES",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1383,
+          "slug": "shendralar",
+          "name": "Shen'dralar",
+          "category": "Spanish",
+          "locale": "esES",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1384,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 1384,
+          "slug": "tyrande",
+          "name": "Tyrande",
+          "category": "Spanish",
+          "locale": "esES",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1387,
+          "slug": "los-errantes",
+          "name": "Los Errantes",
+          "category": "Spanish",
+          "locale": "esES",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1395,
+          "slug": "colinas-pardas",
+          "name": "Colinas Pardas",
+          "category": "Spanish",
+          "locale": "esES",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1385,
+      "has_queue": false,
+      "status": "UP",
+      "population": "RECOMMENDED",
+      "members": [
+        {
+          "id": 1385,
+          "slug": "exodar",
+          "name": "Exodar",
+          "category": "Spanish",
+          "locale": "esES",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1386,
+          "slug": "minahonda",
+          "name": "Minahonda",
+          "category": "Spanish",
+          "locale": "esES",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1388,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1388,
+          "slug": "lightbringer",
+          "name": "Lightbringer",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1089,
+          "slug": "mazrigos",
+          "name": "Mazrigos",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1390,
+      "has_queue": false,
+      "status": "UP",
+      "population": "FULL",
+      "members": [
+        {
+          "id": 542,
+          "slug": "hyjal",
+          "name": "Hyjal",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1393,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1393,
+          "slug": "bronze-dragonflight",
+          "name": "Bronze Dragonflight",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 618,
+          "slug": "nordrassil",
+          "name": "Nordrassil",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1396,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 623,
+          "slug": "quelthalas",
+          "name": "Quel'Thalas",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 503,
+          "slug": "azjolnerub",
+          "name": "Azjol-Nerub",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1400,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1400,
+          "slug": "ungoro",
+          "name": "Un'Goro",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 602,
+          "slug": "senjin",
+          "name": "Sen'jin",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1404,
+          "slug": "area-52",
+          "name": "Area 52",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1401,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 1401,
+          "slug": "garrosh",
+          "name": "Garrosh",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1608,
+          "slug": "shattrath",
+          "name": "Shattrath",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 574,
+          "slug": "nozdormu",
+          "name": "Nozdormu",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 575,
+          "slug": "perenolde",
+          "name": "Perenolde",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1407,
+          "slug": "teldrassil",
+          "name": "Teldrassil",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1402,
+      "has_queue": false,
+      "status": "UP",
+      "population": "RECOMMENDED",
+      "members": [
+        {
+          "id": 553,
+          "slug": "turalyon",
+          "name": "Turalyon",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 505,
+          "slug": "doomhammer",
+          "name": "Doomhammer",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1403,
+      "has_queue": false,
+      "status": "UP",
+      "population": "FULL",
+      "members": [
+        {
+          "id": 506,
+          "slug": "draenor",
+          "name": "Draenor",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1405,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 1405,
+          "slug": "todeswache",
+          "name": "Todeswache",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 592,
+          "slug": "zirkel-des-cenarius",
+          "name": "Zirkel des Cenarius",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 1327,
+          "slug": "der-mithrilorden",
+          "name": "Der Mithrilorden",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 516,
+          "slug": "forscherliga",
+          "name": "Forscherliga",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 617,
+          "slug": "der-rat-von-dalaran",
+          "name": "Der Rat von Dalaran",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        },
+        {
+          "id": 1333,
+          "slug": "die-nachtwache",
+          "name": "Die Nachtwache",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1406,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1406,
+          "slug": "arygos",
+          "name": "Arygos",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 569,
+          "slug": "khazgoroth",
+          "name": "Khaz'goroth",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1408,
+      "has_queue": false,
+      "status": "UP",
+      "population": "RECOMMENDED",
+      "members": [
+        {
+          "id": 1408,
+          "slug": "norgannon",
+          "name": "Norgannon",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 600,
+          "slug": "dun-morogh",
+          "name": "Dun Morogh",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1416,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 1416,
+          "slug": "blades-edge",
+          "name": "Blade's Edge",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1310,
+          "slug": "eonar",
+          "name": "Eonar",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1298,
+          "slug": "veknilash",
+          "name": "Vek'nilash",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1312,
+          "slug": "aerie-peak",
+          "name": "Aerie Peak",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1081,
+          "slug": "bronzebeard",
+          "name": "Bronzebeard",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1417,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1417,
+          "slug": "azuremyst",
+          "name": "Azuremyst",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 550,
+          "slug": "stormrage",
+          "name": "Stormrage",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1587,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 1587,
+          "slug": "hellfire",
+          "name": "Hellfire",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 547,
+          "slug": "runetotem",
+          "name": "Runetotem",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 501,
+          "slug": "arathor",
+          "name": "Arathor",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1311,
+          "slug": "kilrogg",
+          "name": "Kilrogg",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1589,
+          "slug": "nagrand",
+          "name": "Nagrand",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1596,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 1596,
+          "slug": "karazhan",
+          "name": "Karazhan",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 507,
+          "slug": "dragonblight",
+          "name": "Dragonblight",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 627,
+          "slug": "the-maelstrom",
+          "name": "The Maelstrom",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1588,
+          "slug": "ghostlands",
+          "name": "Ghostlands",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 637,
+          "slug": "lightnings-blade",
+          "name": "Lightning's Blade",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 527,
+          "slug": "deathwing",
+          "name": "Deathwing",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1597,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 1597,
+          "slug": "auchindoun",
+          "name": "Auchindoun",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 529,
+          "slug": "dunemaul",
+          "name": "Dunemaul",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 628,
+          "slug": "sylvanas",
+          "name": "Sylvanas",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1304,
+          "slug": "jaedenar",
+          "name": "Jaedenar",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1598,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1598,
+          "slug": "shattered-halls",
+          "name": "Shattered Halls",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1083,
+          "slug": "chromaggus",
+          "name": "Chromaggus",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 511,
+          "slug": "sunstrider",
+          "name": "Sunstrider",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 607,
+          "slug": "balnazzar",
+          "name": "Balnazzar",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1090,
+          "slug": "talnivarr",
+          "name": "Talnivarr",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1093,
+          "slug": "ahnqiraj",
+          "name": "Ahn'Qiraj",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 526,
+          "slug": "daggerspine",
+          "name": "Daggerspine",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 621,
+          "slug": "laughing-skull",
+          "name": "Laughing Skull",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1088,
+          "slug": "trollbane",
+          "name": "Trollbane",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1299,
+          "slug": "boulderfist",
+          "name": "Boulderfist",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1602,
+      "has_queue": false,
+      "status": "UP",
+      "population": "FULL",
+      "members": [
+        {
+          "id": 1602,
+          "slug": "gordunni",
+          "name": "Gordunni",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1604,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 1604,
+          "slug": "soulflayer",
+          "name": "Soulflayer",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1605,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1605,
+          "slug": "deathguard",
+          "name": "Deathguard",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1614,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1614,
+          "slug": "galakrond",
+          "name": "Galakrond",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1609,
+          "slug": "deepholm",
+          "name": "Deepholm",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1616,
+          "slug": "razuvious",
+          "name": "Razuvious",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1615,
+      "has_queue": false,
+      "status": "UP",
+      "population": "FULL",
+      "members": [
+        {
+          "id": 1615,
+          "slug": "howling-fjord",
+          "name": "Howling Fjord",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1618,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 1618,
+          "slug": "die-aldor",
+          "name": "Die Aldor",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1621,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 1621,
+          "slug": "marécage-de-zangar",
+          "name": "Marécage de Zangar",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 545,
+          "slug": "chogall",
+          "name": "Cho'gall",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1336,
+          "slug": "eldrethalas",
+          "name": "Eldre'Thalas",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 533,
+          "slug": "sinstralis",
+          "name": "Sinstralis",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 538,
+          "slug": "dalaran",
+          "name": "Dalaran",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1623,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1623,
+          "slug": "fordragon",
+          "name": "Fordragon",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1624,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1624,
+          "slug": "naxxramas",
+          "name": "Naxxramas",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1334,
+          "slug": "arathi",
+          "name": "Arathi",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 541,
+          "slug": "illidan",
+          "name": "Illidan",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1622,
+          "slug": "temple-noir",
+          "name": "Temple noir",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1922,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1922,
+          "slug": "azuregos",
+          "name": "Azuregos",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1923,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1923,
+          "slug": "ashenvale",
+          "name": "Ashenvale",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1925,
+      "has_queue": false,
+      "status": "UP",
+      "population": "RECOMMENDED",
+      "members": [
+        {
+          "id": 1925,
+          "slug": "eversong",
+          "name": "Eversong",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1928,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 1928,
+          "slug": "goldrinn",
+          "name": "Goldrinn",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1603,
+          "slug": "lich-king",
+          "name": "Lich King",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1610,
+          "slug": "greymane",
+          "name": "Greymane",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 1929,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 1929,
+          "slug": "blackscar",
+          "name": "Blackscar",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1617,
+          "slug": "deathweaver",
+          "name": "Deathweaver",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1625,
+          "slug": "borean-tundra",
+          "name": "Borean Tundra",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1926,
+          "slug": "thermaplugg",
+          "name": "Thermaplugg",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1927,
+          "slug": "grom",
+          "name": "Grom",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1924,
+          "slug": "booty-bay",
+          "name": "Booty Bay",
+          "category": "Russian",
+          "locale": "ruRU",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 2073,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 560,
+          "slug": "stormscale",
+          "name": "Stormscale",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 2074,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 551,
+          "slug": "terenas",
+          "name": "Terenas",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 508,
+          "slug": "emerald-dream",
+          "name": "Emerald Dream",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3391,
+      "has_queue": false,
+      "status": "UP",
+      "population": "FULL",
+      "members": [
+        {
+          "id": 549,
+          "slug": "silvermoon",
+          "name": "Silvermoon",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3656,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 558,
+          "slug": "spinebreaker",
+          "name": "Spinebreaker",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 528,
+          "slug": "dragonmaw",
+          "name": "Dragonmaw",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 629,
+          "slug": "vashj",
+          "name": "Vashj",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 559,
+          "slug": "stormreaver",
+          "name": "Stormreaver",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 638,
+          "slug": "haomarush",
+          "name": "Haomarush",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3657,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 606,
+          "slug": "genjuros",
+          "name": "Genjuros",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 515,
+          "slug": "zenedar",
+          "name": "Zenedar",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 521,
+          "slug": "bladefist",
+          "name": "Bladefist",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 624,
+          "slug": "neptulon",
+          "name": "Neptulon",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 632,
+          "slug": "frostwhisper",
+          "name": "Frostwhisper",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 631,
+          "slug": "darksorrow",
+          "name": "Darksorrow",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3666,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 548,
+          "slug": "shadowsong",
+          "name": "Shadowsong",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 502,
+          "slug": "aszune",
+          "name": "Aszune",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3674,
+      "has_queue": false,
+      "status": "UP",
+      "population": "FULL",
+      "members": [
+        {
+          "id": 625,
+          "slug": "twisting-nether",
+          "name": "Twisting Nether",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3679,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 577,
+          "slug": "aegwynn",
+          "name": "Aegwynn",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3681,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 622,
+          "slug": "magtheridon",
+          "name": "Magtheridon",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3682,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 626,
+          "slug": "ragnaros",
+          "name": "Ragnaros",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3686,
+      "has_queue": false,
+      "status": "UP",
+      "population": "FULL",
+      "members": [
+        {
+          "id": 564,
+          "slug": "antonidas",
+          "name": "Antonidas",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3690,
+      "has_queue": false,
+      "status": "UP",
+      "population": "RECOMMENDED",
+      "members": [
+        {
+          "id": 640,
+          "slug": "khaz-modan",
+          "name": "Khaz Modan",
+          "category": "French",
+          "locale": "frFR",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3691,
+      "has_queue": false,
+      "status": "UP",
+      "population": "FULL",
+      "members": [
+        {
+          "id": 1612,
+          "slug": "echsenkessel",
+          "name": "Echsenkessel",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 566,
+          "slug": "blackhand",
+          "name": "Blackhand",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 590,
+          "slug": "malganis",
+          "name": "Mal'Ganis",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 1320,
+          "slug": "taerar",
+          "name": "Taerar",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3692,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 583,
+          "slug": "eredar",
+          "name": "Eredar",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3696,
+      "has_queue": false,
+      "status": "UP",
+      "population": "MEDIUM",
+      "members": [
+        {
+          "id": 1607,
+          "slug": "nethersturm",
+          "name": "Nethersturm",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 562,
+          "slug": "alexstrasza",
+          "name": "Alexstrasza",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 571,
+          "slug": "madmortem",
+          "name": "Madmortem",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 593,
+          "slug": "proudmoore",
+          "name": "Proudmoore",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3702,
+      "has_queue": false,
+      "status": "UP",
+      "population": "FULL",
+      "members": [
+        {
+          "id": 536,
+          "slug": "argent-dawn",
+          "name": "Argent Dawn",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "RP",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3703,
+      "has_queue": false,
+      "status": "UP",
+      "population": "LOW",
+      "members": [
+        {
+          "id": 585,
+          "slug": "frostwolf",
+          "name": "Frostwolf",
+          "category": "German",
+          "locale": "deDE",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    },
+    {
+      "id": 3713,
+      "has_queue": false,
+      "status": "UP",
+      "population": "HIGH",
+      "members": [
+        {
+          "id": 519,
+          "slug": "alakir",
+          "name": "Al'Akir",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 557,
+          "slug": "skullcrusher",
+          "name": "Skullcrusher",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 639,
+          "slug": "xavius",
+          "name": "Xavius",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        },
+        {
+          "id": 524,
+          "slug": "burning-legion",
+          "name": "Burning Legion",
+          "category": "English",
+          "locale": "enGB",
+          "timezone": "Europe/Paris",
+          "type": "NORMAL",
+          "tournament": false
+        }
+      ]
+    }
+  ],
+  "realm_to_connected": {
+    "509": 509,
+    "546": 509,
+    "544": 509,
+    "510": 510,
+    "1620": 510,
+    "512": 512,
+    "642": 512,
+    "543": 512,
+    "643": 512,
+    "531": 531,
+    "605": 531,
+    "610": 531,
+    "1319": 531,
+    "615": 531,
+    "570": 570,
+    "565": 570,
+    "579": 570,
+    "616": 570,
+    "578": 578,
+    "1613": 578,
+    "609": 578,
+    "535": 578,
+    "588": 578,
+    "1318": 578,
+    "1328": 578,
+    "580": 580,
+    "1106": 580,
+    "1409": 580,
+    "581": 581,
+    "604": 604,
+    "568": 604,
+    "1330": 604,
+    "612": 612,
+    "567": 612,
+    "582": 612,
+    "1323": 612,
+    "591": 612,
+    "586": 612,
+    "611": 612,
+    "633": 633,
+    "1087": 633,
+    "556": 633,
+    "630": 633,
+    "1415": 633,
+    "1314": 633,
+    "1389": 633,
+    "1392": 633,
+    "1080": 1080,
+    "504": 1080,
+    "1082": 1082,
+    "1391": 1082,
+    "1394": 1082,
+    "1084": 1084,
+    "1306": 1084,
+    "1085": 1085,
+    "1117": 1085,
+    "1595": 1085,
+    "1091": 1091,
+    "513": 1091,
+    "522": 1091,
+    "525": 1091,
+    "518": 1091,
+    "646": 1091,
+    "1092": 1092,
+    "523": 1092,
+    "1096": 1096,
+    "1606": 1096,
+    "561": 1096,
+    "635": 1096,
+    "1308": 1096,
+    "1317": 1096,
+    "636": 1096,
+    "1097": 1097,
+    "1324": 1097,
+    "1098": 1098,
+    "572": 1098,
+    "1099": 1099,
+    "563": 1099,
+    "1104": 1104,
+    "589": 1104,
+    "1322": 1104,
+    "1611": 1104,
+    "587": 1104,
+    "594": 1104,
+    "1105": 1105,
+    "573": 1105,
+    "1321": 1105,
+    "601": 1105,
+    "584": 1105,
+    "608": 1105,
+    "1121": 1121,
+    "1118": 1121,
+    "1119": 1121,
+    "614": 1121,
+    "1326": 1121,
+    "613": 1121,
+    "1619": 1121,
+    "576": 1121,
+    "1122": 1122,
+    "641": 1122,
+    "1332": 1122,
+    "1123": 1122,
+    "1127": 1127,
+    "1086": 1127,
+    "1337": 1127,
+    "647": 1127,
+    "537": 1127,
+    "1626": 1127,
+    "644": 1127,
+    "1301": 1301,
+    "539": 1302,
+    "1303": 1303,
+    "1413": 1303,
+    "1300": 1303,
+    "1305": 1305,
+    "1307": 1307,
+    "1309": 1309,
+    "1313": 1313,
+    "552": 1313,
+    "540": 1315,
+    "645": 1315,
+    "1316": 1316,
+    "500": 1325,
+    "619": 1325,
+    "554": 1329,
+    "1331": 1331,
+    "517": 1331,
+    "1335": 1335,
+    "1378": 1378,
+    "1381": 1378,
+    "1379": 1379,
+    "1380": 1379,
+    "1382": 1379,
+    "1383": 1379,
+    "1384": 1384,
+    "1387": 1384,
+    "1395": 1384,
+    "1385": 1385,
+    "1386": 1385,
+    "1388": 1388,
+    "1089": 1388,
+    "542": 1390,
+    "1393": 1393,
+    "618": 1393,
+    "623": 1396,
+    "503": 1396,
+    "1400": 1400,
+    "602": 1400,
+    "1404": 1400,
+    "1401": 1401,
+    "1608": 1401,
+    "574": 1401,
+    "575": 1401,
+    "1407": 1401,
+    "553": 1402,
+    "505": 1402,
+    "506": 1403,
+    "1405": 1405,
+    "592": 1405,
+    "1327": 1405,
+    "516": 1405,
+    "617": 1405,
+    "1333": 1405,
+    "1406": 1406,
+    "569": 1406,
+    "1408": 1408,
+    "600": 1408,
+    "1416": 1416,
+    "1310": 1416,
+    "1298": 1416,
+    "1312": 1416,
+    "1081": 1416,
+    "1417": 1417,
+    "550": 1417,
+    "1587": 1587,
+    "547": 1587,
+    "501": 1587,
+    "1311": 1587,
+    "1589": 1587,
+    "1596": 1596,
+    "507": 1596,
+    "627": 1596,
+    "1588": 1596,
+    "637": 1596,
+    "527": 1596,
+    "1597": 1597,
+    "529": 1597,
+    "628": 1597,
+    "1304": 1597,
+    "1598": 1598,
+    "1083": 1598,
+    "511": 1598,
+    "607": 1598,
+    "1090": 1598,
+    "1093": 1598,
+    "526": 1598,
+    "621": 1598,
+    "1088": 1598,
+    "1299": 1598,
+    "1602": 1602,
+    "1604": 1604,
+    "1605": 1605,
+    "1614": 1614,
+    "1609": 1614,
+    "1616": 1614,
+    "1615": 1615,
+    "1618": 1618,
+    "1621": 1621,
+    "545": 1621,
+    "1336": 1621,
+    "533": 1621,
+    "538": 1621,
+    "1623": 1623,
+    "1624": 1624,
+    "1334": 1624,
+    "541": 1624,
+    "1622": 1624,
+    "1922": 1922,
+    "1923": 1923,
+    "1925": 1925,
+    "1928": 1928,
+    "1603": 1928,
+    "1610": 1928,
+    "1929": 1929,
+    "1617": 1929,
+    "1625": 1929,
+    "1926": 1929,
+    "1927": 1929,
+    "1924": 1929,
+    "560": 2073,
+    "551": 2074,
+    "508": 2074,
+    "549": 3391,
+    "558": 3656,
+    "528": 3656,
+    "629": 3656,
+    "559": 3656,
+    "638": 3656,
+    "606": 3657,
+    "515": 3657,
+    "521": 3657,
+    "624": 3657,
+    "632": 3657,
+    "631": 3657,
+    "548": 3666,
+    "502": 3666,
+    "625": 3674,
+    "577": 3679,
+    "622": 3681,
+    "626": 3682,
+    "564": 3686,
+    "640": 3690,
+    "1612": 3691,
+    "566": 3691,
+    "590": 3691,
+    "1320": 3691,
+    "583": 3692,
+    "1607": 3696,
+    "562": 3696,
+    "571": 3696,
+    "593": 3696,
+    "536": 3702,
+    "585": 3703,
+    "519": 3713,
+    "557": 3713,
+    "639": 3713,
+    "524": 3713
+  }
+}

@@ -1,0 +1,24 @@
+## Interface: 120100, 16001, 50504, 38000, 20505, 11509
+## Title: Journalator (Statistics and Tooltips)
+## Notes: Generates data for tooltips and shows them
+## Version: @project-version@
+## Author: plusmouse
+## RequiredDeps: Journalator, Auctionator
+## SavedVariables: JOURNALATOR_STATISTICS
+## IconTexture: Interface/AddOns/Journalator/Images/icon
+## Category-enUS: Auctions
+## Category-deDE: Auktionen
+## Category-esES: Subastas
+## Category-esMX: Subastas
+## Category-frFR: Ventes
+## Category-itIT: Aste
+## Category-koKR: 경매
+## Category-ptBR: Leilões
+## Category-ruRU: Лоты
+## Category-zhCN: 拍卖
+## Category-zhTW: 拍賣
+
+Libs.xml
+Main.lua
+API.lua
+Tooltips\Manifest.xml

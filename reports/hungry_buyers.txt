@@ -1,0 +1,34 @@
+# appearances: 471 contas com bitmap e score >= 1,000,000 em 34 mercados
+# TSM: snapshots de reino com updatedAt 2026-10-18T09:36:04Z
+# preço: minBuyout > marketValue > marketValue da região
+
+realm                      compradores itens/comp. ouro/comp. (M)  índice cobertura
+------------------------------------------------------------------------------------
+Archimonde                          10      15,304          136.1       —       22%
+Dalaran                             11      14,253          121.9       —       21%
+Soulflayer                           5      13,746          117.2       —       22%
+Burning Legion                      12      13,698          120.2       —       22%
+Blackhand                           23      13,647          119.9       —       22%
+Draenor                             30      13,507           91.9   0.25x       22%
+Ysondre                              8      12,865          106.9       —       21%
+Burning Blade                        5      12,680          118.6   1.00x       21%
+Tarren Mill                         24      12,598           96.5   0.54x       22%
+Dun Morogh                           5      12,578          101.5       —       20%
+Stormscale                           7      12,461          103.7       —       21%
+Drak'thul                           10      12,432          109.7   1.00x       22%
+Zul'jin                              6      12,357          110.4       —       21%
+Aegwynn                              7      12,054           99.7       —       21%
+Hyjal                               25      11,972          100.4       —       21%
+Blackmoore                          17      11,906           97.9   0.84x       22%
+Pozzo dell'Eternità                  8      11,846          120.4   1.46x       22%
+Kazzak                              33      11,814           97.4       —       21%
+Sylvanas                             7      11,744           97.9       —       21%
+Antonidas                           16      11,612           95.2       —       21%
+
+csv -> reports\hungry_buyers.csv
+
+notas: compradores = contas com bitmap e score >= limiar, não a população do reino;
+       ouro/comprador (M) = soma do valor de mercado dos itens em falta, não o que o comprador vai gastar;
+       preço cortado a 1,000,000g/item; * marca os itens cortados no detalhe;
+       cobertura = fracção dos itens em falta com preço no reino ou região; ouro/comprador só conta esses;
+       cada grupo connected tem um preço só; o TSM não publica numAuctions nos CSV de reino.

@@ -1,0 +1,157 @@
+
+=== 3 zones — 258 NPCs ===
+
+-- TOP FARMS (EV gross | real = gross x sell-through, per kill) --
+   conf = evidence share x price freshness (coverage, NOT a sale P)
+ 1. Guardian of the Deep [74508] EV=126g real=9g (10,792g/h) drops=78 vendor=0g conf=97% JP=Heavy Hide                   5g
+       99.00% x 1.0 [skin] Heavy Hide                     u=      39g EV=5g
+       99.00% x 2.5 [skin] Heavy Leather                  u=       5g EV=3g
+        3.85% x 1.0 [drop] Spiked Chain Leggings          u=   1,024g EV=0g
+ 2. Thunderhead Hippogryph [6375] EV=16g real=4g (4,470g/h) drops=169 vendor=0g conf=97% JP=Small Egg                    2g
+       63.00% x 1.0 [drop] Small Egg                      u=       7g EV=2g
+       73.00% x 4.0 [skin] Light Leather                  u=       1g EV=2g
+       20.00% x 2.5 [skin] Medium Leather                 u=       2g EV=0g
+ 3. Sharptalon [12676] EV=11g real=4g (4,247g/h) drops=78 vendor=0g conf=97% JP=Small Egg                    2g
+       62.00% x 1.0 [drop] Small Egg                      u=       7g EV=2g
+       55.00% x 3.0 [skin] Medium Leather                 u=       2g EV=1g
+       34.00% x 2.5 [skin] Light Leather                  u=       1g EV=0g
+ 4. Taerar [121911] EV=42g real=3g (4,078g/h) drops=9 vendor=1g conf=97% JP=Rugged Leather               2g
+       72.00% x 2.5 [skin] Rugged Leather                 u=       2g EV=2g
+       92.00% x 2.5 [skin] Green Dragonscale              u=       2g EV=1g
+       62.00% x 1.5 [skin] Dreamscale                     u=      39g EV=1g
+ 5. Static-Charged Hippogryph [36147] EV=22g real=3g (3,681g/h) drops=202 vendor=0g conf=97% JP=Small Egg                    2g
+       63.00% x 1.0 [drop] Small Egg                      u=       7g EV=2g
+       59.00% x 3.5 [skin] Light Leather                  u=       1g EV=1g
+       36.00% x 3.5 [skin] Ruined Leather Scraps          u=       1g EV=0g
+ 6. Blindlight Bilefin [74721] EV=380g real=3g (3,256g/h) drops=209 vendor=0g conf=97% JP=Staff of the Friar           1g
+        3.08% x 1.0 [drop] Staff of the Friar             u=   3,563g EV=1g
+        4.85% x 1.0 [drop] Sentry's Sash                  u=   1,462g EV=1g
+        1.76% x 1.0 [drop] Slayer's Cape                  u=   4,234g EV=0g
+
+-- TOP MOGS (one row per item, best farm source) --
+ 1. Axe of the Enforcer                       0.060% u=  22,845g <= Twilight Disciple
+ 2. Crested Scepter                           0.020% u=  14,213g <= Twilight Storm Mender
+ 3. Joonho's Mercy                            0.400% u=  13,876g <= General Fangferror
+ 4. Wicked Chain Bracers                      0.010% u=   7,617g <= Ashenvale Assassin
+ 5. Ruffled Chaplet                           0.800% u=   6,650g <= Terrowulf Packlord
+ 6. Slayer's Slippers                         0.300% u=   5,252g <= Cenarion Vindicator
+
+-- TOP JACKPOTS (rare <10%, pricey, actually selling) --
+ 1. [3182] Spider's Silk                    5.00% x 1.0 u=      81g E=1g Pdrop100=99% sr=32.9% spd=32.9 vend=0g (Wildthorn Venomspitter)
+ 2. [3182] Spider's Silk                    5.00% x 1.0 u=      81g E=1g Pdrop100=99% sr=32.9% spd=32.9 vend=0g (Wildthorn Lurker)
+ 3. [3182] Spider's Silk                    5.00% x 1.0 u=      81g E=1g Pdrop100=99% sr=32.9% spd=32.9 vend=0g (Wildthorn Stalker)
+ 4. [3415] Staff of the Friar               3.08% x 1.0 u=   3,563g E=1g Pdrop100=96% sr=0.9% spd=0.0 vend=1g (Blindlight Bilefin)
+ 5. [3415] Staff of the Friar               3.08% x 1.0 u=   3,563g E=1g Pdrop100=96% sr=0.9% spd=0.0 vend=1g (Ghamoo-Ra)
+ 6. [3415] Staff of the Friar               3.00% x 1.0 u=   3,563g E=1g Pdrop100=95% sr=0.9% spd=0.0 vend=1g (Subjugator Kor'ul)
+
+-- ROTATION (3 camps, revisit after 3 stops) --
+Camp 1: Guardian of the Deep, Thunderhead Hippogryph, Sharptalon (avg real EV 5g/kill)
+Camp 2: Taerar, Static-Charged Hippogryph, Blindlight Bilefin (avg real EV 3g/kill)
+Camp 3: Antilos, Ghamoo-Ra, Thunderhead Stagwing (avg real EV 2g/kill)
+
+-- TOP MATS (units/kill per NPC) --
+ 1. LEATHER     3.46u/kill EV        8g <= Guardian of the Deep (blackfathom-deeps)
+ 2. LEATHER     5.38u/kill EV        3g <= Taerar (ashenvale)
+ 3. LEATHER     3.67u/kill EV        2g <= Shadowhorn Stag (ashenvale)
+ 4. CLOTH       1.70u/kill EV        2g <= Illiyana Moonblaze <Silverwing Supply Officer> (ashenvale)
+ 5. LEATHER     3.64u/kill EV        2g <= Elder Shadowhorn Stag (ashenvale)
+ 6. LEATHER     3.66u/kill EV        2g <= Elder Ashenvale Bear (ashenvale)
+
+-- TOP MOG FARMS (montra value vs realizable EV vs P(any sells)) --
+ 1. General Fangferror [6650] 152 mogs montra=30,408g realiz=1g P=92.9% days=n/a
+       0.400% Joonho's Mercy                         u=  13,876g
+       0.120% Brackwater Cloak                       u=   1,950g
+       0.050% Grizzly Slippers                       u=   1,057g
+ 2. Talrendis Scout [35095] 178 mogs montra=58,229g realiz=0g P=92.0% days=n/a
+      0.0018% Prospector's Boots                     u=   3,476g
+       0.020% Battle Shield                          u=   2,719g
+       0.120% Battle Chain Girdle                    u=   2,375g
+ 3. Lady Sesspira [6649] 114 mogs montra=6,586g realiz=0g P=88.0% days=n/a
+       0.010% Native Handwraps                       u=     600g
+       0.080% Runic Stave                            u=     260g
+       0.010% Ritual Gloves                          u=     199g
+ 4. Eck'alom [10642] 51 mogs montra=2,866g realiz=1g P=87.7% days=n/a
+       0.600% Grunt's Legguards                      u=     389g
+       0.020% Aboriginal Footwraps                   u=     249g
+       0.030% Ritual Amice                           u=     187g
+ 5. Forsaken Herbalist [3733] 145 mogs montra=24,372g realiz=0g P=87.6% days=n/a
+       0.020% Prospector's Boots                     u=   3,476g
+       0.010% Night Watch Shortsword                 u=   1,140g
+       0.040% Aboriginal Vest                        u=     940g
+ 6. Gatekeeper Rageroar [6651] 113 mogs montra=5,627g realiz=1g P=87.2% days=n/a
+       0.110% Battle Chain Boots                     u=     547g
+        1.70% Simple Blouse                          u=     162g
+       0.190% Brackwater Boots                       u=     151g
+
+Prices as of 2026-10-13T00:21:32Z
+
+-- TOP VENDOR FARMS (immediate gold, no AH) --
+ 1. The Evalcharr [8660] 12g/kill
+ 2. General Fangferror [6650] 10g/kill
+ 3. Gatekeeper Rageroar [6651] 10g/kill
+ 4. Lady Sesspira [6649] 8g/kill
+ 5. Antilos [6648] 7g/kill
+ 6. Varo'then's Ghost [6118] 5g/kill
+
+-- TOP RECIPES (profession collectibles, sale-weighted EV) --
+ 1. Plans: Silvered Bronze Shoulders           3.85% u=     158g E=0g (Guardian of the Deep)
+ 2. Schematic: Shadow Goggles                  4.65% u=     101g E=0g (Twilight Storm Mender)
+ 3. Pattern: Blue Dragonscale Shoulders       0.030% u=   9,500g E=0g (Makrinni Razorclaw)
+ 4. Pattern: Blue Dragonscale Shoulders       0.030% u=   9,500g E=0g (Coralshell Lurker)
+ 5. Recipe: Elixir of the Mongoose            0.160% u=   1,663g E=0g (Legashi Rogue)
+ 6. Pattern: Blue Dragonscale Breastplate     0.020% u=  22,782g E=0g (Northwatch Bodyguard)
+
+-- TOP BOE (Blizzard-verified Bind-on-Equip, sale-weighted EV) --
+ 1. Staff of the Friar                         3.08% u=   3,563g E=1g (Blindlight Bilefin)
+ 2. Staff of the Friar                         3.08% u=   3,563g E=1g (Ghamoo-Ra)
+ 3. Staff of the Friar                         3.00% u=   3,563g E=1g (Subjugator Kor'ul)
+ 4. Sentry's Sash                              4.85% u=   1,462g E=1g (Blindlight Bilefin)
+ 5. Sentry's Sash                              4.65% u=   1,462g E=1g (Twilight Storm Mender)
+ 6. Superior Tunic                            43.00% u=      70g E=1g (Terrowulf Packlord)
+
+-- TOP MIXED (>=2 pillars: vendor / mats / mogs) --
+ 1. The Evalcharr [8660] total=13g (vendor=12g mats=1g mogs=1g)
+ 2. General Fangferror [6650] total=11g (vendor=10g mats=0g mogs=1g)
+ 3. Gatekeeper Rageroar [6651] total=11g (vendor=10g mats=0g mogs=1g)
+ 4. Antilos [6648] total=9g (vendor=7g mats=2g mogs=0g)
+ 5. Guardian of the Deep [74508] total=9g (vendor=0g mats=9g mogs=0g)
+ 6. Lady Sesspira [6649] total=9g (vendor=8g mats=0g mogs=0g)
+
+-- MOG VIEWS --
+  by EV/kill:
+   1. Spider's Silk                            E=1g u=      81g <= Wildthorn Venomspitter
+   2. Staff of the Friar                       E=1g u=   3,563g <= Blindlight Bilefin
+   3. Sentry's Sash                            E=1g u=   1,462g <= Blindlight Bilefin
+   4. Slayer's Cape                            E=0g u=   4,234g <= Blindlight Bilefin
+   5. Pagan Rod                                E=0g u=     812g <= Pahboo-Ra <Son of Ghamoo-Ra>
+   6. Grunt's Chestpiece                       E=0g u=     950g <= Blindlight Murloc
+  fast movers (sale_rate >= 5%):
+   1. Spider's Silk                            sr=32.9% u=      81g <= Wildthorn Venomspitter
+   2. Raider Shortsword                        sr=6.3% u=      27g <= Makrinni Scrabbler
+   3. Raw Spotted Yellowtail                   sr=8.7% u=      15g <= Spitelash Serpent Guard
+   4. Traveler's Backpack                      sr=16.1% u=      10g <= Pahboo-Ra <Son of Ghamoo-Ra>
+   5. Small Egg                                sr=41.2% u=       7g <= Rotting Slime
+   6. Clockwork Box                            sr=25.0% u=       6g <= Rotting Slime
+  high-value, low liquidity (sale_rate < 1%):
+   1. Axe of the Enforcer                      sr=0.80% u=  22,845g <= Twilight Disciple
+   2. Joonho's Mercy                           sr=0.10% u=  13,876g <= General Fangferror
+   3. Wicked Chain Bracers                     sr=0.70% u=   7,617g <= Ashenvale Assassin
+   4. Ruffled Chaplet                          sr=0.20% u=   6,650g <= Terrowulf Packlord
+   5. Slayer's Slippers                        sr=0.50% u=   5,252g <= Cenarion Vindicator
+   6. Charger's Cloak                          sr=0.90% u=   4,964g <= Weakened Mosshoof Stag
+  vendor fallback:
+   1. Master's Leggings                        vendor=44g u=      81g
+   2. Mercurial Breastplate                    vendor=43g u=     122g
+   3. Commander's Leggings                     vendor=43g u=      95g
+   4. Nightshade Leggings                      vendor=43g u=      40g
+   5. Master's Vest                            vendor=43g u=      90g
+   6. Masterwork Breastplate                   vendor=43g u=     109g
+
+-- BEST GOLDBOUND SESSION (travel-aware, kills spread over stops) --
+   (assumptions: measure YOUR kpm/travel in-game; defaults below)
+  route (3 stops): 15min -> 240 kills | vendor=210g auction_est=874g speculative=20,424g conservative=925g
+  route (3 stops): 30min -> 540 kills | vendor=472g auction_est=1,966g speculative=45,954g conservative=2,082g
+  route (3 stops): 60min -> 1140 kills | vendor=996g auction_est=4,150g speculative=97,014g conservative=4,395g
+  solo: Guardian of the Deep: 15min -> 300 kills | vendor=41g auction_est=2,698g speculative=35,186g conservative=2,557g
+  solo: Guardian of the Deep: 30min -> 600 kills | vendor=81g auction_est=5,396g speculative=70,372g conservative=5,114g
+  solo: Guardian of the Deep: 60min -> 1200 kills | vendor=162g auction_est=10,792g speculative=140,743g conservative=10,227g

@@ -1,0 +1,25 @@
+## Interface: 120007, 16001, 50504, 38001, 20505, 11509
+## Title: Journalator (Display)
+## Notes: Main view
+## Version: @project-version@
+## Author: plusmouse
+## RequiredDeps: Auctionator, Journalator
+## IconTexture: Interface/AddOns/Journalator/Images/icon
+## AddonCompartmentFunc: Journalator_CompartmentButton
+## Category-enUS: Auctions
+## Category-deDE: Auktionen
+## Category-esES: Subastas
+## Category-esMX: Subastas
+## Category-frFR: Ventes
+## Category-itIT: Aste
+## Category-koKR: 경매
+## Category-ptBR: Leilões
+## Category-ruRU: Лоты
+## Category-zhCN: 拍卖
+## Category-zhTW: 拍賣
+
+Libs.xml
+
+Source\Manifest.xml
+Source_Mainline\Display\TabButton.xml [AllowLoadGameType mainline]
+Source_Classic\Display\TabButton.xml [AllowLoadGameType classic]

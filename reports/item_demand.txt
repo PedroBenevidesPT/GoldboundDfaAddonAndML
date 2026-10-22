@@ -1,0 +1,32 @@
+# appearances: 760 contas com bitmap e score >= 1,000,000 | 44,477 aparições | 56 itens BoE com preço e fonte aceite
+# wanters = contas do segmento com bit 0; preço = item BoE mais barato com preço regional; 50 wanters / 25% mínimos
+
+     item  querem      %        preço  ouro em falta apar.  aparência | item
+--------------------------------------------------------------------------------------------------------------------------
+   229149     507  66.7%    5,052,597  2,561,666,857     1  Lamplighter Elite's Slugthrower | Lamplighter's Rifle
+   229150     586  77.1%    2,262,433  1,325,785,693     1  Lamplighter's Splitter | Lamplighter's Splitter
+   229155     608  80.0%    1,116,858    679,049,495     1  Lamplighter's Greataxe | Lamplighter's Greataxe
+   229148     546  71.8%    1,175,861    642,019,936     1  Lamplighter Elite's Spellstaff | Lamplighter's Staff
+   229153     497  65.4%    1,255,480    623,973,674     1  Lamplighter's Cudgel | Lamplighter's Cudgel
+   229157     537  70.7%      933,900    501,504,295     1  Lamplighter Elite's Shield | Lamplighter's Bulwark
+   260370     562  73.9%      299,823    168,500,321     8  Blind Oath's Winged Crest | Visage of Unseen Truths
+   229069     490  64.5%      321,210    157,392,835     1  Nisa's Spare Cloak | Nisa's Spare Cloak
+   260374     583  76.7%      220,742    128,692,869     8  Tempests of the Primal Core | Primal Spark Pauldrons
+   229160     512  67.4%      223,481    114,422,079     1  Lamplighter Elite's Glaive | Lamplighter's Glaive
+   260373     563  74.1%      191,356    107,733,558     4  Swiftsweepers of Ra-den's Chosen | Power Stance Breeches
+   260376     508  66.8%      198,100    100,634,820     4  Night Ender's Breastplate | Breastplate of the Final Defen
+   229147     514  67.6%      180,953     93,009,974     1  Lamplighter Elite's Polearm | Lamplighter's Polearm
+   238031     609  80.1%      146,589     89,272,922     4  Tactical Vest of the Sudden Eclipse | Veiled Manta Vest
+   229072     340  44.7%      242,790     82,548,739     1  Azra's Spare Mask | Azra's Spare Mask
+   229162     441  58.0%      176,527     77,848,511     1  Lamplighter Elite's Blade | Lamplighter's Sword
+   229078     336  44.2%      231,444     77,765,169     1  Aevery's Spare Brigandine | Aevery's Spare Brigandine
+   260375     562  73.9%      135,302     76,039,741     4  Ceinture of the Primal Core | Raging Storm Sash
+   229087     348  45.8%      198,000     68,904,000     1  Kyros's Spare Chestplate | Kyros's Spare Chestplate
+   229091     348  45.8%      198,000     68,904,000     1  Kyros's Spare Shoulder Plates | Kyros's Spare Shoulder Plates
+
+csv -> reports\item_demand.csv
+
+notas: o denominador é o segmento >= limiar, não a população do reino;
+       uma aparência pode vir de vários itens — fica o BoE mais barato com preço;
+       no modo item, wanters é a união de quem falta pelo menos uma aparência do item;
+       fontes de vendor/Trading Post/quest/profissão ficam de fora.

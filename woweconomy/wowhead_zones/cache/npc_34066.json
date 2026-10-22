@@ -1,0 +1,44 @@
+{
+ "npc_id": 34066,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Raging Ancient",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 3781,
+   "item_name": "Broad Claymore",
+   "item_type": "",
+   "drop_rate": 0.02,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3781/broad-claymore?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3809,
+   "item_name": "Double Mail Boots",
+   "item_type": "",
+   "drop_rate": 0.013999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3809/double-mail-boots?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3779,
+   "item_name": "Hefty War Axe",
+   "item_type": "",
+   "drop_rate": 0.01,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3779/hefty-war-axe?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3784,
+   "item_name": "Metal Stave",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3784/metal-stave?bonus=6657"
+  }
+ ]
+}

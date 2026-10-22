@@ -1,0 +1,70 @@
+
+=== INVENTARIO vs COLECIONADORES ===
+amostra: appearances=2017, mounts=2018, recipes=2018 contas (share that still LACKS the item)
+precos: db:tsm_markets.db
+AVISO: os demand_*.csv sao de 2018 contas mas o dfa.db ja tem 2220 -- os missing_pct estao velhos. Refresca com:
+  python -m woweconomy.services.dataforazeroth report --out-dir C:\economics\woweconomy\dfa
+inventario: scripts/inventario.csv
+itens: 210 | com procura: 132 | gap forte (>= 50%): 114
+valor de montra dos gaps fortes: 132,741g (preco TSM x quantidade, NAO e promessa de venda)
+
+-- PROCURA FORTE (coleccionadores ainda nao tem) --
+ miss%  own%  valor    preco    sr    spd  item
+ 99.7%   0.33  99.4   14,251g sr= 1.3% spd=   0.0  Pattern: Chimeric Gloves           [reci]
+ 99.3%   0.10  99.2   46,938g sr=11.2% spd=   2.6  Slippers of the Hissing Cult       [appe]
+ 99.2%   0.53  98.7    9,500g sr= 2.7% spd=   0.0  Pattern: Blue Dragonscale Shoulder [reci]
+ 97.7%   1.59  96.1      276g sr= 0.7% spd=   0.0 ~Pillager's Bracers of the Aurora   [appe]
+ 97.4%   1.49  96.0      500g sr= 0.7% spd=   0.0  Plans: Mirrored Boots              [reci]
+ 97.0%   1.65  95.4      481g sr= 0.8% spd=   0.0  Design: Reckless Noble Topaz       [reci]
+ 96.9%   2.03  95.0       48g sr= 1.6% spd=   0.0  Pattern: Guardian Cloak            [reci]
+ 96.9%   2.12  94.8    1,663g sr= 2.1% spd=   0.0  Recipe: Elixir of the Mongoose     [reci]
+ 96.8%   1.89  95.0      207g sr= 1.4% spd=   0.0  Plans: Silvered Bronze Leggings    [reci]
+ 96.5%   2.27  94.3      255g sr= 0.8% spd=   0.0 ~Pagan Britches of the Fireflash    [appe]
+ 96.0%   2.47  93.6       84g sr= 1.3% spd=   0.0  Plans: Frost Tiger Blade           [reci]
+ 96.0%   2.17  93.9      201g sr= 1.4% spd=   0.0  Rakzur Club                        [appe]
+ 95.9%   2.32  93.7      174g sr= 2.4% spd=   0.0  Plans: Silvered Bronze Breastplate [reci]
+ 95.2%   2.73  92.6        8g sr= 1.7% spd=   0.1  Pattern: Swift Boots               [reci]
+ 95.1%   2.78  92.5      273g sr= 1.5% spd=   0.1  Pattern: Stylish Green Shirt       [reci]
+ 94.9%   2.72  92.3      282g sr= 1.6% spd=   0.0  Beazel's Basher                    [appe]
+ 94.8%   2.97  91.9       76g sr= 2.3% spd=   0.0  Plans: Runed Copper Breastplate    [reci]
+ 94.5%   3.28  91.4        2g sr= 1.3% spd=   0.0  Pattern: Shoulders of Lightning Re [reci]
+ 94.4%   3.63  91.0      160g sr= 0.8% spd=   0.0 ~Spiked Chain Cloak of the Fireflas [appe]
+ 94.0%   3.56  90.7      123g sr= 1.5% spd=   0.0 ~Pagan Shoes of the Aurora          [appe]
+ 93.5%   3.75  90.0        0g sr= 2.8% spd=   0.2  Recipe: Wildvine Potion            [reci]
+ 93.4%   3.49  90.1       56g sr= 3.4% spd=   0.1  Schematic: Small Seaforium Charge  [reci]
+ 93.1%   4.80  88.6       93g sr= 1.3% spd=   0.0  Cross-Stitched Gloves              [appe]
+ 93.1%   5.98  87.5      751g sr= 1.4% spd=   0.0  Tribal Gloves                      [appe]
+ 92.3%   4.92  87.7      116g sr= 1.0% spd=   0.0 ~Captain's Waistguard of the Firefl [appe]
+ 92.2%   4.88  87.7       60g sr= 1.8% spd=   0.0 ~Huntsman's Cap of the Quickblade   [appe]
+ 91.9%   6.44  86.0       71g sr= 1.6% spd=   0.0  Canvas Shoes                       [appe]
+ 91.8%   5.96  86.4       69g sr= 1.1% spd=   0.0  Rawhide Pants                      [appe]
+ 91.7%   5.19  87.0        1g sr= 4.3% spd=   0.2  Pattern: Red Linen Robe            [reci]
+ 91.7%   6.59  85.7      100g sr= 1.4% spd=   0.0  Box Shield                         [appe]
+
+-- NICHO (15-50%) --
+ 50.0%  21.79  39.1      106g sr= 1.2% spd=   0.0 ~Spiked Chain Belt of the Fireflash [appe]
+ 47.3%  37.64  29.5      681g sr= 1.0% spd=   0.0  Bearded Boneaxe                    [appe]
+ 46.5%  46.24  25.0       18g sr= 1.4% spd=   0.0 ~Knight's Bracers of the Aurora     [appe]
+ 45.4%  31.73  31.0       65g sr= 1.3% spd=   0.0  Gnarled Staff                      [appe]
+ 43.6%  39.60  26.4       83g sr= 0.9% spd=   0.0  Reflective Heater                  [appe]
+ 43.4%  48.59  22.3       44g sr= 1.4% spd=   0.0  Billy Club                         [appe]
+ 41.0%  38.28  25.3       17g sr= 3.1% spd=   0.0  War Knife                          [appe]
+ 35.9%  44.33  20.0       24g sr= 0.3% spd=   0.0  Worn Hatchet                       [appe]
+ 30.7%  51.46  14.9       26g sr= 2.2% spd=   0.0 ~Ivycloth Sash of the Fireflash     [appe]
+ 28.7%  57.70  12.1       33g sr= 1.6% spd=   0.0 ~Ivycloth Gloves of the Quickblade  [appe]
+ 21.9%  61.07   8.5       14g sr= 1.3% spd=   0.0  Worn Mail Belt                     [appe]
+ 19.2%  62.74   7.1        8g sr= 0.3% spd=   0.0  Canvas Shoulderpads                [appe]
+ 19.0%  71.15   5.5       23g sr= 0.8% spd=   0.0  Bludgeoning Cudgel                 [appe]
+ 15.7%  70.70   4.6       28g sr= 0.6% spd=   0.0  Rawhide Belt                       [appe]
+
+-- COMUM (a maioria ja tem: o preco vem do mercado, nao da coleccao) --
+  8.4%  64.56   3.0       57g sr= 0.7% spd=   0.0 ~Bladefist Staff of the Aurora      [appe]
+ 14.7%  56.39   6.4       56g sr= 1.3% spd=   0.0 ~Revenant Boots of the Aurora       [appe]
+  2.2%  87.43   0.3       43g sr= 0.3% spd=   0.0  Tough Leather Armor                [appe]
+ 13.7%  65.62   4.7        9g sr= 1.0% spd=   0.0  Worn Mail Pants                    [appe]
+
+-- SEM ENTRADA NAS WISHLISTS (78) --
+  (nem um dos colecionadores da amostra o quer -- seja porque
+   quase todos ja o tem, seja porque nao e colecionavel: anel,
+   trinket, item sem aparencia.  Nao significa sem valor.)
+  Wrangler's Buckler of the , Prospector's Buckler, Plains Ring, Runic Stave, Bloodspattered Shield of t, Pagan Cape of the Fireflas, Troll's Bane Leggings, Headhunter's Spaulders of , Ritual Leggings of the Aur, Bristlebark Bindings, Formula: Enchant Bracer - , Blackforge Breastplate, Sooty Mail Shoulderpads, Stonewrought Breastplate o, Bladefist Axe of the Fever, Headhunter's Cloak of the , Trellised Cowl of the Quic, Bristlebark Cape, Fortified Boots of the Fir, Pagan Belt of the Fireflas, Herbalist's Spade, Thistlefur Sandals of the , Linked Chain Shoulderpads, Clammy Mail Belt, Superior Leggings of the Q, Blackwolf Cloak of the Qui, Threshadon Fang, Large War Club, Perforated Plate Belt, Linked Chain Belt, Dilapidated Cloth Vest, Dilapidated Cloth Pants, Dirt-Caked Pants, Jagged Star of the Aurora, Decaying Leather Boots, Linked Chain Bracers, Marble Circle of the Quick, Bluefen Cord of the Firefl, Mystral Robe of the Quickb, Temple Girdle of the Peerl

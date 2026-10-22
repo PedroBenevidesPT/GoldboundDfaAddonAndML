@@ -1,0 +1,53 @@
+{
+ "npc_id": 12836,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Wandering Protector",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 15358,
+   "item_name": "Headhunter's Woolies",
+   "item_type": "",
+   "drop_rate": 0.015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15358/headhunters-woolies?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14131,
+   "item_name": "Ritual Belt",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14131/ritual-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 55974,
+   "item_name": "Inert Elemental Particle",
+   "item_type": "",
+   "drop_rate": 0.1,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=55974/inert-elemental-particle"
+  },
+  {
+   "category": "drops",
+   "item_id": 3797,
+   "item_name": "Interlaced Pants",
+   "item_type": "",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3797/interlaced-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3792,
+   "item_name": "Interlaced Belt",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3792/interlaced-belt?bonus=6656"
+  }
+ ]
+}
