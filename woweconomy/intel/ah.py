@@ -29,14 +29,20 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
+import sqlite3
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
-from . import store
+from . import identity, prices, store
 
 logger = logging.getLogger(__name__)
+
+#: Region-wide payloads (the commodity endpoint) have no connected realm.
+#: They are stored under the empty realm so that every existing
+#: ``WHERE realm = ?`` query keeps returning realm-level rows only.
+REGION_WIDE_REALM = ""
 
 #: The categories the API has used.  Anything else is preserved raw and
 #: flagged as unknown rather than guessed.
@@ -89,6 +95,9 @@ class AuctionRecord:
     pet_species_id: Optional[int] = None
     bonus_lists: Optional[str] = None
     modifiers: Optional[str] = None
+    price_status: str = prices.MISSING
+    price_reason: str = ""
+    variant_key: str = ""
 
     def as_row(self) -> Tuple:
         return (
@@ -97,6 +106,7 @@ class AuctionRecord:
             self.bid_copper, self.total_price_copper, self.unit_price_source,
             self.time_left_raw, self.time_left_band, int(self.is_commodity),
             self.pet_species_id, self.bonus_lists, self.modifiers,
+            self.price_status, self.price_reason, self.variant_key,
         )
 
 
@@ -199,6 +209,11 @@ def _parse_entry(entry: Dict[str, Any], index: int, commodity: bool) -> Optional
     is_commodity = bool(commodity or "unit_price" in entry)
     bonus = item.get("bonus_lists")
     modifiers = item.get("modifiers")
+    bonus_json = json.dumps(bonus, sort_keys=True) if bonus else None
+    modifiers_json = json.dumps(modifiers, sort_keys=True) if modifiers else None
+    pet_species = _int_or_none(item.get("pet_species_id"))
+    context = _int_or_none(item.get("context"))
+    verdict = prices.classify_static(unit, is_commodity=is_commodity)
     return AuctionRecord(
         auction_key=_entry_key(entry, index, is_commodity),
         auction_id=_int_or_none(entry.get("id")),
@@ -212,10 +227,14 @@ def _parse_entry(entry: Dict[str, Any], index: int, commodity: bool) -> Optional
         time_left_raw=raw_time_left,
         time_left_band=time_left_band(raw_time_left),
         is_commodity=is_commodity,
-        item_context=_int_or_none(item.get("context")),
-        pet_species_id=_int_or_none(item.get("pet_species_id")),
-        bonus_lists=json.dumps(bonus, sort_keys=True) if bonus else None,
-        modifiers=json.dumps(modifiers, sort_keys=True) if modifiers else None,
+        item_context=context,
+        pet_species_id=pet_species,
+        bonus_lists=bonus_json,
+        modifiers=modifiers_json,
+        price_status=verdict.status,
+        price_reason=verdict.reason,
+        variant_key=identity.variant_key(item_id, context, bonus_json,
+                                         modifiers_json, pet_species),
     )
 
 
@@ -304,16 +323,39 @@ def ingest_bundle(con, bundle: SnapshotBundle) -> IngestResult:
         "INSERT OR IGNORE INTO ah_auction (snapshot_id, auction_key, auction_id,"
         " item_id, item_context, quantity, unit_price_copper, buyout_copper,"
         " bid_copper, total_price_copper, unit_price_source, time_left_raw,"
-        " time_left_band, is_commodity, pet_species_id, bonus_lists, modifiers)"
-        " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        " time_left_band, is_commodity, pet_species_id, bonus_lists, modifiers,"
+        " price_status, price_reason, variant_key)"
+        " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
         [(bundle.snapshot_id,) + record.as_row() for record in bundle.auctions])
+    # Second validation pass: flag values that are arithmetically valid but
+    # far outside this product's own distribution in this snapshot.  The
+    # raw price is never modified -- only the status that consumers read.
+    prices.mark_outliers(con, bundle.snapshot_id)
     con.commit()
-    return IngestResult(
-        snapshot_id=bundle.snapshot_id, inserted=True,
-        auctions=bundle.auction_count, commodities=bundle.commodity_count,
-        rejected=len(bundle.rejected),
-        unknown_time_left=sum(1 for a in bundle.auctions
-                              if a.time_left_raw and not a.time_left_band))
+    return IngestResult(snapshot_id=bundle.snapshot_id, inserted=True,
+                        auctions=bundle.auction_count,
+                        commodities=bundle.commodity_count,
+                        rejected=len(bundle.rejected),
+                        unknown_time_left=sum(
+                            1 for a in bundle.auctions
+                            if a.time_left_raw and a.time_left_band is None))
+
+
+def parse_commodities(payload: Dict[str, Any], *, region: str,
+                      captured_at: Optional[int] = None,
+                      source: str = "blizzard_api_commodities",
+                      api_last_modified: str = "") -> SnapshotBundle:
+    """Parse the region-wide commodity payload into a region-scoped bundle.
+
+    The commodity book belongs to the region, not to a realm.  It is
+    stored with :data:`REGION_WIDE_REALM` (the empty realm) so that every
+    realm-filtered query in the project keeps seeing only realm rows.
+    """
+    return parse_payload(payload, region=region, realm=REGION_WIDE_REALM,
+                         realm_slug="commodities", connected_realm_id=None,
+                         captured_at=captured_at, source=source,
+                         api_last_modified=api_last_modified,
+                         commodity_endpoint=True)
 
 
 def ingest_file(con, path: Path | str, **kwargs) -> IngestResult:
@@ -447,6 +489,24 @@ class AuctionHouseClient:
         return self.get_json(
             f"/data/wow/connected-realm/{int(connected_realm_id)}/auctions",
             modified_since)
+
+    def fetch_commodities(self,
+                          modified_since: str = ""
+                          ) -> Tuple[Optional[Dict[str, Any]], str]:
+        """The region-wide commodity book.
+
+        ``GET /data/wow/auctions/commodities`` is **not** scoped to a
+        connected realm: there is one book per region, and every entry is
+        a stack of one item at one unit price.  The response wraps the
+        rows in ``auctions`` -- not in ``commodities`` -- and each row is
+        ``{"id": <auction id>, "item": {"id": <item id>}, "quantity": n,
+        "unit_price": copper, "time_left": "<BAND>"}``.  Verified against
+        the live EU endpoint on 2026-10-22 (297,473 rows, 28 MB).
+
+        Returns ``(payload, last_modified)`` or ``(None, last_modified)``
+        on 304.
+        """
+        return self.get_json("/data/wow/auctions/commodities", modified_since)
 
 
 def sync_realm_index(con, client: AuctionHouseClient) -> int:

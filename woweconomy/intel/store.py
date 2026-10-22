@@ -61,11 +61,19 @@ CREATE TABLE IF NOT EXISTS ah_auction (
     pet_species_id   INTEGER,
     bonus_lists      TEXT,
     modifiers        TEXT,
+    price_status     TEXT NOT NULL DEFAULT 'missing',
+    price_reason     TEXT NOT NULL DEFAULT '',
+    variant_key      TEXT,
     PRIMARY KEY (snapshot_id, auction_key),
     FOREIGN KEY (snapshot_id) REFERENCES ah_snapshot(snapshot_id)
 );
 CREATE INDEX IF NOT EXISTS idx_ah_auction_item
     ON ah_auction(snapshot_id, item_id);
+-- ``idx_ah_auction_variant`` and ``idx_ah_auction_price_status`` are
+-- created by ``connect()`` *after* the additive migration.  Putting them
+-- here would fail on an existing database: ``CREATE TABLE IF NOT EXISTS``
+-- leaves the old table alone, so the column the index names does not exist
+-- yet when this script runs.  That is a hard error, not a warning.
 
 CREATE TABLE IF NOT EXISTS ah_realm (
     region              TEXT NOT NULL,
@@ -309,6 +317,20 @@ def _ensure_column(con: sqlite3.Connection, table: str, column: str,
         con.execute(f"ALTER TABLE {table} ADD COLUMN {column} {ddl}")
 
 
+def _ensure_ah_indexes(con: sqlite3.Connection) -> None:
+    """Indexes on the derived auction columns.
+
+    Separate from :data:`SCHEMA` on purpose: on a legacy database the
+    columns do not exist until ``_ensure_column`` has run, so the index
+    must be created afterwards.  Both entry points call this once the
+    table is known to have the columns.
+    """
+    con.execute("CREATE INDEX IF NOT EXISTS idx_ah_auction_price_status"
+                " ON ah_auction(snapshot_id, price_status)")
+    con.execute("CREATE INDEX IF NOT EXISTS idx_ah_auction_variant"
+                " ON ah_auction(snapshot_id, variant_key)")
+
+
 def connect(db_path: Path | str = DEFAULT_DB) -> sqlite3.Connection:
     """Open (and initialise) the intelligence database."""
     path = Path(db_path)
@@ -321,6 +343,19 @@ def connect(db_path: Path | str = DEFAULT_DB) -> sqlite3.Connection:
                    "TEXT NOT NULL DEFAULT '[\"bags\",\"bank\",\"posted\"]'")
     _ensure_column(con, "undercut_observation", "reference_status",
                    "TEXT NOT NULL DEFAULT ''")
+    # Price validation (2026-10): the raw price stays in unit_price_copper;
+    # these two columns say whether it may be used.  Existing rows predate
+    # the check, so they default to 'missing' and are re-labelled by
+    # ``scripts/backfill_ah_identity.py`` rather than assumed valid.
+    _ensure_column(con, "ah_auction", "price_status",
+                   "TEXT NOT NULL DEFAULT 'missing'")
+    _ensure_column(con, "ah_auction", "price_reason",
+                   "TEXT NOT NULL DEFAULT ''")
+    # The product key (item + every modifier that changes what is sold).
+    # Legacy rows are NULL until scripts/backfill_ah_identity.py fills
+    # them; NULL means "not computed", never "no variant".
+    _ensure_column(con, "ah_auction", "variant_key", "TEXT")
+    _ensure_ah_indexes(con)
     return con
 
 
@@ -329,4 +364,5 @@ def memory_connection() -> sqlite3.Connection:
     con = sqlite3.connect(":memory:")
     con.row_factory = sqlite3.Row
     con.executescript(SCHEMA)
+    _ensure_ah_indexes(con)
     return con
