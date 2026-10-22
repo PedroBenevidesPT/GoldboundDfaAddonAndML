@@ -30,6 +30,9 @@ import time
 from statistics import median
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
+from ..intel import ah
+from ..intel.prices import usable_price_sql
+
 #: the shrink target: a realm with no evidence is the regional market
 PRIOR_SAMPLE = 10
 #: below this many priced items, a factor is reported but flagged
@@ -125,12 +128,20 @@ def undercut_share(con: sqlite3.Connection, realm: str,
 
 def _states(con: sqlite3.Connection, realm: str,
             limit: int = 24) -> List[Tuple[int, Dict[int, int]]]:
-    """The last snapshots' cheapest price per item, oldest first."""
+    """The last snapshots' cheapest price per item, oldest first.
+
+    Only ``price_status = 'ok'`` rows are eligible.  A sentinel price of
+    99,999,999,000c or an impossible value is not a price a player can
+    post at, and letting one into ``MIN`` would either invent a floor that
+    nobody is undercutting or hide the real cheapest listing behind an
+    outlier -- both of which corrupt the babysit risk this feeds.
+    """
     try:
+        where, params = ah.realm_match(con, realm)
         heads = con.execute(
-            "SELECT snapshot_id, captured_at FROM ah_snapshot"
-            " WHERE LOWER(realm) = LOWER(?) ORDER BY captured_at DESC LIMIT ?",
-            (realm, limit)).fetchall()
+            f"SELECT snapshot_id, captured_at FROM ah_snapshot"
+            f" WHERE {where} ORDER BY captured_at DESC LIMIT ?",
+            [*params, limit]).fetchall()
     except sqlite3.OperationalError:
         return []
     out = []
@@ -138,6 +149,7 @@ def _states(con: sqlite3.Connection, realm: str,
         rows = con.execute(
             "SELECT item_id, MIN(unit_price_copper) FROM ah_auction"
             " WHERE snapshot_id = ? AND unit_price_copper > 0"
+            f" AND {usable_price_sql()}"
             " GROUP BY item_id", (head["snapshot_id"],)).fetchall()
         out.append((int(head["captured_at"]), {int(r[0]): int(r[1]) for r in rows}))
     return out

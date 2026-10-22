@@ -26,7 +26,7 @@ from __future__ import annotations
 import sqlite3
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
-from . import inventory, undercut
+from . import ah, inventory, undercut
 
 #: Blizzard's coarse time-left categories, in hours.  The addon sends
 #: seconds when it has them; the API only ever sends the band, and a band
@@ -62,9 +62,10 @@ def _rows(con: sqlite3.Connection, sql: str, params: Sequence[Any]) -> List[Dict
 
 
 def latest_snapshot(con: sqlite3.Connection, realm: str) -> Optional[Dict[str, Any]]:
+    where, params = ah.realm_match(con, realm)
     rows = _rows(con,
-                 "SELECT * FROM ah_snapshot WHERE LOWER(realm) = LOWER(?)"
-                 " ORDER BY captured_at DESC LIMIT 1", (realm,))
+                 f"SELECT * FROM ah_snapshot WHERE {where}"
+                 " ORDER BY captured_at DESC LIMIT 1", params)
     return rows[0] if rows else None
 
 

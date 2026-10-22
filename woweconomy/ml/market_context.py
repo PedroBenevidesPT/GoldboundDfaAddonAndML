@@ -55,6 +55,8 @@ from pathlib import Path
 from statistics import mean, median
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
+from ..intel import ah
+
 #: how many TSM snapshots the price path is measured over
 DEFAULT_TREND_SNAPSHOTS = 8
 #: a price path shorter than this is a direction, not a trend
@@ -279,31 +281,43 @@ def price_path(con: sqlite3.Connection, scope: str, item_ids: Sequence[int],
 def _realm_snapshots(intel: sqlite3.Connection, realm: str,
                      limit: int = 2) -> List[Tuple[str, int]]:
     try:
+        where, params = ah.realm_match(intel, realm)
         rows = intel.execute(
-            "SELECT snapshot_id, captured_at FROM ah_snapshot"
-            " WHERE LOWER(realm) = LOWER(?) ORDER BY captured_at DESC LIMIT ?",
-            (realm, int(limit))).fetchall()
+            f"SELECT snapshot_id, captured_at FROM ah_snapshot"
+            f" WHERE {where} ORDER BY captured_at DESC LIMIT ?",
+            [*params, int(limit)]).fetchall()
     except sqlite3.OperationalError:
         return []
     return [(str(r[0]), int(r[1])) for r in rows]
 
 
 def _snapshot_supply(intel: sqlite3.Connection, snapshot_id: str,
-                     item_ids: Sequence[int]) -> Dict[int, Tuple[int, int, int, int]]:
-    """item -> (listings, units, cheapest, own auction ids matched)."""
-    out: Dict[int, Tuple[int, int, int, int]] = {}
+                     item_ids: Sequence[int]
+                     ) -> Dict[int, Tuple[int, int, Optional[int], int]]:
+    """item -> (listings, units, cheapest usable ask, own auction ids matched).
+
+    Supply counts every row: a listing parked at the buyout ceiling is
+    still an item someone is trying to sell.  The *price* comes only from
+    rows whose ``price_status`` says the value may be used, so an item
+    whose only listings are parked reports ``cheapest = None`` -- unknown
+    -- rather than 9,999,999 g.  Reporting a number there would be
+    treating "no usable price" as a price.
+    """
+    out: Dict[int, Tuple[int, int, Optional[int], int]] = {}
     for chunk in _chunks(list(item_ids)):
         marks = ",".join("?" * len(chunk))
         try:
             rows = intel.execute(
                 f"SELECT item_id, COUNT(*) AS n, SUM(quantity) AS units,"
-                f" MIN(CASE WHEN unit_price_copper > 0 THEN unit_price_copper END) AS cheapest"
+                f" MIN(CASE WHEN price_status = 'ok' AND unit_price_copper > 0"
+                f"     THEN unit_price_copper END) AS cheapest"
                 f" FROM ah_auction WHERE snapshot_id=? AND item_id IN ({marks})"
                 f" GROUP BY item_id", [snapshot_id, *chunk]).fetchall()
         except sqlite3.OperationalError:
             return out
         for item_id, n, units, cheapest in rows:
-            out[int(item_id)] = (int(n or 0), int(units or 0), int(cheapest or 0), 0)
+            out[int(item_id)] = (int(n or 0), int(units or 0),
+                                 int(cheapest) if cheapest else None, 0)
     return out
 
 
@@ -478,7 +492,7 @@ def build_realm_market(wow_db: Path | str, intel_db: Optional[Path | str],
             rate, per_day = liquidity.get(item_id, (None, None))
 
             units_change = cheapest_change = None
-            if data and prev and prev[1] > 0 and prev[2] > 0:
+            if data and prev and prev[1] > 0 and prev[2] and data[2]:
                 units_change = _pct(float(data[1]), float(prev[1]))
                 cheapest_change = _pct(float(data[2]), float(prev[2]))
             own_share = None

@@ -340,10 +340,11 @@ def realm_dynamics(con, region: str, realm: str,
         return {"region": region, "realm": realm, "available": False,
                 "reason": "no auction snapshot ingested for this realm"}
     rows = ah_module.snapshot_auctions(con, latest["snapshot_id"])
+    where, params = ah_module.realm_match(con, realm, region)
     prev = con.execute(
-        "SELECT * FROM ah_snapshot WHERE region = ? AND LOWER(realm) = LOWER(?)"
+        f"SELECT * FROM ah_snapshot WHERE region = ? AND {where}"
         " AND captured_at < ? ORDER BY captured_at DESC LIMIT 1",
-        (region, realm, latest["captured_at"])).fetchone()
+        [region, *params, latest["captured_at"]]).fetchone()
     prev_rows = ah_module.snapshot_auctions(con, prev["snapshot_id"]) if prev else []
     gap = ((latest["captured_at"] - prev["captured_at"]) / 3600.0
            if prev else None)

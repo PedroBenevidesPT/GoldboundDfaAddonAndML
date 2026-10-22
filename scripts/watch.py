@@ -45,6 +45,7 @@ import subprocess
 import sys
 import time
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple
 
@@ -54,6 +55,7 @@ if str(ROOT) not in sys.path:
 PY = sys.executable
 
 from woweconomy.intel import actions as action_log  # noqa: E402
+from woweconomy.intel import ah  # noqa: E402
 from woweconomy.intel import ah_undercut, alerts, inventory, relist, store  # noqa: E402
 from woweconomy.ml.market_context import build_realm_market  # noqa: E402
 
@@ -550,6 +552,42 @@ class Watch:
         """Ship a dataset that changed outside the daemon to both copies."""
         return {"deploy": self.deploy_dataset(now)}
 
+    def fetch_commodities(self, now: int, region: str) -> Dict[str, Any]:
+        """Fetch the region-wide commodity book, once per tick.
+
+        The commodity endpoint has no connected realm: there is one book
+        per region, so calling it once per selling realm would download
+        the same 28 MB ten times.  It is therefore a single call after the
+        realm loop, tracked under its own state key.
+        """
+        state = self.state.setdefault("ah", {}).setdefault("__commodities__", {})
+        # ``--region`` is a *global* flag of intel.py, so it must precede
+        # the subcommand; after ``ah-fetch`` the parser rejects it and the
+        # subprocess exits 2 without fetching anything.
+        argv = [PY, "scripts/intel.py", "--region", region, "ah-fetch",
+                "--realm", "", "--commodities-only"]
+        if state.get("last_modified"):
+            argv.extend(["--commodities-since", state["last_modified"]])
+        result = self.runner(argv, timeout=900)
+        entry: Dict[str, Any] = {"returncode": result.get("returncode")}
+        if result.get("returncode") not in (0, None):
+            entry["error"] = str(result.get("stderr"))[:300]
+            return entry
+        payload = result.get("payload")
+        if payload is None or "304" in str(result.get("stderr") or ""):
+            entry["unchanged"] = True
+            return entry
+        entry["snapshot"] = payload
+        con = self.con()
+        stored = con.execute(
+            "SELECT api_last_modified FROM ah_snapshot"
+            " WHERE region = ? AND realm = ''"
+            " ORDER BY captured_at DESC LIMIT 1", (region,)).fetchone()
+        state["last_modified"] = (
+            (stored[0] if stored else "")
+            or datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT"))
+        return entry
+
     def task_ah(self, now: int) -> Dict[str, Any]:
         con = self.con()
         realms = self.realms()
@@ -594,6 +632,13 @@ class Watch:
                 entry["undercut"] = self.derive_undercut(now, realm)
                 entry["resets"] = self.detect_resets(realm)
             out["realms"][realm] = entry
+        # The commodity book is region-wide: one fetch per tick, not per
+        # realm.  It is recorded separately so a commodity failure cannot
+        # mark the realm snapshots as failed.
+        region_row = con.execute(
+            "SELECT region FROM ah_realm LIMIT 1").fetchone()
+        region = (region_row[0] if region_row else "") or "eu"
+        out["commodities"] = self.fetch_commodities(now, region)
         return out
 
     def derive_undercut(self, now: int, realm: str = "") -> Dict[str, Any]:
@@ -647,10 +692,11 @@ class Watch:
 
     def detect_resets(self, realm: str) -> List[Dict[str, Any]]:
         con = self.con()
+        where, params = ah.realm_match(con, realm)
         heads = con.execute(
-            "SELECT snapshot_id, captured_at FROM ah_snapshot"
-            " WHERE LOWER(realm) = LOWER(?) ORDER BY captured_at DESC LIMIT 2",
-            (realm,)).fetchall()
+            f"SELECT snapshot_id, captured_at FROM ah_snapshot"
+            f" WHERE {where} ORDER BY captured_at DESC LIMIT 2",
+            params).fetchall()
         if len(heads) < 2:
             return []
         current = ah_undercut.price_state(

@@ -11,6 +11,13 @@ import sqlite3
 
 import pytest
 
+from woweconomy.intel.prices import (
+    GOLD_CAP_COPPER,
+    IMPOSSIBLE,
+    OK,
+    SENTINEL,
+    SENTINEL_COPPER,
+)
 from woweconomy.ml.market_context import (
     OWN_SHARE_WARN,
     STALE_AGE_H,
@@ -65,7 +72,7 @@ def _wow_db(tmp_path, *, mapping=True):
     return path
 
 
-def _intel_db(tmp_path, *, supply=True, stale=False):
+def _intel_db(tmp_path, *, supply=True, stale=False, parked=False):
     path = tmp_path / "intel.sqlite"
     path.parent.mkdir(parents=True, exist_ok=True)
     con = sqlite3.connect(path)
@@ -83,7 +90,11 @@ def _intel_db(tmp_path, *, supply=True, stale=False):
             bid_copper INTEGER, total_price_copper INTEGER,
             unit_price_source TEXT, time_left_raw TEXT, time_left_band TEXT,
             is_commodity INTEGER, pet_species_id INTEGER, bonus_lists TEXT,
-            modifiers TEXT, PRIMARY KEY (snapshot_id, auction_key));
+            modifiers TEXT,
+            price_status TEXT NOT NULL DEFAULT 'missing',
+            price_reason TEXT NOT NULL DEFAULT '',
+            variant_key TEXT,
+            PRIMARY KEY (snapshot_id, auction_key));
         CREATE TABLE undercut_observation (
             observation_id TEXT PRIMARY KEY, scan_id TEXT, observed_at INTEGER,
             realm TEXT, character TEXT, item_id INTEGER, item_name TEXT,
@@ -124,13 +135,31 @@ def _intel_db(tmp_path, *, supply=True, stale=False):
         ("new", "b2", 13, 100, 1, 1, 1200),
         ("new", "b3", 14, 101, 1, 2, 400),
     ]
+    # ``price_status`` is stated explicitly and is ``'ok'``: the column
+    # defaults to ``'missing'``, and a row without a verdict has no usable
+    # price.  Leaving it out here would make every cheapest ask below NULL.
     for snapshot, key, auction, item, ctx, qty, price in rows:
         con.execute(
             "INSERT INTO ah_auction (snapshot_id, auction_key, auction_id,"
             " item_id, item_context, quantity, unit_price_copper,"
             " buyout_copper, total_price_copper, time_left_band,"
-            " is_commodity) VALUES (?,?,?,?,?,?,?,?,?,'LONG',0)",
+            " is_commodity, price_status) VALUES (?,?,?,?,?,?,?,?,?,'LONG',0,'ok')",
             (snapshot, key, auction, item, ctx, qty, price, price * qty, price * qty))
+    if parked:
+        # item 102 is only ever listed at the no-data ceiling; item 103 only
+        # above the gold cap; item 104 has one parked row beside a real ask.
+        for key, auction, item, price, status in (
+                ("b4", 15, 102, SENTINEL_COPPER + 900, SENTINEL),
+                ("b5", 16, 103, GOLD_CAP_COPPER + 1, IMPOSSIBLE),
+                ("b6", 17, 104, SENTINEL_COPPER + 900, SENTINEL),
+                ("b7", 18, 104, 800, OK)):
+            con.execute(
+                "INSERT INTO ah_auction (snapshot_id, auction_key, auction_id,"
+                " item_id, item_context, quantity, unit_price_copper,"
+                " buyout_copper, total_price_copper, time_left_band,"
+                " is_commodity, price_status) VALUES"
+                " ('new',?,?,?,1,1,?,?,?,'LONG',0,?)",
+                (key, auction, item, price, price, price, status))
     con.execute("INSERT INTO inventory_snapshot VALUES"
                 " ('inv', ?, 'me', 'Dragonmaw', '', '', 0, '', '')", (newer - 60,))
     con.execute("INSERT INTO inventory_posted_listing VALUES"
@@ -232,6 +261,45 @@ def test_no_intel_rows_for_this_item_is_not_a_zero_supply(tmp_path):
     assert item.listings is None
     assert item.coverage == "none"
     assert item.confidence == 0.0
+
+
+def test_a_listing_parked_at_the_no_data_ceiling_is_supply_without_a_price(
+        tmp_path):
+    """99,999,999,900 copper is TSM's "I don't know", not 9,999,999 gold.
+
+    The row is still evidence that someone is trying to sell the item, so
+    the listing and unit counts stay.  It is *not* evidence of what the item
+    costs, so the cheapest ask is unknown.  Reporting the ceiling here would
+    teach the model that the market price is ten million gold.
+    """
+    market = build_realm_market(_wow_db(tmp_path),
+                                _intel_db(tmp_path, parked=True),
+                                "Dragonmaw", [102], now=NOW)
+    item = market.get(102)
+    assert item.listings == 1
+    assert item.units == 1
+    assert item.cheapest_ask is None
+    assert "supply" in item.observed
+
+
+def test_a_buyout_above_the_gold_cap_is_not_a_price_either(tmp_path):
+    market = build_realm_market(_wow_db(tmp_path),
+                                _intel_db(tmp_path, parked=True),
+                                "Dragonmaw", [103], now=NOW)
+    item = market.get(103)
+    assert item.listings == 1
+    assert item.cheapest_ask is None
+
+
+def test_a_parked_listing_does_not_become_the_cheapest_ask(tmp_path):
+    """The cheapest *usable* ask, not the cheapest row."""
+    market = build_realm_market(_wow_db(tmp_path),
+                                _intel_db(tmp_path, parked=True),
+                                "Dragonmaw", [104], now=NOW)
+    item = market.get(104)
+    assert item.listings == 2      # both rows are supply
+    assert item.units == 2
+    assert item.cheapest_ask == 800  # the parked row is not a candidate
 
 
 def test_a_stale_snapshot_is_flagged_and_worth_less(tmp_path):

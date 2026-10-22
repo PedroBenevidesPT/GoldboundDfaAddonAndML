@@ -76,7 +76,13 @@ def test_a_share_without_a_stock_picture_stays_unknown():
     assert realm_index.undercut_share(con, "Dragonmaw") is None
 
 
-def _snapshot(con, snapshot_id, captured_at, prices):
+def _snapshot(con, snapshot_id, captured_at, prices, status="ok"):
+    """Write one snapshot the way ``ah.ingest_bundle`` would.
+
+    ``price_status`` is part of the row: a price whose status is unknown
+    (``missing``) is not a price a consumer may aggregate, so a fixture
+    that means "this item was listed at this price" has to say so.
+    """
     con.execute(
         "INSERT INTO ah_snapshot (snapshot_id, region, realm, captured_at,"
         " source, payload_sha256, imported_at) VALUES (?,?,?,?,?,?,?)",
@@ -85,10 +91,10 @@ def _snapshot(con, snapshot_id, captured_at, prices):
     for item_id, price in prices.items():
         con.execute(
             "INSERT INTO ah_auction (snapshot_id, auction_key, auction_id,"
-            " item_id, quantity, unit_price_copper, is_commodity)"
-            " VALUES (?,?,?,?,?,?,0)",
+            " item_id, quantity, unit_price_copper, is_commodity, price_status)"
+            " VALUES (?,?,?,?,?,?,0,?)",
             (snapshot_id, f"{snapshot_id}-{item_id}", item_id, item_id, 1,
-             price))
+             price, status))
     con.commit()
 
 
@@ -109,6 +115,42 @@ def test_one_snapshot_is_not_a_probability():
     _snapshot(con, "a", 1_000, {1: 100})
 
     assert realm_index.babysit_risk(con, "Dragonmaw") is None
+
+
+def test_a_sentinel_price_is_not_the_cheapest_ask():
+    """A row whose price may not be used must not set the floor.
+
+    99,999,999,000c is the "no data" sentinel; if ``MIN`` saw it the
+    babysit risk would invent an undercut that never happened, and if it
+    saw an impossible low value it would hide the real floor.
+    """
+    con = store.memory_connection()
+    _snapshot(con, "a", 1_000, {1: 100, 2: 100}, status="ok")
+    _snapshot(con, "b", 4_600, {1: 90, 2: 100}, status="ok")
+    # the same two snapshots also carry unusable rows for the same items
+    for snapshot_id, prices in (("a", {1: 99_999_999_000, 2: 99_999_999_000}),
+                                ("b", {1: 99_999_999_000, 2: 99_999_999_000})):
+        for item_id, price in prices.items():
+            con.execute(
+                "INSERT INTO ah_auction (snapshot_id, auction_key, auction_id,"
+                " item_id, quantity, unit_price_copper, is_commodity,"
+                " price_status) VALUES (?,?,?,?,?,?,0,'sentinel')",
+                (snapshot_id, f"{snapshot_id}-{item_id}-sentinel", 9_000 + item_id,
+                 item_id, 1, price))
+    con.commit()
+
+    risk = realm_index.babysit_risk(con, "Dragonmaw", horizon_h=24)
+
+    assert risk["drops"] == 1
+    assert risk["exposures"] == 2
+
+
+def test_a_row_with_unknown_price_status_is_not_evidence():
+    con = store.memory_connection()
+    _snapshot(con, "a", 1_000, {1: 100, 2: 100}, status="missing")
+    _snapshot(con, "b", 4_600, {1: 90, 2: 100}, status="missing")
+
+    assert realm_index.babysit_risk(con, "Dragonmaw", horizon_h=24) is None
 
 
 def test_best_realm_discounts_price_by_the_measured_undercut_share():

@@ -369,10 +369,11 @@ def ingest_file(con, path: Path | str, **kwargs) -> IngestResult:
 # ---------------------------------------------------------------------------
 
 def latest_snapshot(con, region: str, realm: str) -> Optional[Dict[str, Any]]:
+    where, params = realm_match(con, realm, region)
     row = con.execute(
-        "SELECT * FROM ah_snapshot WHERE region = ? AND LOWER(realm) = LOWER(?)"
+        f"SELECT * FROM ah_snapshot WHERE region = ? AND {where}"
         " ORDER BY captured_at DESC, snapshot_id DESC LIMIT 1",
-        (region, realm)).fetchone()
+        [region, *params]).fetchone()
     return dict(row) if row else None
 
 
@@ -386,10 +387,11 @@ def snapshot_auctions(con, snapshot_id: str) -> List[Dict[str, Any]]:
 
 def snapshots_between(con, region: str, realm: str,
                       start_ts: int, end_ts: int) -> List[Dict[str, Any]]:
+    where, params = realm_match(con, realm, region)
     rows = con.execute(
-        "SELECT * FROM ah_snapshot WHERE region = ? AND LOWER(realm) = LOWER(?)"
+        f"SELECT * FROM ah_snapshot WHERE region = ? AND {where}"
         " AND captured_at >= ? AND captured_at <= ? ORDER BY captured_at",
-        (region, realm, int(start_ts), int(end_ts))).fetchall()
+        [region, *params, int(start_ts), int(end_ts)]).fetchall()
     return [dict(r) for r in rows]
 
 
@@ -546,3 +548,46 @@ def connected_realm_id(con, realm: str, region: str = "eu") -> Optional[int]:
         " AND (LOWER(realm_name) = LOWER(?) OR LOWER(realm_slug) = LOWER(?))",
         (region, realm, realm)).fetchone()
     return int(row[0]) if row else None
+
+
+def realm_match(con, realm: str, region: str = "") -> Tuple[str, list]:
+    """SQL predicate + params selecting every snapshot that covers ``realm``.
+
+    The auction house is shared per *connected realm*: one book serves every
+    realm in the group (``Dragonmaw``, ``Haomarush``, ``Spinebreaker``,
+    ``Stormreaver`` and ``Vashj`` are one market, id 3656).  A snapshot is
+    therefore stored once, under one representative name, and matching on
+    that name alone made the other four invisible -- a query for
+    ``Haomarush`` returned nothing while its market had been scanned hourly.
+
+    Matching on ``connected_realm_id`` alone would be the tidy fix but would
+    hide every snapshot written before the mapping existed.  Or-ing the two
+    is the only form correct for old and new rows at once, so this returns a
+    fragment to be embedded in a larger WHERE clause rather than a query:
+
+        where, params = ah.realm_match(con, realm)
+        con.execute(f"SELECT ... FROM ah_snapshot WHERE {where} ...", params)
+
+    ``region`` is optional; when empty the realm name alone decides, which is
+    what the callers that do not carry a region already relied on.
+    """
+    clauses = ["LOWER(realm) = LOWER(?)"]
+    params: list = [realm]
+    try:
+        if region:
+            row = con.execute(
+                "SELECT connected_realm_id FROM ah_realm WHERE region = ?"
+                " AND (LOWER(realm_name) = LOWER(?) OR LOWER(realm_slug) = LOWER(?))",
+                (region, realm, realm)).fetchone()
+        else:
+            row = con.execute(
+                "SELECT connected_realm_id FROM ah_realm"
+                " WHERE LOWER(realm_name) = LOWER(?) OR LOWER(realm_slug) = LOWER(?)",
+                (realm, realm)).fetchone()
+    except sqlite3.OperationalError:
+        # no ah_realm table yet: name matching is all we can honestly do
+        return clauses[0], params
+    if row and row[0]:
+        clauses.append("connected_realm_id = ?")
+        params.append(int(row[0]))
+    return "(" + " OR ".join(clauses) + ")", params
