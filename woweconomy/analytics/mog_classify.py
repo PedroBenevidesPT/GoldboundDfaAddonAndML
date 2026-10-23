@@ -198,7 +198,12 @@ class TransmogClassifier:
                  db2: Optional[Dict[int, Db2Item]] = None,
                  demand: Optional[AppearanceDemand] = None) -> None:
         self.db_path = Path(db_path)
-        self.db2 = db2 if db2 is not None else load_db2_map(self.db_path)
+        # Loaded on the first classify call, restricted to the ids actually
+        # asked about.  The table holds 176k rows; a strategy build needs
+        # 31k of them, and reading all of it to look up a third is work
+        # nobody asked for -- the query stays index-backed either way.
+        self.db2 = db2 if db2 is not None else {}
+        self._db2_loaded = db2 is not None
         folder = Path(dfa_dir) if dfa_dir else default_dfa_dir()
         self.demand = demand
         if self.demand is None and folder is not None and Path(folder).exists():
@@ -217,13 +222,21 @@ class TransmogClassifier:
         return {int(i): list(self._appearance_cache.get(int(i), []))
                 for i in item_ids}
 
+    def _ensure_db2(self, item_ids: Sequence[int]) -> None:
+        if self._db2_loaded:
+            return
+        self.db2 = load_db2_map(self.db_path, only=item_ids)
+        self._db2_loaded = True
+
     def classify(self, item_ids: Sequence[int]) -> List[TransmogVerdict]:
         wanted = list(dict.fromkeys(int(i) for i in item_ids))
+        self._ensure_db2(wanted)
         appearances = self.appearances(wanted)
         return [self.classify_one(i) for i in wanted]
 
     def classify_one(self, item_id: int) -> TransmogVerdict:
         item_id = int(item_id)
+        self._ensure_db2([item_id])
         if item_id not in self._appearance_cache:
             found = item_appearances(str(self.db_path), [item_id])
             self._appearance_cache.update(found)

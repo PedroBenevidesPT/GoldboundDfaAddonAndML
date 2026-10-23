@@ -24,10 +24,11 @@ Both come from a lease: a row with an owner token and an expiry time.
 Durability
 ----------
 The lease table, the run log and the published statistics all live in the
-same SQLite database as the market data.  Redis, when present, is a fast
-mirror for the *current* view only: losing it costs a little coordination
-speed and never a fact, because every lease acquisition and every run
-outcome is already written to SQLite before it is mirrored.
+configured store: Postgres in production, the SQLite file on a workstation.
+Redis, when present, is a fast mirror for the *current* view only: losing it
+costs a little coordination speed and never a fact, because every lease
+acquisition and every run outcome is already written to the store before it
+is mirrored.
 """
 from __future__ import annotations
 
@@ -97,10 +98,13 @@ class LeaseStore(Protocol):
 # ---------------------------------------------------------------------------
 
 class SqliteLeaseStore:
-    """Leases in the same database as the data.
+    """Leases in the same store as the data (SQLite or Postgres).
 
-    One connection per worker.  ``check_same_thread=False`` is not used:
-    each worker owns its connection, which is what SQLite wants.
+    The name is historical: the statements are the SQLite ones and the
+    dbcompat connection runs them unchanged on Postgres (the dialect
+    translates ``ON CONFLICT`` and the rowcount is preserved), so there is
+    one implementation rather than two that can disagree about who holds a
+    lease.  One connection per worker.
     """
 
     def __init__(self, con: sqlite3.Connection, *,
@@ -367,6 +371,11 @@ def record_run(con: sqlite3.Connection, task: str, owner: str, *,
 #: this instead of polling Postgres; the database row is still the truth.
 STATS_HASH = "goldbound:stats"
 
+#: Fire-and-forget channel for "a task started / finished".  A monitor
+#: subscribes to it instead of polling; losing an event costs a refresh, not a
+#: fact, because the run itself is already in ``pipeline_run``.
+EVENTS_CHANNEL = "goldbound:events"
+
 _client_cache: Dict[str, Any] = {}
 
 
@@ -428,6 +437,42 @@ def publish_stat(con: sqlite3.Connection, key: str, value: Any,
             logger.debug("redis stat mirror failed for %s: %s", key, exc)
 
 
+def clear_stat(con: sqlite3.Connection, key: str, client=None) -> None:
+    """Forget one statistic, in the database and then in the mirror.
+
+    ``pipeline_stat`` holds "what is true now", so a fact that has stopped
+    being true has to be removed rather than left behind: a ``last_fail``
+    that survives the task's next success makes every later status line
+    describe an attempt that is no longer the last one.
+    """
+    con.execute("DELETE FROM pipeline_stat WHERE key = ?", (key,))
+    con.commit()
+
+    mirror = client if client is not None else _stats_client()
+    if mirror is not None:
+        try:
+            mirror.hdel(STATS_HASH, key)
+            mirror.hdel(STATS_HASH + ":meta", key)
+        except Exception as exc:  # pragma: no cover - best effort
+            logger.debug("redis stat clear failed for %s: %s", key, exc)
+
+
+def publish_event(kind: str, *, client=None, **fields: Any) -> None:
+    """Announce a pipeline moment on the Redis channel, if Redis is there.
+
+    Never raises and never waits: a monitor that is not listening must not
+    slow down the work it is watching.
+    """
+    mirror = client if client is not None else _stats_client()
+    if mirror is None:
+        return
+    try:
+        mirror.publish(EVENTS_CHANNEL, json.dumps(
+            {"event": kind, "at": int(time.time()), **fields}, default=str))
+    except Exception as exc:  # pragma: no cover - best effort
+        logger.debug("redis event %s failed: %s", kind, exc)
+
+
 def hot_stats(con: sqlite3.Connection, client=None) -> Dict[str, Any]:
     """The shared statistics, read from Redis when it is available.
 
@@ -443,6 +488,38 @@ def hot_stats(con: sqlite3.Connection, client=None) -> Dict[str, Any]:
         except Exception as exc:  # pragma: no cover - best effort
             logger.debug("redis stat read failed: %s", exc)
     return all_stats(con)
+
+
+def redis_status(con: sqlite3.Connection, url: str = "") -> Dict[str, Any]:
+    """What the optional mirror holds right now.  Never raises.
+
+    ``behind`` lists mirror keys the database does not have, which is the
+    failure a cache-only monitor hides: a key that was written to Redis and
+    never to the store looks like a fact until someone compares them.
+    """
+    url = url or os.environ.get("WOW_PIPELINE_REDIS", "")
+    if not url:
+        return {"configured": False, "reachable": False}
+    try:  # the reason matters: "no package" is a different fix from "no server"
+        import redis  # type: ignore  # noqa: F401
+    except Exception as exc:
+        return {"configured": True, "reachable": False,
+                "error": f"the redis package is not installed here: {exc}"}
+    client = _stats_client(url)
+    if client is None:
+        return {"configured": True, "reachable": False,
+                "error": f"cannot connect to {url.split('@')[-1]}"}
+    try:
+        hot = client.hgetall(STATS_HASH) or {}
+        hot_keys = {_text(key) for key in hot}
+        behind = sorted(hot_keys - set(all_stats(con)))
+        lease_keys = client.keys("wow:lease:*") or []
+        return {"configured": True, "reachable": True,
+                "stats": len(hot_keys), "leases": len(lease_keys),
+                "behind": behind}
+    except Exception as exc:  # pragma: no cover - best effort
+        logger.debug("redis status failed: %s", exc)
+        return {"configured": True, "reachable": False}
 
 
 def _text(value: Any) -> str:

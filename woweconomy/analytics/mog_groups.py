@@ -204,8 +204,9 @@ def load_universe(
     """
     if items not in ("priced", "variants", "all"):
         raise ValueError(f"items must be priced/variants/all, not {items!r}")
-    con = sqlite3.connect(db_path)
-    con.row_factory = sqlite3.Row
+    from woweconomy.dbcompat import connect_store
+
+    con = connect_store(db_path, readonly=True)
     try:
         canonical = canonical_realm
         if canonical is None:

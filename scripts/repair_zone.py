@@ -114,11 +114,46 @@ def main(path: str, db: str = "") -> None:
                 nid)
 
     p.write_text(json.dumps(entries, ensure_ascii=False, indent=2), encoding="utf-8")
+    # A repaired file must not become a second, better copy of the database.
+    # The same rows go to the configured store, replacing the zone, so the
+    # ranking reads the repair instead of quietly reading the old scan.
+    try:
+        from woweconomy.services import wowhead_store
+
+        rows = []
+        spawns = {}
+        for e in entries:
+            nid = int(e.get("npc_id", 0) or 0)
+            spawns[nid] = int(e.get("spawns", 0) or 0)
+            for it in e.get("items", []):
+                rows.append({
+                    "npc_id": nid, "npc_name": e.get("npc_name", ""),
+                    "zone": int(e.get("zone", 0) or 0),
+                    "zone_name": e.get("name", ""),
+                    "category": it.get("category", ""),
+                    "item_id": it.get("item_id"),
+                    "item_name": it.get("item_name", ""),
+                    "item_type": it.get("item_type", ""),
+                    "drop_rate": it.get("drop_rate", 0),
+                    "qty": it.get("qty", 1),
+                    "source_url": it.get("source_url", ""),
+                })
+        saved = wowhead_store.save_zone(
+            rows, zone_id=int(entries[0].get("zone", 0) or 0),
+            zone_name=entries[0].get("name", ""), npc_total=len(entries),
+            spawns=spawns, source="wowhead-repair")
+        print(f"Stored zone {saved['zone_id']}: {saved['rows']} repaired rows")
+    except Exception as exc:
+        logger.warning("could not store the repaired zone in the database: %r",
+                       exc)
     print(f"Repaired {p}: {len(entries)} NPCs, {fixed} names filled, cache seeded")
 
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.WARNING)
+    from woweconomy.dbcompat import load_env
+
+    load_env()
     _path = sys.argv[1] if len(sys.argv) > 1 else "woweconomy/wowhead_zones/zone_331.json"
     _db = sys.argv[2] if len(sys.argv) > 2 else ""
     main(_path, _db)

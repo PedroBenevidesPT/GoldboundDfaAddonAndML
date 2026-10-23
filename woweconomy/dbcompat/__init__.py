@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import logging
 import os
+import re
 import sqlite3
 from pathlib import Path
 from typing import Optional, Union
@@ -36,6 +37,8 @@ __all__ = [
     "database_url",
     "is_postgres",
     "store_exists",
+    "missing_table_errors",
+    "project_path",
     "load_env",
     "read_env_file",
     "env_file_path",
@@ -80,6 +83,10 @@ def is_postgres() -> bool:
 
 #: the repository root, used to find the ``.env`` an entry point should read
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+#: ``C://...`` / ``C:/...``: a path on the Windows machine, never relative
+#: to the project root, on any platform.
+_WINDOWS_ABSOLUTE = re.compile(r"^[A-Za-z]:[\\\\/]")
 
 _warned_about_env = False
 
@@ -200,6 +207,58 @@ def insert_returning_id(con, sql: str, params=(), column: str = "id") -> int:
             raise RuntimeError(f"INSERT returned no {column}: {sql[:120]}")
         return int(row[0])
     return int(con.execute(sql, params).lastrowid or 0)
+
+
+def project_path(env_name: str, default: str) -> Path:
+    """A configured path, or a default resolved against the project root.
+
+    The two config dataclasses were written with hardcoded ``C:\\...``
+    paths.  That is correct on the workstation and impossible anywhere
+    else: inside the worker container the project is at ``/app``, so the
+    export went looking for its model in ``C:\\FarmAnalysis\\models\\dfa_ml``,
+    found nothing, and reported "no price model found -- run dfa_ml.py
+    train first" about a model sitting in a mounted volume.
+
+    ``env_name`` wins when it is set, then the default against
+    :data:`PROJECT_ROOT`.  One function so the pricing config and the ML
+    config cannot drift apart again.
+    """
+    override = os.environ.get(env_name, "").strip()
+    if override:
+        return Path(override)
+    # A Windows absolute default is a location on *that* machine (the game's
+    # Program Files, the scan database).  Joining it onto PROJECT_ROOT gave
+    # "/app/C://Program Files (x86)\..." inside the container -- a path that
+    # cannot exist anywhere and silently turned every lookup into "missing".
+    if _WINDOWS_ABSOLUTE.match(default):
+        return Path(default)
+    return PROJECT_ROOT / default
+
+
+def missing_table_errors() -> tuple:
+    """The exceptions that mean "that table is not there yet".
+
+    Callers guard a query with this when the table may not have been
+    imported yet, and the two backends do not agree on what they raise:
+    SQLite raises ``OperationalError`` (for a missing table *and* for a
+    locked file, which is why the guard has always been a blunt one),
+    while Postgres raises ``UndefinedTable``, a subclass of
+    ``ProgrammingError``.  Catching only the SQLite class meant a guard
+    that worked on a workstation and turned into a crash in the container.
+
+    The Postgres class is imported lazily so a SQLite-only run needs no
+    driver installed.
+    """
+    errors = [sqlite3.OperationalError]
+    if backend() != "sqlite":
+        try:
+            import psycopg2.errors
+
+            errors.append(psycopg2.errors.UndefinedTable)
+            errors.append(psycopg2.errors.UndefinedColumn)
+        except Exception:  # pragma: no cover - driver always present in practice
+            pass
+    return tuple(errors)
 
 
 def store_exists(target: Union[str, Path, None]) -> bool:

@@ -10,7 +10,6 @@ from __future__ import annotations
 import json
 import logging
 import math
-import sqlite3
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -40,6 +39,8 @@ from .models import (
     train_time_to_sale_model,
 )
 from .strategy import ListingStrategy, StrategyConfig
+from ..dbcompat import connect as db_connect
+from ..dbcompat import missing_table_errors
 from .tsm_history import TSMHistory, load_region_history
 from .validate import Split, aggregate, make_split, reference_baselines
 
@@ -53,7 +54,10 @@ def now_iso() -> str:
 def build_name_index(tsm_db: Path) -> Dict[str, int]:
     """item name -> item id, from every catalogue the mirror holds."""
     index: Dict[str, int] = {}
-    con = sqlite3.connect(tsm_db)
+    # db_connect: in the worker container these tables are in Postgres,
+    # and sqlite3.connect on the missing path created an empty file -- the
+    # name index then came back empty and every item looked nameless.
+    con = db_connect(tsm_db)
     try:
         for item_id, name in con.execute("SELECT itemId, name FROM items"):
             if name:
@@ -64,7 +68,7 @@ def build_name_index(tsm_db: Path) -> Dict[str, int]:
         for item_id, name in con.execute("SELECT key_id, name FROM tsm_region_price"):
             if name:
                 index.setdefault(str(name), int(item_id))
-    except sqlite3.OperationalError as exc:
+    except missing_table_errors() as exc:
         logger.warning("name index incomplete: %s", exc)
     finally:
         con.close()
@@ -143,7 +147,14 @@ class DfaLearningEngine:
         logger.info("TSM history loaded for %d scopes", len(scopes))
 
         names = build_name_index(cfg.tsm_db)
-        self.archive = build_archive(cfg.journalator_lua, cfg.addons_dir, names)
+        # The libraries come from the published copy when there is one, so
+        # the same code reads the journal on the workstation and in the
+        # container.  Falling back to the AddOns folder keeps a machine that
+        # has never run the publisher working unchanged.
+        libs_dir = cfg.journalator_libs_dir
+        if not (Path(libs_dir) / "Journalator").exists():
+            libs_dir = cfg.addons_dir
+        self.archive = build_archive(cfg.journalator_lua, libs_dir, names)
         if self.archive.errors:
             logger.warning("journalator: %s", "; ".join(self.archive.errors))
         # the demand counters are loaded in :meth:`build_rows`, once the
@@ -158,13 +169,13 @@ class DfaLearningEngine:
         would find nothing.
         """
         cfg = self.config
-        con = sqlite3.connect(cfg.tsm_db)
+        con = db_connect(cfg.tsm_db)
         try:
             rows = con.execute(
                 "SELECT DISTINCT realm FROM auction_events WHERE realm <> ''").fetchall()
             canonical = {str(name): str(slug) for name, slug in con.execute(
                 "SELECT realm_name, canonical_slug FROM tsm_realm_group")}
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             rows, canonical = [], {}
         finally:
             con.close()

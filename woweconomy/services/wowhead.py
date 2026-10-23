@@ -14,7 +14,10 @@ Workflow
        with a[href*='item=']).  drop_rate is the pure Wowhead probability
        (e.g. "44 out of 65"); mean units per drop go to qty.  Rows without
        an item link are ignored and that category is skipped for the NPC.
-    5. Persist the result to woweconomy/wowhead_zones/<zone>.json.
+    5. Persist the result to woweconomy/wowhead_zones/<zone>.json *and* to
+       the canonical ``wowhead_zone`` / ``wowhead_drop`` tables
+       (``woweconomy.services.wowhead_store``).  The JSON is the raw
+       artefact; the database is what the pipeline reads on Postgres.
 
 Run (one or many zones straight on the command line)
     python -m woweconomy.services.wowhead "zone=331/ashenvale"
@@ -22,7 +25,8 @@ Run (one or many zones straight on the command line)
 Flags (any position): "all" = sweep every listing page (default),
     <number> = single listing page only, "all-npcs" = skip lootable filter,
     "headless" = hide the browser window (default shows it: don't close it!),
-    "no-cache" = ignore the per-NPC disk cache and re-scrape everything.
+    "no-cache" = ignore the per-NPC disk cache and re-scrape everything,
+    "--import-json" = import the existing zone files into the store, no browser.
 """
 
 from __future__ import annotations
@@ -230,9 +234,12 @@ class WowheadZoneScraper:
                     self._rate_limit()
                     if rows and idx % 25 == 0:
                         # Checkpoint: an interrupt never loses the whole run.
+                        # JSON only -- writing a partial zone to the database
+                        # would replace a complete previous scan with half of
+                        # this one if the run were killed here.
                         try:
                             self.export(rows, Path("woweconomy/wowhead_zones"),
-                                        self.spawn_counts)
+                                        self.spawn_counts, persist=False)
                         except Exception as exc:
                             logger.warning("Checkpoint failed: %r", exc)
             finally:
@@ -248,7 +255,14 @@ class WowheadZoneScraper:
 
     @staticmethod
     def export(rows: list[DropRow], out_dir: Path,
-               spawns: Optional[dict[int, int]] = None) -> Path:
+               spawns: Optional[dict[int, int]] = None,
+               persist: bool = True) -> Path:
+        """Write the raw JSON, and (by default) the canonical database rows.
+
+        The JSON stays the inspectable artefact and the thing a killed run
+        leaves behind.  The database is what the rest of the pipeline reads;
+        a persistence failure is logged and does not discard the scrape.
+        """
         out_dir.mkdir(parents=True, exist_ok=True)
         path = out_dir / f"zone_{rows[0].zone if rows else 0}.json"
         spawns = spawns or {}
@@ -277,6 +291,21 @@ class WowheadZoneScraper:
             encoding="utf-8",
         )
         logger.info("Wrote %s (%d NPCs, %d rows)", path, len(by_npc), len(rows))
+        if persist and rows:
+            from woweconomy.services import wowhead_store
+
+            try:
+                saved = wowhead_store.save_zone(
+                    rows, zone_id=rows[0].zone,
+                    zone_name=rows[0].zone_name, npc_total=len(by_npc),
+                    spawns=spawns)
+                logger.info("Stored zone %s: %d rows in the shared database",
+                            saved["zone_id"], saved["rows"])
+            except Exception as exc:
+                # The scrape is still a result: the JSON is complete, and a
+                # database that is down must not make the browser run useless.
+                logger.warning("Could not store zone %s in the database: %r",
+                               rows[0].zone, exc)
         return path
 
     # ------------------------------------------------------------------
@@ -807,12 +836,25 @@ if __name__ == "__main__":
     #   <number> (single listing page only), "all-npcs" (no lootable filter),
     #   "headless" (hide the browser window).
     logging.basicConfig(level=logging.INFO)
+    from woweconomy.dbcompat import load_env
+
+    # The scraper is an entry point: read the project's .env so ``save_zone``
+    # writes to the shared Postgres instead of silently creating a local file.
+    load_env()
     raw = sys.argv[1:] or ["zone=331/ashenvale"]
+    if any(a.lower() == "--import-json" for a in raw):
+        from woweconomy.services import wowhead_store
+
+        files = sorted(Path("woweconomy/wowhead_zones").glob("zone_*.json"))
+        result = wowhead_store.import_json(files)
+        print(f"Imported {result['zones']} zone(s), {result['rows']} rows")
+        raise SystemExit(0)
     slopes = [a for a in raw if "zone=" in a]
     flags = [a.lower() for a in raw if "zone=" not in a]
     page: Optional[int] = None
     for f in flags:
-        if f != "all" and f != "all-npcs" and f != "headless" and f != "no-cache":
+        if f not in ("all", "all-npcs", "headless", "no-cache",
+                     "--import-json"):
             page = int(f)  # single-page mode
     lootable = "all-npcs" not in flags
     headless = "headless" in flags

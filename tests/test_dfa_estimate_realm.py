@@ -81,15 +81,22 @@ def test_an_unmeasured_babysit_risk_is_not_zero(estimate):
     assert watched is None or watched >= 0
 
 
-def test_the_tooltip_names_the_best_realm_and_the_owned_stock(addon):
+def test_the_tooltip_names_the_best_realm_and_the_owned_stock(addon, estimate):
     tooltip = addon.DFAEstimateTooltip
     raw = tooltip.GetLines(25)
     lines = [raw[index] for index in range(1, len(raw) + 1)]
 
     assert any(line.startswith("DFA estimate:") for line in lines)
     assert any(line.startswith("Best realm:") for line in lines)
-    # no scan yet: no babysit line, rather than "0 %"
-    assert not any("Babysit" in line for line in lines)
+    # The shipped dataset may now carry a measured undercut share (the export
+    # reads the scans from the shared database, so it no longer loses them).
+    # What must never happen is a line for an *unknown* share rendered as 0 %.
+    share, risk, _ = estimate.BabysitProbability("Dragonmaw")
+    babysit = [line for line in lines if "Babysit" in line]
+    if share is None and risk is None:
+        assert not babysit, "an unknown babysit share must not be drawn"
+    else:
+        assert babysit and "%" in babysit[0]
 
     owned, posted = tooltip.CountOwned(25)
     assert owned is None  # no inventory export in this interpreter

@@ -10,12 +10,18 @@ The defaults describe *this* installation:
 * the Data for Azeroth scan database (``C:\\economics\\woweconomy\\dfa\\dfa.db``),
   which holds the demand counters;
 * the Journalator saved variables, which hold the account's own transactions.
+
+Every path is resolved against the project root (or a ``WOW_*`` override)
+rather than hardcoded, because the same code has to run inside the worker
+container, where the project is at ``/app``.
 """
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Tuple
+
+from ..dbcompat import project_path
 
 #: TSM writes this when it has no data.  It is not a price.
 SENTINEL_COPPER = 99_999_999_000
@@ -42,18 +48,33 @@ class MLConfig:
     """Paths and knobs for the learning engine."""
 
     # --- inputs -------------------------------------------------------
-    tsm_db: Path = Path(r"C:\FarmAnalysis\tsm_markets.db")
-    dfa_db: Path = Path(r"C:\economics\woweconomy\dfa\dfa.db")
-    journalator_lua: Path = Path(
-        r"C:\Program Files (x86)\World of Warcraft\_retail_\WTF\Account"
-        r"\1186541918#1\SavedVariables\Journalator.lua")
-    addons_dir: Path = Path(
-        r"C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns")
+    tsm_db: Path = field(
+        default_factory=lambda: project_path("WOW_TSM_DB", "tsm_markets.db"))
+    dfa_db: Path = field(default_factory=lambda: project_path(
+        "WOW_DFA_DB", str(Path(r"C:\economics\woweconomy\dfa\dfa.db"))))
+    #: The journal, as the host publishes it.  The game's SavedVariables
+    #: live under Program Files, which a container cannot see, so
+    #: `scripts/watch_addons.py` copies the file into the project and both
+    #: sides read it there -- one path, one answer.
+    journalator_lua: Path = field(default_factory=lambda: project_path(
+        "WOW_JOURNAL_LUA", "data/game/Journalator.lua"))
+    #: The two Lua libraries the journal is compressed with.  They ship
+    #: inside the Journalator addon, which a container cannot see, so the
+    #: host publishes them next to the journal and both sides read them
+    #: there.  Static files, ~190 KB, no game data.
+    journalator_libs_dir: Path = field(default_factory=lambda: project_path(
+        "WOW_JOURNAL_LIBS", "data/game"))
+    addons_dir: Path = field(default_factory=lambda: project_path(
+        "WOW_ADDONS_DIR",
+        r"C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns"))
 
     # --- outputs ------------------------------------------------------
-    models_dir: Path = Path(r"C:\FarmAnalysis\models\dfa_ml")
-    reports_dir: Path = Path(r"C:\FarmAnalysis\reports\dfa_ml")
-    cache_dir: Path = Path(r"C:\FarmAnalysis\data\ml")
+    models_dir: Path = field(
+        default_factory=lambda: project_path("WOW_MODELS_DIR", "models/dfa_ml"))
+    reports_dir: Path = field(
+        default_factory=lambda: project_path("WOW_ML_REPORTS_DIR", "reports/dfa_ml"))
+    cache_dir: Path = field(
+        default_factory=lambda: project_path("WOW_ML_CACHE_DIR", "data/ml"))
 
     # --- behaviour ----------------------------------------------------
     horizons_h: Tuple[int, ...] = DEFAULT_HORIZONS_H

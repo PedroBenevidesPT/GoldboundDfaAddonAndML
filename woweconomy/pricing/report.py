@@ -9,11 +9,11 @@ from __future__ import annotations
 
 import json
 import math
-import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional, Sequence
 
+from ..dbcompat import connect as db_connect
 from .config import PricingConfig
 from .dataset import DatasetBuilder
 from .engine import PricingEngine
@@ -29,8 +29,10 @@ def _mirror_facts(config: PricingConfig) -> Dict[str, object]:
     """
     facts: Dict[str, object] = {}
     try:
-        con = sqlite3.connect(f"file:{config.tsm_db.as_posix()}?mode=ro", uri=True)
-    except sqlite3.Error as exc:
+        # db_connect: the read-only file URI is a SQLite-only notion, and in
+        # the container these tables live in Postgres.
+        con = db_connect(config.tsm_db)
+    except Exception as exc:
         return {"error": str(exc)}
     try:
         facts["snapshots"] = con.execute(
@@ -54,7 +56,7 @@ def _mirror_facts(config: PricingConfig) -> Dict[str, object]:
             "SELECT COUNT(DISTINCT g.canonical_slug) FROM auction_events e "
             "JOIN tsm_realm_group g ON g.realm_name = e.realm "
             "WHERE e.realm <> ''").fetchone()[0]
-    except sqlite3.Error as exc:
+    except Exception as exc:
         facts["error"] = str(exc)
     finally:
         con.close()

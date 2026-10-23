@@ -118,7 +118,6 @@ def test_a_dependent_task_runs_once_its_input_has_run(con):
     tasks = rp.default_tasks()
     now = time.time()
     leases.publish_stat(con, "last_ok:fetch", now)
-    leases.publish_stat(con, "last_ok:sentinel", now)
     ready = rp.due(con, tasks, now=now)
     assert "export" in ready
 
@@ -212,6 +211,56 @@ def test_a_cycle_runs_what_is_due_in_dependency_order(con):
     assert "fetch" in names
 
 
+def test_independent_tasks_run_at_the_same_time(tmp_path):
+    """With workers>1 two unrelated tasks must overlap, not queue."""
+    import threading
+
+    path = tmp_path / "intel.sqlite"
+    con = store.connect(path)
+    try:
+        tasks = {
+            "a": rp.TaskDef("a", ["a"], every_s=60),
+            "b": rp.TaskDef("b", ["b"], every_s=60),
+        }
+        both = threading.Barrier(2, timeout=10)
+        seen = []
+
+        def runner(task):
+            seen.append(task.name)
+            both.wait()      # deadlocks, and fails, if the tasks are serial
+            return 0, "ok"
+
+        results = rp.cycle(con, tasks, only=["a", "b"], runner=runner,
+                           workers=2, connect=lambda: store.connect(path))
+        assert [r.task for r in results] == ["a", "b"]
+        assert all(r.ok for r in results)
+    finally:
+        con.close()
+
+
+def test_a_concurrent_cycle_waits_for_a_dependency(tmp_path):
+    """`b` must not start while `a`, which it depends on, is running."""
+    path = tmp_path / "intel.sqlite"
+    con = store.connect(path)
+    try:
+        tasks = {
+            "a": rp.TaskDef("a", ["a"], every_s=60),
+            "b": rp.TaskDef("b", ["b"], every_s=60, after=("a",)),
+        }
+        seen = []
+
+        def runner(task):
+            seen.append(task.name)
+            return 0, "ok"
+
+        results = rp.cycle(con, tasks, only=["a", "b"], runner=runner,
+                           workers=2, connect=lambda: store.connect(path))
+        assert seen == ["a", "b"]
+        assert [r.task for r in results] == ["a", "b"]
+    finally:
+        con.close()
+
+
 def test_a_cycle_can_be_limited_to_one_task(con):
     tasks = rp.default_tasks()
     runner = _runner()
@@ -258,6 +307,76 @@ def test_status_reports_a_failed_last_attempt(con):
     tasks = rp.default_tasks()
     rp.run_task(con, tasks["fetch"], runner=_runner(1, "nope"))
     assert "last attempt failed" in rp.status(con)
+
+
+def test_a_skip_replaces_the_previous_failure(con):
+    """A task that cannot run here is not still failing.
+
+    Regression: `last_fail` was never retired, so once `strategy` skipped
+    for want of DFA_DIR, `status` kept showing the 11:47 failure as though
+    it were the latest word, and the real reason was invisible.
+    """
+    tasks = rp.default_tasks()
+    rp.run_task(con, tasks["strategy"], runner=_runner(1, "old failure"))
+    assert "last attempt failed" in rp.status(con)
+
+    rp.run_task(con, tasks["strategy"],
+                runner=_runner(rp.EX_CONFIG, "DFA_DIR is not set"))
+
+    assert leases.read_stat(con, "last_fail:strategy", None) is None
+    text = rp.status(con)
+    assert "last attempt failed" not in text
+    assert "last attempt skipped" in text
+    assert "DFA_DIR is not set" in text
+
+
+def test_a_success_replaces_the_previous_failure(con):
+    """`last_fail` describes the last attempt, so a success retires it."""
+    tasks = rp.default_tasks()
+    rp.run_task(con, tasks["fetch"], runner=_runner(1, "boom"))
+    rp.run_task(con, tasks["fetch"], runner=_runner(0, "ok"))
+    assert leases.read_stat(con, "last_fail:fetch", None) is None
+    assert "last attempt failed" not in rp.status(con)
+
+
+def test_not_getting_the_lease_leaves_the_failure_alone(con):
+    """Not running is not an answer: the last real attempt still failed."""
+    tasks = rp.default_tasks()
+    rp.run_task(con, tasks["fetch"], runner=_runner(1, "boom"))
+    leases.SqliteLeaseStore(con).acquire("fetch", ttl=600, owner="other")
+    rp.run_task(con, tasks["fetch"], runner=_runner())
+    assert leases.read_stat(con, "last_fail:fetch", None)
+    assert "last attempt failed" in rp.status(con)
+
+
+def test_status_json_carries_the_skip(con):
+    tasks = rp.default_tasks()
+    rp.run_task(con, tasks["strategy"],
+                runner=_runner(rp.EX_CONFIG, "DFA_DIR is not set"))
+    row = next(row for row in rp.status_json(con)["tasks"]
+               if row["task"] == "strategy")
+    assert row["last_skip"]["reason"] == "DFA_DIR is not set"
+    assert row["last_fail"] is None
+
+
+def test_status_json_is_the_same_view_for_a_monitor(con):
+    tasks = rp.default_tasks()
+    rp.run_task(con, tasks["fetch"], runner=_runner(0, "ok"))
+    view = rp.status_json(con)
+    assert view["backend"] in ("sqlite", "postgres")
+    fetch = next(row for row in view["tasks"] if row["task"] == "fetch")
+    assert fetch["last_ok"]
+    assert isinstance(view["redis"], dict) and "configured" in view["redis"]
+    assert view["dataset"]["path"].endswith("DFA_Estimate_Data.lua")
+
+
+def test_a_task_announces_its_start_and_result(con, monkeypatch):
+    events = []
+    monkeypatch.setattr(leases, "publish_event",
+                        lambda kind, **fields: events.append((kind, fields.get("task"))))
+    tasks = rp.default_tasks()
+    rp.run_task(con, tasks["fetch"], runner=_runner(0, "ok"))
+    assert events == [("start", "fetch"), ("ok", "fetch")]
 
 
 # ------------------------------------------------------- new-dataset notices
@@ -343,6 +462,29 @@ def test_a_changed_dataset_alerts_again(con, tmp_path, monkeypatch):
     rp.notify_new_dataset(con, path=path)
     assert len(posted) == 2
     assert any("238" in line for line in posted[1].lines)
+
+
+def test_a_new_dataset_is_posted_to_the_webhook_without_a_cooldown(
+        con, tmp_path, monkeypatch):
+    """The digest is the rate limit; the webhook still has to be passed one.
+
+    Regression: `deliver` defaults to no URL and a six-hour cooldown, so a
+    changed dataset reached at most a desktop toast, and a real change could
+    be dropped outright.
+    """
+    monkeypatch.setattr(rp.alerts, "webhook_url",
+                        lambda *args, **kwargs: "https://discord.test/hook")
+    calls = []
+
+    def record(items, state, now, **kw):
+        calls.append(kw)
+        return [{"key": items[0].key, "webhook": False, "toast": True,
+                 "error": "", "retry": False}]
+
+    monkeypatch.setattr(rp.alerts, "deliver", record)
+    rp.notify_new_dataset(con, path=_dataset(tmp_path))
+    assert calls and calls[0]["url"] == "https://discord.test/hook"
+    assert calls[0]["cooldown_s"] == 0
 
 
 def test_the_alert_does_not_fail_the_export_when_the_channel_is_dead(

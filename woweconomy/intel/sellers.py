@@ -261,8 +261,9 @@ def load_confirmed_sales(tsm_db: Path | str, since: int = 0,
     correlated with a seller observation, so it is excluded here and
     counted nowhere else.
     """
-    con = sqlite3.connect(str(tsm_db))
-    con.row_factory = sqlite3.Row
+    from woweconomy.dbcompat import connect_store, missing_table_errors
+
+    con = connect_store(tsm_db, readonly=True)
     facts: Dict[str, SaleFact] = {}
     try:
         sql = ("SELECT event_id, ts, item_id, item_name, quantity,"
@@ -286,7 +287,7 @@ def load_confirmed_sales(tsm_db: Path | str, since: int = 0,
                     unit_price_copper=int(row["unit_price_copper"] or 0),
                     buyer=row["counterparty"], character=row["character"] or "",
                     source="auction_intel_events", confidence=row["confidence"] or "verified")
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             pass
         # older importer, same facts under different column names
         sql = ("SELECT event_id, timestamp_unix, item_id, item_name, qty,"
@@ -313,7 +314,7 @@ def load_confirmed_sales(tsm_db: Path | str, since: int = 0,
                     unit_price_copper=int(row["unit_price_copper"] or 0),
                     buyer=row["counterparty"], character=row["character"] or "",
                     source="auction_events", confidence=row["confidence"] or "verified")
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             pass
     finally:
         con.close()

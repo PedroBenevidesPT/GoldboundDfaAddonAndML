@@ -520,7 +520,9 @@ def item_appearances(db_path: str, item_ids: Sequence[int]) -> Dict[int, List[in
     out: Dict[int, List[int]] = {}
     if not item_ids:
         return out
-    con = sqlite3.connect(db_path)
+    from woweconomy.dbcompat import connect_store, missing_table_errors
+
+    con = connect_store(db_path, readonly=True)
     try:
         ids = list(dict.fromkeys(int(i) for i in item_ids))
         for start in range(0, len(ids), 900):
@@ -530,7 +532,7 @@ def item_appearances(db_path: str, item_ids: Sequence[int]) -> Dict[int, List[in
                     f"SELECT itemId, appearanceId FROM db2_item_appearance "
                     f"WHERE itemId IN ({marks})", chunk):
                 out.setdefault(int(item_id), []).append(int(appearance_id))
-    except sqlite3.OperationalError:
+    except missing_table_errors():
         return {}  # no DB2 import: callers fall back to the name join
     finally:
         con.close()
@@ -657,8 +659,10 @@ def load_realm_market(db_path: str) -> Dict[str, Dict[int, Tuple[float, int]]]:
     out: Dict[str, Dict[int, Tuple[float, int]]] = {}
     if not db_path:
         return out
+    from woweconomy.dbcompat import connect_store, missing_table_errors
+
     try:
-        con = sqlite3.connect(db_path)
+        con = connect_store(db_path, readonly=True)
         try:
             for realm, item_id, market, auctions in con.execute(
                     "SELECT realm, itemId, market, num_auctions FROM tsm_market "
@@ -667,7 +671,7 @@ def load_realm_market(db_path: str) -> Dict[str, Dict[int, Tuple[float, int]]]:
                     float(market or 0), int(auctions or 0))
         finally:
             con.close()
-    except sqlite3.Error as exc:
+    except missing_table_errors() as exc:
         logger.warning("tsm_market ilegivel (%s)", exc)
     return out
 

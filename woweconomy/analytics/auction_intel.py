@@ -279,8 +279,10 @@ def build_name_index(db_path: Path | str) -> Dict[str, int]:
     Kept here, and not borrowed from the ML pipeline, because the importer has
     no CatBoost or pandas to load just to read three SELECTs.
     """
+    from woweconomy.dbcompat import connect_store, missing_table_errors
+
     index: Dict[str, int] = {}
-    con = sqlite3.connect(str(db_path))
+    con = connect_store(db_path, readonly=True)
     try:
         queries = ("SELECT itemId, name FROM items",
                    "SELECT item_id, name FROM tsm_realm_price",
@@ -290,7 +292,7 @@ def build_name_index(db_path: Path | str) -> Dict[str, int]:
                 for item_id, name in con.execute(query):
                     if name and item_id:
                         index.setdefault(str(name), int(item_id))
-            except sqlite3.OperationalError:
+            except missing_table_errors():
                 continue
     finally:
         con.close()

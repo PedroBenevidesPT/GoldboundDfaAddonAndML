@@ -118,6 +118,12 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER:-goldbound}:${POSTGRES_PASSWORD:-goldbound}@postgres:5432/${POSTGRES_DB:-goldbound}
       WOW_PIPELINE_REDIS: redis://redis:6379/0
       WOW_PIPELINE_BACKEND: postgres
+      # The Data for Azeroth demand export is an input, not code: the posting
+      # plan cannot classify a look without it.  Point `DFA_DIR` in `.env` at
+      # the folder holding `demand_*.csv` on this machine (docker compose
+      # interpolates it for the mount below); without it the
+      # strategy task reports a skip instead of failing every cycle.
+      DFA_DIR: /app/woweconomy/dfa
       # Python block-buffers stdout when it is not a terminal, which is
       # always inside a container: without this, `docker compose logs` shows
       # nothing until a task finishes, and a fetch takes minutes.
@@ -129,6 +135,7 @@ services:
       - ./data:/app/data
       - ./models:/app/models
       - ./DFA_Estimate/Data:/app/DFA_Estimate/Data
+      - ${DFA_DIR:-./woweconomy/dfa}:/app/woweconomy/dfa:ro
       - ./logs:/app/logs
     depends_on:
       postgres:
@@ -137,7 +144,11 @@ services:
         condition: service_healthy
       migrate:
         condition: service_completed_successfully
-    command: ["python", "run_pipeline.py", "--loop", "--interval", "120"]
+    # Three at once: the TSM sweep paces itself for half an hour and used to
+    # hold everything else behind it.  Dependency order is still honoured
+    # (`export` waits for `strategy`, `deploy` for `export`) and the lease
+    # table still guarantees one worker per task.
+    command: ["python", "run_pipeline.py", "--loop", "--interval", "120", "--workers", "3"]
     restart: unless-stopped
     # No `container_name`: this service is meant to be scaled, and a fixed
     # name makes a second replica impossible.

@@ -18,10 +18,11 @@ from the task's own timeout, so a task can never outlive its lease while it
 is legitimately running, and a killed task frees its lease within one TTL
 rather than needing an operator.
 
-**No lost work.**  What is due is decided from ``pipeline_stat`` in SQLite,
-not from a notification or an in-memory timer.  A missed tick is not a lost
-tick: the next cycle sees the task as overdue and runs it.  Redis, when
-present, is a mirror for observability and never the source of truth.
+**No lost work.**  What is due is decided from ``pipeline_stat`` in the
+configured store (Postgres in production), not from a notification or an
+in-memory timer.  A missed tick is not a lost tick: the next cycle sees the
+task as overdue and runs it.  Redis, when present, is a mirror for
+observability and never the source of truth.
 
 Cadence
 -------
@@ -35,6 +36,7 @@ defaults therefore favour ``fetch`` heavily and the expensive jobs lightly:
     aggregates   every 6 h   -- the statistical record, rebuilt for a window
     strategy     every 6 h   -- the posting plan, from the current snapshot
     sentinel     every 24 h  -- retrain, gated by chronological validation
+    decisions    every 6 h   -- replay scans into the relist ledger, link outcomes
     export       every 6 h   -- write the addon dataset
     visibility   every 24 h  -- were our sales visible in the Blizzard book
     deploy       after export -- copy the toc-listed files into the game
@@ -61,6 +63,8 @@ import re
 import subprocess
 import sys
 import time
+import uuid
+from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Sequence
@@ -133,10 +137,14 @@ def default_tasks() -> Dict[str, TaskDef]:
         # seconds between requests TSM needs to not start answering 429.  The
         # sweep is conditional (ETag/If-Modified-Since), so a run where TSM has
         # not republished costs 187 round trips and no bodies.  187 x 10 s is
-        # 31 minutes, so the timeout is 90 to leave room for the downloads.
+        # 31 minutes of pacing; the measured first download of a republished
+        # set is much slower than that (the CDN, not the delay, is the
+        # bottleneck), so 90 minutes cut a live sweep off at 114 of 187 files.
+        # Three hours fits a full cold sweep and still leaves the next one
+        # due before the data is stale.
         TaskDef("tsm_csv",
                 ["scripts/fetch_tsm_snapshots.py", "--delay", "10"],
-                every_s=6 * HOUR, timeout_s=5400),
+                every_s=6 * HOUR, timeout_s=3 * HOUR),
         TaskDef("aggregates",
                 # ``--last-days``, not ``--days``: the latter names specific
                 # days and would silently rebuild everything instead of the
@@ -149,6 +157,18 @@ def default_tasks() -> Dict[str, TaskDef]:
         TaskDef("sentinel",
                 ["scripts/dfa_ml.py", "sentinel", "--if-needed"],
                 every_s=24 * HOUR, timeout_s=7200),
+        # The advice was being written down only when the interactive watcher
+        # happened to scan.  Replaying the stored scans and attaching the
+        # confirmed events makes the ledger a pipeline fact rather than a
+        # side effect of someone looking at the market that day.
+        TaskDef("decisions",
+                ["scripts/intel.py", "decisions", "--backfill", "--link"],
+                every_s=6 * HOUR, timeout_s=900, after=("fetch",)),
+        # Deliberately not `after=("strategy",)`: the plan is replaced in a
+        # single transaction, so a concurrent export reads either the old
+        # plan or the new one, never half of it -- and a machine without the
+        # DfA demand export (which strategy needs) would otherwise block the
+        # dataset for ever.
         TaskDef("export",
                 ["scripts/dfa_pricing_export.py"],
                 every_s=6 * HOUR, timeout_s=1800, after=("fetch",)),
@@ -295,8 +315,17 @@ def notify_new_dataset(con, *, notify: bool = True,
     if digest == previous:
         return []
     state = leases.read_stat(con, "alerts:state", None) or {"alerted": {}}
+    # The webhook URL has to be handed over explicitly: `deliver` posts only
+    # when it is given one, and its default is "no webhook".  Without this the
+    # dataset alert was a desktop toast and nothing ever reached Discord.
+    #
+    # No cooldown, either: the digest above *is* the rate limit -- it only
+    # differs when the dataset really changed -- and a six-hour cooldown could
+    # silently drop that change and re-announce it later, or (because the
+    # digest is only recorded once a channel took it) delay it by hours.
     delivered = alerts.deliver([dataset_alert(dataset_facts(path), digest)],
                                state, int(now if now is not None else time.time()),
+                               url=alerts.webhook_url(), cooldown_s=0,
                                notify=notify) or []
     leases.publish_stat(con, "alerts:state", state)
     # Only claim the dataset was announced if a channel actually took it.
@@ -338,9 +367,15 @@ def run_task(con, task: TaskDef, *, runner: Optional[Callable] = None,
     if dry_run:
         return TaskResult(task.name, True, 0.0, skipped="dry run")
 
-    token = owner or f"run_pipeline-{os.getpid()}"
+    # The owner token must be unique per process *start*, not per pid: every
+    # container's scheduler is PID 1, so a lease left by a killed container
+    # carried the same token as the container that replaced it.  The new
+    # worker then looked like the old holder and waited out a two-hour TTL.
+    token = owner or f"run_pipeline-{os.getpid()}-{uuid.uuid4().hex[:8]}"
     held = _acquire(con, task.name, task.lease_ttl, token)
     if held is None:
+        leases.publish_event("skipped", task=task.name, owner=token,
+                             reason="another worker holds the lease")
         return TaskResult(task.name, True, 0.0,
                           skipped="another worker holds the lease")
 
@@ -352,6 +387,7 @@ def run_task(con, task: TaskDef, *, runner: Optional[Callable] = None,
     if runner is None:
         print(f"{time.strftime('%H:%M:%S')} {task.name:<11} start"
               f"  {' '.join(task.command()[1:])}", flush=True)
+    leases.publish_event("start", task=task.name, owner=token)
     try:
         call = runner or _subprocess_runner
         code, output = call(task)
@@ -361,14 +397,36 @@ def run_task(con, task: TaskDef, *, runner: Optional[Callable] = None,
         # honest report is "skipped", and `last_ok` must not advance, or the
         # pipeline would claim it deployed something it never touched.
         if code == EX_CONFIG:
+            finished = time.time()
+            reason = _last_line(output)
             print(f"{time.strftime('%H:%M:%S')} {task.name:<11} skipped"
-                  f"  {_last_line(output)}", flush=True)
-            return TaskResult(task.name, True, time.time() - started,
-                              exit_code=code, skipped=_last_line(output),
+                  f"  {reason}", flush=True)
+            leases.publish_event("skipped", task=task.name, owner=token,
+                                 reason=reason)
+            # A skip is an answer, not a failure, so it takes the place of
+            # the previous attempt in the statistics: leaving `last_fail`
+            # behind made every later status line repeat a failure that had
+            # already been explained away (a task with no local input looked
+            # broken for ever).
+            leases.publish_stat(con, f"last_skip:{task.name}",
+                                {"at": int(finished), "exit": code,
+                                 "reason": reason}, token, now=finished)
+            leases.clear_stat(con, f"last_fail:{task.name}")
+            return TaskResult(task.name, True, finished - started,
+                              exit_code=code, skipped=reason,
                               detail={"exit_code": code})
         ok = code == 0
         finished = time.time()
         detail = {"exit_code": code, "output_tail": (output or "")[-2000:]}
+        # A new dataset is announced after the export, from the bytes that
+        # were written.  Failure here must not fail the task: the dataset is
+        # published, and a dead webhook does not un-publish it.  Recorded
+        # before `record_run` so the attempt carries what the channel said.
+        if ok and task.name == "export" and notify:
+            try:
+                detail["dataset_alert"] = notify_new_dataset(con, now=finished)
+            except Exception as exc:  # pragma: no cover - channel failure
+                print(f"dataset alert failed: {exc}", file=sys.stderr)
         leases.record_run(con, task.name, token, started_at=started,
                           finished_at=finished, ok=ok, detail=detail)
         if ok:
@@ -377,19 +435,21 @@ def run_task(con, task: TaskDef, *, runner: Optional[Callable] = None,
             leases.publish_stat(con, f"duration_s:{task.name}",
                                 round(finished - started, 1), token,
                                 now=finished)
+            # `last_fail` means "the last attempt failed", so a success has
+            # to retire it -- otherwise `status` keeps reporting a failure
+            # that a later run has already answered.
+            leases.clear_stat(con, f"last_fail:{task.name}")
+            leases.clear_stat(con, f"last_skip:{task.name}")
         else:
             leases.publish_stat(con, f"last_fail:{task.name}",
                                 {"at": int(finished), "exit": code}, token,
                                 now=finished)
-        # A new dataset is announced after the export, from the bytes that
-        # were written.  Failure here must not fail the task: the dataset is
-        # published, and a dead webhook does not un-publish it.
-        if ok and task.name == "export" and notify:
-            try:
-                notices = notify_new_dataset(con, now=finished)
-                detail["dataset_alert"] = notices
-            except Exception as exc:  # pragma: no cover - channel failure
-                print(f"dataset alert failed: {exc}", file=sys.stderr)
+            leases.clear_stat(con, f"last_skip:{task.name}")
+        # Announced after the fact is durable, so a monitor can never show a
+        # result the database has not recorded.
+        leases.publish_event("ok" if ok else "failed", task=task.name,
+                             owner=token, exit=code,
+                             seconds=round(finished - started, 1))
         return TaskResult(task.name, ok, finished - started, exit_code=code,
                           detail=detail)
     finally:
@@ -452,13 +512,20 @@ def cycle(con, tasks: Dict[str, TaskDef], *, force: bool = False,
           only: Optional[Sequence[str]] = None,
           runner: Optional[Callable] = None,
           dry_run: bool = False, now: Optional[float] = None,
-          notify: bool = True
+          notify: bool = True, workers: int = 1,
+          connect: Optional[Callable[[], object]] = None
           ) -> List[TaskResult]:
     """One pass over whatever is due.
 
-    Sequential by default.  The bottleneck is the download, and the pacer
-    inside the client already enforces the request ceiling, so running two
-    fetches at once would multiply memory for no throughput.
+    Sequential with ``workers=1`` (the default), concurrent above it.  A
+    task starts only when every task in its ``after`` list has *finished in
+    this cycle* (or is not part of the plan), so the dependency order is
+    honoured without making unrelated work wait.
+
+    Concurrency is safe because a task already holds its own lease while it
+    runs and writes its own rows; the scheduler only decides what may
+    start.  Each worker gets its own connection: a psycopg2 connection is
+    not shared between threads.
     """
     if only:
         unknown = [name for name in only if name not in tasks]
@@ -467,6 +534,10 @@ def cycle(con, tasks: Dict[str, TaskDef], *, force: bool = False,
         names = list(only)
     else:
         names = due(con, tasks, now=now, force=force)
+    if workers and int(workers) > 1 and len(names) > 1:
+        return _concurrent_cycle(names, tasks, runner=runner, dry_run=dry_run,
+                                 notify=notify, workers=int(workers),
+                                 connect=connect)
     results: List[TaskResult] = []
     for name in names:
         results.append(run_task(con, tasks[name], runner=runner,
@@ -474,8 +545,51 @@ def cycle(con, tasks: Dict[str, TaskDef], *, force: bool = False,
     return results
 
 
-def status(con) -> str:
+def _concurrent_cycle(names: Sequence[str], tasks: Dict[str, TaskDef], *,
+                      runner: Optional[Callable], dry_run: bool, notify: bool,
+                      workers: int, connect: Optional[Callable]) -> List[TaskResult]:
+    """Start every task whose inputs are done, up to ``workers`` at once."""
+    def execute(task: TaskDef) -> TaskResult:
+        task_con = connect() if connect is not None else store.connect()
+        try:
+            return run_task(task_con, task, runner=runner, dry_run=dry_run,
+                            notify=notify)
+        finally:
+            try:
+                task_con.close()  # type: ignore[attr-defined]
+            except Exception:  # pragma: no cover - a closed connection is fine
+                pass
+
+    results: List[TaskResult] = []
+    pending = list(names)
+    running: Dict[object, str] = {}
+    with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
+        while pending or running:
+            running_names = set(running.values())
+            for name in list(pending):
+                if len(running) >= workers:
+                    break
+                task = tasks[name]
+                if any(dep in pending or dep in running_names
+                       for dep in task.after):
+                    continue
+                running[pool.submit(execute, task)] = name
+                running_names.add(name)
+                pending.remove(name)
+            if not running:
+                break  # a dependency cycle; `_order` still reports the rest
+            done, _ = wait(list(running), return_when=FIRST_COMPLETED)
+            for future in done:
+                running.pop(future)
+                results.append(future.result())
+    position = {name: index for index, name in enumerate(names)}
+    results.sort(key=lambda result: position.get(result.task, len(position)))
+    return results
+
+
+def status(con, *, now: Optional[float] = None) -> str:
     """What the pipeline knows right now, for an operator or a log line."""
+    now = time.time() if now is None else float(now)
     lines: List[str] = []
     stats = leases.all_stats(con)
     tasks = default_tasks()
@@ -485,11 +599,26 @@ def status(con) -> str:
         when = last_ok(con, name)
         stamp = (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(when))
                  if when else "never")
-        overdue = bool(when) and (time.time() - when) > task.every_s
+        overdue = bool(when) and (now - when) > task.every_s
         state = ("never run" if not when
                  else ("overdue" if overdue else "ok"))
-        if f"last_fail:{name}" in stats:
-            state += " (last attempt failed)"
+        # Whichever came last -- a skip or a failure -- is what the line
+        # should report.  A skip explains itself ("no DFA_DIR") and must
+        # not be masked by a failure from an earlier attempt.
+        skip = stats.get(f"last_skip:{name}")
+        failure = stats.get(f"last_fail:{name}")
+        if isinstance(skip, dict) and float(skip.get("at") or 0) >= when:
+            skipped_at = time.strftime("%H:%M:%S", time.localtime(
+                float(skip.get("at") or 0)))
+            reason = str(skip.get("reason") or "").strip()[:90] or "no output"
+            state += (f" (last attempt skipped {skipped_at}"
+                      f" exit={skip.get('exit')}: {reason})")
+        elif isinstance(failure, dict):
+            failed_at = time.strftime("%H:%M:%S", time.localtime(
+                float(failure.get("at") or 0)))
+            state += (f" (last attempt failed {failed_at}"
+                      f" exit={failure.get('exit')}:"
+                      f" {_failure_tail(con, name)})")
         lines.append(f"{name:<11} {stamp:<20} {task.every_s // 60:>5}m  {state}")
 
     held = leases.SqliteLeaseStore(con).snapshot()
@@ -497,11 +626,27 @@ def status(con) -> str:
     if held:
         lines.append("held leases:")
         for lease in held:
-            left = float(lease.get("expires_at") or 0) - time.time()
+            expiry = float(lease.get("expires_at") or 0) - now
+            elapsed = now - float(lease.get("acquired_at") or 0)
+            mark = "live" if expiry > 0 else "lapsed"
             lines.append(f"  {lease['name']:<11} owner={lease['owner']}"
-                         f" expires in {left:6.0f}s")
+                         f" running {elapsed:5.0f}s, {mark}"
+                         f" (expires in {expiry:6.0f}s)")
     else:
         lines.append("held leases: none")
+
+    redis = leases.redis_status(con)
+    if not redis.get("configured"):
+        lines.append("redis: not configured (Postgres is the authority)")
+    elif redis.get("reachable"):
+        lines.append(f"redis: connected, {redis.get('stats', 0)} stats,"
+                     f" {redis.get('leases', 0)} lease keys"
+                     + (f", {len(redis.get('behind') or [])} stale mirror keys"
+                        if redis.get("behind") else ""))
+    else:
+        detail = redis.get("error") or "connection failed"
+        lines.append(f"redis: configured but unreachable ({detail};"
+                     " the pipeline still runs)")
 
     runs = leases.recent_runs(con, limit=8)
     lines.append("")
@@ -512,8 +657,51 @@ def status(con) -> str:
         stamp = time.strftime("%Y-%m-%d %H:%M:%S",
                               time.localtime(run["started_at"]))
         mark = "ok" if run["ok"] else "FAILED"
-        lines.append(f"  {stamp}  {run['task']:<11} {mark}")
+        seconds = float(run["finished_at"] or 0) - float(run["started_at"])
+        lines.append(f"  {stamp}  {run['task']:<11} {mark:<6} {seconds:6.0f}s")
     return "\n".join(lines)
+
+
+def _failure_tail(con, task: str) -> str:
+    """The last line of the most recent failed attempt, for the status line."""
+    for run in leases.recent_runs(con, limit=25):
+        if run["task"] == task and not run["ok"]:
+            detail = run.get("detail") or {}
+            tail = (detail.get("output_tail") or "").strip().splitlines()
+            return tail[-1][:90] if tail else "no output"
+    return "no output"
+
+
+def status_json(con, *, now: Optional[float] = None) -> Dict[str, object]:
+    """The same view as :func:`status`, for a monitor that is not a person."""
+    from woweconomy.dbcompat import backend
+
+    now = time.time() if now is None else float(now)
+    tasks = default_tasks()
+    stats = leases.all_stats(con)
+    rows: List[Dict[str, object]] = []
+    for name in _order(tasks):
+        task = tasks[name]
+        when = last_ok(con, name)
+        rows.append({
+            "task": name,
+            "every_s": task.every_s,
+            "last_ok": when or None,
+            "overdue": bool(when) and (now - when) > task.every_s,
+            "last_fail": stats.get(f"last_fail:{name}"),
+            "last_skip": stats.get(f"last_skip:{name}"),
+            "duration_s": stats.get(f"duration_s:{name}"),
+        })
+    return {
+        "now": int(now),
+        "backend": backend(),
+        "tasks": rows,
+        "leases": leases.SqliteLeaseStore(con).snapshot(),
+        "redis": leases.redis_status(con),
+        "recent_runs": leases.recent_runs(con, limit=25),
+        "dataset": {"sha256": leases.read_stat(con, "dataset:sha256", ""),
+                    "path": str(DATASET)},
+    }
 
 
 # ------------------------------------------------------------------------- CLI
@@ -537,6 +725,14 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--interval", type=float, default=60.0,
                         metavar="SECONDS",
                         help="how often --loop looks for due work (default 60)")
+    parser.add_argument("--workers", type=int, default=1, metavar="N",
+                        help="run up to N independent tasks at once"
+                             " (default 1: one at a time)")
+    parser.add_argument("--json", action="store_true",
+                        help="with --status, print the machine-readable view")
+    parser.add_argument("--watch", type=float, default=0.0, metavar="SECONDS",
+                        help="with --status, refresh every SECONDS until"
+                             " interrupted")
     parser.add_argument("--db", default=str(ROOT / "data" / "intel.sqlite"),
                         help="the intelligence database holding the lease tables")
     parser.add_argument("--no-notify", action="store_true",
@@ -560,16 +756,30 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     # backend is a pipeline whose reports can be trusted to come from the
     # data you think they came from.
     from woweconomy.dbcompat import backend as _backend
+    # `--status --json` is read by a parser, so the banner must not share its
+    # stream: one line of prose in front of the object makes the whole
+    # document unparseable.
+    banner = sys.stderr if (args.json and args.status) else sys.stdout
     if _backend() == "postgres":
-        print(f"backend: postgres ({redact_dsn(database_url())})")
+        print(f"backend: postgres ({redact_dsn(database_url())})", file=banner)
     else:
         print("backend: sqlite -- NOT the shared database"
               + (f"; {redact_dsn(database_url())} is configured but unused"
-                 if database_url() else ""))
+                 if database_url() else ""), file=banner)
     con = store.connect(args.db)
 
     if args.status:
-        print(status(con))
+        try:
+            while True:
+                view = (json.dumps(status_json(con), default=str)
+                        if args.json else status(con))
+                print(view, flush=True)
+                if not args.watch:
+                    break
+                print(flush=True)
+                time.sleep(max(1.0, float(args.watch)))
+        except KeyboardInterrupt:
+            return 0
         return 0
 
     tasks = default_tasks()
@@ -583,7 +793,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     notify = not args.no_notify
     if not args.loop:
         results = cycle(con, tasks, force=args.force, only=args.task or None,
-                        notify=notify)
+                        notify=notify, workers=args.workers,
+                        connect=lambda: store.connect(args.db))
         for result in results:
             print(result.line())
         if not results:
@@ -593,7 +804,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     try:
         while True:
             for result in cycle(con, tasks, force=False,
-                                only=args.task or None, notify=notify):
+                                only=args.task or None, notify=notify,
+                                workers=args.workers,
+                                connect=lambda: store.connect(args.db)):
                 print(time.strftime("%H:%M:%S"), result.line(), flush=True)
             time.sleep(max(5.0, float(args.interval)))
     except KeyboardInterrupt:

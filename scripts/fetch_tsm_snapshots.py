@@ -57,6 +57,9 @@ def print_plan(tasks: list, cfg, args, written: int | None = None) -> None:
 
 
 def main() -> int:
+    from woweconomy.dbcompat import load_env
+
+    load_env()
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--db", default="tsm_markets.db")

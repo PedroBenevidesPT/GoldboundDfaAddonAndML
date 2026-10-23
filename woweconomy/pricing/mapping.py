@@ -35,10 +35,11 @@ dataset's own metadata.
 from __future__ import annotations
 
 import logging
-import sqlite3
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Set, Tuple
+
+from ..dbcompat import connect as db_connect
 
 logger = logging.getLogger(__name__)
 
@@ -100,7 +101,9 @@ def build_item_mapping(tsm_db: Path | str,
     recommendation wants.
     """
     report = MappingReport()
-    con = sqlite3.connect(tsm_db)
+    # db_connect: db2_item_appearance is in the shared database in the
+    # container, where there is no tsm_markets.db to open.
+    con = db_connect(tsm_db)
     try:
         # the bridge
         by_item: Dict[int, List[int]] = {}

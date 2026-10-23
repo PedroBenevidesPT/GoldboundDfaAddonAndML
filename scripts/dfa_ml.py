@@ -236,6 +236,9 @@ def cmd_compare(config: MLConfig, args) -> int:
 
 
 def main() -> int:
+    from woweconomy.dbcompat import load_env
+
+    load_env()
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("command",

@@ -144,8 +144,9 @@ def measure_from_db(db_path: Path,
     db_path = Path(db_path)
     if not db_path.exists():
         return CostAudit(notes=(f"{db_path} does not exist",))
-    con = sqlite3.connect(db_path)
-    con.row_factory = sqlite3.Row
+    from woweconomy.dbcompat import connect_store, missing_table_errors
+
+    con = connect_store(db_path, readonly=True)
     try:
         try:
             rows = con.execute(
@@ -156,7 +157,7 @@ def measure_from_db(db_path: Path,
                 f" LEFT JOIN blizzard_items b ON b.itemId = e.item_id"
                 f" WHERE e.event_type = 'sale' AND e.unit_price_copper > 0"
                 f"   AND e.deposit_copper > 0").fetchall()
-        except sqlite3.OperationalError as exc:
+        except missing_table_errors() as exc:
             return CostAudit(notes=(f"{event_table} could not be read: {exc}",))
     finally:
         con.close()

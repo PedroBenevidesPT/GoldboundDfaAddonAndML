@@ -29,10 +29,10 @@ Merge order
 
 from __future__ import annotations
 
-import sqlite3
 from dataclasses import dataclass
-from typing import Dict, Iterable, List, Optional, Set
+from typing import Any, Dict, Iterable, List, Optional, Set
 
+from woweconomy.dbcompat import connect_store, missing_table_errors
 from woweconomy.services.blizzard_items import BlizzardItem, load_map as load_blizz_map
 
 # Enum.ItemBind (warcraft.wiki.gg/wiki/Enum.ItemBind), verified against the
@@ -98,7 +98,7 @@ def _chunks(ids: List[int]) -> Iterable[List[int]]:
         yield ids[start:start + SQLITE_CHUNK]
 
 
-def _rows(con: sqlite3.Connection, sql: str, only: Optional[Set[int]]) -> list:
+def _rows(con: Any, sql: str, only: Optional[Set[int]]) -> list:
     if only is None:
         return con.execute(sql).fetchall()
     out: list = []
@@ -120,18 +120,19 @@ def load_map(db_path: str, only: Optional[Iterable[int]] = None
     wanted = None if only is None else {int(i) for i in only}
     if wanted is not None and not wanted:
         return {}
-    con = sqlite3.connect(db_path)
     try:
-        rows = _rows(
-            con,
-            "SELECT itemId,name,binding,quality,expansion,era,itemLevel,"
-            "requiredLevel FROM db2_items",
-            wanted,
-        )
-    except sqlite3.OperationalError:
+        con = connect_store(db_path, readonly=True)
+        try:
+            rows = _rows(
+                con,
+                "SELECT itemId,name,binding,quality,expansion,era,itemLevel,"
+                "requiredLevel FROM db2_items",
+                wanted,
+            )
+        finally:
+            con.close()
+    except missing_table_errors():
         return {}  # no db2 import yet: behave exactly as before
-    finally:
-        con.close()
     return {
         int(r[0]): Db2Item(
             item_id=int(r[0]), name=r[1] or "",

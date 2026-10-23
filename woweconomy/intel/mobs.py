@@ -356,16 +356,20 @@ def _parse_stamp(value: Any) -> Optional[int]:
 
 def price_age_hours(tsm_db: Path | str, now: Optional[int] = None) -> Optional[float]:
     """How old the newest TSM snapshot behind the prices is, in hours."""
+    # Backend-agnostic: on the stack the snapshot table is in Postgres and a
+    # missing workstation file must not read as "the price has no age".
+    from woweconomy.dbcompat import connect_store
+
     now = int(now if now is not None else time.time())
     try:
-        con = sqlite3.connect(str(tsm_db), timeout=10.0)
-    except sqlite3.Error:
+        con = connect_store(tsm_db, readonly=True)
+    except Exception:
         return None
     try:
         row = con.execute(
             "SELECT MAX(updated_at) FROM tsm_snapshot WHERE kind='realm_items'"
         ).fetchone()
-    except sqlite3.Error:
+    except Exception:
         return None
     finally:
         con.close()

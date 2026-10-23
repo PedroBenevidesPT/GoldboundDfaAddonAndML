@@ -487,7 +487,12 @@ def build_price_book(tsm_db: Path | str, con, region: str, realm: str,
     """
     cfg = cfg or FarmConfig()
     book: Dict[int, PricePoint] = {}
-    tsm = sqlite3.connect(str(tsm_db))
+    # `connect_store`, not `sqlite3.connect`: on the stack the TSM tables are
+    # rows in the one Postgres database, and opening the workstation file
+    # there returns an empty book instead of an error.
+    from woweconomy.dbcompat import connect_store
+
+    tsm = connect_store(tsm_db, readonly=True)
     try:
         scope = _canonical_scope(tsm, realm)
         wanted = [int(i) for i in item_ids] if item_ids else None
@@ -538,8 +543,9 @@ def build_price_book(tsm_db: Path | str, con, region: str, realm: str,
 
 def _add_observed_sales(book: Dict[int, PricePoint], tsm_db: Path | str,
                         realm: str, wanted: Optional[Sequence[int]]) -> None:
-    con = sqlite3.connect(str(tsm_db))
-    con.row_factory = sqlite3.Row
+    from woweconomy.dbcompat import connect_store, missing_table_errors
+
+    con = connect_store(tsm_db, readonly=True)
     rows: List[Tuple] = []
     try:
         try:
@@ -548,7 +554,7 @@ def _add_observed_sales(book: Dict[int, PricePoint], tsm_db: Path | str,
                 " auction_intel_events WHERE event_type='sale'"
                 " AND LOWER(realm)=LOWER(?) AND unit_price_copper > 0",
                 (realm,)).fetchall())
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             pass
         try:
             rows.extend(con.execute(
@@ -556,7 +562,7 @@ def _add_observed_sales(book: Dict[int, PricePoint], tsm_db: Path | str,
                 " timestamp_unix AS ts FROM auction_events WHERE event_type='sale'"
                 " AND LOWER(realm)=LOWER(?) AND unit_price_copper > 0",
                 (realm,)).fetchall())
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             pass
     finally:
         con.close()

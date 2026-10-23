@@ -41,6 +41,9 @@ DEFAULT_LOG = ROOT / "logs" / "aggregates.log"
 
 
 def main(argv: Optional[List[str]] = None) -> int:
+    from woweconomy.dbcompat import load_env
+
+    load_env()
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )

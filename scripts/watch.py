@@ -56,7 +56,7 @@ PY = sys.executable
 
 from woweconomy.intel import actions as action_log  # noqa: E402
 from woweconomy.intel import ah  # noqa: E402
-from woweconomy.intel import ah_undercut, alerts, inventory, relist, store  # noqa: E402
+from woweconomy.intel import ah_undercut, alerts, decision_ledger, inventory, relist, store  # noqa: E402
 from woweconomy.ml.market_context import build_realm_market  # noqa: E402
 
 DEFAULT_STATE = ROOT / "data" / "watch_state.json"
@@ -658,8 +658,21 @@ class Watch:
             # is a reading of the databases already on disk, not a new scan,
             # and a realm with no snapshot still gets the price path.
             market = self.realm_market(target, now)
-            advice = relist.advise(con, target, days=14, market=market)
+            advice = relist.advise(con, target, days=14, market=market,
+                                   now=now)
             result["advice"] = advice.get("counts")
+            # Write the advice down before its outcome exists, and attach
+            # the outcomes of earlier rows from the confirmed journal.  A
+            # ledger failure must not stop a scan: the scan is the task,
+            # the ledger is the record of it.
+            try:
+                result["ledger"] = decision_ledger.record(con, advice, target,
+                                                          now=now)
+                tsm_db = self.cfg.tsm_db or (ROOT / "tsm_markets.db")
+                result["outcomes"] = decision_ledger.link_outcomes(
+                    con, tsm_db, target, now=now)
+            except Exception as exc:  # pragma: no cover - defensive
+                logger.info("decision ledger for %s: %s", target, exc)
             self.alert(alerts.undercut_alerts(advice), now)
             out[target] = result
         return out if not realm else out.get(realm, {})

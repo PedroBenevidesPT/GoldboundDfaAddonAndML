@@ -64,12 +64,18 @@ from __future__ import annotations
 import argparse
 import csv
 import json
-import sqlite3
+import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
+
+ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from woweconomy.dbcompat import connect_store, is_postgres, load_env
 
 WAGO = "https://wago.tools/db2/{table}/csv?build={build}"
 DEFAULT_BUILD = "12.1.7.70424"  # confirmado pelo cliente retail; pin, nao "latest"
@@ -162,18 +168,26 @@ def number(value: str) -> int | None:
         return None
 
 
-def import_table(con: sqlite3.Connection, table: str, path: Path) -> int:
+def import_table(con, table: str, path: Path) -> int:
     """Load one CSV into its table.  Returns the number of rows stored."""
     if table == "ItemSparse":
-        # Derived table: the CSV is the source of truth, so replace it wholesale
-        # (an older, narrower layout would otherwise be silently kept).
-        con.execute("DROP TABLE IF EXISTS db2_items")
-        con.execute("""CREATE TABLE db2_items(
-            itemId INTEGER PRIMARY KEY, name TEXT NOT NULL DEFAULT '',
-            binding INTEGER, quality INTEGER, expansion INTEGER, era INTEGER,
-            itemLevel INTEGER, requiredLevel INTEGER)""")
-        sql = ("INSERT OR REPLACE INTO db2_items(" + ", ".join(ITEM_COLUMNS) +
-               ") VALUES(" + ",".join("?" * len(ITEM_COLUMNS)) + ")")
+        # Derived table: the CSV is the source of truth, so replace it
+        # wholesale (an older, narrower layout would otherwise be kept).
+        # On Postgres the table belongs to Alembic: drop-and-create would
+        # replace a migrated table with a SQLite-shaped one, so the rows are
+        # cleared instead and the schema stays where it is documented.
+        if is_postgres():
+            con.execute("DELETE FROM db2_items")
+        else:
+            con.execute("DROP TABLE IF EXISTS db2_items")
+            con.execute("""CREATE TABLE db2_items(
+                itemId INTEGER PRIMARY KEY, name TEXT NOT NULL DEFAULT '',
+                binding INTEGER, quality INTEGER, expansion INTEGER,
+                era INTEGER, itemLevel INTEGER, requiredLevel INTEGER)""")
+        sql = ("INSERT INTO db2_items(" + ", ".join(ITEM_COLUMNS) +
+               ") VALUES(" + ",".join("?" * len(ITEM_COLUMNS)) + ")"
+               " ON CONFLICT(itemId) DO UPDATE SET "
+               + ", ".join(f"{c}=excluded.{c}" for c in ITEM_COLUMNS[1:]))
         n = 0
         batch = []
         for iid, name, bonding, quality, exp, era, ilvl, req in rows_of(path, table):
@@ -191,7 +205,8 @@ def import_table(con: sqlite3.Connection, table: str, path: Path) -> int:
         n += len(batch)
     else:
         con.execute("DELETE FROM db2_item_appearance")
-        sql = "INSERT OR IGNORE INTO db2_item_appearance(itemId, appearanceId) VALUES(?,?)"
+        sql = ("INSERT INTO db2_item_appearance(itemId, appearanceId)"
+               " VALUES(?,?) ON CONFLICT(itemId, appearanceId) DO NOTHING")
         n = 0
         batch = []
         for iid, aid in rows_of(path, table):
@@ -210,7 +225,7 @@ def import_table(con: sqlite3.Connection, table: str, path: Path) -> int:
     return n
 
 
-def report(con: sqlite3.Connection) -> None:
+def report(con) -> None:
     q = con.execute
     items = q("SELECT COUNT(*) FROM db2_items").fetchone()[0]
     links = q("SELECT COUNT(*) FROM db2_item_appearance").fetchone()[0]
@@ -239,7 +254,7 @@ def report(con: sqlite3.Connection) -> None:
             print(f"   {k:<24} {meta[k]}")
 
 
-def wishlist_join(con: sqlite3.Connection, demand_dir: Path) -> None:
+def wishlist_join(con, demand_dir: Path) -> None:
     """The whole point: how many wanted APPEARANCES become sellable ITEMS now."""
     path = demand_dir / "demand_appearances.csv"
     if not path.exists():
@@ -249,7 +264,8 @@ def wishlist_join(con: sqlite3.Connection, demand_dir: Path) -> None:
     con.execute("DROP TABLE IF EXISTS tmp_wanted")
     con.execute("CREATE TEMP TABLE tmp_wanted(appearanceId INTEGER PRIMARY KEY, name TEXT)")
     con.executemany(
-        "INSERT OR IGNORE INTO tmp_wanted(appearanceId, name) VALUES(?,?)",
+        "INSERT INTO tmp_wanted(appearanceId, name) VALUES(?,?)"
+        " ON CONFLICT(appearanceId) DO NOTHING",
         [(int(r["item_id"]), r["name"]) for r in wanted])
     con.commit()
     total = con.execute("SELECT COUNT(*) FROM tmp_wanted").fetchone()[0]
@@ -266,7 +282,7 @@ def wishlist_join(con: sqlite3.Connection, demand_dir: Path) -> None:
         print(f"   {label:<28} {n:>7}  ({100.0 * n / total:5.1f}%)")
 
 
-def local_check(con: sqlite3.Connection, inventory: Path, zones_glob: str) -> None:
+def local_check(con, inventory: Path, zones_glob: str) -> None:
     """What the DB2 says about the data this project already had.
 
     This is the correction: the same item can be BoE on a Classic realm and
@@ -349,8 +365,12 @@ def main(argv=None) -> int:
     ap.add_argument("--zones-glob", default="woweconomy/wowhead_zones/zone_*.json")
     args = ap.parse_args(argv)
 
-    con = sqlite3.connect(args.db)
-    con.executescript(SCHEMA)
+    # Read the project's .env: a manual import must write to the same database
+    # the pipeline reads, not to a local file next to it.
+    load_env()
+    con = connect_store(args.db)
+    if not is_postgres():
+        con.executescript(SCHEMA)
 
     if not args.stats:
         out = Path(args.dir)

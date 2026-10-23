@@ -46,15 +46,18 @@ def vendor_prices(tsm_db: Path | str, item_ids: Sequence[int]) -> Dict[int, int]
     dataset uses, so a loot valuation and the shipped tooltip cannot
     disagree about what a vendor pays.
     """
-    import sqlite3
+    from woweconomy.dbcompat import connect as db_connect
 
     out: Dict[int, int] = {}
     wanted = [int(i) for i in item_ids if i]
     if not wanted:
         return out
     try:
-        con = sqlite3.connect(str(tsm_db), timeout=10.0)
-    except sqlite3.Error:
+        con = db_connect(tsm_db)
+    except Exception:
+        # includes "the postgres backend has no URL": the contract of this
+        # function is that a missing vendor table costs the deposit, never
+        # the export
         return out
     try:
         for start in range(0, len(wanted), 900):
@@ -64,7 +67,7 @@ def vendor_prices(tsm_db: Path | str, item_ids: Sequence[int]) -> Dict[int, int]
                     f"SELECT itemId, sellPrice FROM blizzard_items "
                     f"WHERE itemId IN ({marks})", chunk):
                 out[int(item_id)] = int(sell or 0)
-    except sqlite3.Error:
+    except Exception:
         return out
     finally:
         con.close()
@@ -745,6 +748,58 @@ def dataset_content_signature(text: str) -> str:
     ]
     normalised = _FLOAT.sub(lambda m: f"{float(m.group(1)):.2f}", "\n".join(lines))
     return hashlib.sha256(normalised.encode("utf-8")).hexdigest()
+
+
+def dataset_regression(previous: "Dict[str, object]", meta: "Dict[str, object]") -> str:
+    """Why the dataset about to be written is worse than the one on disk.
+
+    ``""`` means it is not.  This exists because it happened: the export
+    inside the worker container ran to completion and wrote a dataset with
+    ``itemCount = 0`` and ``appearanceCount = 0`` over one that had 237 and
+    31, because the container could not read the account's sales or the
+    appearance scan.  It validated, it was deployed to the game, and the
+    only trace was a file that had quietly lost every per-realm record.
+
+    A missing input is a configuration failure, not a market fact, and the
+    two look nothing alike: a market fact moves a count, a missing input
+    takes it to zero.  So the rule is deliberately about zero and about
+    halves, not about any decrease -- sales really do vary.
+    """
+    if not previous:
+        return ""
+    for key, why in (("itemCount", "the account's own sales"),
+                     ("appearanceCount", "the appearance scan"),
+                     ("priceCount", "the regional price table")):
+        try:
+            was = int(previous.get(key) or 0)
+            now = int(meta.get(key) or 0)
+        except (TypeError, ValueError):
+            continue
+        if was > 0 and now == 0:
+            return (f"{key} fell from {was} to 0: {why} could not be read on "
+                    f"this machine, so this is not a new market")
+        if was >= 10 and now < was / 2:
+            return (f"{key} fell from {was} to {now}: {why} came back with "
+                    f"less than half the previous data, which is an input "
+                    f"problem rather than a market move")
+    return ""
+
+
+def read_metadata(path: Path | str) -> "Dict[str, object]":
+    """The metadata block of a generated dataset, without loading Lua."""
+    path = Path(path)
+    if not path.exists():
+        return {}
+    try:
+        text = path.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return {}
+    out: Dict[str, object] = {}
+    for key in ("itemCount", "appearanceCount", "priceCount", "realmCount"):
+        match = re.search(rf"^\t{key} = (\d+),", text, re.MULTILINE)
+        if match:
+            out[key] = int(match.group(1))
+    return out
 
 
 def validate_dataset(text: str) -> Dict[str, object]:

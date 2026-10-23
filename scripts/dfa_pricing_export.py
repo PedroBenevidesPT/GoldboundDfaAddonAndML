@@ -26,6 +26,9 @@ logger = logging.getLogger("dfa_pricing")
 
 
 def main() -> int:
+    from woweconomy.dbcompat import load_env
+
+    load_env()
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--tsm-db", default=None)
@@ -189,6 +192,21 @@ def main() -> int:
             print("   -", problem)
         return 1
     print("the dataset validates")
+
+    # Refuse to publish a dataset that lost an input.  The worker container
+    # once wrote itemCount=0 over a dataset with 237 records, because it
+    # could not read the account's sales there; it validated, it deployed,
+    # and nothing said so.  A missing input is a configuration failure, not
+    # a market move, and publishing it silently is worse than not
+    # publishing at all.  EX_CONFIG tells the pipeline "this machine cannot
+    # do this", so the task reports "skipped" instead of claiming success.
+    from woweconomy.pricing.dataset import dataset_regression, read_metadata
+    regression = dataset_regression(read_metadata(config.dataset_path),
+                                    builder.metadata())
+    if regression:
+        print(f"refusing to write: {regression}", file=sys.stderr)
+        print("the dataset on disk is unchanged", file=sys.stderr)
+        return 78
 
     if not args.dry_run:
         path = builder.write()

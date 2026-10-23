@@ -218,3 +218,61 @@ def test_rebuilding_the_ranking_alone_is_not_a_new_dataset():
     """The block's own timestamp is not content, exactly like the dataset's."""
     later = dict(SAMPLE, generatedAt=SAMPLE["generatedAt"] + 3600)
     assert _builder(later).content_signature() == _builder(SAMPLE).content_signature()
+
+
+# -- refusing to publish a worse dataset ---------------------------------
+
+def test_a_dataset_that_lost_its_records_is_refused():
+    """The container once wrote itemCount=0 over a dataset with 237.
+
+    It validated, it deployed, and the only trace was a file that had
+    quietly lost every per-realm record.  A missing input is not a market
+    move.
+    """
+    from woweconomy.pricing.dataset import dataset_regression
+
+    reason = dataset_regression({"itemCount": 237, "appearanceCount": 31},
+                                {"itemCount": 0, "appearanceCount": 31})
+    assert "itemCount fell from 237 to 0" in reason
+    assert "not a new market" in reason
+
+
+def test_a_dataset_that_lost_its_appearances_is_refused():
+    from woweconomy.pricing.dataset import dataset_regression
+
+    reason = dataset_regression({"itemCount": 237, "appearanceCount": 31},
+                                {"itemCount": 237, "appearanceCount": 0})
+    assert "appearanceCount" in reason
+
+
+def test_a_dataset_that_halved_is_refused():
+    from woweconomy.pricing.dataset import dataset_regression
+
+    reason = dataset_regression({"itemCount": 100}, {"itemCount": 40})
+    assert "less than half" in reason
+
+
+def test_a_market_that_merely_moved_is_published():
+    """Sales really do vary; a smaller number is not a broken input."""
+    from woweconomy.pricing.dataset import dataset_regression
+
+    assert dataset_regression({"itemCount": 100}, {"itemCount": 95}) == ""
+    assert dataset_regression({"itemCount": 4}, {"itemCount": 1}) == ""
+
+
+def test_the_first_export_is_never_a_regression():
+    from woweconomy.pricing.dataset import dataset_regression
+
+    assert dataset_regression({}, {"itemCount": 0}) == ""
+
+
+def test_the_metadata_is_read_without_loading_lua(tmp_path):
+    from woweconomy.pricing.dataset import read_metadata
+
+    path = tmp_path / "data.lua"
+    path.write_text("DFA_ESTIMATE = {\n\titemCount = 237,\n"
+                    "\tappearanceCount = 31,\n\tpriceCount = 31184,\n}\n",
+                    encoding="utf-8")
+    assert read_metadata(path) == {"itemCount": 237, "appearanceCount": 31,
+                                   "priceCount": 31184}
+    assert read_metadata(tmp_path / "absent.lua") == {}
