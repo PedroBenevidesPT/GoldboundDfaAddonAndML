@@ -1157,6 +1157,21 @@ python scripts/find_drop.py "Joonho's Mercy"
   (`python scripts/plan_route.py --zone 331 --stops 5 --minutes 60`)
 - `scripts/enrich_items.py` — Blizzard enrichment runner
 - `csv/items.csv` / `tsm_markets.db` — TSM snapshots (`avgSalePrice` based)
+- `woweconomy/pricing/dataset.py` — the generated dataset, its atomic write,
+  and the content signature the new-dataset alert compares
+- `scripts/dfa_pricing_export.py` — builds and announces the dataset
+- `woweconomy/analytics/strategy_plan.py` — the per-item posting plan
+  (`scripts/strategy.py build|show`)
+- `woweconomy/analytics/sale_visibility.py` — whether our own sales overlap
+  the Blizzard auction snapshots (`scripts/sale_visibility.py`)
+- `woweconomy/aggregates.py` — windowed aggregate partitions
+  (`--last-days N` rebuilds only the recent days)
+- `woweconomy/pipeline/leases.py` — token-based leases and shared stats,
+  with Postgres as the record and Redis as the hot copy
+- `run_pipeline.py` — the task runner: leases, per-task cadence, atomic
+  publication
+- `DFA_Estimate/UI/Auctionator.lua` — the estimate in Auctionator's price
+  field, the row-click handling and the posting duration
 
 ## DFA Sentinel ML (validated predictions)
 
@@ -1193,5 +1208,60 @@ Metrics: `reports/dfa_sentinel/sentinel_report.json`.
 Full audit, measured numbers and limitations:
 [reports/dfa_sentinel_ml.md](reports/dfa_sentinel_ml.md).
 `watch.py` retrains only when enough new confirmed labels exist.
-#   G o l d b o u n d D f a A d d o n A n d M L  
- 
+
+## Posting from Auctionator
+
+The DfA estimate reaches the seller in Auctionator's selling tab, and two
+things there are settings rather than decisions the addon makes for you.
+
+**The price.**  Selecting an item fills the buyout field with the estimate.
+The fill is not a lock: the moment you choose a price yourself -- by typing
+it, or by clicking a row in Auctionator's price list -- the estimate stops
+competing with you.  A row click is read from the `PriceSelected` event,
+which carries the row and therefore its buyout, so the field ends up
+holding the price you clicked rather than a number reconstructed
+afterwards.  `Auctionator.GetChosenPrice()` and
+`/dfaestimate fill` report which price that was.
+
+That distinction matters because Auctionator writes a price for its own
+reasons too -- its database, its market search, the vendor value of a piece
+of equipment -- and those writes are indistinguishable from a click by
+their value alone.  Only the event says which one happened.
+
+**The hours.**  `/dfaestimate posthours 12|24|48` sets the auction
+duration, which is what the deposit and the time the item has to sell both
+follow.  It is stored in `DFA_ESTIMATE_DB` and written into Auctionator's
+own `auction_duration` config, which is a dropdown *index* (1 = 12 h,
+2 = 24 h, 3 = 48 h) rather than hours -- the mapping is read from
+Auctionator's `AUCTION_DURATIONS` table, not guessed.
+
+Only the three real durations are accepted; 18 hours is refused rather than
+rounded, because rounding to 24 is a decision you did not make.  The
+setting is pushed into Auctionator only after you have chosen one: adopting
+a default we invented would be changing another addon's setting unasked.
+If Auctionator is configured to save the last duration as the default, the
+confirmation says so, because that turns this into a one-shot setting.
+
+## The new-dataset alert
+
+`scripts/dfa_pricing_export.py` announces the dataset it just wrote, over
+the same channels the rest of the project uses (`DFA_DISCORD_WEBHOOK`, or a
+desktop toast when no webhook is configured).  `--no-alert` turns it off.
+
+The alert is keyed on the dataset's *content*, not on the run, so a
+re-export that changed nothing stays silent.  Two things are excluded from
+that comparison, both for measured reasons:
+
+* the build timestamp, which is in the file but is not information about
+  the market;
+* the fourth decimal of the probabilities.  Two exports a minute apart
+  moved `psell` from 0.1619 to 0.1618 and nothing else in the file
+  changed, because the features include how long ago the market was
+  measured.  Comparing at two decimals (1%) keeps a real move and drops
+  the drift.
+
+Each export also writes `DFA_Estimate_Data.meta.json` beside the dataset,
+so the next export can say what changed instead of guessing.  When there is
+no previous sidecar the alert says the change is *unknown*; it does not
+print zero, because "we did not look" and "nothing moved" are different
+statements.

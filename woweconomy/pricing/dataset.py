@@ -23,6 +23,7 @@ import hashlib
 import json
 import logging
 import math
+import re
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -113,6 +114,10 @@ GLOBAL_NAME = "DFA_ESTIMATE"
 
 #: the schema version the in-game loader understands
 READER_VERSION = DATASET_VERSION
+
+#: a decimal number in the generated Lua, not part of a longer token.  Used
+#: by ``content_signature`` to compare floats at a useful precision.
+_FLOAT = re.compile(r"(?<![\w.])(\d+\.\d+)")
 
 
 @dataclass
@@ -669,6 +674,36 @@ class DatasetBuilder:
         """The SHA-256 of the generated file, for the report."""
         return hashlib.sha256(self.to_lua().encode("utf-8")).hexdigest()
 
+    def content_signature(self) -> str:
+        """A hash of what the dataset *says*, at the precision that matters.
+
+        Two things have to be taken out before "did anything change" is a
+        question with a useful answer:
+
+        * ``generatedAt``.  :meth:`checksum` covers the whole file, so two
+          exports of identical data a minute apart hash differently.  That
+          is right for "is this the same file" and wrong for the question
+          the new-dataset alert asks.
+
+        * the fourth decimal of the probabilities and factors.  The
+          features include how long ago the market was measured, so those
+          numbers move continuously by design -- measured on two exports a
+          minute apart, ``psell`` drifted from 0.1619 to 0.1618 and nothing
+          else in the file moved.  An alert per export would then be a
+          heartbeat, and the pipeline exports every six hours.
+
+        So floats are compared at two decimals (1%).  Prices are integers
+        in the dataset and are unaffected; a probability or a factor that
+        moves by more than 1% is still a change.
+        """
+        lines = [
+            line for line in self.to_lua().splitlines()
+            if not line.startswith("-- schema ")
+            and not line.strip().startswith("generatedAt =")
+        ]
+        text = _FLOAT.sub(lambda m: f"{float(m.group(1)):.2f}", "\n".join(lines))
+        return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
 
 def build_dataset(engine: PricingEngine,
                   config: Optional[PricingConfig] = None,
@@ -678,6 +713,47 @@ def build_dataset(engine: PricingEngine,
     builder = DatasetBuilder(config=config, engine=engine)
     builder.build(realms=realms)
     return builder, builder.notes
+
+
+#: written beside the dataset so the next export can say what changed
+#: without parsing Lua back out of the file
+META_SIDECAR_SUFFIX = ".meta.json"
+
+
+def meta_sidecar_path(path: Path) -> Path:
+    """Where the summary of the dataset at ``path`` is kept."""
+    return Path(path).with_suffix(META_SIDECAR_SUFFIX)
+
+
+def read_meta_sidecar(path: Path) -> Dict[str, object]:
+    """The previous dataset's summary, or an empty dict.
+
+    Forgiving on purpose: a missing or unreadable sidecar means "we do not
+    know what was there before", which is a different statement from
+    "nothing was there".  Callers must not turn one into the other.
+    """
+    try:
+        raw = meta_sidecar_path(path).read_text(encoding="utf-8")
+    except OSError:
+        return {}
+    try:
+        data = json.loads(raw)
+    except ValueError:
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def write_meta_sidecar(path: Path, meta: Dict[str, object],
+                       checksum: str) -> Path:
+    """Record what the dataset at ``path`` contains, atomically."""
+    from .deploy import write_atomic  # local: deploy reads this module too
+
+    payload = dict(meta)
+    payload["checksum"] = checksum
+    side = meta_sidecar_path(path)
+    side.parent.mkdir(parents=True, exist_ok=True)
+    write_atomic(side, json.dumps(payload, indent=2, sort_keys=True).encode("utf-8"))
+    return side
 
 
 def validate_dataset(text: str) -> Dict[str, object]:

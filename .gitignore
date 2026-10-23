@@ -25,6 +25,14 @@ data/aggregates.sqlite-shm
 # this second; committing it means the next pull fights the running pipeline.
 data/watch.lock
 data/watch_state.json
+# what the exporter last announced, so a re-run that changed nothing is
+# silent; machine-local for the same reason as the two above
+data/export_state.json
+# the summary written beside the dataset.  The dataset itself is tracked,
+# so this is redundant in the repository and would be dirtied by every
+# export; on a fresh clone its absence correctly reads as "no previous
+# export", and the first alert says the change is unknown.
+DFA_Estimate/Data/*.meta.json
 
 # ---------------------------------------------------------------------------
 # Build and test detritus.

@@ -476,6 +476,83 @@ def test_the_dataset_is_deterministic():
     assert builder.checksum() == builder.checksum()
 
 
+def test_the_content_signature_ignores_when_the_dataset_was_built():
+    """Two exports of the same data must sign the same.
+
+    The file checksum covers ``generatedAt``, which is right for "is this
+    the same file" and wrong for "did anything change" -- and the
+    new-dataset alert asks the second question.  Without this, every
+    six-hourly export looks new even when nothing moved.
+    """
+    def build(generated_at):
+        builder = DatasetBuilder(config=PricingConfig(), engine=_FakeEngine())
+        builder.generated_at = generated_at
+        builder.realms = {"Dragonmaw": {"auctionHouse": "spinebreaker",
+                                        "items": {100: _fake_record()},
+                                        "sampleSize": 3, "updatedAt": 1792400000}}
+        builder.records = [type("R", (), {"realm": "Dragonmaw", "item_id": 100,
+                                          "estimate": _fake_record()})()]
+        return builder
+
+    first = build(1792450000)
+    later = build(1792453600)      # an hour later, same data
+
+    assert first.checksum() != later.checksum(), "the file really did change"
+    assert first.content_signature() == later.content_signature()
+
+
+def test_the_content_signature_ignores_noise_in_the_fourth_decimal():
+    """A probability that drifts in the 4th decimal is not news.
+
+    Measured on two real exports a minute apart: ``psell`` went 0.1619 ->
+    0.1618 and nothing else in the file moved, because the features
+    include how long ago the market was measured.  An alert per export
+    would then be a heartbeat.
+    """
+    def build(sale_probability):
+        from woweconomy.pricing.engine import Estimate
+
+        def record():
+            return Estimate(realm="Dragonmaw", item_id=100, price=1234,
+                            confidence=0.5,
+                            sale_probability=sale_probability,
+                            sample_size=3, observed_at=1792400000,
+                            flags=["thin-sample"], recommended_ask=1500,
+                            evidence={"dbmarket": 2000})
+
+        builder = DatasetBuilder(config=PricingConfig(), engine=_FakeEngine())
+        builder.generated_at = 1792450000
+        builder.realms = {"Dragonmaw": {"auctionHouse": "spinebreaker",
+                                        "items": {100: record()},
+                                        "sampleSize": 3, "updatedAt": 1792400000}}
+        builder.records = [type("R", (), {"realm": "Dragonmaw", "item_id": 100,
+                                          "estimate": record()})()]
+        return builder
+
+    assert (build(0.1619).content_signature()
+            == build(0.1618).content_signature())
+
+    # ...but a move worth telling someone about still counts
+    assert (build(0.1619).content_signature()
+            != build(0.4019).content_signature())
+
+
+def test_the_content_signature_notices_a_changed_price():
+    """The signature must still see the data move, or it hides real news."""
+    def build(price):
+        builder = DatasetBuilder(config=PricingConfig(), engine=_FakeEngine())
+        builder.generated_at = 1792450000
+        builder.realms = {"Dragonmaw": {"auctionHouse": "spinebreaker",
+                                        "items": {100: _fake_record(price=price)},
+                                        "sampleSize": 3, "updatedAt": 1792400000}}
+        builder.records = [type("R", (), {
+            "realm": "Dragonmaw", "item_id": 100,
+            "estimate": _fake_record(price=price)})()]
+        return builder
+
+    assert build(1234).content_signature() != build(9999).content_signature()
+
+
 def test_the_dataset_ships_the_limit_at_which_a_price_is_stale():
     """The reader must not invent its own staleness rule.
 

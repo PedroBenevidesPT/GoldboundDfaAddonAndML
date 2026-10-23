@@ -13,17 +13,66 @@ import argparse
 import json
 import logging
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from woweconomy.pricing.config import PricingConfig  # noqa: E402
-from woweconomy.pricing.dataset import build_dataset, validate_dataset  # noqa: E402
+from woweconomy.pricing.dataset import (  # noqa: E402
+    build_dataset,
+    read_meta_sidecar,
+    validate_dataset,
+    write_meta_sidecar,
+)
 from woweconomy.pricing.engine import PricingEngine  # noqa: E402
 from woweconomy.pricing.report import write_report  # noqa: E402
 from woweconomy.pricing.shipped import SHIPPED_REFERENCES  # noqa: E402
 
 logger = logging.getLogger("dfa_pricing")
+
+#: where the export remembers what it last announced, so a re-run that
+#: changed nothing is silent.  Separate from the daemon's state file: the
+#: export can run without a daemon, and two processes writing one file
+#: would race.
+EXPORT_STATE = Path(__file__).resolve().parent.parent / "data" / "export_state.json"
+
+
+def _load_state(path: Path) -> dict:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def _save_state(path: Path, state: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(state, indent=2, sort_keys=True), encoding="utf-8")
+
+
+def announce_dataset(meta: dict, previous: dict, path: Path,
+                     state_path: Path = EXPORT_STATE,
+                     dry_run: bool = False) -> dict:
+    """Tell a human that a new dataset exists, once per distinct dataset.
+
+    Silent when the bytes are the same as last time: the pipeline exports
+    every six hours, and six identical messages a day is a heartbeat.
+    Never raises -- an alert that fails must not fail the export.
+    """
+    from woweconomy.intel import alerts as alert_mod
+
+    if alert_mod.dataset_unchanged(meta, previous):
+        return {"sent": False, "reason": "unchanged"}
+    alert = alert_mod.dataset_alert(meta, previous, str(path))
+    if dry_run:
+        return {"sent": False, "reason": "dry-run", "title": alert.title}
+    state = _load_state(state_path)
+    results = alert_mod.deliver([alert], state, now=int(time.time()),
+                                url=alert_mod.webhook_url())
+    _save_state(state_path, state)
+    return {"sent": True, "key": alert.key, "results": results,
+            "title": alert.title}
 
 
 def main() -> int:
@@ -46,6 +95,9 @@ def main() -> int:
                         help="also write the validation report")
     parser.add_argument("--dry-run", action="store_true",
                         help="build it but do not write the file")
+    parser.add_argument("--no-alert", dest="alert", action="store_false",
+                        default=True,
+                        help="do not announce the new dataset")
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
 
@@ -159,8 +211,27 @@ def main() -> int:
     print("the dataset validates")
 
     if not args.dry_run:
+        dataset_path = Path(config.dataset_path)
+        # read before the write: the sidecar is what makes "what changed"
+        # answerable, and after the write it describes the new file
+        previous = read_meta_sidecar(dataset_path)
         path = builder.write()
+        checksum = builder.checksum()
+        meta = builder.metadata()
+        meta["checksum"] = checksum
+        meta["contentSignature"] = builder.content_signature()
+        write_meta_sidecar(path, meta, checksum)
         print(f"written to {path} ({path.stat().st_size:,} bytes)")
+        if args.alert:
+            outcome = announce_dataset(meta, previous, path)
+            if outcome.get("sent"):
+                delivered = (outcome.get("results") or [{}])[0]
+                how = ("Discord" if delivered.get("webhook")
+                       else "toast" if delivered.get("toast")
+                       else "no channel configured")
+                print(f"new-dataset alert: {how}")
+            else:
+                print(f"new-dataset alert: not sent ({outcome.get('reason')})")
 
     if args.report:
         report = write_report(config, engine, builder)
