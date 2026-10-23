@@ -475,7 +475,9 @@ def load_region_market(db_path: str) -> Dict[int, ItemMarket]:
     different amounts in two screens.  The frozen snapshot stays
     reachable with ``--price-source legacy``.
     """
-    conn = sqlite3.connect(db_path)
+    from woweconomy.dbcompat import connect_store
+
+    conn = connect_store(db_path, readonly=True)
     try:
         rows = conn.execute("""
             SELECT r.key_id, COALESCE(NULLIF(r.name, ''), i.name, ''),
@@ -635,6 +637,89 @@ def load_model_market(engine, item_ids, realm: str = "",
         else:
             counts["unpriced"] += 1
     return out, counts
+
+
+@dataclass
+class MarketSource:
+    """Where a ranking's prices came from, and how much of it they covered."""
+
+    market: Dict[int, ItemMarket]
+    source: str
+    label: str
+    asof: str
+    counts: Dict[str, int]
+
+    @property
+    def age_days(self) -> Optional[int]:
+        return price_age_days(self.asof)
+
+    @property
+    def stale(self) -> bool:
+        age = self.age_days
+        return age is not None and age > 30
+
+
+def _model_artifact() -> Optional[Path]:
+    """The trained price model, if it is there to read."""
+    try:
+        from woweconomy.pricing.config import PricingConfig
+
+        path = PricingConfig().models_dir / "price_model.cbm"
+    except Exception:
+        return None
+    return path if path.exists() else None
+
+
+def resolve_market(item_ids, *, names: Optional[Dict[int, str]] = None,
+                   source: str = "auto", db_path: str = "",
+                   csv_path: str = "csv/items.csv",
+                   engine=None) -> MarketSource:
+    """The one place that decides where a farm ranking's prices come from.
+
+    There were three: the zone report chose a source inline, the leaderboards
+    read the TSM table directly, and `scripts/rank_farms.py` estimated its own
+    way.  Three answers to "what is this worth" is how two reports about the
+    same zone end up disagreeing, so the decision lives here and both callers
+    share it.
+
+    ``auto`` prefers the trained model.  A model answers with a realizable sale
+    price *and* the chance of selling; a TSM average is a listing reference
+    that says nothing about whether anyone buys.  The market table stays as the
+    per-item fallback for what the model cannot price, and the counts say how
+    much of the ranking rests on which path -- a report that implied the model
+    priced everything would be lying about its own coverage.
+    """
+    ids = [int(i) for i in item_ids]
+    names = names or {}
+    resolved = source
+    if resolved == "auto":
+        resolved = ("model" if _model_artifact() is not None
+                    else ("region" if db_path else "csv"))
+
+    if resolved == "csv":
+        return MarketSource(load_csv_market(csv_path), "csv",
+                            "csv:" + csv_path, market_asof_csv(csv_path), {})
+
+    if resolved == "model":
+        if engine is None:
+            from woweconomy.pricing.config import PricingConfig
+            from woweconomy.pricing.engine import PricingEngine
+
+            engine = PricingEngine(PricingConfig()).load()
+        fallback = load_region_market(db_path) if db_path else {}
+        mkt, counts = load_model_market(engine, ids, fallback=fallback,
+                                        names=names)
+        label = (f"model ({counts['estimate']} estimate, "
+                 f"{counts['shipped']} shipped, {counts['fallback']} fallback, "
+                 f"{counts['unpriced']} unpriced)")
+        return MarketSource(mkt, "model", label, "", counts)
+
+    if not db_path:
+        raise SystemExit(f"--price-source {resolved} needs a --db path")
+    mkt = (load_snapshot_market(db_path) if resolved == "legacy"
+           else load_region_market(db_path))
+    return MarketSource(mkt, resolved, f"db:{resolved}:{db_path}",
+                        market_asof_db(db_path, resolved), {})
 
 
 def price_age_days(iso_ts: str, today: Optional[object] = None) -> Optional[int]:
@@ -1520,50 +1605,6 @@ def main(argv=None) -> int:
     logging.basicConfig(level=logging.WARNING)
     db_path = args.db or ("tsm_markets.db"
                           if Path("tsm_markets.db").exists() else "")
-    source = args.price_source
-    if source == "auto":
-        # A trained model answers with a sale price and its sale probability;
-        # a raw TSM average is a listing reference.  The model wins when it
-        # exists, and the market table stays as the per-item fallback.
-        try:
-            from woweconomy.pricing.config import PricingConfig
-
-            source = "model" if (PricingConfig().models_dir
-                                 / "price_model.cbm").exists() else (
-                "region" if db_path else "csv")
-        except Exception:
-            source = "region" if db_path else "csv"
-    if source == "csv":
-        mkt = load_csv_market(args.market_csv)
-        asof = market_asof_csv(args.market_csv)
-        source_label = "csv:" + args.market_csv
-    elif source == "model":
-        # The farm's price comes from the pricing engine.  The market table
-        # is only the per-item fallback for what neither model can price.
-        from woweconomy.pricing.config import PricingConfig
-        from woweconomy.pricing.engine import PricingEngine
-
-        engine = PricingEngine(PricingConfig()).load()
-        drops = load_zone_drops([Path(z) for z in args.zones])
-        ids = {d.item_id for d in drops}
-        names = {d.item_id: d.item_name for d in drops if d.item_name}
-        fallback = load_region_market(db_path) if db_path else {}
-        mkt, counts = load_model_market(engine, ids, fallback=fallback, names=names)
-        asof = ""
-        source_label = (f"model ({counts['estimate']} estimate, {counts['shipped']} "
-                        f"shipped, {counts['fallback']} fallback, "
-                        f"{counts['unpriced']} unpriced)")
-    else:
-        if not db_path:
-            raise SystemExit(f"--price-source {source} needs a --db path")
-        mkt = (load_snapshot_market(db_path) if source == "legacy"
-               else load_region_market(db_path))
-        asof = market_asof_db(db_path, source)
-        source_label = f"db:{source}:{db_path}"
-    age = price_age_days(asof)
-    print(f"Market: {len(mkt)} priced items "
-          f"({source_label}) as of {asof or 'unknown'}"
-          + (f" ({age}d old - STALE, refresh the source)" if age is not None and age > 30 else ""))
     missing = [z for z in args.zones if not Path(z).exists()]
     if missing:
         print("Missing zone file(s): " + ", ".join(missing))
@@ -1571,6 +1612,16 @@ def main(argv=None) -> int:
         print('  python -m woweconomy.services.wowhead "zone=331/ashenvale"')
         print("(a partial zone_331.json appears after the first 25 NPCs)")
         raise SystemExit(2)
+    drops = load_zone_drops([Path(z) for z in args.zones])
+    source = resolve_market(
+        {d.item_id for d in drops},
+        names={d.item_id: d.item_name for d in drops if d.item_name},
+        source=args.price_source, db_path=db_path, csv_path=args.market_csv)
+    mkt, asof, source_label = source.market, source.asof, source.label
+    age = source.age_days
+    print(f"Market: {len(mkt)} priced items "
+          f"({source_label}) as of {asof or 'unknown'}"
+          + (f" ({age}d old - STALE, refresh the source)" if age is not None and age > 30 else ""))
     if args.horizon != 30:
         print("NOTE: --horizon is deprecated and ignored: DBRegionSaleRate "
               "is per-listing sell-through, not a daily probability.")

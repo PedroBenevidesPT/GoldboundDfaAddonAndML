@@ -414,7 +414,12 @@ def test_an_unknown_zone_id_is_refused_rather_than_skipped():
 
 
 def test_the_cli_will_not_rank_against_an_empty_market(tmp_path):
-    """Zero prices would make every EV zero and read as "nothing pays"."""
+    """Zero prices would make every EV zero and read as "nothing pays".
+
+    ``--price-source region`` is the point of the test: with the trained model
+    available, an empty market table is not an empty market, because the model
+    still prices the items.  The refusal is about having *no* prices at all.
+    """
     import importlib.util
     import sqlite3
     from pathlib import Path
@@ -426,10 +431,15 @@ def test_the_cli_will_not_rank_against_an_empty_market(tmp_path):
 
     empty = tmp_path / "tsm.db"
     con = sqlite3.connect(empty)
-    con.execute("CREATE TABLE tsm_region (item_id INTEGER, avg_sale_price REAL)")
+    # the tables the region source reads, present but holding no rows: this is
+    # "a market that has been initialised and never filled", not "no database"
+    con.execute("CREATE TABLE tsm_region_price (key_id INTEGER, name TEXT,"
+                " avg_sale_price REAL, sale_rate REAL, sold_per_day REAL)")
+    con.execute("CREATE TABLE items (itemId INTEGER, name TEXT)")
     con.commit()
     con.close()
-    assert module.main(["mats", "--db", str(empty)]) == 2
+    assert module.main(["mats", "--price-source", "region",
+                        "--db", str(empty)]) == 2
 
 
 def test_a_missing_market_database_is_an_error_not_an_empty_ranking(tmp_path):
@@ -440,4 +450,36 @@ def test_a_missing_market_database_is_an_error_not_an_empty_ranking(tmp_path):
     spec = importlib.util.spec_from_file_location("farm_ranking_cli3", path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    assert module.main(["mats", "--db", str(tmp_path / "absent.db")]) == 2
+    assert module.main(["mats", "--price-source", "region",
+                        "--db", str(tmp_path / "absent.db")]) == 2
+
+
+def test_the_leaderboards_read_the_trained_model_not_the_asking_prices(tmp_path):
+    """One price source for the zone report and the leaderboards.
+
+    The leaderboards used to read ``tsm_region`` directly, so the same item
+    had an asking price in one report and a realizable price in the other.
+    """
+    from woweconomy.analytics import farm_ranking as fr
+
+    assert fr._model_artifact() is not None, (
+        "this test needs the trained price model to be present")
+
+    source = fr.resolve_market([2589, 2592], source="auto", db_path="")
+    assert source.source == "model"
+    assert "model (" in source.label
+    assert source.market, "the model priced nothing"
+    for item in source.market.values():
+        assert item.price > 0
+        # a model price carries the chance of selling; an asking price does not
+        assert item.sale_rate >= 0
+
+
+def test_resolve_market_auto_prefers_the_model_over_the_table():
+    """``auto`` must not silently fall back to asking prices while a model exists."""
+    from woweconomy.analytics import farm_ranking as fr
+
+    if fr._model_artifact() is None:
+        pytest.skip("no trained price model in this workspace")
+    source = fr.resolve_market([2589], source="auto", db_path="tsm_markets.db")
+    assert source.source == "model"

@@ -49,10 +49,17 @@ account trades in.  A realm that is not in the EU index is refused with
 the reason -- the script does not silently price a US realm with EU
 references.
 
-    python scripts/rank_farms.py
-    python scripts/rank_farms.py --realms "Silvermoon,Twisting Nether"
-    python scripts/rank_farms.py --all-realms --top 15
-    python scripts/rank_farms.py --out reports/farms_estimate.json
+This is the per-realm mode of the one farm command, reached as
+``python scripts/farm_ranking.py realms ...``.  It keeps its own module
+because it batches the estimate over thousands of items instead of calling
+``PricingEngine.estimate`` per item, but it is not a second entry point: the
+zone report, the leaderboards and this view all price from the same trained
+dataset, so the same item is worth one amount, not three.
+
+    python scripts/farm_ranking.py realms
+    python scripts/farm_ranking.py realms --realms "Silvermoon,Twisting Nether"
+    python scripts/farm_ranking.py realms --all-realms --top 15
+    python scripts/farm_ranking.py realms --out reports/farms_estimate.json
 """
 from __future__ import annotations
 

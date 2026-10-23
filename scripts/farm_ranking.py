@@ -26,12 +26,20 @@ It dispatches:
   `--price-rate`, `--price-floor`, `--out`.  One parser, one meaning.
 * with `mats`, `expensive`, `mogs` or `jackpots`, it prints one of the
   narrower leaderboards the same module already computes.
+* with `realms`, it prints the per-realm view, which answers the same
+  question for each auction house separately instead of once for the region.
+
+Every mode prices from the same source: the trained model, with the market
+table only as the per-item fallback.  The leaderboards used to read the TSM
+asking prices directly, so the same item had an asking price in one screen and
+a realizable price in the other.
 
     python scripts/farm_ranking.py zone_331.json
     python scripts/farm_ranking.py zone_331.json zone_719.json --top 20
     python scripts/farm_ranking.py zone_331.json --out FarmReport.txt
     python scripts/farm_ranking.py mats --top 20
     python scripts/farm_ranking.py mogs --top 10
+    python scripts/farm_ranking.py realms --all-realms --top 10
 """
 from __future__ import annotations
 
@@ -94,28 +102,44 @@ def leaderboard(command: str, argv) -> int:
                         help="zone id (repeatable); default is every zone on disk")
     parser.add_argument("--top", type=int, default=15)
     parser.add_argument("--db", default=str(DEFAULT_TSM),
-                        help="the TSM market database")
+                        help="the market database, used as the model's fallback")
+    parser.add_argument("--price-source", default="auto",
+                        choices=("auto", "model", "region", "legacy", "csv"),
+                        help="where the prices come from; auto prefers the "
+                             "trained model, exactly as the zone report does")
+    parser.add_argument("--market-csv", default="csv/items.csv")
     parser.add_argument("--json", default="", metavar="PATH",
                         help="also write the result as JSON")
     args = parser.parse_args(argv)
-
-    db = Path(args.db)
-    if not db.exists():
-        print(f"market database not found: {db}", file=sys.stderr)
-        return 2
-    market = fr.load_latest_market(str(db))
-    if not market:
-        # Not a warning.  Every EV below would be zero and the ranking would
-        # look like "nothing is worth farming".
-        print(f"no market prices in {db}; refusing to rank against nothing",
-              file=sys.stderr)
-        return 2
 
     paths = zone_paths(args.zone)
     if not paths:
         print(f"no zone files under {ZONES_DIR}", file=sys.stderr)
         return 2
     drops = fr.load_zone_drops(paths)
+
+    # The leaderboards used to read the TSM asking prices directly, which made
+    # them disagree with the zone report about the same item: one said what a
+    # listing asks, the other what it fetches.  Both now go through the single
+    # price-source decision.
+    try:
+        source = fr.resolve_market(
+            {d.item_id for d in drops},
+            names={d.item_id: d.item_name for d in drops if d.item_name},
+            source=args.price_source,
+            db_path=args.db if Path(args.db).exists() else "",
+            csv_path=args.market_csv)
+    except SystemExit as exc:
+        print(str(exc) or "no usable price source", file=sys.stderr)
+        return 2
+    market = source.market
+    if not market:
+        # Not a warning.  Every EV below would be zero and the ranking would
+        # look like "nothing is worth farming".
+        print(f"no prices for these zones ({source.label}); refusing to rank "
+              f"against nothing", file=sys.stderr)
+        return 2
+    print(f"Market: {len(market)} priced items ({source.label})", file=sys.stderr)
 
     if command == "mats":
         rows = fr.top_mats(drops=drops, market=market, top_n=args.top)
@@ -143,6 +167,14 @@ def leaderboard(command: str, argv) -> int:
 
 def main(argv=None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] == "realms":
+        # The per-realm view: the same question asked of each auction house
+        # instead of once for the region.  It lives in its own module because
+        # it batches the estimate over thousands of items, but it is reached
+        # through this command so there is one entry point, not two.
+        from scripts import rank_farms
+
+        return rank_farms.main(argv[1:])
     if argv and argv[0] in LEADERBOARDS:
         return leaderboard(argv[0], argv[1:])
     # Everything else is a zone report, and the module owns those flags.
