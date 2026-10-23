@@ -36,10 +36,14 @@ from woweconomy.analytics import farm_ranking as fr
 ZONES_DIR = Path(__file__).resolve().parents[1] / "wowhead_zones"
 
 #: How many rows each leaderboard ships.  The panel is a scroll box read on
-#: a second monitor, not a spreadsheet: ten rows is what someone reads.
-TOP_STOPS = 10
-TOP_MOGS = 10
-TOP_MATS = 10
+#: a second monitor, not a spreadsheet -- but ten rows is one short session,
+#: and the whole point of the block is to keep going after the first page.
+#: Thirty stops covers every ranked zone's worthwhile camps; the panel
+#: scrolls, so the cost of a longer list is a longer scrollbar, not a worse
+#: read.
+TOP_STOPS = 30
+TOP_MOGS = 20
+TOP_MATS = 20
 
 #: Items named under each farm stop.  The point of the section is "go here,
 #: pick these up", and three is enough to answer it without turning the

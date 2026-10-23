@@ -196,12 +196,35 @@ local function DatasetPrice(itemID)
 	if not id then
 		return nil
 	end
+	-- junk that is not a transmog is worth what a vendor pays: nobody buys
+	-- a grey, and a modelled sale price for one is a number about nobody.
+	-- The classification is the addon's, so the tooltip, MobInfo2 and this
+	-- wrapper cannot disagree about which rule applies.
+	local facts = addon and addon.ItemFacts and addon.ItemFacts(id) or nil
+	if facts and facts.quality == 0 and not facts.appearance then
+		local vendor = addon.GetVendorPrice and addon.GetVendorPrice(id) or nil
+		if type(vendor) == "number" and vendor > 0 then
+			return vendor
+		end
+		if type(facts.vendor) == "number" and facts.vendor > 0 then
+			return facts.vendor
+		end
+		return nil
+	end
 	if addon and addon.GetRecord then
 		local record = addon.GetRecord(id)
-		-- Loot value is what the sale pays, not the price it is posted at.
-		-- `net` is the realised price less the 5 % cut and the expected
-		-- deposit; falling back to `price` keeps an older dataset working.
+		-- Loot = what the sale actually pays, after cut + deposit, less any
+		-- deposit the player must first front.
+		-- `net` is price less the 5 % cut and the expected deposit; falling
+		-- back to `price` keeps an older dataset working.
 		if record and type(record.net) == "number" and record.net > 0 then
+			-- deposit-aware valuation: when expected_deposit > 0 the in-hand
+			-- value is net less that deposit; the tooltip already flags it.
+			if type(record.action) == "table"
+				and type(record.action.expected_deposit) == "number"
+				and record.action.expected_deposit > 0 then
+				return math.max(0, record.net - record.action.expected_deposit)
+			end
 			return record.net
 		end
 		if record and type(record.price) == "number" and record.price > 0 then

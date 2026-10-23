@@ -28,7 +28,12 @@ local FLAG_TEXT = {
 	["contradictory-references"] = "the market references disagree",
 	["no-local-reference"] = "no local reference",
 	["shared-appearance"] = "the cosmetic set is worn by several items",
+	-- the engine spells this one "unknown" since it also covers a model
+	-- that ran and failed; "unsupported" is the older spelling and is kept
+	-- so a dataset built before the rename still reads as English
+	["time-to-sale-unknown"] = "no defensible time to sale",
 	["time-to-sale-unsupported"] = "no defensible time to sale",
+	["undercut-is-market-pressure"] = "undercut pressure shapes the price",
 	["low-confidence"] = "low confidence",
 }
 
@@ -171,10 +176,11 @@ function Panel.BuildStatus()
 	local lines = {}
 	lines[#lines + 1] = ("DFA Estimate -- %s"):format(addon and addon.GetRealmName() or "?")
 	if addon and addon.data then
-		local age = addon.GetAgeHours()
+		-- a clock that is behind the dataset stamp must not print a negative age
+		local age = math.max(0, tonumber(addon.GetAgeHours()) or 0)
 		lines[#lines + 1] = ("dataset: version %s (engine %s), %d item(s), %.0f hour(s) old")
 			:format(tostring(addon.dataVersion), tostring(addon.engineVersion),
-				addon.data.itemCount or 0, age or 0)
+				addon.data.itemCount or 0, age)
 	else
 		lines[#lines + 1] = ("dataset: NOT LOADED (%s)")
 			:format(tostring(addon and addon.error or "unknown"))
@@ -395,10 +401,10 @@ function Panel.BuildText()	local addon = Addon.DFAEstimate
 	if not addon or not addon.data then
 		return "DFA Estimate: " .. tostring(addon and addon.error or "no dataset")
 	end
-	local age = addon.GetAgeHours()
+	local age = math.max(0, tonumber(addon.GetAgeHours()) or 0)
 	lines[#lines + 1] = ("DFA Estimate -- %s"):format(addon.GetRealmName())
 	lines[#lines + 1] = ("dataset %s (engine %s), generated %.0f hour(s) ago")
-		:format(tostring(addon.dataVersion), tostring(addon.engineVersion), age or 0)
+		:format(tostring(addon.dataVersion), tostring(addon.engineVersion), age)
 	-- One GetRows call: it asks TSM for four references per item, and asking
 	-- twice made the panel slow enough to look like it never opened.
 	local rows = GetRows()
@@ -425,6 +431,20 @@ function Panel.BuildText()	local addon = Addon.DFAEstimate
 		end
 	end
 	lines[#lines + 1] = ""
+	-- The farm ranking is the first block in the report, not the last: it
+	-- is what the panel is opened for, and a viewport that only shows the
+	-- top of the report must still show it.  A failure there must not stop
+	-- the item table below from appearing.
+	local okFarm, farm = pcall(Panel.BuildFarmRanking)
+	if okFarm then
+		for _, line in ipairs(farm) do
+			lines[#lines + 1] = line
+		end
+	else
+		lines[#lines + 1] = "Farm ranking: could not be built ("
+			.. tostring(farm) .. ")"
+	end
+	lines[#lines + 1] = ""
 	lines[#lines + 1] = ("%-9s %-11s %-6s %-10s %-10s %-10s %s")
 		:format("item", "estimate", "conf", "dbmarket", "dbrecent", "region avg", "warnings")
 	for _, row in ipairs(rows) do
@@ -445,19 +465,6 @@ function Panel.BuildText()	local addon = Addon.DFAEstimate
 	lines[#lines + 1] = ""
 	lines[#lines + 1] = "The estimate is what a unit is expected to fetch, net of the house"
 	lines[#lines + 1] = "cut.  It is not an asking price, and it is not a promise."
-	-- The farm ranking goes last and is built last: the item table above is
-	-- the reason the panel exists, and a failure in the ranking must not
-	-- stop it from appearing.
-	local okFarm, farm = pcall(Panel.BuildFarmRanking)
-	lines[#lines + 1] = ""
-	if okFarm then
-		for _, line in ipairs(farm) do
-			lines[#lines + 1] = line
-		end
-	else
-		lines[#lines + 1] = "Farm ranking: could not be built ("
-			.. tostring(farm) .. ")"
-	end
 	return table.concat(lines, "\n")
 end
 
@@ -551,6 +558,12 @@ function Panel.Show()
 	local ok, err = pcall(function()
 		private.text:SetText(Panel.BuildText())
 		Panel.ResizeContent()
+		-- The measure above can run before the client has laid the string
+		-- out, which leaves the scroll child one line high and the window
+		-- blank.  The next frame carries the real height.
+		if C_Timer and C_Timer.After then
+			C_Timer.After(0, Panel.ResizeContent)
+		end
 	end)
 	if not ok then
 		Addon.DFAEstimate.panelError = tostring(err)
@@ -663,6 +676,10 @@ function Panel:Initialize()
 		return false
 	end
 	content:SetSize(FRAME_W - 44, 1)
+	-- A scroll child must be anchored to its scroll frame; without a point
+	-- the client leaves it at an undefined position and the window opens
+	-- with nothing in it.
+	content:SetPoint("TOPLEFT", scroll, "TOPLEFT", 0, 0)
 	local text = content:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 	if not text then
 		Addon.DFAEstimate.panelError = "the report text could not be created"
@@ -685,6 +702,15 @@ function Panel:Initialize()
 		text:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -16, 16)
 	end
 
+	-- Resizing the window has to re-measure the report: the scroll area
+	-- otherwise keeps the height it had when the panel first opened, and
+	-- the text is clipped to that.
+	if scroll.SetScript then
+		scroll:SetScript("OnSizeChanged", function()
+			Panel.ResizeContent()
+		end)
+	end
+
 	private.scroll = scroll
 	private.content = content
 	private.text = text
@@ -695,6 +721,12 @@ end
 ---
 ---Without this the content frame stays one pixel high and the scroll
 ---frame has nothing to scroll; with it the bar matches the report.
+---
+---The report's line count is a *floor*, not a fallback: a fontstring asked
+---for its height before the client has laid it out can answer 0 -- or, on a
+---client that measures the first line only, one line, which a player sees
+---as a window holding nothing but its header.  The measured height may only
+---make the content taller, never shorter than its own lines.
 function Panel.ResizeContent()
 	if not private.content or not private.text then
 		return
@@ -709,10 +741,29 @@ function Panel.ResizeContent()
 	if width <= 0 then
 		width = FRAME_W - 44
 	end
-	local height = 1
+	local report = ""
+	if private.text.GetText then
+		local ok, value = pcall(private.text.GetText, private.text)
+		if ok and type(value) == "string" then
+			report = value
+		end
+	end
+	local lines = 1
+	for _ in report:gmatch("\n") do
+		lines = lines + 1
+	end
+	-- the font's own size, so a larger font does not clip its last line
+	local lineHeight = 12
+	if private.text.GetFont then
+		local ok, _, size = pcall(private.text.GetFont, private.text)
+		if ok and type(size) == "number" and size > 0 then
+			lineHeight = size
+		end
+	end
+	local height = lines * lineHeight
 	if private.text.GetStringHeight then
 		local ok, value = pcall(private.text.GetStringHeight, private.text)
-		if ok and type(value) == "number" and value > 0 then
+		if ok and type(value) == "number" and value > height then
 			height = value
 		end
 	end

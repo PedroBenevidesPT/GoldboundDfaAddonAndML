@@ -116,6 +116,90 @@ function public.GetVendorPrice(itemId)
 	return nil
 end
 
+--: The item classes the auction house sells as commodities -- stackable
+--: things traded by the unit, not pieces of gear.  Blizzard's class ids:
+--: 0 consumable, 3 gem, 5 reagent, 7 trade goods, 8 item enhancement,
+--: 9 recipe, 15 glyph.
+local COMMODITY_CLASSES = {
+	[0] = true, [3] = true, [5] = true, [7] = true,
+	[8] = true, [9] = true, [15] = true,
+}
+
+---What the client knows about an item's kind, or nil while it is uncached.
+---
+---The value a farmer wants depends on the kind of thing it is, not on one
+---number: junk is worth what a vendor pays, a commodity is worth the
+---cheapest listing on the auction house, and gear is worth the modelled
+---sale.  This is the classification those rules share, so the tooltip,
+---MobInfo2 and LootAppraiser cannot disagree about which rule applies.
+---
+---``quality`` is nil, not 0, when the client has the item but not its
+---quality: 0 means poor, and a guess would price a real item as junk.
+---``vendor`` is the client's own sell price -- the number the item tooltip
+---shows -- and is nil for an item that cannot be sold.
+---@param itemId number|string
+---@return table?
+function public.ItemFacts(itemId)
+	local id = public.BaseItemId(itemId)
+	if not id then
+		return nil
+	end
+
+	local quality, classID
+	if C_Item and C_Item.GetItemInfoInstant then
+		local ok, _, _, _, _, _, cls = pcall(C_Item.GetItemInfoInstant, id)
+		if ok and type(cls) == "number" then
+			classID = cls
+		end
+	end
+	if C_Item and C_Item.GetItemInfo then
+		local ok, _, _, q = pcall(C_Item.GetItemInfo, id)
+		if ok and type(q) == "number" then
+			quality = q
+		end
+	end
+	-- an item the client has not cached has no kind: the caller falls back
+	-- to the model rather than guessing "junk"
+	if quality == nil and classID == nil then
+		return nil
+	end
+
+	local commodity = classID ~= nil and COMMODITY_CLASSES[classID] == true
+	if C_AuctionHouse and C_AuctionHouse.GetItemCommodityStatus then
+		local ok, status = pcall(C_AuctionHouse.GetItemCommodityStatus, id)
+		if ok and type(status) == "number" and status == 1 then
+			commodity = true
+		end
+	end
+
+	local appearance = false
+	if C_TransmogCollection and C_TransmogCollection.GetItemInfo then
+		local ok, appearanceID = pcall(C_TransmogCollection.GetItemInfo, id)
+		if ok and appearanceID ~= nil then
+			appearance = true
+		end
+	end
+
+	local vendor
+	if C_Item and C_Item.GetItemInfo then
+		local ok, price = pcall(function()
+			return select(11, C_Item.GetItemInfo(id))
+		end)
+		if ok and type(price) == "number" and price > 0 then
+			vendor = price
+		end
+	end
+
+	return {
+		itemId = id,
+		quality = quality,
+		classID = classID,
+		commodity = commodity,
+		appearance = appearance,
+		vendor = vendor,
+	}
+end
+
 ---What one unit is expected to pay on the auction house, in copper.
 ---
 ---The precedence is the engine's own and is not re-derived here: this

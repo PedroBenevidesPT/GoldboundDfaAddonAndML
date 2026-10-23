@@ -125,6 +125,15 @@ services:
       # reader opens the database `mode=ro`; without the folder the strategy
       # task reports a skip instead of failing every cycle.
       DFA_DIR: /app/woweconomy/dfa
+      # The same folder as the pricing engine's `dfa.db`, which is what the
+      # `export` task reads for the account's own sales and the appearance
+      # scan.  `PricingConfig.dfa_db` defaults to a host-only absolute
+      # Windows path when `WOW_DFA_DB` is unset, and that path does not exist
+      # inside the container: the export then built a dataset with
+      # itemCount=0 and the regression guard refused to write it, skipping
+      # the task every cycle.  `environment` wins over `env_file`, so this
+      # container-only value leaves host runs (which read `.env`) untouched.
+      WOW_DFA_DB: /app/woweconomy/dfa/dfa.db
       # `deploy` copies the toc-listed addon files into the game, which lives
       # on the host: the folder is mounted below and this points the task at
       # the mount.  Set `WOW_ADDONS_DIR` in `.env` to the host folder; without

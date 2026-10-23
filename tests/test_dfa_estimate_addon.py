@@ -257,3 +257,80 @@ def test_the_installed_copy_matches_the_project_after_a_deploy():
     names = addon_manifest.toc_files(project / "DFA_Estimate.toc")
     for name in names:
         assert (project / name).read_bytes() == (installed / name).read_bytes(), name
+
+
+def test_the_shipped_baseline_dataset_is_not_silently_dropped():
+    """The current export marks every record "baseline_only". That status is a
+
+    model-lifecycle tag, not a visibility gate: the reader accepts it (the
+    tooltip only suppresses the fully-validated silence path), and the record
+    still carries a usable price. This is the test the empty panel needs -- it
+    proves the 237 records are real, priced records the addon can read, and not
+    rows that the addon silently discards.
+    """
+    lua = woW_like_lua()
+    load_addon(lua)
+    addon = lua.globals().Addon.DFAEstimate
+
+    # the dataset the client would actually load from the shipped file
+    assert addon.data is not None, "the shipped dataset did not load"
+    realms = addon.data.realms or {}
+    assert realms, "the shipped dataset has no realm blocks"
+    realm_name = addon.GetRealmName()
+
+    # exactly the counts the shipped metadata claims; if either path drops rows
+    # the panel -- which iterates GetItems() -- would be empty on the user's
+    # realm without any error message, which is the bug this test guards.
+    # the panel and the tooltip both read through getRealmItems; the value must be
+    # the table the addon built, and its live length must match the metadata.
+    # lupa returns Lua tables as objects, not as Python dicts, so count through
+    # the addon API that the panel actually uses.
+    panel_items = addon.GetItems()
+    panel_count = len(list(panel_items.keys()))
+    realm_block = realms.get(realm_name)
+    if realm_block is None:
+        shipped_realm_count = 0
+    else:
+        shipped_realm_count = len(list(realm_block.items.keys()))
+    assert panel_count == shipped_realm_count, (
+        f"GetItems() returned {panel_count} items but the realm block for "
+        f"{realm_name!r} has {shipped_realm_count} items")
+    assert panel_count == 237, (
+        "the shipped dataset should expose exactly 237 priced items; "
+        f"got {panel_count}")
+    assert shipped_realm_count == 237, (
+        "the Dragonmaw block in the shipped dataset should carry exactly "
+        f"237 items; got {shipped_realm_count}")
+    # a sample record from the populated realm, read through the public API.
+    # Dragonmaw is the realm with the most records in this export.
+    sample_id = next(iter(panel_items.keys()))
+    record = addon.GetRecord(sample_id)
+    assert record is not None, f"GetRecord({sample_id}) returned nothing"
+    assert record.price and record.price > 0, (
+        f"the exported record for item {sample_id} has no usable price")
+
+    # the record is still priced through the addon's normal path, including for
+    # an item the realm has no recorded sale of (the model path).  This is the
+    # actual shape an item the player is posting takes, so it is the one that
+    # must survive the status tag.
+    estimate = addon.Estimate(sample_id)
+    assert estimate is not None, f"Estimate({sample_id}) returned nothing"
+    assert estimate.price and estimate.price > 0, (
+        f"Estimate({sample_id}) produced no usable price")
+    assert estimate.source in ("record", "model"), (
+        f"Estimate({sample_id}) returned an unexpected source: {estimate.source!r}")
+
+    # the visible status behavior: baseline_only is shown to the player, not
+    # swallowed. The tooltip translates it; the panel does not filter on it.
+    assert record.status == "baseline_only", (
+        "this export is the baseline_only case by construction; "
+        "if the dataset changes, revisit this assertion and the state name together"
+    )
+    tooltip = addon.Tooltip and addon.Tooltip.GetLines(sample_id)
+    assert tooltip, "the tooltip module did not expose GetLines"
+    pl = tooltip
+    assert "item sale rate, no learned model" in pl, (
+        f"baseline_only must be presented by the tooltip, not hidden; "
+        f"lines={pl!r}"
+    )
+

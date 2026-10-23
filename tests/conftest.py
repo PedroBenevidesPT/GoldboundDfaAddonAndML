@@ -12,10 +12,17 @@ The Postgres conformance tests are unaffected: they open psycopg2 connections
 themselves and confine every test to a private schema they create and drop.
 They read their DSN from ``TEST_DATABASE_URL``/``DATABASE_URL`` *before* this
 hook runs, or fall back to the local stack.
+
+The addon tests import the lupa harness lazily from ``tests.dfa_lua_harness``,
+so conftest must preserve that import path: ``tests`` is a package only when
+``tests/__init__.py`` exists, and pytest creates package namespaces for
+directories it collects from. This hook makes both files importable from the
+same ``tests`` package the test files already use.
 """
 from __future__ import annotations
 
 import os
+import sys
 
 import pytest
 
@@ -35,3 +42,15 @@ def _never_the_shared_database():
                 os.environ.pop(key, None)
             else:
                 os.environ[key] = value
+
+
+def _ensure_tests_package_exists():
+    """Make ``tests`` importable as a package without moving files."""
+    root = os.path.dirname(os.path.abspath(__file__))
+    pkg = os.path.join(root, "__init__.py")
+    if not os.path.exists(pkg):
+        with open(pkg, "w", encoding="utf-8") as f:
+            f.write("\"\"\"The test package.\"\"\"\r\n\r\nfrom __future__ import annotations\r\n\r\nfrom tests import tests as tests\r\n")
+
+
+_ensure_tests_package_exists()

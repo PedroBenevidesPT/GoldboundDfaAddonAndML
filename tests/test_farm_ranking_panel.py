@@ -156,16 +156,18 @@ def test_a_ranking_that_could_not_be_built_ships_its_reason():
     assert "no prices for these zones" in lines
 
 
-def test_the_panel_body_ends_with_the_ranking():
-    """The item table is the reason the panel exists; the ranking follows it."""
+def test_the_panel_shows_the_ranking_before_the_item_table():
+    """The ranking is what the panel is opened for, so it comes first."""
     lua, addon = _panel(BLOCK)
     text = addon.DFAEstimatePanel.BuildText()
     assert text.index("known in this realm") < text.index("Farm ranking")
+    # "region avg" is the item table's own header, and it must come after
+    assert text.index("Farm ranking") < text.index("region avg")
     assert "Heavy Hide (item 4235)" in text
 
 
-def test_the_panel_names_the_ranking_before_the_item_table():
-    """The full ranking is past the table; a summary line is not."""
+def test_the_panel_names_the_ranking_in_the_header():
+    """The one-line summary sits in the header, above the full ranking."""
     lua, addon = _panel(BLOCK)
     text = addon.DFAEstimatePanel.BuildText()
     assert "Farm: 1 stop(s) -- top Guardian of the Deep" in text

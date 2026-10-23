@@ -145,6 +145,10 @@ class Estimate:
     fallback_reason: str = ""
     #: confidence in the *data*, separate from confidence in the prediction
     data_quality: float = 0.0
+    #: the expected auction-house deposit as a fraction of the vendor price.
+    #: This is the share the seller does not get back until the sale completes,
+    #: so it is the deposit a loot value should subtract from the net proceeds.
+    deposit_share: float = 0.0
     #: the measured market around this item (supply, competition, price
     #: path), when a snapshot or a scan covers it.  Empty when nothing was
     #: observed: a missing market is unknown, not empty.

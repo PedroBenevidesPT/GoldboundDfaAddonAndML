@@ -28,6 +28,9 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
+from woweconomy.dbcompat import connect as db_connect
+from woweconomy.dbcompat import missing_table_errors
+
 logger = logging.getLogger(__name__)
 
 #: The wishlist kinds the scan produces.
@@ -143,7 +146,12 @@ def item_appearances(tsm_db: Path | str, item_ids: Sequence[int]) -> Dict[int, L
     out: Dict[int, List[int]] = {}
     if not item_ids:
         return out
-    con = sqlite3.connect(tsm_db)
+    # db_connect, not sqlite3.connect: db2_item_appearance is in the shared
+    # database inside the worker container, where there is no tsm_markets.db
+    # to open -- and a bare sqlite3.connect creates an empty one, which then
+    # shadows the shared database for every later reader.  The same table is
+    # already read this way by `pricing.mapping`.
+    con = db_connect(tsm_db)
     try:
         ids = list(dict.fromkeys(int(i) for i in item_ids))
         for start in range(0, len(ids), 900):
@@ -153,7 +161,7 @@ def item_appearances(tsm_db: Path | str, item_ids: Sequence[int]) -> Dict[int, L
                     f"SELECT itemId, appearanceId FROM db2_item_appearance "
                     f"WHERE itemId IN ({marks})", chunk):
                 out.setdefault(int(item_id), []).append(int(appearance_id))
-    except sqlite3.OperationalError as exc:
+    except missing_table_errors() as exc:
         logger.warning("db2_item_appearance unavailable: %s", exc)
     finally:
         con.close()

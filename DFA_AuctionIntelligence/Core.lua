@@ -107,10 +107,13 @@ local EVENTS = {
 }
 for _, event in ipairs(EVENTS) do
     local ok, reason = pcall(frame.RegisterEvent, frame, event)
+
     if not ok then
-        DFA_AI.registrationWarnings[#DFA_AI.registrationWarnings + 1] =
-            tostring(event) .. ": " .. tostring(reason)
-        print(event)
+        local message = ("[DFA AI] Failed to register event '%s': %s")
+            :format(tostring(event), tostring(reason))
+
+        DFA_AI.registrationWarnings[#DFA_AI.registrationWarnings + 1] = message
+        print(message)
     end
 end
 

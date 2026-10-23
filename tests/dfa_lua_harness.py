@@ -188,6 +188,7 @@ def woW_like_lua():
         _G.ClearCursor = function() end
         _G.DFA_ESTIMATE = nil
         _G.DFA_ESTIMATE_SOURCE = nil
+        _G.DFA_TEST_REALM = "Dragonmaw"
         _G.GetRealmName = function() return _G.DFA_TEST_REALM end
         _G.time = function() return 1792450000 end
         _G.C_Item = { GetItemInfo = function() return "item:1234", "item:1234" end }
