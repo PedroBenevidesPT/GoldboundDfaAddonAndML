@@ -218,14 +218,43 @@ def _utc_now() -> str:
     return datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def _is_postgres() -> bool:
+    from woweconomy.dbcompat import backend
+
+    return backend() == "postgres"
+
+
+def _needs_file(path: Path | str) -> bool:
+    """Whether this store is a file the caller should check for.
+
+    With the Postgres backend the intel tables and the aggregate tables live
+    in the shared database, so a ``.exists()`` check would wrongly report
+    them missing and the build would silently do nothing.  ``tsm_markets.db``
+    is TSM's own import and stays a file either way.
+    """
+    if not _is_postgres():
+        return True
+    return Path(path).name.lower() not in ("intel.sqlite", "aggregates.sqlite")
+
+
 def _connect(path: Path | str) -> sqlite3.Connection:
+    if _is_postgres():
+        from woweconomy.dbcompat import connect as _dbconnect
+
+        con = _dbconnect(None)
+        con.isolation_level = None  # the builders manage their own commits
+        return con
     con = sqlite3.connect(str(path), timeout=60.0, isolation_level=None)
     con.execute("PRAGMA busy_timeout=60000")
     con.execute("PRAGMA journal_mode=WAL")
     return con
 
 
-def _ro(path: Path | str) -> sqlite3.Connection:
+def _ro(path: Path | str, *, backend_aware: bool = False) -> sqlite3.Connection:
+    if backend_aware and _is_postgres():
+        from woweconomy.dbcompat import connect as _dbconnect
+
+        return _dbconnect(None)
     con = sqlite3.connect(f"file:{path}?mode=ro", uri=True, timeout=60.0)
     con.execute("PRAGMA busy_timeout=60000")
     return con
@@ -643,11 +672,12 @@ def build(intel_db: Path | str, tsm_db: Path | str,
         for name in (only or AGGREGATES):
             spec = SPECS[name]
             path = sources[spec.database]
-            if not path.exists():
+            if _needs_file(path) and not path.exists():
                 report.errors.append(f"{name}: missing {path}")
                 continue
             if spec.database not in conns:
-                conns[spec.database] = _ro(path)
+                conns[spec.database] = _ro(
+                        path, backend_aware=spec.database == "intel.sqlite")
             src = conns[spec.database]
             if not _has_table(src, spec.source_table):
                 report.errors.append(f"{name}: {path} has no {spec.source_table}")
@@ -816,12 +846,12 @@ def validate(aggregate_db: Path | str, intel_db: Path | str,
     """
     started = time.perf_counter()
     report = ValidationReport()
-    if not Path(aggregate_db).exists():
+    if _needs_file(aggregate_db) and not Path(aggregate_db).exists():
         report.errors.append(f"missing {aggregate_db}")
         report.elapsed_s = time.perf_counter() - started
         return report
 
-    con = _ro(aggregate_db)
+    con = _ro(aggregate_db, backend_aware=True)
     try:
         available = [r[0] for r in con.execute(
             "SELECT DISTINCT day FROM daily_item_price ORDER BY day DESC"
@@ -839,11 +869,12 @@ def validate(aggregate_db: Path | str, intel_db: Path | str,
             for name in AGGREGATES:
                 spec = SPECS[name]
                 path = sources[spec.database]
-                if not path.exists():
+                if _needs_file(path) and not path.exists():
                     report.errors.append(f"{name}: missing {path}")
                     continue
                 if spec.database not in conns:
-                    conns[spec.database] = _ro(path)
+                    conns[spec.database] = _ro(
+                        path, backend_aware=spec.database == "intel.sqlite")
                 src = conns[spec.database]
                 if not _has_table(src, spec.source_table):
                     report.errors.append(f"{name}: no {spec.source_table}")
@@ -900,7 +931,7 @@ def day_price(aggregate_db: Path | str, day: str, scope: str, kind: str,
     data -- it means the price held -- and :func:`price_as_of` is the function
     that turns a series of such days into a level.
     """
-    con = _ro(aggregate_db)
+    con = _ro(aggregate_db, backend_aware=True)
     try:
         row = con.execute(
             "SELECT n_observations, n_snapshots, min_market_value, "
@@ -947,7 +978,7 @@ def price_as_of(aggregate_db: Path | str, day: str, scope: str, kind: str,
 
     Returns None only when the item has no observation at or before that day.
     """
-    con = _ro(aggregate_db)
+    con = _ro(aggregate_db, backend_aware=True)
     try:
         row = con.execute(
             "SELECT day, last_market_value, last_min_buyout, last_sale_rate, "
@@ -973,9 +1004,9 @@ def price_as_of(aggregate_db: Path | str, day: str, scope: str, kind: str,
 def coverage(aggregate_db: Path | str) -> Dict[str, object]:
     """What the aggregate database currently covers."""
     path = Path(aggregate_db)
-    if not path.exists():
+    if _needs_file(path) and not path.exists():
         return {"exists": False}
-    con = _ro(path)
+    con = _ro(path, backend_aware=True)
     try:
         meta = dict(con.execute("SELECT key, value FROM aggregate_meta").fetchall())
         out: Dict[str, object] = {
