@@ -23,6 +23,7 @@ from woweconomy.aggregates import (
     AGGREGATE_SCHEMA_VERSION,
     COVERED_BY_CHILD,
     SchemaMismatch,
+    _WATERMARK_VERSION,
     build,
     coverage,
     day_price,
@@ -335,18 +336,57 @@ def test_a_second_build_over_unchanged_data_writes_nothing(dbs):
 
 
 def test_a_changed_source_partition_is_rebuilt(dbs):
+    """A new snapshot on a day rebuilds that day and nothing else.
+
+    This is the shape the pipeline actually produces: snapshots are appended,
+    never edited, so a day changes by gaining a snapshot row.
+    """
     tsm, intel, agg, tc, _ic = dbs
     _seed(tc)
-    build(intel, tsm, agg)
+    build(intel, tsm, agg, days=2)
+
+    tc.execute("INSERT INTO tsm_snapshot (snapshot_id, scope, kind, updated_at,"
+               " rows, changed) VALUES (5,'realm-a','realm_items',"
+               "'2026-10-22T20:00:00Z',100,1)")
+    tc.execute("INSERT INTO tsm_price_change (snapshot_id, scope, kind, key_id,"
+               " market_value, min_buyout, avg_sale_price, sale_rate,"
+               " sold_per_day) VALUES (5,'realm-a','realm_items',1,999,"
+               " 980,1005,0.7,3.0)")
+    tc.commit()
+
+    report = build(intel, tsm, agg, days=2)
+    assert report.window["daily_item_price"] == ["2026-10-22"], (
+        "only the day that gained a snapshot may be rebuilt")
+    level = day_price(agg, "2026-10-22", "realm-a", "realm_items", 1)
+    assert level["market_value"]["last"] == 999
+
+
+def test_an_edit_to_a_fact_row_needs_a_forced_rebuild(dbs):
+    """The contract the watermark relies on, stated as a test.
+
+    ``ingest`` refuses a snapshot_id it already has, so a fact row cannot
+    change once its snapshot is committed.  A row edited behind the pipeline's
+    back therefore does *not* announce itself: the header is untouched and the
+    day is skipped.  ``force=True`` is the documented recovery, and
+    ``validate`` is the check that would catch it.
+    """
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    build(intel, tsm, agg, days=2)
 
     tc.execute("UPDATE tsm_price_change SET market_value=999"
                " WHERE snapshot_id=4")
     tc.commit()
 
-    report = build(intel, tsm, agg)
-    assert report.rows_written["daily_item_price"] == 1
-    level = day_price(agg, "2026-10-22", "realm-a", "realm_items", 1)
-    assert level["market_value"]["last"] == 999
+    normal = build(intel, tsm, agg, days=2)
+    assert normal.rows_written["daily_item_price"] == 0
+    assert day_price(agg, "2026-10-22", "realm-a", "realm_items",
+                     1)["market_value"]["last"] == 300
+
+    forced = build(intel, tsm, agg, days=2, force=True)
+    assert forced.rows_written["daily_item_price"] > 0
+    assert day_price(agg, "2026-10-22", "realm-a", "realm_items",
+                     1)["market_value"]["last"] == 999
 
 
 def test_force_rebuilds_everything(dbs):
@@ -355,6 +395,115 @@ def test_force_rebuilds_everything(dbs):
     build(intel, tsm, agg)
     report = build(intel, tsm, agg, force=True)
     assert report.rows_written["daily_item_price"] == 3
+
+
+# ---------------------------------------------------------------------------
+# skipping a day whose source did not move
+# ---------------------------------------------------------------------------
+
+def test_an_unchanged_day_is_not_read_again(dbs):
+    """The point of the watermark: the fact rows are not touched at all.
+
+    Before it, a windowed rebuild re-aggregated every day in the window and
+    only then discovered the partition checksums matched -- measured on the
+    live store, 50,152,511 rows read over 404.8 s to write 0 rows.
+    ``source_rows`` is the evidence: it counts what the stream actually read.
+    """
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    first = build(intel, tsm, agg, days=2)
+    assert first.source_rows["daily_item_price"] > 0
+
+    second = build(intel, tsm, agg, days=2)
+    assert second.source_rows["daily_item_price"] == 0, (
+        "an unchanged day must not be read from the fact table")
+    assert second.rows_written["daily_item_price"] == 0
+    assert second.partitions_skipped["daily_item_price"] > 0, (
+        "the report still counts partitions, not days")
+
+
+def test_the_state_records_what_was_fingerprinted(dbs):
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    build(intel, tsm, agg, days=2)
+
+    con = sqlite3.connect(agg)
+    rows = con.execute(
+        "SELECT aggregate, day, source_table, version, watermark, built_at"
+        " FROM aggregate_source_state ORDER BY aggregate, day").fetchall()
+    con.close()
+
+    assert rows, "a windowed build records a fingerprint per day"
+    for aggregate, day, table, version, watermark, built_at in rows:
+        assert aggregate == "daily_item_price"
+        assert table == "tsm_price_change", "source identity"
+        assert version == _WATERMARK_VERSION
+        assert len(watermark) == 64
+        assert built_at, "creation timestamp"
+
+
+def test_a_full_build_ignores_the_watermark(dbs):
+    """No window means "rebuild everything": the escape hatch stays."""
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    build(intel, tsm, agg, days=2)
+    full = build(intel, tsm, agg)
+    assert full.source_rows["daily_item_price"] > 0
+
+
+def test_a_stale_fingerprint_version_forces_a_rebuild(dbs):
+    """A state written by an older fingerprint definition cannot be trusted."""
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    build(intel, tsm, agg, days=2)
+
+    con = sqlite3.connect(agg)
+    con.execute("UPDATE aggregate_source_state SET version=?",
+                (_WATERMARK_VERSION - 1,))
+    con.commit()
+    con.close()
+
+    report = build(intel, tsm, agg, days=2)
+    assert report.source_rows["daily_item_price"] > 0, (
+        "a fingerprint from another version must not be compared")
+
+
+def test_skipping_produces_the_same_numbers_as_a_full_rebuild(dbs):
+    """Semantic equivalence: the fast path may not change the output.
+
+    Both sides must cover the *same days*, or the comparison is meaningless:
+    the incremental build is windowed, so the authoritative one is windowed
+    and forced, not unbounded.  What is being compared is "skip the 21st and
+    rebuild the 22nd" against "rebuild both", over the whole table.
+    """
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    build(intel, tsm, agg, days=2)
+    tc.execute("INSERT INTO tsm_snapshot (snapshot_id, scope, kind, updated_at,"
+               " rows, changed) VALUES (5,'realm-a','realm_items',"
+               "'2026-10-22T20:00:00Z',100,1)")
+    tc.execute("INSERT INTO tsm_price_change (snapshot_id, scope, kind, key_id,"
+               " market_value, min_buyout, avg_sale_price, sale_rate,"
+               " sold_per_day) VALUES (5,'realm-a','realm_items',1,999,"
+               " 980,1005,0.7,3.0)")
+    tc.commit()
+
+    # incremental: the 21st is unchanged, so only the 22nd is read
+    report = build(intel, tsm, agg, days=2)
+    assert report.window["daily_item_price"] == ["2026-10-22"]
+
+    def rows():
+        con = sqlite3.connect(agg)
+        try:
+            return con.execute(
+                "SELECT * FROM daily_item_price"
+                " ORDER BY day, scope, kind, item_id").fetchall()
+        finally:
+            con.close()
+
+    incremental = rows()
+    build(intel, tsm, agg, days=2, force=True)   # same window, no skipping
+    assert rows() == incremental
 
 
 # ---------------------------------------------------------------------------
@@ -777,88 +926,36 @@ def test_a_windowed_build_does_not_prune_a_day_outside_its_window(dbs):
 
 
 # ---------------------------------------------------------------------------
-# a partition is replaced, not merged
+# an interrupted write may not publish a hole
 # ---------------------------------------------------------------------------
 #
-# These are the two ways an aggregate can end up claiming rows the raw data no
-# longer has.  Both were live: a full rebuild left six rows behind that had no
-# GROUP BY counterpart, which is exactly the kind of quiet disagreement the
-# aggregates exist to prevent.
+# A partition is written as delete-then-insert.  Autocommitted one statement at
+# a time, a crash between them leaves the rows gone and the tracking row still
+# holding the *old* checksum -- and the next run then computes the same digest,
+# finds it already recorded, and skips the partition for ever.  The aggregate
+# would be silently empty and its own provenance would say it was fine.
 
-def test_a_row_that_leaves_the_source_leaves_the_aggregate(dbs):
+def test_an_interrupted_partition_write_cannot_leave_an_empty_partition(dbs):
     tsm, intel, agg, tc, _ic = dbs
     _seed(tc)
-    build(intel, tsm, agg, only=["daily_item_price"])
-    con = sqlite3.connect(agg)
-    before = con.execute(
-        "SELECT COUNT(*) FROM daily_item_price WHERE day='2026-10-22'"
-    ).fetchone()[0]
-    con.close()
-    assert before == 1
+    build(intel, tsm, agg, days=2)
+    before = day_price(agg, "2026-10-22", "realm-a", "realm_items", 1)
+    assert before["market_value"]["last"] == 300
 
-    # The item's only observation for that day moves to a different item id:
-    # the original key no longer exists in the source at all.
-    tc.execute("UPDATE tsm_price_change SET key_id = 99 WHERE snapshot_id = 4")
+    # Make the partition unbuildable halfway: item_id is NOT NULL, so the
+    # insert fails after the delete has already run.
+    tc.execute("UPDATE tsm_price_change SET key_id=NULL WHERE snapshot_id=4")
     tc.commit()
-    build(intel, tsm, agg, only=["daily_item_price"], days=1)
+    with pytest.raises(sqlite3.IntegrityError):
+        build(intel, tsm, agg, days=2, force=True)
 
-    con = sqlite3.connect(agg)
-    rows = con.execute(
-        "SELECT item_id FROM daily_item_price WHERE day='2026-10-22'"
-        " ORDER BY item_id").fetchall()
-    con.close()
-    assert rows == [(99,)]
+    # The delete was rolled back with it: the partition is whole, not empty.
+    assert day_price(agg, "2026-10-22", "realm-a", "realm_items", 1) == before
 
-
-def test_a_partition_that_disappears_from_the_source_is_pruned(dbs):
-    tsm, intel, agg, tc, _ic = dbs
-    _seed(tc)
-    build(intel, tsm, agg, only=["daily_item_price"])
-    con = sqlite3.connect(agg)
-    assert con.execute(
-        "SELECT COUNT(*) FROM daily_item_price WHERE day='2026-10-21'"
-    ).fetchone()[0] == 1
-    con.close()
-
-    # The whole day's snapshot is gone: no source rows for the 21st at all.
-    tc.execute("DELETE FROM tsm_price_change WHERE snapshot_id = 3")
-    tc.execute("DELETE FROM tsm_snapshot WHERE snapshot_id = 3")
+    # And the failure left no lasting damage: once the source is sane again the
+    # checksum matches what is stored and the partition is skipped, not rebuilt.
+    tc.execute("UPDATE tsm_price_change SET key_id=1 WHERE snapshot_id=4")
     tc.commit()
-
-    report = build(intel, tsm, agg, only=["daily_item_price"])
-    con = sqlite3.connect(agg)
-    left = con.execute(
-        "SELECT COUNT(*) FROM daily_item_price WHERE day='2026-10-21'"
-    ).fetchone()[0]
-    tracked = con.execute(
-        "SELECT COUNT(*) FROM aggregate_partition"
-        " WHERE aggregate='daily_item_price' AND day='2026-10-21'"
-    ).fetchone()[0]
-    con.close()
-    assert left == 0
-    assert tracked == 0
-    assert report.partitions_pruned["daily_item_price"] == 1
-
-
-def test_a_windowed_build_does_not_prune_a_day_outside_its_window(dbs):
-    """Pruning is authority: it may only be exercised over the days it rebuilt."""
-    tsm, intel, agg, tc, _ic = dbs
-    _seed(tc)
-    build(intel, tsm, agg, only=["daily_item_price"])
-
-    # Remove the 21st from the source, then rebuild only the 22nd.
-    tc.execute("DELETE FROM tsm_price_change WHERE snapshot_id = 3")
-    tc.execute("DELETE FROM tsm_snapshot WHERE snapshot_id = 3")
-    tc.commit()
-    report = build(intel, tsm, agg, only=["daily_item_price"], days=1)
-
-    con = sqlite3.connect(agg)
-    left = con.execute(
-        "SELECT COUNT(*) FROM daily_item_price WHERE day='2026-10-21'"
-    ).fetchone()[0]
-    con.close()
-    # The 21st is stale now, but a build that only looked at the 22nd must not
-    # touch it -- deleting data outside the window it was asked about would
-    # make a cheap daily run quietly destructive.
-    assert left == 1
-    assert report.partitions_pruned.get("daily_item_price", 0) == 0
+    report = build(intel, tsm, agg, days=2)
+    assert report.rows_written["daily_item_price"] == 0
+    assert day_price(agg, "2026-10-22", "realm-a", "realm_items", 1) == before

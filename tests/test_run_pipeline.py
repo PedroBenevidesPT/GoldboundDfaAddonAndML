@@ -261,6 +261,107 @@ def test_a_concurrent_cycle_waits_for_a_dependency(tmp_path):
         con.close()
 
 
+def _overlap_probe():
+    """Run `names` concurrently and report the peak number in flight.
+
+    A barrier would deadlock the serial case instead of measuring it, so this
+    counts what is actually inside the runner at the same time.
+    """
+    import threading
+
+    lock = threading.Lock()
+    state = {"now": 0, "peak": 0}
+    seen = []
+
+    def runner(task):
+        with lock:
+            state["now"] += 1
+            state["peak"] = max(state["peak"], state["now"])
+            seen.append(task.name)
+        time.sleep(0.15)
+        with lock:
+            state["now"] -= 1
+        return 0, "ok"
+
+    return runner, state, seen
+
+
+def test_two_heavy_tasks_do_not_run_at_the_same_time(tmp_path):
+    """`--workers 3` must not put three large scans on the machine at once.
+
+    Measured on the live store: an export that takes 312 s alone took 826 s
+    while two aggregate builds were running, and Postgres sat at 2.68 GB RSS.
+    Two big scans do not go faster together -- they contend for the same
+    buffers -- so the heavy lane is one by default.
+    """
+    path = tmp_path / "intel.sqlite"
+    con = store.connect(path)
+    try:
+        tasks = {
+            "big-a": rp.TaskDef("big-a", ["a"], every_s=60, heavy=True),
+            "big-b": rp.TaskDef("big-b", ["b"], every_s=60, heavy=True),
+        }
+        runner, state, _seen = _overlap_probe()
+        results = rp.cycle(con, tasks, only=["big-a", "big-b"], runner=runner,
+                           workers=2, connect=lambda: store.connect(path))
+        assert all(r.ok for r in results)
+        assert state["peak"] == 1, "heavy tasks must be serialised"
+    finally:
+        con.close()
+
+
+def test_the_heavy_lane_can_be_widened_when_the_machine_allows_it(tmp_path):
+    path = tmp_path / "intel.sqlite"
+    con = store.connect(path)
+    try:
+        tasks = {
+            "big-a": rp.TaskDef("big-a", ["a"], every_s=60, heavy=True),
+            "big-b": rp.TaskDef("big-b", ["b"], every_s=60, heavy=True),
+        }
+        runner, state, _seen = _overlap_probe()
+        rp.cycle(con, tasks, only=["big-a", "big-b"], runner=runner,
+                 workers=2, heavy_lanes=2,
+                 connect=lambda: store.connect(path))
+        assert state["peak"] == 2
+    finally:
+        con.close()
+
+
+def test_a_light_task_still_runs_while_a_heavy_one_is_working(tmp_path):
+    """The bound is on large data, not on the pipeline."""
+    path = tmp_path / "intel.sqlite"
+    con = store.connect(path)
+    try:
+        tasks = {
+            "big": rp.TaskDef("big", ["a"], every_s=60, heavy=True),
+            "small": rp.TaskDef("small", ["b"], every_s=60),
+        }
+        runner, state, seen = _overlap_probe()
+        results = rp.cycle(con, tasks, only=["big", "small"], runner=runner,
+                           workers=2, connect=lambda: store.connect(path))
+        assert all(r.ok for r in results)
+        assert state["peak"] == 2, "a light task must not queue behind a scan"
+        assert sorted(seen) == ["big", "small"]
+    finally:
+        con.close()
+
+
+def test_the_heavy_lane_defaults_to_one(monkeypatch):
+    monkeypatch.delenv("PIPELINE_HEAVY_LANES", raising=False)
+    assert rp._heavy_lanes() == 1
+    monkeypatch.setenv("PIPELINE_HEAVY_LANES", "2")
+    assert rp._heavy_lanes() == 2
+    monkeypatch.setenv("PIPELINE_HEAVY_LANES", "nonsense")
+    assert rp._heavy_lanes() == 1
+
+
+def test_the_large_data_tasks_are_the_ones_marked_heavy():
+    """A guard against a new multi-gigabyte task being added without the lane."""
+    tasks = rp.default_tasks()
+    assert {name for name, task in tasks.items() if task.heavy} == {
+        "aggregates", "export", "sentinel"}
+
+
 def test_a_cycle_can_be_limited_to_one_task(con):
     tasks = rp.default_tasks()
     runner = _runner()

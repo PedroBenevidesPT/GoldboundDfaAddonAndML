@@ -62,6 +62,7 @@ import os
 import re
 import subprocess
 import sys
+import threading
 import time
 import uuid
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
@@ -115,6 +116,13 @@ class TaskDef:
     #: that poll an input: "nothing new" every fifteen minutes is not an
     #: action, and reporting it would out-shout the tasks that did work.
     quiet_skip: bool = False
+    #: Reads or writes a very large table, and its peak memory is proportional
+    #: to that table.  Heavy tasks are serialised against each other (see
+    #: :func:`_concurrent_cycle`) so that ``--workers 3`` cannot put three
+    #: multi-gigabyte scans on the machine at once.  Measured: an export that
+    #: takes 312 s alone took 826 s while two aggregate builds were running,
+    #: and Postgres reached 2.68 GB RSS with 89.8% CPU on the host.
+    heavy: bool = False
 
     def command(self) -> List[str]:
         return [PY, *self.argv]
@@ -162,13 +170,14 @@ def default_tasks() -> Dict[str, TaskDef]:
                 # days and would silently rebuild everything instead of the
                 # window, which is the whole cost saving.
                 ["scripts/aggregates.py", "build", "--last-days", "2"],
-                every_s=6 * HOUR, timeout_s=1800, after=("fetch",)),
+                every_s=6 * HOUR, timeout_s=1800, after=("fetch",),
+                heavy=True),
         TaskDef("strategy",
                 ["scripts/strategy.py", "build"],
                 every_s=6 * HOUR, timeout_s=1800, after=("fetch",)),
         TaskDef("sentinel",
                 ["scripts/dfa_ml.py", "sentinel", "--if-needed"],
-                every_s=24 * HOUR, timeout_s=7200),
+                every_s=24 * HOUR, timeout_s=7200, heavy=True),
         # The advice was being written down only when the interactive watcher
         # happened to scan.  Replaying the stored scans and attaching the
         # confirmed events makes the ledger a pipeline fact rather than a
@@ -183,7 +192,8 @@ def default_tasks() -> Dict[str, TaskDef]:
         # dataset for ever.
         TaskDef("export",
                 ["scripts/dfa_pricing_export.py"],
-                every_s=6 * HOUR, timeout_s=1800, after=("fetch",)),
+                every_s=6 * HOUR, timeout_s=1800, after=("fetch",),
+                heavy=True),
         # Cheap (0.03 s), and it only becomes answerable once a sale happens
         # while snapshots are being taken -- which is exactly when nobody is
         # watching.  It writes the report rather than failing, so a run with
@@ -589,6 +599,7 @@ def cycle(con, tasks: Dict[str, TaskDef], *, force: bool = False,
           runner: Optional[Callable] = None,
           dry_run: bool = False, now: Optional[float] = None,
           notify: bool = True, workers: int = 1,
+          heavy_lanes: Optional[int] = None,
           connect: Optional[Callable[[], object]] = None
           ) -> List[TaskResult]:
     """One pass over whatever is due.
@@ -602,6 +613,11 @@ def cycle(con, tasks: Dict[str, TaskDef], *, force: bool = False,
     runs and writes its own rows; the scheduler only decides what may
     start.  Each worker gets its own connection: a psycopg2 connection is
     not shared between threads.
+
+    ``heavy_lanes`` bounds how many :attr:`TaskDef.heavy` tasks may be in
+    flight at once, independently of ``workers``.  Two large scans on the
+    same store do not run faster than one -- they contend for the same
+    buffers -- and the machine they contend on is also someone's desktop.
     """
     if only:
         unknown = [name for name in only if name not in tasks]
@@ -613,7 +629,7 @@ def cycle(con, tasks: Dict[str, TaskDef], *, force: bool = False,
     if workers and int(workers) > 1 and len(names) > 1:
         return _concurrent_cycle(names, tasks, runner=runner, dry_run=dry_run,
                                  notify=notify, workers=int(workers),
-                                 connect=connect)
+                                 heavy_lanes=heavy_lanes, connect=connect)
     results: List[TaskResult] = []
     for name in names:
         results.append(run_task(con, tasks[name], runner=runner,
@@ -621,15 +637,32 @@ def cycle(con, tasks: Dict[str, TaskDef], *, force: bool = False,
     return results
 
 
+def _heavy_lanes(override: Optional[int] = None) -> int:
+    """How many heavy tasks may overlap.  One unless configured otherwise."""
+    if override is not None:
+        return max(1, int(override))
+    try:
+        return max(1, int(os.environ.get("PIPELINE_HEAVY_LANES", "1")))
+    except (TypeError, ValueError):
+        return 1
+
+
 def _concurrent_cycle(names: Sequence[str], tasks: Dict[str, TaskDef], *,
                       runner: Optional[Callable], dry_run: bool, notify: bool,
-                      workers: int, connect: Optional[Callable]) -> List[TaskResult]:
+                      workers: int, heavy_lanes: Optional[int] = None,
+                      connect: Optional[Callable]) -> List[TaskResult]:
     """Start every task whose inputs are done, up to ``workers`` at once."""
+    lanes = threading.BoundedSemaphore(_heavy_lanes(heavy_lanes))
+
     def execute(task: TaskDef) -> TaskResult:
         task_con = connect() if connect is not None else store.connect()
         try:
-            return run_task(task_con, task, runner=runner, dry_run=dry_run,
-                            notify=notify)
+            if not task.heavy:
+                return run_task(task_con, task, runner=runner, dry_run=dry_run,
+                                notify=notify)
+            with lanes:
+                return run_task(task_con, task, runner=runner, dry_run=dry_run,
+                                notify=notify)
         finally:
             try:
                 task_con.close()  # type: ignore[attr-defined]
@@ -804,6 +837,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--workers", type=int, default=1, metavar="N",
                         help="run up to N independent tasks at once"
                              " (default 1: one at a time)")
+    parser.add_argument("--heavy-lanes", type=int, default=None, metavar="N",
+                        help="how many large-data tasks may overlap, whatever"
+                             " --workers says (default: PIPELINE_HEAVY_LANES"
+                             " or 1)")
     parser.add_argument("--json", action="store_true",
                         help="with --status, print the machine-readable view")
     parser.add_argument("--watch", type=float, default=0.0, metavar="SECONDS",
@@ -870,6 +907,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     if not args.loop:
         results = cycle(con, tasks, force=args.force, only=args.task or None,
                         notify=notify, workers=args.workers,
+                        heavy_lanes=args.heavy_lanes,
                         connect=lambda: store.connect(args.db))
         for result in results:
             print(result.line())
@@ -883,6 +921,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             results = cycle(con, tasks, force=False,
                             only=args.task or None, notify=notify,
                             workers=args.workers,
+                            heavy_lanes=args.heavy_lanes,
                             connect=lambda: store.connect(args.db))
             for result in results:
                 print(time.strftime("%H:%M:%S"), result.line(), flush=True)

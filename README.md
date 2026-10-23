@@ -239,9 +239,21 @@ Set them in `.env` and `docker compose up -d` to apply. On a dedicated box,
 raise them; on a laptop, lower them. `nice` is inherited by every task
 subprocess, so a single long step no longer makes the mouse stutter.
 
+**Two large scans never run together.** `--workers` decides how many tasks may
+run at once, but the tasks whose memory is proportional to a multi-gigabyte
+table (`aggregates`, `export`, `sentinel`) are serialised through a separate
+lane, because two big scans on the same store do not go faster together — they
+contend for the same buffers. Measured: an `export` that takes 312 s alone took
+826 s while two aggregate builds were running. `--heavy-lanes N` (or
+`PIPELINE_HEAVY_LANES` in `.env`) widens the lane on a machine that can take it.
+
 If the machine still feels slow, the remaining lever is Docker Desktop's own
 `.wslconfig` (`memory=`, `processors=`): the containers cannot use more than
 the VM gives them, and the VM defaults to about half the host.
+
+The measurements behind the aggregate work — what is read, what it costs, what
+was skipped, and how to roll it back — are in
+[`docs/large-data.md`](docs/large-data.md).
 
 `strategy` needs the Data for Azeroth demand export (the `demand_*.csv`
 files), which is an input rather than code. Point `DFA_DIR` in `.env` at its
