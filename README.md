@@ -4,7 +4,193 @@ Scrape Wowhead drop tables per zone, join with TSM prices (`avgSalePrice`),
 rank the best farms / transmogs / jackpots, and rotate camps to dodge
 hyperspawn loot throttles.
 
+---
+
+## Start here: what this system is now
+
+The sections below describe the farm finder, which is one part of it. This
+section describes the whole thing and how to run it.
+
+### The shared base: Postgres, Redis, pgAdmin
+
+```powershell
+docker compose up -d                 # postgres, redis, pgadmin
+docker compose ps                    # all three healthy
+docker compose up -d --scale worker=3   # three workers, no duplicate work
+```
+
+| service | role | why |
+|---|---|---|
+| `postgres` | **the authority** | leases, run history, shared stats and the market data itself live here; two workers can only agree on "who is doing what" through one database |
+| `redis` | hot mirror | holds the counters a UI watches. It is never consulted to grant or veto a lease, so the pipeline runs with Redis absent |
+| `pgadmin` | the UI | <http://localhost:5050>, the server is pre-registered, no login in desktop mode |
+| `worker` | the pipeline | the same `run_pipeline.py`, built from `requirements.txt`. Scale it freely: the lease table decides which replica does each job |
+
+Ports are offset in `.env` (`POSTGRES_PORT`, `REDIS_PORT`, `PGADMIN_PORT`) so
+they do not collide with a local install.
+
+**What lives where, today.** This is a migration in progress, stated plainly
+rather than implied:
+
+| data | backend now | note |
+|---|---|---|
+| `ah_auction`, `ah_snapshot`, `ah_realm`, leases, runs, stats | **Postgres** | copied and verified row-for-row; see below |
+| `data/aggregates.sqlite` | SQLite | still a local file |
+| `tsm_markets.db` | SQLite | TSM's own import, read-only input |
+
+### Moving the data, and proving it moved
+
+```powershell
+$env:DATABASE_URL="postgresql://goldbound:goldbound@localhost:5432/goldbound"
+$env:WOW_PIPELINE_BACKEND="postgres"
+
+python scripts/migrate_to_postgres.py --dry-run    # what would be copied
+python scripts/migrate_to_postgres.py              # copy + verify
+python scripts/migrate_to_postgres.py --verify-only
+```
+
+The SQLite file is opened **read-only**; the script cannot damage what it
+copies. Each table is streamed with `COPY`, then checked on row count **and**
+a content fingerprint, because a load that shifts every value by one column
+keeps the count perfect. Foreign keys are suspended during the load (the
+source never enforced them) and reported afterwards instead of being hidden.
+
+The measured result on this dataset: **14,381,170 auctions at ~140,000
+rows/s**, 19 tables, all verified, no orphans.
+
+### One code path, two backends
+
+`woweconomy/dbcompat` is what makes that possible without rewriting the ~130
+`sqlite3.connect` call sites. With no configuration it returns a real
+`sqlite3.Connection` — byte-for-byte the old behaviour, which is why the test
+suite and a workstation run are unaffected. With `DATABASE_URL` set it returns
+a `PgConnection` with the same surface and translates the SQL on the way
+through: `?` placeholders, `INSERT OR REPLACE`/`OR IGNORE`, `sqlite_master`,
+`strftime('%s', …)`, `PRAGMA table_info` and the SQLite type names.
+
+Two translations exist because they are not cosmetic:
+
+* `INTEGER` → `BIGINT`. SQLite integers are 64-bit, Postgres ones are 32-bit.
+  A 99,999,999,900-copper auction does not fit in the latter.
+* `CAST(x AS REAL)` → `CAST(x AS DOUBLE PRECISION)`. Postgres `REAL` is a
+  4-byte float, so the market panel's weighted average turned 893,312,600 into
+  893,312,576 — a silent change to every price the model trains on.
+
+Anything with no faithful equivalent raises `UnsupportedSQL` and names the
+construct rather than guessing. The conformance tests in
+`tests/test_dbcompat_postgres.py` run the same statements on both engines and
+compare results; they are skipped, not faked, when no Postgres is reachable.
+
+### The three stores
+
+| store | what it holds | how it is built |
+|---|---|---|
+| `data/intel.sqlite` | auction-house snapshots straight from the Blizzard API, plus the lease/run/stat tables the pipeline uses to coordinate | `scripts/intel.py ah-fetch --all-realms` |
+| `tsm_markets.db` | TSM's region and realm price tables, the account's own sale history, DB2 item facts | TSM AppData import + `scripts/journal.py` |
+| `data/aggregates.sqlite` | daily roll-ups, the statistical record that outlives the raw rows | `scripts/aggregates.py build` |
+
+None of them is committed to git: they are derived, they are gigabytes, and
+the schema is code (`woweconomy/intel/store.py`), so a fresh checkout creates
+an empty store and refills it. `.gitignore` states this and why.
+
+`data/intel.sqlite` is the SQLite *source of record for a workstation run*.
+In the Docker stack the same tables live in Postgres; both are written by the
+same code path, so the file is a cache of the same schema rather than a second
+implementation.
+
+### One command runs the pipeline
+
+```powershell
+python run_pipeline.py --once       # one cycle
+python run_pipeline.py --loop       # keep cycling
+python run_pipeline.py --status     # what ran, what holds a lease, what failed
+python run_pipeline.py --task fetch --dry-run
+```
+
+| task | cadence | what it does |
+|---|---|---|
+| `fetch` | 1 h | all 92 EU connected realms **and** the region-wide commodity book |
+| `aggregates` | 6 h | rebuilds the daily roll-ups for the last 2 days |
+| `sentinel` | 24 h | retrains, gated by chronological validation |
+| `export` | 6 h | writes `DFA_Estimate/Data/DFA_Estimate_Data.lua` |
+| `deploy` | after export | copies the toc-listed addon files into the game |
+
+Every task holds a **lease** while it runs, so two pipelines started at once
+do not fetch the same books twice. A lease expires, so a killed task cannot
+block the pipeline. What is due is read from SQLite, not from a timer, so a
+restart does not reset the clock and a missed tick is simply overdue next
+time. Redis, if `WOW_PIPELINE_REDIS` is set, is a **mirror**: it can never
+grant or veto a lease, and the pipeline runs with no Redis at all.
+
+A new dataset posts one alert (Discord via `DFA_DISCORD_WEBHOOK`, plus a
+desktop toast) **when the bytes change**, not on every export.
+
+### Connected realms are the unit of the market
+
+The auction house is shared per **connected realm**: 267 EU realm names are
+92 books. A snapshot is stored once per book, and every reader resolves a
+realm name through `ah.realm_match`, which matches the name *or* the
+connected-realm id. Matching on the name alone made four of the five realms
+in a group see an empty market, silently.
+
+### What the model actually claims
+
+`models/dfa_sentinel/CURRENT` points at the shipped bundle; its `manifest.json`
+carries a status per target, and the status is exported rather than swallowed:
+
+| target | status | measured |
+|---|---|---|
+| `sale_48h` | validated | auc 0.889, ece 0.037 |
+| `price` | validated | MAE 10.0 g, 45% within 25% |
+| `time_to_sale` | ranking only | c-index 0.913, 92% censored — no point estimate |
+| `undercut_pressure` | validated | auc 0.641 / 0.664 |
+| `price_decline` | validated | auc 0.917 / 0.893 |
+| `sale_24h` | **baseline only** | the learned model lost to the baseline |
+| `sale_168h` | **baseline only** | the label *is* the 48h label |
+
+The export currently ships `predictionStatus = { ["baseline_only"] = 237 }`:
+every item falls back to the baseline, because the 24h sale model did not
+beat it. That is the honest answer, and the addon shows a baseline estimate
+with a measured interval rather than a forecast nobody checked.
+
+### Addons
+
+```powershell
+python scripts/deploy_addons.py --check     # exit 1 if the game copy is stale
+python scripts/deploy_addons.py             # copy the toc-listed files
+```
+
+`DFA_Estimate` shows the estimate; `DFA_AuctionIntelligence` records the
+account's own auctions, kills and sales. A change in the repository that was
+never deployed is not a fix, which is why `--check` exists.
+
+### Farm ranking
+
+```powershell
+python scripts/farm_ranking.py zone             # full per-NPC report
+python scripts/farm_ranking.py mats --top 20
+python scripts/farm_ranking.py mogs --top 10
+```
+
+There is exactly one implementation (`woweconomy/analytics/farm_ranking.py`)
+and exactly one entry point (`scripts/farm_ranking.py`), which ranks nothing
+itself.
+
+### Tests
+
+```powershell
+python -m pytest -q      # 1262 tests, no network, no game client
+```
+
+The suite distinguishes unit tests from the two things it cannot do: it never
+calls the Blizzard API and never loads a real WoW client. The Lua addon tests
+run the actual addon source against a mocked client
+(`tests/dfa_lua_harness.py`), which is a smoke test, not a live one.
+
+---
+
 ## Setup
+
 
 ```powershell
 cd C:\FarmAnalysis
@@ -122,7 +308,7 @@ O que cada etapa produz:
 | `score` | `python run.py` | `MarketReport.txt` (+ `MarketReport.warnings.log`) |
 | `inventory` | `python scripts/enrich_inventory.py inventory.csv --db tsm_markets.db` + `python scripts/calc_price.py --inventory inventory.csv --db tsm_markets.db --rebuild --out inventory_priced.csv --audit inventory_audit.csv` | `inventory_priced.csv` + `inventory_audit.csv` |
 | `journal` | `python scripts/journal.py import` + `report --brief` | vendas reais (Journalator) + calibracao da heuristica |
-| `tests` | `python -m pytest tests -q` | 50 testes |
+| `tests` | `python -m pytest tests -q` | 1338 tests |
 
 ### O que os colecionadores ainda não têm
 
