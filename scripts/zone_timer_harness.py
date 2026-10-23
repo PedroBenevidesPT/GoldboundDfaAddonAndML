@@ -44,9 +44,21 @@ function print(...)
     PRINTED[#PRINTED + 1] = table.concat(parts, " ")
 end
 
--- just after the shipped dataset was generated, so nothing is stale yet
-NOW = 1792653821 + 2 * 3600
-function time() return NOW end
+-- Just after the shipped dataset was generated, so "not stale" means
+-- something on any day.  This used to be a hardcoded epoch, which pinned
+-- the harness to one build of the dataset: after the next export the
+-- clock sat *before* the data and "an old dataset is reported stale"
+-- passed 15 days into a dataset that was already 14 days ahead of it.
+-- The clock now reads the dataset's own timestamp the first time it is
+-- asked, and falls back to the old epoch when there is no dataset.
+NOW = nil
+function time()
+    if NOW == nil then
+        NOW = (DFA_ESTIMATE and DFA_ESTIMATE.generatedAt or 1792653821)
+            + 2 * 3600
+    end
+    return NOW
+end
 function date(fmt, ts) return tostring(ts) end
 
 local function Widget(kind, name)
