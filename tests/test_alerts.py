@@ -238,3 +238,37 @@ def test_a_review_only_result_does_not_become_a_cancel_alert():
     assert "no automatic relist" in digest[0].lines[0]
     assert "relist=0" in digest[0].lines[-1]
     assert "cancel_and_relist" not in "\n".join(digest[0].lines)
+
+
+def test_a_reset_alert_says_to_look_before_reposting():
+    """A reset moves the floor; cancelling into a falling price is the trap."""
+    resets = [{
+        "item_id": 12345, "previous_cheapest": 10_000,
+        "current_cheapest": 4_000, "jump_pct": -0.6, "supply_drop_pct": 0.8,
+    }]
+
+    alert = alerts.reset_alerts(resets, {12345: "Thing"}, "Dragonmaw")[0]
+
+    body = "\n".join(alert.lines)
+    assert "Thing (item 12345)" in body
+    assert "action:" in body
+    assert "before reposting" in body
+
+
+def test_an_inventory_alert_says_what_to_do():
+    alert = alerts.inventory_alerts(
+        {"unexplained_decrease_units": 120, "snapshot_id": 7}, "Dragonmaw")[0]
+
+    body = "\n".join(alert.lines)
+    assert "action:" in body
+    assert "bank" in body
+
+
+def test_a_failure_alert_says_where_to_look():
+    """A crit alert that only says 'failed' leaves the reader guessing."""
+    alert = alerts.error_alert("ah-fetch", "the API returned 503")
+
+    body = "\n".join(alert.lines)
+    assert "the API returned 503" in body
+    assert "action:" in body
+    assert "log" in body

@@ -305,6 +305,12 @@ def reset_alerts(resets: List[Dict[str, Any]], names: Dict[int, str],
                      f" {row['current_cheapest'] / 10000:.0f}g"
                      f" ({row['jump_pct'] * 100:.0f}%), supply"
                      f" -{row['supply_drop_pct'] * 100:.0f}%")
+    # A reset means the old ask is no longer the market's ask.  The danger
+    # is reacting to it by cancelling into a falling price, so the advice is
+    # to look before reposting, not to repost.
+    lines.append("action: open the Auction House and check the new floor "
+                 "before reposting; do not cancel a listing that already "
+                 "sits under it")
     return [Alert(key=f"reset:{realm}:{resets[0]['item_id']}",
                   title=f"{realm}: possible market reset ({len(resets)} item(s))",
                   lines=lines, level="crit")]
@@ -321,10 +327,15 @@ def inventory_alerts(summary: Dict[str, Any], realm: str) -> List[Alert]:
                   title=f"{realm}: {decrease} unit(s) disappeared unexplained",
                   lines=[f"snapshot {summary.get('snapshot_id')}",
                          "not a sale: no confirmed event covers it",
-                         "open the bank/AH with the addon before trusting stock"],
+                         "action: open the bank and the Auction House with "
+                         "the addon so the next snapshot re-reads the stock"],
                   level="warn")]
 
 
 def error_alert(kind: str, detail: str) -> Alert:
     return Alert(key=f"error:{kind}", title=f"DFA Sentinel: {kind} failed",
-                 lines=[str(detail)[:500]], level="crit")
+                 lines=[str(detail)[:500],
+                        "action: read the pipeline log for this run; the "
+                        "numbers the panel shows are from the last good run, "
+                        "not from now"],
+                 level="crit")
