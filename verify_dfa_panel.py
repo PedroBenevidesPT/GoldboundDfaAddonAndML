@@ -373,6 +373,37 @@ check("MobInfo2: patched MobInfo2 is passed through",
 check("MobInfo2: stock MobInfo2 is wrapped",
       lambda: print("      served %s, fell back to %s" % tuple(lua.globals().test_mobinfo2_stock_wrapper())))
 
+# ------------------------------------ LootAppraiser patch pass-through check
+# A second copy of the integration, loaded against a LootAppraiser whose own
+# GetItemValue is patched in place: it must stand down rather than answer
+# first with a market-only price and undo the junk/commodity rules.
+lua.execute("""
+FreshAddon = {}
+LA.PriceSources.dfaGetItemValuePatched = true
+FRESH_UNTOUCHED = LA.PriceSources.GetItemValue
+""")
+ok = load(os.path.join(WS, "Integration", "LootAppraiser.lua"), "DFA_Estimate",
+          lua.globals().FreshAddon)
+if not ok:
+    sys.exit(1)
+
+
+def _lootappraiser_passthrough():
+    lua.execute("""
+local Integration = FreshAddon.DFAEstimateLootAppraiser
+assert(Integration:Enable(true), "Enable refused a patched LootAppraiser")
+assert(LA.PriceSources.GetItemValue == FRESH_UNTOUCHED,
+	"the patched GetItemValue was wrapped")
+local status = Integration:Status()
+assert(status:find("patched in place"),
+	"status does not mention the in-place patch: " .. status)
+""")
+    print("      " + lua.eval("FreshAddon.DFAEstimateLootAppraiser:Status()"))
+
+
+check("LootAppraiser: patched LootAppraiser is passed through",
+      _lootappraiser_passthrough)
+
 # ------------------------------------------------------- compile-check trees
 print()
 for tree in (WS, RETAIL):

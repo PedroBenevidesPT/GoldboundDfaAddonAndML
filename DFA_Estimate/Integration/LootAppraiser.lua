@@ -45,6 +45,9 @@ local runtime = {
 	wrappedResolver = nil,
 	originalResolver = nil,
 	valueInstalled = false,
+	--: LootAppraiser's own GetItemValue is patched in place (see
+	--: PriceSources.dfaGetItemValuePatched); nothing to wrap, still ours
+	valuePatched = false,
 	wrappedGetValue = nil,
 	originalGetValue = nil,
 }
@@ -261,6 +264,16 @@ local function InstallValueResolver(la, state)
 	if type(sources) ~= "table" or type(sources.GetItemValue) ~= "function" then
 		return
 	end
+	-- LootAppraiser is patched in place: GetItemValue already answers with the
+	-- DfA value, applying the junk -> vendor and commodity -> minbuyout rules.
+	-- Wrapping it here would answer first with a market-only price and undo
+	-- them, so the wrapper stands down and reports the patch as its own.
+	if sources.dfaGetItemValuePatched then
+		runtime.valuePatched = true
+		runtime.valueInstalled = false
+		runtime.wrappedGetValue = nil
+		return
+	end
 	if runtime.valueInstalled and sources.GetItemValue == runtime.wrappedGetValue then
 		return
 	end
@@ -380,7 +393,8 @@ function Integration:Status()
 		tostring(profile.classTypeRecipePriceSource),
 		tostring(general.useSubClasses),
 		runtime.resolverInstalled and "installed" or "not installed",
-		runtime.valueInstalled and "installed" or "not installed",
+		runtime.valuePatched and "patched in place"
+			or (runtime.valueInstalled and "installed" or "not installed"),
 		session and "running" or "stopped",
 		tostring(general.ignoreSoulboundItems),
 		tostring(general.autoStartLA))
@@ -394,8 +408,10 @@ function Integration:IsEnabled()
 	local profile = la.db.profile
 	-- the profile alone is not enough: on a localized client the resolver
 	-- is what makes the class ids match the three source fields, and the
-	-- value wrapper is what turns the decision into the frozen price
-	return runtime.resolverInstalled and runtime.valueInstalled
+	-- value path -- a wrapper, or LootAppraiser's own patched GetItemValue --
+	-- is what turns the decision into the frozen price
+	return runtime.resolverInstalled
+		and (runtime.valueInstalled or runtime.valuePatched)
 		and profile.classTypeArmor == true
 		and profile.classTypeArmorPriceSource == SOURCE
 		and profile.classTypeWeapon == true

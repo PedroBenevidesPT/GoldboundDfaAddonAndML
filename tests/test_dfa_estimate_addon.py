@@ -341,3 +341,29 @@ def test_the_shipped_baseline_dataset_is_not_silently_dropped():
         f"lines={lines!r}"
     )
 
+
+
+def test_lootappraiser_is_patched_in_place():
+    """LootAppraiser's own GetItemValue answers with the DfA value.
+
+    The runtime wrapper alone is not enough: it only fires for the
+    ``dfaestimate`` source on three item classes, so every other class fell
+    back to TSM.  The patch in ``PriceSources.lua`` is what makes the whole
+    session agree with the tooltip -- and a LootAppraiser update replaces that
+    file, which is what this test notices.
+    """
+    source = Path(r"C:/Program Files (x86)/World of Warcraft/_retail_"
+                  r"\Interface\AddOns\LootAppraiserReloaded\Core"
+                  r"\PriceSources.lua")
+    if not source.exists():
+        pytest.skip("LootAppraiser is not installed on this machine")
+    text = source.read_text(encoding="utf-8", errors="replace")
+    assert "local function DfaItemValue" in text, (
+        "the DfA pricing helper is gone -- a LootAppraiser update replaced "
+        "PriceSources.lua; re-apply it and re-run verify_lootappraiser_patch.py")
+    assert "PriceSources.dfaGetItemValuePatched = true" in text, (
+        "the patch marker is gone; without it the runtime wrapper installs "
+        "again and undoes the junk and commodity rules")
+    # the marker must be a field on the table: a Lua function has no table of
+    # its own, so `PriceSources.GetItemValue.__dfaPatched = true` raises at load
+    assert "PriceSources.GetItemValue.__dfa" not in text
