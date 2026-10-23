@@ -133,6 +133,14 @@ def default_tasks() -> Dict[str, TaskDef]:
                 ["scripts/intel.py", "ah-fetch", "--all-realms",
                  "--commodities", "--sync-realms"],
                 every_s=HOUR, timeout_s=1800),
+        # What only the client can see: auction-house mailbox invoices, the
+        # undercut scans, the event log and the HUD's presses.  The client
+        # writes SavedVariables on `/reload` or logout and nowhere else, so
+        # this has to poll the file rather than be told when it changed; the
+        # import is idempotent and a file that has not moved inserts nothing.
+        TaskDef("addon",
+                ["scripts/intel.py", "addon-import"],
+                every_s=15 * 60, timeout_s=300),
         # 187 CSVs (92 connected-realm groups plus 3 region files) at the ten
         # seconds between requests TSM needs to not start answering 429.  The
         # sweep is conditional (ETag/If-Modified-Since), so a run where TSM has

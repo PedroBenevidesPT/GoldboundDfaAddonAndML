@@ -142,6 +142,7 @@ python run_pipeline.py --task fetch --dry-run
 | task | cadence | what it does |
 |---|---|---|
 | `fetch` | 1 h | all 92 EU connected realms **and** the region-wide commodity book |
+| `addon` | 15 min | imports the addon's SavedVariables: mailbox invoices, undercut scans, the event log |
 | `tsm_csv` | 6 h | the 187 TSM CSVs (92 realm groups + 3 region files), ten seconds apart |
 | `aggregates` | 6 h | rebuilds the daily roll-ups for the last 2 days (`--last-days`, not `--days`) |
 | `strategy` | 6 h | rebuilds the mog posting plan, so there is always one to read |

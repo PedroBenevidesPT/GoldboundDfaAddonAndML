@@ -131,6 +131,12 @@ services:
       # it the mount falls back to the same Windows default the script uses,
       # and a machine with no game there cannot deploy at all.
       WOW_ADDONS_DIR: /game/AddOns
+      # The addon's SavedVariables (mailbox invoices, undercut scans, the
+      # event log) are written to `WTF/Account/<id>/SavedVariables`, which is
+      # a sibling of `Interface/AddOns`, not inside it.  The folder is mounted
+      # read-only below; the client only writes it on `/reload` or logout, so
+      # the import task sees a change after the next one.
+      WOW_WTF_DIR: /game/WTF
       # Python block-buffers stdout when it is not a terminal, which is
       # always inside a container: without this, `docker compose logs` shows
       # nothing until a task finishes, and a fetch takes minutes.
@@ -154,6 +160,9 @@ services:
       # skip with a permission error.  Absent the host folder, the worker
       # still starts (the bind creates it) and `deploy` reports a skip.
       - ${WOW_ADDONS_DIR:-C:/Program Files (x86)/World of Warcraft/_retail_/Interface/AddOns}:/game/AddOns
+      # Read-only: the pipeline imports the addon's SavedVariables, it never
+      # writes them -- the client owns this folder.
+      - ${WOW_WTF_DIR:-C:/Program Files (x86)/World of Warcraft/_retail_/WTF}:/game/WTF:ro
       - ./logs:/app/logs
     depends_on:
       postgres:
