@@ -64,10 +64,13 @@ logger = logging.getLogger(__name__)
 #: ``unknown`` has no appearance data and cannot be valued at all.
 PLANNED_CATEGORIES = (CATEGORY_COLLECTIBLE, CATEGORY_NICHE)
 
-#: How many items to plan per run when the caller does not say.  A full mog
-#: universe is tens of thousands of items and the strategy is not the
-#: bottleneck; the cap keeps a run bounded and is reported when it bites.
-DEFAULT_LIMIT = 20000
+#: How many items to plan per run when the caller does not say.  ``None``
+#: means the whole region market, which is the honest default: the live store
+#: holds 31,184 region prices and a cap of 20,000 silently planned two thirds
+#: of the market while reporting itself as complete.  A full run costs about
+#: 4 minutes, which a six-hourly task can afford.  A caller that wants a
+#: bounded run passes a number and gets ``truncated`` set when it bites.
+DEFAULT_LIMIT: Optional[int] = None
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS mog_strategy_plan (
@@ -178,7 +181,7 @@ def _latest_snapshot(con) -> Optional[str]:
     return str(row[0]) if row and row[0] else None
 
 
-def candidate_items(store_path: Path, *, limit: int = DEFAULT_LIMIT
+def candidate_items(store_path: Path, *, limit: Optional[int] = None
                     ) -> List[int]:
     """The region-wide items worth planning, cheapest query first.
 
@@ -186,22 +189,29 @@ def candidate_items(store_path: Path, *, limit: int = DEFAULT_LIMIT
     which is the right grain for a plan because the *price* is regional even
     when the buyer is not.  Realm differences are applied later, by the export,
     from the realm factors -- not by inventing a per-realm plan here.
+
+    ``limit`` of ``None`` reads the whole market; a number reads one more row
+    than asked for, so the caller can tell "exactly this many" from "capped".
     """
     if not store_exists(store_path):
         return []
     con = connect_store(store_path, readonly=True)
     try:
-        rows = con.execute(
-            "SELECT key_id FROM tsm_region_price"
-            " WHERE key_id IS NOT NULL AND key_id > 0"
-            " ORDER BY key_id LIMIT ?", (int(limit) + 1,)).fetchall()
+        sql = ("SELECT key_id FROM tsm_region_price"
+               " WHERE key_id IS NOT NULL AND key_id > 0"
+               " ORDER BY key_id")
+        params: tuple = ()
+        if limit is not None:
+            sql += " LIMIT ?"
+            params = (int(limit) + 1,)
+        rows = con.execute(sql, params).fetchall()
     finally:
         con.close()
     return [int(r[0]) for r in rows]
 
 
 def build_plans(store_path: Path, *, intel_path: Optional[Path] = None,
-                limit: int = DEFAULT_LIMIT,
+                limit: Optional[int] = DEFAULT_LIMIT,
                 categories: Sequence[str] = PLANNED_CATEGORIES,
                 dfa_dir: Optional[Path] = None,
                 now: Optional[int] = None,
@@ -223,8 +233,9 @@ def build_plans(store_path: Path, *, intel_path: Optional[Path] = None,
         return report
 
     ids = candidate_items(store_path, limit=limit)
-    report.truncated = len(ids) > limit
-    ids = ids[:limit]
+    report.truncated = limit is not None and len(ids) > limit
+    if limit is not None:
+        ids = ids[:limit]
     if not ids:
         report.errors.append("the market store holds no region prices")
         report.elapsed_s = time.perf_counter() - started

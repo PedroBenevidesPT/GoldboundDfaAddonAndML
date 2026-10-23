@@ -184,6 +184,22 @@ def test_the_limit_truncates_and_says_so(tmp_path):
     assert report.considered == 3
 
 
+def test_without_a_limit_the_whole_market_is_planned(tmp_path):
+    """A cap that silently plans part of the market is worse than no plan.
+
+    The live store holds 31,184 region prices; a default cap of 20,000 planned
+    two thirds of them while reporting a complete run.
+    """
+    path = _store(tmp_path, [(i, 500_000, 0.4) for i in range(1, 6)])
+    report = build_plans(path,
+                         classifier=StubClassifier({i: CATEGORY_COLLECTIBLE
+                                                    for i in range(1, 6)}),
+                         limit=None, intel_path=None)
+    assert report.truncated is False
+    assert report.considered == 5
+    assert len(candidate_items(path)) == 5
+
+
 def test_a_store_with_no_region_prices_reports_rather_than_plans(tmp_path):
     path = _store(tmp_path, [])
     report = build_plans(path, classifier=StubClassifier({}), intel_path=None)
