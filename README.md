@@ -1158,8 +1158,10 @@ python scripts/find_drop.py "Joonho's Mercy"
 - `scripts/enrich_items.py` — Blizzard enrichment runner
 - `csv/items.csv` / `tsm_markets.db` — TSM snapshots (`avgSalePrice` based)
 - `woweconomy/pricing/dataset.py` — the generated dataset, its atomic write,
-  and the content signature the new-dataset alert compares
-- `scripts/dfa_pricing_export.py` — builds and announces the dataset
+  and `dataset_content_signature()`, the one definition of "the dataset
+  changed"
+- `scripts/dfa_pricing_export.py` — builds the dataset; the alert that
+  announces it lives in `run_pipeline.py`, next to the state it compares
 - `woweconomy/analytics/strategy_plan.py` — the per-item posting plan
   (`scripts/strategy.py build|show`)
 - `woweconomy/analytics/sale_visibility.py` — whether our own sales overlap
@@ -1244,24 +1246,25 @@ confirmation says so, because that turns this into a one-shot setting.
 
 ## The new-dataset alert
 
-`scripts/dfa_pricing_export.py` announces the dataset it just wrote, over
-the same channels the rest of the project uses (`DFA_DISCORD_WEBHOOK`, or a
-desktop toast when no webhook is configured).  `--no-alert` turns it off.
+`run_pipeline.py` announces the dataset after the `export` task, over the
+same channels the rest of the project uses (`DFA_DISCORD_WEBHOOK`, or a
+desktop toast when no webhook is configured).  The state it compares
+against lives in Postgres (`pipeline_stat`), and the digest is only
+recorded once a channel actually took the message -- a webhook that was
+down once must not lose the alert for good.
 
-The alert is keyed on the dataset's *content*, not on the run, so a
-re-export that changed nothing stays silent.  Two things are excluded from
-that comparison, both for measured reasons:
+The comparison is on the dataset's *content*, not on the file.  That
+distinction had to be measured: hashing the whole file covers
+`generatedAt`, so every export looked new.  Two exports a minute apart were
+diffed and differed in exactly two ways -- the timestamp, and `psell`
+moving 0.1619 -> 0.1618 because the features include how long ago the
+market was measured.  Nothing else in 1.37 MB changed.
 
-* the build timestamp, which is in the file but is not information about
-  the market;
-* the fourth decimal of the probabilities.  Two exports a minute apart
-  moved `psell` from 0.1619 to 0.1618 and nothing else in the file
-  changed, because the features include how long ago the market was
-  measured.  Comparing at two decimals (1%) keeps a real move and drops
-  the drift.
+So `dataset_content_signature()` strips the build time and compares floats
+at two decimals (1%).  Prices are integers in the dataset and are
+untouched; a probability or a factor that moves by more than 1% is still a
+change.  The same function is what `run_pipeline.dataset_fingerprint()`
+calls, so "did the dataset change" has one definition in the project.
 
-Each export also writes `DFA_Estimate_Data.meta.json` beside the dataset,
-so the next export can say what changed instead of guessing.  When there is
-no previous sidecar the alert says the change is *unknown*; it does not
-print zero, because "we did not look" and "nothing moved" are different
-statements.
+Verified against the real pipeline: cycle 1 announced, cycles 2 and 3 --
+same file -- returned nothing.
