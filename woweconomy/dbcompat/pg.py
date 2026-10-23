@@ -46,19 +46,26 @@ _BATCHABLE_INSERT = re.compile(
 
 
 class Row:
-    """A row addressable by position *and* by column name, like ``sqlite3.Row``."""
+    """A row addressable by position *and* by column name, like ``sqlite3.Row``.
+
+    Name lookup is case-insensitive, matching ``sqlite3.Row``.  That is not a
+    convenience: the codebase was written against SQLite, where a column named
+    ``itemId`` answers to ``itemId``, ``itemid`` and ``ITEMID`` alike, so a
+    Postgres row that only answered to one exact spelling would turn a working
+    reader into a ``KeyError`` at the boundary.
+    """
 
     __slots__ = ("_values", "_keys", "_index")
 
     def __init__(self, keys: Sequence[str], values: Sequence[Any]) -> None:
         self._keys = tuple(keys)
         self._values = tuple(values)
-        self._index = {k: i for i, k in enumerate(self._keys)}
+        self._index = {k.lower(): i for i, k in enumerate(self._keys)}
 
     def __getitem__(self, key):
         if isinstance(key, str):
             try:
-                return self._values[self._index[key]]
+                return self._values[self._index[key.lower()]]
             except KeyError:
                 raise IndexError(f"no such column: {key}") from None
         return self._values[key]
@@ -73,7 +80,9 @@ class Row:
         return len(self._values)
 
     def __contains__(self, key: object) -> bool:
-        return key in self._index
+        if isinstance(key, str):
+            return key.lower() in self._index
+        return key in self._values
 
     def __eq__(self, other: object) -> bool:
         if isinstance(other, Row):
