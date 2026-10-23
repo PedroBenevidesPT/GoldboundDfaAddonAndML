@@ -164,6 +164,14 @@ def test_the_panel_body_ends_with_the_ranking():
     assert "Heavy Hide (item 4235)" in text
 
 
+def test_the_panel_names_the_ranking_before_the_item_table():
+    """The full ranking is past the table; a summary line is not."""
+    lua, addon = _panel(BLOCK)
+    text = addon.DFAEstimatePanel.BuildText()
+    assert "Farm: 1 stop(s) -- top Guardian of the Deep" in text
+    assert text.index("Farm: 1 stop") < text.index("Farm ranking --")
+
+
 def test_a_broken_ranking_does_not_take_the_panel_down():
     """A ranking that raises must leave the price table readable."""
     lua, addon = _panel()

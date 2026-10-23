@@ -25,6 +25,66 @@ from woweconomy.pricing.shipped import SHIPPED_REFERENCES  # noqa: E402
 logger = logging.getLogger("dfa_pricing")
 
 
+def _gold(copper) -> str:
+    """Copper as the game shows it, for a chat-sized line."""
+    try:
+        value = float(copper)
+    except (TypeError, ValueError):
+        return "?"
+    if value >= 10_000:
+        return f"{value / 10_000:,.1f}g"
+    if value >= 100:
+        return f"{value / 100:,.0f}s"
+    return f"{value:,.0f}c"
+
+
+def farm_alert(block: dict):
+    """The farm ranking as one webhook message, or None when there is none.
+
+    The panel already carries the full ranking; this is the same ranking
+    folded to fit a phone, so the answer does not require opening the game.
+    """
+    from woweconomy.intel.alerts import Alert
+
+    stops = (block or {}).get("stops") or []
+    if not stops:
+        return None
+    lines = []
+    for stop in stops[:10]:
+        items = ", ".join(
+            f"{item.get('name')} {float(item.get('rate') or 0) * 100:.0f}%"
+            for item in (stop.get("items") or [])[:3])
+        line = (f"{_gold(stop.get('ev'))}/kill  {stop.get('name')}"
+                f" ({stop.get('zone')})")
+        if items:
+            line += f"  [{items}]"
+        lines.append(line)
+    source = block.get("source")
+    if source:
+        lines.append(f"prices: {source}")
+    return Alert(
+        key="farm:ranking",
+        title=(f"Farm ranking: {len(stops)} stop(s), "
+               f"{int(block.get('npcs') or 0)} NPC(s), "
+               f"{int(block.get('zones') or 0)} zone(s)"),
+        lines=lines)
+
+
+def post_farm_ranking(block: dict, *, notify: bool = True) -> None:
+    """Announce a freshly built ranking; never fails the export."""
+    if not notify:
+        return
+    from woweconomy.intel import alerts
+
+    alert = farm_alert(block)
+    if alert is None:
+        return
+    posted = alerts.post_discord(alerts.webhook_url(), alerts.discord_payload(alert))
+    if not posted.get("ok"):
+        print(f"farm ranking not posted: {posted.get('error') or posted.get('status')}",
+              file=sys.stderr)
+
+
 def main() -> int:
     from woweconomy.dbcompat import load_env
 
@@ -59,6 +119,8 @@ def main() -> int:
                         action="store_false",
                         help="skip the farm ranking (it costs about a minute:"
                              " one model estimate per droppable item)")
+    parser.add_argument("--no-notify", dest="notify", action="store_false",
+                        help="do not post the farm ranking to the webhook")
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
 
@@ -211,6 +273,11 @@ def main() -> int:
     if not args.dry_run:
         path = builder.write()
         print(f"written to {path} ({path.stat().st_size:,} bytes)")
+        # The ranking travels with the dataset; this puts the same stops on
+        # the webhook, so "what should I farm" is answerable away from the
+        # game.  Only when something was written: an unchanged export is not
+        # a change, and an alert is a change.
+        post_farm_ranking(builder.farm_rankings, notify=args.notify)
         # The new-dataset alert is the pipeline's job, not the export's:
         # `run_pipeline.notify_new_dataset` compares the shipped file's
         # content signature against the one it last announced, keeps that

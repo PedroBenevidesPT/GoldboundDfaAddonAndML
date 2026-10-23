@@ -403,6 +403,27 @@ function Panel.BuildText()	local addon = Addon.DFAEstimate
 	-- twice made the panel slow enough to look like it never opened.
 	local rows = GetRows()
 	lines[#lines + 1] = ("%d item(s) known in this realm"):format(#rows)
+	-- The full ranking is at the bottom, past the whole item table; this line
+	-- is what makes it findable without scrolling, and names the command that
+	-- prints the stops to chat.
+	local farmBlock = Panel.GetFarmRanking()
+	if not farmBlock then
+		lines[#lines + 1] = "Farm: not in this dataset -- rebuild it with "
+			.. "python scripts/dfa_pricing_export.py"
+	elseif (farmBlock.reason or "") ~= "" then
+		lines[#lines + 1] = ("Farm: NOT BUILT (%s)"):format(tostring(farmBlock.reason))
+	else
+		local stops = farmBlock.stops or {}
+		local first = stops[1]
+		if first then
+			lines[#lines + 1] = ("Farm: %d stop(s) -- top %s (%s) at %s/kill; /dfae farm")
+				:format(#stops, tostring(first.name), tostring(first.zone),
+					Money(first.ev))
+		else
+			lines[#lines + 1] = ("Farm: %d stop(s) -- nothing worth farming in the ranked"
+				.. " zones; /dfae farm"):format(#stops)
+		end
+	end
 	lines[#lines + 1] = ""
 	lines[#lines + 1] = ("%-9s %-11s %-6s %-10s %-10s %-10s %s")
 		:format("item", "estimate", "conf", "dbmarket", "dbrecent", "region avg", "warnings")
