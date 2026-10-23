@@ -45,6 +45,17 @@ def main() -> int:
                         help="also write the validation report")
     parser.add_argument("--dry-run", action="store_true",
                         help="build it but do not write the file")
+    parser.add_argument("--price-source", default="auto",
+                        choices=("auto", "model", "region", "legacy", "csv"),
+                        help="where the farm ranking's prices come from; auto"
+                             " prefers the trained model, as every other"
+                             " ranking does")
+    parser.add_argument("--market-csv", default="csv/items.csv",
+                        help="the fallback market table for the farm ranking")
+    parser.add_argument("--no-farm-ranking", dest="farm_ranking",
+                        action="store_false",
+                        help="skip the farm ranking (it costs about a minute:"
+                             " one model estimate per droppable item)")
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
 
@@ -137,6 +148,28 @@ def main() -> int:
         used = sorted(getattr(engine, "realm_models", {}))
         builder.notes.append("realm price models used: "
                              + (", ".join(used) if used else "none"))
+
+    # The farm ranking ships inside the dataset, and is rebuilt here so it
+    # can never be older than the prices it rests on -- "always actual" is a
+    # property of building it in the same run, not of a second schedule.
+    # A failure is reported and shipped as an empty block with the reason:
+    # losing the leaderboard is not a reason to lose the prices.
+    from woweconomy.pricing import farm_section
+    if args.farm_ranking:
+        print("building the farm ranking ...")
+        try:
+            builder.farm_rankings = farm_section.build_rankings(
+                engine=engine, source=args.price_source,
+                db_path=args.tsm_db or "", csv_path=args.market_csv)
+        except farm_section.FarmRankingUnavailable as exc:
+            builder.farm_rankings = farm_section.empty_block(str(exc))
+        except Exception as exc:  # a ranking must never take the export down
+            builder.farm_rankings = farm_section.empty_block(
+                f"the ranking failed: {type(exc).__name__}: {exc}")
+        print("  " + farm_section.summary(builder.farm_rankings))
+    else:
+        builder.farm_rankings = farm_section.empty_block("skipped (--no-farm-ranking)")
+
     text = builder.to_lua()
     validation = validate_dataset(text)
 

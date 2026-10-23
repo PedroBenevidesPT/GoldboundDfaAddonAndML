@@ -219,6 +219,10 @@ class DatasetBuilder:
     record_index: Dict[Tuple[str, int], "DatasetRecord"] = field(default_factory=dict)
     #: realm -> the market context the realm block summarises
     realm_index_market: Dict[str, object] = field(default_factory=dict)
+    #: the farm ranking block, already in the shape it ships (see
+    #: :mod:`woweconomy.pricing.farm_section`).  Empty means "not built", and
+    #: the panel says so rather than showing an empty leaderboard.
+    farm_rankings: Dict[str, object] = field(default_factory=dict)
     generated_at: int = 0
     notes: List[str] = field(default_factory=list)
 
@@ -472,6 +476,9 @@ class DatasetBuilder:
             "sentinelModel": (self.records[0].estimate.model_version
                               if self.records else ""),
             "predictionStatusCounts": self._status_counts(),
+            # how many farm stops the ranking shipped; 0 means the ranking
+            # was not built, which the panel reports instead of an empty list
+            "farmStops": len(self.farm_rankings.get("stops") or []),
         }
 
     def _status_counts(self) -> Dict[str, int]:
@@ -509,6 +516,7 @@ class DatasetBuilder:
         lines.append(f"\ttotalObservations = {meta['totalObservations']},")
         lines.append(f"\tmeanConfidence = {meta['meanConfidence']},")
         lines.append(f"\tsentinelModel = {chr(34)}{meta['sentinelModel']}{chr(34)},")
+        lines.append(f"\tfarmStops = {int(meta['farmStops'])},")
         lines.append("\tpredictionStatus = {")
         for status, count in sorted(meta["predictionStatusCounts"].items()):
             lines.append(f"\t\t[{chr(34)}{status}{chr(34)}] = {int(count)},")
@@ -638,6 +646,15 @@ class DatasetBuilder:
             lines.append("\t\t},")
         lines.append("\t},")
         lines.append("")
+
+        # --- what is worth farming --------------------------------------
+        # Emitted by its own module, because the ranking owns its row shapes
+        # and this file owns only the surrounding table.
+        if self.farm_rankings:
+            from .farm_section import render as _render_farm
+            lines.extend(_render_farm(self.farm_rankings))
+            lines.append("")
+
         lines.append("\t-- the Data for Azeroth interest of the appearances in play")
         lines.append("\tappearances = {")
         for appearance_id in sorted(self.appearances):

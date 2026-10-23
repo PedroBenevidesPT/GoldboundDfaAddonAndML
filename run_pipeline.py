@@ -238,7 +238,7 @@ def dataset_fingerprint(path: Path = DATASET) -> str:
 #: describes the bytes that actually shipped.
 _DATASET_FIELDS = ("version", "engineVersion", "itemCount", "realmCount",
                    "priceCount", "indexedRealms", "measuredRealms",
-                   "sentinelModel", "meanConfidence")
+                   "sentinelModel", "meanConfidence", "farmStops")
 
 
 def dataset_facts(path: Path = DATASET) -> Dict[str, str]:
