@@ -208,6 +208,69 @@ def test_stats_round_trip_structures(con):
     assert leases.all_stats(con)["sweep"] == value
 
 
+# -- the shared-stat mirror ------------------------------------------------
+
+class FakeHash:
+    """Just enough Redis for the stats mirror: hset and hgetall."""
+
+    def __init__(self):
+        self.hashes = {}
+
+    def hset(self, name, key, value):
+        self.hashes.setdefault(name, {})[key] = value
+
+    def hgetall(self, name):
+        return dict(self.hashes.get(name, {}))
+
+
+def test_a_published_stat_is_mirrored_to_redis(con):
+    mirror = FakeHash()
+    leases.publish_stat(con, "ah.books", 92, "w1", now=T0, client=mirror)
+    assert mirror.hashes[leases.STATS_HASH]["ah.books"] == "92"
+
+
+def test_the_mirror_never_replaces_the_database_as_the_authority(con):
+    mirror = FakeHash()
+    leases.publish_stat(con, "ah.books", 92, "w1", now=T0, client=mirror)
+    # The database is asked for the authoritative answer, and it is right
+    # even if the mirror is stale or lying.
+    mirror.hset(leases.STATS_HASH, "ah.books", "1")
+    assert leases.all_stats(con)["ah.books"] == 92
+    assert leases.read_stat(con, "ah.books") == 92
+
+
+def test_hot_stats_prefers_the_mirror_when_it_has_the_value(con):
+    mirror = FakeHash()
+    leases.publish_stat(con, "ah.books", 92, "w1", now=T0, client=mirror)
+    assert leases.hot_stats(con, client=mirror)["ah.books"] == 92
+
+
+def test_hot_stats_falls_back_to_the_database_when_the_mirror_is_empty(con):
+    leases.publish_stat(con, "ah.books", 92, "w1", now=T0, client=FakeHash())
+    assert leases.hot_stats(con, client=FakeHash())["ah.books"] == 92
+
+
+def test_hot_stats_survives_a_broken_mirror(con):
+    class Broken:
+        def hgetall(self, name):
+            raise RuntimeError("redis is down")
+
+        def hset(self, *a, **k):
+            raise RuntimeError("redis is down")
+
+    leases.publish_stat(con, "ah.books", 92, "w1", now=T0, client=Broken())
+    assert leases.hot_stats(con, client=Broken())["ah.books"] == 92
+
+
+def test_a_broken_mirror_does_not_lose_the_fact(con):
+    class Broken:
+        def hset(self, *a, **k):
+            raise RuntimeError("redis is down")
+
+    leases.publish_stat(con, "ah.books", 92, "w1", now=T0, client=Broken())
+    assert leases.read_stat(con, "ah.books") == 92
+
+
 # -- the optional mirror ---------------------------------------------------
 
 class RecordingMirror:

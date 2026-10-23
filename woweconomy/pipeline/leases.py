@@ -363,21 +363,90 @@ def record_run(con: sqlite3.Connection, task: str, owner: str, *,
     return run_id
 
 
+#: Redis hash holding the hot copy of the shared statistics.  A UI can read
+#: this instead of polling Postgres; the database row is still the truth.
+STATS_HASH = "goldbound:stats"
+
+_client_cache: Dict[str, Any] = {}
+
+
+def _stats_client(url: str = ""):
+    """A connected Redis client, or ``None``.  Never raises.
+
+    Cached per URL, including the failure: a pipeline on a machine without
+    Redis must not pay a connection timeout on every published statistic.
+    """
+    url = url or os.environ.get("WOW_PIPELINE_REDIS", "")
+    if not url:
+        return None
+    if url in _client_cache:
+        return _client_cache[url]
+    client = None
+    try:  # pragma: no cover - depends on a running server
+        import redis  # type: ignore
+
+        candidate = redis.Redis.from_url(url, socket_connect_timeout=1.0,
+                                         socket_timeout=1.0)
+        candidate.ping()
+        client = candidate
+    except Exception as exc:  # pragma: no cover - optional dependency
+        logger.info("no redis for shared stats (%s); the database is still"
+                    " the authority", exc)
+    _client_cache[url] = client
+    return client
+
+
 def publish_stat(con: sqlite3.Connection, key: str, value: Any,
-                 owner: str = "", now: Optional[float] = None) -> None:
+                 owner: str = "", now: Optional[float] = None,
+                 client=None) -> None:
     """Record the current value of one shared statistic.
 
     The history is ``pipeline_run``; this is only "what is true now", so it
     is a single upserted row per key rather than an append-only table.
+
+    The row is written first and the Redis copy second, so a mirror failure
+    cannot lose a fact -- and a reader that trusts Redis is trusting a cache
+    that is always behind, never ahead of, the database.
     """
+    payload = json.dumps(value, default=str)
+    stamp = int(now if now is not None else time.time())
     con.execute(
         "INSERT INTO pipeline_stat (key, value, updated_at, owner)"
         " VALUES (?,?,?,?)"
         " ON CONFLICT(key) DO UPDATE SET value = excluded.value,"
         " updated_at = excluded.updated_at, owner = excluded.owner",
-        (key, json.dumps(value, default=str),
-         int(now if now is not None else time.time()), owner))
+        (key, payload, stamp, owner))
     con.commit()
+
+    mirror = client if client is not None else _stats_client()
+    if mirror is not None:
+        try:
+            mirror.hset(STATS_HASH, key, payload)
+            mirror.hset(STATS_HASH + ":meta", key, json.dumps(
+                {"updated_at": stamp, "owner": owner}))
+        except Exception as exc:  # pragma: no cover - best effort
+            logger.debug("redis stat mirror failed for %s: %s", key, exc)
+
+
+def hot_stats(con: sqlite3.Connection, client=None) -> Dict[str, Any]:
+    """The shared statistics, read from Redis when it is available.
+
+    Falls back to the database on any problem, so the caller always gets an
+    answer.  Use :func:`all_stats` when the answer must be authoritative.
+    """
+    mirror = client if client is not None else _stats_client()
+    if mirror is not None:
+        try:
+            raw = mirror.hgetall(STATS_HASH) or {}
+            if raw:
+                return {_text(k): _loads(_text(v)) for k, v in raw.items()}
+        except Exception as exc:  # pragma: no cover - best effort
+            logger.debug("redis stat read failed: %s", exc)
+    return all_stats(con)
+
+
+def _text(value: Any) -> str:
+    return value.decode("utf-8") if isinstance(value, bytes) else str(value)
 
 
 def read_stat(con: sqlite3.Connection, key: str,
