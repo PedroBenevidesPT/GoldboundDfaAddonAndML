@@ -35,8 +35,8 @@ rather than implied:
 | data | backend now | note |
 |---|---|---|
 | `ah_auction`, `ah_snapshot`, `ah_realm`, leases, runs, stats | **Postgres** | copied and verified row-for-row; see below |
-| `data/aggregates.sqlite` | SQLite | still a local file |
-| `tsm_markets.db` | SQLite | TSM's own import, read-only input |
+| `aggregate_meta`, `aggregate_partition`, `daily_*` | **Postgres** | built in whichever backend is configured; on a workstation that is still `data/aggregates.sqlite` |
+| `tsm_markets.db` | SQLite | TSM's own import, a read-only input either way |
 
 ### Moving the data, and proving it moved
 
