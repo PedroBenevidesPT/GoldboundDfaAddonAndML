@@ -227,14 +227,16 @@ def _is_postgres() -> bool:
 def _needs_file(path: Path | str) -> bool:
     """Whether this store is a file the caller should check for.
 
-    With the Postgres backend the intel tables and the aggregate tables live
-    in the shared database, so a ``.exists()`` check would wrongly report
-    them missing and the build would silently do nothing.  ``tsm_markets.db``
-    is TSM's own import and stays a file either way.
+    With the Postgres backend every source table -- the Blizzard snapshots,
+    TSM's price history, the event journal and the aggregate tables -- lives in
+    the shared database, so a ``.exists()`` check would wrongly report them
+    missing and the build would silently do nothing.  There is one database;
+    the files are only a SQLite-backend fallback.
     """
     if not _is_postgres():
         return True
-    return Path(path).name.lower() not in ("intel.sqlite", "aggregates.sqlite")
+    return Path(path).name.lower() not in (
+        "intel.sqlite", "aggregates.sqlite", "tsm_markets.db")
 
 
 def _connect(path: Path | str) -> sqlite3.Connection:
@@ -250,7 +252,7 @@ def _connect(path: Path | str) -> sqlite3.Connection:
     return con
 
 
-def _ro(path: Path | str, *, backend_aware: bool = False) -> sqlite3.Connection:
+def _ro(path: Path | str, *, backend_aware: bool = True) -> sqlite3.Connection:
     if backend_aware and _is_postgres():
         from woweconomy.dbcompat import connect as _dbconnect
 
@@ -576,70 +578,74 @@ def _stream_events(con: sqlite3.Connection,
                    only_days: Optional[set] = None) -> Iterable[tuple]:
     """Daily event counts from both journal event tables.
 
-    The event tables are small (thousands of rows), so this scans them whole
-    and filters rows against the window rather than building a per-day query:
-    the cost of the scan is less than the cost of the extra round trips.
+    The day is computed in Python rather than in SQL, for the same reason
+    :func:`_as_day` exists: ``auction_events.ts`` is an ISO string and
+    ``auction_intel_events.ts`` is unix seconds, and the SQL that converts
+    either one differs between SQLite and Postgres.  ``strftime('%s', ts)``
+    works on a text column in SQLite and is ``extract(epoch from text)`` in
+    Postgres, which is not a function Postgres has.  One rule, in one place,
+    for both backends and both tables.
+
+    The event tables hold thousands of rows, so reading them whole and sorting
+    in memory is cheaper than a per-day query, and it is what makes the
+    ordering -- and therefore the partition checksum -- identical on both
+    backends.
     """
-    parts = []
+    rows: List[tuple] = []
     if _has_table(con, "auction_events"):
-        parts.append("""
-            SELECT date(COALESCE(timestamp_unix,
-                                 CAST(strftime('%s', ts) AS INTEGER)),
-                        'unixepoch')         AS day,
-                   'auction_events'          AS source,
-                   COALESCE(event_type, '?') AS event_type,
-                   COALESCE(realm, '?')      AS realm,
-                   qty, total_price_copper, net_proceeds_copper,
-                   event_id
-              FROM auction_events
-        """)
+        for (event_type, realm, qty, total, net, event_id,
+             ts_unix, ts_text) in con.execute(
+                "SELECT event_type, realm, qty, total_price_copper,"
+                "       net_proceeds_copper, event_id, timestamp_unix, ts"
+                "  FROM auction_events"):
+            day = _as_day(ts_unix if ts_unix is not None else ts_text)
+            if day is None:
+                continue
+            rows.append((day, "auction_events", event_type or "?",
+                         realm or "?", qty, total, net, event_id))
     if _has_table(con, "auction_intel_events"):
-        parts.append("""
-            SELECT date(ts, 'unixepoch')     AS day,
-                   'auction_intel_events'    AS source,
-                   COALESCE(event_type, '?') AS event_type,
-                   COALESCE(realm, '?')      AS realm,
-                   quantity, total_price_copper, net_proceeds_copper,
-                   event_id
-              FROM auction_intel_events
-        """)
-    if not parts:
+        for (event_type, realm, qty, total, net, event_id,
+             ts_unix) in con.execute(
+                "SELECT event_type, realm, quantity, total_price_copper,"
+                "       net_proceeds_copper, event_id, ts"
+                "  FROM auction_intel_events"):
+            day = _as_day(ts_unix)
+            if day is None:
+                continue
+            rows.append((day, "auction_intel_events", event_type or "?",
+                         realm or "?", qty, total, net, event_id))
+    if not rows:
         return
-    sql = " UNION ALL ".join(parts)
-    cur = con.execute(
-        f"SELECT * FROM ({sql}) ORDER BY day, source, event_type, realm, event_id"
-    )
+
+    # event_id is the tie-breaker so the checksum does not depend on the order
+    # either table happened to return its rows in.
+    rows.sort(key=lambda r: (r[0], r[1], r[2], r[3], r[7] or ""))
+
     key = None
     acc: Optional[Dict[str, object]] = None
     h: Optional["hashlib._Hash"] = None
     n = 0
-    while True:
-        batch = cur.fetchmany(50_000)
-        if not batch:
-            break
-        for day, source, event_type, realm, qty, total, net, event_id in batch:
-            if day is None:
-                continue
-            if only_days is not None and day not in only_days:
-                continue
-            k = (day, source, event_type, realm)
-            if k != key:
-                if key is not None:
-                    yield key, acc, n, h.hexdigest()  # type: ignore[union-attr]
-                key = k
-                acc = {"n_events": 0, "sum_quantity": None,
-                       "sum_total": None, "sum_net": None}
-                h = hashlib.sha256()
-                n = 0
-            _feed(h, (day, source, event_type, realm, qty, total, net, event_id))  # type: ignore[arg-type]
-            n += 1
-            acc["n_events"] += 1
-            if qty is not None:
-                acc["sum_quantity"] = (acc["sum_quantity"] or 0) + qty
-            if total is not None:
-                acc["sum_total"] = (acc["sum_total"] or 0) + total
-            if net is not None:
-                acc["sum_net"] = (acc["sum_net"] or 0) + net
+    for day, source, event_type, realm, qty, total, net, event_id in rows:
+        if only_days is not None and day not in only_days:
+            continue
+        k = (day, source, event_type, realm)
+        if k != key:
+            if key is not None:
+                yield key, acc, n, h.hexdigest()  # type: ignore[union-attr]
+            key = k
+            acc = {"n_events": 0, "sum_quantity": None,
+                   "sum_total": None, "sum_net": None}
+            h = hashlib.sha256()
+            n = 0
+        _feed(h, (day, source, event_type, realm, qty, total, net, event_id))  # type: ignore[arg-type]
+        n += 1
+        acc["n_events"] += 1
+        if qty is not None:
+            acc["sum_quantity"] = (acc["sum_quantity"] or 0) + qty
+        if total is not None:
+            acc["sum_total"] = (acc["sum_total"] or 0) + total
+        if net is not None:
+            acc["sum_net"] = (acc["sum_net"] or 0) + net
     if key is not None:
         yield key, acc, n, h.hexdigest()  # type: ignore[union-attr]
 
@@ -729,6 +735,8 @@ class BuildReport:
 
     rows_written: Dict[str, int] = field(default_factory=dict)
     partitions_skipped: Dict[str, int] = field(default_factory=dict)
+    #: Partitions that no longer exist in the source and were removed.
+    partitions_pruned: Dict[str, int] = field(default_factory=dict)
     source_rows: Dict[str, int] = field(default_factory=dict)
     #: The days each aggregate was restricted to, when a window was given.
     window: Dict[str, List[str]] = field(default_factory=dict)
@@ -739,6 +747,7 @@ class BuildReport:
         return {
             "rows_written": self.rows_written,
             "partitions_skipped": self.partitions_skipped,
+            "partitions_pruned": self.partitions_pruned,
             "source_rows": self.source_rows,
             "window": self.window,
             "elapsed_s": round(self.elapsed_s, 2),
@@ -756,7 +765,10 @@ class BuildReport:
             lines.append(
                 f"  {name:22s} {self.rows_written[name]:>9,} rows written  "
                 f"from {self.source_rows.get(name, 0):>12,} source rows  "
-                f"({self.partitions_skipped.get(name, 0)} partitions unchanged)"
+                f"({self.partitions_skipped.get(name, 0)} partitions unchanged"
+                + (f", {self.partitions_pruned[name]} pruned"
+                   if self.partitions_pruned.get(name) else "")
+                + ")"
                 f"{scope}"
             )
         for err in self.errors:
@@ -795,8 +807,7 @@ def build(intel_db: Path | str, tsm_db: Path | str,
                 report.errors.append(f"{name}: missing {path}")
                 continue
             if spec.database not in conns:
-                conns[spec.database] = _ro(
-                        path, backend_aware=spec.database == "intel.sqlite")
+                conns[spec.database] = _ro(path)
             src = conns[spec.database]
             if not _has_table(src, spec.source_table):
                 report.errors.append(f"{name}: {path} has no {spec.source_table}")
@@ -824,12 +835,14 @@ def build(intel_db: Path | str, tsm_db: Path | str,
             part_key: Optional[Tuple[str, str]] = None
             part_h = hashlib.sha256()
             part_rows = 0
+            seen: set = set()
 
             def flush_partition(key: Optional[Tuple[str, str]], rows: List[tuple],
                                 digest: str, n_rows: int) -> None:
                 nonlocal written, skipped
                 if key is None or not rows:
                     return
+                seen.add((key[0], key[1]))
                 partition = (name, key[0], key[1])
                 if not force:
                     prev = out.execute(
@@ -840,6 +853,19 @@ def build(intel_db: Path | str, tsm_db: Path | str,
                     if prev is not None and prev[0] == digest:
                         skipped += 1
                         return
+                # A partition is *replaced*, not merged.  Writing the new rows
+                # with INSERT OR REPLACE alone leaves behind any row that is no
+                # longer in the source -- an item that dropped out of a market,
+                # or one whose day changed -- and the aggregate then claims
+                # rows the raw data no longer has.  Measured: six such rows
+                # survived a full rebuild and made the aggregate disagree with
+                # a plain GROUP BY.  The delete is scoped to the partition, so
+                # it can never touch another day or market.
+                out.execute(
+                    f'DELETE FROM "{name}" '
+                    f'WHERE "{spec.key_columns[0]}"=? AND "{spec.key_columns[1]}"=?',
+                    (key[0], key[1]),
+                )
                 out.executemany(spec.insert_sql, rows)
                 out.execute(
                     "INSERT OR REPLACE INTO aggregate_partition "
@@ -865,6 +891,37 @@ def build(intel_db: Path | str, tsm_db: Path | str,
                 pending.append(tuple(key)
                                + tuple(acc.get(c) for c in spec.value_columns))
             flush_partition(part_key, pending, part_h.hexdigest(), part_rows)
+
+            # A partition that no longer exists in the source must not survive
+            # in the aggregate.  This happens when a whole day's rows are
+            # removed, or when a market disappears from a day, and it is the
+            # other half of "replaced, not merged": the delete above covers a
+            # partition that is still produced, this covers one that is not.
+            # Outside a window the rebuild is authoritative for every day, so
+            # it may prune; inside a window it may only prune the days it was
+            # asked about.
+            stale = out.execute(
+                "SELECT day, scope FROM aggregate_partition WHERE aggregate=?",
+                (name,),
+            ).fetchall()
+            for row in stale:
+                day, scope = row[0], row[1]
+                if (day, scope) in seen:
+                    continue
+                if window is not None and day not in window:
+                    continue
+                out.execute(
+                    f'DELETE FROM "{name}" '
+                    f'WHERE "{spec.key_columns[0]}"=? AND "{spec.key_columns[1]}"=?',
+                    (day, scope),
+                )
+                out.execute(
+                    "DELETE FROM aggregate_partition"
+                    " WHERE aggregate=? AND day=? AND scope=?",
+                    (name, day, scope),
+                )
+                report.partitions_pruned[name] = (
+                    report.partitions_pruned.get(name, 0) + 1)
 
             report.rows_written[name] = written
             report.partitions_skipped[name] = skipped
@@ -1005,8 +1062,7 @@ def validate(aggregate_db: Path | str, intel_db: Path | str,
                     report.errors.append(f"{name}: missing {path}")
                     continue
                 if spec.database not in conns:
-                    conns[spec.database] = _ro(
-                        path, backend_aware=spec.database == "intel.sqlite")
+                    conns[spec.database] = _ro(path)
                 src = conns[spec.database]
                 if not _has_table(src, spec.source_table):
                     report.errors.append(f"{name}: no {spec.source_table}")

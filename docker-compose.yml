@@ -86,6 +86,27 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
+  # Applies the schema, then exits.  Alembic is the single authority for the
+  # Postgres schema; nothing else creates tables there.  Running it as its own
+  # one-shot service (and making the worker wait for it) is what keeps a
+  # worker from starting against a database that has not been migrated yet --
+  # the failure mode that used to be a half-created schema and a confusing
+  # "relation does not exist" from somewhere deep in the pipeline.
+  migrate:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    image: goldbound/worker:local
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-goldbound}:${POSTGRES_PASSWORD:-goldbound}@postgres:5432/${POSTGRES_DB:-goldbound}
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
   worker:
     build:
       context: .
@@ -110,6 +131,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
     command: ["python", "run_pipeline.py", "--loop", "--interval", "120"]
     restart: unless-stopped
     # No `container_name`: this service is meant to be scaled, and a fixed

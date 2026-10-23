@@ -686,3 +686,179 @@ def test_two_snapshots_of_one_market_are_one_group(dbs):
     # alpha's two snapshots (one with a slug, one without) are one group.
     assert rows == [("alpha", 2, 400), ("beta", 1, 200)]
 
+
+
+# ---------------------------------------------------------------------------
+# a partition is replaced, not merged
+# ---------------------------------------------------------------------------
+#
+# These are the two ways an aggregate can end up claiming rows the raw data no
+# longer has.  Both were live: a full rebuild left six rows behind that had no
+# GROUP BY counterpart, which is exactly the kind of quiet disagreement the
+# aggregates exist to prevent.
+
+def test_a_row_that_leaves_the_source_leaves_the_aggregate(dbs):
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    build(intel, tsm, agg, only=["daily_item_price"])
+    con = sqlite3.connect(agg)
+    before = con.execute(
+        "SELECT COUNT(*) FROM daily_item_price WHERE day='2026-10-22'"
+    ).fetchone()[0]
+    con.close()
+    assert before == 1
+
+    # The item's only observation for that day moves to a different item id:
+    # the original key no longer exists in the source at all.
+    tc.execute("UPDATE tsm_price_change SET key_id = 99 WHERE snapshot_id = 4")
+    tc.commit()
+    build(intel, tsm, agg, only=["daily_item_price"], days=1)
+
+    con = sqlite3.connect(agg)
+    rows = con.execute(
+        "SELECT item_id FROM daily_item_price WHERE day='2026-10-22'"
+        " ORDER BY item_id").fetchall()
+    con.close()
+    assert rows == [(99,)]
+
+
+def test_a_partition_that_disappears_from_the_source_is_pruned(dbs):
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    build(intel, tsm, agg, only=["daily_item_price"])
+    con = sqlite3.connect(agg)
+    assert con.execute(
+        "SELECT COUNT(*) FROM daily_item_price WHERE day='2026-10-21'"
+    ).fetchone()[0] == 1
+    con.close()
+
+    # The whole day's snapshot is gone: no source rows for the 21st at all.
+    tc.execute("DELETE FROM tsm_price_change WHERE snapshot_id = 3")
+    tc.execute("DELETE FROM tsm_snapshot WHERE snapshot_id = 3")
+    tc.commit()
+
+    report = build(intel, tsm, agg, only=["daily_item_price"])
+    con = sqlite3.connect(agg)
+    left = con.execute(
+        "SELECT COUNT(*) FROM daily_item_price WHERE day='2026-10-21'"
+    ).fetchone()[0]
+    tracked = con.execute(
+        "SELECT COUNT(*) FROM aggregate_partition"
+        " WHERE aggregate='daily_item_price' AND day='2026-10-21'"
+    ).fetchone()[0]
+    con.close()
+    assert left == 0
+    assert tracked == 0
+    assert report.partitions_pruned["daily_item_price"] == 1
+
+
+def test_a_windowed_build_does_not_prune_a_day_outside_its_window(dbs):
+    """Pruning is authority: it may only be exercised over the days it rebuilt."""
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    build(intel, tsm, agg, only=["daily_item_price"])
+
+    # Remove the 21st from the source, then rebuild only the 22nd.
+    tc.execute("DELETE FROM tsm_price_change WHERE snapshot_id = 3")
+    tc.execute("DELETE FROM tsm_snapshot WHERE snapshot_id = 3")
+    tc.commit()
+    report = build(intel, tsm, agg, only=["daily_item_price"], days=1)
+
+    con = sqlite3.connect(agg)
+    left = con.execute(
+        "SELECT COUNT(*) FROM daily_item_price WHERE day='2026-10-21'"
+    ).fetchone()[0]
+    con.close()
+    # The 21st is stale now, but a build that only looked at the 22nd must not
+    # touch it -- deleting data outside the window it was asked about would
+    # make a cheap daily run quietly destructive.
+    assert left == 1
+    assert report.partitions_pruned.get("daily_item_price", 0) == 0
+
+
+# ---------------------------------------------------------------------------
+# a partition is replaced, not merged
+# ---------------------------------------------------------------------------
+#
+# These are the two ways an aggregate can end up claiming rows the raw data no
+# longer has.  Both were live: a full rebuild left six rows behind that had no
+# GROUP BY counterpart, which is exactly the kind of quiet disagreement the
+# aggregates exist to prevent.
+
+def test_a_row_that_leaves_the_source_leaves_the_aggregate(dbs):
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    build(intel, tsm, agg, only=["daily_item_price"])
+    con = sqlite3.connect(agg)
+    before = con.execute(
+        "SELECT COUNT(*) FROM daily_item_price WHERE day='2026-10-22'"
+    ).fetchone()[0]
+    con.close()
+    assert before == 1
+
+    # The item's only observation for that day moves to a different item id:
+    # the original key no longer exists in the source at all.
+    tc.execute("UPDATE tsm_price_change SET key_id = 99 WHERE snapshot_id = 4")
+    tc.commit()
+    build(intel, tsm, agg, only=["daily_item_price"], days=1)
+
+    con = sqlite3.connect(agg)
+    rows = con.execute(
+        "SELECT item_id FROM daily_item_price WHERE day='2026-10-22'"
+        " ORDER BY item_id").fetchall()
+    con.close()
+    assert rows == [(99,)]
+
+
+def test_a_partition_that_disappears_from_the_source_is_pruned(dbs):
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    build(intel, tsm, agg, only=["daily_item_price"])
+    con = sqlite3.connect(agg)
+    assert con.execute(
+        "SELECT COUNT(*) FROM daily_item_price WHERE day='2026-10-21'"
+    ).fetchone()[0] == 1
+    con.close()
+
+    # The whole day's snapshot is gone: no source rows for the 21st at all.
+    tc.execute("DELETE FROM tsm_price_change WHERE snapshot_id = 3")
+    tc.execute("DELETE FROM tsm_snapshot WHERE snapshot_id = 3")
+    tc.commit()
+
+    report = build(intel, tsm, agg, only=["daily_item_price"])
+    con = sqlite3.connect(agg)
+    left = con.execute(
+        "SELECT COUNT(*) FROM daily_item_price WHERE day='2026-10-21'"
+    ).fetchone()[0]
+    tracked = con.execute(
+        "SELECT COUNT(*) FROM aggregate_partition"
+        " WHERE aggregate='daily_item_price' AND day='2026-10-21'"
+    ).fetchone()[0]
+    con.close()
+    assert left == 0
+    assert tracked == 0
+    assert report.partitions_pruned["daily_item_price"] == 1
+
+
+def test_a_windowed_build_does_not_prune_a_day_outside_its_window(dbs):
+    """Pruning is authority: it may only be exercised over the days it rebuilt."""
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    build(intel, tsm, agg, only=["daily_item_price"])
+
+    # Remove the 21st from the source, then rebuild only the 22nd.
+    tc.execute("DELETE FROM tsm_price_change WHERE snapshot_id = 3")
+    tc.execute("DELETE FROM tsm_snapshot WHERE snapshot_id = 3")
+    tc.commit()
+    report = build(intel, tsm, agg, only=["daily_item_price"], days=1)
+
+    con = sqlite3.connect(agg)
+    left = con.execute(
+        "SELECT COUNT(*) FROM daily_item_price WHERE day='2026-10-21'"
+    ).fetchone()[0]
+    con.close()
+    # The 21st is stale now, but a build that only looked at the 22nd must not
+    # touch it -- deleting data outside the window it was asked about would
+    # make a cheap daily run quietly destructive.
+    assert left == 1
+    assert report.partitions_pruned.get("daily_item_price", 0) == 0

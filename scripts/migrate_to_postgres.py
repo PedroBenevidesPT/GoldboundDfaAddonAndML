@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import sqlite3
 import sys
 import time
@@ -214,6 +215,100 @@ def copy_table(sqlite_con, pg_con, table: str) -> int:
     return stream.rows_written
 
 
+# ---------------------------------------------------------------------------
+# deriving a target schema from the source
+# ---------------------------------------------------------------------------
+#
+# The TSM market file has 25 tables whose DDL is spread across several
+# services and one-off import scripts.  Chasing each CREATE TABLE to keep a
+# hand-written Postgres copy in step is how a target schema silently drifts
+# from the source it is supposed to mirror.  Instead the target is derived
+# from the source's own declared shape, so it cannot disagree with the file
+# being copied.  This is a *migration* facility; production code still
+# creates its own tables through its own ensure_schema().
+
+#: SQLite declared type -> Postgres type.  INTEGER is widened to BIGINT for
+#: the same reason the dialect widens it everywhere else: SQLite integers are
+#: 64-bit and Postgres INTEGER is not, so copper totals overflow silently.
+_TYPE_MAP = {
+    "": "TEXT",
+    "INTEGER": "BIGINT",
+    "INT": "BIGINT",
+    "BIGINT": "BIGINT",
+    "SMALLINT": "SMALLINT",
+    "REAL": "DOUBLE PRECISION",
+    "FLOAT": "DOUBLE PRECISION",
+    "DOUBLE": "DOUBLE PRECISION",
+    "NUMERIC": "NUMERIC",
+    "DECIMAL": "NUMERIC",
+    "TEXT": "TEXT",
+    "VARCHAR": "TEXT",
+    "CHAR": "TEXT",
+    "CLOB": "TEXT",
+    "BLOB": "BYTEA",
+    "BOOLEAN": "BOOLEAN",
+    "DATE": "TEXT",
+    "DATETIME": "TEXT",
+    "TIMESTAMP": "TEXT",
+}
+
+#: Defaults that carry over unchanged.  Anything else is reported rather than
+#: dropped: a column that silently loses its default is a behavioural change
+#: that shows up much later as a NULL.
+_SIMPLE_DEFAULT = re.compile(
+    r"^(?:-?\d+(?:\.\d+)?|'[^']*'|NULL|CURRENT_TIMESTAMP|CURRENT_DATE|"
+    r"CURRENT_TIME|TRUE|FALSE)$",
+    re.I,
+)
+
+
+def _pg_type(declared: str) -> str:
+    base = (declared or "").split("(")[0].strip().upper()
+    return _TYPE_MAP.get(base, "TEXT")
+
+
+def create_table_from_source(sqlite_con, pg_con, table: str) -> list[str]:
+    """Create ``table`` in Postgres mirroring its SQLite declaration.
+
+    Returns the list of defaults that were *not* carried over, so the caller
+    can print them instead of pretending the copy is exact.
+    """
+    info = sqlite_con.execute(f'PRAGMA table_info("{table}")').fetchall()
+    if not info:
+        raise SystemExit(f"source has no columns for {table!r}")
+
+    columns: list[str] = []
+    skipped_defaults: list[str] = []
+    pk_cols: list[tuple[int, str]] = []
+    for _cid, name, declared, notnull, default, pk in info:
+        piece = f'"{name}" {_pg_type(declared)}'
+        if notnull:
+            piece += " NOT NULL"
+        if default is not None:
+            text = str(default).strip()
+            if _SIMPLE_DEFAULT.match(text):
+                piece += f" DEFAULT {text}"
+            else:
+                skipped_defaults.append(f"{table}.{name} = {text}")
+        columns.append(piece)
+        if pk:
+            pk_cols.append((int(pk), name))
+
+    if pk_cols:
+        pk_cols.sort()
+        columns.append("PRIMARY KEY ("
+                       + ", ".join(f'"{n}"' for _, n in pk_cols) + ")")
+
+    pg_con.execute(f'CREATE TABLE IF NOT EXISTS "{table}" '
+                   f'({", ".join(columns)})')
+    pg_con.commit()
+    return skipped_defaults
+
+
+def missing_targets(sqlite_con, pg_con, tables: Sequence[str]) -> list[str]:
+    return [t for t in tables if not pg_columns(pg_con, t)]
+
+
 def foreign_keys(pg_con) -> list[tuple[str, str, str, str]]:
     """(child_table, child_column, parent_table, parent_column) for every FK."""
     rows = pg_con.execute(
@@ -285,6 +380,7 @@ def migrate(
     ensure_schema: bool = True,
     strict_fk: bool = False,
     recreate: bool = False,
+    create_missing: bool = False,
 ) -> int:
     from woweconomy.dbcompat import backend, connect as dbconnect
 
@@ -333,6 +429,23 @@ def migrate(
     print(f"target : {pg_con!r}")
     print(f"mode   : {'verify only' if verify_only else 'dry run' if dry_run else 'migrate'}")
     print()
+
+    if create_missing and not dry_run and not verify_only:
+        absent = missing_targets(sqlite_con, pg_con, wanted)
+        if absent:
+            print(f"creating {len(absent)} table(s) from the source schema:")
+            skipped: list[str] = []
+            for table in absent:
+                skipped.extend(create_table_from_source(sqlite_con, pg_con, table))
+                cols = len(sqlite_columns(sqlite_con, table))
+                print(f"  {table:<32} {cols:>3} columns")
+            if skipped:
+                print()
+                print("defaults NOT carried over (the source expression has no"
+                      " Postgres equivalent):")
+                for item in skipped:
+                    print(f"  - {item}")
+            print()
 
     failures: list[str] = []
     expected: dict[str, tuple[int, int]] = {}
@@ -437,6 +550,10 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--recreate", action="store_true",
                    help="drop the target tables and rebuild them (the SQLite"
                         " source is never touched)")
+    p.add_argument("--create-missing", action="store_true",
+                   help="create target tables that do not exist yet, mirroring"
+                        " the source schema (defaults are reported, not dropped"
+                        " silently)")
     return p
 
 
@@ -450,6 +567,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         verify_only=args.verify_only,
         strict_fk=args.strict_fk,
         recreate=args.recreate,
+        create_missing=args.create_missing,
     )
 
 

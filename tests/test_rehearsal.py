@@ -41,7 +41,7 @@ def _schema(tmp_path: Path):
     con = sqlite3.connect(intel)
     con.executescript("""
         CREATE TABLE ah_snapshot (snapshot_id TEXT PRIMARY KEY, realm TEXT,
-                                  captured_at INTEGER);
+                                  realm_slug TEXT, captured_at INTEGER);
         CREATE TABLE ah_auction (snapshot_id TEXT, auction_key TEXT,
                                  item_id INTEGER, quantity INTEGER,
                                  unit_price_copper INTEGER,
@@ -108,8 +108,8 @@ def _seed(intel: Path, tsm: Path, age_days: int = 90) -> None:
     con = sqlite3.connect(intel)
     for i in range(2):  # two scans so the older one can expire
         sid = f"s{i}"
-        con.execute("INSERT INTO ah_snapshot VALUES (?,?,?)",
-                    (sid, "realm-a", stamp + i * 3600))
+        con.execute("INSERT INTO ah_snapshot VALUES (?,?,?,?)",
+                    (sid, "realm-a", "realm-a", stamp + i * 3600))
         con.execute("INSERT INTO ah_auction VALUES (?,?,?,?,?,?,?)",
                     (sid, f"{sid}-0", 1000, 2, 500, 1000, 0))
     con.commit()
