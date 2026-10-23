@@ -267,6 +267,13 @@ python scripts/deploy_addons.py             # copy the toc-listed files
 account's own auctions, kills and sales. A change in the repository that was
 never deployed is not a fix, which is why `--check` exists.
 
+The pipeline's `deploy` task does the same copy from inside the container, so a
+deployed addon no longer depends on somebody remembering to run the command.
+Compose mounts the host's folder at `/game/AddOns`; `WOW_ADDONS_DIR` names the
+host side in `.env` and is re-pointed at the mount for the container. Without
+the folder the task reports a skip (exit 78) instead of a deploy that never
+happened, and it retries on the next cycle.
+
 ### The posting plan
 
 ```powershell

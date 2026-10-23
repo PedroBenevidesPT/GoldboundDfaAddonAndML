@@ -125,6 +125,12 @@ services:
       # reader opens the database `mode=ro`; without the folder the strategy
       # task reports a skip instead of failing every cycle.
       DFA_DIR: /app/woweconomy/dfa
+      # `deploy` copies the toc-listed addon files into the game, which lives
+      # on the host: the folder is mounted below and this points the task at
+      # the mount.  Set `WOW_ADDONS_DIR` in `.env` to the host folder; without
+      # it the mount falls back to the same Windows default the script uses,
+      # and a machine with no game there cannot deploy at all.
+      WOW_ADDONS_DIR: /game/AddOns
       # Python block-buffers stdout when it is not a terminal, which is
       # always inside a container: without this, `docker compose logs` shows
       # nothing until a task finishes, and a fetch takes minutes.
@@ -143,6 +149,11 @@ services:
       # the `demand_*.csv` files (older than the scan by however long since
       # the last export).  Nothing here writes the data itself.
       - ${DFA_DIR:-./woweconomy/dfa}:/app/woweconomy/dfa:rw
+      # The game's AddOns folder, writable: `deploy` has to land the files in
+      # the client's copy, and a read-only mount would make every deploy a
+      # skip with a permission error.  Absent the host folder, the worker
+      # still starts (the bind creates it) and `deploy` reports a skip.
+      - ${WOW_ADDONS_DIR:-C:/Program Files (x86)/World of Warcraft/_retail_/Interface/AddOns}:/game/AddOns
       - ./logs:/app/logs
     depends_on:
       postgres:

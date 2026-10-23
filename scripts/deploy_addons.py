@@ -13,6 +13,7 @@ file atomically, and reports what it skipped.
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -21,14 +22,30 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from woweconomy import addons                            # noqa: E402
+from woweconomy.dbcompat import load_env                 # noqa: E402
 
 DEFAULT_ADDONS_DIR = Path(
     r"C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns")
 
 
+def default_addons_dir() -> Path:
+    """Where the game keeps its addons.
+
+    ``WOW_ADDONS_DIR`` is how the container reaches the folder: the host's
+    path is bind-mounted at a fixed place and the variable is re-pointed at
+    the mount (see ``docker-compose.yml``), so the same copy runs in both
+    places.  Without it, the Windows default is the one
+    ``PricingConfig.addons_dir`` already assumes.
+    """
+    return Path(os.environ.get("WOW_ADDONS_DIR") or DEFAULT_ADDONS_DIR)
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--addons-dir", default=str(DEFAULT_ADDONS_DIR),
+    # A run from the source tree reads `.env`, where WOW_ADDONS_DIR lives; a
+    # container gets the same variable from its environment instead.
+    load_env()
+    parser.add_argument("--addons-dir", default=str(default_addons_dir()),
                         help="the game's Interface/AddOns directory")
     parser.add_argument("--project", default=str(ROOT),
                         help="the repository holding the addon folders")
