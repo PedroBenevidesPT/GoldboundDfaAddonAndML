@@ -47,6 +47,24 @@ def _runner(code=0, output="ok"):
 
 
 # ------------------------------------------------------------------- cadence
+def test_the_aggregates_stage_names_the_window_flag(con):
+    """``--days`` names specific days; ``--last-days`` names a window.
+
+    Passing the wrong one does not fail -- it silently rebuilds every day the
+    store has, which is exactly the cost the windowed rebuild exists to avoid.
+    """
+    argv = rp.default_tasks()["aggregates"].argv
+    assert "--last-days" in argv
+    assert "--days" not in argv
+
+
+def test_the_strategy_stage_builds_the_plan_after_a_fetch(con):
+    """There is always a plan to read, and it is built from fresh data."""
+    task = rp.default_tasks()["strategy"]
+    assert task.argv[:2] == ["scripts/strategy.py", "build"]
+    assert "fetch" in task.after
+
+
 def test_everything_is_due_the_first_time(con):
     tasks = rp.default_tasks()
     # `after` gates are satisfied because nothing has run, so only tasks
@@ -59,18 +77,16 @@ def test_everything_is_due_the_first_time(con):
 def test_a_task_is_not_due_before_its_interval(con):
     tasks = rp.default_tasks()
     now = time.time()
-    leases.publish_stat(con, "last_ok:fetch", now)
-    leases.publish_stat(con, "last_ok:aggregates", now)
-    leases.publish_stat(con, "last_ok:sentinel", now)
-    leases.publish_stat(con, "last_ok:export", now)
-    leases.publish_stat(con, "last_ok:deploy", now)
+    # every configured task, so adding a stage does not need this test edited
+    for name in tasks:
+        leases.publish_stat(con, f"last_ok:{name}", now)
     assert rp.due(con, tasks, now=now + 60) == []
 
 
 def test_a_task_becomes_due_once_its_interval_passes(con):
     tasks = rp.default_tasks()
     now = time.time()
-    for name in ("fetch", "aggregates", "sentinel", "export", "deploy"):
+    for name in tasks:
         leases.publish_stat(con, f"last_ok:{name}", now)
     later = now + tasks["fetch"].every_s + 1
     assert "fetch" in rp.due(con, tasks, now=later)

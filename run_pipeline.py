@@ -32,6 +32,7 @@ defaults therefore favour ``fetch`` heavily and the expensive jobs lightly:
 
     fetch        every 1 h   -- all 92 books plus the commodity book
     aggregates   every 6 h   -- the statistical record, rebuilt for a window
+    strategy     every 6 h   -- the posting plan, from the current snapshot
     sentinel     every 24 h  -- retrain, gated by chronological validation
     export       every 6 h   -- write the addon dataset
     deploy       after export -- copy the toc-listed files into the game
@@ -120,7 +121,13 @@ def default_tasks() -> Dict[str, TaskDef]:
                  "--commodities", "--sync-realms"],
                 every_s=HOUR, timeout_s=1800),
         TaskDef("aggregates",
-                ["scripts/aggregates.py", "build", "--days", "2"],
+                # ``--last-days``, not ``--days``: the latter names specific
+                # days and would silently rebuild everything instead of the
+                # window, which is the whole cost saving.
+                ["scripts/aggregates.py", "build", "--last-days", "2"],
+                every_s=6 * HOUR, timeout_s=1800, after=("fetch",)),
+        TaskDef("strategy",
+                ["scripts/strategy.py", "build"],
                 every_s=6 * HOUR, timeout_s=1800, after=("fetch",)),
         TaskDef("sentinel",
                 ["scripts/dfa_ml.py", "sentinel", "--if-needed"],

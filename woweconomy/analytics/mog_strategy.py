@@ -188,6 +188,29 @@ def _measured_probability(p_base: Optional[float], price: float,
     return None
 
 
+def _candidate_prices(estimate: float, wall: Optional[float]
+                      ) -> List[float]:
+    """The prices to score: the band, plus the one that beats the live wall.
+
+    The band alone cannot express an undercut.  With a price-independent
+    probability, expected net gold rises with the price, so the best band
+    candidate is always the estimate itself -- which means an ``undercut``
+    recommendation would carry a price *above* the wall it is telling you to
+    beat.  A plan the addon cannot act on is worse than no plan.
+
+    So the price that sits one copper under the live wall is scored too.  It
+    is a measured point, not an invented curve: it is at or below the estimate
+    (otherwise there is no wall to beat), so the measured turnover applies to
+    it, and it is the *highest* price that still makes the listing cheapest.
+    """
+    prices = [estimate * f for f in PRICE_CANDIDATES]
+    if wall is not None and wall > 1:
+        beat = float(math.floor(wall) - 1.0)
+        if beat > 0 and all(abs(beat - p) > 0.5 for p in prices):
+            prices.append(beat)
+    return sorted(prices)
+
+
 def evaluate(inputs: StrategyInput) -> PostingPlan:
     """Choose the candidate price with the highest expected net gold."""
     flags: List[str] = []
@@ -245,9 +268,10 @@ def evaluate(inputs: StrategyInput) -> PostingPlan:
     # --- score every candidate price ------------------------------------
     cycles = max(1, int(inputs.expected_cycles))
     opportunity_rate = inputs.opportunity_cost_per_day
+    wall = (inputs.competition_unit_copper
+            if inputs.competition_count > 0 else None)
     candidates: List[Candidate] = []
-    for fraction in PRICE_CANDIDATES:
-        price = inputs.estimate_unit_copper * fraction
+    for price in _candidate_prices(inputs.estimate_unit_copper, wall):
         p = _measured_probability(p_base, price, inputs.estimate_unit_copper)
         gross = net_proceeds(stack_total(price, inputs.quantity))
         # the deposit is lost on every cycle that does not sell
@@ -290,7 +314,8 @@ def evaluate(inputs: StrategyInput) -> PostingPlan:
             flags=tuple(flags))
 
     best = max(measured, key=lambda c: (c.expected_net_copper, -c.price_unit_copper))
-    action, reason = _choose_action(best, inputs, vendor_net, flags)
+    action, reason, chosen = _choose_action(best, inputs, vendor_net, flags,
+                                            measured)
     if any(not c.measured for c in candidates):
         flags.append(
             "prices above the measured level are listed but not scored: their "
@@ -300,52 +325,104 @@ def evaluate(inputs: StrategyInput) -> PostingPlan:
     confidence = _confidence(inputs)
     return PostingPlan(
         item_id=inputs.item_id, name=inputs.name, action=action,
-        price_unit_copper=best.price_unit_copper,
-        expected_net_copper=best.expected_net_copper,
-        p_sale=best.p_sale, p_sale_source=inputs.effective_p_source,
+        price_unit_copper=chosen.price_unit_copper,
+        expected_net_copper=chosen.expected_net_copper,
+        p_sale=chosen.p_sale, p_sale_source=inputs.effective_p_source,
         horizon_days=inputs.horizon_days, confidence=confidence,
         observations=inputs.observations, candidates=tuple(candidates),
         vendor_net_copper=vendor_net, tied_up_gold=tied_up,
         reason=reason, flags=tuple(flags))
 
 
-def _choose_action(best: Candidate, inputs: StrategyInput,
-                   vendor_net: float, flags: List[str]) -> Tuple[str, str]:
+def _money(copper: Optional[float]) -> str:
+    """Copper as the gold/silver/copper a player reads on the item tooltip.
+
+    A gold figure with two decimals is not precise enough to describe an
+    undercut: one copper under a 251,105g wall prints as ``251105.00g`` and
+    the recommendation reads as "undercut X to X".  Gold, silver and copper
+    cannot collapse like that.
+    """
+    if copper is None:
+        return "-"
+    total = int(round(float(copper)))
+    gold, rest = divmod(total, 10_000)
+    silver, copper_left = divmod(rest, 100)
+    return f"{gold:,}g {silver}s {copper_left}c"
+
+
+def _choose_action(best: Candidate, inputs: StrategyInput, vendor_net: float,
+                   flags: List[str], scored: Sequence[Candidate]
+                   ) -> Tuple[str, str, Candidate]:
+    """Pick the action *and* the price it is about.
+
+    Returns the chosen candidate as well as the action, because an action
+    without the price it refers to is not a plan.  ``undercut`` used to be
+    returned alongside the estimate -- a price at or above the very wall it
+    said to beat -- which the addon could only act on by ignoring the number.
+    """
     if best.expected_net_copper <= MIN_EXPECTED_NET_GOLD:
         if vendor_net > 0:
             flags.append("posting loses to the vendor price at every candidate price")
             return (ACTION_VENDOR,
                     f"expected net {best.expected_net_copper / 10_000:.2f}g is "
-                    f"below the vendor's {vendor_net / 10_000:.2f}g")
+                    f"below the vendor's {vendor_net / 10_000:.2f}g", best)
         flags.append("no candidate price has a positive expected net gold")
         return (ACTION_DO_NOT_POST,
-                f"best expected net is {best.expected_net_copper / 10_000:.2f}g")
+                f"best expected net is {best.expected_net_copper / 10_000:.2f}g",
+                best)
 
     p = best.p_sale or 0.0
     wall = inputs.competition_unit_copper if inputs.competition_count > 0 else None
 
-    # At the wall: a slow rare look is held, not discounted.  Undercutting a
-    # collectible by a few silver surrenders gold and buys almost no extra
-    # chance, because the buyer is looking for the appearance, not the deal.
-    if wall is not None and best.price_unit_copper >= wall * 0.98:
+    if wall is None or wall <= 0:
         if p < PATIENT_P_BELOW:
-            flags.append("the recommendation sits at the live wall")
-            return (ACTION_MAINTAIN,
-                    f"at the wall with only a {p:.1%} chance over "
-                    f"{inputs.horizon_days:.0f} days; undercutting would "
-                    f"surrender gold without adding a sale")
-        flags.append("the recommendation sits at the live wall")
-        return (ACTION_UNDERCUT,
-                f"at the wall with a {p:.1%} chance; being cheapest is what "
-                f"converts a fast-moving look")
+            return (ACTION_POST_PATIENT,
+                    f"a {p:.1%} chance over {inputs.horizon_days:.0f} days "
+                    f"justifies holding the price rather than discounting", best)
+        return (ACTION_POST,
+                f"expected net {_money(best.expected_net_copper)} at "
+                f"{_money(best.price_unit_copper)}", best)
 
-    if p < PATIENT_P_BELOW:
-        return (ACTION_POST_PATIENT,
-                f"a {p:.1%} chance over {inputs.horizon_days:.0f} days "
-                f"justifies holding the price rather than discounting")
-    return (ACTION_POST,
-            f"expected net {best.expected_net_copper / 10_000:.2f}g at "
-            f"{best.price_unit_copper / 10_000:.2f}g")
+    # Strictly below the wall means we are already the cheapest listing, so
+    # there is nothing to undercut; the question is only whether to hold.
+    if best.price_unit_copper < wall:
+        if p < PATIENT_P_BELOW:
+            return (ACTION_POST_PATIENT,
+                    f"cheapest at {_money(best.price_unit_copper)} under a "
+                    f"{_money(wall)} wall, with a {p:.1%} chance over "
+                    f"{inputs.horizon_days:.0f} days: hold the price rather than "
+                    f"discount a slow look", best)
+        return (ACTION_POST,
+                f"expected net {_money(best.expected_net_copper)} at "
+                f"{_money(best.price_unit_copper)}, under a "
+                f"{_money(wall)} wall", best)
+
+    # The estimate is not cheaper than the live wall.  The only price that
+    # makes the listing cheapest is the highest scored one below the wall.
+    cheaper = [c for c in scored if c.price_unit_copper < wall]
+    beat = max(cheaper, key=lambda c: c.price_unit_copper) if cheaper else None
+
+    # A slow rare look is held, not discounted.  Undercutting a collectible
+    # surrenders gold and buys almost no extra chance, because the buyer is
+    # looking for the appearance, not for the deal.
+    if p < PATIENT_P_BELOW or beat is None:
+        flags.append("the live wall is at or below the estimate")
+        if beat is None:
+            flags.append("no scored price is below the live wall")
+        target = (f"undercutting to {_money(beat.price_unit_copper)}"
+                  if beat is not None else "undercutting")
+        return (ACTION_MAINTAIN,
+                f"{_money(best.price_unit_copper)} is above the {_money(wall)} "
+                f"wall with only a {p:.1%} chance over "
+                f"{inputs.horizon_days:.0f} days; {target} would surrender gold "
+                f"without adding a sale", best)
+
+    flags.append("the recommendation sits below the live wall")
+    return (ACTION_UNDERCUT,
+            f"undercut the {_money(wall)} wall to "
+            f"{_money(beat.price_unit_copper)}: at a {p:.1%} chance over "
+            f"{inputs.horizon_days:.0f} days, being cheapest is what converts a "
+            f"fast-moving look", beat)
 
 
 def _uncertainty(expected: float, p: float, observations: int) -> float:

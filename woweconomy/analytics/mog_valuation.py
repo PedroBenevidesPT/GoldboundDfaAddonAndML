@@ -31,6 +31,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional, Sequence, Tuple
 
+from woweconomy.dbcompat import connect_store, store_exists
 from woweconomy.intel.prices import usable_price_sql
 
 COPPER_PER_GOLD: int = 10_000
@@ -126,13 +127,12 @@ def load_signals(db_path: Path,
     db_path = Path(db_path)
     ids = list(dict.fromkeys(int(i) for i in item_ids))
     out: Dict[int, PriceSignals] = {}
-    if not ids or not db_path.exists():
+    if not ids or not store_exists(db_path):
         return out
     stamp = int(now if now is not None else time.time())
     by_id = {i: PriceSignals(item_id=i, as_of=stamp) for i in ids}
 
-    con = sqlite3.connect(db_path)
-    con.row_factory = sqlite3.Row
+    con = connect_store(db_path, readonly=True)
     try:
         # ---- regional completed-sale aggregates -------------------------
         for start in range(0, len(ids), 900):
@@ -200,7 +200,7 @@ def load_signals(db_path: Path,
         con.close()
 
     # ---- live competition, from the validated snapshot rows -------------
-    if include_competition and intel_db is not None and Path(intel_db).exists():
+    if include_competition and intel_db is not None and store_exists(intel_db):
         _load_competition(Path(intel_db), ids, by_id)
 
     for item_id, signals in by_id.items():
@@ -211,13 +211,22 @@ def load_signals(db_path: Path,
 
 def _load_competition(intel_db: Path, ids: Sequence[int],
                       by_id: Dict[int, PriceSignals]) -> None:
-    con = sqlite3.connect(intel_db)
-    con.row_factory = sqlite3.Row
+    con = connect_store(intel_db, readonly=True)
     try:
+        # A snapshot database without the validation columns is simply not a
+        # competition source; the estimate must then say so rather than
+        # silently using unvalidated prices.  Checked explicitly instead of
+        # catching a "no such column" error, because the error class differs
+        # by backend (sqlite3.OperationalError vs psycopg2 ProgrammingError)
+        # and a catch that only works on one of them is how the two backends
+        # start disagreeing.
+        columns = {r[1] for r in con.execute("PRAGMA table_info(ah_auction)")}
+        if not columns or "price_status" not in columns:
+            return
         # The newest snapshot per realm: the current wall, not a history.
         heads = con.execute(
             "SELECT MAX(snapshot_id) AS sid FROM ah_snapshot").fetchall()
-        sids = [h["sid"] for h in heads if h["sid"]]
+        sids = [h[0] for h in heads if h[0]]
         if not sids:
             return
         placeholders = ",".join("?" * len(sids))
@@ -231,11 +240,11 @@ def _load_competition(intel_db: Path, ids: Sequence[int],
                 f" AND unit_price_copper < ?"
                 f" AND {usable_price_sql()}"
                 f" ORDER BY unit_price_copper",
-                list(sids) + list(chunk) + (SENTINEL_COPPER,)).fetchall()
+                tuple(sids) + tuple(chunk) + (SENTINEL_COPPER,)).fetchall()
             grouped: Dict[int, List[float]] = {}
             for row in rows:
-                grouped.setdefault(int(row["item_id"]), []).append(
-                    float(row["unit_price_copper"]))
+                grouped.setdefault(int(row[0]), []).append(
+                    float(row[1]))
             for item_id, prices in grouped.items():
                 if item_id not in by_id:
                     continue
@@ -245,11 +254,6 @@ def _load_competition(intel_db: Path, ids: Sequence[int],
                     competition_copper=ordered[0],
                     competition_count=len(ordered),
                     competition_median_copper=ordered[len(ordered) // 2])
-    except sqlite3.OperationalError:
-        # A snapshot database without the validation columns is simply not a
-        # competition source; the estimate must then say so rather than
-        # silently using unvalidated prices.
-        return
     finally:
         con.close()
 

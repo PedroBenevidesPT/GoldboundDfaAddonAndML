@@ -29,9 +29,11 @@ from .pg import PgConnection, PgCursor, Row
 
 __all__ = [
     "connect",
+    "connect_store",
     "backend",
     "database_url",
     "is_postgres",
+    "store_exists",
     "Row",
     "PgConnection",
     "PgCursor",
@@ -99,3 +101,45 @@ def connect(
     if row_factory:
         con.row_factory = Row
     return con
+
+
+def store_exists(target: Union[str, Path, None]) -> bool:
+    """Whether the store ``target`` names is available.
+
+    On Postgres the answer is always yes: the tables are in the shared
+    database, and a ``.exists()`` check on the SQLite path would report a
+    healthy store as missing and make callers skip work silently.
+    """
+    if backend() == "postgres":
+        return True
+    return target is not None and Path(target).exists()
+
+
+def connect_store(target: Union[str, Path, None] = None, *,
+                  readonly: bool = False):
+    """Open a store that may be a SQLite file or the shared Postgres.
+
+    This is the call site the rest of the codebase should use for a *data*
+    store (the TSM market file, the Blizzard snapshot file).  It exists so
+    that replacing ``sqlite3.connect(path)`` with one function is enough to
+    make a reader backend-agnostic, and so that ``row_factory`` is set to the
+    right class -- ``sqlite3.Row`` on SQLite, :class:`Row` on Postgres.
+    Setting ``sqlite3.Row`` on a ``PgConnection`` silently disables
+    name-based access, which is the kind of failure that shows up as a
+    ``KeyError`` in a report rather than at the boundary.
+
+    ``readonly`` opens a SQLite file with ``mode=ro``.  Postgres has no
+    equivalent per-connection flag here; the guarantee comes from the caller
+    issuing only reads.
+    """
+    if backend() == "sqlite":
+        if target is None:
+            raise ValueError("a database path is required for the sqlite backend")
+        if readonly:
+            con = sqlite3.connect(f"file:{target}?mode=ro", uri=True,
+                                  timeout=60.0)
+        else:
+            con = sqlite3.connect(str(target), timeout=60.0)
+        con.row_factory = sqlite3.Row
+        return con
+    return connect(None)

@@ -73,7 +73,13 @@ def test_a_higher_price_can_beat_a_lower_one_on_expected_net_gold():
 
 
 def test_the_recommendation_is_the_highest_expected_net_gold_candidate():
-    plan = evaluate(_input(sold_per_day=0.10))
+    """With nothing in the way, expected net gold picks the price.
+
+    ``competition_count=0`` is the point of this test: the rule being checked
+    is the expected-net optimum, and a live wall legitimately overrides it
+    (that is what the wall tests below are about).
+    """
+    plan = evaluate(_input(sold_per_day=0.10, competition_count=0))
     scored = [c for c in plan.candidates
               if c.measured and c.expected_net_copper is not None]
     best = max(scored, key=lambda c: c.expected_net_copper)
@@ -109,7 +115,7 @@ def test_a_price_above_the_measured_level_is_listed_but_not_scored():
 
 def test_a_certain_sale_posts_at_the_measured_level_not_above_it():
     """With no measured upside, the best defensible price is the estimate."""
-    plan = evaluate(_input(sold_per_day=50.0))
+    plan = evaluate(_input(sold_per_day=50.0, competition_count=0))
     assert plan.price_unit_copper == pytest.approx(ESTIMATE)
 
 
@@ -286,8 +292,43 @@ def test_a_price_under_the_wall_is_posted_without_an_undercut():
 
 
 def test_every_candidate_price_is_scored():
-    plan = evaluate(_input(sold_per_day=0.1))
+    plan = evaluate(_input(sold_per_day=0.1, competition_count=0))
     assert len(plan.candidates) == len(PRICE_CANDIDATES)
     prices = [c.price_unit_copper for c in plan.candidates]
     assert prices == sorted(prices)
     assert prices[0] == pytest.approx(ESTIMATE * PRICE_CANDIDATES[0])
+
+
+def test_a_live_wall_adds_the_price_that_beats_it():
+    """The band cannot express an undercut, so the beating price is scored.
+
+    Without it, ``undercut`` could only ever be recommended at a price at or
+    above the wall it is meant to beat -- a plan the addon cannot act on.
+    """
+    plan = evaluate(_input(sold_per_day=2.0, competition_unit_copper=ESTIMATE,
+                           competition_count=1))
+    prices = [c.price_unit_copper for c in plan.candidates]
+    assert ESTIMATE - 1 in prices
+    assert len(prices) == len(PRICE_CANDIDATES) + 1
+
+
+def test_an_undercut_carries_a_price_below_the_wall():
+    plan = evaluate(_input(sold_per_day=2.0,
+                           competition_unit_copper=ESTIMATE,
+                           competition_count=1))
+    assert plan.action == ACTION_UNDERCUT
+    assert plan.price_unit_copper < ESTIMATE
+    assert plan.price_unit_copper == ESTIMATE - 1
+    # the stored expected net belongs to the price that was chosen
+    chosen = next(c for c in plan.candidates
+                  if c.price_unit_copper == plan.price_unit_copper)
+    assert plan.expected_net_copper == pytest.approx(chosen.expected_net_copper)
+
+
+def test_a_maintained_price_above_the_wall_states_the_undercut_it_refused():
+    plan = evaluate(_input(sold_per_day=0.02,
+                           competition_unit_copper=ESTIMATE,
+                           competition_count=1))
+    assert plan.action == ACTION_MAINTAIN
+    assert "undercutting to" in plan.reason
+    assert "without adding a sale" in plan.reason
