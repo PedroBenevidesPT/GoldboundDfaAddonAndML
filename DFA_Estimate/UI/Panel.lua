@@ -155,6 +155,9 @@ function Panel.BuildStatus()
 				lines[#lines + 1] = ("  last fill: item %s -> %s"):format(
 					tostring(d.lastFill.itemId), Money(d.lastFill.price))
 			end
+			if bridge.PostingHoursStatus then
+				lines[#lines + 1] = "  " .. bridge.PostingHoursStatus()
+			end
 		end
 	end
 	local lootappraiser = Addon.DFAEstimateLootAppraiser
@@ -772,6 +775,30 @@ function Panel.HandleCommand(msg)
 				Panel.Say("the price field is filled when you click an item.  "
 					.. "Nothing is posted: you still click Post.")
 			end
+		end
+		return
+	end
+	-- how long to post for.  The auction house offers three durations and
+	-- they differ in deposit and in how long the item has to find a buyer,
+	-- so this is a setting rather than something the addon decides.
+	if msg and (msg:lower() == "posthours" or msg:lower():match("^posthours%s")) then
+		local argument = msg:lower():match("^posthours%s+(%S+)")
+		if bridge and bridge.SetPostingHours then
+			if argument == nil or argument == "status" then
+				Panel.Say(bridge.PostingHoursStatus())
+				Panel.Say("  set it with |cffff0000/dfaestimate posthours 12|r, "
+					.. "|cffff0000 24|r or |cffff0000 48|r")
+				return
+			end
+			local ok, message = bridge.SetPostingHours(tonumber(argument))
+			Panel.Say(message)
+			if ok then
+				Panel.Say("  this changes the duration, not the price: a longer "
+					.. "posting costs a larger deposit and gives the item longer "
+					.. "to sell")
+			end
+		else
+			Panel.Say("the Auctionator bridge is not loaded (UI/Auctionator.lua)")
 		end
 		return
 	end
