@@ -345,15 +345,33 @@ class SyncStats:
 # --------------------------------------------------------------------------- #
 
 def connect(path: str | Path) -> sqlite3.Connection:
-    con = sqlite3.connect(path, timeout=60)
-    con.execute("PRAGMA journal_mode=WAL")
-    con.execute("PRAGMA synchronous=NORMAL")
-    con.execute("PRAGMA temp_store=MEMORY")
+    """Open the snapshot store, on whichever backend is configured.
+
+    The TSM sweep used to write a local ``tsm_markets.db`` while everything
+    else read the shared database -- the split brain this project is removing.
+    The pragmas are SQLite tuning and are applied only there; Postgres has its
+    own durability settings and a ``journal_mode`` it does not have.
+
+    The schema is created here on SQLite and left to Alembic on Postgres: a
+    ``CREATE TABLE IF NOT EXISTS`` outside the migrations would let a fresh
+    database drift from the baseline that is supposed to define it.
+    """
+    from woweconomy.dbcompat import connect_store, is_postgres
+
+    con = connect_store(path)
+    if not is_postgres():
+        con.execute("PRAGMA journal_mode=WAL")
+        con.execute("PRAGMA synchronous=NORMAL")
+        con.execute("PRAGMA temp_store=MEMORY")
     ensure_schema(con)
     return con
 
 
 def ensure_schema(con: sqlite3.Connection) -> None:
+    from woweconomy.dbcompat import is_postgres
+
+    if is_postgres():
+        return
     con.executescript(SCHEMA)
     # Bases criadas antes do ETag existirem: o CREATE TABLE IF NOT EXISTS acima
     # nao acrescenta colunas a uma tabela que ja la esta.
@@ -628,12 +646,15 @@ def import_content(con: sqlite3.Connection, task: Task, content: bytes,
             fh.write(content)
         path = str(dest)
 
-    cur = con.execute(
+    from woweconomy.dbcompat import insert_returning_id
+
+    snapshot_id = insert_returning_id(
+        con,
         "INSERT INTO tsm_snapshot(scope, kind, updated_at, fetched_at, checksum, "
         "rows, changed, path, etag, last_modified) VALUES(?,?,?,?,?,?,?,?,?,?)",
         (task.scope, task.kind, updated_at, fetched_at, checksum,
-         len(records), 0, path, etag, last_modified))
-    snapshot_id = int(cur.lastrowid)
+         len(records), 0, path, etag, last_modified),
+        column="snapshot_id")
 
     changed = _upsert_current(con, task, records, updated_at, fetched_at,
                               snapshot_id)

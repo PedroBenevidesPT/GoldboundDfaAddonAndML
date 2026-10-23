@@ -30,6 +30,7 @@ from .pg import PgConnection, PgCursor, Row
 __all__ = [
     "connect",
     "connect_store",
+    "insert_returning_id",
     "backend",
     "database_url",
     "is_postgres",
@@ -101,6 +102,23 @@ def connect(
     if row_factory:
         con.row_factory = Row
     return con
+
+
+def insert_returning_id(con, sql: str, params=(), column: str = "id") -> int:
+    """Run an INSERT and return the key the database generated.
+
+    SQLite exposes it as ``cursor.lastrowid``; Postgres has no such thing, so
+    the statement is rewritten to ``INSERT ... RETURNING`` rather than the id
+    being guessed or the row being looked up afterwards (which would be racy
+    on a table two writers can touch).  ``column`` is the key's name because
+    ``RETURNING`` has to name it.
+    """
+    if is_postgres():
+        row = con.execute(f"{sql} RETURNING {column}", params).fetchone()
+        if row is None:
+            raise RuntimeError(f"INSERT returned no {column}: {sql[:120]}")
+        return int(row[0])
+    return int(con.execute(sql, params).lastrowid or 0)
 
 
 def store_exists(target: Union[str, Path, None]) -> bool:

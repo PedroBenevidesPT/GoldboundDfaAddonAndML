@@ -31,6 +31,7 @@ panel close a 48-hour horizon; ten sweeps in one afternoon is not.  The
 defaults therefore favour ``fetch`` heavily and the expensive jobs lightly:
 
     fetch        every 1 h   -- all 92 books plus the commodity book
+    tsm_csv      every 6 h   -- the 187 TSM CSVs, ten seconds apart
     aggregates   every 6 h   -- the statistical record, rebuilt for a window
     strategy     every 6 h   -- the posting plan, from the current snapshot
     sentinel     every 24 h  -- retrain, gated by chronological validation
@@ -121,6 +122,14 @@ def default_tasks() -> Dict[str, TaskDef]:
                 ["scripts/intel.py", "ah-fetch", "--all-realms",
                  "--commodities", "--sync-realms"],
                 every_s=HOUR, timeout_s=1800),
+        # 187 CSVs (92 connected-realm groups plus 3 region files) at the ten
+        # seconds between requests TSM needs to not start answering 429.  The
+        # sweep is conditional (ETag/If-Modified-Since), so a run where TSM has
+        # not republished costs 187 round trips and no bodies.  187 x 10 s is
+        # 31 minutes, so the timeout is 90 to leave room for the downloads.
+        TaskDef("tsm_csv",
+                ["scripts/fetch_tsm_snapshots.py", "--delay", "10"],
+                every_s=6 * HOUR, timeout_s=5400),
         TaskDef("aggregates",
                 # ``--last-days``, not ``--days``: the latter names specific
                 # days and would silently rebuild everything instead of the

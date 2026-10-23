@@ -230,3 +230,60 @@ def test_a_long_429_aborts_and_writes_the_cooldown(con, monkeypatch):
     assert stats.failed == 1 and stats.aborted
     assert "429" in stats.errors[0]
     assert ts.cooldown_until(con) > 3500          # a próxima passagem não tenta nada
+
+
+# ----------------------------------------------------------------------
+# the store is whichever backend is configured
+# ----------------------------------------------------------------------
+
+
+def test_the_sweep_writes_to_the_configured_backend(tmp_path):
+    """The sweep used to write a local tsm_markets.db unconditionally.
+
+    Everything else reads the shared database, so a sweep that wrote a local
+    file would be the split brain this project is removing -- the fetch would
+    look like it worked and nothing downstream would see the data.
+    """
+    import woweconomy.services.tsm_snapshots as module
+
+    path = tmp_path / "store.db"
+    con = module.connect(path)
+    try:
+        names = {r[0] for r in con.execute(
+            "SELECT name FROM sqlite_master WHERE type = 'table'")}
+        assert "tsm_snapshot" in names
+        # the SQLite-only tuning must not be sent to a backend that has no
+        # such pragma; on SQLite it is what makes a concurrent read work
+        assert con.execute("PRAGMA journal_mode").fetchone()[0].lower() == "wal"
+    finally:
+        con.close()
+
+
+def test_an_insert_gets_the_key_the_database_generated(tmp_path):
+    """SQLite's lastrowid has no Postgres equivalent; the helper covers both."""
+    from woweconomy.dbcompat import insert_returning_id
+
+    path = tmp_path / "store.db"
+    con = ts.connect(path)
+    try:
+        first = insert_returning_id(
+            con,
+            "INSERT INTO tsm_snapshot(scope, kind, updated_at, fetched_at,"
+            " checksum, rows, changed, path, etag, last_modified)"
+            " VALUES(?,?,?,?,?,?,?,?,?,?)",
+            ("a", "realm_items", "t", "t", "c1", 1, 0, "", "", ""),
+            column="snapshot_id")
+        second = insert_returning_id(
+            con,
+            "INSERT INTO tsm_snapshot(scope, kind, updated_at, fetched_at,"
+            " checksum, rows, changed, path, etag, last_modified)"
+            " VALUES(?,?,?,?,?,?,?,?,?,?)",
+            ("b", "realm_items", "t", "t", "c2", 1, 0, "", "", ""),
+            column="snapshot_id")
+        assert first > 0
+        assert second == first + 1
+        stored = {r[0] for r in con.execute(
+            "SELECT snapshot_id FROM tsm_snapshot")}
+        assert stored == {first, second}
+    finally:
+        con.close()

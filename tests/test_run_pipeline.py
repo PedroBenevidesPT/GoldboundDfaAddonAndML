@@ -65,6 +65,19 @@ def test_the_strategy_stage_builds_the_plan_after_a_fetch(con):
     assert "fetch" in task.after
 
 
+def test_the_tsm_csv_sweep_is_scheduled_at_ten_seconds(tmp_path):
+    """187 files ten seconds apart is 31 minutes; the timeout must allow it."""
+    task = rp.default_tasks()["tsm_csv"]
+    assert task.argv[:2] == ["scripts/fetch_tsm_snapshots.py", "--delay"]
+    assert task.argv[2] == "10"
+    files = 187
+    assert task.timeout_s > files * 10, (
+        "a sweep that outlives its own timeout is killed halfway and the "
+        "lease is held until the TTL expires")
+    # the lease must outlive the task, or a long sweep looks abandoned
+    assert task.lease_ttl > task.timeout_s
+
+
 def test_everything_is_due_the_first_time(con):
     tasks = rp.default_tasks()
     # `after` gates are satisfied because nothing has run, so only tasks
