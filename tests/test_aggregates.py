@@ -537,3 +537,152 @@ def test_coverage_reports_what_exists(dbs):
 
 def test_coverage_of_a_missing_file_is_not_an_error(dbs, tmp_path):
     assert coverage(tmp_path / "nope.sqlite") == {"exists": False}
+
+
+# ---------------------------------------------------------------------------
+# the rebuild window
+# ---------------------------------------------------------------------------
+
+def test_a_window_rebuilds_only_the_days_it_names(dbs):
+    """``days=1`` touches today and leaves every earlier partition alone.
+
+    This is the property that makes a daily run cheap: the cost must be one
+    day of auctions, not the whole history.  The earlier partitions must still
+    hold their original values, which is what distinguishes "not rebuilt" from
+    "rebuilt to the same numbers".
+    """
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    build(intel, tsm, agg)
+
+    con = sqlite3.connect(agg)
+    before = con.execute(
+        "SELECT day, source_checksum FROM aggregate_partition"
+        " WHERE aggregate='daily_item_price' ORDER BY day").fetchall()
+    con.close()
+    assert len(before) == 3
+
+    report = build(intel, tsm, agg, only=["daily_item_price"], days=1)
+    assert report.window["daily_item_price"] == ["2026-10-22"]
+
+    con = sqlite3.connect(agg)
+    after = con.execute(
+        "SELECT day, source_checksum FROM aggregate_partition"
+        " WHERE aggregate='daily_item_price' ORDER BY day").fetchall()
+    con.close()
+    # Every partition still exists with the same content fingerprint; only the
+    # last day was in scope, and it had not changed, so nothing was written.
+    assert before == after
+    assert report.rows_written["daily_item_price"] == 0
+    assert report.partitions_skipped["daily_item_price"] == 1
+
+
+def test_a_window_does_not_invent_a_partition_for_a_day_with_no_source(dbs):
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    report = build(intel, tsm, agg, only=["daily_item_price"],
+                   since="2030-01-01")
+    assert report.rows_written.get("daily_item_price", 0) == 0
+    assert any("no source day" in e for e in report.errors)
+    con = sqlite3.connect(agg)
+    assert con.execute("SELECT COUNT(*) FROM daily_item_price").fetchone()[0] == 0
+    con.close()
+
+
+def test_without_a_window_every_day_is_built(dbs):
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    report = build(intel, tsm, agg, only=["daily_item_price"])
+    assert report.window.get("daily_item_price", []) == []
+    con = sqlite3.connect(agg)
+    days = [r[0] for r in con.execute(
+        "SELECT DISTINCT day FROM daily_item_price ORDER BY day")]
+    con.close()
+    assert days == ["2026-10-20", "2026-10-21", "2026-10-22"]
+
+
+def test_a_window_that_contains_an_incomplete_day_still_rebuilds_it(dbs):
+    """Yesterday may still be receiving snapshots; a window of 2 must cover it."""
+    tsm, intel, agg, tc, _ic = dbs
+    _seed(tc)
+    build(intel, tsm, agg, only=["daily_item_price"], days=1)
+    # A new observation arrives on the last day, after the first build.
+    tc.execute(
+        "INSERT INTO tsm_snapshot (snapshot_id, scope, kind, updated_at, rows,"
+        " changed) VALUES (5, 'realm-a', 'realm_items',"
+        " '2026-10-22T22:00:00Z', 100, 1)")
+    tc.execute(
+        "INSERT INTO tsm_price_change (snapshot_id, scope, kind, key_id,"
+        " market_value, min_buyout, avg_sale_price, sale_rate, sold_per_day)"
+        " VALUES (5, 'realm-a', 'realm_items', 1, 999, 900, 950, 0.9, 4.0)")
+    tc.commit()
+
+    report = build(intel, tsm, agg, only=["daily_item_price"], days=1)
+    assert report.rows_written["daily_item_price"] == 1
+    con = sqlite3.connect(agg)
+    last = con.execute(
+        "SELECT last_market_value, n_observations FROM daily_item_price"
+        " WHERE day='2026-10-22' AND scope='realm-a' AND item_id=1").fetchone()
+    con.close()
+    assert last == (999, 2)
+
+
+# ---------------------------------------------------------------------------
+# the commodities market
+# ---------------------------------------------------------------------------
+
+def test_a_snapshot_without_a_realm_is_the_commodities_market(dbs):
+    """The region-wide commodities snapshot has realm='' and a slug.
+
+    Keying it on the blank realm would file it under a name that reads as
+    "unknown" and that no consumer can match against a real market.  It is a
+    market in its own right and must be named as one.
+    """
+    tsm, intel, agg, _tc, ic = dbs
+    ic.execute(
+        "INSERT INTO ah_snapshot (snapshot_id, realm, realm_slug, captured_at)"
+        " VALUES ('c1', '', 'commodities', ?)", (_epoch("2026-10-20T09:00:00Z"),))
+    ic.execute(
+        "INSERT INTO ah_auction (snapshot_id, auction_key, item_id, quantity,"
+        " unit_price_copper, total_price_copper, is_commodity)"
+        " VALUES ('c1','k1',124124,1,2500,2500,1)")
+    ic.commit()
+    build(intel, tsm, agg)
+
+    con = sqlite3.connect(agg)
+    rows = con.execute(
+        "SELECT realm, n_auctions, n_commodity FROM daily_ah_auction"
+        " WHERE day='2026-10-20'").fetchall()
+    con.close()
+    assert rows == [("commodities", 1, 1)]
+
+
+def test_two_snapshots_of_one_market_are_one_group(dbs):
+    """A market's rows must not be split by another market sorting between them."""
+    tsm, intel, agg, _tc, ic = dbs
+    ic.executemany(
+        "INSERT INTO ah_snapshot (snapshot_id, realm, realm_slug, captured_at)"
+        " VALUES (?,?,?,?)",
+        [("s1", "alpha", "alpha", _epoch("2026-10-20T08:00:00Z")),
+         ("s2", "beta", "beta", _epoch("2026-10-20T09:00:00Z")),
+         ("s3", "alpha", "", _epoch("2026-10-20T10:00:00Z"))],
+    )
+    ic.executemany(
+        "INSERT INTO ah_auction (snapshot_id, auction_key, item_id, quantity,"
+        " unit_price_copper, total_price_copper, is_commodity)"
+        " VALUES (?,?,?,?,?,?,0)",
+        [("s1", "k1", 10, 1, 100, 100),
+         ("s2", "k1", 10, 1, 200, 200),
+         ("s3", "k1", 10, 1, 300, 300)],
+    )
+    ic.commit()
+    build(intel, tsm, agg)
+
+    con = sqlite3.connect(agg)
+    rows = con.execute(
+        "SELECT realm, n_auctions, sum_unit_price FROM daily_ah_auction"
+        " WHERE day='2026-10-20' AND item_id=10 ORDER BY realm").fetchall()
+    con.close()
+    # alpha's two snapshots (one with a slug, one without) are one group.
+    assert rows == [("alpha", 2, 400), ("beta", 1, 200)]
+

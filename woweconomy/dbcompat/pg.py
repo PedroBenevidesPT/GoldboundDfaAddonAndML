@@ -22,6 +22,7 @@ from .dialect import (
     is_pragma,
     known_pragma,
     parse_pragma,
+    returns_rows,
     split_statements,
     to_pyformat,
     translate,
@@ -29,6 +30,10 @@ from .dialect import (
 )
 
 __all__ = ["Row", "PgCursor", "PgConnection"]
+
+#: Rows a server-side cursor pulls per round trip when the caller iterates
+#: without asking for a size.  ``fetchmany(n)`` uses ``n``, not this.
+DEFAULT_STREAM_BATCH = 5_000
 
 # A single-tuple INSERT, optionally followed by ON CONFLICT.  This is the shape
 # psycopg2's execute_values can batch; anything else falls back to executemany.
@@ -86,14 +91,36 @@ class Row:
 
 
 class PgCursor:
-    """Wraps a psycopg2 cursor to look like ``sqlite3.Cursor``."""
+    """Wraps a psycopg2 cursor to look like ``sqlite3.Cursor``.
 
-    def __init__(self, connection: "PgConnection") -> None:
+    Two execution modes, chosen by the statement, not by the caller's guess:
+
+    * a **row-returning** statement runs on a *named* (server-side) cursor, so
+      rows are fetched in pages and the client never holds the result set.
+      Measured on the real 17.4M-row auction join: 85 MB peak instead of
+      3,495 MB, for 17.2 s instead of 13.9 s;
+    * anything else -- and any statement run with ``buffered=True`` -- runs on
+      a plain cursor, which is one round trip and keeps ``rowcount``.
+
+    The plain path is what made the first aggregates build peak at 12.6 GB:
+    psycopg2 buffers the *entire* result set client-side inside ``execute()``,
+    so a plain cursor over the auction join allocated 3.5 GB before the first
+    ``fetchmany`` was ever called.  Streaming is therefore the default for
+    reads, and the extra round trip is paid only where the result is small
+    enough that it does not matter.
+    """
+
+    def __init__(self, connection: "PgConnection",
+                 *, buffered: bool = False) -> None:
         self.connection = connection
-        self._cur = connection._raw.cursor()
+        self._buffered_mode = buffered
+        self._cur: Any = None
+        self._server_side = False
         self._rows: Optional[list[Any]] = None
+        self._pos = 0
         self._keys: Optional[list[str]] = None
         self._rowcount = -1
+        self._done = False
         self._closed = False
 
     # -- result shaping ----------------------------------------------------
@@ -102,6 +129,19 @@ class PgCursor:
             keys = self._keys
             return [Row(keys, r) for r in rows]
         return list(rows)
+
+    def _ensure_keys(self) -> None:
+        """Learn the column names from the first page of a streamed result.
+
+        A server-side cursor has no ``description`` until a ``FETCH`` has run,
+        so ``row_factory = Row`` cannot be honoured until then.  Capturing it
+        here keeps ``Row`` working without forcing the whole result to be
+        buffered first.
+        """
+        if self._keys is None and self._cur is not None:
+            desc = self._cur.description
+            if desc:
+                self._keys = [d[0] for d in desc]
 
     # -- execution ---------------------------------------------------------
     def execute(self, sql: str, params: Optional[Sequence[Any]] = None):
@@ -126,9 +166,27 @@ class PgCursor:
                     f" parameters: {sql.strip()[:200]}"
                 )
 
-        self._cur.execute(statement, args)
-        self._rowcount = self._cur.rowcount
-        self._capture_description()
+        self._server_side = (not self._buffered_mode) and returns_rows(statement)
+        if self._server_side:
+            self._cur = self.connection._raw.cursor(
+                name=self.connection.next_cursor_name())
+            if self.connection._raw.autocommit:
+                # psycopg2 refuses a named cursor outside a transaction.  On
+                # an autocommit connection the DECLARE therefore runs WITH
+                # HOLD, which Postgres satisfies by materialising the result
+                # when the implicit transaction commits.  Client memory stays
+                # bounded either way; the materialisation is on the server,
+                # which is the side that has the rows to begin with.
+                self._cur.withhold = True
+            self._cur.itersize = self.connection.stream_batch
+            self._cur.execute(statement, args)
+            self._keys = None
+            self._rowcount = -1
+        else:
+            self._cur = self.connection._raw.cursor()
+            self._cur.execute(statement, args)
+            self._rowcount = self._cur.rowcount
+            self._capture_description()
         return self
 
     def _execute_pragma(self, sql: str):
@@ -177,6 +235,7 @@ class PgCursor:
             self._keys = []
             self._rows = []
             return self
+        self._cur = self.connection._raw.cursor()
 
         # psycopg2's executemany sends one statement per row, which is a
         # round-trip per row -- the auction ingest alone is ~3M rows.  For the
@@ -197,23 +256,76 @@ class PgCursor:
         return self
 
     # -- fetching ----------------------------------------------------------
-    def _materialise(self) -> list[Any]:
-        if self._rows is None:
-            self._rows = self._shape(self._cur.fetchall())
-        return self._rows
+    #
+    # A streamed result is pulled in pages, so peak memory is one page.  A
+    # buffered result (PRAGMA emulation, or ``buffered=True``) is a list with
+    # a cursor position, because sqlite3's ``fetchone`` advances and the old
+    # implementation here did not -- two calls returned the same row.
+    def _page(self, size: int) -> list[Any]:
+        """Next ``size`` rows from a server-side cursor."""
+        if self._done or self._cur is None:
+            return []
+        batch = self._cur.fetchmany(size)
+        if not batch:
+            self._done = True
+            # psycopg2 reports the total once a named cursor is exhausted.
+            if self._rowcount < 0:
+                self._rowcount = self._cur.rowcount
+            return []
+        self._ensure_keys()
+        return self._shape(batch)
+
+    def _buffered_rest(self) -> list[Any]:
+        rows = self._rows or []
+        rest = rows[self._pos:]
+        self._pos = len(rows)
+        return rest
 
     def fetchone(self):
-        rows = self._materialise()
-        return rows[0] if rows else None
+        if self._server_side:
+            page = self._page(1)
+            return page[0] if page else None
+        if self._rows is None:
+            self._rows = self._shape(self._cur.fetchall())
+        if self._pos >= len(self._rows):
+            return None
+        row = self._rows[self._pos]
+        self._pos += 1
+        return row
 
     def fetchmany(self, size: int = 1) -> list[Any]:
-        return self._materialise()[:size]
+        if self._server_side:
+            return self._page(size)
+        if self._rows is None:
+            self._rows = self._shape(self._cur.fetchall())
+        out = self._rows[self._pos:self._pos + size]
+        self._pos += len(out)
+        return out
 
     def fetchall(self) -> list[Any]:
-        return list(self._materialise())
+        if self._server_side:
+            out: list[Any] = []
+            while True:
+                page = self._page(self.connection.stream_batch)
+                if not page:
+                    return out
+                out.extend(page)
+        if self._rows is None:
+            self._rows = self._shape(self._cur.fetchall())
+        return self._buffered_rest()
 
     def __iter__(self) -> Iterator[Any]:
-        return iter(self._materialise())
+        if self._server_side:
+            def pages() -> Iterator[Any]:
+                while True:
+                    page = self._page(self.connection.stream_batch)
+                    if not page:
+                        return
+                    yield from page
+            return pages()
+        if self._rows is None:
+            self._rows = self._shape(self._cur.fetchall())
+        return iter(self._buffered_rest())
 
     def __next__(self):
         raise TypeError("cursor is not an iterator; iterate over the cursor instead")
@@ -234,13 +346,25 @@ class PgCursor:
     @property
     def description(self):
         if self._keys is None:
+            self._ensure_keys()
+        if self._keys is None:
             return None
         return [(k, None, None, None, None, None, None) for k in self._keys]
 
     def close(self) -> None:
         if not self._closed:
-            self._cur.close()
+            if self._cur is not None:
+                self._cur.close()
             self._closed = True
+
+    def __del__(self) -> None:
+        # A named cursor is a server-side resource; leaving one open because
+        # the caller used con.execute(...).fetchone() would accumulate them on
+        # an autocommit connection, where they are held WITH HOLD.
+        try:
+            self.close()
+        except Exception:
+            pass
 
     def __enter__(self) -> "PgCursor":
         return self
@@ -265,11 +389,22 @@ class PgConnection:
         "integrity_check": ("integrity_check",),
     }
 
-    def __init__(self, raw, *, is_postgres: bool = True) -> None:
+    def __init__(self, raw, *, is_postgres: bool = True,
+                 stream_batch: int = DEFAULT_STREAM_BATCH) -> None:
         self._raw = raw
         self.row_factory: Any = None
         self._pk_cache: dict[str, tuple[str, ...]] = {}
         self._closed = False
+        #: Rows pulled per round trip when a result is iterated without an
+        #: explicit size.  Large enough to amortise the round trip, small
+        #: enough that peak memory does not depend on the result size.
+        self.stream_batch = max(1, int(stream_batch))
+        self._cursor_seq = 0
+
+    def next_cursor_name(self) -> str:
+        """A unique server-side cursor name for this connection."""
+        self._cursor_seq += 1
+        return f"pgc_{id(self) & 0xffffff:x}_{self._cursor_seq}"
 
     # -- catalog -----------------------------------------------------------
     def primary_key(self, table: str) -> tuple[str, ...]:
@@ -397,11 +532,14 @@ class PgConnection:
         raise UnsupportedSQL(f"PRAGMA {name} is not emulated")
 
     # -- execution ---------------------------------------------------------
-    def cursor(self) -> PgCursor:
-        return PgCursor(self)
+    def cursor(self, *, buffered: bool = False) -> PgCursor:
+        """A cursor.  Reads stream by default; ``buffered=True`` forces the
+        one-round-trip path for a lookup whose result is known to be tiny."""
+        return PgCursor(self, buffered=buffered)
 
-    def execute(self, sql: str, params: Optional[Sequence[Any]] = None) -> PgCursor:
-        return self.cursor().execute(sql, params)
+    def execute(self, sql: str, params: Optional[Sequence[Any]] = None, *,
+                buffered: bool = False) -> PgCursor:
+        return self.cursor(buffered=buffered).execute(sql, params)
 
     def executemany(self, sql: str, seq_of_params) -> PgCursor:
         return self.cursor().executemany(sql, seq_of_params)

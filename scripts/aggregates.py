@@ -53,6 +53,10 @@ def main(argv: Optional[List[str]] = None) -> int:
                     help="build only this aggregate (repeatable)")
     ap.add_argument("--force", action="store_true",
                     help="rebuild partitions even when unchanged")
+    ap.add_argument("--last-days", type=int, default=None,
+                    help="build only the N most recent days (a daily run uses 2)")
+    ap.add_argument("--since", default=None,
+                    help="build only days on or after this YYYY-MM-DD")
     ap.add_argument("--days", action="append",
                     help="validate only these days (YYYY-MM-DD, repeatable)")
     ap.add_argument("--limit-days", type=int, default=3,
@@ -99,7 +103,8 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     if args.command == "build":
         report = build(args.intel_db, args.tsm_db, args.aggregate_db,
-                       only=args.only, force=args.force)
+                       only=args.only, force=args.force,
+                       days=args.last_days, since=args.since)
         print(report.summary())
         print()
         print(render_coverage(args.aggregate_db))

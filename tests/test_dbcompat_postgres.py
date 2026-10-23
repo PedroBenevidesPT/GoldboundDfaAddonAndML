@@ -472,3 +472,98 @@ def test_a_bad_backend_name_is_rejected(monkeypatch):
     monkeypatch.setenv("WOW_PIPELINE_BACKEND", "mysql")
     with pytest.raises(ValueError, match="not one of"):
         connect("x.sqlite")
+
+
+# ---------------------------------------------------------------------------
+# reading in pages
+# ---------------------------------------------------------------------------
+#
+# A plain psycopg2 cursor buffers the whole result set client-side inside
+# execute(), so a read over the 17M-row auction join allocated 3.5 GB before
+# the first fetchmany() ran.  Reads therefore stream from a server-side cursor
+# by default.  These tests pin the *semantics* -- which is what a caller can
+# observe -- rather than the mechanism, so the implementation stays free to
+# change as long as SQLite and Postgres keep agreeing.
+
+def _seed_rows(con, n):
+    con.executemany(
+        "INSERT INTO kv (k, v, n) VALUES (?, ?, ?)",
+        [(f"k{i:05d}", f"v{i}", i) for i in range(n)],
+    )
+    con.commit()
+
+
+@requires_pg
+def test_iterating_a_result_agrees_between_backends(sqlite_con, pg_con):
+    _seed_rows(sqlite_con, 250)
+    _seed_rows(pg_con, 250)
+    q = "SELECT k, n FROM kv ORDER BY n"
+    assert ([tuple(r) for r in sqlite_con.execute(q)]
+            == [tuple(r) for r in pg_con.execute(q)])
+    assert len(list(pg_con.execute(q))) == 250
+
+
+@requires_pg
+def test_fetchone_advances_on_both_backends(sqlite_con, pg_con):
+    _seed_rows(sqlite_con, 5)
+    _seed_rows(pg_con, 5)
+    q = "SELECT k FROM kv ORDER BY k"
+    s, p = sqlite_con.execute(q), pg_con.execute(q)
+    for _ in range(5):
+        assert tuple(s.fetchone()) == tuple(p.fetchone())
+    assert s.fetchone() is None
+    assert p.fetchone() is None
+
+
+@requires_pg
+def test_fetchmany_then_fetchall_returns_the_remainder_on_both_backends(
+        sqlite_con, pg_con):
+    _seed_rows(sqlite_con, 40)
+    _seed_rows(pg_con, 40)
+    q = "SELECT n FROM kv ORDER BY n"
+    s, p = sqlite_con.execute(q), pg_con.execute(q)
+    assert [tuple(r) for r in s.fetchmany(7)] == [tuple(r) for r in p.fetchmany(7)]
+    assert ([tuple(r) for r in s.fetchall()]
+            == [tuple(r) for r in p.fetchall()])
+
+
+@requires_pg
+def test_a_row_is_addressable_by_name_on_a_streamed_read(pg_con):
+    _seed_rows(pg_con, 3)
+    for row in pg_con.execute("SELECT k, n FROM kv ORDER BY n"):
+        assert row["k"] == f"k{row['n']:05d}"
+
+
+@requires_pg
+def test_a_buffered_read_returns_the_same_rows_as_a_streamed_one(pg_con):
+    _seed_rows(pg_con, 120)
+    q = "SELECT k, n FROM kv ORDER BY n"
+    streamed = [tuple(r) for r in pg_con.execute(q)]
+    buffered = [tuple(r) for r in pg_con.execute(q, buffered=True)]
+    assert streamed == buffered
+    assert len(streamed) == 120
+
+
+@requires_pg
+def test_a_write_keeps_a_meaningful_rowcount(pg_con):
+    """Writes must not be routed to a server-side cursor: rowcount is how the
+    lease code detects that it won a race."""
+    cur = pg_con.execute(
+        "INSERT OR IGNORE INTO kv (k, v, n) VALUES (?, ?, ?)", ("a", "x", 1))
+    assert cur.rowcount == 1
+    cur = pg_con.execute(
+        "INSERT OR IGNORE INTO kv (k, v, n) VALUES (?, ?, ?)", ("a", "x", 1))
+    assert cur.rowcount == 0
+
+
+@requires_pg
+def test_a_streamed_read_works_on_an_autocommit_connection(pg_con):
+    """The aggregate builder writes on an autocommit connection and reads on
+    the same one; a named cursor there needs WITH HOLD, not an exception."""
+    _seed_rows(pg_con, 10)
+    pg_con.isolation_level = None
+    try:
+        rows = [tuple(r) for r in pg_con.execute("SELECT n FROM kv ORDER BY n")]
+        assert len(rows) == 10
+    finally:
+        pg_con.isolation_level = ""

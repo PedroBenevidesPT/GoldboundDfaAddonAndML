@@ -325,7 +325,60 @@ def _snapshot_days(con: sqlite3.Connection) -> Dict[int, str]:
     }
 
 
-def _stream_item_price(con: sqlite3.Connection) -> Iterable[tuple]:
+def _as_day(value: object) -> Optional[str]:
+    """A UTC day (``YYYY-MM-DD``) from either an ISO string or unix seconds.
+
+    The two snapshot headers disagree on how they store time -- ``tsm_snapshot
+    .updated_at`` is an ISO string, ``ah_snapshot.captured_at`` is unix
+    seconds -- and the aggregate's grain is a UTC day.  Doing the conversion
+    in Python rather than SQL keeps one rule for both backends; the equivalent
+    SQL differs (``date(x)`` vs ``to_char(to_timestamp(x) ...)``) and a
+    divergent rule is how the two backends start disagreeing about a day
+    boundary.
+    """
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return datetime.fromtimestamp(float(value), tz=timezone.utc).strftime(
+            "%Y-%m-%d")
+    text = str(value).strip()
+    if len(text) >= 10 and text[4] == "-" and text[7] == "-":
+        return text[:10]
+    try:
+        return datetime.fromtimestamp(float(text), tz=timezone.utc).strftime(
+            "%Y-%m-%d")
+    except (TypeError, ValueError):
+        return None
+
+
+def _recent_days(con: sqlite3.Connection, table: str, column: str,
+                 days: Optional[int], since: Optional[str]
+                 ) -> Optional[set]:
+    """The set of days a build should touch, or None for "all of them".
+
+    Resolved from the *snapshot header* table, which is small (hundreds of
+    rows), so selecting a window never costs a scan of the fact tables.  This
+    is what makes a daily run cheap: ``days=2`` means yesterday and today are
+    rebuilt and every earlier partition is left exactly as it is.
+    """
+    if days is None and since is None:
+        return None
+    try:
+        rows = con.execute(
+            f"SELECT {column} FROM {table} WHERE {column} IS NOT NULL"
+        ).fetchall()
+    except sqlite3.OperationalError:
+        return None
+    available = sorted({d for d in (_as_day(r[0]) for r in rows) if d})
+    if since:
+        available = [d for d in available if d >= since]
+    if days is not None and days > 0:
+        available = available[-days:]
+    return set(available)
+
+
+def _stream_item_price(con: sqlite3.Connection,
+                       only_days: Optional[set] = None) -> Iterable[tuple]:
     """Daily price observations per item, from tsm_price_change.
 
     This is the only record of how a price moved.  A row exists only when the
@@ -337,7 +390,8 @@ def _stream_item_price(con: sqlite3.Connection) -> Iterable[tuple]:
     b-tree, which measured at well over a quarter of an hour.  Grouping the
     snapshot ids by day first keeps each sort to one day's rows, and the result
     is still emitted in an order where every (day, scope) partition is
-    contiguous, which is what :func:`build` needs.
+    contiguous, which is what :func:`build` needs.  A day outside ``only_days``
+    is never queried at all, which is what makes a windowed rebuild cheap.
     """
     days = _snapshot_days(con)
     by_day: Dict[str, List[int]] = {}
@@ -345,6 +399,8 @@ def _stream_item_price(con: sqlite3.Connection) -> Iterable[tuple]:
         by_day.setdefault(day, []).append(sid)
 
     for day in sorted(by_day):
+        if only_days is not None and day not in only_days:
+            continue
         ids = sorted(by_day[day])
         marks = ",".join("?" * len(ids))
         sql = f"""
@@ -422,70 +478,108 @@ def _stream_item_price(con: sqlite3.Connection) -> Iterable[tuple]:
             yield key, acc, n, h.hexdigest()  # type: ignore[union-attr]
 
 
-def _stream_ah_auction(con: sqlite3.Connection) -> Iterable[tuple]:
-    """Daily auction observations per item per realm from intel.sqlite."""
-    sql = """
-        SELECT date(s.captured_at, 'unixepoch') AS day,
-               s.realm                          AS realm,
-               a.item_id                        AS item_id,
-               a.quantity, a.unit_price_copper, a.total_price_copper,
-               a.is_commodity, a.snapshot_id
-          FROM ah_auction  a
-          JOIN ah_snapshot s ON s.snapshot_id = a.snapshot_id
-         WHERE s.captured_at IS NOT NULL
-         ORDER BY day, realm, item_id, s.captured_at, a.auction_key
+def _stream_ah_auction(con: sqlite3.Connection,
+                       only_days: Optional[set] = None) -> Iterable[tuple]:
+    """Daily auction observations per item per realm, from the Blizzard snapshots.
+
+    One day at a time, for the same two reasons as the price stream: a sort is
+    bounded by a day rather than by the whole 17M-row fact table, and a day
+    outside the window is never read.
+
+    The market key is the realm, falling back to the realm slug when the
+    snapshot has no realm name.  That case is not missing data: it is the
+    region-wide **commodities** auction house, whose snapshot is stored with
+    ``realm = ''`` and ``realm_slug = 'commodities'``.  Keying it on the slug
+    keeps it a market of its own instead of letting it read as a blank realm
+    that a consumer might mistake for an unknown one.
     """
-    cur = con.execute(sql)
-    key = None
-    acc: Optional[Dict[str, object]] = None
-    h: Optional["hashlib._Hash"] = None
-    n = 0
-    snapshots: set = set()
-    while True:
-        batch = cur.fetchmany(50_000)
-        if not batch:
-            break
-        for (day, realm, item_id, qty, unit, total,
-             is_commodity, snapshot_id) in batch:
-            if day is None:
-                continue
-            k = (day, realm, item_id)
-            if k != key:
-                if key is not None:
-                    acc["n_snapshots"] = len(snapshots)  # type: ignore[index]
-                    yield key, acc, n, h.hexdigest()  # type: ignore[union-attr]
-                key = k
-                acc = {
-                    "n_auctions": 0, "n_snapshots": 0, "n_commodity": 0,
-                    "sum_quantity": None, "min_unit_price": None,
-                    "max_unit_price": None, "sum_unit_price": None,
-                    "sum_total_price": None,
-                }
-                h = hashlib.sha256()
-                n = 0
-                snapshots = set()
-            _feed(h, (day, realm, item_id, qty, unit, total,
-                      is_commodity, snapshot_id))  # type: ignore[arg-type]
-            n += 1
-            acc["n_auctions"] += 1
-            snapshots.add(snapshot_id)
-            if is_commodity:
-                acc["n_commodity"] += 1
-            if qty is not None:
-                acc["sum_quantity"] = (acc["sum_quantity"] or 0) + qty
-            if unit is not None:
-                acc["min_unit_price"] = _min(acc["min_unit_price"], unit)
-                acc["max_unit_price"] = _max(acc["max_unit_price"], unit)
-                acc["sum_unit_price"] = (acc["sum_unit_price"] or 0) + unit
-            if total is not None:
-                acc["sum_total_price"] = (acc["sum_total_price"] or 0) + total
-    if key is not None:
-        acc["n_snapshots"] = len(snapshots)  # type: ignore[index]
-        yield key, acc, n, h.hexdigest()  # type: ignore[union-attr]
+    heads = con.execute(
+        "SELECT snapshot_id, captured_at, realm, realm_slug FROM ah_snapshot "
+        "WHERE captured_at IS NOT NULL"
+    ).fetchall()
+
+    by_day: Dict[str, List[tuple]] = {}
+    for sid, captured_at, realm, realm_slug in heads:
+        day = _as_day(captured_at)
+        if day is None:
+            continue
+        by_day.setdefault(day, []).append(
+            (str(sid), int(captured_at), (realm or realm_slug or "?")))
+
+    for day in sorted(by_day):
+        if only_days is not None and day not in only_days:
+            continue
+        entries = sorted(by_day[day], key=lambda e: (e[1], e[0]))
+        ids = [e[0] for e in entries]
+        marks = ",".join("?" * len(ids))
+        # The market expression is the *key*, so it is also the sort key: two
+        # snapshots of the same market must not be separated by another
+        # market's rows, or the group would be emitted twice and the second
+        # half would overwrite the first.
+        sql = f"""
+            SELECT COALESCE(NULLIF(s.realm, ''), s.realm_slug, '?') AS market,
+                   a.item_id, a.quantity, a.unit_price_copper,
+                   a.total_price_copper, a.is_commodity, a.snapshot_id
+              FROM ah_auction  a
+              JOIN ah_snapshot s ON s.snapshot_id = a.snapshot_id
+             WHERE a.snapshot_id IN ({marks})
+             ORDER BY market, a.item_id, s.captured_at, a.auction_key
+        """
+        cur = con.execute(sql, tuple(ids))
+        key = None
+        acc: Optional[Dict[str, object]] = None
+        h: Optional["hashlib._Hash"] = None
+        n = 0
+        snapshots: set = set()
+        while True:
+            batch = cur.fetchmany(50_000)
+            if not batch:
+                break
+            for (market, item_id, qty, unit, total,
+                 is_commodity, snapshot_id) in batch:
+                k = (day, market, item_id)
+                if k != key:
+                    if key is not None:
+                        acc["n_snapshots"] = len(snapshots)  # type: ignore[index]
+                        yield key, acc, n, h.hexdigest()  # type: ignore[union-attr]
+                    key = k
+                    acc = {
+                        "n_auctions": 0, "n_snapshots": 0, "n_commodity": 0,
+                        "sum_quantity": None, "min_unit_price": None,
+                        "max_unit_price": None, "sum_unit_price": None,
+                        "sum_total_price": None,
+                    }
+                    h = hashlib.sha256()
+                    n = 0
+                    snapshots = set()
+                _feed(h, (day, market, item_id, qty, unit, total,
+                          is_commodity, snapshot_id))  # type: ignore[arg-type]
+                n += 1
+                acc["n_auctions"] += 1
+                snapshots.add(snapshot_id)
+                if is_commodity:
+                    acc["n_commodity"] += 1
+                if qty is not None:
+                    acc["sum_quantity"] = (acc["sum_quantity"] or 0) + qty
+                if unit is not None:
+                    acc["min_unit_price"] = _min(acc["min_unit_price"], unit)
+                    acc["max_unit_price"] = _max(acc["max_unit_price"], unit)
+                    acc["sum_unit_price"] = (acc["sum_unit_price"] or 0) + unit
+                if total is not None:
+                    acc["sum_total_price"] = (acc["sum_total_price"] or 0) + total
+        if key is not None:
+            acc["n_snapshots"] = len(snapshots)  # type: ignore[index]
+            yield key, acc, n, h.hexdigest()  # type: ignore[union-attr]
 
 
-def _stream_events(con: sqlite3.Connection) -> Iterable[tuple]:
-    """Daily event counts from both journal event tables."""
+def _stream_events(con: sqlite3.Connection,
+                   only_days: Optional[set] = None) -> Iterable[tuple]:
+    """Daily event counts from both journal event tables.
+
+    The event tables are small (thousands of rows), so this scans them whole
+    and filters rows against the window rather than building a per-day query:
+    the cost of the scan is less than the cost of the extra round trips.
+    """
     parts = []
     if _has_table(con, "auction_events"):
         parts.append("""
@@ -525,6 +619,8 @@ def _stream_events(con: sqlite3.Connection) -> Iterable[tuple]:
             break
         for day, source, event_type, realm, qty, total, net, event_id in batch:
             if day is None:
+                continue
+            if only_days is not None and day not in only_days:
                 continue
             k = (day, source, event_type, realm)
             if k != key:
@@ -570,6 +666,11 @@ class AggregateSpec:
     stream: object
     key_columns: Tuple[str, ...]
     value_columns: Tuple[str, ...]
+    #: (header table, time column) the build resolves a day window from.  It
+    #: is the *snapshot header*, not the fact table: hundreds of rows instead
+    #: of millions, so choosing "the last two days" is cheap.  None means the
+    #: aggregate has no window and is always built in full.
+    days_from: Optional[Tuple[str, str]] = None
 
     @property
     def columns(self) -> Tuple[str, ...]:
@@ -598,6 +699,7 @@ SPECS: Dict[str, AggregateSpec] = {
          "sum_avg_sale_price", "sum_sale_rate", "sum_sold_per_day",
          "last_market_value", "last_min_buyout", "last_sale_rate",
          "last_sold_per_day", "last_snapshot_id"),
+        ("tsm_snapshot", "updated_at"),
     ),
     "daily_ah_auction": AggregateSpec(
         "daily_ah_auction", "intel.sqlite", "ah_auction",
@@ -606,6 +708,7 @@ SPECS: Dict[str, AggregateSpec] = {
         ("n_auctions", "n_snapshots", "n_commodity",
          "sum_quantity", "min_unit_price", "max_unit_price",
          "sum_unit_price", "sum_total_price"),
+        ("ah_snapshot", "captured_at"),
     ),
     "daily_event": AggregateSpec(
         "daily_event", "tsm_markets.db", "auction_events",
@@ -627,6 +730,8 @@ class BuildReport:
     rows_written: Dict[str, int] = field(default_factory=dict)
     partitions_skipped: Dict[str, int] = field(default_factory=dict)
     source_rows: Dict[str, int] = field(default_factory=dict)
+    #: The days each aggregate was restricted to, when a window was given.
+    window: Dict[str, List[str]] = field(default_factory=dict)
     elapsed_s: float = 0.0
     errors: List[str] = field(default_factory=list)
 
@@ -635,6 +740,7 @@ class BuildReport:
             "rows_written": self.rows_written,
             "partitions_skipped": self.partitions_skipped,
             "source_rows": self.source_rows,
+            "window": self.window,
             "elapsed_s": round(self.elapsed_s, 2),
             "errors": self.errors,
         }
@@ -644,10 +750,14 @@ class BuildReport:
         for name in AGGREGATES:
             if name not in self.rows_written:
                 continue
+            days = self.window.get(name)
+            scope = (f"  window {days[0]}..{days[-1]} ({len(days)}d)"
+                     if days else "")
             lines.append(
                 f"  {name:22s} {self.rows_written[name]:>9,} rows written  "
                 f"from {self.source_rows.get(name, 0):>12,} source rows  "
                 f"({self.partitions_skipped.get(name, 0)} partitions unchanged)"
+                f"{scope}"
             )
         for err in self.errors:
             lines.append(f"  ERROR {err}")
@@ -657,11 +767,20 @@ class BuildReport:
 def build(intel_db: Path | str, tsm_db: Path | str,
           aggregate_db: Path | str,
           only: Optional[Sequence[str]] = None,
-          force: bool = False) -> BuildReport:
+          force: bool = False,
+          days: Optional[int] = None,
+          since: Optional[str] = None) -> BuildReport:
     """Build the daily aggregates from the raw databases.
 
     Idempotent and incremental: a partition whose source checksum is unchanged
     is not rewritten, so an unchanged day costs a read pass and no writes.
+
+    ``days`` / ``since`` restrict the rebuild to a window of recent days.  A
+    daily run uses ``days=2`` -- yesterday, because a snapshot may still have
+    been arriving when the last run happened, and today -- and every older
+    partition is left untouched.  That is what keeps the daily cost
+    proportional to one day of auctions rather than to the whole history.
+    Without a window the build covers everything the sources hold.
     """
     started = time.perf_counter()
     report = BuildReport()
@@ -682,6 +801,18 @@ def build(intel_db: Path | str, tsm_db: Path | str,
             if not _has_table(src, spec.source_table):
                 report.errors.append(f"{name}: {path} has no {spec.source_table}")
                 continue
+
+            window = None
+            if spec.days_from is not None:
+                window = _recent_days(src, spec.days_from[0], spec.days_from[1],
+                                      days, since)
+                if window is not None and not window:
+                    # The window resolved to nothing: the sources hold no day
+                    # inside it.  That is a fact to report, not a silent no-op.
+                    report.errors.append(
+                        f"{name}: no source day inside the window")
+                    continue
+                report.window[name] = sorted(window) if window else []
 
             written = skipped = source_rows = 0
             pending: List[tuple] = []
@@ -718,7 +849,8 @@ def build(intel_db: Path | str, tsm_db: Path | str,
                 )
                 written += len(rows)
 
-            for key, acc, n_source, checksum in spec.stream(src):  # type: ignore[operator]
+            for key, acc, n_source, checksum in spec.stream(  # type: ignore[operator]
+                    src, only_days=window):
                 source_rows += n_source
                 pk = (str(key[0]), str(key[1]))
                 if pk != part_key:
@@ -1004,19 +1136,39 @@ def price_as_of(aggregate_db: Path | str, day: str, scope: str, kind: str,
 def coverage(aggregate_db: Path | str) -> Dict[str, object]:
     """What the aggregate database currently covers."""
     path = Path(aggregate_db)
-    if _needs_file(path) and not path.exists():
+    on_pg = _is_postgres()
+    if not on_pg and not path.exists():
         return {"exists": False}
     con = _ro(path, backend_aware=True)
     try:
         meta = dict(con.execute("SELECT key, value FROM aggregate_meta").fetchall())
         out: Dict[str, object] = {
             "exists": True,
-            "path": str(path),
-            "bytes": path.stat().st_size,
+            "backend": "postgres" if on_pg else "sqlite",
+            "path": "postgres:goldbound" if on_pg else str(path),
+            # On Postgres the file is irrelevant -- reporting its size while
+            # reading the server would be a lie, and this project has already
+            # been burned once by a status line that described a different
+            # database than the one being read.
+            "bytes": None if on_pg else path.stat().st_size,
             "schema_version": int(meta.get("schema_version", 0)),
             "built_at": meta.get("built_at"),
             "aggregates": {},
         }
+        if on_pg:
+            total = 0
+            for name in AGGREGATES:
+                if not _has_table(con, name):
+                    continue
+                # `name` comes from the fixed AGGREGATES tuple, never from a
+                # caller, so interpolating it here cannot inject anything --
+                # and pg_total_relation_size takes a regclass, which a bound
+                # text parameter would not satisfy.
+                size = con.execute(
+                    f"SELECT pg_total_relation_size('{name}')"
+                ).fetchone()[0]
+                total += int(size or 0)
+            out["bytes"] = total
         for name in AGGREGATES:
             if not _has_table(con, name):
                 continue

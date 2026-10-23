@@ -42,6 +42,7 @@ __all__ = [
     "translate",
     "is_pragma",
     "parse_pragma",
+    "returns_rows",
 ]
 
 
@@ -638,6 +639,29 @@ def is_ddl(sql: str) -> bool:
     """Whether a statement is a DDL statement, ignoring leading comments."""
     return bool(re.match(r"^\s*(CREATE|ALTER|DROP|COMMENT|GRANT|REVOKE)\b",
                          strip_leading_comments(sql), re.I))
+
+
+#: Statements that produce a result set.  ``TABLE x`` and ``VALUES`` are
+#: included because Postgres accepts them as queries; the codebase does not
+#: use them today, but a statement that returns rows must never be mistaken
+#: for one that does not -- the consequence is a cursor that cannot be read.
+_ROW_RETURNING = re.compile(r"^(SELECT|WITH|VALUES|TABLE|EXPLAIN|SHOW)\b", re.I)
+
+
+def returns_rows(sql: str) -> bool:
+    """Whether ``sql`` produces a result set, ignoring leading comments.
+
+    This decides whether a statement may run on a server-side cursor.  It is
+    deliberately a *syntactic* test on the statement head rather than a guess
+    about size: a write must stay on a plain cursor so ``rowcount`` keeps its
+    meaning, and every read is safe to stream because streaming is bounded.
+    """
+    text = strip_leading_comments(sql)
+    # A parenthesised query is still a query: (SELECT ...) UNION (SELECT ...)
+    while text.startswith("("):
+        text = strip_leading_comments(text[1:])
+    return bool(_ROW_RETURNING.match(text))
+
 
 
 def known_pragma(name: str) -> bool:
