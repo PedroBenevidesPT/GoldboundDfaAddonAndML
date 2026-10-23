@@ -576,3 +576,88 @@ def test_a_delivered_alert_is_not_repeated(con, tmp_path, monkeypatch):
     rp.notify_new_dataset(con, path=path)
     assert calls == [1]
     assert leases.read_stat(con, "dataset:sha256", "")
+
+
+# ------------------------------------------------------------ cycle digest
+def test_the_cycle_digest_names_every_action():
+    """One message answers "what did this cycle do" for every outcome."""
+    results = [
+        rp.TaskResult("fetch", True, 352.0, exit_code=0),
+        rp.TaskResult("strategy", True, 84.0, exit_code=78,
+                      skipped="no item was classified as transmog"),
+        rp.TaskResult("export", False, 3.0, exit_code=1),
+    ]
+    alert = rp.cycle_digest(results, now=0)
+    assert alert is not None
+    assert "3 action(s)" in alert.title and "1 failed" in alert.title
+    assert alert.level == "warn"
+    assert any("fetch" in line and "ok" in line for line in alert.lines)
+    assert any("strategy" in line and "skipped" in line
+               and "classified" in line for line in alert.lines)
+    assert any("export" in line and "FAILED" in line
+               and "exit=1" in line for line in alert.lines)
+
+
+def test_a_cycle_whose_actions_all_succeeded_is_not_a_warning():
+    alert = rp.cycle_digest([rp.TaskResult("fetch", True, 1.0, exit_code=0)], now=0)
+    assert alert is not None and alert.level == "info"
+    assert "failed" not in alert.title
+
+
+def test_a_quiet_cycle_posts_nothing(monkeypatch):
+    """No actions is a heartbeat, not an alert."""
+    def explode(*args, **kwargs):
+        raise AssertionError("posted an empty cycle")
+
+    monkeypatch.setattr(rp.alerts, "post_discord", explode)
+    assert rp.post_cycle_digest([]) == []
+
+
+def test_the_cycle_digest_reaches_the_webhook(monkeypatch):
+    seen = {}
+    monkeypatch.setattr(rp.alerts, "webhook_url",
+                        lambda *args, **kwargs: "https://discord.test/hook")
+
+    def post(url, payload, **kwargs):
+        seen["url"] = url
+        seen["payload"] = payload
+        return {"ok": True, "status": 204, "error": ""}
+
+    monkeypatch.setattr(rp.alerts, "post_discord", post)
+    out = rp.post_cycle_digest([rp.TaskResult("fetch", True, 1.0, exit_code=0)])
+    assert seen["url"] == "https://discord.test/hook"
+    embed = seen["payload"]["embeds"][0]
+    assert "1 action(s)" in embed["title"]
+    assert "fetch" in embed["description"]
+    assert out and out[0]["ok"] is True
+
+
+def test_a_dead_webhook_does_not_break_the_cycle(monkeypatch, capsys):
+    monkeypatch.setattr(rp.alerts, "webhook_url",
+                        lambda *args, **kwargs: "https://discord.test/hook")
+    monkeypatch.setattr(rp.alerts, "post_discord", lambda *args, **kwargs: {
+        "ok": False, "status": 0, "error": "connection refused"})
+    out = rp.post_cycle_digest([rp.TaskResult("fetch", True, 1.0)])
+    assert out and out[0]["ok"] is False
+    assert "cycle digest not posted" in capsys.readouterr().err
+
+
+def test_no_notify_posts_no_digest(monkeypatch):
+    def explode(*args, **kwargs):
+        raise AssertionError("posted despite --no-notify")
+
+    monkeypatch.setattr(rp.alerts, "post_discord", explode)
+    assert rp.post_cycle_digest([rp.TaskResult("fetch", True, 1.0)],
+                                notify=False) == []
+
+
+def test_main_posts_one_digest_per_cycle(monkeypatch):
+    posted = []
+    monkeypatch.setattr(rp, "load_env", lambda *args, **kwargs: None)
+    monkeypatch.setattr(rp.store, "connect", lambda *args, **kwargs: object())
+    monkeypatch.setattr(rp, "cycle", lambda *args, **kwargs: [
+        rp.TaskResult("fetch", True, 1.0, exit_code=0)])
+    monkeypatch.setattr(rp, "post_cycle_digest",
+                        lambda results, **kwargs: posted.append(len(results)))
+    assert rp.main(["--once", "--task", "fetch"]) == 0
+    assert posted == [1]

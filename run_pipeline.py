@@ -337,6 +337,61 @@ def notify_new_dataset(con, *, notify: bool = True,
     return delivered
 
 
+def cycle_digest(results: Sequence[TaskResult], *,
+                 now: Optional[float] = None) -> Optional["alerts.Alert"]:
+    """One message per cycle, naming every action it took.
+
+    The pipeline already records each run in ``pipeline_run`` and announces it
+    on the Redis channel, but neither is readable from a phone.  This is the
+    same list folded into one embed: a task that ran, a task that skipped
+    (with the reason it gave) and a task that failed each get their own line,
+    so "what did the pipeline do at 14:00" is answerable without a terminal.
+
+    ``None`` when the cycle did nothing: an empty digest is a heartbeat, and
+    the rule for every other alert here is that an alert is a *change*.
+    """
+    if not results:
+        return None
+    lines: List[str] = []
+    failed = 0
+    for result in results:
+        if result.skipped:
+            lines.append(f"{result.task:<11} skipped -- {result.skipped}"[:180])
+        elif result.ok:
+            lines.append(f"{result.task:<11} ok       {result.seconds:7.1f}s")
+        else:
+            failed += 1
+            lines.append(f"{result.task:<11} FAILED   {result.seconds:7.1f}s"
+                         f"  exit={result.exit_code}")
+    at = time.time() if now is None else float(now)
+    stamp = time.strftime("%H:%M:%S", time.localtime(at))
+    title = (f"Pipeline cycle {stamp}: {len(results)} action(s)"
+             + (f", {failed} failed" if failed else ""))
+    return alerts.Alert(key="pipeline:cycle", title=title, lines=lines,
+                        level="warn" if failed else "info")
+
+
+def post_cycle_digest(results: Sequence[TaskResult], *, notify: bool = True,
+                      now: Optional[float] = None) -> List[Dict[str, object]]:
+    """Post the cycle's digest to the webhook; never fail the cycle for it.
+
+    A dead channel is reported on stderr and otherwise ignored: the work has
+    already happened and is recorded in the database, which stays the source
+    of truth for what ran.
+    """
+    if not notify:
+        return []
+    alert = cycle_digest(results, now=now)
+    if alert is None:
+        return []
+    posted = alerts.post_discord(alerts.webhook_url(),
+                                 alerts.discord_payload(alert))
+    if not posted.get("ok"):
+        print(f"cycle digest not posted: {posted.get('error') or posted.get('status')}",
+              file=sys.stderr)
+    return [{"key": alert.key, **posted}]
+
+
 # ------------------------------------------------------------------- execution
 @dataclass
 class TaskResult:
@@ -799,15 +854,18 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             print(result.line())
         if not results:
             print("nothing is due")
+        post_cycle_digest(results, notify=notify)
         return 0 if all(r.ok for r in results) else 1
 
     try:
         while True:
-            for result in cycle(con, tasks, force=False,
-                                only=args.task or None, notify=notify,
-                                workers=args.workers,
-                                connect=lambda: store.connect(args.db)):
+            results = cycle(con, tasks, force=False,
+                            only=args.task or None, notify=notify,
+                            workers=args.workers,
+                            connect=lambda: store.connect(args.db))
+            for result in results:
                 print(time.strftime("%H:%M:%S"), result.line(), flush=True)
+            post_cycle_digest(results, notify=notify)
             time.sleep(max(5.0, float(args.interval)))
     except KeyboardInterrupt:
         print("stopped")
