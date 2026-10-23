@@ -144,11 +144,18 @@ def load_market_panel(intel_db: Path | str, *,
     """
     report = PanelReport()
     path = Path(intel_db)
-    if not path.exists():
-        report.notes.append(f"database not found: {path}")
-        return pd.DataFrame(columns=list(PANEL_COLUMNS)), report
+    # The panel is the model's input, so it must read the same database the
+    # fetcher wrote to.  With the Postgres backend there is no file to check;
+    # asking for one would silently fall back to a stale local copy.
+    from woweconomy.dbcompat import backend as _backend, connect as _dbconnect
 
-    con = sqlite3.connect(path)
+    if _backend() == "postgres":
+        con = _dbconnect(None)
+    else:
+        if not path.exists():
+            report.notes.append(f"database not found: {path}")
+            return pd.DataFrame(columns=list(PANEL_COLUMNS)), report
+        con = sqlite3.connect(path)
     try:
         variant = group_by_variant and _has_variant_column(con)
         report.variants_pooled = not variant

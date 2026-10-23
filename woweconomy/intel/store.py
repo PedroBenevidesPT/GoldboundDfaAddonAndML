@@ -369,12 +369,25 @@ def _ensure_ah_indexes(con: sqlite3.Connection) -> None:
 
 
 def connect(db_path: Path | str = DEFAULT_DB) -> sqlite3.Connection:
-    """Open (and initialise) the intelligence database."""
-    path = Path(db_path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    con = sqlite3.connect(str(path))
-    con.row_factory = sqlite3.Row
-    con.execute("PRAGMA journal_mode=WAL")
+    """Open (and initialise) the intelligence database.
+
+    The backend is decided by :mod:`woweconomy.dbcompat`, not here: with no
+    configuration this is the same SQLite file as before, and with
+    ``DATABASE_URL`` set the identical statements run against Postgres.  The
+    initialisation sequence below is shared on purpose -- a schema that is
+    only ever exercised on one backend is a schema that is only correct on
+    one backend.
+    """
+    from woweconomy.dbcompat import backend as _backend, connect as _connect
+
+    if _backend() == "postgres":
+        con = _connect(None)
+    else:
+        path = Path(db_path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        con = sqlite3.connect(str(path))
+        con.row_factory = sqlite3.Row
+        con.execute("PRAGMA journal_mode=WAL")
     con.executescript(SCHEMA)
     _ensure_column(con, "inventory_snapshot", "available_json",
                    "TEXT NOT NULL DEFAULT '[\"bags\",\"bank\",\"posted\"]'")
