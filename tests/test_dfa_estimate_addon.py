@@ -265,8 +265,8 @@ def test_the_shipped_baseline_dataset_is_not_silently_dropped():
     model-lifecycle tag, not a visibility gate: the reader accepts it (the
     tooltip only suppresses the fully-validated silence path), and the record
     still carries a usable price. This is the test the empty panel needs -- it
-    proves the 237 records are real, priced records the addon can read, and not
-    rows that the addon silently discards.
+    proves the exported records are real, priced records the addon can read,
+    and not rows that the addon silently discards.
     """
     lua = woW_like_lua()
     load_addon(lua)
@@ -281,28 +281,31 @@ def test_the_shipped_baseline_dataset_is_not_silently_dropped():
     # exactly the counts the shipped metadata claims; if either path drops rows
     # the panel -- which iterates GetItems() -- would be empty on the user's
     # realm without any error message, which is the bug this test guards.
-    # the panel and the tooltip both read through getRealmItems; the value must be
-    # the table the addon built, and its live length must match the metadata.
-    # lupa returns Lua tables as objects, not as Python dicts, so count through
-    # the addon API that the panel actually uses.
+    #
+    # lupa hands a Lua table back as an object, not as a dict: `realms.get` does
+    # not exist, and `block.items` resolves to lupa's own method rather than the
+    # Lua field of that name.  Every read here goes through indexing.
+    shipped_total = 0
+    for _, block in realms.items():
+        block_items = block["items"]
+        shipped_total += len(list(block_items.keys())) if block_items else 0
+    assert shipped_total == addon.data.itemCount, (
+        f"the realm blocks carry {shipped_total} items but the metadata says "
+        f"{addon.data.itemCount}")
+
     panel_items = addon.GetItems()
     panel_count = len(list(panel_items.keys()))
-    realm_block = realms.get(realm_name)
-    if realm_block is None:
-        shipped_realm_count = 0
-    else:
-        shipped_realm_count = len(list(realm_block.items.keys()))
+    realm_block = realms[realm_name]
+    assert realm_block is not None, (
+        f"the dataset carries no block for the player's realm {realm_name!r}")
+    shipped_realm_count = len(list(realm_block["items"].keys()))
     assert panel_count == shipped_realm_count, (
         f"GetItems() returned {panel_count} items but the realm block for "
         f"{realm_name!r} has {shipped_realm_count} items")
-    assert panel_count == 237, (
-        "the shipped dataset should expose exactly 237 priced items; "
-        f"got {panel_count}")
-    assert shipped_realm_count == 237, (
-        "the Dragonmaw block in the shipped dataset should carry exactly "
-        f"237 items; got {shipped_realm_count}")
-    # a sample record from the populated realm, read through the public API.
-    # Dragonmaw is the realm with the most records in this export.
+    assert panel_count > 0, (
+        f"the block for {realm_name!r} carries no priced items, so the panel "
+        "would be empty on this realm")
+    # a sample record from the player's realm, read through the public API.
     sample_id = next(iter(panel_items.keys()))
     record = addon.GetRecord(sample_id)
     assert record is not None, f"GetRecord({sample_id}) returned nothing"
@@ -326,11 +329,15 @@ def test_the_shipped_baseline_dataset_is_not_silently_dropped():
         "this export is the baseline_only case by construction; "
         "if the dataset changes, revisit this assertion and the state name together"
     )
-    tooltip = addon.Tooltip and addon.Tooltip.GetLines(sample_id)
+    # the tooltip registers on the shared Addon table, not on the core module
+    # this test holds in `addon`
+    tooltip_module = lua.globals().Addon.DFAEstimateTooltip
+    assert tooltip_module, "the tooltip module was not loaded"
+    tooltip = tooltip_module.GetLines(sample_id)
     assert tooltip, "the tooltip module did not expose GetLines"
-    pl = tooltip
-    assert "item sale rate, no learned model" in pl, (
-        f"baseline_only must be presented by the tooltip, not hidden; "
-        f"lines={pl!r}"
+    lines = list(tooltip.values())
+    assert any("item sale rate, no learned model" in str(line) for line in lines), (
+        "baseline_only must be presented by the tooltip, not hidden; "
+        f"lines={lines!r}"
     )
 
