@@ -118,6 +118,10 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER:-goldbound}:${POSTGRES_PASSWORD:-goldbound}@postgres:5432/${POSTGRES_DB:-goldbound}
       WOW_PIPELINE_REDIS: redis://redis:6379/0
       WOW_PIPELINE_BACKEND: postgres
+      # Python block-buffers stdout when it is not a terminal, which is
+      # always inside a container: without this, `docker compose logs` shows
+      # nothing until a task finishes, and a fetch takes minutes.
+      PYTHONUNBUFFERED: "1"
     volumes:
       # The worker reads and writes the repo's data directory (the exported
       # addon dataset, the model bundles).  Code is baked into the image so a

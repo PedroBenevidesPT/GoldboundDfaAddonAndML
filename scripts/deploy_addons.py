@@ -36,6 +36,9 @@ def main(argv=None) -> int:
                         help="deploy only this addon (repeatable)")
     parser.add_argument("--check", action="store_true",
                         help="report staleness and exit 1 instead of writing")
+    parser.add_argument("--require", action="store_true",
+                        help="treat a missing AddOns folder as an error"
+                             " (default: exit 78, 'not this machine')")
     parser.add_argument("--dry-run", action="store_true",
                         help="say what would change, write nothing")
     args = parser.parse_args(argv)
@@ -45,8 +48,15 @@ def main(argv=None) -> int:
     names = args.only or tuple(addons.ADDONS)
 
     if not target.exists():
-        print(f"addons directory not found: {target}", file=sys.stderr)
-        return 2
+        # The pipeline runs in a Linux container, which cannot see the
+        # game's Program Files directory.  That is not a failure and it is
+        # not a success: exit EX_CONFIG so the pipeline reports "skipped"
+        # and does not advance `last_ok` -- claiming a deploy that never
+        # happened is worse than saying nothing.  The host-side watcher
+        # (`scripts/watch_addons.py`) is what actually copies the files.
+        message = (f"the game's AddOns folder is not on this machine: {target}")
+        print(message, file=sys.stderr)
+        return 78 if not args.require else 2
 
     if args.dry_run or args.check:
         stale = 0

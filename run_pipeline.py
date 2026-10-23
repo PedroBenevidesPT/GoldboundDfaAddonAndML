@@ -78,6 +78,11 @@ from woweconomy.pricing.dataset import dataset_content_signature  # noqa: E402
 PY = sys.executable
 HOUR = 3600
 
+#: EX_CONFIG, from sysexits.h.  A task exits with it to say "this machine
+#: cannot do this at all", which the pipeline reports as a skip rather than
+#: as a success or a failure.
+EX_CONFIG = 78
+
 #: The dataset the addon loads.  A "new dataset" alert is about *this file
 #: changing*, not about the export having run: the export runs on a cadence
 #: and usually rewrites identical bytes.
@@ -263,6 +268,11 @@ def dataset_alert(facts: Dict[str, str], digest: str) -> "alerts.Alert":
     if "predictionStatus" in facts:
         lines.append(f"status: {facts['predictionStatus']}")
     lines.append(f"sha256: {digest[:12]}")
+    # An alert that only reports a number leaves the reader to work out what
+    # to do with it.  The dataset is read at load time, so the client needs
+    # a reload before any of these numbers reach a tooltip.
+    lines.append("action: type /reload in game (or log out and back in) to "
+                 "pick up the new prices")
     return alerts.Alert(key="dataset:new",
                         title="New DfA dataset published",
                         lines=lines)
@@ -335,9 +345,27 @@ def run_task(con, task: TaskDef, *, runner: Optional[Callable] = None,
                           skipped="another worker holds the lease")
 
     started = time.time()
+    # Say when a task *starts*, not only when it finishes.  A fetch against
+    # the whole region takes minutes, and without this line the pipeline
+    # looks dead in `docker compose logs` for exactly as long as it is
+    # doing the most work.
+    if runner is None:
+        print(f"{time.strftime('%H:%M:%S')} {task.name:<11} start"
+              f"  {' '.join(task.command()[1:])}", flush=True)
     try:
         call = runner or _subprocess_runner
         code, output = call(task)
+        # 78 is EX_CONFIG: the task cannot run on this machine at all, which
+        # is not a failure and not a success.  `deploy` uses it when the
+        # game's AddOns folder is not mounted into the container -- the
+        # honest report is "skipped", and `last_ok` must not advance, or the
+        # pipeline would claim it deployed something it never touched.
+        if code == EX_CONFIG:
+            print(f"{time.strftime('%H:%M:%S')} {task.name:<11} skipped"
+                  f"  {_last_line(output)}", flush=True)
+            return TaskResult(task.name, True, time.time() - started,
+                              exit_code=code, skipped=_last_line(output),
+                              detail={"exit_code": code})
         ok = code == 0
         finished = time.time()
         detail = {"exit_code": code, "output_tail": (output or "")[-2000:]}
@@ -366,6 +394,14 @@ def run_task(con, task: TaskDef, *, runner: Optional[Callable] = None,
                           detail=detail)
     finally:
         _release(con, held)
+
+
+def _last_line(output: str) -> str:
+    """The last non-empty line of a task's output, for a one-line report."""
+    for line in reversed((output or "").strip().splitlines()):
+        if line.strip():
+            return line.strip()[:200]
+    return ""
 
 
 def _acquire(con, name: str, ttl: float, owner: str):
