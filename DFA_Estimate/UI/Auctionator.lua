@@ -9,6 +9,8 @@
 --   * reads the estimate for the item the frame is showing;
 --   * puts it in the price field, and puts it back when Auctionator
 --     overwrites it with a price of its own;
+--   * records the price the player chose -- typed, or clicked in
+--     Auctionator's price list -- and leaves it in the field;
 --   * says, in the chat, what it did and what it saw.
 --
 -- What it deliberately does not do:
@@ -35,6 +37,15 @@
 --     addon, so wrapping its Fire is the one place where the order is
 --     right: the flag is set before the frame handles the event, and the
 --     estimate does not win over a price the player chose.
+--
+--   * A click on a listing row carries the row, and the row carries its
+--     buyout.  That is the clicked price, and it is read off the event
+--     before Auctionator writes it -- so the field ends up holding the
+--     price the player picked instead of the estimate.  Inferring the
+--     click from the write alone is not possible: Auctionator writes a
+--     price for its own reasons too (its database, its market search,
+--     the vendor value of a piece of equipment), and those writes are
+--     indistinguishable from a click by their value alone.
 
 local ADDON_NAME, Addon = ...
 
@@ -49,11 +60,14 @@ local private = {
 	itemId = nil,          -- the item the frame is showing
 	price = nil,           -- the price we put in the field
 	userChose = false,     -- the player chose a price for this item
+	chosenPrice = nil,     -- the price the player chose (typed or clicked)
 	programmatic = false,  -- a price is being set by code, not by a player
 	lastFill = nil,
 	error = nil,
 	watch = nil,
 	debug = false,         -- verbose chat logging of every step
+	postingHours = nil,    -- the auction duration to post for (set by LoadSettings)
+	postingHoursSet = false, -- the player chose it, so it may be applied to Auctionator
 	seq = 0,               -- how many fills have been attempted this session
 	lastError = nil,       -- the last failure: stage, message, stack, verdict
 	lastWarning = nil,     -- de-duplication key for the always-on failure line
@@ -262,6 +276,41 @@ local function NormalizePrice(price)
 	return normalized
 end
 
+---A price in copper, from whatever Auctionator handed us.
+---
+---A row click arrives as a listing: a table carrying `buyout`, and that
+---`buyout` is sometimes a plain number and sometimes a money table
+---(`{ amount = ... }`, or `gold`/`silver`/`copper` fields).  A price the
+---player typed arrives as a number.  All three are reduced to copper
+---here, because the price field and the dataset both speak copper.
+---@param value any
+---@return number?
+local function PriceOf(value)
+	local kind = type(value)
+	if kind == "number" then
+		if value > 0 then
+			return math.floor(value)
+		end
+		return nil
+	end
+	if kind ~= "table" then
+		return nil
+	end
+	-- a listing row, or a money table with one total
+	local direct = PriceOf(value.buyout) or PriceOf(value.amount)
+	if direct then
+		return direct
+	end
+	local gold = tonumber(value.gold) or 0
+	local silver = tonumber(value.silver) or 0
+	local copper = tonumber(value.copper) or 0
+	local total = gold * 10000 + silver * 100 + copper
+	if total > 0 then
+		return total
+	end
+	return nil
+end
+
 ---The price to post at for an item, or nil.
 ---
 ---The action is the model's own decision: "post now at X", or "match the
@@ -393,6 +442,15 @@ function Auctionator.ApplyEstimate(frame)
 		Log("apply: skipped (disabled or filling)")
 		return false
 	end
+	if private.userChose then
+		-- The player chose a price for this item -- by typing it, or by
+		-- clicking a row in Auctionator's price list.  Writing the estimate
+		-- now would silently undo their click.  This check used to live only
+		-- in OnPriceSet, so any other caller (and the deferred fill below)
+		-- could still overwrite a choice that had already been made.
+		Log("apply: skipped (the player chose a price for this item)")
+		return false
+	end
 	if not frame then
 		Log("apply: skipped (no frame)")
 		return false
@@ -493,13 +551,43 @@ function Auctionator.ApplyEstimate(frame)
 	return true
 end
 
+---Waits one frame, then fills.
+---
+---The order of Auctionator's two signals is not guaranteed: a click on a
+---listing row can write the price *before* the `PriceSelected` event that
+---says the player chose it.  Filling synchronously loses that race and
+---puts the estimate over the row the player just clicked.  Deferring by
+---one frame lets the event land first, which turns a race into an order.
+---Where there is no timer (a test harness, or a client without
+---`C_Timer`), the fill is synchronous and `ApplyEstimate`'s own choice
+---check is what protects the click.
+---@param frame table
+local function FillAfterTheChoice(frame)
+	local timer = _G.C_Timer
+	if type(timer) == "table" and type(timer.After) == "function" then
+		local ok = pcall(timer.After, 0, function()
+			pcall(Auctionator.ApplyEstimate, frame)
+		end)
+		if ok then
+			return
+		end
+	end
+	Auctionator.ApplyEstimate(frame)
+end
+
 ---Auctionator set the price.  The estimate goes back in, unless the
 ---player chose a price of their own.
+---
+---The price Auctionator just wrote is passed in because it is the only
+---evidence of *what* the player picked: a click on a listing row is
+---Auctionator writing that row's price, and the `PriceSelected` event
+---that announces it does not always arrive first.
 ---@param frame table
-function Auctionator.OnPriceSet(frame)
-	Log(("onpriceset: entry enabled=%s filling=%s userChose=%s frame=%s"):format(
+---@param incomingPrice number? the price Auctionator just set
+function Auctionator.OnPriceSet(frame, incomingPrice)
+	Log(("onpriceset: entry enabled=%s filling=%s userChose=%s frame=%s price=%s"):format(
 		tostring(private.enabled), tostring(private.filling), tostring(private.userChose),
-		tostring(type(frame) == "table")))
+		tostring(type(frame) == "table"), tostring(incomingPrice)))
 	if not private.enabled or private.filling then
 		Log("onpriceset: skipped (disabled or filling)")
 		return
@@ -513,7 +601,14 @@ function Auctionator.OnPriceSet(frame)
 		-- clicking a row in Auctionator's price list.  Auctionator is
 		-- writing that choice now; putting the estimate back would
 		-- silently undo it, so the fill stops here until the item changes.
-		Log("onpriceset: skipped (player chose a price for this item)")
+		-- The price is kept so the panel and the debug trace can say what
+		-- was chosen instead of only that something was.
+		local chosen = tonumber(incomingPrice)
+		if chosen and chosen > 0 then
+			private.chosenPrice = chosen
+		end
+		Log(("onpriceset: skipped (player chose a price for this item: %s)")
+			:format(tostring(private.chosenPrice)))
 		return
 	end
 	if not GetItemId(frame) then
@@ -522,8 +617,8 @@ function Auctionator.OnPriceSet(frame)
 		return
 	end
 
-	Log("onpriceset: calling ApplyEstimate")
-	Auctionator.ApplyEstimate(frame)
+	Log("onpriceset: scheduling ApplyEstimate")
+	FillAfterTheChoice(frame)
 end
 
 ---Whether the bridge is filling the price field.
@@ -557,6 +652,16 @@ function Auctionator.GetLastFill()
 	return private.lastFill
 end
 
+---The price the player chose for the item on screen, in copper.
+---
+---Set when they type a price or click a row in Auctionator's price list,
+---and cleared when the item changes.  A seller who has picked a price
+---should be able to see which one the addon thinks they picked.
+---@return number?
+function Auctionator.GetChosenPrice()
+	return private.chosenPrice
+end
+
 ---What the bridge sees, for the panel and for a bug report.
 ---@return table
 function Auctionator.GetDiagnostics()
@@ -573,6 +678,9 @@ function Auctionator.GetDiagnostics()
 		saleItemFrame = type(tab) == "table" and tab.SaleItemFrame ~= nil,
 		itemId = private.itemId,
 		userChose = private.userChose,
+		chosenPrice = private.chosenPrice,
+		postingHours = private.postingHours,
+		postingHoursSet = private.postingHoursSet,
 		lastFill = private.lastFill,
 		debug = private.debug == true,
 		error = private.error,
@@ -602,7 +710,9 @@ local function HookEventBus()
 	end
 	local original = bus.Fire
 	bus.Fire = function(self, source, eventName, ...)
-		Log(("bus: event=%s source=%s"):format(tostring(eventName), tostring(type(source))))
+		local first, second = ...
+		Log(("bus: event=%s source=%s arg1=%s"):format(
+			tostring(eventName), tostring(type(source)), tostring(type(first))))
 		local events = Events()
 		if events then
 			if eventName == events.BagItemClicked
@@ -612,6 +722,7 @@ local function HookEventBus()
 				private.itemId = nil
 				private.price = nil
 				private.userChose = false
+				private.chosenPrice = nil
 				if private.lastFill then
 					private.lastFill.confirmed = false
 				end
@@ -620,7 +731,20 @@ local function HookEventBus()
 				-- That is a choice of theirs, exactly like typing in the
 				-- box: Auctionator is about to set the price they picked,
 				-- and our fill must not put the estimate back on top of it.
+				--
+				-- The event carries the row they clicked, so the price is
+				-- recorded here, before Auctionator writes it.  That is
+				-- what makes the field end up holding the clicked price
+				-- rather than the estimate: the choice is known *before*
+				-- the write, not inferred from it afterwards.
 				private.userChose = true
+				local clicked = PriceOf(first) or PriceOf(second)
+				if clicked then
+					private.chosenPrice = clicked
+					Log(("bus: the player clicked a price: %d"):format(clicked))
+				else
+					Log("bus: the player clicked a row, price not readable from the event")
+				end
 				if private.lastFill then
 					private.lastFill.confirmed = false
 				end
@@ -683,7 +807,10 @@ function Auctionator:Enable()
 			Log(("hook: Auctionator UpdateSalesPrice item=%s price=%s bid=%s preserve=%s combat=%s"):format(
 				tostring(GetItemId(self)), tostring(salesPrice),
 				tostring(bidPrice), tostring(preserveBidPrice), Combat()))
-			local ok, err = pcall(Auctionator.OnPriceSet, self)
+			-- salesPrice is forwarded: when the player clicks a row in
+			-- Auctionator's price list, this argument *is* the price they
+			-- picked, and it is the only reliable record of it.
+			local ok, err = pcall(Auctionator.OnPriceSet, self, salesPrice)
 			if not ok then
 				private.error = tostring(err)
 				RecordFailure("onpriceset", GetItemId(self),
@@ -707,7 +834,7 @@ function Auctionator:Enable()
 	local original = frame.UpdateSalesPrice
 	frame.UpdateSalesPrice = function(self, salesPrice, bidPrice, preserveBidPrice)
 		local a, b, c = original(self, salesPrice, bidPrice, preserveBidPrice)
-		local ok, err = pcall(Auctionator.OnPriceSet, self)
+		local ok, err = pcall(Auctionator.OnPriceSet, self, salesPrice)
 		if not ok then
 			private.error = tostring(err)
 		end
@@ -724,6 +851,196 @@ function Auctionator:Disable()
 end
 
 
+-- ---------------------------------------------------------------------------
+-- hours of posting
+-- ---------------------------------------------------------------------------
+--
+-- The auction house offers three durations, and which one a listing uses
+-- changes both what the deposit costs and how long the item has to find a
+-- buyer.  Auctionator stores the choice in its own config, as a dropdown
+-- *index* (1 = 12 h, 2 = 24 h, 3 = 48 h) -- not as hours.  The mapping is
+-- read from Auctionator's own `AUCTION_DURATIONS` table, so a client that
+-- reorders the dropdown is not silently misread.
+--
+-- The setting lives here, in our saved variables, so it survives a reload
+-- and can be inspected without opening Auctionator.  It is written into
+-- Auctionator's config only after the player has chosen one: adopting a
+-- default we invented would be changing another addon's setting unasked.
+
+--: the auction house's durations, in hours
+local POSTING_HOURS = { 12, 24, 48 }
+
+--: hours -> the index Auctionator's duration dropdown uses
+local DURATION_INDEX = { [12] = 1, [24] = 2, [48] = 3 }
+
+--: what Auctionator itself defaults to, so an untouched setting agrees
+--: with what the selling tab already shows
+local DEFAULT_POSTING_HOURS = 24
+
+---Auctionator's config table and the duration option in it, or nil.
+---
+---Feature-detected rather than assumed: a client without the config API
+---must report "not found", not silently do nothing.
+---@return table? config
+---@return string? option
+local function AuctionatorConfig()
+	local addon = _G.Auctionator
+	local config = addon and addon.Config
+	local options = config and config.Options
+	if type(config) ~= "table" or type(options) ~= "table"
+			or type(config.Get) ~= "function"
+			or type(config.Set) ~= "function" then
+		return nil, nil
+	end
+	local option = options.AUCTION_DURATION
+	if type(option) ~= "string" and type(option) ~= "number" then
+		return nil, nil
+	end
+	return config, option
+end
+
+---Whether Auctionator will overwrite the default duration after a post.
+---
+---When this is on, the setting is a "for this session" one: posting once
+---replaces it with whatever the last listing used.  Saying so is better
+---than a setting that quietly stops holding.
+---@return boolean
+local function SavesLastDuration()
+	local config = AuctionatorConfig()
+	if not config then
+		return false
+	end
+	local options = _G.Auctionator.Config.Options
+	local option = options and options.SAVE_LAST_DURATION_AS_DEFAULT
+	if option == nil then
+		return false
+	end
+	local ok, value = pcall(config.Get, option)
+	return ok and value and true or false
+end
+
+---The sale frame on screen, if there is one.
+---@return table?
+local function CurrentSaleFrame()
+	local tab = _G.AuctionatorSellingFrame
+	if type(tab) ~= "table" then
+		return nil
+	end
+	return tab.SaleItemFrame or tab
+end
+
+---Puts the chosen duration into Auctionator, for this frame and for the
+---next one.
+---
+---Two writes, because they do different jobs: Auctionator's config is what
+---`SetDuration()` reads when a frame is built (so the next item is right),
+---and the live dropdown is what the frame on screen shows (so the item in
+---front of the player is right now).  Writing only the dropdown loses on
+---the next item; writing only the config leaves the open frame stale.
+---@param frame table? the sale item frame to update, if any
+---@return boolean configWritten
+---@return boolean frameWritten
+function Auctionator.ApplyPostingHours(frame)
+	local hours = private.postingHours
+	local index = DURATION_INDEX[hours]
+	if not index then
+		return false, false
+	end
+	local configWritten, frameWritten = false, false
+	local config, option = AuctionatorConfig()
+	if config then
+		configWritten = pcall(config.Set, option, index)
+	end
+	local target = frame or CurrentSaleFrame()
+	local dropdown = type(target) == "table" and target.Duration or nil
+	if type(dropdown) == "table" and type(dropdown.SetSelectedValue) == "function" then
+		frameWritten = pcall(dropdown.SetSelectedValue, dropdown, index)
+	end
+	Log(("posthours: %d h (index %d) config=%s frame=%s"):format(
+		hours, index, tostring(configWritten), tostring(frameWritten)))
+	return configWritten, frameWritten
+end
+
+---The hours the player wants to post for.
+---@return number
+function Auctionator.GetPostingHours()
+	return private.postingHours or DEFAULT_POSTING_HOURS
+end
+
+---Sets the hours to post for, and applies them.
+---
+---Accepts only the three durations the auction house offers.  A number
+---between them is refused rather than rounded: posting for 18 hours is
+---not a thing, and rounding it to 24 would be a decision the player did
+---not make.
+---@param hours number|string
+---@return boolean ok
+---@return string message
+function Auctionator.SetPostingHours(hours)
+	local wanted = tonumber(hours)
+	if not wanted or not DURATION_INDEX[wanted] then
+		return false, ("the auction house posts for 12, 24 or 48 hours, not %s")
+			:format(tostring(hours))
+	end
+	private.postingHours = wanted
+	private.postingHoursSet = true
+	Auctionator.SaveSettings()
+	local configWritten, frameWritten = Auctionator.ApplyPostingHours()
+	local message
+	if configWritten and frameWritten then
+		message = ("posting for |cff00ff00%d hours|r -- Auctionator's duration is set")
+			:format(wanted)
+	elseif configWritten then
+		message = ("posting for |cff00ff00%d hours|r -- Auctionator will use it for the next item")
+			:format(wanted)
+	elseif frameWritten then
+		message = ("posting for |cff00ff00%d hours|r on this item; Auctionator's own "
+			.. "config could not be written, so the next item resets it"):format(wanted)
+	else
+		message = ("posting for |cff00ff00%d hours|r is remembered here, but "
+			.. "Auctionator's duration setting was not found -- set it in its "
+			.. "selling options"):format(wanted)
+	end
+	if SavesLastDuration() then
+		message = message .. "  |cffff8000note:|r Auctionator is set to save the last "
+			.. "duration as the default, so posting once will replace this."
+	end
+	return true, message
+end
+
+---One line for the panel: what the setting is, and whether it reached
+---Auctionator.
+---@return string
+function Auctionator.PostingHoursStatus()
+	local hours = Auctionator.GetPostingHours()
+	local config, option = AuctionatorConfig()
+	if not config then
+		return ("posting duration: %d hours (Auctionator's setting was not found; "
+			.. "change it in its selling options)"):format(hours)
+	end
+	local ok, current = pcall(config.Get, option)
+	local live = nil
+	local target = CurrentSaleFrame()
+	local dropdown = type(target) == "table" and target.Duration or nil
+	if type(dropdown) == "table" and type(dropdown.GetValue) == "function" then
+		local okValue, value = pcall(dropdown.GetValue, dropdown)
+		if okValue then
+			live = tonumber(value)
+		end
+	end
+	local agreed = ok and tonumber(current) == DURATION_INDEX[hours]
+	local text = ("posting duration: %d hours"):format(hours)
+	if not agreed then
+		text = text .. (" (Auctionator holds %s -- /dfaestimate posthours %d to set it)")
+			:format(tostring(ok and current or "?"), hours)
+	end
+	if live and live ~= DURATION_INDEX[hours] then
+		text = text .. (" (the open frame shows %s)"):format(tostring(live))
+	end
+	return text
+end
+
+
 ---The settings, in the addon's own saved variables.
 function Auctionator.LoadSettings()
 	local db = _G.DFA_ESTIMATE_DB
@@ -734,6 +1051,16 @@ function Auctionator.LoadSettings()
 	-- A fill is what the bridge is for, so it starts on; `/dfaestimate
 	-- fill off` is the explicit opt-out, and it is remembered.
 	private.enabled = db.fillAuctionatorPrice ~= false
+	local hours = tonumber(db.postingHours)
+	private.postingHours = (hours and DURATION_INDEX[hours])
+		and hours or DEFAULT_POSTING_HOURS
+	-- Only re-apply to Auctionator if the player chose these hours.  A
+	-- default we invented is not a reason to change another addon's
+	-- setting on every login.
+	private.postingHoursSet = db.postingHoursSet == true
+	if private.postingHoursSet then
+		Auctionator.ApplyPostingHours()
+	end
 end
 
 function Auctionator.SaveSettings()
@@ -743,4 +1070,6 @@ function Auctionator.SaveSettings()
 		_G.DFA_ESTIMATE_DB = db
 	end
 	db.fillAuctionatorPrice = private.enabled
+	db.postingHours = Auctionator.GetPostingHours()
+	db.postingHoursSet = private.postingHoursSet == true
 end
