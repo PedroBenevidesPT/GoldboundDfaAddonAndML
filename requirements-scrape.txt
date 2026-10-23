@@ -1,0 +1,5 @@
+# The WoWHead scraper dependencies.  Kept out of requirements.txt so the
+# worker image stays small; the scraper is still part of the repo and still
+# runs, it just is not part of the batch pipeline.
+-r requirements.txt
+playwright>=1.63

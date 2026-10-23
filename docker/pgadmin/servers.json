@@ -1,0 +1,14 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "goldbound (local compose)",
+      "Group": "Goldbound",
+      "Host": "postgres",
+      "Port": 5432,
+      "MaintenanceDB": "goldbound",
+      "Username": "goldbound",
+      "SSLMode": "prefer",
+      "Comment": "The shared pipeline database. Credentials come from .env; this file only saves typing the host."
+    }
+  }
+}
