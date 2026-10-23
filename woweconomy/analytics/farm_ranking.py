@@ -813,10 +813,17 @@ def freshness_factor(age_days: Optional[int]) -> float:
 
 
 def list_price(m: ItemMarket, vendor_copper: float,
-               r_cfg: FarmRankingConfig) -> float:
+               r_cfg: Optional[FarmRankingConfig] = None) -> float:
     """Effective list price: avgSalePrice x (base + sr x rate_mult),
     floored at vendor x floor_mult when enabled.  Defaults (1.0 / 0.0 /
-    0.0) reproduce the reference price exactly (no silent change)."""
+    0.0) reproduce the reference price exactly (no silent change).
+
+    ``r_cfg`` defaults rather than raising: every ranking function already
+    takes it as optional, and ``top_mogs`` passed its own ``None`` straight
+    through here, which crashed with "'NoneType' object has no attribute
+    'price_base_mult'" for any caller that did not supply a config.
+    """
+    r_cfg = r_cfg or FarmRankingConfig()
     target = m.price * (r_cfg.price_base_mult + m.sale_rate * r_cfg.price_rate_mult)
     if r_cfg.price_vendor_floor_mult > 0 and vendor_copper > 0:
         target = max(target, vendor_copper * r_cfg.price_vendor_floor_mult)
@@ -824,7 +831,7 @@ def list_price(m: ItemMarket, vendor_copper: float,
 
 
 def eff_net(m: ItemMarket, b: Optional[BlizzardItem], cfg: WowEconomyConfig,
-            r_cfg: FarmRankingConfig) -> float:
+            r_cfg: Optional[FarmRankingConfig] = None) -> float:
     """Estimated auction proceeds per unit after fee, on the EFFECTIVE
     list price (reference avgSalePrice adjusted by the pricing multiplier
     and vendor floor)."""
