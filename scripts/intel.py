@@ -15,6 +15,7 @@ The commands read the existing ``tsm_markets.db`` and write to
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sqlite3
 import sys
@@ -26,6 +27,7 @@ if str(ROOT) not in sys.path:
 
 from woweconomy.analytics import auction_intel as ai  # noqa: E402
 from woweconomy.intel import actions, ah, ah_undercut, decision_ledger, dynamics, farming, inventory, ledger, mail, mobs, realm_ml, relist, sellers, store, undercut  # noqa: E402
+from woweconomy.pipeline import leases  # noqa: E402
 
 
 def _print(payload) -> None:
@@ -204,12 +206,28 @@ def _fetch_all_realms(args, con, client) -> int:
     return 1 if failed else 0
 
 
+def _file_digest(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
 def cmd_addon_import(args) -> int:
     path = Path(args.path) if args.path else ai.find_saved_variables()
     if not path:
         print("no addon SavedVariables found", file=sys.stderr)
         return 2
     con = store.connect(args.db)
+    # The pipeline polls this file because the client only writes it on
+    # /reload or logout.  Hashing it makes the poll cheap and, more
+    # importantly, silent: an unchanged export is EX_CONFIG, which is the
+    # pipeline's "nothing to do" and not a digest line.
+    digest = _file_digest(path) if args.if_changed else ""
+    if digest and leases.read_stat(con, "addon:sha256") == digest:
+        print("the addon export is unchanged", file=sys.stderr)
+        return 78
     result = {"saved_variables": str(path)}
 
     events = ai.parse_saved_variables(path)
@@ -278,6 +296,10 @@ def cmd_addon_import(args) -> int:
         result["kills"] = {"parsed": len(rows), "inserted": inserted}
     except (ValueError, OSError) as exc:
         result["kills"] = {"error": str(exc)}
+    # Only a completed import records the fingerprint: a run that failed half
+    # way has to be retried on the next poll, not remembered as done.
+    if digest:
+        leases.publish_stat(con, "addon:sha256", digest)
     _print(result)
     return 0
 
@@ -546,6 +568,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--path")
     p.add_argument("--no-link", action="store_true",
                    help="import mail invoices but do not update the journal")
+    p.add_argument("--if-changed", action="store_true",
+                   help="exit 78 without importing when the file has not"
+                        " changed since the last successful import")
     p.set_defaults(func=cmd_addon_import)
 
     p = sub.add_parser("mail-import", help="import mailbox invoices only")

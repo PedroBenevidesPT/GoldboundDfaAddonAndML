@@ -111,6 +111,10 @@ class TaskDef:
     after: Sequence[str] = ()
     #: Not run by ``--loop`` unless explicitly named.
     optional: bool = False
+    #: A skip from this task is not worth a digest line.  Used by the tasks
+    #: that poll an input: "nothing new" every fifteen minutes is not an
+    #: action, and reporting it would out-shout the tasks that did work.
+    quiet_skip: bool = False
 
     def command(self) -> List[str]:
         return [PY, *self.argv]
@@ -139,8 +143,8 @@ def default_tasks() -> Dict[str, TaskDef]:
         # this has to poll the file rather than be told when it changed; the
         # import is idempotent and a file that has not moved inserts nothing.
         TaskDef("addon",
-                ["scripts/intel.py", "addon-import"],
-                every_s=15 * 60, timeout_s=300),
+                ["scripts/intel.py", "addon-import", "--if-changed"],
+                every_s=15 * 60, timeout_s=300, quiet_skip=True),
         # 187 CSVs (92 connected-realm groups plus 3 region files) at the ten
         # seconds between requests TSM needs to not start answering 429.  The
         # sweep is conditional (ETag/If-Modified-Since), so a run where TSM has
@@ -358,7 +362,7 @@ def cycle_digest(results: Sequence[TaskResult], *,
     ``None`` when the cycle did nothing: an empty digest is a heartbeat, and
     the rule for every other alert here is that an alert is a *change*.
     """
-    results = [r for r in results if not r.lease_skip]
+    results = [r for r in results if not r.lease_skip and not r.quiet]
     if not results:
         return None
     lines: List[str] = []
@@ -414,6 +418,8 @@ class TaskResult:
     #: work.  Not an action: reporting it would post a digest every couple of
     #: minutes for as long as another worker is running the task.
     lease_skip: bool = False
+    #: The task had nothing to do (an unchanged input).  Same treatment.
+    quiet: bool = False
 
     def line(self) -> str:
         if self.skipped:
@@ -483,6 +489,7 @@ def run_task(con, task: TaskDef, *, runner: Optional[Callable] = None,
             leases.clear_stat(con, f"last_fail:{task.name}")
             return TaskResult(task.name, True, finished - started,
                               exit_code=code, skipped=reason,
+                              quiet=task.quiet_skip,
                               detail={"exit_code": code})
         ok = code == 0
         finished = time.time()
