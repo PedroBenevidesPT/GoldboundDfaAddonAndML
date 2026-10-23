@@ -222,13 +222,48 @@ local function Call(object, method, ...)
     return nil
 end
 
+-- The HUD's layout, as numbers rather than magic constants.  The frame used
+-- to be a fixed 200 tall while its contents needed about 164, so the panel
+-- carried a dead band under the buttons and sat taller than anything in it.
+-- Height is now derived from what is actually placed: four status lines, and
+-- one button every two per row.
+local LAYOUT = {
+    width = 236,
+    pad = 8,             -- inner margin on every side
+    title_top = 6,       -- the title's own inset
+    title_h = 12,
+    line_h = 13,         -- one status line
+    line_gap = 6,        -- between the title and the first line
+    block_gap = 8,       -- between the last line and the buttons
+    button_w = 108,
+    button_h = 20,
+    button_step = 24,    -- vertical pitch, i.e. height + the gap
+    button_cols = 2,
+}
+
+---The height the contents need, so the frame is never taller than its job.
+---@param line_count number
+---@param button_count number
+---@return number
+local function RequiredHeight(line_count, button_count)
+    local rows = math.ceil(button_count / LAYOUT.button_cols)
+    local lines_bottom = LAYOUT.title_top + LAYOUT.title_h + LAYOUT.line_gap
+        + line_count * LAYOUT.line_h
+    local buttons_top = rows > 0
+        and (rows - 1) * LAYOUT.button_step + LAYOUT.button_h or 0
+    return lines_bottom + LAYOUT.block_gap + buttons_top + LAYOUT.pad
+end
+
+
 local function Build()
     if frame then return frame end
     local ok, built = pcall(function()
         local f = CreateFrame("Frame", "DFA_AuctionIntelligenceHUD",
             _G.UIParent, "BackdropTemplate")
         if not f then return nil end
-        Call(f, "SetSize", 236, 200)
+        local status_lines = 4
+        local button_count = 5
+        Call(f, "SetSize", LAYOUT.width, RequiredHeight(status_lines, button_count))
         Call(f, "SetPoint", "CENTER", _G.UIParent, "CENTER", 0, 0)
         Call(f, "SetFrameStrata", "LOW")
         Call(f, "SetClampedToScreen", true)
@@ -266,7 +301,9 @@ local function Build()
         f.lines = {}
         for index = 1, 4 do
             local label = Call(f, "CreateFontString", nil, "GameFontHighlightSmall")
-            Call(label, "SetPoint", "TOPLEFT", f, "TOPLEFT", 8, -24 - (index - 1) * 13)
+            Call(label, "SetPoint", "TOPLEFT", f, "TOPLEFT", LAYOUT.pad,
+                -(LAYOUT.title_top + LAYOUT.title_h + LAYOUT.line_gap)
+                    - (index - 1) * LAYOUT.line_h)
             Call(label, "SetJustifyH", "LEFT")
             Call(label, "SetText", "")
             f.lines[index] = label
@@ -283,11 +320,12 @@ local function Build()
         }
         for index, spec in ipairs(buttons) do
             local button = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-            Call(button, "SetSize", 108, 20)
-            local column = (index - 1) % 2
-            local row = math.floor((index - 1) / 2)
+            Call(button, "SetSize", LAYOUT.button_w, LAYOUT.button_h)
+            local column = (index - 1) % LAYOUT.button_cols
+            local row = math.floor((index - 1) / LAYOUT.button_cols)
             Call(button, "SetPoint", "BOTTOMLEFT", f, "BOTTOMLEFT",
-                8 + column * 112, 8 + row * 24)
+                LAYOUT.pad + column * (LAYOUT.button_w + 4),
+                LAYOUT.pad + row * LAYOUT.button_step)
             if button.SetText then
                 button:SetText(spec.label)
             end
