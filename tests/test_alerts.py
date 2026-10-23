@@ -155,7 +155,66 @@ def test_an_undercut_digest_names_the_item_the_gap_and_the_action():
     assert "Thing" in digest[0].lines[0]
     assert "Under-Stormscale" in digest[0].lines[0]
     assert "cheapest is 20% below your ask" in digest[0].lines[0]
-    assert "relist=1" in digest[0].lines[-1]
+    body = "\n".join(digest[0].lines)
+    assert "relist=1" in body
+    # The reader is usually away from the game, so the digest says what to
+    # do rather than leaving a count to be interpreted.
+    assert "action:" in body
+    assert "cancel" in body.lower()
+
+
+def test_an_alert_always_carries_the_item_id_and_the_name():
+    """A name alone is ambiguous; an id alone is unreadable.  Send both."""
+    advice = {
+        "realm": "Dragonmaw",
+        "counts": {"cancel_and_relist": 1},
+        "advice": [{
+            "item_id": 12345, "item_name": "Thing",
+            "own_unit_price_copper": 10_000,
+            "lowest_unit_price_copper": 8_000, "gap_pct": 0.2,
+            "advice": "cancel_and_relist",
+        }],
+    }
+
+    line = alerts.undercut_alerts(advice)[0].lines[0]
+
+    assert "Thing" in line
+    assert "item 12345" in line
+
+
+def test_an_item_with_no_name_still_carries_its_id():
+    advice = {
+        "realm": "Dragonmaw",
+        "counts": {"cancel_and_relist": 1},
+        "advice": [{
+            "item_id": 999, "own_unit_price_copper": 10_000,
+            "lowest_unit_price_copper": 8_000, "gap_pct": 0.2,
+            "advice": "cancel_and_relist",
+        }],
+    }
+
+    line = alerts.undercut_alerts(advice)[0].lines[0]
+
+    assert "item 999" in line
+    assert "None" not in line
+
+
+def test_an_item_with_neither_does_not_print_a_question_mark():
+    """An unknown item is said plainly, not disguised as an id of '?'."""
+    advice = {
+        "realm": "Dragonmaw",
+        "counts": {"cancel_and_relist": 1},
+        "advice": [{
+            "own_unit_price_copper": 10_000,
+            "lowest_unit_price_copper": 8_000, "gap_pct": 0.2,
+            "advice": "cancel_and_relist",
+        }],
+    }
+
+    line = alerts.undercut_alerts(advice)[0].lines[0]
+
+    assert "unknown item" in line
+    assert "item ?" not in line
 
 
 def test_a_review_only_result_does_not_become_a_cancel_alert():
