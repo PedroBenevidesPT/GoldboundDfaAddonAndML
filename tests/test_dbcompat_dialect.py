@@ -10,8 +10,11 @@ import pytest
 
 from woweconomy.dbcompat.dialect import (
     UnsupportedSQL,
+    is_ddl,
     is_pragma,
     parse_pragma,
+    strip_leading_comments,
+    translate_date_functions,
     split_statements,
     to_pyformat,
     translate,
@@ -210,6 +213,35 @@ def test_real_widens_to_double_precision():
     assert out == "CREATE TABLE t (days_left DOUBLE PRECISION NOT NULL DEFAULT 0)"
 
 
+# ---------------------------------------------------------------------------
+# DDL detection
+# ---------------------------------------------------------------------------
+
+def test_ddl_detection_ignores_leading_line_comments():
+    # A schema writes a comment above most tables.  A statement that starts
+    # with a comment is still DDL, and treating it as DML silently skipped
+    # the INTEGER -> BIGINT widening for every table after the first.
+    sql = "-- Per (aggregate, day, scope)\nCREATE TABLE t (a INTEGER)"
+    assert is_ddl(sql)
+
+
+def test_ddl_detection_ignores_leading_block_comments():
+    assert is_ddl("/* why */ CREATE INDEX i ON t(a)")
+
+
+def test_dml_is_not_ddl():
+    assert not is_ddl("INSERT INTO t VALUES (1)")
+    assert not is_ddl("-- note\nSELECT 1")
+
+
+def test_stripping_comments_leaves_the_statement():
+    assert strip_leading_comments("-- a\n/* b */\nCREATE TABLE t(x)") == "CREATE TABLE t(x)"
+
+
+def test_a_comment_only_statement_strips_to_nothing():
+    assert strip_leading_comments("-- just a comment") == ""
+
+
 def test_text_only_ddl_passes_through_unchanged():
     sql = "CREATE TABLE t (a TEXT NOT NULL, b TEXT DEFAULT '')"
     assert translate_ddl(sql) == sql
@@ -250,6 +282,35 @@ def test_cast_to_text_is_left_alone():
 def test_a_column_named_like_a_type_is_not_rewritten():
     sql = "SELECT real_value FROM t WHERE integer_id = ?"
     assert translate_cast_types(sql) == sql
+
+
+# ---------------------------------------------------------------------------
+# date()
+# ---------------------------------------------------------------------------
+
+def test_date_with_unixepoch_becomes_to_char_in_utc():
+    out = translate_date_functions("SELECT date(s.captured_at, 'unixepoch') FROM s")
+    assert out == (
+        "SELECT to_char(to_timestamp(s.captured_at) AT TIME ZONE 'UTC',"
+        " 'YYYY-MM-DD') FROM s"
+    )
+
+
+def test_date_of_a_text_column_becomes_a_cast():
+    out = translate_date_functions("SELECT date(t.updated_at)")
+    assert "CAST(t.updated_at AS timestamptz)" in out
+    assert "AT TIME ZONE 'UTC'" in out
+
+
+def test_a_column_named_date_is_not_rewritten():
+    sql = "SELECT date, other FROM t"
+    assert translate_date_functions(sql) == sql
+
+
+def test_an_identifier_ending_in_date_is_not_rewritten():
+    # "update(" must not be mistaken for "date(".
+    sql = "SELECT update(x) FROM t"
+    assert translate_date_functions(sql) == sql
 
 
 # ---------------------------------------------------------------------------

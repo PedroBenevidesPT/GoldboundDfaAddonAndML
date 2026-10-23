@@ -18,6 +18,7 @@ from typing import Any, Iterable, Iterator, Optional, Sequence
 
 from .dialect import (
     UnsupportedSQL,
+    is_ddl,
     is_pragma,
     known_pragma,
     parse_pragma,
@@ -28,8 +29,6 @@ from .dialect import (
 )
 
 __all__ = ["Row", "PgCursor", "PgConnection"]
-
-_DDL_START = re.compile(r"^\s*(CREATE|ALTER|DROP|COMMENT|GRANT|REVOKE)\b", re.I)
 
 # A single-tuple INSERT, optionally followed by ON CONFLICT.  This is the shape
 # psycopg2's execute_values can batch; anything else falls back to executemany.
@@ -413,9 +412,8 @@ class PgConnection:
             if is_pragma(statement):
                 self.execute(statement)
                 continue
-            is_ddl = bool(_DDL_START.match(statement))
             prepared = translate(statement, pk_lookup=self.primary_key,
-                                 for_ddl=is_ddl)
+                                 for_ddl=is_ddl(statement))
             prepared, _ = to_pyformat(prepared)
             cur = self._raw.cursor()
             try:

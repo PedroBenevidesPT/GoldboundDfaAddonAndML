@@ -472,6 +472,100 @@ def translate_cast_types(sql: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# date() / datetime()
+# ---------------------------------------------------------------------------
+
+_DATE_CALL = re.compile(r"\bdate\s*\(", re.I)
+
+
+def _split_args(inner: str) -> list[str]:
+    """Split a function's arguments on top-level commas."""
+    parts: list[str] = []
+    depth = 0
+    quote: Optional[str] = None
+    current: list[str] = []
+    i = 0
+    n = len(inner)
+    while i < n:
+        ch = inner[i]
+        if quote is None:
+            if ch in ("'", '"'):
+                quote = ch
+                current.append(ch)
+            elif ch == "(":
+                depth += 1
+                current.append(ch)
+            elif ch == ")":
+                depth -= 1
+                current.append(ch)
+            elif ch == "," and depth == 0:
+                parts.append("".join(current).strip())
+                current = []
+            else:
+                current.append(ch)
+        else:
+            if ch == quote:
+                if i + 1 < n and inner[i + 1] == quote:
+                    current.append(ch)
+                    i += 1
+                else:
+                    quote = None
+            current.append(ch)
+        i += 1
+    tail = "".join(current).strip()
+    if tail:
+        parts.append(tail)
+    return parts
+
+
+def translate_date_functions(sql: str) -> str:
+    """Rewrite SQLite's ``date()`` into a UTC ``to_char``.
+
+    SQLite has no date type: ``date(x, 'unixepoch')`` turns a Unix timestamp
+    into ``'YYYY-MM-DD'`` in UTC, and ``date(text)`` parses an ISO string.
+    Postgres has no such function, so both forms become ``to_char`` with an
+    explicit UTC zone -- without the zone the answer depends on the server's
+    timezone, which is exactly the kind of difference that moves a row into
+    the wrong day.
+    """
+    out: list[str] = []
+    pos = 0
+    while True:
+        m = _DATE_CALL.search(sql, pos)
+        if not m:
+            out.append(sql[pos:])
+            break
+        # Skip if this is part of a longer identifier such as "update(".
+        if m.start() > 0 and (sql[m.start() - 1].isalnum() or sql[m.start() - 1] == "_"):
+            out.append(sql[pos:m.end()])
+            pos = m.end()
+            continue
+        open_index = m.end() - 1
+        close_index = _matching_paren(sql, open_index)
+        if close_index == -1:
+            out.append(sql[pos:])
+            break
+        args = _split_args(sql[open_index + 1:close_index])
+        replacement: Optional[str] = None
+        if len(args) == 2 and args[1].strip().lower() in ("'unixepoch'", '"unixepoch"'):
+            replacement = (
+                f"to_char(to_timestamp({args[0]}) AT TIME ZONE 'UTC', 'YYYY-MM-DD')"
+            )
+        elif len(args) == 1:
+            replacement = (
+                f"to_char(CAST({args[0]} AS timestamptz) AT TIME ZONE 'UTC',"
+                " 'YYYY-MM-DD')"
+            )
+        if replacement is None:
+            out.append(sql[pos:close_index + 1])
+        else:
+            out.append(sql[pos:m.start()])
+            out.append(replacement)
+        pos = close_index + 1
+    return "".join(out)
+
+
+# ---------------------------------------------------------------------------
 # PRAGMA
 # ---------------------------------------------------------------------------
 
@@ -517,6 +611,35 @@ def parse_pragma(sql: str) -> Optional[tuple[str, Optional[str], Optional[str]]]
     )
 
 
+def strip_leading_comments(sql: str) -> str:
+    """Drop leading ``--`` and ``/* */`` comments and whitespace.
+
+    Needed because a schema is written with a comment above most tables, and a
+    statement that *starts* with a comment does not look like DDL -- which
+    silently skipped the type widening for every table after the first.
+    """
+    text = sql.lstrip()
+    while True:
+        if text.startswith("--"):
+            newline = text.find("\n")
+            if newline == -1:
+                return ""
+            text = text[newline + 1:].lstrip()
+        elif text.startswith("/*"):
+            end = text.find("*/", 2)
+            if end == -1:
+                return ""
+            text = text[end + 2:].lstrip()
+        else:
+            return text
+
+
+def is_ddl(sql: str) -> bool:
+    """Whether a statement is a DDL statement, ignoring leading comments."""
+    return bool(re.match(r"^\s*(CREATE|ALTER|DROP|COMMENT|GRANT|REVOKE)\b",
+                         strip_leading_comments(sql), re.I))
+
+
 def known_pragma(name: str) -> bool:
     return name in _PRAGMA_TUNING or name in _PRAGMA_DIAGNOSTIC
 
@@ -560,4 +683,5 @@ def translate(
     sql = translate_sqlite_master(sql)
     sql = translate_strftime_epoch(sql)
     sql = translate_cast_types(sql)
+    sql = translate_date_functions(sql)
     return sql

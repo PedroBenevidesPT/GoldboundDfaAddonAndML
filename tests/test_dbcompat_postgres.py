@@ -242,6 +242,19 @@ def test_strftime_epoch_agrees_between_backends(sqlite_con, pg_con):
     assert int(pg_value) == int(lite_value)
 
 
+@requires_pg
+def test_date_with_unixepoch_agrees_between_backends(sqlite_con, pg_con):
+    """The day string must be identical, including the UTC boundary.
+
+    2023-11-14 22:13:20 UTC is the 14th; a server in CET would call it the
+    15th, which would move a row into the wrong aggregate day.
+    """
+    epoch = 1_700_000_000
+    lite = sqlite_con.execute(f"SELECT date({epoch}, 'unixepoch')").fetchone()[0]
+    pg_value = pg_con.execute(f"SELECT date({epoch}, 'unixepoch')").fetchone()[0]
+    assert str(pg_value) == str(lite) == "2023-11-14"
+
+
 # ---------------------------------------------------------------------------
 # LIKE with a literal percent
 # ---------------------------------------------------------------------------
