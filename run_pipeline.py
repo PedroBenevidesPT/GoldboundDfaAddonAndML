@@ -35,6 +35,7 @@ defaults therefore favour ``fetch`` heavily and the expensive jobs lightly:
     strategy     every 6 h   -- the posting plan, from the current snapshot
     sentinel     every 24 h  -- retrain, gated by chronological validation
     export       every 6 h   -- write the addon dataset
+    visibility   every 24 h  -- were our sales visible in the Blizzard book
     deploy       after export -- copy the toc-listed files into the game
 
 Usage
@@ -135,6 +136,14 @@ def default_tasks() -> Dict[str, TaskDef]:
         TaskDef("export",
                 ["scripts/dfa_pricing_export.py"],
                 every_s=6 * HOUR, timeout_s=1800, after=("fetch",)),
+        # Cheap (0.03 s), and it only becomes answerable once a sale happens
+        # while snapshots are being taken -- which is exactly when nobody is
+        # watching.  It writes the report rather than failing, so a run with
+        # no overlap yet does not read as a broken task.
+        TaskDef("visibility",
+                ["scripts/sale_visibility.py", "--by-realm",
+                 "--json", "reports/sale_visibility.json"],
+                every_s=24 * HOUR, timeout_s=300, after=("fetch",)),
         TaskDef("deploy",
                 ["scripts/deploy_addons.py"],
                 every_s=6 * HOUR, timeout_s=300, after=("export",)),

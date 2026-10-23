@@ -1,0 +1,18 @@
+{
+  "sales_total": 557,
+  "sales_covered": 0,
+  "before_snapshots": 557,
+  "overlap": false,
+  "matched": 0,
+  "unmatched": 0,
+  "same_price": 0,
+  "first_sale_at": 1792109483,
+  "last_sale_at": 1792566739,
+  "first_snapshot_at": 1792571001,
+  "last_snapshot_at": 1792714531,
+  "by_realm": {},
+  "notes": [
+    "557 sale(s) predate the first snapshot; the check needs a sale that happened while snapshots were being taken"
+  ],
+  "elapsed_s": 0.04
+}
