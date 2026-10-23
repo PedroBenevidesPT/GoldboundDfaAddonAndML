@@ -206,6 +206,43 @@ can follow the pipeline live without polling:
 docker compose exec redis redis-cli subscribe goldbound:events
 ```
 
+### Keeping the desktop usable
+
+The pipeline runs on the same machine you work on, and left unbounded it will
+take the whole thing. Two containers were doing that:
+
+**Postgres was the real hog, not the worker.** `aggregates` is a handful of big
+GROUP BYs over 17M auction rows; the worker only streams the results back. The
+`postgres:16-alpine` defaults are sized for a machine with 64 MB of RAM —
+`shared_buffers` 16 MB and `work_mem` 4 MB — so every aggregate re-read the
+table from disk and spilled its sorts to temp files. Measured mid-build: worker
+~35% CPU and 380 MB, Postgres ~90% CPU and 2.7 GB. The compose file now sets
+`shared_buffers=2GB`, `work_mem=64MB`, `maintenance_work_mem=512MB` and
+`effective_cache_size=8GB`, and the load moved to the client side, which is
+where it belongs.
+
+**Nothing was capped.** Both containers could use all 24 threads and the whole
+16 GB WSL2 VM. They are now capped and the worker is niced, so the pipeline
+yields to whatever is in the foreground:
+
+| Knob | Default | What it protects |
+| --- | --- | --- |
+| `WORKER_CPUS` | 6 | worker's share of a 24-thread CPU |
+| `WORKER_MEM` | 8g | keeps the worker out of the WSL2 ceiling |
+| `WORKER_BLAS_THREADS` | 4 | stops numpy/OpenMP spawning a thread per core |
+| `WORKER_NICE` | 10 | the desktop wins every contention |
+| `WORKER_TASKS` | 3 | tasks allowed to run at once |
+| `POSTGRES_CPUS` | 8 | Postgres' share of the CPU |
+| `POSTGRES_MEM` | 6g | Postgres' memory ceiling |
+
+Set them in `.env` and `docker compose up -d` to apply. On a dedicated box,
+raise them; on a laptop, lower them. `nice` is inherited by every task
+subprocess, so a single long step no longer makes the mouse stutter.
+
+If the machine still feels slow, the remaining lever is Docker Desktop's own
+`.wslconfig` (`memory=`, `processors=`): the containers cannot use more than
+the VM gives them, and the VM defaults to about half the host.
+
 `strategy` needs the Data for Azeroth demand export (the `demand_*.csv`
 files), which is an input rather than code. Point `DFA_DIR` in `.env` at its
 folder; the worker mounts that folder read-only at `/app/woweconomy/dfa`. With

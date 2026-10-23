@@ -34,11 +34,42 @@ services:
       # Deterministic collation: two machines must sort realm names the same
       # way, or a "stable" ranking is stable only per machine.
       POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
+    # Postgres, not the worker, is what actually pins the CPU: `aggregates`
+    # is a handful of big GROUP BYs over 17M auction rows and the client just
+    # streams the results.  The image ships the defaults meant for a machine
+    # with 64 MB of RAM -- `shared_buffers` 16MB, `work_mem` 4MB -- so every
+    # one of those queries re-read the whole table from disk and spilled its
+    # sorts to temp files.  That is the disk thrash and the 100% CPU.
+    #
+    # Sizing: 2GB of buffers against a ~11GB data set caches the hot
+    # partitions; 64MB of work_mem keeps the per-partition GROUP BYs in
+    # memory instead of on disk.  `effective_cache_size` is advice to the
+    # planner, not an allocation.
+    command:
+      - postgres
+      - -c
+      - shared_buffers=2GB
+      - -c
+      - work_mem=64MB
+      - -c
+      - maintenance_work_mem=512MB
+      - -c
+      - effective_cache_size=8GB
+      # Two parallel workers per gather is plenty when the desktop also needs
+      # cores; the default of 8 `max_parallel_workers` still allows several
+      # concurrent tasks to overlap.
+      - -c
+      - max_parallel_workers_per_gather=2
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./docker/postgres/init:/docker-entrypoint-initdb.d:ro
+    # Capped like the worker: this container has no business taking all 24
+    # threads and the whole 16GB VM while someone is using the machine.
+    cpus: "${POSTGRES_CPUS:-8}"
+    mem_limit: "${POSTGRES_MEM:-6g}"
+    cpu_shares: 768
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-goldbound} -d ${POSTGRES_DB:-goldbound}"]
       interval: 5s
@@ -150,6 +181,14 @@ services:
       # always inside a container: without this, `docker compose logs` shows
       # nothing until a task finishes, and a fetch takes minutes.
       PYTHONUNBUFFERED: "1"
+      # BLAS/OpenMP count the *logical* cores and spawn one thread each.  On a
+      # 24-thread desktop that storm -- not the work itself -- is what makes
+      # the machine unusable, and the threads fight each other for the same
+      # memory bandwidth anyway.  Capped to the container's CPU budget.
+      OMP_NUM_THREADS: "${WORKER_BLAS_THREADS:-4}"
+      OPENBLAS_NUM_THREADS: "${WORKER_BLAS_THREADS:-4}"
+      MKL_NUM_THREADS: "${WORKER_BLAS_THREADS:-4}"
+      NUMEXPR_NUM_THREADS: "${WORKER_BLAS_THREADS:-4}"
     volumes:
       # The worker reads and writes the repo's data directory (the exported
       # addon dataset, the model bundles).  Code is baked into the image so a
@@ -184,7 +223,25 @@ services:
     # hold everything else behind it.  Dependency order is still honoured
     # (`export` waits for `strategy`, `deploy` for `export`) and the lease
     # table still guarantees one worker per task.
-    command: ["python", "run_pipeline.py", "--loop", "--interval", "120", "--workers", "3"]
+    #
+    # `nice` is not decoration.  Several steps are single-threaded by nature --
+    # `strategy` spends minutes in one pure-Python loop, `aggregates` streams
+    # 17M rows -- so they pin a core for a long time.  At normal priority that
+    # core is enough to make a desktop stutter, and every task subprocess
+    # inherits the niceness, so the whole pipeline yields to whatever the
+    # person at the keyboard is doing.
+    command: ["nice", "-n", "${WORKER_NICE:-10}", "python", "run_pipeline.py",
+              "--loop", "--interval", "120", "--workers", "${WORKER_TASKS:-3}"]
+    # The pipeline is a tenant on a workstation, not the owner of it.  Without
+    # these the container is unbounded: Docker Desktop's WSL2 VM had 16.6 GB
+    # of a 31.7 GB machine and the whole 24-thread CPU, so one heavy task both
+    # saturated the scheduler and pushed Windows into paging -- which is what
+    # "the PC freezes" actually was.  `cpus` is a hard quota; `cpu_shares`
+    # decides who wins when the desktop is also busy.  Raise the CPU budget in
+    # `.env` when running on a dedicated box.
+    cpus: "${WORKER_CPUS:-6}"
+    mem_limit: "${WORKER_MEM:-8g}"
+    cpu_shares: 512
     restart: unless-stopped
     # No `container_name`: this service is meant to be scaled, and a fixed
     # name makes a second replica impossible.
