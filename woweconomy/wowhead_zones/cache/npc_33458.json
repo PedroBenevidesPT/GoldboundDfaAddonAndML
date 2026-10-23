@@ -1,0 +1,16 @@
+{
+ "npc_id": 33458,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Ashenvale Stalker",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 45069,
+   "item_name": "Freshly Cut Wood",
+   "drop_rate": 0.95,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=45069/freshly-cut-wood"
+  }
+ ]
+}

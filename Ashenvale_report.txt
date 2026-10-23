@@ -1,0 +1,687 @@
+
+=== ashenvale — 145 NPCs ===
+
+-- TOP FARMS (EV gross | real = gross x sell-through, per kill) --
+   conf = evidence share x price freshness (coverage, NOT a sale P)
+ 1. Sharptalon [12676] EV=11g real=4g (4,247g/h) drops=78 vendor=0g conf=91% JP=Small Egg                    2g
+       62.00% x 1.0 [drop] Small Egg                      u=       7g EV=2g
+       55.00% x 3.0 [skin] Medium Leather                 u=       2g EV=1g
+       34.00% x 2.5 [skin] Light Leather                  u=       1g EV=0g
+ 2. Taerar [121911] EV=42g real=3g (4,078g/h) drops=9 vendor=1g conf=91% JP=Rugged Leather               2g
+       72.00% x 2.5 [skin] Rugged Leather                 u=       2g EV=2g
+       92.00% x 2.5 [skin] Green Dragonscale              u=       2g EV=1g
+       62.00% x 1.5 [skin] Dreamscale                     u=      39g EV=1g
+ 3. Elder Shadowhorn Stag [3818] EV=9g real=2g (2,643g/h) drops=84 vendor=0g conf=91% JP=Medium Leather               1g
+       49.00% x 3.5 [skin] Medium Leather                 u=       2g EV=1g
+       43.00% x 4.0 [skin] Light Leather                  u=       1g EV=1g
+        3.00% x 2.5 [skin] Light Hide                     u=       2g EV=0g
+ 4. Shadowhorn Stag [3817] EV=8g real=2g (2,635g/h) drops=104 vendor=0g conf=91% JP=Medium Leather               1g
+       49.00% x 3.5 [skin] Medium Leather                 u=       2g EV=1g
+       43.00% x 4.0 [skin] Light Leather                  u=       1g EV=1g
+        3.00% x 3.0 [skin] Light Hide                     u=       2g EV=0g
+ 5. Ghostpaw Alpha [3825] EV=8g real=2g (2,631g/h) drops=149 vendor=0g conf=91% JP=Medium Leather               1g
+       48.00% x 3.5 [skin] Medium Leather                 u=       2g EV=1g
+       43.00% x 4.0 [skin] Light Leather                  u=       1g EV=1g
+       58.00% x 1.0 [drop] Lean Wolf Flank                u=       0g EV=0g
+ 6. Elder Ashenvale Bear [3810] EV=8g real=2g (2,621g/h) drops=146 vendor=0g conf=91% JP=Medium Leather               1g
+       48.00% x 3.5 [skin] Medium Leather                 u=       2g EV=1g
+       43.00% x 4.0 [skin] Light Leather                  u=       1g EV=1g
+        3.00% x 3.0 [skin] Light Hide                     u=       2g EV=0g
+ 7. Illiyana Moonblaze <Silverwing Supply Officer> [14753] EV=3g real=2g (2,598g/h) drops=3 vendor=0g conf=91% JP=Runecloth                    2g
+       68.00% x 2.5 [drop] Runecloth                      u=       2g EV=2g
+        8.00% x 1.0 [drop] Superior Mana Potion           u=       0g EV=0g
+       15.00% x 1.0 [drop] Deep Fried Plantains           u=       0g EV=0g
+ 8. Ghostpaw Howler [3824] EV=7g real=2g (2,504g/h) drops=44 vendor=0g conf=91% JP=Medium Leather               1g
+       50.00% x 3.5 [skin] Medium Leather                 u=       2g EV=1g
+       42.00% x 3.5 [skin] Light Leather                  u=       1g EV=1g
+       55.00% x 1.0 [drop] Lean Wolf Flank                u=       0g EV=0g
+ 9. Ghostpaw Runner [3823] EV=8g real=2g (2,251g/h) drops=97 vendor=0g conf=91% JP=Light Leather                1g
+       74.00% x 3.5 [skin] Light Leather                  u=       1g EV=1g
+       19.00% x 3.0 [skin] Medium Leather                 u=       2g EV=0g
+        5.00% x 2.5 [skin] Light Hide                     u=       2g EV=0g
+10. Wild Buck [3816] EV=10g real=2g (2,241g/h) drops=176 vendor=0g conf=91% JP=Light Leather                1g
+       73.00% x 3.5 [skin] Light Leather                  u=       1g EV=1g
+       19.00% x 3.0 [skin] Medium Leather                 u=       2g EV=0g
+       0.050% x 1.0 [drop] Prospector's Boots             u=   3,476g EV=0g
+11. Blink Dragon [3815] EV=5g real=2g (2,135g/h) drops=11 vendor=0g conf=91% JP=Medium Leather               1g
+       50.00% x 3.0 [skin] Medium Leather                 u=       2g EV=1g
+       43.00% x 3.0 [skin] Light Leather                  u=       1g EV=1g
+       0.300% x 1.0 [drop] Outrunner's Chestguard         u=     185g EV=0g
+12. Mist Howler [10644] EV=40g real=2g (2,094g/h) drops=44 vendor=0g conf=91% JP=Light Leather                1g
+       92.00% x 1.5 [skin] Light Leather                  u=       1g EV=1g
+       29.00% x 1.0 [drop] Scouting Trousers              u=      58g EV=0g
+       29.00% x 1.0 [drop] Defender Cloak                 u=      40g EV=0g
+13. Emeraldon Oracle [12476] EV=6g real=2g (2,083g/h) drops=33 vendor=0g conf=91% JP=Medium Leather               1g
+       49.00% x 2.5 [skin] Medium Leather                 u=       2g EV=1g
+       43.00% x 3.5 [skin] Light Leather                  u=       1g EV=1g
+       34.00% x 1.5 [drop] Wool Cloth                     u=       0g EV=0g
+14. Mystlash Hydra [3721] EV=9g real=2g (2,025g/h) drops=163 vendor=0g conf=91% JP=Light Leather                1g
+       77.00% x 3.0 [skin] Light Leather                  u=       1g EV=1g
+       19.00% x 2.5 [skin] Medium Leather                 u=       2g EV=0g
+       0.040% x 1.0 [drop] Prospector's Boots             u=   3,476g EV=0g
+15. Dreamstalker [12498] EV=7g real=2g (2,017g/h) drops=6 vendor=0g conf=91% JP=Medium Leather               1g
+       68.00% x 2.0 [skin] Medium Leather                 u=       2g EV=1g
+       10.00% x 1.0 [skin] Heavy Hide                     u=      39g EV=0g
+       14.00% x 1.0 [skin] Heavy Leather                  u=       5g EV=0g
+16. Felslayer [3774] EV=8g real=2g (1,920g/h) drops=75 vendor=0g conf=91% JP=Medium Leather               1g
+       46.00% x 2.5 [skin] Medium Leather                 u=       2g EV=1g
+       45.00% x 3.0 [skin] Light Leather                  u=       1g EV=1g
+       0.300% x 1.0 [drop] Moss Agate                     u=      15g EV=0g
+17. Wildthorn Stalker [3819] EV=7g real=2g (1,916g/h) drops=86 vendor=0g conf=91% JP=Spider's Silk                1g
+        5.00% x 1.0 [drop] Spider's Silk                  u=      81g EV=1g
+       31.00% x 1.0 [drop] Crunchy Spider Leg             u=       2g EV=0g
+       29.00% x 1.0 [drop] Gooey Spider Leg               u=       0g EV=0g
+18. Wildthorn Lurker [3821] EV=6g real=2g (1,887g/h) drops=87 vendor=0g conf=91% JP=Spider's Silk                1g
+        5.00% x 1.0 [drop] Spider's Silk                  u=      81g EV=1g
+       30.00% x 1.0 [drop] Crunchy Spider Leg             u=       2g EV=0g
+       31.00% x 1.0 [drop] Gooey Spider Leg               u=       0g EV=0g
+19. Wildthorn Venomspitter [3820] EV=6g real=2g (1,863g/h) drops=35 vendor=0g conf=91% JP=Spider's Silk                1g
+        5.00% x 1.0 [drop] Spider's Silk                  u=      81g EV=1g
+       29.00% x 1.0 [drop] Crunchy Spider Leg             u=       2g EV=0g
+       30.00% x 1.0 [drop] Gooey Spider Leg               u=       0g EV=0g
+20. Ursangous [12678] EV=9g real=2g (1,851g/h) drops=25 vendor=0g conf=91% JP=Medium Leather               1g
+       47.00% x 3.0 [skin] Medium Leather                 u=       2g EV=1g
+       44.00% x 2.0 [skin] Light Leather                  u=       1g EV=0g
+       57.00% x 1.5 [drop] Big Bear Meat                  u=       0g EV=0g
+21. Ursol'lok [12037] EV=39g real=1g (1,772g/h) drops=56 vendor=0g conf=91% JP=Medium Leather               0g
+       62.00% x 1.0 [skin] Medium Leather                 u=       2g EV=0g
+       33.00% x 1.5 [skin] Light Leather                  u=       1g EV=0g
+        8.00% x 1.0 [drop] Scouting Trousers              u=      58g EV=0g
+22. Emeraldon Boughguard [12474] EV=4g real=1g (1,745g/h) drops=28 vendor=0g conf=91% JP=Medium Leather               1g
+       48.00% x 2.5 [skin] Medium Leather                 u=       2g EV=1g
+       43.00% x 2.5 [skin] Light Leather                  u=       1g EV=1g
+       11.00% x 1.5 [drop] Wool Cloth                     u=       0g EV=0g
+23. Ashenvale Bear [3809] EV=3g real=1g (1,637g/h) drops=14 vendor=0g conf=91% JP=Light Leather                1g
+       68.00% x 3.0 [skin] Light Leather                  u=       1g EV=1g
+       25.00% x 1.5 [skin] Medium Leather                 u=       2g EV=0g
+       36.00% x 1.0 [drop] Bear Meat                      u=       0g EV=0g
+24. Emeraldon Tree Warder [12475] EV=5g real=1g (1,629g/h) drops=20 vendor=0g conf=91% JP=Medium Leather               1g
+       49.00% x 2.5 [skin] Medium Leather                 u=       2g EV=1g
+       42.00% x 2.0 [skin] Light Leather                  u=       1g EV=0g
+        3.00% x 1.5 [skin] Light Hide                     u=       2g EV=0g
+25. Terrowulf Packlord [3792] EV=165g real=1g (1,543g/h) drops=122 vendor=1g conf=91% JP=Superior Tunic               1g
+       43.00% x 1.0 [drop] Superior Tunic                 u=      70g EV=1g
+       43.00% x 1.0 [drop] Watcher's Cuffs                u=     135g EV=0g
+       0.800% x 1.0 [drop] Ruffled Chaplet                u=   6,650g EV=0g
+26. Shadumbra [12677] EV=16g real=1g (1,418g/h) drops=18 vendor=0g conf=91% JP=Medium Leather               1g
+       44.00% x 2.0 [skin] Medium Leather                 u=       2g EV=1g
+       47.00% x 1.5 [skin] Light Leather                  u=       1g EV=0g
+       37.00% x 1.0 [drop] Lion Meat                      u=      11g EV=0g
+27. Phantim [5314] EV=5g real=1g (1,395g/h) drops=7 vendor=0g conf=91% JP=Medium Leather               1g
+       76.00% x 1.5 [skin] Medium Leather                 u=       2g EV=1g
+       16.00% x 1.0 [skin] Heavy Leather                  u=       5g EV=0g
+        1.40% x 1.0 [skin] Heavy Hide                     u=      39g EV=0g
+28. Eck'alom [10642] EV=41g real=1g (1,092g/h) drops=60 vendor=0g conf=91% JP=Essence of Water             0g
+       0.700% x 1.0 [drop] Essence of Water               u=      85g EV=0g
+        4.00% x 1.0 [drop] Fortified Boots                u=      69g EV=0g
+        4.00% x 1.0 [drop] Scouting Trousers              u=      58g EV=0g
+29. Branch Snapper [10641] EV=41g real=1g (956g/h) drops=51 vendor=0g conf=91% JP=Scouting Gloves              0g
+       11.00% x 1.0 [drop] Scouting Gloves                u=      72g EV=0g
+        4.00% x 1.0 [drop] Bandit Jerkin                  u=      68g EV=0g
+        3.00% x 1.0 [drop] Scouting Trousers              u=      58g EV=0g
+30. Oakpaw [10640] EV=38g real=1g (903g/h) drops=74 vendor=0g conf=91% JP=Scouting Trousers            0g
+        4.00% x 1.0 [drop] Scouting Trousers              u=      58g EV=0g
+        4.00% x 1.0 [drop] Fortified Gauntlets            u=      61g EV=0g
+        3.00% x 1.0 [drop] Fortified Boots                u=      69g EV=0g
+
+-- TOP MOGS (one row per item, best farm source) --
+ 1. Crested Scepter                          0.0010% u=  14,213g <= Blackfathom Tide Priestess [4802]
+ 2. Wicked Chain Bracers                      0.010% u=   7,617g <= Ashenvale Assassin [34603]
+ 3. Ruffled Chaplet                           0.800% u=   6,650g <= Terrowulf Packlord [3792]
+ 4. Slayer's Slippers                         0.300% u=   5,252g <= Cenarion Vindicator [3833]
+ 5. Slayer's Cape                             0.070% u=   4,234g <= Ursangous [12678]
+ 6. Staff of the Friar                        0.010% u=   3,563g <= Blackfathom Tide Priestess [4802]
+ 7. Prospector's Boots                        0.200% u=   3,476g <= Warsong Shaman [11683]
+ 8. Dokebi Cord                               0.010% u=   3,419g <= Ruuzel [3943]
+ 9. Sanguine Star                             0.010% u=   3,085g <= Ashenvale Assassin [34603]
+10. Sentry's Leggings                        0.0009% u=   3,000g <= Goblin Technician [34590]
+11. Sanguine Armor                            0.030% u=   2,899g <= Emeraldon Oracle [12476]
+12. Slayer's Gloves                           0.010% u=   2,708g <= Goblin Technician [34590]
+13. Greenweave Branch                         0.080% u=   2,179g <= Felslayer [3774]
+14. Feet of the Lynx                          0.020% u=   1,488g <= Crazed Ancient [3834]
+15. Sentry's Sash                             0.040% u=   1,462g <= Ashenvale Assassin [34603]
+16. Pathfinder Guard                         0.0014% u=   1,425g <= Severed Keeper [3803]
+17. Prospector Axe                            0.010% u=   1,401g <= Ashenvale Skirmisher [33193]
+18. Robust Gloves                             0.020% u=   1,390g <= Ashenvale Assassin [34603]
+19. Sentry's Slippers                         0.200% u=   1,330g <= Xavian Betrayer [3754]
+20. Black Velvet Robes                        0.010% u=   1,283g <= Ashenvale Assassin [34603]
+21. Resilient Bands                          0.0042% u=   1,277g <= Wrathtail Wave Rider [3713]
+22. Robust Boots                              0.010% u=   1,202g <= Lesser Felguard [3772]
+23. Night Watch Shortsword                    0.040% u=   1,140g <= Tendril from Below [33419]
+24. Pathfinder Belt                           0.130% u=   1,098g <= Silverwing Sentinel [12896]
+25. Ceremonial Buckler                       0.0016% u=   1,050g <= Thistlefur Totemic [3922]
+26. Sentry's Gloves                           0.070% u=   1,041g <= Elder Shadowhorn Stag [3818]
+27. Martyr's Chain                           0.0029% u=   1,030g <= Blackfathom Tide Priestess [4802]
+28. Spiked Chain Leggings                     0.050% u=   1,024g <= Terrowulf Packlord [3792]
+29. Stormbringer Belt                         0.010% u=   1,000g <= Ashenvale Skirmisher [33193]
+30. Pathfinder Gloves                         0.010% u=     953g <= Wrathtail Sorceress [3717]
+
+-- TOP JACKPOTS (rare <10%, pricey, actually selling) --
+ 1. [3182] Spider's Silk                    5.00% x 1.0 u=      81g E=1g Pdrop100=99% sr=32.9% spd=32.9 vend=0g (Wildthorn Venomspitter [3820])
+ 2. [3182] Spider's Silk                    5.00% x 1.0 u=      81g E=1g Pdrop100=99% sr=32.9% spd=32.9 vend=0g (Wildthorn Lurker [3821])
+ 3. [3182] Spider's Silk                    5.00% x 1.0 u=      81g E=1g Pdrop100=99% sr=32.9% spd=32.9 vend=0g (Wildthorn Stalker [3819])
+ 4. [4235] Heavy Hide                      10.00% x 1.0 u=      39g E=0g Pdrop100=100% sr=13.0% spd=233.0 vend=0g (Dreamstalker [12498])
+ 5. [9776] Bandit Boots                     4.00% x 1.0 u=     151g E=0g Pdrop100=98% sr=2.7% spd=0.1 vend=0g (Prince Raze [10647])
+ 6. [14560] Prospector's Boots              0.200% x 1.0 u=   3,476g E=0g Pdrop100=18% sr=2.3% spd=0.0 vend=0g (Warsong Shaman [11683])
+ 7. [6587] Scouting Trousers                8.00% x 1.0 u=      58g E=0g Pdrop100=100% sr=3.0% spd=0.0 vend=0g (Ursol'lok [12037])
+ 8. [7080] Essence of Water                0.700% x 1.0 u=      85g E=0g Pdrop100=50% sr=22.1% spd=737.3 vend=0g (Eck'alom [10642])
+ 9. [14560] Prospector's Boots              0.160% x 1.0 u=   3,476g E=0g Pdrop100=15% sr=2.3% spd=0.0 vend=0g (Wrathtail Razortail [3712])
+10. [14369] Mystic's Wrap                   0.900% x 1.0 u=     812g E=0g Pdrop100=60% sr=1.7% spd=0.0 vend=0g (Mannoroc Lasher [11697])
+11. [5753] Ruffled Chaplet                 0.800% x 1.0 u=   6,650g E=0g Pdrop100=55% sr=0.2% spd=0.0 vend=1g (Terrowulf Packlord [3792])
+12. [7080] Essence of Water                0.500% x 1.0 u=      85g E=0g Pdrop100=39% sr=22.1% spd=737.3 vend=0g (Tideress [12759])
+13. [2194] Diamond Hammer                   2.78% x 1.0 u=     288g E=0g Pdrop100=94% sr=1.1% spd=0.0 vend=1g (Silverwing Sentinel [12896])
+14. [9782] Bandit Jerkin                    4.00% x 1.0 u=      68g E=0g Pdrop100=98% sr=2.9% spd=0.0 vend=0g (Branch Snapper [10641])
+15. [14756] Slayer's Slippers               0.300% x 1.0 u=   5,252g E=0g Pdrop100=26% sr=0.5% spd=0.0 vend=1g (Cenarion Vindicator [3833])
+16. [8165] Worn Dragonscale                 5.00% x 1.0 u=       5g E=0g Pdrop100=99% sr=28.9% spd=2054.2 vend=0g (Taerar [121911])
+17. [6584] Scouting Tunic                   7.00% x 1.0 u=      55g E=0g Pdrop100=100% sr=2.0% spd=0.0 vend=0g (Lady Vespia [10559])
+18. [9810] Fortified Boots                  4.00% x 1.0 u=      69g E=0g Pdrop100=98% sr=2.7% spd=0.0 vend=0g (Eck'alom [10642])
+19. [6583] Scouting Bracers                 8.00% x 1.0 u=      37g E=0g Pdrop100=100% sr=2.5% spd=0.0 vend=0g (Prince Raze [10647])
+20. [4235] Heavy Hide                       1.40% x 1.0 u=      39g E=0g Pdrop100=76% sr=13.0% spd=233.0 vend=0g (Phantim [5314])
+21. [6587] Scouting Trousers                4.00% x 1.0 u=      58g E=0g Pdrop100=98% sr=3.0% spd=0.0 vend=0g (Eck'alom [10642])
+22. [6587] Scouting Trousers                4.00% x 1.0 u=      58g E=0g Pdrop100=98% sr=3.0% spd=0.0 vend=0g (Oakpaw [10640])
+23. [14369] Mystic's Wrap                   0.500% x 1.0 u=     812g E=0g Pdrop100=39% sr=1.7% spd=0.0 vend=0g (Ruuzel [3943])
+24. [152577] Deep Sea Satin                   4.00% x 1.0 u=       3g E=0g Pdrop100=98% sr=67.6% spd=227874.9 vend=0g (Veiled Deathstalker [146577])
+25. [9811] Fortified Bracers                8.00% x 1.0 u=      48g E=0g Pdrop100=100% sr=1.8% spd=0.0 vend=0g (Ursol'lok [12037])
+26. [1206] Moss Agate                      0.900% x 1.0 u=      15g E=0g Pdrop100=60% sr=50.2% spd=1629.0 vend=0g (Thistlefur Pathfinder [3926])
+27. [14125] Ritual Leggings                  7.00% x 1.0 u=     133g E=0g Pdrop100=100% sr=0.7% spd=0.0 vend=0g (Lady Vespia [10559])
+28. [15231] Splitting Hatchet                4.76% x 1.0 u=      71g E=0g Pdrop100=99% sr=1.9% spd=0.0 vend=1g (Protector Dorinar [34294])
+29. [6604] Dervish Cape                     5.00% x 1.0 u=      65g E=0g Pdrop100=99% sr=1.9% spd=0.0 vend=0g (Akkrilus [3773])
+30. [9782] Bandit Jerkin                    3.00% x 1.0 u=      68g E=0g Pdrop100=95% sr=2.9% spd=0.0 vend=0g (Rorgish Jowl [10639])
+
+-- ROTATION (3 camps, revisit after 3 stops) --
+Camp 1: Sharptalon, Taerar, Elder Shadowhorn Stag (avg real EV 3g/kill)
+Camp 2: Shadowhorn Stag, Ghostpaw Alpha, Elder Ashenvale Bear (avg real EV 2g/kill)
+Camp 3: Illiyana Moonblaze <Silverwing Supply Officer>, Ghostpaw Howler, Ghostpaw Runner (avg real EV 2g/kill)
+
+-- TOP MATS (units/kill per NPC) --
+ 1. LEATHER     5.38u/kill EV        3g <= Taerar (ashenvale)
+ 2. LEATHER     3.67u/kill EV        2g <= Shadowhorn Stag (ashenvale)
+ 3. CLOTH       1.70u/kill EV        2g <= Illiyana Moonblaze <Silverwing Supply Officer> (ashenvale)
+ 4. LEATHER     3.64u/kill EV        2g <= Elder Shadowhorn Stag (ashenvale)
+ 5. LEATHER     3.66u/kill EV        2g <= Elder Ashenvale Bear (ashenvale)
+ 6. LEATHER     3.64u/kill EV        2g <= Ghostpaw Alpha (ashenvale)
+ 7. LEATHER     3.44u/kill EV        2g <= Ghostpaw Howler (ashenvale)
+ 8. LEATHER     3.32u/kill EV        2g <= Ghostpaw Runner (ashenvale)
+ 9. LEATHER     3.30u/kill EV        2g <= Wild Buck (ashenvale)
+10. LEATHER     2.84u/kill EV        2g <= Blink Dragon (ashenvale)
+11. MEAT        0.95u/kill EV        2g <= Sharptalon (ashenvale)
+12. LEATHER     2.85u/kill EV        2g <= Emeraldon Oracle (ashenvale)
+13. LEATHER     1.65u/kill EV        2g <= Dreamstalker (ashenvale)
+14. LEATHER     2.69u/kill EV        2g <= Sharptalon (ashenvale)
+15. LEATHER     2.86u/kill EV        2g <= Mystlash Hydra (ashenvale)
+16. LEATHER     2.61u/kill EV        2g <= Felslayer (ashenvale)
+17. LEATHER     2.37u/kill EV        1g <= Ursangous (ashenvale)
+18. LEATHER     2.34u/kill EV        1g <= Emeraldon Boughguard (ashenvale)
+19. LEATHER     2.49u/kill EV        1g <= Ashenvale Bear (ashenvale)
+20. LEATHER     2.21u/kill EV        1g <= Emeraldon Tree Warder (ashenvale)
+21. CLOTH       0.05u/kill EV        1g <= Wildthorn Stalker (ashenvale)
+22. CLOTH       0.05u/kill EV        1g <= Wildthorn Lurker (ashenvale)
+23. CLOTH       0.05u/kill EV        1g <= Wildthorn Venomspitter (ashenvale)
+24. LEATHER     1.34u/kill EV        1g <= Phantim (ashenvale)
+25. LEATHER     1.66u/kill EV        1g <= Shadumbra (ashenvale)
+26. LEATHER     1.46u/kill EV        1g <= Mist Howler (ashenvale)
+27. LEATHER     1.16u/kill EV        1g <= Ursol'lok (ashenvale)
+28. CLOTH       1.58u/kill EV        1g <= Darnassian Huntress (ashenvale)
+29. CLOTH       1.56u/kill EV        1g <= Goblin Sapper (ashenvale)
+30. CLOTH       1.46u/kill EV        1g <= Forsaken Priest (ashenvale)
+
+-- TOP MONTRAS (biggest showcase: portfolio value if all listed) --
+ 1. Goblin Technician [34590] 210 mogs montra=76,030g realiz=0g P=84.6%
+      0.0009% Wicked Chain Bracers                   u=   7,617g
+      0.0009% Slayer's Slippers                      u=   5,252g
+      0.0005% Slayer's Cape                          u=   4,234g
+ 2. Severed Druid [3799] 175 mogs montra=42,253g realiz=0g P=80.2%
+       0.020% Prospector's Boots                     u=   3,476g
+      0.0005% Sanguine Armor                         u=   2,899g
+      0.0010% Greenweave Branch                      u=   2,179g
+ 3. Foulweald Warrior [3743] 133 mogs montra=36,185g realiz=0g P=78.1%
+      0.0015% Slayer's Cape                          u=   4,234g
+      0.0044% Prospector's Boots                     u=   3,476g
+      0.0015% Dokebi Cord                            u=   3,419g
+ 4. Severed Keeper [3803] 169 mogs montra=35,771g realiz=0g P=81.4%
+       0.020% Prospector's Boots                     u=   3,476g
+      0.0005% Sanguine Armor                         u=   2,899g
+      0.0014% Greenweave Branch                      u=   2,179g
+ 5. Ashenvale Scout [34177] 158 mogs montra=34,850g realiz=0g P=80.4%
+       0.020% Prospector's Boots                     u=   3,476g
+      0.0007% Sanguine Armor                         u=   2,899g
+      0.0007% Sentry's Sash                          u=   1,462g
+ 6. Wrathtail Sorceress [3717] 168 mogs montra=33,511g realiz=0g P=75.5%
+       0.050% Prospector's Boots                     u=   3,476g
+      0.0011% Sentry's Sash                          u=   1,462g
+      0.0050% Prospector Axe                         u=   1,401g
+ 7. Ashenvale Skirmisher [33193] 166 mogs montra=30,467g realiz=0g P=77.3%
+       0.030% Prospector's Boots                     u=   3,476g
+      0.0013% Pathfinder Guard                       u=   1,425g
+       0.010% Prospector Axe                         u=   1,401g
+ 8. Ashenvale Outrunner [12856] 151 mogs montra=27,363g realiz=0g P=78.9%
+       0.020% Prospector's Boots                     u=   3,476g
+      0.0044% Stormbringer Belt                      u=   1,000g
+      0.0044% Ironpatch Blade                        u=     950g
+ 9. Ashenvale Bowman [33195] 144 mogs montra=25,943g realiz=0g P=80.0%
+       0.020% Prospector's Boots                     u=   3,476g
+       0.010% Prospector Axe                         u=   1,401g
+       0.010% Stormbringer Belt                      u=   1,000g
+10. Forsaken Herbalist [3733] 145 mogs montra=24,372g realiz=0g P=87.6%
+       0.020% Prospector's Boots                     u=   3,476g
+       0.010% Night Watch Shortsword                 u=   1,140g
+       0.040% Aboriginal Vest                        u=     940g
+
+-- TOP ITENS (most expensive, best source + evidence) --
+ 1. [3414] Crested Scepter                  u=  14,213g sr=1.2% spd=0.0 <= Blackfathom Tide Priestess [4802] (ashenvale)
+ 2. [3417] Onyx Claymore                    u=   9,500g sr=1.4% spd=0.0 <= Blackfathom Tide Priestess [4802] (ashenvale)
+ 3. [1481] Grimclaw                         u=   9,244g sr=1.5% spd=0.0 <= Blackfathom Tide Priestess [4802] (ashenvale)
+ 4. [15535] Wicked Chain Bracers             u=   7,617g sr=0.7% spd=0.0 <= Ashenvale Assassin [34603] (ashenvale)
+ 5. [5753] Ruffled Chaplet                  u=   6,650g sr=0.2% spd=0.0 <= Terrowulf Packlord [3792] (ashenvale)
+ 6. [14756] Slayer's Slippers                u=   5,252g sr=0.5% spd=0.0 <= Cenarion Vindicator [3833] (ashenvale)
+ 7. [14752] Slayer's Cape                    u=   4,234g sr=0.4% spd=0.0 <= Ursangous [12678] (ashenvale)
+ 8. [15547] Thick Scale Cloak                u=   3,620g sr=0.6% spd=0.0 <= Ursangous [12678] (ashenvale)
+ 9. [3415] Staff of the Friar               u=   3,563g sr=0.9% spd=0.0 <= Blackfathom Tide Priestess [4802] (ashenvale)
+10. [14560] Prospector's Boots               u=   3,476g sr=2.3% spd=0.0 <= Warsong Shaman [11683] (ashenvale)
+11. [14578] Dokebi Cord                      u=   3,419g sr=0.6% spd=0.0 <= Ruuzel [3943] (ashenvale)
+12. [15947] Sanguine Star                    u=   3,085g sr=1.4% spd=0.0 <= Ashenvale Assassin [34603] (ashenvale)
+13. [15529] Sentry's Leggings                u=   3,000g sr=0.9% spd=0.0 <= Goblin Technician [34590] (ashenvale)
+14. [14372] Sanguine Armor                   u=   2,899g sr=1.3% spd=0.0 <= Emeraldon Oracle [12476] (ashenvale)
+15. [14754] Slayer's Gloves                  u=   2,708g sr=0.3% spd=0.0 <= Goblin Technician [34590] (ashenvale)
+16. [3315] Ceremonial Leather Loincloth     u=   2,584g sr=1.5% spd=0.0 <= Ashenvale Skirmisher [33193] (ashenvale)
+17. [9769] Greenweave Branch                u=   2,179g sr=0.4% spd=0.0 <= Felslayer [3774] (ashenvale)
+18. [1121] Feet of the Lynx                 u=   1,488g sr=2.4% spd=0.0 <= Crazed Ancient [3834] (ashenvale)
+19. [15528] Sentry's Sash                    u=   1,462g sr=0.8% spd=0.0 <= Ashenvale Assassin [34603] (ashenvale)
+20. [15342] Pathfinder Guard                 u=   1,425g sr=0.3% spd=0.0 <= Severed Keeper [3803] (ashenvale)
+21. [12975] Prospector Axe                   u=   1,401g sr=0.4% spd=0.0 <= Ashenvale Skirmisher [33193] (ashenvale)
+22. [15125] Robust Gloves                    u=   1,390g sr=0.2% spd=0.0 <= Ashenvale Assassin [34603] (ashenvale)
+23. [15525] Sentry's Slippers                u=   1,330g sr=0.3% spd=0.0 <= Xavian Betrayer [3754] (ashenvale)
+24. [2800] Black Velvet Robes               u=   1,283g sr=2.4% spd=0.0 <= Ashenvale Assassin [34603] (ashenvale)
+25. [14402] Resilient Bands                  u=   1,277g sr=0.7% spd=0.0 <= Wrathtail Wave Rider [3713] (ashenvale)
+26. [3309] Barbaric Loincloth               u=   1,249g sr=1.2% spd=0.0 <= Thistlefur Totemic [3922] (ashenvale)
+27. [15121] Robust Boots                     u=   1,202g sr=1.0% spd=0.0 <= Lesser Felguard [3772] (ashenvale)
+28. [935] Night Watch Shortsword           u=   1,140g sr=0.5% spd=0.0 <= Tendril from Below [33419] (ashenvale)
+29. [15347] Pathfinder Belt                  u=   1,098g sr=0.3% spd=0.0 <= Silverwing Sentinel [12896] (ashenvale)
+30. [3653] Ceremonial Buckler               u=   1,050g sr=2.2% spd=0.0 <= Thistlefur Totemic [3922] (ashenvale)
+
+-- TOP MOG FARMS (montra value vs realizable EV vs P(any sells)) --
+ 1. Eck'alom [10642] 51 mogs montra=2,866g realiz=1g P=87.7% days=n/a
+       0.600% Grunt's Legguards                      u=     389g
+       0.020% Aboriginal Footwraps                   u=     249g
+       0.030% Ritual Amice                           u=     187g
+ 2. Forsaken Herbalist [3733] 145 mogs montra=24,372g realiz=0g P=87.6% days=n/a
+       0.020% Prospector's Boots                     u=   3,476g
+       0.010% Night Watch Shortsword                 u=   1,140g
+       0.040% Aboriginal Vest                        u=     940g
+ 3. Warsong Shaman [11683] 53 mogs montra=8,924g realiz=0g P=86.5% days=n/a
+       0.200% Prospector's Boots                     u=   3,476g
+       0.040% Aboriginal Robe                        u=     488g
+       0.150% Grunt's Legguards                      u=     389g
+ 4. Warsong Logger [11681] 91 mogs montra=17,999g realiz=0g P=86.4% days=n/a
+       0.060% Prospector's Boots                     u=   3,476g
+      0.0028% Pagan Vest                             u=     940g
+       0.040% Aboriginal Vest                        u=     940g
+ 5. Warsong Grunt [11682] 73 mogs montra=12,186g realiz=0g P=86.0% days=n/a
+       0.020% Prospector's Boots                     u=   3,476g
+       0.020% Aboriginal Vest                        u=     940g
+       0.050% Prospector's Mitts                     u=     437g
+ 6. Orc Overseer [3734] 115 mogs montra=22,424g realiz=0g P=85.1% days=n/a
+       0.030% Prospector's Boots                     u=   3,476g
+      0.0039% Pathfinder Belt                        u=   1,098g
+      0.0020% Pagan Vest                             u=     940g
+ 7. Goblin Technician [34590] 210 mogs montra=76,030g realiz=0g P=84.6% days=n/a
+      0.0009% Wicked Chain Bracers                   u=   7,617g
+      0.0009% Slayer's Slippers                      u=   5,252g
+      0.0005% Slayer's Cape                          u=   4,234g
+ 8. Prince Raze [10647] 46 mogs montra=2,233g realiz=0g P=84.6% days=n/a
+       0.500% Aboriginal Robe                        u=     488g
+        4.00% Bandit Boots                           u=     151g
+       0.110% Grunt's Ankle Wraps                    u=     141g
+ 9. Astranaar Skirmisher [34419] 134 mogs montra=24,035g realiz=0g P=81.8% days=n/a
+       0.020% Prospector's Boots                     u=   3,476g
+       0.010% Night Watch Shortsword                 u=   1,140g
+       0.010% Stormbringer Belt                      u=   1,000g
+10. Bleakheart Shadowstalker [3770] 98 mogs montra=17,192g realiz=0g P=81.7% days=n/a
+       0.040% Prospector's Boots                     u=   3,476g
+       0.030% Aboriginal Vest                        u=     940g
+      0.0013% Hulking Chestguard                     u=     713g
+11. Severed Keeper [3803] 169 mogs montra=35,771g realiz=0g P=81.4% days=n/a
+       0.020% Prospector's Boots                     u=   3,476g
+      0.0005% Sanguine Armor                         u=   2,899g
+      0.0014% Greenweave Branch                      u=   2,179g
+12. Xavian Rogue [3752] 30 mogs montra=2,670g realiz=0g P=81.1% days=n/a
+       0.030% Aboriginal Robe                        u=     488g
+       0.030% Prospector's Buckler                   u=     367g
+      0.0049% Lil Timmy's Peashooter                 u=     212g
+13. Bleakheart Trickster [3767] 99 mogs montra=17,156g realiz=0g P=80.9% days=n/a
+       0.040% Prospector's Boots                     u=   3,476g
+       0.020% Aboriginal Vest                        u=     940g
+       0.010% Robust Buckler                         u=     665g
+14. Terrowulf Packlord [3792] 100 mogs montra=14,271g realiz=0g P=80.5% days=n/a
+       0.800% Ruffled Chaplet                        u=   6,650g
+       0.050% Spiked Chain Leggings                  u=   1,024g
+       0.020% War Paint Chestpiece                   u=     285g
+15. Ashenvale Scout [34177] 158 mogs montra=34,850g realiz=0g P=80.4% days=n/a
+       0.020% Prospector's Boots                     u=   3,476g
+      0.0007% Sanguine Armor                         u=   2,899g
+      0.0007% Sentry's Sash                          u=   1,462g
+16. Severed Druid [3799] 175 mogs montra=42,253g realiz=0g P=80.2% days=n/a
+       0.020% Prospector's Boots                     u=   3,476g
+      0.0005% Sanguine Armor                         u=   2,899g
+      0.0010% Greenweave Branch                      u=   2,179g
+17. Ashenvale Bowman [33195] 144 mogs montra=25,943g realiz=0g P=80.0% days=n/a
+       0.020% Prospector's Boots                     u=   3,476g
+       0.010% Prospector Axe                         u=   1,401g
+       0.010% Stormbringer Belt                      u=   1,000g
+18. Thistlefur Wise One [33389] 82 mogs montra=14,949g realiz=0g P=79.8% days=n/a
+       0.010% Prospector's Boots                     u=   3,476g
+      0.0046% Sentry's Gloves                        u=   1,041g
+       0.030% Aboriginal Vest                        u=     940g
+19. Tendril from Below [33419] 94 mogs montra=17,625g realiz=0g P=78.9% days=n/a
+       0.010% Prospector's Boots                     u=   3,476g
+       0.040% Night Watch Shortsword                 u=   1,140g
+       0.010% Stormbringer Belt                      u=   1,000g
+20. Ashenvale Outrunner [12856] 151 mogs montra=27,363g realiz=0g P=78.9% days=n/a
+       0.020% Prospector's Boots                     u=   3,476g
+      0.0044% Stormbringer Belt                      u=   1,000g
+      0.0044% Ironpatch Blade                        u=     950g
+21. Foulweald Warrior [3743] 133 mogs montra=36,185g realiz=0g P=78.1% days=n/a
+      0.0015% Slayer's Cape                          u=   4,234g
+      0.0044% Prospector's Boots                     u=   3,476g
+      0.0015% Dokebi Cord                            u=   3,419g
+22. Silverwind Conqueror [34592] 86 mogs montra=13,814g realiz=0g P=77.8% days=n/a
+      0.0049% Sentry's Sash                          u=   1,462g
+       0.020% Grunt's Chestpiece                     u=     950g
+       0.030% Mystic's Wrap                          u=     812g
+23. Oakpaw [10640] 58 mogs montra=3,366g realiz=1g P=77.6% days=n/a
+       0.060% Sanguine Handwraps                     u=     437g
+       0.030% Sentry's Shoulderguards                u=     229g
+       0.010% Lupine Mantle                          u=     181g
+24. Ashenvale Skirmisher [33193] 166 mogs montra=30,467g realiz=0g P=77.3% days=n/a
+       0.030% Prospector's Boots                     u=   3,476g
+      0.0013% Pathfinder Guard                       u=   1,425g
+       0.010% Prospector Axe                         u=   1,401g
+25. Tideress [12759] 24 mogs montra=3,297g realiz=0g P=76.6% days=n/a
+       0.020% Pagan Rod                              u=     812g
+      0.0030% Prospector's Chestpiece                u=     464g
+       0.020% Raincaller Cord                        u=     339g
+26. Thistlefur Warrior [33390] 114 mogs montra=20,691g realiz=0g P=76.1% days=n/a
+       0.020% Prospector's Boots                     u=   3,476g
+       0.010% Stormbringer Belt                      u=   1,000g
+       0.010% Ironpatch Blade                        u=     950g
+27. Thistlefur Avenger [3925] 139 mogs montra=21,192g realiz=0g P=75.9% days=n/a
+      0.0009% Ceremonial Buckler                     u=   1,050g
+      0.0028% Stormbringer Belt                      u=   1,000g
+      0.0009% Pagan Vest                             u=     940g
+28. Thistlefur Ursa [3921] 122 mogs montra=18,598g realiz=0g P=75.8% days=n/a
+      0.0022% Greenweave Branch                      u=   2,179g
+      0.0011% Spiked Chain Leggings                  u=   1,024g
+       0.010% Aboriginal Vest                        u=     940g
+29. Wrathtail Sorceress [3717] 168 mogs montra=33,511g realiz=0g P=75.5% days=n/a
+       0.050% Prospector's Boots                     u=   3,476g
+      0.0011% Sentry's Sash                          u=   1,462g
+      0.0050% Prospector Axe                         u=   1,401g
+30. Felmusk Satyr [3758] 67 mogs montra=10,845g realiz=0g P=75.5% days=n/a
+      0.0021% Sentry's Sash                          u=   1,462g
+       0.020% Spiked Chain Gauntlets                 u=     883g
+       0.030% Mystic's Wrap                          u=     812g
+
+Prices as of 2026-10-13T00:21:32Z
+
+-- TOP VENDOR FARMS (immediate gold, no AH) --
+ 1. Terrowulf Packlord [3792] 1g/kill
+ 2. Taerar [121911] 1g/kill
+ 3. Akkrilus [3773] 0g/kill
+ 4. Oakpaw [10640] 0g/kill
+ 5. Eck'alom [10642] 0g/kill
+ 6. Rorgish Jowl [10639] 0g/kill
+ 7. Ursol'lok [12037] 0g/kill
+ 8. Branch Snapper [10641] 0g/kill
+ 9. Lady Vespia [10559] 0g/kill
+10. Apothecary Falthis [3735] 0g/kill
+11. Darkslayer Mordenthal [3736] 0g/kill
+12. Mist Howler [10644] 0g/kill
+13. Prince Raze [10647] 0g/kill
+14. Darnassian Archer [135607] 0g/kill
+15. Illiyana Moonblaze <Silverwing Supply Officer> [14753] 0g/kill
+16. Protector Dorinar [34294] 0g/kill
+17. Wandering Protector [12836] 0g/kill
+18. Raging Ancient [33688] 0g/kill
+19. Forsaken Assassin [140801] 0g/kill
+20. Silverwing Sentinel [12896] 0g/kill
+21. Phantim [5314] 0g/kill
+22. Ashenvale Assassin [34603] 0g/kill
+23. Sharptalon [12676] 0g/kill
+24. Ghostpaw Alpha [3825] 0g/kill
+25. Elder Shadowhorn Stag [3818] 0g/kill
+26. Elder Ashenvale Bear [3810] 0g/kill
+27. Shadowhorn Stag [3817] 0g/kill
+28. Emeraldon Oracle [12476] 0g/kill
+29. Ghostpaw Howler [3824] 0g/kill
+30. Ursangous [12678] 0g/kill
+
+-- TOP RECIPES (profession collectibles, sale-weighted EV) --
+ 1. Pattern: Gray Woolen Robe                 0.800% u=     136g E=0g (Severed Keeper)
+ 2. Pattern: Hands of Darkness                0.180% u=     301g E=0g (Thistlefur Wise One)
+ 3. Plans: Runed Copper Breastplate           0.500% u=      76g E=0g (Thagg)
+ 4. Schematic: Small Seaforium Charge         0.400% u=      56g E=0g (Xavian Betrayer)
+ 5. Recipe: Elixir of Ogre's Strength         0.200% u=     266g E=0g (Chief Bombgineer Sploder)
+ 6. Pattern: Gray Woolen Robe                 0.300% u=     136g E=0g (Wrathtail Razortail)
+ 7. Pattern: Stylish Green Shirt              0.110% u=     273g E=0g (Thistlefur Totemic)
+ 8. Schematic: EZ-Thro Dynamite               0.200% u=      74g E=0g (Diathorus the Seeker)
+ 9. Pattern: Stylish Blue Shirt               0.070% u=     374g E=0g (Warsong Grunt)
+10. Pattern: Reinforced Woolen Shoulders      0.120% u=     119g E=0g (Bleakheart Satyr)
+11. Plans: Iridescent Hammer                  0.080% u=     209g E=0g (Xavian Rogue)
+12. Formula: Enchant Bracer - Lesser Versati  0.130% u=     110g E=0g (Chief Bombgineer Sploder)
+13. Recipe: Potion of Curing                  0.100% u=     119g E=0g (Gorgannon)
+14. Pattern: Stylish Green Shirt              0.060% u=     273g E=0g (Bloodtooth Guard)
+15. Plans: Silvered Bronze Shoulders          0.080% u=     158g E=0g (Wrathtail Sea Witch)
+16. Schematic: EZ-Thro Dynamite               0.090% u=      74g E=0g (Bleakheart Satyr)
+17. Schematic: Shadow Goggles                 0.080% u=     101g E=0g (Oakpaw)
+18. Pattern: Colorful Kilt                    0.040% u=     324g E=0g (Ghostpaw Howler)
+19. Pattern: Stylish Green Shirt              0.040% u=     273g E=0g (Thagg)
+20. Plans: Jade Serpentblade                  0.030% u=     218g E=0g (Mystlash Hydra)
+21. Pattern: Phoenix Gloves                   0.080% u=      95g E=0g (Wildthorn Venomspitter)
+22. Plans: Silvered Bronze Shoulders          0.050% u=     158g E=0g (Ashenvale Scout)
+23. Recipe: Potion of Curing                  0.060% u=     119g E=0g (Xavian Hellcaller)
+24. Pattern: Stylish Blue Shirt               0.030% u=     374g E=0g (Chief Bombgineer Sploder)
+25. Schematic: Small Seaforium Charge         0.070% u=      56g E=0g (Uthil Mooncall)
+26. Pattern: Fine Leather Gloves              0.200% u=      28g E=0g (Protector Dorinar)
+27. Pattern: Truefaith Gloves                 0.040% u=     266g E=0g (Blackfathom Tide Priestess)
+28. Plans: Mighty Iron Hammer                 0.030% u=     210g E=0g (Warsong Shaman)
+29. Recipe: Potion of Curing                  0.050% u=     119g E=0g (Cenarion Vindicator)
+30. Pattern: Heavy Woolen Cloak               0.120% u=      43g E=0g (Orc Overseer)
+
+-- TOP BOE (Blizzard-verified Bind-on-Equip, sale-weighted EV) --
+ 1. Superior Tunic                            43.00% u=      70g E=1g (Terrowulf Packlord)
+ 2. Scouting Trousers                         29.00% u=      58g E=0g (Mist Howler)
+ 3. Defender Cloak                            29.00% u=      40g E=0g (Mist Howler)
+ 4. Bandit Pants                              63.00% u=      31g E=0g (Darkslayer Mordenthal)
+ 5. Fortified Bracers                         28.00% u=      48g E=0g (Apothecary Falthis)
+ 6. Watcher's Cuffs                           43.00% u=     135g E=0g (Terrowulf Packlord)
+ 7. Bandit Boots                               4.00% u=     151g E=0g (Prince Raze)
+ 8. Prospector's Boots                        0.200% u=   3,476g E=0g (Warsong Shaman)
+ 9. Fortified Spaulders                       27.00% u=      33g E=0g (Rorgish Jowl)
+10. Scouting Gloves                           11.00% u=      72g E=0g (Branch Snapper)
+11. Scouting Trousers                          8.00% u=      58g E=0g (Ursol'lok)
+12. Prospector's Boots                        0.160% u=   3,476g E=0g (Wrathtail Razortail)
+13. Mystic's Wrap                             0.900% u=     812g E=0g (Mannoroc Lasher)
+14. Ruffled Chaplet                           0.800% u=   6,650g E=0g (Terrowulf Packlord)
+15. Shimmering Robe                           28.00% u=      48g E=0g (Akkrilus)
+16. Linked Chain Cloak                         4.69% u=     100g E=0g (Wild Buck)
+17. Shiny War Axe                              5.00% u=      88g E=0g (Branch Snapper)
+18. Shiny War Axe                              5.00% u=      88g E=0g (Bleakheart Trickster)
+19. Diamond Hammer                             2.78% u=     288g E=0g (Silverwing Sentinel)
+20. Shiny War Axe                              4.98% u=      88g E=0g (Rotting Slime)
+21. Oaken War Staff                            3.85% u=      77g E=0g (Wrathtail Myrmidon)
+22. Shiny War Axe                              4.56% u=      88g E=0g (Wrathtail Wave Rider)
+23. Bandit Jerkin                              4.00% u=      68g E=0g (Branch Snapper)
+24. Slayer's Slippers                         0.300% u=   5,252g E=0g (Cenarion Vindicator)
+25. Short-Handled Battle Axe                   5.00% u=      90g E=0g (Silverwind Conqueror)
+26. Scouting Tunic                             7.00% u=      55g E=0g (Lady Vespia)
+27. Linked Chain Cloak                         4.00% u=     100g E=0g (Felmusk Satyr)
+28. Shiny War Axe                              4.23% u=      88g E=0g (Wild Buck)
+29. Fortified Boots                            4.00% u=      69g E=0g (Eck'alom)
+30. Scouting Bracers                           8.00% u=      37g E=0g (Prince Raze)
+
+-- TOP MIXED (>=2 pillars: vendor / mats / mogs) --
+ 1. Taerar [121911] total=4g (vendor=1g mats=3g mogs=0g)
+ 2. Sharptalon [12676] total=4g (vendor=0g mats=3g mogs=0g)
+ 3. Illiyana Moonblaze <Silverwing Supply Officer> [14753] total=2g (vendor=0g mats=2g mogs=0g)
+ 4. Elder Shadowhorn Stag [3818] total=2g (vendor=0g mats=2g mogs=0g)
+ 5. Shadowhorn Stag [3817] total=2g (vendor=0g mats=2g mogs=0g)
+ 6. Ghostpaw Alpha [3825] total=2g (vendor=0g mats=2g mogs=0g)
+ 7. Elder Ashenvale Bear [3810] total=2g (vendor=0g mats=2g mogs=0g)
+ 8. Ghostpaw Howler [3824] total=2g (vendor=0g mats=2g mogs=0g)
+ 9. Terrowulf Packlord [3792] total=2g (vendor=1g mats=0g mogs=1g)
+10. Mist Howler [10644] total=2g (vendor=0g mats=1g mogs=1g)
+11. Ghostpaw Runner [3823] total=2g (vendor=0g mats=2g mogs=0g)
+12. Wild Buck [3816] total=2g (vendor=0g mats=2g mogs=0g)
+13. Blink Dragon [3815] total=2g (vendor=0g mats=2g mogs=0g)
+14. Emeraldon Oracle [12476] total=2g (vendor=0g mats=2g mogs=0g)
+15. Ursol'lok [12037] total=2g (vendor=0g mats=1g mogs=1g)
+16. Mystlash Hydra [3721] total=2g (vendor=0g mats=2g mogs=0g)
+17. Dreamstalker [12498] total=2g (vendor=0g mats=2g mogs=0g)
+18. Felslayer [3774] total=2g (vendor=0g mats=2g mogs=0g)
+19. Wildthorn Stalker [3819] total=2g (vendor=0g mats=1g mogs=0g)
+20. Wildthorn Lurker [3821] total=2g (vendor=0g mats=1g mogs=0g)
+21. Wildthorn Venomspitter [3820] total=2g (vendor=0g mats=1g mogs=0g)
+22. Ursangous [12678] total=2g (vendor=0g mats=2g mogs=0g)
+23. Emeraldon Boughguard [12474] total=1g (vendor=0g mats=1g mogs=0g)
+24. Ashenvale Bear [3809] total=1g (vendor=0g mats=1g mogs=0g)
+25. Emeraldon Tree Warder [12475] total=1g (vendor=0g mats=1g mogs=0g)
+26. Eck'alom [10642] total=1g (vendor=0g mats=0g mogs=1g)
+27. Phantim [5314] total=1g (vendor=0g mats=1g mogs=0g)
+28. Shadumbra [12677] total=1g (vendor=0g mats=1g mogs=0g)
+29. Oakpaw [10640] total=1g (vendor=0g mats=0g mogs=1g)
+30. Branch Snapper [10641] total=1g (vendor=0g mats=0g mogs=1g)
+
+-- MOG VIEWS --
+  by EV/kill:
+   1. Spider's Silk                            E=1g u=      81g <= Wildthorn Venomspitter
+   2. Bandit Boots                             E=0g u=     151g <= Prince Raze
+   3. Prospector's Boots                       E=0g u=   3,476g <= Warsong Shaman
+   4. Mystic's Wrap                            E=0g u=     812g <= Mannoroc Lasher
+   5. Ruffled Chaplet                          E=0g u=   6,650g <= Terrowulf Packlord
+   6. Diamond Hammer                           E=0g u=     288g <= Silverwing Sentinel
+   7. Bandit Jerkin                            E=0g u=      68g <= Branch Snapper
+   8. Slayer's Slippers                        E=0g u=   5,252g <= Cenarion Vindicator
+   9. Fortified Boots                          E=0g u=      69g <= Eck'alom
+  10. Scouting Trousers                        E=0g u=      58g <= Eck'alom
+  11. Deep Sea Satin                           E=0g u=       3g <= Veiled Deathstalker
+  12. Splitting Hatchet                        E=0g u=      71g <= Protector Dorinar
+  13. Dervish Cape                             E=0g u=      65g <= Akkrilus
+  14. Fortified Gauntlets                      E=0g u=      61g <= Eck'alom
+  15. Superior Bracers                         E=0g u=      47g <= Akkrilus
+  16. Defender Tunic                           E=0g u=      48g <= Branch Snapper
+  17. Scouting Tunic                           E=0g u=      55g <= Oakpaw
+  18. Hulking Shield                           E=0g u=     622g <= Shadumbra
+  19. Fortified Bracers                        E=0g u=      48g <= Oakpaw
+  20. Scouting Gloves                          E=0g u=      72g <= Ursol'lok
+  21. Dwarven Magestaff                        E=0g u=      77g <= Phantim
+  22. Defender Boots                           E=0g u=      36g <= Rorgish Jowl
+  23. Scouting Bracers                         E=0g u=      37g <= Apothecary Falthis
+  24. Fortified Chain                          E=0g u=      50g <= Eck'alom
+  25. Bandit Gloves                            E=0g u=      48g <= Prince Raze
+  26. Banded Helm                              E=0g u=      98g <= Terrowulf Packlord
+  27. Shimmering Armor                         E=0g u=      58g <= Eck'alom
+  28. Shimmering Sash                          E=0g u=      39g <= Branch Snapper
+  29. Battleforge Cloak                        E=0g u=      46g <= Akkrilus
+  30. Greenweave Leggings                      E=0g u=      54g <= Lady Vespia
+  fast movers (sale_rate >= 5%):
+   1. Spider's Silk                            sr=32.9% u=      81g <= Wildthorn Venomspitter
+   2. Raider Shortsword                        sr=6.3% u=      27g <= Tideress
+   3. Raw Spotted Yellowtail                   sr=8.7% u=      15g <= Wrathtail Myrmidon
+   4. Traveler's Backpack                      sr=16.1% u=      10g <= Blackfathom Tide Priestess
+   5. Small Egg                                sr=41.2% u=       7g <= Rotting Slime
+   6. Clockwork Box                            sr=25.0% u=       6g <= Rotting Slime
+   7. Journeyman's Backpack                    sr=12.3% u=       4g <= Akkrilus
+   8. Deep Sea Satin                           sr=67.6% u=       3g <= Veiled Deathstalker
+   9. Crunchy Spider Leg                       sr=52.2% u=       2g <= Thistlefur Avenger
+  10. Jade                                     sr=46.6% u=       1g <= Raging Ancient
+  11. Citrine                                  sr=22.0% u=       1g <= Ashenvale Skirmisher
+  12. Tel'Abim Banana                          sr=7.4% u=       1g <= Ashenvale Skirmisher
+  13. Thick-Shelled Clam                       sr=20.2% u=       1g <= Spined Crawler
+  14. Gooey Spider Leg                         sr=29.5% u=       0g <= Ursol'lok
+  15. Lean Wolf Flank                          sr=14.0% u=       0g <= Shadethicket Stone Mover
+  16. Globe of Water                           sr=54.8% u=       0g <= Befouled Water Elemental
+  17. Moonberry Juice                          sr=23.9% u=       0g <= Warsong Shaman
+  18. Raw Slitherskin Mackerel                 sr=31.3% u=       0g <= Wrathtail Wave Rider
+  19. Small Spider Leg                         sr=25.3% u=       0g <= Ashenvale Bowman
+  20. Elemental Water                          sr=46.7% u=       0g <= Tideress
+  21. Savory Snowplum                          sr=11.3% u=       0g <= Oakpaw
+  22. Snapvine Watermelon                      sr=18.9% u=       0g <= Ashenvale Skirmisher
+  23. Yeti Milk                                sr=8.9% u=       0g <= Rorgish Jowl
+  24. Raw Spinefin Halibut                     sr=8.7% u=       0g <= Wrathtail Priestess
+  25. Pungent Seal Whey                        sr=13.0% u=       0g <= Mavoris Cloudsbreak
+  26. Red-Speckled Mushroom                    sr=36.0% u=       0g <= Forsaken Herbalist
+  27. Raw Longjaw Mud Snapper                  sr=25.5% u=       0g <= Wrathtail Wave Rider
+  28. Large Venom Sac                          sr=27.1% u=       0g <= Wildthorn Venomspitter
+  29. Morning Glory Dew                        sr=18.3% u=       0g <= Orux Thrice-Damned
+  30. Roasted Quail                            sr=18.7% u=       0g <= Overseer Gorthak
+  high-value, low liquidity (sale_rate < 1%):
+   1. Wicked Chain Bracers                     sr=0.70% u=   7,617g <= Ashenvale Assassin
+   2. Ruffled Chaplet                          sr=0.20% u=   6,650g <= Terrowulf Packlord
+   3. Slayer's Slippers                        sr=0.50% u=   5,252g <= Cenarion Vindicator
+   4. Slayer's Cape                            sr=0.40% u=   4,234g <= Ursangous
+   5. Staff of the Friar                       sr=0.90% u=   3,563g <= Blackfathom Tide Priestess
+   6. Dokebi Cord                              sr=0.60% u=   3,419g <= Ruuzel
+   7. Sentry's Leggings                        sr=0.90% u=   3,000g <= Goblin Technician
+   8. Slayer's Gloves                          sr=0.30% u=   2,708g <= Goblin Technician
+   9. Greenweave Branch                        sr=0.40% u=   2,179g <= Felslayer
+  10. Sentry's Sash                            sr=0.80% u=   1,462g <= Ashenvale Assassin
+  11. Pathfinder Guard                         sr=0.30% u=   1,425g <= Severed Keeper
+  12. Prospector Axe                           sr=0.40% u=   1,401g <= Ashenvale Skirmisher
+  13. Robust Gloves                            sr=0.20% u=   1,390g <= Ashenvale Assassin
+  14. Sentry's Slippers                        sr=0.30% u=   1,330g <= Xavian Betrayer
+  15. Resilient Bands                          sr=0.70% u=   1,277g <= Wrathtail Wave Rider
+  16. Night Watch Shortsword                   sr=0.50% u=   1,140g <= Tendril from Below
+  17. Pathfinder Belt                          sr=0.30% u=   1,098g <= Silverwing Sentinel
+  18. Sentry's Gloves                          sr=0.90% u=   1,041g <= Elder Shadowhorn Stag
+  19. Martyr's Chain                           sr=0.60% u=   1,030g <= Blackfathom Tide Priestess
+  20. Spiked Chain Leggings                    sr=0.40% u=   1,024g <= Terrowulf Packlord
+  21. Stormbringer Belt                        sr=0.20% u=   1,000g <= Ashenvale Skirmisher
+  22. Pathfinder Gloves                        sr=0.40% u=     953g <= Wrathtail Sorceress
+  23. Grunt's Chestpiece                       sr=0.80% u=     950g <= Ashenvale Assassin
+  24. Ironpatch Blade                          sr=0.50% u=     950g <= Roaming Felguard
+  25. Pagan Vest                               sr=0.60% u=     940g <= Ashenvale Assassin
+  26. Aboriginal Vest                          sr=0.60% u=     940g <= Shadumbra
+  27. Watcher's Star                           sr=0.50% u=     889g <= Goblin Technician
+  28. Spiked Chain Slippers                    sr=0.50% u=     883g <= Chief Murgut <King of the Foulweald>
+  29. Spiked Chain Gauntlets                   sr=0.50% u=     883g <= Ashenvale Assassin
+  30. Slayer's Cuffs                           sr=0.30% u=     879g <= Thistlefur Shaman
+  vendor fallback:
+   1. Explosive Shotgun                        vendor=8g u=      42g
+   2. Long Redwood Bow                         vendor=7g u=      49g
+   3. Scorching Wand                           vendor=7g u=      35g
+   4. Giant Club                               vendor=6g u=      39g
+   5. Acrobatic Staff                          vendor=6g u=      48g
+   6. Whipwood Recurve Bow                     vendor=6g u=      42g
+   7. Mercenary Blade                          vendor=6g u=      49g
+   8. Deadly Kris                              vendor=6g u=      48g
+   9. Hillborne Axe                            vendor=5g u=      65g
+  10. Elder's Padded Armor                     vendor=4g u=     102g
+  11. Elder's Robe                             vendor=4g u=     115g
+  12. Headhunter's Headdress                   vendor=4g u=     375g
+  13. Infiltrator Armor                        vendor=4g u=      79g
+  14. Headhunter's Woolies                     vendor=4g u=      86g
+  15. Phalanx Breastplate                      vendor=4g u=      76g
+  16. Ghostwalker Buckler                      vendor=4g u=     134g
+  17. Wicked Chain Chestpiece                  vendor=4g u=     197g
+  18. Durable Tunic                            vendor=4g u=     141g
+  19. Elder's Pants                            vendor=4g u=      63g
+  20. Phalanx Leggings                         vendor=3g u=     111g
+  21. Durable Robe                             vendor=3g u=     106g
+  22. Infiltrator Pants                        vendor=3g u=     143g
+  23. Trickster's Cloak                        vendor=3g u=     120g
+  24. Headhunter's Buckler                     vendor=3g u=     138g
+  25. Ghostwalker Pads                         vendor=3g u=      75g
+  26. Thistlefur Cap                           vendor=3g u=     139g
+  27. Vital Shoulders                          vendor=3g u=      56g
+  28. Headhunter's Spaulders                   vendor=3g u=     148g
+  29. Dokebi Hat                               vendor=3g u=      57g
+  30. Conjurer's Shoes                         vendor=3g u=      86g
+
+-- BEST GOLDBOUND SESSION (travel-aware, kills spread over stops) --
+   (assumptions: measure YOUR kpm/travel in-game; defaults below)
+  route (3 stops): 15min -> 240 kills | vendor=23g auction_est=582g speculative=2,213g conservative=586g
+  route (3 stops): 30min -> 540 kills | vendor=52g auction_est=1,310g speculative=4,980g conservative=1,318g
+  route (3 stops): 60min -> 1140 kills | vendor=111g auction_est=2,766g speculative=10,512g conservative=2,782g
+  solo: Sharptalon: 15min -> 300 kills | vendor=6g auction_est=1,062g speculative=2,358g conservative=1,061g
+  solo: Sharptalon: 30min -> 600 kills | vendor=12g auction_est=2,124g speculative=4,715g conservative=2,122g
+  solo: Sharptalon: 60min -> 1200 kills | vendor=25g auction_est=4,247g speculative=9,430g conservative=4,244g

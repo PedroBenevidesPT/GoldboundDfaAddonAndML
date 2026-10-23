@@ -1,0 +1,93 @@
+realm,group_id,class,factor,items,listed_share,depth_med,wall_share,solo_share,price_vs_region,p25,p75,sample,confidence
+Pozzo dell'Eternità,1309,thin,1.24,10597,0.349,1.0,0.11,0.666,1.242,0.856,4.325,7995,alta
+Shattered Halls,1598,thin,1.06,12901,0.466,1.0,0.153,0.641,1.058,0.644,2.038,10082,alta
+Spinebreaker,3656,thin,1.08,13351,0.44,1.0,0.172,0.633,1.081,0.771,2.177,10610,alta
+Grim Batol,1303,balanced,1.04,14966,0.616,2.0,0.265,0.469,1.038,0.78,1.634,11912,alta
+Twisting Nether,3674,balanced,0.74,17419,0.821,2.0,0.494,0.292,0.74,0.311,1.087,13997,alta
+Draenor,1403,deep,0.3,18292,0.93,4.0,0.664,0.174,0.3,0.12,0.757,14494,alta
+Silvermoon,3391,deep,0.27,18528,0.948,4.0,0.724,0.15,0.271,0.113,0.672,14633,alta
+Argent Dawn,3702,deep,0.21,18343,0.966,5.0,0.787,0.115,0.207,0.085,0.582,14587,alta
+Aegwynn,3679,thin,1.3,11170,,,,,1.424,0.974,3.187,8615,inferida
+Aggramar,1325,thin,1.12,11091,,,,,1.118,0.954,2.674,8474,inferida
+Al'Akir,3713,thin,1.02,16121,,,,,1.024,0.638,1.689,12987,inferida
+Anetheron,1104,thin,1.07,8909,,,,,1.068,0.837,1.993,6365,inferida
+Antonidas,3686,balanced,0.81,17195,,,,,0.811,0.338,1.398,13823,inferida
+Arak-arahm,512,thin,1.3,7914,,,,,1.38,1.0,2.843,5653,inferida
+Archimonde,1302,thin,1.23,14447,,,,,1.227,0.856,2.237,11563,inferida
+Arthas,578,thin,1.0,12736,,,,,1.0,0.541,1.589,9941,inferida
+Arygos,1406,thin,1.1,10302,,,,,1.099,0.975,1.432,7984,inferida
+Ashenvale,1923,thin,1.0,3653,,,,,1.0,0.673,1.891,2221,inferida
+Auchindoun,1597,thin,1.0,16257,,,,,0.997,0.588,1.372,12990,inferida
+Azuregos,1922,thin,1.0,5012,,,,,1.0,0.516,1.544,3408,inferida
+Azuremyst,1417,thin,1.05,10603,,,,,1.049,0.89,1.998,8097,inferida
+Blackmoore,580,balanced,0.82,17595,,,,,0.82,0.447,1.19,14111,inferida
+Blackrock,581,thin,1.01,16807,,,,,1.011,0.605,1.512,13657,inferida
+Blackscar,1929,balanced,0.76,10694,,,,,0.761,0.213,1.551,8106,inferida
+Blade's Edge,1416,thin,1.04,14155,,,,,1.039,0.799,2.006,11194,inferida
+Bronze Dragonflight,1393,thin,1.0,11046,,,,,1.0,0.524,2.149,8498,inferida
+Chamber of Aspects,1307,thin,1.03,11576,,,,,1.027,0.869,2.024,9072,inferida
+Confrérie du Thorium,1127,thin,0.98,16125,,,,,0.98,0.527,1.421,12958,inferida
+Deathguard,1605,balanced,0.84,4256,,,,,0.838,0.157,2.0,2812,inferida
+Dentarg,1084,balanced,0.62,17889,,,,,0.616,0.241,1.006,14310,inferida
+Dethecus,531,thin,1.14,10863,,,,,1.135,0.983,2.45,8263,inferida
+Die Aldor,1618,thin,0.96,14680,,,,,0.962,0.538,1.508,11847,inferida
+Die Arguswacht,1121,thin,1.0,14279,,,,,1.005,0.639,1.534,11457,inferida
+Drak'thul,1092,thin,0.99,15612,,,,,0.993,0.517,1.436,12563,inferida
+Dun Modr,1378,thin,1.0,14210,,,,,1.004,0.604,1.547,11345,inferida
+Echsenkessel,3691,balanced,0.64,17527,,,,,0.639,0.267,1.074,14112,inferida
+Elune,1315,thin,1.05,9911,,,,,1.052,0.778,2.372,7501,inferida
+Emeriss,1091,thin,1.12,9783,,,,,1.117,0.799,2.252,7253,inferida
+Eredar,3692,thin,1.11,15094,,,,,1.106,0.698,1.935,12168,inferida
+Eversong,1925,balanced,0.89,11569,,,,,0.895,0.191,1.383,8878,inferida
+Exodar,1385,thin,1.3,11718,,,,,1.5,0.897,4.594,9145,inferida
+Fordragon,1623,thin,1.0,4717,,,,,1.0,0.64,1.815,3145,inferida
+Frostwolf,3703,thin,1.0,10936,,,,,0.999,0.5,1.713,8504,inferida
+Galakrond,1614,balanced,0.59,6668,,,,,0.592,0.157,1.25,4623,inferida
+Garona,509,thin,1.3,7956,,,,,1.517,1.0,5.182,5810,inferida
+Garrosh,1401,thin,1.0,14654,,,,,1.0,0.504,1.424,11692,inferida
+Genjuros,3657,thin,1.1,12478,,,,,1.098,0.803,2.496,9773,inferida
+Goldrinn,1928,thin,0.99,5965,,,,,0.987,0.249,1.476,3983,inferida
+Gordunni,1602,balanced,0.64,15766,,,,,0.636,0.211,1.134,12660,inferida
+Hellfire,1587,balanced,0.87,16181,,,,,0.874,0.294,1.372,12851,inferida
+Howling Fjord,1615,balanced,0.85,15172,,,,,0.85,0.315,1.365,12160,inferida
+Hyjal,1390,balanced,0.81,16551,,,,,0.809,0.351,1.12,13212,inferida
+Karazhan,1596,thin,1.0,14540,,,,,1.0,0.555,1.685,11581,inferida
+Kazzak,1305,balanced,0.57,17755,,,,,0.574,0.195,1.05,14210,inferida
+Khadgar,1080,thin,1.26,9672,,,,,1.265,0.85,3.937,7282,inferida
+Khaz Modan,3690,thin,1.0,12554,,,,,0.996,0.364,1.767,9765,inferida
+Kor'gall,633,thin,1.05,14889,,,,,1.048,0.624,1.884,11899,inferida
+Kul Tiras,1082,thin,1.3,10745,,,,,1.444,0.839,3.784,8160,inferida
+Lightbringer,1388,thin,1.07,8747,,,,,1.069,0.745,3.022,6370,inferida
+Lothar,570,thin,1.0,10464,,,,,1.0,0.625,1.892,8077,inferida
+Magtheridon,3681,thin,1.12,11162,,,,,1.119,0.894,3.0,8528,inferida
+Malygos,1098,thin,1.0,12001,,,,,1.0,0.625,1.607,9299,inferida
+Marécage de Zangar,1621,thin,1.0,14360,,,,,1.0,0.698,1.417,11415,inferida
+Moonglade,1085,thin,1.01,13069,,,,,1.012,0.71,1.92,10291,inferida
+Naxxramas,1624,thin,1.3,9751,,,,,1.459,1.004,3.114,7422,inferida
+Nazjatar,1105,thin,1.3,13030,,,,,1.313,0.931,2.533,10225,inferida
+Nefarian,612,thin,1.0,12375,,,,,1.0,0.704,1.684,9625,inferida
+Nemesis,1316,thin,1.07,10522,,,,,1.073,0.854,2.304,8159,inferida
+Nethersturm,3696,thin,1.0,13494,,,,,1.002,0.518,1.718,10749,inferida
+Norgannon,1408,thin,1.01,15518,,,,,1.013,0.461,2.009,12430,inferida
+Outland,1301,thin,1.1,14033,,,,,1.102,0.842,2.0,11195,inferida
+Quel'Thalas,1396,thin,1.0,13773,,,,,1.0,0.479,1.502,10901,inferida
+Ragnaros,3682,balanced,0.91,16548,,,,,0.909,0.38,1.247,13320,inferida
+Ravencrest,1329,balanced,0.72,17586,,,,,0.723,0.304,1.063,14122,inferida
+Rexxar,1099,balanced,0.78,13691,,,,,0.784,0.171,1.25,10866,inferida
+Scarshield Legion,1096,thin,0.97,16993,,,,,0.965,0.454,1.393,13688,inferida
+Shadowsong,3666,thin,1.0,11945,,,,,1.0,0.513,1.558,9468,inferida
+Soulflayer,1604,thin,0.99,11213,,,,,0.985,0.378,1.542,8783,inferida
+Stormscale,2073,thin,1.02,16550,,,,,1.018,0.759,1.534,13291,inferida
+Suramar,1331,thin,1.12,7104,,,,,1.121,0.964,2.125,5035,inferida
+Terenas,2074,thin,1.08,10976,,,,,1.085,0.896,2.107,8409,inferida
+Thrall,604,thin,0.96,16902,,,,,0.962,0.522,1.525,13643,inferida
+Todeswache,1405,balanced,0.92,15885,,,,,0.917,0.428,1.495,12740,inferida
+Turalyon,1402,balanced,0.71,17290,,,,,0.705,0.284,1.109,13832,inferida
+Tyrande,1384,thin,1.24,9935,,,,,1.238,0.783,3.494,7571,inferida
+Uldaman,1122,thin,1.0,9854,,,,,1.005,0.552,1.971,7374,inferida
+Un'Goro,1400,thin,0.97,9941,,,,,0.971,0.278,1.614,7450,inferida
+Vol'jin,510,thin,0.95,8829,,,,,0.954,0.194,1.5,6531,inferida
+Wildhammer,1313,thin,1.03,9687,,,,,1.029,0.428,2.489,7315,inferida
+Ysera,1097,thin,1.01,9248,,,,,1.006,0.791,2.017,6817,inferida
+Ysondre,1335,thin,1.11,12774,,,,,1.113,0.82,2.1,10081,inferida
+Zul'jin,1379,thin,1.03,15843,,,,,1.028,0.689,1.522,12760,inferida

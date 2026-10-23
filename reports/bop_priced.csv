@@ -1,0 +1,332 @@
+item_id,name,price_gold,sale_rate,sold_per_day,expansion,item_level,required_level
+260371,Infernal Greatlock Girdle,189987.63,0.014,0.112,11,197,90
+251783,Lost Idol of the Hash'ey,160311.91,0.028,0.0,11,197,78
+260375,Raging Storm Sash,117000.01,0.014,0.105,11,197,90
+260372,Nullstrider's Boots,100000.0,0.021,0.105,11,197,90
+260376,Breastplate of the Final Defense,100000.0,0.027,0.108,11,197,90
+260377,Fading Dawn Sabatons,99999.0,0.025,0.1,11,197,90
+229155,Lamplighter's Greataxe,94999.94,0.068,0.068,10,545,70
+260373,Power Stance Breeches,78000.0,0.025,0.125,11,197,90
+238028,Bone-Melted Faceplate,71249.99,0.004,0.012,10,662,80
+260374,Primal Spark Pauldrons,66499.99,0.026,0.104,11,197,90
+229156,Lamplighter's Great Mallet,53200.0,0.018,0.018,10,545,70
+260370,Visage of Unseen Truths,50000.21,0.026,0.104,11,197,90
+229162,Lamplighter's Sword,47624.53,0.009,0.009,10,545,70
+229147,Lamplighter's Polearm,39999.98,0.16,0.16,10,545,70
+238027,Harvested Creephide Cord,27825.63,0.012,0.036,10,662,80
+229153,Lamplighter's Cudgel,26600.0,0.039,0.039,10,545,70
+238033,Zadus's Liturgical Hat,25650.04,0.006,0.018,10,662,80
+229088,Kyros's Spare Sabatons,25000.0,0.006,0.006,10,545,70
+229154,Lamplighter's Edge,23497.49,0.013,0.013,10,545,70
+244480,Worn Shadowguard Seer's Crown,22773.39,0.009,0.023,10,400,80
+238031,Veiled Manta Vest,19999.99,0.019,0.057,10,662,80
+204962,Neltharic Warstaff,18999.05,0.003,0.0,9,250,70
+237778,Nightfall Executioner's Greatsword,17325.23,0.021,0.042,10,610,80
+233484,Lucky-Streak Signet,16100.96,0.004,0.004,10,600,80
+244474,Worn Shadowguard Signet,16000.0,0.006,0.006,10,400,80
+238036,Entropy,15315.02,0.006,0.018,10,662,80
+241033,Arathi Templar's Claymore,14250.85,0.013,0.039,10,610,80
+229072,Azra's Spare Mask,14250.43,0.013,0.013,10,545,70
+229152,Lamplighter's Battleaxe,14250.0,0.02,0.02,10,545,70
+229158,Lamplighter's War Knives,14250.0,0.061,0.061,10,545,70
+204943,Skyless Chain,14249.36,0.006,0.006,9,250,70
+204915,Deeprock Cape,14249.05,0.003,0.0,9,250,70
+204921,Moonless Slippers,14249.05,0.002,0.002,9,250,70
+204941,Skyless Greaves,14249.05,0.005,0.005,9,250,70
+204942,Skyless Epaulets,14249.05,0.015,0.015,9,250,70
+204950,Starless Mantle,14249.05,0.006,0.006,9,250,70
+204980,Neltharic Wingsplitter,14249.05,0.006,0.006,9,250,70
+204981,Neltharic Wand,14249.05,0.002,0.002,9,250,70
+204937,Skyless Striders,12825.0,0.013,0.013,9,250,70
+204944,Skyless Cuffs,11400.0,0.019,0.0,9,250,70
+204952,Starless Armplates,11400.0,0.012,0.0,9,250,70
+244475,Worn Shadowguard Loop,11342.99,0.01,0.01,10,400,80
+204956,Neltharic Smasher,11250.0,0.0,0.0,9,250,70
+238034,Jak'tull's Intruder Stompers,10527.04,0.005,0.02,10,662,80
+204929,Sunless Boots,10124.45,0.002,0.0,9,250,70
+229066,Nisa's Spare Cassock,9999.99,0.006,0.006,10,545,70
+229092,Kyros's Spare Girdle,9999.99,0.004,0.004,10,545,70
+238030,Voidhound Trainer's Boots,9680.31,0.005,0.018,10,662,80
+204936,Skyless Blouse,9630.26,0.009,0.009,9,250,70
+204924,Moonless Trousers,9500.0,0.012,0.0,9,250,70
+204954,Neltharic Ritual Knife,9500.0,0.009,0.0,9,250,70
+204957,Neltharic Saber,9500.0,0.013,0.013,9,250,70
+229161,Lamplighter's Chopper,9500.0,0.017,0.017,10,545,70
+238032,Acolyte's Infused Leggings,9500.0,0.006,0.024,10,662,80
+204914,Deeprock Cloak,9499.99,0.004,0.0,9,250,70
+204931,Sunless Cowl,9499.05,0.007,0.007,9,250,70
+204959,Neltharic Blaster,9499.02,0.004,0.004,9,250,70
+204932,Sunless Pants,8748.29,0.013,0.013,9,250,70
+233528,Gold-Plated Shield,8550.0,0.008,0.016,10,600,80
+229086,Kyros's Spare Helm,8548.6,0.009,0.009,10,545,70
+229089,Kyros's Spare Handguards,8000.54,0.011,0.011,10,545,70
+244489,Worn Shadowguard Blade's Breeches,7800.0,0.007,0.007,10,400,80
+244484,Worn Shadowguard Seer's Bands,7600.0,0.007,0.007,10,400,80
+204922,Moonless Gloves,7200.0,0.006,0.006,9,250,70
+244522,Worn Shadowguard Staff,7125.9,0.003,0.009,10,400,80
+244476,Worn Shadowguard Pendant,6800.0,0.0,0.0,10,400,80
+244505,Worn Shadowguard Captain's Greaves,6636.75,0.01,0.01,10,400,80
+229063,Nisa's Spare Wristguards,6610.89,0.035,0.035,10,545,70
+204923,Moonless Hood,6080.88,0.006,0.006,9,250,70
+235648,Gold-Plated Hatchet,5937.26,0.001,0.001,10,600,80
+237444,Nightfall Curseblade's Cape,5805.35,0.007,0.035,10,610,80
+244526,Worn Shadowguard Bastion,5700.55,0.003,0.006,10,400,80
+237462,Nightfall Executioner's Breastplate,5699.99,0.015,0.045,10,610,80
+204949,Starless Legguards,5277.76,0.009,0.009,9,250,70
+204945,Starless Breastplate,5277.39,0.007,0.007,9,250,70
+244488,Worn Shadowguard Blade's Hood,5277.26,0.006,0.006,10,400,80
+204951,Starless Girdle,5277.25,0.012,0.012,9,250,70
+204935,Sunless Bracers,5000.81,0.006,0.006,9,250,70
+204930,Sunless Grips,5000.47,0.005,0.005,9,250,70
+204933,Sunless Spaulders,5000.3,0.001,0.001,9,250,70
+244485,Worn Shadowguard Blade's Jerkin,4992.64,0.006,0.012,10,400,80
+237473,Dark Bargainer's Chain,4901.51,0.014,0.028,10,610,80
+237464,Nightfall Executioner's Gauntlets,4878.15,0.013,0.039,10,610,80
+237776,Nightfall Executioner's Halberd,4750.53,0.019,0.057,10,610,80
+204947,Starless Gauntlets,4750.0,0.015,0.015,9,250,70
+204955,Neltharic Beatstick,4750.0,0.013,0.0,9,250,70
+233450,Mechforged Mantle,4750.0,0.005,0.01,10,600,80
+244482,Worn Shadowguard Seer's Spines,4750.0,0.008,0.016,10,400,80
+244512,Worn Shadowguard Stiletto,4749.97,0.005,0.005,10,400,80
+244511,Worn Shadowguard Chopper,4749.05,0.008,0.008,10,400,80
+237472,Seal of Cosmic Embrace,4705.08,0.029,0.029,10,610,80
+237469,Nightfall Executioner's Armplates,4567.89,0.016,0.048,10,610,80
+233483,Lucky-Streak Ring,4500.0,0.005,0.005,10,600,80
+256985,Forest Hunter's Hoop,4444.12,0.0,0.0,11,80,80
+204926,Moonless Belt,4294.95,0.01,0.01,9,250,70
+229079,Aevery's Spare Boots,4233.52,0.014,0.014,10,545,70
+237435,Nightfall Darkcaster's Cloak,4149.34,0.01,0.04,10,610,80
+229062,Nisa's Spare Coronet,4023.24,0.01,0.01,10,545,70
+233485,Lucky-Streak Band,4000.0,0.004,0.004,10,600,80
+244527,Worn Shadowguard Warglaive,4000.0,0.008,0.008,10,400,80
+237466,Nightfall Executioner's Legguards,3999.99,0.02,0.06,10,610,80
+237467,Nightfall Executioner's Mantle,3904.77,0.028,0.084,10,610,80
+237777,Nightfall Shadowalker's Bulwark,3800.4,0.018,0.054,10,610,80
+237789,Nightfall Curseblade's Warglaive,3800.0,0.012,0.036,10,610,80
+233541,Gold-Plated Knife,3799.98,0.004,0.004,10,600,80
+244517,Worn Shadowguard Longsword,3799.05,0.009,0.018,10,400,80
+233534,Gold-Plated Broadsword,3798.62,0.018,0.054,10,600,80
+233477,Shimmerthread Handwraps,3788.71,0.007,0.014,10,600,80
+237468,Nightfall Executioner's Girdle,3762.38,0.025,0.075,10,610,80
+237780,Nightfall Curseblade's Cudgel,3635.53,0.015,0.06,10,610,80
+233471,Rebel Spike Vest,3606.92,0.005,0.01,10,600,80
+233481,Might-Be-Invisible Cloak,3512.2,0.005,0.01,10,600,80
+237788,Nightfall Shadowalker's Shotgun,3500.08,0.004,0.008,10,610,80
+237439,Nightfall Darkcaster's Cowl,3412.49,0.007,0.028,10,610,80
+204964,Neltharic Torch,3359.02,0.017,0.017,9,250,70
+235507,Might-Be-Invisible Drape,3325.94,0.007,0.014,10,600,80
+237784,Nightfall Shadowalker's Rod,3230.0,0.009,0.027,10,610,80
+237436,Nightfall Darkcaster's Vestment,3200.0,0.01,0.05,10,610,80
+237775,Nightfall Curseblade's Cleaver,3167.29,0.017,0.043,10,610,80
+237448,Nightfall Curseblade's Breeches,3167.01,0.023,0.115,10,610,80
+237465,Nightfall Executioner's Helm,3166.82,0.011,0.044,10,610,80
+233539,Gold-Plated Hammer,3166.66,0.004,0.008,10,600,80
+244519,Worn Shadowguard Spear,3166.43,0.003,0.003,10,400,80
+229078,Aevery's Spare Brigandine,3166.35,0.012,0.012,10,545,70
+233454,Mechforged Sabatons,3135.17,0.011,0.022,10,600,80
+204927,Moonless Wristband,3000.0,0.005,0.0,9,250,70
+204934,Sunless Wrap,3000.0,0.005,0.005,9,250,70
+204938,Skyless Grips,3000.0,0.012,0.012,9,250,70
+204940,Skyless Coif,3000.0,0.006,0.006,9,250,70
+204948,Starless Fullhelm,3000.0,0.002,0.002,9,250,70
+204966,Neltharic Warglaive,3000.0,0.002,0.002,9,250,70
+229068,Nisa's Spare Shoulderpads,3000.0,0.016,0.016,10,545,70
+204928,Sunless Tunic,2925.0,0.008,0.008,9,250,70
+244493,Worn Shadowguard Striker's Brigandine,2924.03,0.01,0.01,10,400,80
+237782,Nightfall Curseblade's Knife,2913.65,0.009,0.027,10,610,80
+229075,Azra's Spare Bracers,2865.16,0.004,0.004,10,545,70
+229087,Kyros's Spare Chestplate,2850.31,0.023,0.023,10,545,70
+204958,Neltharic Blade,2850.0,0.007,0.007,9,250,70
+233466,Rebel Spike Epaulets,2850.0,0.007,0.014,10,600,80
+237781,Nightfall Shadowalker's Dagger,2850.0,0.019,0.038,10,610,80
+237441,Nightfall Darkcaster's Mantle,2849.98,0.014,0.056,10,610,80
+237463,Nightfall Executioner's Sabatons,2849.88,0.022,0.088,10,610,80
+233470,Rebel Spike Waders,2849.05,0.005,0.01,10,600,80
+233533,Gold-Plated Spear,2662.54,0.006,0.006,10,600,80
+225693,Shadowed Essence,2612.12,0.018,0.054,10,571,70
+237446,Nightfall Curseblade's Waders,2565.0,0.014,0.07,10,610,80
+233452,Mechforged Helm,2522.25,0.009,0.018,10,600,80
+244492,Worn Shadowguard Blade's Bracers,2500.77,0.007,0.007,10,400,80
+244508,Worn Shadowguard Captain's Vambraces,2500.0,0.001,0.001,10,400,80
+244510,Worn Shadowguard Carver,2500.0,0.0,0.0,10,400,80
+233451,Mechforged Legguards,2499.0,0.012,0.024,10,600,80
+233453,Mechforged Gauntlets,2499.0,0.01,0.02,10,600,80
+237471,Band of the Voidmancer,2475.0,0.024,0.048,10,610,80
+233529,Gold-Plated Cinderbrew Bottle,2379.03,0.009,0.009,10,600,80
+237470,Nightfall Curseblade's Hood,2375.89,0.018,0.09,10,610,80
+237458,Nightfall Shadowalker's Shoulderguards,2375.82,0.013,0.052,10,610,80
+233527,Gold-Plated Glaive,2375.33,0.003,0.006,10,600,80
+233532,Gold-Plated Polearm,2375.0,0.003,0.006,10,600,80
+244483,Worn Shadowguard Seer's Cord,2375.0,0.007,0.028,10,400,80
+244490,Worn Shadowguard Blade's Shoulderpads,2375.0,0.013,0.026,10,400,80
+244479,Worn Shadowguard Seer's Gloves,2351.15,0.005,0.01,10,400,80
+237437,Nightfall Darkcaster's Sandals,2300.0,0.014,0.07,10,610,80
+237786,Nightfall Curseblade's Blunderbuss,2297.03,0.009,0.018,10,610,80
+229085,Aevery's Spare Bracers,2254.18,0.047,0.047,10,545,70
+233459,Scrapcoil Greaves,2222.22,0.0,0.0,10,600,80
+244473,Worn Shadowguard Band,2222.0,0.0,0.0,10,400,80
+233530,Gold-Plated Spellstaff,2211.0,0.004,0.004,10,600,80
+237461,Nightfall Executioner's Drape,2110.96,0.018,0.072,10,610,80
+233463,Scrapcoil Chainmail,2110.9,0.002,0.004,10,600,80
+237447,Nightfall Curseblade's Grips,2000.67,0.019,0.095,10,610,80
+204920,Moonless Robe,2000.0,0.007,0.007,9,250,70
+204925,Moonless Shoulderpads,2000.0,0.004,0.004,9,250,70
+204946,Starless Warboots,2000.0,0.007,0.007,9,250,70
+204953,Neltharic Shiv,2000.0,0.0,0.0,9,250,70
+233535,Gold-Plated Greatsword,2000.0,0.005,0.01,10,600,80
+237438,Nightfall Darkcaster's Handwraps,2000.0,0.006,0.024,10,610,80
+237495,Baleful Excerpt,2000.0,0.017,0.034,10,610,80
+237783,Nightfall Darkcaster's Greatstaff,2000.0,0.013,0.065,10,610,80
+244486,Worn Shadowguard Blade's Soles,2000.0,0.019,0.038,10,400,80
+244503,Worn Shadowguard Captain's Handguards,2000.0,0.011,0.011,10,400,80
+233456,Scrapcoil Bracers,1999.99,0.003,0.003,10,600,80
+244499,Worn Shadowguard Striker's Sash,1983.6,0.002,0.004,10,400,80
+233537,Gold-Plated Sword,1971.84,0.011,0.017,10,600,80
+244495,Worn Shadowguard Striker's Gauntlets,1950.0,0.001,0.002,10,400,80
+237440,Nightfall Darkcaster's Leggings,1924.98,0.02,0.08,10,610,80
+233461,Scrapcoil Grips,1902.62,0.009,0.018,10,600,80
+244498,Worn Shadowguard Striker's Pauldrons,1900.93,0.006,0.012,10,400,80
+237457,Nightfall Shadowalker's Greaves,1900.77,0.006,0.03,10,610,80
+233482,Might-Be-Invisible Shawl,1900.44,0.004,0.004,10,600,80
+237445,Nightfall Curseblade's Vest,1900.31,0.017,0.085,10,610,80
+233465,Rebel Spike Sash,1900.0,0.002,0.006,10,600,80
+233538,Gold-Plated Blade,1900.0,0.003,0.006,10,600,80
+235649,Gold-Plated Battleaxe,1900.0,0.004,0.004,10,600,80
+237451,Nightfall Curseblade's Bindings,1900.0,0.014,0.056,10,610,80
+237460,Nightfall Shadowalker's Bracers,1900.0,0.014,0.056,10,610,80
+237474,Cult Former's Charm,1900.0,0.025,0.075,10,610,80
+237787,Nightfall Darkcaster's Kris,1900.0,0.016,0.064,10,610,80
+244518,Worn Shadowguard Blaster,1900.0,0.009,0.018,10,400,80
+233469,Rebel Spike Grips,1899.99,0.011,0.022,10,600,80
+233476,Shimmerthread Cowl,1899.99,0.003,0.009,10,600,80
+244515,Worn Shadowguard Warmace,1899.99,0.008,0.008,10,400,80
+237442,Nightfall Darkcaster's Cord,1899.99,0.012,0.06,10,610,80
+233455,Mechforged Chestplate,1899.81,0.013,0.026,10,600,80
+233467,Rebel Spike Breeches,1899.35,0.005,0.01,10,600,80
+237452,Nightfall Shadowalker's Shawl,1899.05,0.008,0.04,10,610,80
+244487,Worn Shadowguard Blade's Grips,1890.6,0.003,0.006,10,400,80
+244478,Worn Shadowguard Seer's Slippers,1887.98,0.0,0.0,10,400,80
+233458,Scrapcoil Shoulderguards,1862.0,0.008,0.008,10,600,80
+233448,Mechforged Armplates,1805.0,0.002,0.002,10,600,80
+233474,Shimmerthread Shoulderpads,1794.45,0.007,0.014,10,600,80
+235508,Might-Be-Invisible Cape,1736.07,0.005,0.005,10,600,80
+233472,Shimmerthread Wristwraps,1710.29,0.003,0.006,10,600,80
+237779,Nightfall Darkcaster's Gavel,1700.0,0.005,0.015,10,610,80
+237453,Nightfall Shadowalker's Chainmail,1689.09,0.008,0.032,10,610,80
+237450,Nightfall Curseblade's Sash,1600.14,0.021,0.105,10,610,80
+237449,Nightfall Curseblade's Shoulderpads,1500.0,0.015,0.075,10,610,80
+233468,Rebel Spike Headgear,1477.16,0.005,0.01,10,600,80
+244524,Worn Shadowguard Blade,1425.73,0.012,0.012,10,400,80
+244520,Worn Shadowguard Bident,1425.44,0.007,0.007,10,400,80
+229081,Aevery's Spare Cowl,1425.0,0.001,0.001,10,545,70
+233449,Mechforged Girdle,1425.0,0.005,0.01,10,600,80
+237459,Nightfall Shadowalker's Cinch,1425.0,0.006,0.03,10,610,80
+237456,Nightfall Shadowalker's Coif,1424.05,0.019,0.076,10,610,80
+237785,Nightfall Darkcaster's Implement,1377.9,0.006,0.024,10,610,80
+244513,Worn Shadowguard Kris,1225.16,0.008,0.008,10,400,80
+229093,Kyros's Spare Cuffs,1222.95,0.031,0.031,10,545,70
+224592,Spinner's Hoop,1212.13,0.02,0.02,10,545,70
+244494,Worn Shadowguard Striker's Boots,1193.19,0.001,0.002,10,400,80
+224594,Spinner's Amulet,1185.61,0.009,0.009,10,545,70
+233475,Shimmerthread Leggings,1172.83,0.001,0.002,10,600,80
+229077,Azra's Spare Shoulderguards,1142.49,0.014,0.014,10,545,70
+224593,Spinner's Circlet,1140.94,0.015,0.015,10,545,70
+224603,Underscout's Trousers,1140.01,0.012,0.012,10,545,70
+235647,Gold-Plated Carver,1140.0,0.004,0.004,10,600,80
+237455,Nightfall Shadowalker's Grips,1111.17,0.009,0.036,10,610,80
+233479,Shimmerthread Robe,1110.95,0.002,0.004,10,600,80
+233540,Gold-Plated Cudgel,1100.0,0.003,0.006,10,600,80
+224624,Spinner's Shawl,1028.94,0.012,0.012,10,545,70
+233480,Lucky-Streak Pendant,1000.51,0.005,0.005,10,600,80
+237454,Nightfall Shadowalker's Striders,1000.33,0.01,0.05,10,610,80
+244481,Worn Shadowguard Seer's Leggings,1000.0,0.002,0.004,10,400,80
+233531,Gold-Plated Staff,999.99,0.002,0.004,10,600,80
+241035,Arathi Soldier's Morningstar,999.93,0.005,0.01,10,610,80
+204918,Deeprock Signet,999.02,0.002,0.0,9,250,70
+233473,Shimmerthread Cord,998.99,0.001,0.003,10,600,80
+244501,Worn Shadowguard Captain's Breastplate,978.42,0.012,0.012,10,400,80
+237443,Nightfall Darkcaster's Cuffs,974.5,0.014,0.056,10,610,80
+233460,Scrapcoil Coif,974.02,0.003,0.006,10,600,80
+204810,Drogbar Rocks,950.94,0.007,0.0,9,250,70
+233542,Gold-Plated Shank,950.32,0.005,0.01,10,600,80
+244477,Worn Shadowguard Seer's Vestments,950.0,0.002,0.002,10,400,80
+244500,Worn Shadowguard Striker's Armguards,950.0,0.001,0.001,10,400,80
+244509,Worn Shadowguard Cleaver,950.0,0.01,0.01,10,400,80
+233478,Shimmerthread Sandals,949.05,0.003,0.009,10,600,80
+237790,Nightfall Darkcaster's Wand,949.05,0.007,0.021,10,610,80
+204714,Satchel of Healing Spores,900.35,0.0,0.0,9,250,70
+244497,Worn Shadowguard Striker's Legguards,865.48,0.008,0.016,10,400,80
+233457,Scrapcoil Belt,844.54,0.005,0.01,10,600,80
+257261,Technique: Thalassian Competitor's Insignia of Alacrity,844.54,0.051,0.408,11,1,1
+244491,Worn Shadowguard Blade's Belt,813.63,0.006,0.021,10,400,80
+224621,Earthforged Shoulder Scales,809.88,0.009,0.009,10,545,70
+233536,Gold-Plated Rifle,800.0,0.001,0.001,10,600,80
+224633,Arathi Greataxe,799.24,0.014,0.014,10,545,70
+224620,Earthforged Faulds,759.99,0.013,0.013,10,545,70
+233462,Scrapcoil Striders,759.99,0.004,0.008,10,600,80
+233464,Rebel Spike Bindings,759.99,0.002,0.004,10,600,80
+224614,Expeditionary Belt,707.95,0.006,0.006,10,545,70
+224622,Stalwart Girdle,684.0,0.012,0.012,10,545,70
+244502,Worn Shadowguard Captain's Sollerets,680.38,0.01,0.01,10,400,80
+224639,Expeditionary Chopper,665.94,0.007,0.007,10,545,70
+224628,Arathi Claymore,665.0,0.018,0.018,10,545,70
+224635,Expeditionary Bulwark,633.11,0.018,0.018,10,545,70
+224625,Expeditionary Spear,629.23,0.013,0.013,10,545,70
+224606,Underscout's Jerkin,600.0,0.012,0.012,10,545,70
+229082,Aevery's Spare Chausses,522.66,0.006,0.006,10,545,70
+224605,Underscout's Bracers,514.9,0.009,0.009,10,545,70
+244504,Worn Shadowguard Captain's Helmet,499.27,0.001,0.001,10,400,80
+224632,Underscout's Kukri,491.34,0.009,0.009,10,545,70
+224636,Deep-Dweller's Dirk,475.82,0.012,0.012,10,545,70
+224601,Underscout's Gloves,475.65,0.016,0.016,10,545,70
+224626,Deep-Dweller's Staff,475.57,0.01,0.01,10,545,70
+224596,Deep-Dweller's Mitts,475.0,0.007,0.007,10,545,70
+224613,Expeditionary Epaulets,475.0,0.005,0.005,10,545,70
+241036,Arathi Anointer's Wand,475.0,0.006,0.006,10,610,80
+224607,Underscout's Shoulderguards,474.99,0.014,0.014,10,545,70
+224616,Earthforged Greathelm,474.99,0.007,0.007,10,545,70
+224604,Underscout's Cord,474.05,0.012,0.012,10,545,70
+224602,Underscout's Cap,428.4,0.013,0.013,10,545,70
+227692,Arathi Sword,427.5,0.009,0.009,10,545,70
+224634,Arathi Mace,424.0,0.005,0.005,10,545,70
+224623,Earthforged Cuffs,399.43,0.006,0.006,10,545,70
+244525,Worn Shadowguard Censer,395.26,0.006,0.006,10,400,80
+224617,Earthforged Haubergeon,382.43,0.007,0.007,10,545,70
+227693,Expeditionary Blade,380.05,0.014,0.014,10,545,70
+224611,Expeditionary Helm,369.55,0.005,0.005,10,545,70
+229159,Lamplighter's Lightstone,364.54,0.007,0.007,10,545,70
+224630,Deep-Dweller's Battleaxe,356.24,0.01,0.01,10,545,70
+244506,Worn Shadowguard Captain's Epaulettes,349.26,0.004,0.004,10,400,80
+224627,Arathi Arquebus,299.04,0.005,0.005,10,545,70
+224615,Expeditionary Bracers,299.04,0.008,0.008,10,545,70
+224595,Deep-Dweller's Slippers,296.22,0.005,0.005,10,545,70
+224619,Earthforged Handguards,285.77,0.003,0.003,10,545,70
+224610,Expeditionary Gauntlets,285.7,0.006,0.006,10,545,70
+224590,Deep-Dweller's Cowl,285.0,0.005,0.005,10,545,70
+224638,Underscout's Glaive,285.0,0.006,0.006,10,545,70
+224597,Deep-Dweller's Kaftan,284.6,0.009,0.009,10,545,70
+224598,Deep-Dweller's Leggings,284.05,0.014,0.014,10,545,70
+224591,Deep-Dweller's Wraps,256.5,0.006,0.006,10,545,70
+224631,Deep-Dweller's Cudgel,256.5,0.009,0.009,10,545,70
+224600,Underscout's Striders,253.31,0.013,0.013,10,545,70
+224589,Deep-Dweller's Cincture,237.5,0.009,0.009,10,545,70
+224629,Arathi Hatchet,211.11,0.006,0.006,10,545,70
+224599,Deep-Dweller's Shoulderpads,196.51,0.012,0.012,10,545,70
+224618,Earthforged Sabatons,195.44,0.008,0.008,10,545,70
+224637,Deep-Dweller's Orb,159.47,0.007,0.007,10,545,70
+244514,Worn Shadowguard Mace,159.0,0.003,0.003,10,400,80
+244523,Worn Shadowguard Greatsword,150.36,0.005,0.005,10,400,80
+204960,Neltharic Spear,150.0,0.002,0.002,9,250,70
+204961,Neltharic Partisan,150.0,0.003,0.003,9,250,70
+204967,Neltharic Greatsword,150.0,0.0,0.0,9,250,70
+204979,Neltharic Wingaxe,150.0,0.0,0.0,9,250,70
+224609,Expeditionary Boots,121.12,0.007,0.007,10,545,70
+224612,Expeditionary Shinguards,117.0,0.004,0.004,10,545,70
+244521,Worn Shadowguard Pole,106.83,0.007,0.007,10,400,80
+224608,Expeditionary Brigandine,95.0,0.006,0.006,10,545,70
+244516,Worn Shadowguard Falchion,66.23,0.001,0.001,10,400,80
+229070,Azra's Spare Striders,58.64,0.037,0.037,10,545,70
+244507,Worn Shadowguard Captain's Greatbelt,50.0,0.002,0.002,10,400,80
+229074,Azra's Spare Cord,26.65,0.02,0.02,10,545,70
+204917,Deeprock Ring,24.92,0.004,0.0,9,250,70
+204805,Suspended Sulfuric Droplet,10.35,0.0,0.0,9,250,70

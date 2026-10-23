@@ -1,0 +1,2609 @@
+{
+ "npc_id": 3917,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Befouled Water Elemental",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 9451,
+   "item_name": "Bubbling Water",
+   "item_type": "",
+   "drop_rate": 0.34,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=9451/bubbling-water"
+  },
+  {
+   "category": "drops",
+   "item_id": 7070,
+   "item_name": "Elemental Water",
+   "item_type": "",
+   "drop_rate": 0.06,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=7070/elemental-water"
+  },
+  {
+   "category": "drops",
+   "item_id": 7079,
+   "item_name": "Globe of Water",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7079/globe-of-water"
+  },
+  {
+   "category": "drops",
+   "item_id": 7080,
+   "item_name": "Essence of Water",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7080/essence-of-water"
+  },
+  {
+   "category": "drops",
+   "item_id": 1206,
+   "item_name": "Moss Agate",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1206/moss-agate"
+  },
+  {
+   "category": "drops",
+   "item_id": 1210,
+   "item_name": "Shadowgem",
+   "item_type": "",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1210/shadowgem"
+  },
+  {
+   "category": "drops",
+   "item_id": 3198,
+   "item_name": "Battering Hammer",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3198/battering-hammer?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 3199,
+   "item_name": "Battle Slayer",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3199/battle-slayer?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 14568,
+   "item_name": "Bristlebark Boots",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14568/bristlebark-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14572,
+   "item_name": "Bristlebark Gloves",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14572/bristlebark-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 3740,
+   "item_name": "Decapitating Sword",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3740/decapitating-sword?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 9767,
+   "item_name": "Greenweave Sandals",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9767/greenweave-sandals?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15269,
+   "item_name": "Massive Battle Axe",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15269/massive-battle-axe?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15211,
+   "item_name": "Militant Shortsword",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15211/militant-shortsword?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15122,
+   "item_name": "Robust Bracers",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15122/robust-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 3039,
+   "item_name": "Short Ash Bow",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3039/short-ash-bow?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 14179,
+   "item_name": "Watcher's Cape",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14179/watchers-cape?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15331,
+   "item_name": "Wrangler's Wristbands",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15331/wranglers-wristbands?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 12054,
+   "item_name": "Demon Band",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=12054/demon-band?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 790,
+   "item_name": "Forester's Axe",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=790/foresters-axe?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15223,
+   "item_name": "Jagged Star",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15223/jagged-star?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 14369,
+   "item_name": "Mystic's Wrap",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14369/mystics-wrap?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 3193,
+   "item_name": "Oak Mallet",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3193/oak-mallet?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 14162,
+   "item_name": "Pagan Mitts",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14162/pagan-mitts?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15230,
+   "item_name": "Ridge Cleaver",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15230/ridge-cleaver?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 14375,
+   "item_name": "Sanguine Cuffs",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14375/sanguine-cuffs?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 11967,
+   "item_name": "Zircon Band",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=11967/zircon-band?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15313,
+   "item_name": "Feral Shoulder Pads",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15313/feral-shoulder-pads"
+  },
+  {
+   "category": "drops",
+   "item_id": 15505,
+   "item_name": "Outrunner's Pauldrons",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15505/outrunners-pauldrons"
+  },
+  {
+   "category": "drops",
+   "item_id": 14157,
+   "item_name": "Pagan Mantle",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14157/pagan-mantle"
+  },
+  {
+   "category": "drops",
+   "item_id": 14126,
+   "item_name": "Ritual Amice",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14126/ritual-amice"
+  },
+  {
+   "category": "drops",
+   "item_id": 15224,
+   "item_name": "Battlesmasher",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15224/battlesmasher?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 14567,
+   "item_name": "Bristlebark Belt",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14567/bristlebark-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15310,
+   "item_name": "Feral Gloves",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15310/feral-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9771,
+   "item_name": "Greenweave Gloves",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9771/greenweave-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9772,
+   "item_name": "Greenweave Leggings",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9772/greenweave-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15511,
+   "item_name": "Grunt's Legguards",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15511/grunts-legguards?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14742,
+   "item_name": "Hulking Boots",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14742/hulking-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14747,
+   "item_name": "Hulking Gauntlets",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14747/hulking-gauntlets?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14371,
+   "item_name": "Mystic's Robe",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14371/mystics-robe?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15946,
+   "item_name": "Mystic's Sphere",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15946/mystics-sphere?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 14370,
+   "item_name": "Mystic's Woolies",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14370/mystics-woolies?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15500,
+   "item_name": "Outrunner's Chestguard",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15500/outrunners-chestguard?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15503,
+   "item_name": "Outrunner's Legguards",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15503/outrunners-legguards?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14165,
+   "item_name": "Pagan Britches",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14165/pagan-britches?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 2409,
+   "item_name": "Pattern: Dark Leather Tunic",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2409/pattern-dark-leather-tunic"
+  },
+  {
+   "category": "drops",
+   "item_id": 14562,
+   "item_name": "Prospector's Chestpiece",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14562/prospectors-chestpiece?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15113,
+   "item_name": "Rigid Buckler",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15113/rigid-buckler?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15117,
+   "item_name": "Rigid Leggings",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15117/rigid-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14133,
+   "item_name": "Ritual Tunic",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14133/ritual-tunic?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14374,
+   "item_name": "Sanguine Sandals",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14374/sanguine-sandals?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15527,
+   "item_name": "Sentry's Gloves",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15527/sentrys-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15519,
+   "item_name": "Spiked Chain Cloak",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15519/spiked-chain-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14730,
+   "item_name": "War Paint Chestpiece",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14730/war-paint-chestpiece?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15329,
+   "item_name": "Wrangler's Belt",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15329/wranglers-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15330,
+   "item_name": "Wrangler's Boots",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15330/wranglers-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 804,
+   "item_name": "Large Blue Sack",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=804/large-blue-sack"
+  },
+  {
+   "category": "drops",
+   "item_id": 5576,
+   "item_name": "Large Brown Sack",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=5576/large-brown-sack"
+  },
+  {
+   "category": "drops",
+   "item_id": 5575,
+   "item_name": "Large Green Sack",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=5575/large-green-sack"
+  },
+  {
+   "category": "drops",
+   "item_id": 857,
+   "item_name": "Large Red Sack",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=857/large-red-sack"
+  },
+  {
+   "category": "drops",
+   "item_id": 14368,
+   "item_name": "Mystic's Shoulder Pads",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14368/mystics-shoulder-pads"
+  },
+  {
+   "category": "drops",
+   "item_id": 14728,
+   "item_name": "War Paint Shoulder Pads",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14728/war-paint-shoulder-pads"
+  },
+  {
+   "category": "drops",
+   "item_id": 15241,
+   "item_name": "Battle Knife",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15241/battle-knife?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 4998,
+   "item_name": "Blood Ring",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4998/blood-ring?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14569,
+   "item_name": "Bristlebark Bindings",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14569/bristlebark-bindings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14574,
+   "item_name": "Bristlebark Britches",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14574/bristlebark-britches?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 11983,
+   "item_name": "Chrome Ring",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=11983/chrome-ring?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 11993,
+   "item_name": "Clay Ring",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=11993/clay-ring?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 11994,
+   "item_name": "Coral Band",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=11994/coral-band?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 8186,
+   "item_name": "Dire Wand",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8186/dire-wand?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15311,
+   "item_name": "Feral Harness",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15311/feral-harness?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6347,
+   "item_name": "Formula: Enchant Bracer - Minor Strength",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6347/formula-enchant-bracer-minor-strength"
+  },
+  {
+   "category": "drops",
+   "item_id": 11039,
+   "item_name": "Formula: Enchant Cloak - Minor Agility",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=11039/formula-enchant-cloak-minor-agility"
+  },
+  {
+   "category": "drops",
+   "item_id": 9770,
+   "item_name": "Greenweave Cloak",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9770/greenweave-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9766,
+   "item_name": "Greenweave Sash",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9766/greenweave-sash?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9774,
+   "item_name": "Greenweave Vest",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9774/greenweave-vest?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15514,
+   "item_name": "Grunt's Chestpiece",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15514/grunts-chestpiece?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15513,
+   "item_name": "Grunt's Pauldrons",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15513/grunts-pauldrons?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15512,
+   "item_name": "Grunt's Shield",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15512/grunts-shield?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15351,
+   "item_name": "Headhunter's Bands",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15351/headhunters-bands?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15259,
+   "item_name": "Hefty Battlehammer",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15259/hefty-battlehammer?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 2080,
+   "item_name": "Hillborne Axe",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2080/hillborne-axe?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 14746,
+   "item_name": "Hulking Belt",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14746/hulking-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14748,
+   "item_name": "Hulking Leggings",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14748/hulking-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15571,
+   "item_name": "Marauder's Belt",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15571/marauders-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14096,
+   "item_name": "Native Vest",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14096/native-vest?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15502,
+   "item_name": "Outrunner's Gloves",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15502/outrunners-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15504,
+   "item_name": "Outrunner's Shield",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15504/outrunners-shield?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 14159,
+   "item_name": "Pagan Shoes",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14159/pagan-shoes?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15348,
+   "item_name": "Pathfinder Bracers",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15348/pathfinder-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10316,
+   "item_name": "Pattern: Colorful Kilt",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10316/pattern-colorful-kilt"
+  },
+  {
+   "category": "drops",
+   "item_id": 2406,
+   "item_name": "Pattern: Fine Leather Boots",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2406/pattern-fine-leather-boots"
+  },
+  {
+   "category": "drops",
+   "item_id": 4292,
+   "item_name": "Pattern: Green Woolen Bag",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4292/pattern-green-woolen-bag"
+  },
+  {
+   "category": "drops",
+   "item_id": 4294,
+   "item_name": "Pattern: Hillman's Belt",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4294/pattern-hillmans-belt"
+  },
+  {
+   "category": "drops",
+   "item_id": 7363,
+   "item_name": "Pattern: Pilferer's Gloves",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7363/pattern-pilferers-gloves"
+  },
+  {
+   "category": "drops",
+   "item_id": 3612,
+   "item_name": "Plans: Green Iron Gauntlets",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3612/plans-green-iron-gauntlets"
+  },
+  {
+   "category": "drops",
+   "item_id": 15249,
+   "item_name": "Polished Zweihander",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15249/polished-zweihander?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 8183,
+   "item_name": "Precision Bow",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8183/precision-bow?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 14566,
+   "item_name": "Prospector's Pads",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14566/prospectors-pads?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15115,
+   "item_name": "Rigid Gloves",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15115/rigid-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14127,
+   "item_name": "Ritual Shroud",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14127/ritual-shroud?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15972,
+   "item_name": "Ritual Stein",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15972/ritual-stein?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15124,
+   "item_name": "Robust Cloak",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15124/robust-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14373,
+   "item_name": "Sanguine Belt",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14373/sanguine-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14376,
+   "item_name": "Sanguine Cape",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14376/sanguine-cape?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15526,
+   "item_name": "Sentry's Cape",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15526/sentrys-cape?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15515,
+   "item_name": "Spiked Chain Belt",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15515/spiked-chain-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15520,
+   "item_name": "Spiked Chain Gauntlets",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15520/spiked-chain-gauntlets?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15517,
+   "item_name": "Spiked Chain Wristbands",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15517/spiked-chain-wristbands?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 789,
+   "item_name": "Stout Battlehammer",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=789/stout-battlehammer?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 14177,
+   "item_name": "Watcher's Cuffs",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14177/watchers-cuffs?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15333,
+   "item_name": "Wrangler's Cloak",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15333/wranglers-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14169,
+   "item_name": "Aboriginal Shoulder Pads",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14169/aboriginal-shoulder-pads"
+  },
+  {
+   "category": "drops",
+   "item_id": 15496,
+   "item_name": "Bloodspattered Shoulder Pads",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15496/bloodspattered-shoulder-pads"
+  },
+  {
+   "category": "drops",
+   "item_id": 2453,
+   "item_name": "Bruiseweed",
+   "item_type": "",
+   "drop_rate": 2.029124703240512e-05,
+   "qty": 3.0,
+   "source_url": "https://www.wowhead.com/item=2453/bruiseweed"
+  },
+  {
+   "category": "drops",
+   "item_id": 3914,
+   "item_name": "Journeyman's Backpack",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3914/journeymans-backpack"
+  },
+  {
+   "category": "drops",
+   "item_id": 15019,
+   "item_name": "Lupine Mantle",
+   "item_type": "",
+   "drop_rate": 1.3527498021603414e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15019/lupine-mantle"
+  },
+  {
+   "category": "drops",
+   "item_id": 3394,
+   "item_name": "Recipe: Potion of Curing",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3394/recipe-potion-of-curing"
+  },
+  {
+   "category": "drops",
+   "item_id": 828,
+   "item_name": "Small Blue Pouch",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=828/small-blue-pouch"
+  },
+  {
+   "category": "drops",
+   "item_id": 805,
+   "item_name": "Small Red Pouch",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=805/small-red-pouch"
+  },
+  {
+   "category": "drops",
+   "item_id": 11968,
+   "item_name": "Amber Hoop",
+   "item_type": "",
+   "drop_rate": 2.029124703240512e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=11968/amber-hoop?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 3195,
+   "item_name": "Barbaric Battle Axe",
+   "item_type": "",
+   "drop_rate": 2.705499604320683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3195/barbaric-battle-axe?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 3309,
+   "item_name": "Barbaric Loincloth",
+   "item_type": "",
+   "drop_rate": 1.6909372527004267e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3309/barbaric-loincloth?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 5212,
+   "item_name": "Blazing Wand",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=5212/blazing-wand?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15493,
+   "item_name": "Bloodspattered Loincloth",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15493/bloodspattered-loincloth?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 3306,
+   "item_name": "Brackwater Vest",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3306/brackwater-vest?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14573,
+   "item_name": "Bristlebark Amice",
+   "item_type": "",
+   "drop_rate": 2.705499604320683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14573/bristlebark-amice?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14580,
+   "item_name": "Dokebi Bracers",
+   "item_type": "",
+   "drop_rate": 1.6909372527004267e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14580/dokebi-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 2072,
+   "item_name": "Dwarven Magestaff",
+   "item_type": "",
+   "drop_rate": 3.3818745054008533e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2072/dwarven-magestaff?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 3196,
+   "item_name": "Edged Bastard Sword",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3196/edged-bastard-sword?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15307,
+   "item_name": "Feral Buckler",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15307/feral-buckler?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15308,
+   "item_name": "Feral Cord",
+   "item_type": "",
+   "drop_rate": 1.014562351620256e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15308/feral-cord?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15312,
+   "item_name": "Feral Leggings",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15312/feral-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15305,
+   "item_name": "Feral Shoes",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15305/feral-shoes?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15212,
+   "item_name": "Fighter Broadsword",
+   "item_type": "",
+   "drop_rate": 2.705499604320683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15212/fighter-broadsword?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 11038,
+   "item_name": "Formula: Enchant 2H Weapon - Lesser Versatility",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=11038/formula-enchant-2h-weapon-lesser-versatility"
+  },
+  {
+   "category": "drops",
+   "item_id": 11081,
+   "item_name": "Formula: Enchant Shield - Lesser Protection",
+   "item_type": "",
+   "drop_rate": 2.029124703240512e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=11081/formula-enchant-shield-lesser-protection"
+  },
+  {
+   "category": "drops",
+   "item_id": 15248,
+   "item_name": "Gleaming Claymore",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15248/gleaming-claymore?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 9768,
+   "item_name": "Greenweave Bracers",
+   "item_type": "",
+   "drop_rate": 1.6909372527004267e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9768/greenweave-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9769,
+   "item_name": "Greenweave Branch",
+   "item_type": "",
+   "drop_rate": 1.6909372527004267e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9769/greenweave-branch?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 10287,
+   "item_name": "Greenweave Mantle",
+   "item_type": "",
+   "drop_rate": 2.705499604320683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10287/greenweave-mantle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9773,
+   "item_name": "Greenweave Robe",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9773/greenweave-robe?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 4568,
+   "item_name": "Grunt Axe",
+   "item_type": "",
+   "drop_rate": 1.014562351620256e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4568/grunt-axe?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15506,
+   "item_name": "Grunt's Ankle Wraps",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15506/grunts-ankle-wraps?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14743,
+   "item_name": "Hulking Bands",
+   "item_type": "",
+   "drop_rate": 4.734624307561195e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14743/hulking-bands?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14745,
+   "item_name": "Hulking Cloak",
+   "item_type": "",
+   "drop_rate": 1.6909372527004267e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14745/hulking-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14749,
+   "item_name": "Hulking Spaulders",
+   "item_type": "",
+   "drop_rate": 4.734624307561195e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14749/hulking-spaulders?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 3040,
+   "item_name": "Hunter's Muzzle Loader",
+   "item_type": "",
+   "drop_rate": 1.3527498021603414e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3040/hunters-muzzle-loader?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 4576,
+   "item_name": "Light Bow",
+   "item_type": "",
+   "drop_rate": 4.058249406481024e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4576/light-bow?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15017,
+   "item_name": "Lupine Leggings",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15017/lupine-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 12006,
+   "item_name": "Meadow Ring",
+   "item_type": "",
+   "drop_rate": 3.720061955940939e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=12006/meadow-ring?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 4567,
+   "item_name": "Merc Sword",
+   "item_type": "",
+   "drop_rate": 3.3818745054008533e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4567/merc-sword?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 14364,
+   "item_name": "Mystic's Slippers",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14364/mystics-slippers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15497,
+   "item_name": "Outrunner's Cord",
+   "item_type": "",
+   "drop_rate": 1.014562351620256e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15497/outrunners-cord?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15498,
+   "item_name": "Outrunner's Slippers",
+   "item_type": "",
+   "drop_rate": 3.720061955940939e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15498/outrunners-slippers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15974,
+   "item_name": "Pagan Rod",
+   "item_type": "",
+   "drop_rate": 2.3673121537805975e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15974/pagan-rod?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 14158,
+   "item_name": "Pagan Vest",
+   "item_type": "",
+   "drop_rate": 2.705499604320683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14158/pagan-vest?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 5972,
+   "item_name": "Pattern: Fine Leather Pants",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=5972/pattern-fine-leather-pants"
+  },
+  {
+   "category": "drops",
+   "item_id": 4299,
+   "item_name": "Pattern: Guardian Armor",
+   "item_type": "",
+   "drop_rate": 3.3818745054008533e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4299/pattern-guardian-armor"
+  },
+  {
+   "category": "drops",
+   "item_id": 4346,
+   "item_name": "Pattern: Heavy Woolen Cloak",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4346/pattern-heavy-woolen-cloak"
+  },
+  {
+   "category": "drops",
+   "item_id": 4293,
+   "item_name": "Pattern: Hillman's Leather Vest",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4293/pattern-hillmans-leather-vest"
+  },
+  {
+   "category": "drops",
+   "item_id": 4349,
+   "item_name": "Pattern: Phoenix Pants",
+   "item_type": "",
+   "drop_rate": 1.6909372527004267e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4349/pattern-phoenix-pants"
+  },
+  {
+   "category": "drops",
+   "item_id": 4350,
+   "item_name": "Pattern: Spider Silk Slippers",
+   "item_type": "",
+   "drop_rate": 1.6909372527004267e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4350/pattern-spider-silk-slippers"
+  },
+  {
+   "category": "drops",
+   "item_id": 6390,
+   "item_name": "Pattern: Stylish Blue Shirt",
+   "item_type": "",
+   "drop_rate": 4.3964368570211096e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6390/pattern-stylish-blue-shirt"
+  },
+  {
+   "category": "drops",
+   "item_id": 6391,
+   "item_name": "Pattern: Stylish Green Shirt",
+   "item_type": "",
+   "drop_rate": 2.029124703240512e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6391/pattern-stylish-green-shirt"
+  },
+  {
+   "category": "drops",
+   "item_id": 2883,
+   "item_name": "Plans: Deadly Bronze Poniard",
+   "item_type": "",
+   "drop_rate": 3.720061955940939e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2883/plans-deadly-bronze-poniard"
+  },
+  {
+   "category": "drops",
+   "item_id": 2881,
+   "item_name": "Plans: Runed Copper Breastplate",
+   "item_type": "",
+   "drop_rate": 2.029124703240512e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2881/plans-runed-copper-breastplate"
+  },
+  {
+   "category": "drops",
+   "item_id": 5578,
+   "item_name": "Plans: Silvered Bronze Breastplate",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=5578/plans-silvered-bronze-breastplate"
+  },
+  {
+   "category": "drops",
+   "item_id": 12007,
+   "item_name": "Prairie Ring",
+   "item_type": "",
+   "drop_rate": 4.058249406481024e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=12007/prairie-ring?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14560,
+   "item_name": "Prospector's Boots",
+   "item_type": "",
+   "drop_rate": 3.3818745054008533e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14560/prospectors-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14561,
+   "item_name": "Prospector's Cuffs",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14561/prospectors-cuffs?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15112,
+   "item_name": "Rigid Bracelets",
+   "item_type": "",
+   "drop_rate": 1.014562351620256e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15112/rigid-bracelets?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15116,
+   "item_name": "Rigid Shoulders",
+   "item_type": "",
+   "drop_rate": 2.705499604320683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15116/rigid-shoulders?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15118,
+   "item_name": "Rigid Tunic",
+   "item_type": "",
+   "drop_rate": 4.734624307561195e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15118/rigid-tunic?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14122,
+   "item_name": "Ritual Bands",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14122/ritual-bands?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14124,
+   "item_name": "Ritual Gloves",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14124/ritual-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14125,
+   "item_name": "Ritual Leggings",
+   "item_type": "",
+   "drop_rate": 2.029124703240512e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14125/ritual-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15120,
+   "item_name": "Robust Girdle",
+   "item_type": "",
+   "drop_rate": 3.0436870548607683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15120/robust-girdle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14377,
+   "item_name": "Sanguine Handwraps",
+   "item_type": "",
+   "drop_rate": 3.0436870548607683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14377/sanguine-handwraps?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14378,
+   "item_name": "Sanguine Mantle",
+   "item_type": "",
+   "drop_rate": 2.705499604320683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14378/sanguine-mantle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 4410,
+   "item_name": "Schematic: Shadow Goggles",
+   "item_type": "",
+   "drop_rate": 3.720061955940939e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4410/schematic-shadow-goggles"
+  },
+  {
+   "category": "drops",
+   "item_id": 15532,
+   "item_name": "Sentry's Armsplints",
+   "item_type": "",
+   "drop_rate": 2.029124703240512e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15532/sentrys-armsplints?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15528,
+   "item_name": "Sentry's Sash",
+   "item_type": "",
+   "drop_rate": 2.029124703240512e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15528/sentrys-sash?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 2079,
+   "item_name": "Sergeant's Warhammer",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2079/sergeants-warhammer?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 15523,
+   "item_name": "Spiked Chain Shoulder Pads",
+   "item_type": "",
+   "drop_rate": 2.705499604320683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15523/spiked-chain-shoulder-pads?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 4500,
+   "item_name": "Traveler's Backpack",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4500/travelers-backpack"
+  },
+  {
+   "category": "drops",
+   "item_id": 15268,
+   "item_name": "Twin-Bladed Axe",
+   "item_type": "",
+   "drop_rate": 2.705499604320683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15268/twin-bladed-axe?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 11982,
+   "item_name": "Viridian Band",
+   "item_type": "",
+   "drop_rate": 3.720061955940939e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=11982/viridian-band?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 12053,
+   "item_name": "Volcanic Rock Ring",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=12053/volcanic-rock-ring?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14722,
+   "item_name": "War Paint Anklewraps",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14722/war-paint-anklewraps?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14723,
+   "item_name": "War Paint Bindings",
+   "item_type": "",
+   "drop_rate": 3.3818745054008533e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14723/war-paint-bindings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14724,
+   "item_name": "War Paint Cloak",
+   "item_type": "",
+   "drop_rate": 1.014562351620256e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14724/war-paint-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14727,
+   "item_name": "War Paint Legguards",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14727/war-paint-legguards?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 14176,
+   "item_name": "Watcher's Boots",
+   "item_type": "",
+   "drop_rate": 1.6909372527004267e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14176/watchers-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15334,
+   "item_name": "Wrangler's Gloves",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15334/wranglers-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 12996,
+   "item_name": "Band of Purification",
+   "item_type": "",
+   "drop_rate": 2.3673121537805975e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=12996/band-of-purification?bonus=6658"
+  },
+  {
+   "category": "drops",
+   "item_id": 12987,
+   "item_name": "Darkweave Breeches",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=12987/darkweave-breeches?bonus=6658"
+  },
+  {
+   "category": "drops",
+   "item_id": 1121,
+   "item_name": "Feet of the Lynx",
+   "item_type": "",
+   "drop_rate": 3.720061955940939e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1121/feet-of-the-lynx?bonus=6658"
+  },
+  {
+   "category": "drops",
+   "item_id": 2911,
+   "item_name": "Keller's Girdle",
+   "item_type": "",
+   "drop_rate": 3.3818745054008533e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2911/kellers-girdle?bonus=6658"
+  },
+  {
+   "category": "drops",
+   "item_id": 13016,
+   "item_name": "Killmaim",
+   "item_type": "",
+   "drop_rate": 3.0436870548607683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=13016/killmaim?bonus=6659"
+  },
+  {
+   "category": "drops",
+   "item_id": 12998,
+   "item_name": "Magician's Mantle",
+   "item_type": "",
+   "drop_rate": 1.014562351620256e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=12998/magicians-mantle?bonus=6658"
+  },
+  {
+   "category": "drops",
+   "item_id": 12990,
+   "item_name": "Razor's Edge",
+   "item_type": "",
+   "drop_rate": 3.0436870548607683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=12990/razors-edge?bonus=6659"
+  },
+  {
+   "category": "drops",
+   "item_id": 12997,
+   "item_name": "Redbeard Crest",
+   "item_type": "",
+   "drop_rate": 2.3673121537805975e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=12997/redbeard-crest?bonus=6659"
+  },
+  {
+   "category": "drops",
+   "item_id": 12985,
+   "item_name": "Ring of Defense",
+   "item_type": "",
+   "drop_rate": 1.6909372527004267e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=12985/ring-of-defense?bonus=6658"
+  },
+  {
+   "category": "drops",
+   "item_id": 2059,
+   "item_name": "Sentry Cloak",
+   "item_type": "",
+   "drop_rate": 2.029124703240512e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2059/sentry-cloak?bonus=6658"
+  },
+  {
+   "category": "drops",
+   "item_id": 12984,
+   "item_name": "Skycaller",
+   "item_type": "",
+   "drop_rate": 2.705499604320683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=12984/skycaller?bonus=6659"
+  },
+  {
+   "category": "drops",
+   "item_id": 12994,
+   "item_name": "Thorbia's Gauntlets",
+   "item_type": "",
+   "drop_rate": 4.058249406481024e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=12994/thorbias-gauntlets?bonus=6658"
+  },
+  {
+   "category": "drops",
+   "item_id": 55974,
+   "item_name": "Inert Elemental Particle",
+   "item_type": "",
+   "drop_rate": 0.22,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=55974/inert-elemental-particle"
+  },
+  {
+   "category": "drops",
+   "item_id": 60485,
+   "item_name": "Crackling Crystals",
+   "item_type": "",
+   "drop_rate": 0.012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=60485/crackling-crystals"
+  },
+  {
+   "category": "drops",
+   "item_id": 60486,
+   "item_name": "Shimmering Shards",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=60486/shimmering-shards"
+  },
+  {
+   "category": "drops",
+   "item_id": 2782,
+   "item_name": "Mishandled Recurve Bow",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2782/mishandled-recurve-bow?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1775,
+   "item_name": "Brocade Gloves",
+   "item_type": "",
+   "drop_rate": 0.0019,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1775/brocade-gloves?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 2765,
+   "item_name": "Hunting Knife",
+   "item_type": "",
+   "drop_rate": 0.0018,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2765/hunting-knife?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1798,
+   "item_name": "Rawhide Cloak",
+   "item_type": "",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1798/rawhide-cloak?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1822,
+   "item_name": "Cedar Walking Stick",
+   "item_type": "",
+   "drop_rate": 0.0016,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1822/cedar-walking-stick?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1819,
+   "item_name": "Gouging Pick",
+   "item_type": "",
+   "drop_rate": 0.0016,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1819/gouging-pick?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1823,
+   "item_name": "Bludgeoning Cudgel",
+   "item_type": "",
+   "drop_rate": 0.0015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1823/bludgeoning-cudgel?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1824,
+   "item_name": "Shiny War Axe",
+   "item_type": "",
+   "drop_rate": 0.0015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1824/shiny-war-axe?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 2783,
+   "item_name": "Shoddy Blunderbuss",
+   "item_type": "",
+   "drop_rate": 0.0015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2783/shoddy-blunderbuss?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1818,
+   "item_name": "Standard Claymore",
+   "item_type": "",
+   "drop_rate": 0.0015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1818/standard-claymore?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1797,
+   "item_name": "Rawhide Bracers",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1797/rawhide-bracers?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1821,
+   "item_name": "Warped Blade",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1821/warped-blade?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1820,
+   "item_name": "Wooden Maul",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1820/wooden-maul?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 2220,
+   "item_name": "Box Shield",
+   "item_type": "",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2220/box-shield?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3379,
+   "item_name": "Brocade Bracers",
+   "item_type": "",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3379/brocade-bracers?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1774,
+   "item_name": "Brocade Cloak",
+   "item_type": "",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1774/brocade-cloak?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1777,
+   "item_name": "Brocade Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1777/brocade-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1746,
+   "item_name": "Linked Chain Belt",
+   "item_type": "",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1746/linked-chain-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1795,
+   "item_name": "Rawhide Belt",
+   "item_type": "",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1795/rawhide-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1796,
+   "item_name": "Rawhide Boots",
+   "item_type": "",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1796/rawhide-boots?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 2219,
+   "item_name": "Small Round Shield",
+   "item_type": "",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2219/small-round-shield?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3378,
+   "item_name": "Brocade Belt",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3378/brocade-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1778,
+   "item_name": "Brocade Vest",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1778/brocade-vest?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1800,
+   "item_name": "Rawhide Pants",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1800/rawhide-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1801,
+   "item_name": "Rawhide Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1801/rawhide-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1776,
+   "item_name": "Brocade Pants",
+   "item_type": "",
+   "drop_rate": 0.0009,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1776/brocade-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1772,
+   "item_name": "Brocade Shoes",
+   "item_type": "",
+   "drop_rate": 0.0009,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1772/brocade-shoes?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1752,
+   "item_name": "Linked Chain Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.0009,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1752/linked-chain-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1748,
+   "item_name": "Linked Chain Bracers",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1748/linked-chain-bracers?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1750,
+   "item_name": "Linked Chain Gloves",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1750/linked-chain-gloves?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1799,
+   "item_name": "Rawhide Gloves",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1799/rawhide-gloves?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1802,
+   "item_name": "Rawhide Tunic",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1802/rawhide-tunic?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1747,
+   "item_name": "Linked Chain Boots",
+   "item_type": "",
+   "drop_rate": 0.0007000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1747/linked-chain-boots?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1749,
+   "item_name": "Linked Chain Cloak",
+   "item_type": "",
+   "drop_rate": 0.0007000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1749/linked-chain-cloak?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 39512,
+   "item_name": "Hoary Crystals",
+   "item_type": "",
+   "drop_rate": 0.0006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=39512/hoary-crystals"
+  },
+  {
+   "category": "drops",
+   "item_id": 1751,
+   "item_name": "Linked Chain Pants",
+   "item_type": "",
+   "drop_rate": 0.0006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1751/linked-chain-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1753,
+   "item_name": "Linked Chain Vest",
+   "item_type": "",
+   "drop_rate": 0.0006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1753/linked-chain-vest?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3376,
+   "item_name": "Canvas Belt",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3376/canvas-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 24508,
+   "item_name": "Elemental Fragment",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=24508/elemental-fragment"
+  },
+  {
+   "category": "drops",
+   "item_id": 1815,
+   "item_name": "Ornamental Mace",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1815/ornamental-mace?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 24511,
+   "item_name": "Primordial Essence",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=24511/primordial-essence"
+  },
+  {
+   "category": "drops",
+   "item_id": 1817,
+   "item_name": "Stock Shortsword",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1817/stock-shortsword?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1814,
+   "item_name": "Battered Mallet",
+   "item_type": "",
+   "drop_rate": 1.014562351620256e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1814/battered-mallet?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1768,
+   "item_name": "Canvas Pants",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1768/canvas-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1764,
+   "item_name": "Canvas Shoes",
+   "item_type": "",
+   "drop_rate": 1.014562351620256e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1764/canvas-shoes?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1769,
+   "item_name": "Canvas Shoulderpads",
+   "item_type": "",
+   "drop_rate": 1.3527498021603414e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1769/canvas-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1813,
+   "item_name": "Chipped Quarterstaff",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1813/chipped-quarterstaff?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1780,
+   "item_name": "Cross-Stitched Sandals",
+   "item_type": "",
+   "drop_rate": 1.014562351620256e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1780/cross-stitched-sandals?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 2766,
+   "item_name": "Deft Stiletto",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2766/deft-stiletto?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 2781,
+   "item_name": "Dirty Blunderbuss",
+   "item_type": "",
+   "drop_rate": 2.029124703240512e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2781/dirty-blunderbuss?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1738,
+   "item_name": "Laced Mail Belt",
+   "item_type": "",
+   "drop_rate": 1.3527498021603414e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1738/laced-mail-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1740,
+   "item_name": "Laced Mail Bracers",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1740/laced-mail-bracers?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1742,
+   "item_name": "Laced Mail Gloves",
+   "item_type": "",
+   "drop_rate": 1.014562351620256e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1742/laced-mail-gloves?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1743,
+   "item_name": "Laced Mail Pants",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1743/laced-mail-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1744,
+   "item_name": "Laced Mail Shoulderpads",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1744/laced-mail-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1745,
+   "item_name": "Laced Mail Vest",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1745/laced-mail-vest?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 2780,
+   "item_name": "Light Hunting Bow",
+   "item_type": "",
+   "drop_rate": 2.3673121537805975e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2780/light-hunting-bow?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1827,
+   "item_name": "Meat Cleaver",
+   "item_type": "",
+   "drop_rate": 3.3818745054008533e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1827/meat-cleaver?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1831,
+   "item_name": "Oaken War Staff",
+   "item_type": "",
+   "drop_rate": 1.014562351620256e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1831/oaken-war-staff?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 2786,
+   "item_name": "Oiled Blunderbuss",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2786/oiled-blunderbuss?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1787,
+   "item_name": "Patched Leather Belt",
+   "item_type": "",
+   "drop_rate": 2.029124703240512e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1787/patched-leather-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1788,
+   "item_name": "Patched Leather Boots",
+   "item_type": "",
+   "drop_rate": 1.6909372527004267e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1788/patched-leather-boots?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1791,
+   "item_name": "Patched Leather Gloves",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1791/patched-leather-gloves?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1794,
+   "item_name": "Patched Leather Jerkin",
+   "item_type": "",
+   "drop_rate": 1.3527498021603414e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1794/patched-leather-jerkin?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1792,
+   "item_name": "Patched Leather Pants",
+   "item_type": "",
+   "drop_rate": 1.3527498021603414e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1792/patched-leather-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1793,
+   "item_name": "Patched Leather Shoulderpads",
+   "item_type": "",
+   "drop_rate": 1.014562351620256e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1793/patched-leather-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 2217,
+   "item_name": "Rectangular Shield",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2217/rectangular-shield?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1759,
+   "item_name": "Reinforced Chain Pants",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1759/reinforced-chain-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1760,
+   "item_name": "Reinforced Chain Shoulderpads",
+   "item_type": "",
+   "drop_rate": 3.3818745054008533e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1760/reinforced-chain-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1761,
+   "item_name": "Reinforced Chain Vest",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1761/reinforced-chain-vest?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1826,
+   "item_name": "Rock Maul",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1826/rock-maul?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1829,
+   "item_name": "Short Cutlass",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1829/short-cutlass?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1812,
+   "item_name": "Short-Handled Battle Axe",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1812/short-handled-battle-axe?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 2216,
+   "item_name": "Simple Buckler",
+   "item_type": "",
+   "drop_rate": 3.3818745054008536e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2216/simple-buckler?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 2764,
+   "item_name": "Small Dagger",
+   "item_type": "",
+   "drop_rate": 3.720061955940939e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2764/small-dagger?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 2785,
+   "item_name": "Stiff Recurve Bow",
+   "item_type": "",
+   "drop_rate": 3.0436870548607683e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2785/stiff-recurve-bow?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1804,
+   "item_name": "Tough Leather Boots",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1804/tough-leather-boots?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1807,
+   "item_name": "Tough Leather Gloves",
+   "item_type": "",
+   "drop_rate": 6.763749010801707e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1807/tough-leather-gloves?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1816,
+   "item_name": "Unbalanced Axe",
+   "item_type": "",
+   "drop_rate": 1.6909372527004267e-05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1816/unbalanced-axe?bonus=6657"
+  }
+ ]
+}

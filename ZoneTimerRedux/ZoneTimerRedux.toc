@@ -1,0 +1,18 @@
+## Interface: 120007, 20505, 50504, 11508, 120100, 16001
+## Title: ZoneTimer Redux
+## Notes: Tracks time, cash and loot value per zone.  Loot is valued with the DfA pricing dataset.
+## Version: 1.3.1
+## Author: Alniarez
+## OptionalDeps: AlniDev, DFA_Estimate, DFA_AuctionIntelligence, MobInfo2
+## IconTexture: Interface\Icons\spell_nature_timestop
+## SavedVariables: ZoneTimerSettings, ZoneGoldDB, ZoneLootDB
+## SavedVariablesPerCharacter: ZoneTimerCharDB
+
+Core.lua
+
+Libs/AlnUI.lua
+Pricing.lua
+Loot.lua
+UI.lua
+
+Settings.lua

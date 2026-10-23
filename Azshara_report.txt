@@ -1,0 +1,287 @@
+
+=== azshara — 81 NPCs ===
+
+-- TOP FARMS (EV gross | real = gross x sell-through, per kill) --
+   conf = evidence share x price freshness (coverage, NOT a sale P)
+ 1. Thunderhead Hippogryph [6375] EV=16g real=4g (4,666g/h) drops=169 vendor=0g conf=100% JP=Small Egg                    2g
+       63.00% x 1.0 [drop] Small Egg                      u=       7g EV=2g
+       73.00% x 4.0 [skin] Light Leather                  u=       1g EV=1g
+       20.00% x 2.5 [skin] Medium Leather                 u=       2g EV=0g
+ 2. Static-Charged Hippogryph [36147] EV=22g real=3g (3,930g/h) drops=202 vendor=0g conf=100% JP=Small Egg                    2g
+       63.00% x 1.0 [drop] Small Egg                      u=       7g EV=2g
+       59.00% x 3.5 [skin] Light Leather                  u=       1g EV=1g
+       36.00% x 3.5 [skin] Ruined Leather Scraps          u=       1g EV=0g
+ 3. Antilos [6648] EV=42g real=3g (3,372g/h) drops=123 vendor=7g conf=100% JP=Small Egg                    1g
+       47.00% x 1.0 [drop] Small Egg                      u=       7g EV=1g
+       68.00% x 1.5 [skin] Light Leather                  u=       1g EV=1g
+       22.00% x 1.0 [skin] Medium Leather                 u=       2g EV=0g
+ 4. Thunderhead Stagwing [6377] EV=8g real=3g (3,055g/h) drops=20 vendor=0g conf=100% JP=Small Egg                    2g
+       60.00% x 1.0 [drop] Small Egg                      u=       7g EV=2g
+       74.00% x 1.5 [skin] Light Leather                  u=       1g EV=1g
+       15.00% x 1.0 [skin] Medium Leather                 u=       2g EV=0g
+ 5. Weakened Mosshoof Stag [35096] EV=37g real=2g (2,356g/h) drops=240 vendor=0g conf=100% JP=Stag Flank                   1g
+       44.00% x 1.0 [drop] Stag Flank                     u=       5g EV=1g
+       39.00% x 3.5 [skin] Light Leather                  u=       1g EV=1g
+       60.00% x 3.5 [skin] Ruined Leather Scraps          u=       1g EV=0g
+ 6. Scalebeard [13896] EV=47g real=2g (2,296g/h) drops=182 vendor=4g conf=100% JP=Light Leather                1g
+       77.00% x 2.5 [skin] Light Leather                  u=       1g EV=1g
+        6.00% x 1.0 [drop] Bard's Boots                   u=      60g EV=0g
+       12.00% x 1.0 [skin] Medium Leather                 u=       2g EV=0g
+ 7. Mosshoof Courser [8761] EV=9g real=2g (2,223g/h) drops=57 vendor=0g conf=100% JP=Light Leather                1g
+       74.00% x 3.5 [skin] Light Leather                  u=       1g EV=1g
+       18.00% x 3.5 [skin] Medium Leather                 u=       2g EV=0g
+        5.00% x 1.5 [skin] Light Hide                     u=       2g EV=0g
+ 8. Mistwing Ravager [8764] EV=6g real=2g (2,045g/h) drops=35 vendor=0g conf=100% JP=Light Leather                1g
+       73.00% x 3.5 [skin] Light Leather                  u=       1g EV=1g
+       20.00% x 2.5 [skin] Medium Leather                 u=       2g EV=0g
+        5.00% x 1.5 [skin] Light Hide                     u=       2g EV=0g
+ 9. Coralshell Lurker [6352] EV=11g real=1g (1,658g/h) drops=40 vendor=0g conf=100% JP=Light Leather                1g
+       68.00% x 3.0 [skin] Light Leather                  u=       1g EV=1g
+       12.00% x 1.5 [skin] Medium Leather                 u=       2g EV=0g
+       0.030% x 1.0 [drop] Pattern: Blue Dragonscale Shou u=   9,500g EV=0g
+10. Greystone Basilisk [35245] EV=19g real=1g (1,634g/h) drops=218 vendor=0g conf=100% JP=Light Leather                1g
+       60.00% x 3.5 [skin] Light Leather                  u=       1g EV=1g
+       35.00% x 3.0 [skin] Ruined Leather Scraps          u=       1g EV=0g
+        5.00% x 3.0 [skin] Light Hide                     u=       2g EV=0g
+
+-- TOP MOGS (one row per item, best farm source) --
+ 1. Joonho's Mercy                            0.400% u=  18,999g <= General Fangferror [6650]
+ 2. Battle Shield                             0.050% u=   4,750g <= Weakened Mosshoof Stag [35096]
+ 3. Prospector's Boots                        0.110% u=   3,685g <= Talrendis Sentinel [36914]
+ 4. Charger's Cloak                           0.060% u=   3,430g <= Weakened Mosshoof Stag [35096]
+ 5. Grizzly Cape                              0.170% u=   2,102g <= Talrendis Scout [35095]
+ 6. Brackwater Cloak                          0.300% u=   1,900g <= Lady Silisthra [35880]
+ 7. Tribal Buckler                            0.120% u=   1,900g <= Warlord Krellian [8408]
+ 8. Prospector Axe                            0.400% u=   1,671g <= Balboa [35759]
+ 9. Battle Chain Girdle                       0.120% u=   1,426g <= Talrendis Scout [35095]
+10. Stormbringer Belt                         0.020% u=   1,378g <= Talrendis Lorekeeper [36849]
+
+-- TOP JACKPOTS (rare <10%, pricey, actually selling) --
+ 1. [17054] Joonho's Mercy                  0.400% x 1.0 u=  18,999g E=0g Pdrop100=33% sr=0.3% spd=0.0 vend=1g (General Fangferror [6650])
+ 2. [4603] Raw Spotted Yellowtail           7.00% x 2.0 u=      15g E=0g Pdrop100=100% sr=9.0% spd=227.5 vend=0g (Spitelash Myrmidon [6196])
+ 3. [7080] Essence of Water                0.700% x 1.0 u=      85g E=0g Pdrop100=50% sr=27.5% spd=554.1 vend=0g (Vile Splash [36131])
+ 4. [6557] Bard's Boots                     6.00% x 1.0 u=      60g E=0g Pdrop100=100% sr=4.0% spd=0.0 vend=0g (Scalebeard [13896])
+ 5. [12808] Essence of Undeath              0.600% x 1.0 u=      89g E=0g Pdrop100=45% sr=24.3% spd=4758.9 vend=0g (Varo'then's Ghost [6118])
+ 6. [10206] Overlord's Girdle                4.00% x 1.0 u=     138g E=0g Pdrop100=98% sr=2.3% spd=0.0 vend=16g (The Evalcharr [8660])
+ 7. [9913] Royal Gown                      10.00% x 1.0 u=     135g E=0g Pdrop100=100% sr=0.9% spd=0.0 vend=33g (The Evalcharr [8660])
+ 8. [6512] Disciple's Robe                  7.00% x 1.0 u=      42g E=0g Pdrop100=100% sr=4.1% spd=0.0 vend=0g (General Fangferror [6650])
+ 9. [3287] Tribal Pants                     5.00% x 1.0 u=     264g E=0g Pdrop100=99% sr=0.9% spd=0.0 vend=0g (Ungarl <Blackmaw Chieftain> [36618])
+10. [10208] Overlord's Legplates             2.00% x 1.0 u=     218g E=0g Pdrop100=87% sr=2.6% spd=0.0 vend=40g (Antilos [6648])
+
+-- ROTATION (3 camps, revisit after 3 stops) --
+Camp 1: Thunderhead Hippogryph, Static-Charged Hippogryph, Antilos (avg real EV 3g/kill)
+Camp 2: Thunderhead Stagwing, Weakened Mosshoof Stag, Scalebeard (avg real EV 2g/kill)
+Camp 3: Mosshoof Courser, Mistwing Ravager, Coralshell Lurker (avg real EV 2g/kill)
+
+-- TOP MATS (units/kill per NPC) --
+ 1. MEAT        0.63u/kill EV        2g <= Thunderhead Hippogryph (azshara)
+ 2. MEAT        0.63u/kill EV        2g <= Static-Charged Hippogryph (azshara)
+ 3. LEATHER     3.53u/kill EV        2g <= Thunderhead Hippogryph (azshara)
+ 4. MEAT        0.60u/kill EV        2g <= Thunderhead Stagwing (azshara)
+ 5. LEATHER     3.33u/kill EV        2g <= Mosshoof Courser (azshara)
+ 6. LEATHER     3.15u/kill EV        2g <= Mistwing Ravager (azshara)
+ 7. MEAT        0.66u/kill EV        1g <= Antilos (azshara)
+ 8. LEATHER     2.59u/kill EV        1g <= Coralshell Lurker (azshara)
+ 9. LEATHER     2.41u/kill EV        1g <= Sable Drake (azshara)
+10. LEATHER     3.45u/kill EV        1g <= Mistwing Cliffdweller (azshara)
+
+-- TOP MONTRAS (biggest showcase: portfolio value if all listed) --
+ 1. Talrendis Scout [35095] 178 mogs montra=60,209g realiz=0g P=94.6%
+       0.020% Battle Shield                          u=   4,750g
+      0.0018% Prospector's Boots                     u=   3,685g
+       0.170% Grizzly Cape                           u=   2,102g
+ 2. General Fangferror [6650] 152 mogs montra=36,114g realiz=1g P=93.2%
+       0.400% Joonho's Mercy                         u=  18,999g
+       0.120% Brackwater Cloak                       u=   1,900g
+       0.060% Brackwater Bracers                     u=   1,000g
+ 3. Zapper Gnome [36384] 103 mogs montra=31,731g realiz=0g P=86.0%
+      0.0031% Prospector's Boots                     u=   3,685g
+       0.050% Brackwater Cloak                       u=   1,900g
+       0.040% Tribal Buckler                         u=   1,900g
+ 4. Makrinni Scrabbler [6370] 122 mogs montra=28,264g realiz=0g P=87.4%
+       0.020% Prospector's Boots                     u=   3,685g
+      0.0008% Stormbringer Belt                      u=   1,378g
+       0.030% Grizzly Slippers                       u=     949g
+ 5. Blackmaw Warrior [36013] 117 mogs montra=27,961g realiz=0g P=87.2%
+       0.020% Brackwater Cloak                       u=   1,900g
+      0.0010% Battle Chain Girdle                    u=   1,426g
+       0.020% Ancestral Tunic                        u=     950g
+ 6. Spitelash Warrior [6190] 105 mogs montra=24,746g realiz=0g P=88.9%
+      0.0013% Prospector's Boots                     u=   3,685g
+       0.010% Ancestral Tunic                        u=     950g
+      0.0013% War Torn Handgrips                     u=     912g
+ 7. Netgun Gnome [36385] 88 mogs montra=24,059g realiz=0g P=90.5%
+       0.100% Brackwater Cloak                       u=   1,900g
+       0.020% Brackwater Bracers                     u=   1,000g
+       0.050% Ancestral Tunic                        u=     950g
+ 8. Talrendis Lorekeeper [36849] 103 mogs montra=19,087g realiz=0g P=86.2%
+       0.070% Prospector's Boots                     u=   3,685g
+       0.020% Stormbringer Belt                      u=   1,378g
+       0.040% Aboriginal Vest                        u=     846g
+ 9. Lady Sesspira [6649] 114 mogs montra=7,104g realiz=0g P=89.2%
+       0.010% Native Handwraps                       u=     775g
+       0.130% War Torn Shield                        u=     293g
+       0.080% Runic Stave                            u=     260g
+10. Gatekeeper Rageroar [6651] 113 mogs montra=5,885g realiz=1g P=87.7%
+       0.110% Battle Chain Boots                     u=     475g
+        2.00% Overlord's Legplates                   u=     218g
+       0.130% Overlord's Crown                       u=     185g
+
+-- TOP ITENS (most expensive, best source + evidence) --
+ 1. [15751] Pattern: Blue Dragonscale Breast u=  22,563g sr=1.2% spd=0.0 <= Northwatch Bodyguard [36688] (azshara)
+ 2. [17054] Joonho's Mercy                   u=  18,999g sr=0.3% spd=0.0 <= General Fangferror [6650] (azshara)
+ 3. [15729] Pattern: Chimeric Gloves         u=  14,250g sr=0.3% spd=0.0 <= Legashi Satyr [6200] (azshara)
+ 4. [15763] Pattern: Blue Dragonscale Should u=   9,500g sr=2.7% spd=0.0 <= Makrinni Razorclaw [6350] (azshara)
+ 5. [3650] Battle Shield                    u=   4,750g sr=2.5% spd=0.0 <= Weakened Mosshoof Stag [35096] (azshara)
+ 6. [14560] Prospector's Boots               u=   3,685g sr=2.7% spd=0.0 <= Talrendis Sentinel [36914] (azshara)
+ 7. [15475] Charger's Cloak                  u=   3,430g sr=1.6% spd=0.0 <= Weakened Mosshoof Stag [35096] (azshara)
+ 8. [3315] Ceremonial Leather Loincloth     u=   2,127g sr=1.6% spd=0.0 <= Thunderhead Hippogryph [6375] (azshara)
+ 9. [15299] Grizzly Cape                     u=   2,102g sr=1.6% spd=0.0 <= Talrendis Scout [35095] (azshara)
+10. [4680] Brackwater Cloak                 u=   1,900g sr=1.4% spd=0.0 <= Lady Silisthra [35880] (azshara)
+
+-- TOP MOG FARMS (montra value vs realizable EV vs P(any sells)) --
+ 1. Talrendis Scout [35095] 178 mogs montra=60,209g realiz=0g P=94.6% days=n/a
+       0.020% Battle Shield                          u=   4,750g
+      0.0018% Prospector's Boots                     u=   3,685g
+       0.170% Grizzly Cape                           u=   2,102g
+ 2. General Fangferror [6650] 152 mogs montra=36,114g realiz=1g P=93.2% days=n/a
+       0.400% Joonho's Mercy                         u=  18,999g
+       0.120% Brackwater Cloak                       u=   1,900g
+       0.060% Brackwater Bracers                     u=   1,000g
+ 3. Netgun Gnome [36385] 88 mogs montra=24,059g realiz=0g P=90.5% days=n/a
+       0.100% Brackwater Cloak                       u=   1,900g
+       0.020% Brackwater Bracers                     u=   1,000g
+       0.050% Ancestral Tunic                        u=     950g
+ 4. Lady Sesspira [6649] 114 mogs montra=7,104g realiz=0g P=89.2% days=n/a
+       0.010% Native Handwraps                       u=     775g
+       0.130% War Torn Shield                        u=     293g
+       0.080% Runic Stave                            u=     260g
+ 5. Spitelash Warrior [6190] 105 mogs montra=24,746g realiz=0g P=88.9% days=n/a
+      0.0013% Prospector's Boots                     u=   3,685g
+       0.010% Ancestral Tunic                        u=     950g
+      0.0013% War Torn Handgrips                     u=     912g
+ 6. Gatekeeper Rageroar [6651] 113 mogs montra=5,885g realiz=1g P=87.7% days=n/a
+       0.110% Battle Chain Boots                     u=     475g
+        2.00% Overlord's Legplates                   u=     218g
+       0.130% Overlord's Crown                       u=     185g
+ 7. Makrinni Scrabbler [6370] 122 mogs montra=28,264g realiz=0g P=87.4% days=n/a
+       0.020% Prospector's Boots                     u=   3,685g
+      0.0008% Stormbringer Belt                      u=   1,378g
+       0.030% Grizzly Slippers                       u=     949g
+ 8. Blackmaw Warrior [36013] 117 mogs montra=27,961g realiz=0g P=87.2% days=n/a
+       0.020% Brackwater Cloak                       u=   1,900g
+      0.0010% Battle Chain Girdle                    u=   1,426g
+       0.020% Ancestral Tunic                        u=     950g
+ 9. Talrendis Lorekeeper [36849] 103 mogs montra=19,087g realiz=0g P=86.2% days=n/a
+       0.070% Prospector's Boots                     u=   3,685g
+       0.020% Stormbringer Belt                      u=   1,378g
+       0.040% Aboriginal Vest                        u=     846g
+10. Zapper Gnome [36384] 103 mogs montra=31,731g realiz=0g P=86.0% days=n/a
+      0.0031% Prospector's Boots                     u=   3,685g
+       0.050% Brackwater Cloak                       u=   1,900g
+       0.040% Tribal Buckler                         u=   1,900g
+
+Prices as of 2026-10-16T21:47:36Z
+
+-- TOP VENDOR FARMS (immediate gold, no AH) --
+ 1. The Evalcharr [8660] 12g/kill
+ 2. General Fangferror [6650] 10g/kill
+ 3. Gatekeeper Rageroar [6651] 10g/kill
+ 4. Lady Sesspira [6649] 8g/kill
+ 5. Antilos [6648] 7g/kill
+ 6. Varo'then's Ghost [6118] 5g/kill
+ 7. Scalebeard [13896] 4g/kill
+ 8. Corrupted Arcane Assistant [115849] 0g/kill
+ 9. Northwatch Bodyguard [36688] 0g/kill
+10. Lady Silisthra [35880] 0g/kill
+
+-- TOP RECIPES (profession collectibles, sale-weighted EV) --
+ 1. Pattern: Blue Dragonscale Shoulders       0.030% u=   9,500g E=0g (Makrinni Razorclaw)
+ 2. Pattern: Blue Dragonscale Shoulders       0.030% u=   9,500g E=0g (Coralshell Lurker)
+ 3. Recipe: Elixir of the Mongoose            0.160% u=   1,663g E=0g (Legashi Rogue)
+ 4. Pattern: Blue Dragonscale Breastplate     0.020% u=  22,563g E=0g (Northwatch Bodyguard)
+ 5. Pattern: Blue Dragonscale Shoulders       0.020% u=   9,500g E=0g (Balboa)
+ 6. Pattern: Blue Dragonscale Breastplate     0.010% u=  22,563g E=0g (Makrinni Razorclaw)
+ 7. Pattern: Blue Dragonscale Breastplate     0.010% u=  22,563g E=0g (Legashi Satyr)
+ 8. Pattern: Blue Dragonscale Breastplate     0.010% u=  22,563g E=0g (Legashi Hellcaller)
+ 9. Pattern: Blue Dragonscale Shoulders       0.010% u=   9,500g E=0g (Lady Vesthra)
+10. Pattern: Blue Dragonscale Shoulders      0.0049% u=   9,500g E=0g (Talrendis Defender)
+
+-- TOP BOE (Blizzard-verified Bind-on-Equip, sale-weighted EV) --
+ 1. Joonho's Mercy                            0.400% u=  18,999g E=0g (General Fangferror)
+ 2. Bard's Boots                               6.00% u=      60g E=0g (Scalebeard)
+ 3. Chipped Quarterstaff                       4.89% u=     170g E=0g (Static-Charged Hippogryph)
+ 4. Chipped Quarterstaff                       4.76% u=     170g E=0g (Marius Tanolaar)
+ 5. Rough Wooden Staff                         4.94% u=     184g E=0g (Talrendis Defender)
+ 6. Overlord's Girdle                          4.00% u=     138g E=0g (The Evalcharr)
+ 7. Chipped Quarterstaff                       4.65% u=     170g E=0g (Blackmaw Pathfinder)
+ 8. Rough Wooden Staff                         4.76% u=     184g E=0g (Talrendis Biologist)
+ 9. Royal Gown                                10.00% u=     135g E=0g (The Evalcharr)
+10. Disciple's Robe                            7.00% u=      42g E=0g (General Fangferror)
+
+-- TOP MIXED (>=2 pillars: vendor / mats / mogs) --
+ 1. The Evalcharr [8660] total=13g (vendor=12g mats=1g mogs=1g)
+ 2. General Fangferror [6650] total=11g (vendor=10g mats=0g mogs=1g)
+ 3. Gatekeeper Rageroar [6651] total=11g (vendor=10g mats=0g mogs=1g)
+ 4. Antilos [6648] total=10g (vendor=7g mats=2g mogs=1g)
+ 5. Lady Sesspira [6649] total=9g (vendor=8g mats=0g mogs=0g)
+ 6. Varo'then's Ghost [6118] total=6g (vendor=5g mats=0g mogs=1g)
+ 7. Scalebeard [13896] total=6g (vendor=4g mats=1g mogs=1g)
+ 8. Thunderhead Hippogryph [6375] total=4g (vendor=0g mats=4g mogs=0g)
+ 9. Static-Charged Hippogryph [36147] total=3g (vendor=0g mats=3g mogs=0g)
+10. Thunderhead Stagwing [6377] total=3g (vendor=0g mats=3g mogs=0g)
+
+-- MOG VIEWS --
+  by EV/kill:
+   1. Joonho's Mercy                           E=0g u=  18,999g <= General Fangferror
+   2. Overlord's Girdle                        E=0g u=     138g <= The Evalcharr
+   3. Tribal Pants                             E=0g u=     264g <= Ungarl <Blackmaw Chieftain>
+   4. Overlord's Legplates                     E=0g u=     218g <= Antilos
+   5. Prospector's Boots                       E=0g u=   3,685g <= Talrendis Sentinel
+   6. Simple Blouse                            E=0g u=     166g <= Gatekeeper Rageroar
+   7. Brackwater Cloak                         E=0g u=   1,900g <= Lady Silisthra
+   8. Hard Crawler Carapace                    E=0g u=     412g <= Sand Crawler
+   9. Revenant Gauntlets                       E=0g u=     132g <= Antilos
+  10. Battle Shield                            E=0g u=   4,750g <= Weakened Mosshoof Stag
+  fast movers (sale_rate >= 5%):
+   1. Beaded Gloves                            sr=6.0% u=     250g <= Talrendis Scout
+   2. Raider Shortsword                        sr=6.3% u=      22g <= Makrinni Scrabbler
+   3. Hunting Bow                              sr=5.1% u=      19g <= Restless Spirit
+   4. Raw Spotted Yellowtail                   sr=9.0% u=      15g <= Spitelash Serpent Guard
+   5. Traveler's Backpack                      sr=15.5% u=      11g <= Lorekeeper Amberwind
+   6. Stag Flank                               sr=35.0% u=       5g <= Talrendis Scout
+   7. Journeyman's Backpack                    sr=13.0% u=       4g <= Spitelash Warrior
+   8. Citrine                                  sr=22.5% u=       1g <= Commander Jarrodenus
+   9. Jade                                     sr=47.8% u=       1g <= Spitelash Stormfury
+  10. Malachite                                sr=19.2% u=       1g <= Talrendis Scout
+  high-value, low liquidity (sale_rate < 1%):
+   1. Joonho's Mercy                           sr=0.30% u=  18,999g <= General Fangferror
+   2. Tribal Buckler                           sr=0.90% u=   1,900g <= Warlord Krellian
+   3. Prospector Axe                           sr=0.30% u=   1,671g <= Balboa
+   4. Battle Chain Girdle                      sr=0.70% u=   1,426g <= Talrendis Scout
+   5. Stormbringer Belt                        sr=0.50% u=   1,378g <= Talrendis Lorekeeper
+   6. Night Watch Shortsword                   sr=0.60% u=   1,140g <= Talrendis Defender
+   7. Battle Chain Cloak                       sr=0.80% u=   1,083g <= Weakened Mosshoof Stag
+   8. Brackwater Bracers                       sr=0.90% u=   1,000g <= Spitelash Seacaller
+   9. Charger's Belt                           sr=0.70% u=     950g <= Weakened Mosshoof Stag
+  10. Ancestral Tunic                          sr=0.50% u=     950g <= Lady Vesthra
+  vendor fallback:
+   1. Master's Leggings                        vendor=44g u=      89g
+   2. Mercurial Breastplate                    vendor=43g u=      95g
+   3. Commander's Leggings                     vendor=43g u=      95g
+   4. Nightshade Leggings                      vendor=43g u=      35g
+   5. Masterwork Breastplate                   vendor=43g u=      95g
+   6. Commander's Armor                        vendor=43g u=     232g
+   7. Templar Legplates                        vendor=42g u=     111g
+   8. Hyperion Legplates                       vendor=41g u=     137g
+   9. Heavy Lamellar Leggings                  vendor=41g u=      85g
+  10. Revenant Chestplate                      vendor=41g u=     181g
+
+-- BEST GOLDBOUND SESSION (travel-aware, kills spread over stops) --
+   (assumptions: measure YOUR kpm/travel in-game; defaults below)
+  route (3 stops): 15min -> 240 kills | vendor=289g auction_est=569g speculative=4,735g conservative=792g
+  route (3 stops): 30min -> 540 kills | vendor=650g auction_est=1,280g speculative=10,654g conservative=1,782g
+  route (3 stops): 60min -> 1140 kills | vendor=1,372g auction_est=2,702g speculative=22,493g conservative=3,763g
+  solo: Thunderhead Hippogryph: 15min -> 300 kills | vendor=3g auction_est=1,166g speculative=3,690g conservative=1,138g
+  solo: Thunderhead Hippogryph: 30min -> 600 kills | vendor=6g auction_est=2,333g speculative=7,380g conservative=2,276g
+  solo: Thunderhead Hippogryph: 60min -> 1200 kills | vendor=12g auction_est=4,666g speculative=14,760g conservative=4,551g

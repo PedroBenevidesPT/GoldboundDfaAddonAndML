@@ -1,0 +1,22 @@
+## Interface: 120105, 120100, 110000, 50504, 38000, 20505, 11509
+## Title: DFA Auction Intelligence
+## Notes: Empirical auction house event capture, provenance tracking, and DFA integration for WoW Economy.
+## Version: 1.6.1
+## Author: DFA Economy Project
+## Category: Economy
+## OptionalDeps: Journalator, TradeSkillMaster, Auctionator
+## SavedVariables: DFA_AUCTION_INTELLIGENCE_DB, DFA_AUCTION_INTELLIGENCE_EXPORT
+
+Localization.lua
+DataStore.lua
+JournalatorAdapter.lua
+AuctionEvents.lua
+Inventory.lua
+Sellers.lua
+Mail.lua
+Undercut.lua
+Kills.lua
+Diagnostics.lua
+Export.lua
+HUD.lua
+Core.lua

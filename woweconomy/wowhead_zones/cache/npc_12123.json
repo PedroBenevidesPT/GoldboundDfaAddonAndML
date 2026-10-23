@@ -1,0 +1,107 @@
+{
+ "npc_id": 12123,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Reef Shark",
+ "items": [
+  {
+   "category": "drops+skinning",
+   "item_id": 15016,
+   "item_name": "Lupine Handwraps",
+   "item_type": "",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15016/lupine-handwraps?bonus=6654"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1515,
+   "item_name": "Rough Wooden Staff",
+   "item_type": "",
+   "drop_rate": 0.008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1515/rough-wooden-staff?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1502,
+   "item_name": "Warped Leather Belt",
+   "item_type": "",
+   "drop_rate": 0.008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1502/warped-leather-belt?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1822,
+   "item_name": "Cedar Walking Stick",
+   "item_type": "",
+   "drop_rate": 0.0015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1822/cedar-walking-stick?bonus=6657"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2318,
+   "item_name": "Light Leather",
+   "item_type": "",
+   "drop_rate": 0.56,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=2318/light-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2934,
+   "item_name": "Ruined Leather Scraps",
+   "item_type": "",
+   "drop_rate": 0.29,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2934/ruined-leather-scraps"
+  },
+  {
+   "category": "skinning",
+   "item_id": 783,
+   "item_name": "Light Hide",
+   "item_type": "",
+   "drop_rate": 0.05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=783/light-hide"
+  },
+  {
+   "category": "skinning",
+   "item_id": 52982,
+   "item_name": "Deepsea Scale",
+   "item_type": "",
+   "drop_rate": 0.013000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=52982/deepsea-scale"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2319,
+   "item_name": "Medium Leather",
+   "item_type": "",
+   "drop_rate": 0.013000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2319/medium-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 52976,
+   "item_name": "Savage Leather",
+   "item_type": "",
+   "drop_rate": 0.013000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=52976/savage-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 52977,
+   "item_name": "Savage Leather Scraps",
+   "item_type": "",
+   "drop_rate": 0.013000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=52977/savage-leather-scraps"
+  }
+ ]
+}

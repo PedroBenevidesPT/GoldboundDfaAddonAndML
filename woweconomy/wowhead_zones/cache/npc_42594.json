@@ -1,0 +1,26 @@
+{
+ "npc_id": 42594,
+ "zone": 16,
+ "zone_name": "azshara",
+ "npc_name": "Orgrimmar Thief",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 2589,
+   "item_name": "Linen Cloth",
+   "item_type": "Cloth",
+   "drop_rate": 4.260958119042648e-06,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=2589/linen-cloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 5466,
+   "item_name": "Scorpid Stinger",
+   "item_type": "Meat",
+   "drop_rate": 9.942235611099511e-06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=5466/scorpid-stinger"
+  }
+ ]
+}

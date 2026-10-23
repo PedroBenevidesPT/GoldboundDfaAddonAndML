@@ -1,0 +1,470 @@
+GET /data/wow/realm/index  (namespace dynamic-eu)
+  365 realms
+GET /data/wow/connected-realm/index
+  92 connected realms
+GET /data/wow/connected-realm/{92}
+  [  1/92] cr=509   UP   LOW     3: garona + sargeras + nerzhul
+  [  2/92] cr=510   UP   LOW     2: voljin + chants-éternels
+  [  3/92] cr=512   UP   LOW     4: arakarahm + rashgarroth + kaelthas + throkferoth
+  [  4/92] cr=531   UP   LOW     5: dethecus + theradras + onyxia + mugthol + terrordar
+  [  5/92] cr=570   UP   MEDIUM  4: lothar + baelgun + azshara + kragjin
+  [  6/92] cr=578   UP   MEDIUM  7: arthas + blutkessel + wrathbringer + durotan + kelthuzad + veklor + tirion
+  [  7/92] cr=580   UP   FULL    3: blackmoore + tichondrius + lordaeron
+  [  8/92] cr=581   UP   HIGH    1: blackrock
+  [  9/92] cr=604   UP   HIGH    3: thrall + kargath + ambossar
+  [ 10/92] cr=612   UP   MEDIUM  7: nefarian + gilneas + destromath + ulduar + mannoroth + gorgonnash + nerathor
+  [ 11/92] cr=633   UP   HIGH    8: korgall + executus + shattered-hand + bloodfeather + terokkar + saurfang + darkspear + burning-steppes
+  [ 12/92] cr=1080  UP   LOW     2: khadgar + bloodhoof
+  [ 13/92] cr=1082  UP   LOW     3: kul-tiras + alonsus + anachronos
+  [ 14/92] cr=1084  UP   FULL    2: dentarg + tarren-mill
+  [ 15/92] cr=1085  UP   LOW     3: moonglade + steamwheedle-cartel + the-shatar
+  [ 16/92] cr=1091  UP   LOW     6: emeriss + twilights-hammer + bloodscalp + crushridge + agamaggan + hakkar
+  [ 17/92] cr=1092  UP   HIGH    2: drakthul + burning-blade
+  [ 18/92] cr=1096  UP   HIGH    7: scarshield-legion + sporeggar + earthen-ring + defias-brotherhood + ravenholdt + darkmoon-faire + the-venture-co
+  [ 19/92] cr=1097  UP   LOW     2: ysera + malorne
+  [ 20/92] cr=1098  UP   MEDIUM  2: malygos + malfurion
+  [ 21/92] cr=1099  UP   MEDIUM  2: rexxar + alleria
+  [ 22/92] cr=1104  UP   LOW     6: anetheron + kiljaeden + rajaxx + festung-der-stürme + guldan + nathrezim
+  [ 23/92] cr=1105  UP   MEDIUM  6: nazjatar + zuluhed + dalvengyr + amanthul + frostmourne + anubarak
+  [ 24/92] cr=1121  UP   MEDIUM  8: die-arguswacht + die-ewige-wacht + die-todeskrallen + das-syndikat + der-abyssische-rat + kult-der-verdammten + das-konsortium + die-silberne-hand
+  [ 25/92] cr=1122  UP   MEDIUM  4: uldaman + drekthar + krasus + eitrigg
+  [ 26/92] cr=1127  UP   HIGH    7: confrérie-du-thorium + la-croisade-écarlate + culte-de-la-rive-noire + les-sentinelles + kirin-tor + les-clairvoyants + conseil-des-ombres
+  [ 27/92] cr=1301  UP   MEDIUM  1: outland
+  [ 28/92] cr=1302  UP   HIGH    1: archimonde
+  [ 29/92] cr=1303  UP   MEDIUM  3: grim-batol + aggra-português + frostmane
+  [ 30/92] cr=1305  UP   FULL    1: kazzak
+  [ 31/92] cr=1307  UP   LOW     1: chamber-of-aspects
+  [ 32/92] cr=1309  UP   RECOMMENDED 1: pozzo-delleternità
+  [ 33/92] cr=1313  UP   LOW     2: wildhammer + thunderhorn
+  [ 34/92] cr=1315  UP   MEDIUM  2: elune + varimathras
+  [ 35/92] cr=1316  UP   MEDIUM  1: nemesis
+  [ 36/92] cr=1325  UP   LOW     2: aggramar + hellscream
+  [ 37/92] cr=1329  UP   FULL    1: ravencrest
+  [ 38/92] cr=1331  UP   LOW     2: suramar + medivh
+  [ 39/92] cr=1335  UP   HIGH    1: ysondre
+  [ 40/92] cr=1378  UP   HIGH    2: dun-modr + cthun
+  [ 41/92] cr=1379  UP   FULL    4: zuljin + uldum + sanguino + shendralar
+  [ 42/92] cr=1384  UP   MEDIUM  3: tyrande + los-errantes + colinas-pardas
+  [ 43/92] cr=1385  UP   RECOMMENDED 2: exodar + minahonda
+  [ 44/92] cr=1388  UP   LOW     2: lightbringer + mazrigos
+  [ 45/92] cr=1390  UP   FULL    1: hyjal
+  [ 46/92] cr=1393  UP   LOW     2: bronze-dragonflight + nordrassil
+  [ 47/92] cr=1396  UP   MEDIUM  2: quelthalas + azjolnerub
+  [ 48/92] cr=1400  UP   LOW     3: ungoro + senjin + area-52
+  [ 49/92] cr=1401  UP   HIGH    5: garrosh + shattrath + nozdormu + perenolde + teldrassil
+  [ 50/92] cr=1402  UP   RECOMMENDED 2: turalyon + doomhammer
+  [ 51/92] cr=1403  UP   FULL    1: draenor
+  [ 52/92] cr=1405  UP   HIGH    6: todeswache + zirkel-des-cenarius + der-mithrilorden + forscherliga + der-rat-von-dalaran + die-nachtwache
+  [ 53/92] cr=1406  UP   LOW     2: arygos + khazgoroth
+  [ 54/92] cr=1408  UP   RECOMMENDED 2: norgannon + dun-morogh
+  [ 55/92] cr=1416  UP   MEDIUM  5: blades-edge + eonar + veknilash + aerie-peak + bronzebeard
+  [ 56/92] cr=1417  UP   LOW     2: azuremyst + stormrage
+  [ 57/92] cr=1587  UP   HIGH    5: hellfire + runetotem + arathor + kilrogg + nagrand
+  [ 58/92] cr=1596  UP   HIGH    6: karazhan + dragonblight + the-maelstrom + ghostlands + lightnings-blade + deathwing
+  [ 59/92] cr=1597  UP   HIGH    4: auchindoun + dunemaul + sylvanas + jaedenar
+  [ 60/92] cr=1598  UP   LOW     10: shattered-halls + chromaggus + sunstrider + balnazzar + talnivarr + ahnqiraj + daggerspine + laughing-skull + trollbane + boulderfist
+  [ 61/92] cr=1602  UP   FULL    1: gordunni
+  [ 62/92] cr=1604  UP   HIGH    1: soulflayer
+  [ 63/92] cr=1605  UP   LOW     1: deathguard
+  [ 64/92] cr=1614  UP   LOW     3: galakrond + deepholm + razuvious
+  [ 65/92] cr=1615  UP   FULL    1: howling-fjord
+  [ 66/92] cr=1618  UP   HIGH    1: die-aldor
+  [ 67/92] cr=1621  UP   HIGH    5: marécage-de-zangar + chogall + eldrethalas + sinstralis + dalaran
+  [ 68/92] cr=1623  UP   LOW     1: fordragon
+  [ 69/92] cr=1624  UP   LOW     4: naxxramas + arathi + illidan + temple-noir
+  [ 70/92] cr=1922  UP   LOW     1: azuregos
+  [ 71/92] cr=1923  UP   LOW     1: ashenvale
+  [ 72/92] cr=1925  UP   RECOMMENDED 1: eversong
+  [ 73/92] cr=1928  UP   LOW     3: goldrinn + lich-king + greymane
+  [ 74/92] cr=1929  UP   HIGH    6: blackscar + deathweaver + borean-tundra + thermaplugg + grom + booty-bay
+  [ 75/92] cr=2073  UP   HIGH    1: stormscale
+  [ 76/92] cr=2074  UP   LOW     2: terenas + emerald-dream
+  [ 77/92] cr=3391  UP   FULL    1: silvermoon
+  [ 78/92] cr=3656  UP   MEDIUM  5: spinebreaker + dragonmaw + vashj + stormreaver + haomarush
+  [ 79/92] cr=3657  UP   MEDIUM  6: genjuros + zenedar + bladefist + neptulon + frostwhisper + darksorrow
+  [ 80/92] cr=3666  UP   LOW     2: shadowsong + aszune
+  [ 81/92] cr=3674  UP   FULL    1: twisting-nether
+  [ 82/92] cr=3679  UP   LOW     1: aegwynn
+  [ 83/92] cr=3681  UP   LOW     1: magtheridon
+  [ 84/92] cr=3682  UP   HIGH    1: ragnaros
+  [ 85/92] cr=3686  UP   FULL    1: antonidas
+  [ 86/92] cr=3690  UP   RECOMMENDED 1: khaz-modan
+  [ 87/92] cr=3691  UP   FULL    4: echsenkessel + blackhand + malganis + taerar
+  [ 88/92] cr=3692  UP   HIGH    1: eredar
+  [ 89/92] cr=3696  UP   MEDIUM  4: nethersturm + alexstrasza + madmortem + proudmoore
+  [ 90/92] cr=3702  UP   FULL    1: argent-dawn
+  [ 91/92] cr=3703  UP   LOW     1: frostwolf
+  [ 92/92] cr=3713  UP   HIGH    4: alakir + skullcrusher + xavius + burning-legion
+
+-- REALMS (EU): nome / slug / id / connected realm / grupo
+Aegwynn                    aegwynn                    id=577   cr=3679   (sozinho)
+Aerie Peak                 aerie-peak                 id=1312  cr=1416   blades-edge + eonar + veknilash + bronzebeard
+Agamaggan                  agamaggan                  id=518   cr=1091   emeriss + twilights-hammer + bloodscalp + crushridge + hakkar
+Aggra (Português)          aggra-português            id=1413  cr=1303   grim-batol + frostmane
+Aggramar                   aggramar                   id=500   cr=1325   hellscream
+Ahn'Qiraj                  ahnqiraj                   id=1093  cr=1598   shattered-halls + chromaggus + sunstrider + balnazzar + talnivarr + daggerspine + laughing-skull + trollbane + boulderfist
+Al'Akir                    alakir                     id=519   cr=3713   skullcrusher + xavius + burning-legion
+Alexstrasza                alexstrasza                id=562   cr=3696   nethersturm + madmortem + proudmoore
+Alleria                    alleria                    id=563   cr=1099   rexxar
+Alonsus                    alonsus                    id=1391  cr=1082   kul-tiras + anachronos
+Aman'Thul                  amanthul                   id=601   cr=1105   nazjatar + zuluhed + dalvengyr + frostmourne + anubarak
+Ambossar                   ambossar                   id=1330  cr=604    thrall + kargath
+Anachronos                 anachronos                 id=1394  cr=1082   kul-tiras + alonsus
+Anetheron                  anetheron                  id=1104  cr=1104   kiljaeden + rajaxx + festung-der-stürme + guldan + nathrezim
+Antonidas                  antonidas                  id=564   cr=3686   (sozinho)
+Anub'arak                  anubarak                   id=608   cr=1105   nazjatar + zuluhed + dalvengyr + amanthul + frostmourne
+Arak-arahm                 arakarahm                  id=512   cr=512    rashgarroth + kaelthas + throkferoth
+Arathi                     arathi                     id=1334  cr=1624   naxxramas + illidan + temple-noir
+Arathor                    arathor                    id=501   cr=1587   hellfire + runetotem + kilrogg + nagrand
+Archimonde                 archimonde                 id=539   cr=1302   (sozinho)
+Area 52                    area-52                    id=1404  cr=1400   ungoro + senjin
+Argent Dawn                argent-dawn                id=536   cr=3702   (sozinho)
+Arthas                     arthas                     id=578   cr=578    blutkessel + wrathbringer + durotan + kelthuzad + veklor + tirion
+Arygos                     arygos                     id=1406  cr=1406   khazgoroth
+Ashenvale                  ashenvale                  id=1923  cr=1923   (sozinho)
+Aszune                     aszune                     id=502   cr=3666   shadowsong
+Auchindoun                 auchindoun                 id=1597  cr=1597   dunemaul + sylvanas + jaedenar
+Azjol-Nerub                azjolnerub                 id=503   cr=1396   quelthalas
+Azshara                    azshara                    id=579   cr=570    lothar + baelgun + kragjin
+Azuregos                   azuregos                   id=1922  cr=1922   (sozinho)
+Azuremyst                  azuremyst                  id=1417  cr=1417   stormrage
+Baelgun                    baelgun                    id=565   cr=570    lothar + azshara + kragjin
+Balnazzar                  balnazzar                  id=607   cr=1598   shattered-halls + chromaggus + sunstrider + talnivarr + ahnqiraj + daggerspine + laughing-skull + trollbane + boulderfist
+Blackhand                  blackhand                  id=566   cr=3691   echsenkessel + malganis + taerar
+Blackmoore                 blackmoore                 id=580   cr=580    tichondrius + lordaeron
+Blackrock                  blackrock                  id=581   cr=581    (sozinho)
+Blackscar                  blackscar                  id=1929  cr=1929   deathweaver + borean-tundra + thermaplugg + grom + booty-bay
+Blade's Edge               blades-edge                id=1416  cr=1416   eonar + veknilash + aerie-peak + bronzebeard
+Bladefist                  bladefist                  id=521   cr=3657   genjuros + zenedar + neptulon + frostwhisper + darksorrow
+Bloodfeather               bloodfeather               id=630   cr=633    korgall + executus + shattered-hand + terokkar + saurfang + darkspear + burning-steppes
+Bloodhoof                  bloodhoof                  id=504   cr=1080   khadgar
+Bloodscalp                 bloodscalp                 id=522   cr=1091   emeriss + twilights-hammer + crushridge + agamaggan + hakkar
+Blutkessel                 blutkessel                 id=1613  cr=578    arthas + wrathbringer + durotan + kelthuzad + veklor + tirion
+Booty Bay                  booty-bay                  id=1924  cr=1929   blackscar + deathweaver + borean-tundra + thermaplugg + grom
+Borean Tundra              borean-tundra              id=1625  cr=1929   blackscar + deathweaver + thermaplugg + grom + booty-bay
+Boulderfist                boulderfist                id=1299  cr=1598   shattered-halls + chromaggus + sunstrider + balnazzar + talnivarr + ahnqiraj + daggerspine + laughing-skull + trollbane
+Bronze Dragonflight        bronze-dragonflight        id=1393  cr=1393   nordrassil
+Bronzebeard                bronzebeard                id=1081  cr=1416   blades-edge + eonar + veknilash + aerie-peak
+Burning Blade              burning-blade              id=523   cr=1092   drakthul
+Burning Legion             burning-legion             id=524   cr=3713   alakir + skullcrusher + xavius
+Burning Steppes            burning-steppes            id=1392  cr=633    korgall + executus + shattered-hand + bloodfeather + terokkar + saurfang + darkspear
+C'Thun                     cthun                      id=1381  cr=1378   dun-modr
+Chamber of Aspects         chamber-of-aspects         id=1307  cr=1307   (sozinho)
+Chants éternels            chants-éternels            id=1620  cr=510    voljin
+Cho'gall                   chogall                    id=545   cr=1621   marécage-de-zangar + eldrethalas + sinstralis + dalaran
+Chromaggus                 chromaggus                 id=1083  cr=1598   shattered-halls + sunstrider + balnazzar + talnivarr + ahnqiraj + daggerspine + laughing-skull + trollbane + boulderfist
+Colinas Pardas             colinas-pardas             id=1395  cr=1384   tyrande + los-errantes
+Confrérie du Thorium       confrérie-du-thorium       id=1127  cr=1127   la-croisade-écarlate + culte-de-la-rive-noire + les-sentinelles + kirin-tor + les-clairvoyants + conseil-des-ombres
+Conseil des Ombres         conseil-des-ombres         id=644   cr=1127   confrérie-du-thorium + la-croisade-écarlate + culte-de-la-rive-noire + les-sentinelles + kirin-tor + les-clairvoyants
+Crushridge                 crushridge                 id=525   cr=1091   emeriss + twilights-hammer + bloodscalp + agamaggan + hakkar
+Culte de la Rive noire     culte-de-la-rive-noire     id=1337  cr=1127   confrérie-du-thorium + la-croisade-écarlate + les-sentinelles + kirin-tor + les-clairvoyants + conseil-des-ombres
+Daggerspine                daggerspine                id=526   cr=1598   shattered-halls + chromaggus + sunstrider + balnazzar + talnivarr + ahnqiraj + laughing-skull + trollbane + boulderfist
+Dalaran                    dalaran                    id=538   cr=1621   marécage-de-zangar + chogall + eldrethalas + sinstralis
+Dalvengyr                  dalvengyr                  id=1321  cr=1105   nazjatar + zuluhed + amanthul + frostmourne + anubarak
+Darkmoon Faire             darkmoon-faire             id=1317  cr=1096   scarshield-legion + sporeggar + earthen-ring + defias-brotherhood + ravenholdt + the-venture-co
+Darksorrow                 darksorrow                 id=631   cr=3657   genjuros + zenedar + bladefist + neptulon + frostwhisper
+Darkspear                  darkspear                  id=1389  cr=633    korgall + executus + shattered-hand + bloodfeather + terokkar + saurfang + burning-steppes
+Das Konsortium             das-konsortium             id=1619  cr=1121   die-arguswacht + die-ewige-wacht + die-todeskrallen + das-syndikat + der-abyssische-rat + kult-der-verdammten + die-silberne-hand
+Das Syndikat               das-syndikat               id=614   cr=1121   die-arguswacht + die-ewige-wacht + die-todeskrallen + der-abyssische-rat + kult-der-verdammten + das-konsortium + die-silberne-hand
+Deathguard                 deathguard                 id=1605  cr=1605   (sozinho)
+Deathweaver                deathweaver                id=1617  cr=1929   blackscar + borean-tundra + thermaplugg + grom + booty-bay
+Deathwing                  deathwing                  id=527   cr=1596   karazhan + dragonblight + the-maelstrom + ghostlands + lightnings-blade
+Deepholm                   deepholm                   id=1609  cr=1614   galakrond + razuvious
+Defias Brotherhood         defias-brotherhood         id=635   cr=1096   scarshield-legion + sporeggar + earthen-ring + ravenholdt + darkmoon-faire + the-venture-co
+Dentarg                    dentarg                    id=1084  cr=1084   tarren-mill
+Der abyssische Rat         der-abyssische-rat         id=1326  cr=1121   die-arguswacht + die-ewige-wacht + die-todeskrallen + das-syndikat + kult-der-verdammten + das-konsortium + die-silberne-hand
+Der Mithrilorden           der-mithrilorden           id=1327  cr=1405   todeswache + zirkel-des-cenarius + forscherliga + der-rat-von-dalaran + die-nachtwache
+Der Rat von Dalaran        der-rat-von-dalaran        id=617   cr=1405   todeswache + zirkel-des-cenarius + der-mithrilorden + forscherliga + die-nachtwache
+Destromath                 destromath                 id=582   cr=612    nefarian + gilneas + ulduar + mannoroth + gorgonnash + nerathor
+Dethecus                   dethecus                   id=531   cr=531    theradras + onyxia + mugthol + terrordar
+Die Aldor                  die-aldor                  id=1618  cr=1618   (sozinho)
+Die Arguswacht             die-arguswacht             id=1121  cr=1121   die-ewige-wacht + die-todeskrallen + das-syndikat + der-abyssische-rat + kult-der-verdammten + das-konsortium + die-silberne-hand
+Die ewige Wacht            die-ewige-wacht            id=1118  cr=1121   die-arguswacht + die-todeskrallen + das-syndikat + der-abyssische-rat + kult-der-verdammten + das-konsortium + die-silberne-hand
+Die Nachtwache             die-nachtwache             id=1333  cr=1405   todeswache + zirkel-des-cenarius + der-mithrilorden + forscherliga + der-rat-von-dalaran
+Die Silberne Hand          die-silberne-hand          id=576   cr=1121   die-arguswacht + die-ewige-wacht + die-todeskrallen + das-syndikat + der-abyssische-rat + kult-der-verdammten + das-konsortium
+Die Todeskrallen           die-todeskrallen           id=1119  cr=1121   die-arguswacht + die-ewige-wacht + das-syndikat + der-abyssische-rat + kult-der-verdammten + das-konsortium + die-silberne-hand
+Doomhammer                 doomhammer                 id=505   cr=1402   turalyon
+Draenor                    draenor                    id=506   cr=1403   (sozinho)
+Dragonblight               dragonblight               id=507   cr=1596   karazhan + the-maelstrom + ghostlands + lightnings-blade + deathwing
+Dragonmaw                  dragonmaw                  id=528   cr=3656   spinebreaker + vashj + stormreaver + haomarush
+Drak'thul                  drakthul                   id=1092  cr=1092   burning-blade
+Drek'Thar                  drekthar                   id=641   cr=1122   uldaman + krasus + eitrigg
+Dun Modr                   dun-modr                   id=1378  cr=1378   cthun
+Dun Morogh                 dun-morogh                 id=600   cr=1408   norgannon
+Dunemaul                   dunemaul                   id=529   cr=1597   auchindoun + sylvanas + jaedenar
+Durotan                    durotan                    id=535   cr=578    arthas + blutkessel + wrathbringer + kelthuzad + veklor + tirion
+Earthen Ring               earthen-ring               id=561   cr=1096   scarshield-legion + sporeggar + defias-brotherhood + ravenholdt + darkmoon-faire + the-venture-co
+Echsenkessel               echsenkessel               id=1612  cr=3691   blackhand + malganis + taerar
+Eitrigg                    eitrigg                    id=1123  cr=1122   uldaman + drekthar + krasus
+Eldre'Thalas               eldrethalas                id=1336  cr=1621   marécage-de-zangar + chogall + sinstralis + dalaran
+Elune                      elune                      id=540   cr=1315   varimathras
+Emerald Dream              emerald-dream              id=508   cr=2074   terenas
+Emeriss                    emeriss                    id=1091  cr=1091   twilights-hammer + bloodscalp + crushridge + agamaggan + hakkar
+Eonar                      eonar                      id=1310  cr=1416   blades-edge + veknilash + aerie-peak + bronzebeard
+Eredar                     eredar                     id=583   cr=3692   (sozinho)
+EU Arena Pass CSBG         eu-arena-pass-csbg         id=3090  cr=None   (sozinho)
+EU Arena Pass CSBG 2       eu-arena-pass-csbg-2       id=3092  cr=None   (sozinho)
+EU1A Account Realm         eu1a-account-realm         id=1448  cr=None   (sozinho)
+EU1A1-INST                 eu1a1inst                  id=1449  cr=None   (sozinho)
+EU1A2-INST                 eu1a2inst                  id=3104  cr=None   (sozinho)
+EU1B Account Realm         eu1b-account-realm         id=1450  cr=None   (sozinho)
+EU1B1-INST                 eu1b1inst                  id=1451  cr=None   (sozinho)
+EU1B2-INST                 eu1b2inst                  id=3105  cr=None   (sozinho)
+EU2A Account Realm         eu2a-account-realm         id=1452  cr=None   (sozinho)
+EU2A1-INST                 eu2a1inst                  id=1453  cr=None   (sozinho)
+EU2A2-INST                 eu2a2inst                  id=3106  cr=None   (sozinho)
+EU2B Account Realm         eu2b-account-realm         id=1454  cr=None   (sozinho)
+EU2B1-INST                 eu2b1inst                  id=1455  cr=None   (sozinho)
+EU2B2-INST                 eu2b2inst                  id=3107  cr=None   (sozinho)
+EU3A Account Realm         eu3a-account-realm         id=1456  cr=None   (sozinho)
+EU3A1-INST                 eu3a1inst                  id=1457  cr=None   (sozinho)
+EU3A2-INST                 eu3a2inst                  id=3108  cr=None   (sozinho)
+EU3B Account Realm         eu3b-account-realm         id=1458  cr=None   (sozinho)
+EU3B1-INST                 eu3b1inst                  id=1459  cr=None   (sozinho)
+EU3B2-INST                 eu3b2inst                  id=3114  cr=None   (sozinho)
+EU4 100 Partner            eu4-100-partner            id=6720  cr=None   (sozinho)
+EU4 Auxiliary 70           eu4-auxiliary-70           id=6510  cr=None   (sozinho)
+EU4A Account Realm         eu4a-account-realm         id=1460  cr=None   (sozinho)
+EU4A1-INST                 eu4a1inst                  id=1461  cr=None   (sozinho)
+EU4A1-INST-BFA             eu4a1instbfa               id=4233  cr=None   (sozinho)
+EU4A2-INST                 eu4a2inst                  id=3109  cr=None   (sozinho)
+EU4A2-INST-BFA             eu4a2instbfa               id=4234  cr=None   (sozinho)
+EU4A3-INST                 eu4a3inst                  id=3767  cr=None   (sozinho)
+EU4A3-INST-BFA             eu4a3instbfa               id=4235  cr=None   (sozinho)
+EU4A4-INST                 eu4a4inst                  id=3889  cr=None   (sozinho)
+EU4A4-INST-SL              eu4a4instsl                id=5048  cr=None   (sozinho)
+EU4B Account Realm         eu4b-account-realm         id=1462  cr=None   (sozinho)
+EU4B1-INST                 eu4b1inst                  id=1463  cr=None   (sozinho)
+EU4B1-INST-BFA             eu4b1instbfa               id=4236  cr=None   (sozinho)
+EU4B2-INST                 eu4b2inst                  id=3103  cr=None   (sozinho)
+EU4B2-INST-BFA             eu4b2instbfa               id=4237  cr=None   (sozinho)
+EU4B3-INST                 eu4b3inst                  id=3768  cr=None   (sozinho)
+EU4B3-INST-BFA             eu4b3instbfa               id=4238  cr=None   (sozinho)
+EU4B4-INST                 eu4b4inst                  id=3890  cr=None   (sozinho)
+EU4B4-INST-SL              eu4b4instsl                id=5052  cr=None   (sozinho)
+EU5 Auxiliary 70           eu5-auxiliary-70           id=6910  cr=None   (sozinho)
+EU5A Account Realm         eu5a-account-realm         id=1464  cr=None   (sozinho)
+EU5A1-INST                 eu5a1inst                  id=1465  cr=None   (sozinho)
+EU5A1-INST-BFA             eu5a1instbfa               id=4239  cr=None   (sozinho)
+EU5A2-INST                 eu5a2inst                  id=3110  cr=None   (sozinho)
+EU5A2-INST-BFA             eu5a2instbfa               id=4240  cr=None   (sozinho)
+EU5A3-INST                 eu5a3inst                  id=3769  cr=None   (sozinho)
+EU5A3-INST-BFA             eu5a3instbfa               id=4241  cr=None   (sozinho)
+EU5A4-INST                 eu5a4inst                  id=3891  cr=None   (sozinho)
+EU5A4-INST-SL              eu5a4instsl                id=5049  cr=None   (sozinho)
+EU5B Account Realm         eu5b-account-realm         id=1466  cr=None   (sozinho)
+EU5B1-INST                 eu5b1inst                  id=1467  cr=None   (sozinho)
+EU5B1-INST-BFA             eu5b1instbfa               id=4242  cr=None   (sozinho)
+EU5B2-INST                 eu5b2inst                  id=3111  cr=None   (sozinho)
+EU5B2-INST-BFA             eu5b2instbfa               id=4243  cr=None   (sozinho)
+EU5B3-INST                 eu5b3inst                  id=3770  cr=None   (sozinho)
+EU5B3-INST-BFA             eu5b3instbfa               id=4244  cr=None   (sozinho)
+EU5B4-INST                 eu5b4inst                  id=3892  cr=None   (sozinho)
+EU5B4-INST-SL              eu5b4instsl                id=5053  cr=None   (sozinho)
+EU6 Auxiliary 70           eu6-auxiliary-70           id=6911  cr=None   (sozinho)
+EU6A Account Realm         eu6a-account-realm         id=1468  cr=None   (sozinho)
+EU6A1-INST                 eu6a1inst                  id=1469  cr=None   (sozinho)
+EU6A1-INST-BFA             eu6a1instbfa               id=4245  cr=None   (sozinho)
+EU6A2-INST                 eu6a2inst                  id=3112  cr=None   (sozinho)
+EU6A2-INST-BFA             eu6a2instbfa               id=4246  cr=None   (sozinho)
+EU6A3-INST                 eu6a3inst                  id=3771  cr=None   (sozinho)
+EU6A3-INST-BFA             eu6a3instbfa               id=4247  cr=None   (sozinho)
+EU6A4-INST                 eu6a4inst                  id=3893  cr=None   (sozinho)
+EU6A4-INST-SL              eu6a4instsl                id=5050  cr=None   (sozinho)
+EU6B Account Realm         eu6b-account-realm         id=1470  cr=None   (sozinho)
+EU6B1-INST                 eu6b1inst                  id=1471  cr=None   (sozinho)
+EU6B1-INST-BFA             eu6b1instbfa               id=4248  cr=None   (sozinho)
+EU6B2-INST                 eu6b2inst                  id=3113  cr=None   (sozinho)
+EU6B2-INST-BFA             eu6b2instbfa               id=4249  cr=None   (sozinho)
+EU6B3-INST                 eu6b3inst                  id=3772  cr=None   (sozinho)
+EU6B3-INST-BFA             eu6b3instbfa               id=4250  cr=None   (sozinho)
+EU6B4-INST                 eu6b4inst                  id=3894  cr=None   (sozinho)
+EU6B4-INST-SL              eu6b4instsl                id=5054  cr=None   (sozinho)
+EU7 Auxiliary 70           eu7-auxiliary-70           id=6912  cr=None   (sozinho)
+EU7A-BG-RU                 eu7abgru                   id=1629  cr=None   (sozinho)
+EU7A1-INST                 eu7a1inst                  id=3061  cr=None   (sozinho)
+EU7A1-INST-BFA             eu7a1instbfa               id=4251  cr=None   (sozinho)
+EU7A2-INST                 eu7a2inst                  id=3151  cr=None   (sozinho)
+EU7A2-INST-BFA             eu7a2instbfa               id=4252  cr=None   (sozinho)
+EU7A3-INST                 eu7a3inst                  id=3773  cr=None   (sozinho)
+EU7A3-INST-BFA             eu7a3instbfa               id=4253  cr=None   (sozinho)
+EU7A4-INST                 eu7a4inst                  id=3895  cr=None   (sozinho)
+EU7A4-INST-SL              eu7a4instsl                id=5051  cr=None   (sozinho)
+EU7B1-INST                 eu7b1inst                  id=1631  cr=None   (sozinho)
+EU7B1-INST-BFA             eu7b1instbfa               id=4254  cr=None   (sozinho)
+EU7B2-INST                 eu7b2inst                  id=3102  cr=None   (sozinho)
+EU7B2-INST-BFA             eu7b2instbfa               id=4255  cr=None   (sozinho)
+EU7B3-INST                 eu7b3inst                  id=3774  cr=None   (sozinho)
+EU7B3-INST-BFA             eu7b3instbfa               id=4256  cr=None   (sozinho)
+EU7B4-INST                 eu7b4inst                  id=3896  cr=None   (sozinho)
+EU7B4-INST-SL              eu7b4instsl                id=5055  cr=None   (sozinho)
+Eversong                   eversong                   id=1925  cr=1925   (sozinho)
+Executus                   executus                   id=1087  cr=633    korgall + shattered-hand + bloodfeather + terokkar + saurfang + darkspear + burning-steppes
+Exodar                     exodar                     id=1385  cr=1385   minahonda
+Festung der Stürme         festung-der-stürme         id=1611  cr=1104   anetheron + kiljaeden + rajaxx + guldan + nathrezim
+Fordragon                  fordragon                  id=1623  cr=1623   (sozinho)
+Forscherliga               forscherliga               id=516   cr=1405   todeswache + zirkel-des-cenarius + der-mithrilorden + der-rat-von-dalaran + die-nachtwache
+Frostmane                  frostmane                  id=1300  cr=1303   grim-batol + aggra-português
+Frostmourne                frostmourne                id=584   cr=1105   nazjatar + zuluhed + dalvengyr + amanthul + anubarak
+Frostwhisper               frostwhisper               id=632   cr=3657   genjuros + zenedar + bladefist + neptulon + darksorrow
+Frostwolf                  frostwolf                  id=585   cr=3703   (sozinho)
+Galakrond                  galakrond                  id=1614  cr=1614   deepholm + razuvious
+Garona                     garona                     id=509   cr=509    sargeras + nerzhul
+Garrosh                    garrosh                    id=1401  cr=1401   shattrath + nozdormu + perenolde + teldrassil
+Genjuros                   genjuros                   id=606   cr=3657   zenedar + bladefist + neptulon + frostwhisper + darksorrow
+Ghostlands                 ghostlands                 id=1588  cr=1596   karazhan + dragonblight + the-maelstrom + lightnings-blade + deathwing
+Gilneas                    gilneas                    id=567   cr=612    nefarian + destromath + ulduar + mannoroth + gorgonnash + nerathor
+Goldrinn                   goldrinn                   id=1928  cr=1928   lich-king + greymane
+Gordunni                   gordunni                   id=1602  cr=1602   (sozinho)
+Gorgonnash                 gorgonnash                 id=586   cr=612    nefarian + gilneas + destromath + ulduar + mannoroth + nerathor
+Greymane                   greymane                   id=1610  cr=1928   goldrinn + lich-king
+Grim Batol                 grim-batol                 id=1303  cr=1303   aggra-português + frostmane
+Grom                       grom                       id=1927  cr=1929   blackscar + deathweaver + borean-tundra + thermaplugg + booty-bay
+Gul'dan                    guldan                     id=587   cr=1104   anetheron + kiljaeden + rajaxx + festung-der-stürme + nathrezim
+Hakkar                     hakkar                     id=646   cr=1091   emeriss + twilights-hammer + bloodscalp + crushridge + agamaggan
+Haomarush                  haomarush                  id=638   cr=3656   spinebreaker + dragonmaw + vashj + stormreaver
+Hellfire                   hellfire                   id=1587  cr=1587   runetotem + arathor + kilrogg + nagrand
+Hellscream                 hellscream                 id=619   cr=1325   aggramar
+Howling Fjord              howling-fjord              id=1615  cr=1615   (sozinho)
+Hyjal                      hyjal                      id=542   cr=1390   (sozinho)
+Illidan                    illidan                    id=541   cr=1624   naxxramas + arathi + temple-noir
+Jaedenar                   jaedenar                   id=1304  cr=1597   auchindoun + dunemaul + sylvanas
+Kael'thas                  kaelthas                   id=543   cr=512    arakarahm + rashgarroth + throkferoth
+Karazhan                   karazhan                   id=1596  cr=1596   dragonblight + the-maelstrom + ghostlands + lightnings-blade + deathwing
+Kargath                    kargath                    id=568   cr=604    thrall + ambossar
+Kazzak                     kazzak                     id=1305  cr=1305   (sozinho)
+Kel'Thuzad                 kelthuzad                  id=588   cr=578    arthas + blutkessel + wrathbringer + durotan + veklor + tirion
+Khadgar                    khadgar                    id=1080  cr=1080   bloodhoof
+Khaz Modan                 khaz-modan                 id=640   cr=3690   (sozinho)
+Khaz'goroth                khazgoroth                 id=569   cr=1406   arygos
+Kil'jaeden                 kiljaeden                  id=589   cr=1104   anetheron + rajaxx + festung-der-stürme + guldan + nathrezim
+Kilrogg                    kilrogg                    id=1311  cr=1587   hellfire + runetotem + arathor + nagrand
+Kirin Tor                  kirin-tor                  id=537   cr=1127   confrérie-du-thorium + la-croisade-écarlate + culte-de-la-rive-noire + les-sentinelles + les-clairvoyants + conseil-des-ombres
+Kor'gall                   korgall                    id=633   cr=633    executus + shattered-hand + bloodfeather + terokkar + saurfang + darkspear + burning-steppes
+Krag'jin                   kragjin                    id=616   cr=570    lothar + baelgun + azshara
+Krasus                     krasus                     id=1332  cr=1122   uldaman + drekthar + eitrigg
+Kul Tiras                  kul-tiras                  id=1082  cr=1082   alonsus + anachronos
+Kult der Verdammten        kult-der-verdammten        id=613   cr=1121   die-arguswacht + die-ewige-wacht + die-todeskrallen + das-syndikat + der-abyssische-rat + das-konsortium + die-silberne-hand
+La Croisade écarlate       la-croisade-écarlate       id=1086  cr=1127   confrérie-du-thorium + culte-de-la-rive-noire + les-sentinelles + kirin-tor + les-clairvoyants + conseil-des-ombres
+Laughing Skull             laughing-skull             id=621   cr=1598   shattered-halls + chromaggus + sunstrider + balnazzar + talnivarr + ahnqiraj + daggerspine + trollbane + boulderfist
+Les Clairvoyants           les-clairvoyants           id=1626  cr=1127   confrérie-du-thorium + la-croisade-écarlate + culte-de-la-rive-noire + les-sentinelles + kirin-tor + conseil-des-ombres
+Les Sentinelles            les-sentinelles            id=647   cr=1127   confrérie-du-thorium + la-croisade-écarlate + culte-de-la-rive-noire + kirin-tor + les-clairvoyants + conseil-des-ombres
+Lich King                  lich-king                  id=1603  cr=1928   goldrinn + greymane
+Lightbringer               lightbringer               id=1388  cr=1388   mazrigos
+Lightning's Blade          lightnings-blade           id=637   cr=1596   karazhan + dragonblight + the-maelstrom + ghostlands + deathwing
+Lordaeron                  lordaeron                  id=1409  cr=580    blackmoore + tichondrius
+Los Errantes               los-errantes               id=1387  cr=1384   tyrande + colinas-pardas
+Lothar                     lothar                     id=570   cr=570    baelgun + azshara + kragjin
+Madmortem                  madmortem                  id=571   cr=3696   nethersturm + alexstrasza + proudmoore
+Magtheridon                magtheridon                id=622   cr=3681   (sozinho)
+Mal'Ganis                  malganis                   id=590   cr=3691   echsenkessel + blackhand + taerar
+Malfurion                  malfurion                  id=572   cr=1098   malygos
+Malorne                    malorne                    id=1324  cr=1097   ysera
+Malygos                    malygos                    id=1098  cr=1098   malfurion
+Mannoroth                  mannoroth                  id=591   cr=612    nefarian + gilneas + destromath + ulduar + gorgonnash + nerathor
+Marécage de Zangar         marécage-de-zangar         id=1621  cr=1621   chogall + eldrethalas + sinstralis + dalaran
+Mazrigos                   mazrigos                   id=1089  cr=1388   lightbringer
+Medivh                     medivh                     id=517   cr=1331   suramar
+Minahonda                  minahonda                  id=1386  cr=1385   exodar
+Moonglade                  moonglade                  id=1085  cr=1085   steamwheedle-cartel + the-shatar
+Mug'thol                   mugthol                    id=1319  cr=531    dethecus + theradras + onyxia + terrordar
+Nagrand                    nagrand                    id=1589  cr=1587   hellfire + runetotem + arathor + kilrogg
+Nathrezim                  nathrezim                  id=594   cr=1104   anetheron + kiljaeden + rajaxx + festung-der-stürme + guldan
+Naxxramas                  naxxramas                  id=1624  cr=1624   arathi + illidan + temple-noir
+Nazjatar                   nazjatar                   id=1105  cr=1105   zuluhed + dalvengyr + amanthul + frostmourne + anubarak
+Nefarian                   nefarian                   id=612   cr=612    gilneas + destromath + ulduar + mannoroth + gorgonnash + nerathor
+Nemesis                    nemesis                    id=1316  cr=1316   (sozinho)
+Neptulon                   neptulon                   id=624   cr=3657   genjuros + zenedar + bladefist + frostwhisper + darksorrow
+Ner'zhul                   nerzhul                    id=544   cr=509    garona + sargeras
+Nera'thor                  nerathor                   id=611   cr=612    nefarian + gilneas + destromath + ulduar + mannoroth + gorgonnash
+Nethersturm                nethersturm                id=1607  cr=3696   alexstrasza + madmortem + proudmoore
+Nordrassil                 nordrassil                 id=618   cr=1393   bronze-dragonflight
+Norgannon                  norgannon                  id=1408  cr=1408   dun-morogh
+Nozdormu                   nozdormu                   id=574   cr=1401   garrosh + shattrath + perenolde + teldrassil
+Onyxia                     onyxia                     id=610   cr=531    dethecus + theradras + mugthol + terrordar
+Outland                    outland                    id=1301  cr=1301   (sozinho)
+Perenolde                  perenolde                  id=575   cr=1401   garrosh + shattrath + nozdormu + teldrassil
+Pozzo dell'Eternità        pozzo-delleternità         id=1309  cr=1309   (sozinho)
+Proudmoore                 proudmoore                 id=593   cr=3696   nethersturm + alexstrasza + madmortem
+Quel'Thalas                quelthalas                 id=623   cr=1396   azjolnerub
+Ragnaros                   ragnaros                   id=626   cr=3682   (sozinho)
+Rajaxx                     rajaxx                     id=1322  cr=1104   anetheron + kiljaeden + festung-der-stürme + guldan + nathrezim
+Rashgarroth                rashgarroth                id=642   cr=512    arakarahm + kaelthas + throkferoth
+Ravencrest                 ravencrest                 id=554   cr=1329   (sozinho)
+Ravenholdt                 ravenholdt                 id=1308  cr=1096   scarshield-legion + sporeggar + earthen-ring + defias-brotherhood + darkmoon-faire + the-venture-co
+Razuvious                  razuvious                  id=1616  cr=1614   galakrond + deepholm
+RDB EU                     rdb-eu                     id=3199  cr=None   (sozinho)
+Rexxar                     rexxar                     id=1099  cr=1099   alleria
+Runetotem                  runetotem                  id=547   cr=1587   hellfire + arathor + kilrogg + nagrand
+Sanguino                   sanguino                   id=1382  cr=1379   zuljin + uldum + shendralar
+Sargeras                   sargeras                   id=546   cr=509    garona + nerzhul
+Saurfang                   saurfang                   id=1314  cr=633    korgall + executus + shattered-hand + bloodfeather + terokkar + darkspear + burning-steppes
+Scarshield Legion          scarshield-legion          id=1096  cr=1096   sporeggar + earthen-ring + defias-brotherhood + ravenholdt + darkmoon-faire + the-venture-co
+Sen'jin                    senjin                     id=602   cr=1400   ungoro + area-52
+Shadowsong                 shadowsong                 id=548   cr=3666   aszune
+Shattered Halls            shattered-halls            id=1598  cr=1598   chromaggus + sunstrider + balnazzar + talnivarr + ahnqiraj + daggerspine + laughing-skull + trollbane + boulderfist
+Shattered Hand             shattered-hand             id=556   cr=633    korgall + executus + bloodfeather + terokkar + saurfang + darkspear + burning-steppes
+Shattrath                  shattrath                  id=1608  cr=1401   garrosh + nozdormu + perenolde + teldrassil
+Shen'dralar                shendralar                 id=1383  cr=1379   zuljin + uldum + sanguino
+Silvermoon                 silvermoon                 id=549   cr=3391   (sozinho)
+Sinstralis                 sinstralis                 id=533   cr=1621   marécage-de-zangar + chogall + eldrethalas + dalaran
+Skullcrusher               skullcrusher               id=557   cr=3713   alakir + xavius + burning-legion
+Soulflayer                 soulflayer                 id=1604  cr=1604   (sozinho)
+Spinebreaker               spinebreaker               id=558   cr=3656   dragonmaw + vashj + stormreaver + haomarush
+Sporeggar                  sporeggar                  id=1606  cr=1096   scarshield-legion + earthen-ring + defias-brotherhood + ravenholdt + darkmoon-faire + the-venture-co
+Steamwheedle Cartel        steamwheedle-cartel        id=1117  cr=1085   moonglade + the-shatar
+Stormrage                  stormrage                  id=550   cr=1417   azuremyst
+Stormreaver                stormreaver                id=559   cr=3656   spinebreaker + dragonmaw + vashj + haomarush
+Stormscale                 stormscale                 id=560   cr=2073   (sozinho)
+Sunstrider                 sunstrider                 id=511   cr=1598   shattered-halls + chromaggus + balnazzar + talnivarr + ahnqiraj + daggerspine + laughing-skull + trollbane + boulderfist
+Suramar                    suramar                    id=1331  cr=1331   medivh
+Sylvanas                   sylvanas                   id=628   cr=1597   auchindoun + dunemaul + jaedenar
+Taerar                     taerar                     id=1320  cr=3691   echsenkessel + blackhand + malganis
+Talnivarr                  talnivarr                  id=1090  cr=1598   shattered-halls + chromaggus + sunstrider + balnazzar + ahnqiraj + daggerspine + laughing-skull + trollbane + boulderfist
+Tarren Mill                tarren-mill                id=1306  cr=1084   dentarg
+Teldrassil                 teldrassil                 id=1407  cr=1401   garrosh + shattrath + nozdormu + perenolde
+Temple noir                temple-noir                id=1622  cr=1624   naxxramas + arathi + illidan
+Terenas                    terenas                    id=551   cr=2074   emerald-dream
+Terokkar                   terokkar                   id=1415  cr=633    korgall + executus + shattered-hand + bloodfeather + saurfang + darkspear + burning-steppes
+Terrordar                  terrordar                  id=615   cr=531    dethecus + theradras + onyxia + mugthol
+The Maelstrom              the-maelstrom              id=627   cr=1596   karazhan + dragonblight + ghostlands + lightnings-blade + deathwing
+The Sha'tar                the-shatar                 id=1595  cr=1085   moonglade + steamwheedle-cartel
+The Venture Co             the-venture-co             id=636   cr=1096   scarshield-legion + sporeggar + earthen-ring + defias-brotherhood + ravenholdt + darkmoon-faire
+Theradras                  theradras                  id=605   cr=531    dethecus + onyxia + mugthol + terrordar
+Thermaplugg                thermaplugg                id=1926  cr=1929   blackscar + deathweaver + borean-tundra + grom + booty-bay
+Thrall                     thrall                     id=604   cr=604    kargath + ambossar
+Throk'Feroth               throkferoth                id=643   cr=512    arakarahm + rashgarroth + kaelthas
+Thunderhorn                thunderhorn                id=552   cr=1313   wildhammer
+Tichondrius                tichondrius                id=1106  cr=580    blackmoore + lordaeron
+Tirion                     tirion                     id=1328  cr=578    arthas + blutkessel + wrathbringer + durotan + kelthuzad + veklor
+Todeswache                 todeswache                 id=1405  cr=1405   zirkel-des-cenarius + der-mithrilorden + forscherliga + der-rat-von-dalaran + die-nachtwache
+Trollbane                  trollbane                  id=1088  cr=1598   shattered-halls + chromaggus + sunstrider + balnazzar + talnivarr + ahnqiraj + daggerspine + laughing-skull + boulderfist
+Turalyon                   turalyon                   id=553   cr=1402   doomhammer
+Twilight's Hammer          twilights-hammer           id=513   cr=1091   emeriss + bloodscalp + crushridge + agamaggan + hakkar
+Twisting Nether            twisting-nether            id=625   cr=3674   (sozinho)
+Tyrande                    tyrande                    id=1384  cr=1384   los-errantes + colinas-pardas
+Uldaman                    uldaman                    id=1122  cr=1122   drekthar + krasus + eitrigg
+Ulduar                     ulduar                     id=1323  cr=612    nefarian + gilneas + destromath + mannoroth + gorgonnash + nerathor
+Uldum                      uldum                      id=1380  cr=1379   zuljin + sanguino + shendralar
+Un'Goro                    ungoro                     id=1400  cr=1400   senjin + area-52
+Varimathras                varimathras                id=645   cr=1315   elune
+Vashj                      vashj                      id=629   cr=3656   spinebreaker + dragonmaw + stormreaver + haomarush
+Vek'lor                    veklor                     id=1318  cr=578    arthas + blutkessel + wrathbringer + durotan + kelthuzad + tirion
+Vek'nilash                 veknilash                  id=1298  cr=1416   blades-edge + eonar + aerie-peak + bronzebeard
+Vol'jin                    voljin                     id=510   cr=510    chants-éternels
+Wildhammer                 wildhammer                 id=1313  cr=1313   thunderhorn
+Wrathbringer               wrathbringer               id=609   cr=578    arthas + blutkessel + durotan + kelthuzad + veklor + tirion
+Xavius                     xavius                     id=639   cr=3713   alakir + skullcrusher + burning-legion
+Ysera                      ysera                      id=1097  cr=1097   malorne
+Ysondre                    ysondre                    id=1335  cr=1335   (sozinho)
+Zenedar                    zenedar                    id=515   cr=3657   genjuros + bladefist + neptulon + frostwhisper + darksorrow
+Zirkel des Cenarius        zirkel-des-cenarius        id=592   cr=1405   todeswache + der-mithrilorden + forscherliga + der-rat-von-dalaran + die-nachtwache
+Zul'jin                    zuljin                     id=1379  cr=1379   uldum + sanguino + shendralar
+Zuluhed                    zuluhed                    id=573   cr=1105   nazjatar + dalvengyr + amanthul + frostmourne + anubarak
+zzz_RDB EU                 zzzrdb-eu                  id=3070  cr=None   (sozinho)
+
+-- GRUPOS (92): 1 realm(s) x31, 2 realm(s) x22, 3 realm(s) x10, 4 realm(s) x9, 5 realm(s) x6, 6 realm(s) x7, 7 realm(s) x4, 8 realm(s) x2, 10 realm(s) x1
+-- RESUMO: 365 realms no indice, 92 connected realms, 267 realms mapeados, 31 grupos de 1 realm
+   fora de qualquer grupo: 98 (98 pseudo-realms internos: -account-realm / -inst / rdb / arena-pass / auxiliar)
+   94 requests a API
+   dump -> reports/realms_eu.json

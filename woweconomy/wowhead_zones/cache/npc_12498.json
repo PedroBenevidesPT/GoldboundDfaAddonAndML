@@ -1,0 +1,116 @@
+{
+ "npc_id": 12498,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Dreamstalker",
+ "items": [
+  {
+   "category": "drops+skinning",
+   "item_id": 29564,
+   "item_name": "Dragon's Fang",
+   "item_type": "",
+   "drop_rate": 0.06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=29564/dragons-fang"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 60388,
+   "item_name": "Shimmering Claw",
+   "item_type": "",
+   "drop_rate": 0.05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=60388/shimmering-claw"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 2766,
+   "item_name": "Deft Stiletto",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2766/deft-stiletto?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 2786,
+   "item_name": "Oiled Blunderbuss",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2786/oiled-blunderbuss?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1767,
+   "item_name": "Canvas Gloves",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1767/canvas-gloves?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 2219,
+   "item_name": "Small Round Shield",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2219/small-round-shield?bonus=6657"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2319,
+   "item_name": "Medium Leather",
+   "item_type": "",
+   "drop_rate": 0.68,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=2319/medium-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 4234,
+   "item_name": "Heavy Leather",
+   "item_type": "",
+   "drop_rate": 0.14,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4234/heavy-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 4235,
+   "item_name": "Heavy Hide",
+   "item_type": "",
+   "drop_rate": 0.1,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4235/heavy-hide"
+  },
+  {
+   "category": "skinning",
+   "item_id": 4232,
+   "item_name": "Medium Hide",
+   "item_type": "",
+   "drop_rate": 0.03,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4232/medium-hide"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2318,
+   "item_name": "Light Leather",
+   "item_type": "",
+   "drop_rate": 0.008,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=2318/light-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2934,
+   "item_name": "Ruined Leather Scraps",
+   "item_type": "",
+   "drop_rate": 0.008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2934/ruined-leather-scraps"
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+ "npc_id": 34602,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Kaliva <Mistress of Chains>",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 46774,
+   "item_name": "Heart of Kaliva",
+   "drop_rate": 1.0,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=46774/heart-of-kaliva"
+  }
+ ]
+}

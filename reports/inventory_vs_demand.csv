@@ -1,0 +1,96 @@
+item_id,item_name,name,qty,wanters,want_rate,price_gold,gold_gap,stock_value,coverage
+238032,Acolyte's Infused Leggings,Spellweaver's Immaculate Runeslacks,0,2862,0.9144,14674.0,41995911.0,0.0,0.0
+229155,Lamplighter's Greataxe,Lamplighter's Greataxe,0,2784,0.8895,1116858.0,3109331897.0,0.0,0.0
+238031,Veiled Manta Vest,Tactical Vest of the Sudden Eclipse,0,2781,0.8885,146589.0,407665017.0,0.0,0.0
+260372,Nullstrider's Boots,Balancing Boots of the Grim Jest,0,2752,0.8792,109963.0,302617474.0,0.0,0.0
+229150,Lamplighter's Splitter,Lamplighter's Splitter,0,2741,0.8757,2262433.0,6201328642.0,0.0,0.0
+260374,Primal Spark Pauldrons,Tempests of the Primal Core,0,2664,0.8511,220742.0,588057980.0,0.0,0.0
+260370,Visage of Unseen Truths,Blind Oath's Winged Crest,0,2658,0.8492,299823.0,796928563.0,0.0,0.0
+260371,Infernal Greatlock Girdle,Abyssal Immolator's Blazing Core,0,2632,0.8409,100729.0,265118735.0,0.0,0.0
+260373,Power Stance Breeches,Swiftsweepers of Ra-den's Chosen,0,2631,0.8406,191356.0,503458242.0,0.0,0.0
+260375,Raging Storm Sash,Ceinture of the Primal Core,0,2612,0.8345,135302.0,353408902.0,0.0,0.0
+238033,Zadus's Liturgical Hat,Augur's Ephemeral Wide-Brim,0,2594,0.8288,53177.0,137941341.0,0.0,0.0
+260377,Fading Dawn Sabatons,Relentless Rider's Stompers,0,2555,0.8163,108564.0,277380708.0,0.0,0.0
+229157,Lamplighter's Bulwark,Lamplighter Elite's Shield,0,2514,0.8032,933900.0,2347824575.0,0.0,0.0
+229153,Lamplighter's Cudgel,Lamplighter's Cudgel,0,2494,0.7968,1255480.0,3131167692.0,0.0,0.0
+229160,Lamplighter's Glaive,Lamplighter Elite's Glaive,0,2489,0.7952,223481.0,556243271.0,0.0,0.0
+260376,Breastplate of the Final Defense,Night Ender's Breastplate,0,2489,0.7952,198100.0,493070997.0,0.0,0.0
+229148,Lamplighter's Staff,Lamplighter Elite's Spellstaff,0,2483,0.7933,1175861.0,2919662090.0,0.0,0.0
+229154,Lamplighter's Edge,Lamplighter's Edge,0,2481,0.7927,95523.0,236992906.0,0.0,0.0
+229147,Lamplighter's Polearm,Lamplighter Elite's Polearm,0,2474,0.7904,180953.0,447678357.0,0.0,0.0
+238028,Bone-Melted Faceplate,Living Weapon's Faceshield,0,2463,0.7869,46220.0,113839468.0,0.0,0.0
+229069,Nisa's Spare Cloak,Nisa's Spare Cloak,0,2456,0.7847,321210.0,788891432.0,0.0,0.0
+229149,Lamplighter's Rifle,Lamplighter Elite's Slugthrower,0,2452,0.7834,5052597.0,12388968704.0,0.0,0.0
+229159,Lamplighter's Lightstone,Lamplighter Elite's Lightstone,0,2442,0.7802,75000.0,183149976.0,0.0,0.0
+229162,Lamplighter's Sword,Lamplighter Elite's Blade,0,2236,0.7144,176527.0,394714899.0,0.0,0.0
+229073,Azra's Spare Trousers,Azra's Spare Trousers,0,1871,0.5978,98194.0,183720471.0,0.0,0.0
+229087,Kyros's Spare Chestplate,Kyros's Spare Chestplate,0,1860,0.5942,198000.0,368280000.0,0.0,0.0
+229089,Kyros's Spare Handguards,Kyros's Spare Handguards,0,1855,0.5927,198000.0,367290000.0,0.0,0.0
+229092,Kyros's Spare Girdle,Kyros's Spare Girdle,0,1854,0.5923,38274.0,70960133.0,0.0,0.0
+229075,Azra's Spare Bracers,Azra's Spare Bracers,0,1853,0.592,130748.0,242275656.0,0.0,0.0
+229082,Aevery's Spare Chausses,Aevery's Spare Chausses,0,1853,0.592,39905.0,73944407.0,0.0,0.0
+229072,Azra's Spare Mask,Azra's Spare Mask,0,1850,0.5911,242790.0,449162257.0,0.0,0.0
+229066,Nisa's Spare Cassock,Nisa's Spare Cassock,0,1850,0.5911,198000.0,366300000.0,0.0,0.0
+229067,Nisa's Spare Leggings,Nisa's Spare Leggings,0,1844,0.5891,60094.0,110813907.0,0.0,0.0
+229086,Kyros's Spare Helm,Kyros's Spare Helm,0,1843,0.5888,198000.0,364914000.0,0.0,0.0
+229062,Nisa's Spare Coronet,Nisa's Spare Coronet,0,1835,0.5863,198000.0,363330000.0,0.0,0.0
+229091,Kyros's Spare Shoulder Plates,Kyros's Spare Shoulder Plates,0,1831,0.585,198000.0,362538000.0,0.0,0.0
+229071,Azra's Spare Gloves,Azra's Spare Gloves,0,1829,0.5843,198000.0,362142000.0,0.0,0.0
+229079,Aevery's Spare Boots,Aevery's Spare Boots,0,1822,0.5821,38000.0,69236000.0,0.0,0.0
+229078,Aevery's Spare Brigandine,Aevery's Spare Brigandine,0,1820,0.5815,231444.0,421227998.0,0.0,0.0
+229081,Aevery's Spare Cowl,Aevery's Spare Cowl,0,1820,0.5815,198000.0,360360000.0,0.0,0.0
+229074,Azra's Spare Cord,Azra's Spare Cord,0,1820,0.5815,38000.0,69160000.0,0.0,0.0
+229090,Kyros's Spare Faulds,Kyros's Spare Faulds,0,1819,0.5812,38000.0,69122000.0,0.0,0.0
+229063,Nisa's Spare Wristguards,Nisa's Spare Wristguards,0,1817,0.5805,80605.0,146458886.0,0.0,0.0
+229080,Aevery's Spare Gauntlets,Aevery's Spare Gauntlets,0,1816,0.5802,198000.0,359568000.0,0.0,0.0
+229077,Azra's Spare Shoulderguards,Azra's Spare Shoulderguards,0,1814,0.5796,198000.0,359172000.0,0.0,0.0
+229084,Aevery's Spare Belt,Aevery's Spare Belt,0,1810,0.5783,38000.0,68780000.0,0.0,0.0
+229083,Aevery's Spare Shoulderguards,Aevery's Spare Shoulderguards,0,1807,0.5773,199389.0,360296452.0,0.0,0.0
+229070,Azra's Spare Striders,Azra's Spare Striders,0,1806,0.577,38000.0,68628000.0,0.0,0.0
+229076,Azra's Spare Chestguard,Azra's Spare Chestguard,0,1803,0.576,198000.0,356994000.0,0.0,0.0
+229068,Nisa's Spare Shoulderpads,Nisa's Spare Shoulderpads,0,1793,0.5728,198000.0,355014000.0,0.0,0.0
+229065,Nisa's Spare Gloves,Nisa's Spare Gloves,0,1791,0.5722,198000.0,354618000.0,0.0,0.0
+229085,Aevery's Spare Bracers,Aevery's Spare Bracers,0,1787,0.5709,38000.0,67906000.0,0.0,0.0
+229064,Nisa's Spare Shoes,Nisa's Spare Shoes,0,1786,0.5706,38000.0,67868000.0,0.0,0.0
+229061,Nisa's Spare Belt,Nisa's Spare Belt,0,1778,0.5681,52886.0,94032113.0,0.0,0.0
+229088,Kyros's Spare Sabatons,Kyros's Spare Sabatons,0,1769,0.5652,119895.0,212094608.0,0.0,0.0
+229093,Kyros's Spare Cuffs,Kyros's Spare Cuffs,0,1765,0.5639,50000.0,88250000.0,0.0,0.0
+204955,Neltharic Beatstick,Neltharic Beatstick,0,1103,0.3524,87927.0,96983782.0,0.0,0.0
+244477,Worn Shadowguard Seer's Vestments,Wastelander Magi's Vestments,0,1011,0.323,27168.0,27466404.0,0.0,0.0
+257020,Deepvine Waistguard,Deepvine Waistguard,0,1008,0.322,9628754.0,9705784517.0,0.0,0.0
+257018,Rootspeaker's Barkclasp,Rootspeaker's Barkclasp,0,1002,0.3201,250000.0,250499750.0,0.0,0.0
+244499,Worn Shadowguard Striker's Sash,Wastelander Skirmisher's Sash,0,991,0.3166,24898.0,24674171.0,0.0,0.0
+244484,Worn Shadowguard Seer's Bands,Wastelander Magi's Bands,0,975,0.3115,26717.0,26048685.0,0.0,0.0
+244496,Worn Shadowguard Striker's Cowl,Wastelander Skirmisher's Cowl,0,962,0.3073,22777.0,21911173.0,0.0,0.0
+244483,Worn Shadowguard Seer's Cord,Wastelander Magi's Cord,0,959,0.3064,18971.0,18192720.0,0.0,0.0
+244500,Worn Shadowguard Striker's Armguards,Wastelander Skirmisher's Armguards,0,945,0.3019,24553.0,23202638.0,0.0,0.0
+244480,Worn Shadowguard Seer's Crown,Wastelander Magi's Crown,0,939,0.3,26264.0,24662281.0,0.0,0.0
+244497,Worn Shadowguard Striker's Legguards,Wastelander Skirmisher's Legguards,0,935,0.2987,24248.0,22671415.0,0.0,0.0
+256977,Steelbark Gauntlets,Steelbark Gauntlets,0,927,0.2962,389260.0,360844474.0,0.0,0.0
+244481,Worn Shadowguard Seer's Leggings,Wastelander Magi's Leggings,0,925,0.2955,26027.0,24075308.0,0.0,0.0
+244493,Worn Shadowguard Striker's Brigandine,Wastelander Skirmisher's Brigandine,0,924,0.2952,22884.0,21144412.0,0.0,0.0
+244494,Worn Shadowguard Striker's Boots,Wastelander Skirmisher's Boots,0,919,0.2936,26459.0,24315982.0,0.0,0.0
+244498,Worn Shadowguard Striker's Pauldrons,Wastelander Skirmisher's Pauldrons,0,914,0.292,24996.0,22845974.0,0.0,0.0
+244482,Worn Shadowguard Seer's Spines,Wastelander Magi's Spines,0,910,0.2907,28267.0,25722610.0,0.0,0.0
+244478,Worn Shadowguard Seer's Slippers,Wastelander Magi's Slippers,0,897,0.2866,18888.0,16942536.0,0.0,0.0
+204923,Moonless Hood,Moonless Hood,0,884,0.2824,98000.0,86632000.0,0.0,0.0
+244479,Worn Shadowguard Seer's Gloves,Wastelander Magi's Gloves,0,880,0.2812,25906.0,22797196.0,0.0,0.0
+256979,Verdant Tracker's Claws,Verdant Tracker's Claws,0,867,0.277,650438.0,563929708.0,0.0,0.0
+204925,Moonless Shoulderpads,Moonless Shoulderpads,0,863,0.2757,98220.0,84763432.0,0.0,0.0
+204942,Skyless Epaulets,Skyless Epaulets,0,853,0.2725,98000.0,83594000.0,0.0,0.0
+244495,Worn Shadowguard Striker's Gauntlets,Wastelander Skirmisher's Gauntlets,0,846,0.2703,24135.0,20418082.0,0.0,0.0
+244492,Worn Shadowguard Blade's Bracers,Wastelander Scout's Bracers,0,835,0.2668,27246.0,22750316.0,0.0,0.0
+244491,Worn Shadowguard Blade's Belt,Wastelander Scout's Belt,0,832,0.2658,26290.0,21873405.0,0.0,0.0
+244485,Worn Shadowguard Blade's Jerkin,Wastelander Scout's Jerkin,0,826,0.2639,26138.0,21590157.0,0.0,0.0
+244489,Worn Shadowguard Blade's Breeches,Wastelander Scout's Breeches,0,822,0.2626,26300.0,21618764.0,0.0,0.0
+244501,Worn Shadowguard Captain's Breastplate,Wastelander Brute's Breastplate,0,822,0.2626,23368.0,19208515.0,0.0,0.0
+244488,Worn Shadowguard Blade's Hood,Wastelander Scout's Hood,0,821,0.2623,25291.0,20764287.0,0.0,0.0
+244507,Worn Shadowguard Captain's Greatbelt,Wastelander Brute's Greatbelt,0,817,0.261,24006.0,19613274.0,0.0,0.0
+204940,Skyless Coif,Skyless Coif,0,814,0.2601,100000.0,81400000.0,0.0,0.0
+204931,Sunless Cowl,Sunless Cowl,0,804,0.2569,93262.0,74982829.0,0.0,0.0
+244508,Worn Shadowguard Captain's Vambraces,Wastelander Brute's Vambraces,0,803,0.2565,22226.0,17847204.0,0.0,0.0
+244486,Worn Shadowguard Blade's Soles,Wastelander Scout's Soles,0,801,0.2559,27050.0,21666953.0,0.0,0.0
+244504,Worn Shadowguard Captain's Helmet,Wastelander Brute's Helmet,0,794,0.2537,22885.0,18170426.0,0.0,0.0
+244490,Worn Shadowguard Blade's Shoulderpads,Wastelander Scout's Shoulderpads,0,792,0.253,26369.0,20884057.0,0.0,0.0
+244505,Worn Shadowguard Captain's Greaves,Wastelander Brute's Greaves,0,792,0.253,23142.0,18328247.0,0.0,0.0
+204920,Moonless Robe,Moonless Robe,0,791,0.2527,97959.0,77485785.0,0.0,0.0

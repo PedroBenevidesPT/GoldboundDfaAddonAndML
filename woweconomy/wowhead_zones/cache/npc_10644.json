@@ -1,0 +1,539 @@
+{
+ "npc_id": 10644,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Mist Howler",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 1015,
+   "item_name": "Lean Wolf Flank",
+   "item_type": "",
+   "drop_rate": 0.8,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1015/lean-wolf-flank"
+  },
+  {
+   "category": "drops",
+   "item_id": 6575,
+   "item_name": "Defender Cloak",
+   "item_type": "",
+   "drop_rate": 0.29,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6575/defender-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6587,
+   "item_name": "Scouting Trousers",
+   "item_type": "",
+   "drop_rate": 0.29,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6587/scouting-trousers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6562,
+   "item_name": "Shimmering Boots",
+   "item_type": "",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6562/shimmering-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6563,
+   "item_name": "Shimmering Bracers",
+   "item_type": "",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6563/shimmering-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6581,
+   "item_name": "Scouting Belt",
+   "item_type": "",
+   "drop_rate": 0.03,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6581/scouting-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6564,
+   "item_name": "Shimmering Cloak",
+   "item_type": "",
+   "drop_rate": 0.03,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6564/shimmering-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6583,
+   "item_name": "Scouting Bracers",
+   "item_type": "",
+   "drop_rate": 0.02,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6583/scouting-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6585,
+   "item_name": "Scouting Cloak",
+   "item_type": "",
+   "drop_rate": 0.02,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6585/scouting-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9805,
+   "item_name": "Superior Cloak",
+   "item_type": "",
+   "drop_rate": 0.02,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9805/superior-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9781,
+   "item_name": "Bandit Pants",
+   "item_type": "",
+   "drop_rate": 0.019,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9781/bandit-pants?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9766,
+   "item_name": "Greenweave Sash",
+   "item_type": "",
+   "drop_rate": 0.013000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9766/greenweave-sash?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9780,
+   "item_name": "Bandit Gloves",
+   "item_type": "",
+   "drop_rate": 0.012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9780/bandit-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6574,
+   "item_name": "Defender Bracers",
+   "item_type": "",
+   "drop_rate": 0.011000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6574/defender-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6577,
+   "item_name": "Defender Gauntlets",
+   "item_type": "",
+   "drop_rate": 0.011000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6577/defender-gauntlets?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9783,
+   "item_name": "Raider's Chestpiece",
+   "item_type": "",
+   "drop_rate": 0.011000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9783/raiders-chestpiece?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9776,
+   "item_name": "Bandit Boots",
+   "item_type": "",
+   "drop_rate": 0.01,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9776/bandit-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9771,
+   "item_name": "Greenweave Gloves",
+   "item_type": "",
+   "drop_rate": 0.01,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9771/greenweave-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6565,
+   "item_name": "Shimmering Gloves",
+   "item_type": "",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6565/shimmering-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6570,
+   "item_name": "Shimmering Sash",
+   "item_type": "",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6570/shimmering-sash?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9772,
+   "item_name": "Greenweave Leggings",
+   "item_type": "",
+   "drop_rate": 0.008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9772/greenweave-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6576,
+   "item_name": "Defender Girdle",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6576/defender-girdle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9811,
+   "item_name": "Fortified Bracers",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9811/fortified-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10287,
+   "item_name": "Greenweave Mantle",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10287/greenweave-mantle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6582,
+   "item_name": "Scouting Boots",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6582/scouting-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6573,
+   "item_name": "Defender Boots",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6573/defender-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9814,
+   "item_name": "Fortified Belt",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9814/fortified-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9782,
+   "item_name": "Bandit Jerkin",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9782/bandit-jerkin?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9812,
+   "item_name": "Fortified Cloak",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9812/fortified-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9774,
+   "item_name": "Greenweave Vest",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9774/greenweave-vest?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6568,
+   "item_name": "Shimmering Trousers",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6568/shimmering-trousers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6578,
+   "item_name": "Defender Leggings",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6578/defender-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6580,
+   "item_name": "Defender Tunic",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6580/defender-tunic?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9773,
+   "item_name": "Greenweave Robe",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9773/greenweave-robe?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6586,
+   "item_name": "Scouting Gloves",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6586/scouting-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10407,
+   "item_name": "Raider's Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10407/raiders-shoulderpads"
+  },
+  {
+   "category": "drops",
+   "item_id": 14159,
+   "item_name": "Pagan Shoes",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14159/pagan-shoes?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10405,
+   "item_name": "Bandit Shoulders",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10405/bandit-shoulders"
+  },
+  {
+   "category": "drops",
+   "item_id": 6566,
+   "item_name": "Shimmering Amice",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6566/shimmering-amice"
+  },
+  {
+   "category": "drops",
+   "item_id": 805,
+   "item_name": "Small Red Pouch",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=805/small-red-pouch"
+  },
+  {
+   "category": "drops",
+   "item_id": 14567,
+   "item_name": "Bristlebark Belt",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14567/bristlebark-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 4865,
+   "item_name": "Ruined Pelt",
+   "item_type": "",
+   "drop_rate": 0.79,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4865/ruined-pelt"
+  },
+  {
+   "category": "drops",
+   "item_id": 60576,
+   "item_name": "Rending Fang",
+   "item_type": "",
+   "drop_rate": 0.03,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=60576/rending-fang"
+  },
+  {
+   "category": "drops",
+   "item_id": 3301,
+   "item_name": "Sharp Canine",
+   "item_type": "",
+   "drop_rate": 0.03,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3301/sharp-canine"
+  },
+  {
+   "category": "drops",
+   "item_id": 7074,
+   "item_name": "Chipped Claw",
+   "item_type": "",
+   "drop_rate": 0.016,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7074/chipped-claw"
+  },
+  {
+   "category": "drops",
+   "item_id": 3299,
+   "item_name": "Fractured Canine",
+   "item_type": "",
+   "drop_rate": 0.013999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3299/fractured-canine"
+  },
+  {
+   "category": "drops",
+   "item_id": 60577,
+   "item_name": "Fire-Scorched Claw",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=60577/fire-scorched-claw"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 25421,
+   "item_name": "Gnarled Claw",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=25421/gnarled-claw"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 3300,
+   "item_name": "Rabbit's Foot",
+   "item_type": "",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3300/rabbits-foot"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 2220,
+   "item_name": "Box Shield",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2220/box-shield?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1785,
+   "item_name": "Cross-Stitched Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1785/cross-stitched-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 62328,
+   "item_name": "Shed Fur",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=62328/shed-fur"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 25418,
+   "item_name": "Razor Sharp Fang",
+   "item_type": "",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=25418/razor-sharp-fang"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1753,
+   "item_name": "Linked Chain Vest",
+   "item_type": "",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1753/linked-chain-vest?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1814,
+   "item_name": "Battered Mallet",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1814/battered-mallet?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1800,
+   "item_name": "Rawhide Pants",
+   "item_type": "",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1800/rawhide-pants?bonus=6656"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2318,
+   "item_name": "Light Leather",
+   "item_type": "",
+   "drop_rate": 0.92,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=2318/light-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2319,
+   "item_name": "Medium Leather",
+   "item_type": "",
+   "drop_rate": 0.07,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2319/medium-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 4232,
+   "item_name": "Medium Hide",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4232/medium-hide"
+  }
+ ]
+}

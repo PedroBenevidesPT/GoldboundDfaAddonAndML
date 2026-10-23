@@ -1,0 +1,85 @@
+.env
+
+# ---------------------------------------------------------------------------
+# Operational databases.
+#
+# These are the *live* stores: they are rebuilt by fetching from the Blizzard
+# API and they are measured in gigabytes.  Git is a source-code tool; a
+# 4.4 GB binary blob in a commit is not reviewable, cannot be diffed, and
+# makes every clone and every push pay for data that is derived anyway.
+# The schema lives in code (`woweconomy/intel/store.py`), so a fresh checkout
+# recreates an empty store and refills it with `scripts/intel.py`.
+# ---------------------------------------------------------------------------
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.db
+*.db-wal
+*.db-shm
+archives/
+data/aggregates.sqlite
+data/aggregates.sqlite-wal
+data/aggregates.sqlite-shm
+
+# Runtime state.  A lock file or a cursor position describes this machine at
+# this second; committing it means the next pull fights the running pipeline.
+data/watch.lock
+data/watch_state.json
+
+# ---------------------------------------------------------------------------
+# Build and test detritus.
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# Logs: appended by whatever ran last, never a source of truth.
+logs/
+*.log
+
+# Dated CSV backups written by the export scripts (`items.2026-10-21.bak.csv`).
+csv/*.bak.csv
+reports/**/*.bak.*
+
+# ---------------------------------------------------------------------------
+# Local scratch.  `attic/` holds the one-off probes and measurements that used
+# to sit at the repo root; they are kept for reference but are not part of the
+# system.  `data/_phase*` holds pre-migration backups and experiment output.
+# ---------------------------------------------------------------------------
+/_*.py
+/_*.txt
+/_*.json
+/file
+storage_audit*.json
+storage_audit*.txt
+attic/
+data/_phase*/
+# A model bundle is published by writing a `.staging-*` directory and then
+# renaming it into place, so an interrupted train leaves one behind.  It is
+# by definition incomplete -- ignoring it by name is safer than a blanket
+# `*.joblib`, which would drop a bundle's calibrators while keeping its
+# manifest and leave a version that loads and then fails.
+models/**/.staging-*
+
+# Written analysis lives in `reports/` and is tracked.  The JSON that the
+# rehearsal and evaluation scripts emit is not: it contains absolute paths
+# and byte counts from this machine, so a committed copy is wrong the next
+# time anyone runs the script.  Regenerate it.
+/dryrun_*.json
+/runtime_baseline.json
+/retention_dryrun.json
+reports/mog_eval.json
+reports/space_baseline.json
+reports/step3_archive_only.json
+
+# Assistant session state (memory notes), not project source.
+.workbuddy-ai/
+
+# Editor / OS noise.
+.DS_Store
+Thumbs.db
+*.swp
+reports/dryrun_*.json

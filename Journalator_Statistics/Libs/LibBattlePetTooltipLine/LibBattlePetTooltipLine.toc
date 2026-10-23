@@ -1,0 +1,9 @@
+## Interface: 100205
+## Title: LibPetTooltipLine
+## Version: @project-version@
+## Author: plusmouse
+## OptionalDeps: LibStub
+
+LibStub\LibStub.lua
+
+LibBattlePetTooltipLine.xml

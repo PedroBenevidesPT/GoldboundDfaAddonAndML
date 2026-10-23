@@ -1,0 +1,29 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file="Display.lua" />
+
+  <Script file="SummaryByType.lua" />
+  <Script file="SummaryByCharacter.lua" />
+  <Script file="SummaryByDay.lua" />
+  <Script file="SummaryByMonth.lua" />
+  <Script file="AuctionInvoices.lua" />
+  <Script file="AuctionPosting.lua" />
+  <Script file="AuctionSaleRates.lua" />
+  <Script file="AuctionFailures.lua" />
+  <Script file="VendorItems.lua" />
+  <Script file="VendorRepairs.lua" />
+  <Script file="CraftingOrdersFulfilling.lua" />
+  <Script file="CraftingOrdersPlaced.lua" />
+  <Script file="CraftingOrdersSucceeded.lua" />
+  <Script file="CraftingOrdersFailed.lua" />
+  <Script file="QuestsByQuest.lua" />
+  <Script file="QuestsByItem.lua" />
+  <Script file="TradingPost.lua" />
+  <Script file="LootBySource.lua" />
+  <Script file="LootByItem.lua" />
+  <Script file="WoWTokens.lua" />
+  <Script file="Taxis.lua" />
+  <Script file="BasicMailSent.lua" />
+  <Script file="BasicMailReceived.lua" />
+  <Script file="Trades.lua" />
+  <Script file="TrainingCosts.lua" />
+</Ui>

@@ -1,0 +1,143 @@
+{
+ "npc_id": 17287,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Sentinel Luciel Starwhisper <Silverwing Sentinels>",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 4306,
+   "item_name": "Silk Cloth",
+   "item_type": "",
+   "drop_rate": 0.02,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=4306/silk-cloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 4538,
+   "item_name": "Snapvine Watermelon",
+   "item_type": "",
+   "drop_rate": 0.012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4538/snapvine-watermelon"
+  },
+  {
+   "category": "drops",
+   "item_id": 2592,
+   "item_name": "Wool Cloth",
+   "item_type": "",
+   "drop_rate": 0.01,
+   "qty": 2.5,
+   "source_url": "https://www.wowhead.com/item=2592/wool-cloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 2589,
+   "item_name": "Linen Cloth",
+   "item_type": "",
+   "drop_rate": 0.008,
+   "qty": 5.0,
+   "source_url": "https://www.wowhead.com/item=2589/linen-cloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 15113,
+   "item_name": "Rigid Buckler",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15113/rigid-buckler?bonus=6655"
+  },
+  {
+   "category": "drops",
+   "item_id": 8953,
+   "item_name": "Deep Fried Plantains",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8953/deep-fried-plantains"
+  },
+  {
+   "category": "drops",
+   "item_id": 35948,
+   "item_name": "Savory Snowplum",
+   "item_type": "",
+   "drop_rate": 0.0001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=35948/savory-snowplum"
+  },
+  {
+   "category": "drops",
+   "item_id": 1826,
+   "item_name": "Rock Maul",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1826/rock-maul?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1809,
+   "item_name": "Tough Leather Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1809/tough-leather-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1807,
+   "item_name": "Tough Leather Gloves",
+   "item_type": "",
+   "drop_rate": 0.0013,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1807/tough-leather-gloves?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3381,
+   "item_name": "Cross-Stitched Bracers",
+   "item_type": "",
+   "drop_rate": 0.0011,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3381/cross-stitched-bracers?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1827,
+   "item_name": "Meat Cleaver",
+   "item_type": "",
+   "drop_rate": 0.0009,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1827/meat-cleaver?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 2786,
+   "item_name": "Oiled Blunderbuss",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2786/oiled-blunderbuss?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1830,
+   "item_name": "Long Bastard Sword",
+   "item_type": "",
+   "drop_rate": 0.0007000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1830/long-bastard-sword?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1828,
+   "item_name": "Stone War Axe",
+   "item_type": "",
+   "drop_rate": 0.0007000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1828/stone-war-axe?bonus=6657"
+  }
+ ]
+}

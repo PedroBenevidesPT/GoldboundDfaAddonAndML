@@ -1,0 +1,144 @@
+# The shared base: one Postgres authority, one Redis for shared state, a UI,
+# and workers that can be scaled without touching each other.
+#
+# Why this shape
+# --------------
+# The pipeline is several processes -- a fetcher, an aggregator, a trainer, an
+# exporter -- and they need one place to agree on "who is doing what".  That
+# place is Postgres: it is the authority for leases, run history and shared
+# statistics, and it is also where the market data lives.
+#
+# Redis is deliberately *not* an authority.  It holds the hot copy of the
+# shared statistics and a pub/sub channel so a UI can watch progress without
+# polling Postgres; if Redis is down the pipeline keeps running.  Anything
+# whose loss would be a lost fact is written to Postgres first.
+#
+# The workers are stateless.  `docker compose up --scale worker=3` runs three
+# of them; the lease table decides which one does each job, so scaling out
+# does not duplicate work.  That is the "non-monolithic" part: no worker owns
+# a piece of state that another worker needs.
+#
+# Ports are offset from the defaults so a local Postgres/Redis install does
+# not collide; override them in `.env`.
+
+name: goldbound
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: goldbound-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-goldbound}
+      POSTGRES_USER: ${POSTGRES_USER:-goldbound}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-goldbound}
+      # Deterministic collation: two machines must sort realm names the same
+      # way, or a "stable" ranking is stable only per machine.
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./docker/postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-goldbound} -d ${POSTGRES_DB:-goldbound}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: goldbound-redis
+    # AOF on, so a restart does not lose the counters a UI is watching.
+    # This is still not the source of truth: everything durable is in
+    # Postgres, and the pipeline runs with Redis absent.
+    command: ["redis-server", "--appendonly", "yes", "--save", "60", "1"]
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4:8
+    container_name: goldbound-pgadmin
+    environment:
+      # `.local` is a reserved special-use TLD and pgAdmin's email validator
+      # rejects it outright, so the container would crash-loop on startup.
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@goldbound.io}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-goldbound}
+      # Desktop mode: no login screen, no master password.  This is a local
+      # tool on a workstation, and pretending otherwise only adds friction.
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+      - ./docker/pgadmin/servers.json:/pgadmin4/servers.json:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Applies the schema, then exits.  Alembic is the single authority for the
+  # Postgres schema; nothing else creates tables there.  Running it as its own
+  # one-shot service (and making the worker wait for it) is what keeps a
+  # worker from starting against a database that has not been migrated yet --
+  # the failure mode that used to be a half-created schema and a confusing
+  # "relation does not exist" from somewhere deep in the pipeline.
+  migrate:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    image: goldbound/worker:local
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-goldbound}:${POSTGRES_PASSWORD:-goldbound}@postgres:5432/${POSTGRES_DB:-goldbound}
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  worker:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    image: goldbound/worker:local
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-goldbound}:${POSTGRES_PASSWORD:-goldbound}@postgres:5432/${POSTGRES_DB:-goldbound}
+      WOW_PIPELINE_REDIS: redis://redis:6379/0
+      WOW_PIPELINE_BACKEND: postgres
+    volumes:
+      # The worker reads and writes the repo's data directory (the exported
+      # addon dataset, the model bundles).  Code is baked into the image so a
+      # container cannot silently run a different version from its siblings.
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./DFA_Estimate/Data:/app/DFA_Estimate/Data
+      - ./logs:/app/logs
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    command: ["python", "run_pipeline.py", "--loop", "--interval", "120"]
+    restart: unless-stopped
+    # No `container_name`: this service is meant to be scaled, and a fixed
+    # name makes a second replica impossible.
+
+volumes:
+  pgdata:
+  redisdata:
+  pgadmin:

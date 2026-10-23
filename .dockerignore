@@ -1,0 +1,44 @@
+# Keep the build context small and reproducible.
+#
+# The worker mounts data/, models/, logs/ and the addon's Data/ as volumes at
+# runtime, so none of them belong in the image.  Without this file the build
+# context would be 8.4 GB (data/ alone is 5.9 GB of SQLite), which is both
+# slow and a way to bake a private dataset into a container.
+
+.git
+.gitignore
+.dockerignore
+
+# Local state, mounted at runtime instead.
+data/
+models/
+logs/
+attic/
+DFA_Estimate/Data/
+
+# Databases must never be baked into an image.
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.db
+*.db-wal
+*.db-shm
+
+# Caches and virtualenvs.
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.workbuddy-ai/
+
+# Editor and OS noise.
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+.DS_Store
+
+# Secrets.
+.env

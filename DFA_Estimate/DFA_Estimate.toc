@@ -1,0 +1,15 @@
+## Interface: 120105, 50504, 20506, 11509
+## Title: |cff00fe00DFA Estimate|r
+## Notes: Reads the generated DfA pricing dataset and shows the estimate, its confidence and the evidence behind it.  Analysis only: it never posts, cancels, undercuts or reprices anything on its own.
+## Author: DfA
+## Version: 2.0.3
+## SavedVariables: DFA_ESTIMATE_DB
+## OptionalDeps: Auctionator, LootAppraiserReloaded, MobInfo2
+
+Data\DFA_Estimate_Data.lua
+DFA_Estimate.lua
+UI\Tooltip.lua
+UI\Panel.lua
+UI\Auctionator.lua
+Integration\LootAppraiser.lua
+Integration\MobInfo2.lua

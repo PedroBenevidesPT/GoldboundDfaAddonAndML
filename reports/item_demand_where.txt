@@ -1,0 +1,682 @@
+# appearances: 3,130 contas com bitmap e score >= 600,000 | 44,477 aparições | 95 itens BoE com preço e fonte aceite
+# wanters = contas do segmento com bit 0; preço = item BoE mais barato com preço regional; 50 wanters / 25% mínimos
+
+     item  querem      %        preço  ouro em falta apar.  item (BoE a comprar) | aparência
+--------------------------------------------------------------------------------------------------------------------------
+   229149   2,452  78.3%    5,052,597 12,388,968,704     1  Lamplighter's Rifle | Lamplighter Elite's Slugthrowe
+   257020   1,008  32.2%    9,628,754  9,705,784,517     1  Deepvine Waistguard | Deepvine Waistguard
+   229150   2,741  87.6%    2,262,433  6,201,328,642     1  Lamplighter's Splitter | Lamplighter's Splitter
+   229153   2,494  79.7%    1,255,480  3,131,167,692     1  Lamplighter's Cudgel | Lamplighter's Cudgel
+   229155   2,784  88.9%    1,116,858  3,109,331,897     1  Lamplighter's Greataxe | Lamplighter's Greataxe
+
+== Lamplighter Elite's Slugthrower | Lamplighter's Rifle | 2452 de 3130 (78.3%) | região 5,052,597g ==
+   Sylvanas                  141 querem |  5,052,597g (região) |  712,416,226g em falta
+   Kazzak                     73 querem |  5,052,597g (região) |  368,839,607g em falta
+   Stormreaver                70 querem |  5,151,178g (reino) |  360,582,456g em falta
+   Antonidas                  64 querem |  5,052,597g (região) |  323,366,230g em falta
+   Blackhand                  58 querem |  5,052,597g (região) |  293,050,646g em falta
+
+== Deepvine Waistguard | Deepvine Waistguard | 1008 de 3130 (32.2%) | região 9,628,754g ==
+   Sylvanas                   88 querem |  9,628,754g (região) |  847,330,394g em falta
+   Silvermoon                 63 querem |  9,628,754g (região) |  606,611,532g em falta
+   Stormreaver                43 querem |  9,628,754g (região) |  414,036,443g em falta
+   Draenor                    34 querem |  9,628,754g (região) |  327,377,652g em falta
+   Kazzak                     32 querem |  9,628,754g (região) |  308,120,143g em falta
+
+== Lamplighter's Splitter | Lamplighter's Splitter | 2741 de 3130 (87.6%) | região 2,262,433g ==
+   Sylvanas                  152 querem |  2,262,433g (região) |  343,889,804g em falta
+   Stormreaver                79 querem |  2,901,206g (reino) |  229,195,261g em falta
+   Kazzak                     76 querem |  2,262,433g (região) |  171,944,902g em falta
+   Hyjal                      69 querem |  2,262,433g (região) |  156,107,872g em falta
+   Antonidas                  68 querem |  2,262,433g (região) |  153,845,439g em falta
+
+== Lamplighter's Cudgel | Lamplighter's Cudgel | 2494 de 3130 (79.7%) | região 1,255,480g ==
+   Sylvanas                  141 querem |  1,255,480g (região) |  177,022,712g em falta
+   Twisting Nether            60 querem |  2,499,000g (reino) |  149,940,000g em falta
+   Silvermoon                151 querem |    779,824g (reino) |  117,753,424g em falta
+   Argent Dawn                51 querem |  1,901,023g (reino) |   96,952,150g em falta
+   Stormreaver                76 querem |  1,258,706g (reino) |   95,661,636g em falta
+
+== Lamplighter's Greataxe | Lamplighter's Greataxe | 2784 de 3130 (88.9%) | região 1,116,858g ==
+   Sylvanas                  152 querem |  1,116,858g (região) |  169,762,374g em falta
+   Draenor                    96 querem |  1,000,000g (reino) |   95,999,999g em falta
+   Silvermoon                173 querem |    490,000g (reino) |   84,770,001g em falta
+   Kazzak                     75 querem |  1,116,858g (região) |   83,764,329g em falta
+   Stormreaver                74 querem |  1,116,858g (região) |   82,647,471g em falta
+
+== Lamplighter Elite's Spellstaff | Lamplighter's Staff | 2483 de 3130 (79.3%) | região 1,175,861g ==
+   Sylvanas                  142 querem |  1,175,861g (região) |  166,972,218g em falta
+   Silvermoon                157 querem |    777,778g (reino) |  122,111,110g em falta
+   Draenor                    86 querem |  1,175,861g (região) |  101,124,019g em falta
+   Stormreaver                70 querem |  1,175,861g (região) |   82,310,248g em falta
+   Kazzak                     69 querem |  1,175,861g (região) |   81,134,388g em falta
+
+== Lamplighter Elite's Shield | Lamplighter's Bulwark | 2514 de 3130 (80.3%) | região 933,900g ==
+   Sylvanas                  146 querem |    933,900g (região) |  136,349,399g em falta
+   Silvermoon                159 querem |    515,258g (reino) |   81,925,955g em falta
+   Stormreaver                73 querem |    933,900g (reino) |   68,174,699g em falta
+   Kazzak                     69 querem |    933,900g (região) |   64,439,099g em falta
+   Tarren Mill                62 querem |  1,000,000g (reino) |   61,999,999g em falta
+
+== Blind Oath's Winged Crest | Visage of Unseen Truths | 2658 de 3130 (84.9%) | região 299,823g ==
+   Silvermoon                166 querem |    299,999g (reino) |   49,799,834g em falta
+   Sylvanas                  149 querem |    299,823g (região) |   44,673,573g em falta
+   Anachronos                 11 querem |  2,886,105g (reino) |   31,747,151g em falta
+   Kazzak                     75 querem |    299,823g (região) |   22,486,698g em falta
+   Ravencrest                 63 querem |    299,823g (região) |   18,888,826g em falta
+
+== Nisa's Spare Cloak | Nisa's Spare Cloak | 2456 de 3130 (78.5%) | região 321,210g ==
+   Blackrock                  44 querem |  2,307,815g (reino) |  101,543,869g em falta
+   Sylvanas                  142 querem |    321,210g (região) |   45,611,801g em falta
+   Twisting Nether            50 querem |    598,000g (reino) |   29,900,000g em falta
+   Silvermoon                149 querem |    200,000g (reino) |   29,799,999g em falta
+   Stormreaver                71 querem |    320,931g (reino) |   22,786,066g em falta
+
+== Tempests of the Primal Core | Primal Spark Pauldrons | 2664 de 3130 (85.1%) | região 220,742g ==
+   Silvermoon                173 querem |    550,000g (reino) |   95,149,998g em falta
+   Sylvanas                  139 querem |    220,742g (região) |   30,683,205g em falta
+   Stormreaver                70 querem |    299,999g (reino) |   20,999,930g em falta
+   Draenor                    94 querem |    199,935g (reino) |   18,793,855g em falta
+   Twisting Nether            57 querem |    327,381g (reino) |   18,660,690g em falta
+
+== Verdant Tracker's Claws | Verdant Tracker's Claws | 867 de 3130 (27.7%) | região 650,438g ==
+   Sylvanas                   64 querem |    650,438g (região) |   41,628,029g em falta
+   Silvermoon                 59 querem |    650,438g (região) |   38,375,839g em falta
+   Draenor                    34 querem |    650,438g (região) |   22,114,891g em falta
+   Stormreaver                33 querem |    650,438g (região) |   21,464,453g em falta
+   Tarren Mill                25 querem |    650,438g (região) |   16,260,949g em falta
+
+== Lamplighter Elite's Glaive | Lamplighter's Glaive | 2489 de 3130 (79.5%) | região 223,481g ==
+   Argent Dawn                49 querem |  3,132,205g (reino) |  153,478,040g em falta
+   Sylvanas                  137 querem |    223,481g (região) |   30,616,845g em falta
+   Draenor                    88 querem |    300,000g (reino) |   26,399,999g em falta
+   Silvermoon                148 querem |    150,000g (reino) |   22,199,996g em falta
+   Tarren Mill                58 querem |    300,000g (reino) |   17,399,999g em falta
+
+== Swiftsweepers of Ra-den's Chosen | Power Stance Breeches | 2631 de 3130 (84.1%) | região 191,356g ==
+   Twisting Nether            62 querem |    499,999g (reino) |   30,999,938g em falta
+   Sylvanas                  141 querem |    191,356g (região) |   26,981,228g em falta
+   Stormreaver                73 querem |    299,999g (reino) |   21,899,927g em falta
+   Argent Dawn                50 querem |    299,999g (reino) |   14,999,950g em falta
+   Kazzak                     76 querem |    191,356g (região) |   14,543,074g em falta
+
+== Night Ender's Breastplate | Breastplate of the Final Defense | 2489 de 3130 (79.5%) | região 198,100g ==
+   Frostmane                  15 querem |  4,431,670g (reino) |   66,475,045g em falta
+   Anachronos                 10 querem |  4,997,106g (reino) |   49,971,058g em falta
+   Silvermoon                163 querem |    299,999g (reino) |   48,899,837g em falta
+   Alleria                    14 querem |  2,998,263g (reino) |   41,975,688g em falta
+   Aggra (Português)           8 querem |  4,431,670g (reino) |   35,453,358g em falta
+
+== Azra's Spare Mask | Azra's Spare Mask | 1850 de 3130 (59.1%) | região 242,790g ==
+   Draenor                    64 querem |  1,652,798g (reino) |  105,779,098g em falta
+   Sylvanas                  123 querem |    242,790g (região) |   29,863,220g em falta
+   Silvermoon                110 querem |    269,460g (reino) |   29,640,577g em falta
+   Blackmoore                 39 querem |    475,925g (reino) |   18,561,067g em falta
+   Stormreaver                57 querem |    242,698g (reino) |   13,833,779g em falta
+
+== Lamplighter Elite's Polearm | Lamplighter's Polearm | 2474 de 3130 (79.0%) | região 180,953g ==
+   Sylvanas                  141 querem |    180,953g (região) |   25,514,409g em falta
+   Drak'thul                  30 querem |    598,000g (reino) |   17,940,000g em falta
+   Silvermoon                155 querem |    100,000g (reino) |   15,499,998g em falta
+   Stormreaver                72 querem |    180,953g (região) |   13,028,634g em falta
+   Kazzak                     68 querem |    180,953g (região) |   12,304,821g em falta
+
+== Aevery's Spare Brigandine | Aevery's Spare Brigandine | 1820 de 3130 (58.1%) | região 231,444g ==
+   Draenor                    62 querem |  2,384,730g (reino) |  147,853,286g em falta
+   Sylvanas                  110 querem |    231,444g (região) |   25,458,835g em falta
+   Stormreaver                57 querem |    234,148g (reino) |   13,346,438g em falta
+   Kazzak                     56 querem |    231,444g (região) |   12,960,861g em falta
+   Antonidas                  46 querem |    231,444g (região) |   10,646,422g em falta
+
+== Tactical Vest of the Sudden Eclipse | Veiled Manta Vest | 2781 de 3130 (88.8%) | região 146,589g ==
+   Stormreaver                77 querem |    741,542g (reino) |   57,098,732g em falta
+   Sylvanas                  151 querem |    146,589g (região) |   22,134,994g em falta
+   Silvermoon                167 querem |     99,500g (reino) |   16,616,498g em falta
+   Vashj                      17 querem |    741,542g (reino) |   12,606,214g em falta
+   Kazzak                     81 querem |    146,589g (região) |   11,873,738g em falta
+
+== Lamplighter Elite's Blade | Lamplighter's Sword | 2236 de 3130 (71.4%) | região 176,527g ==
+   Tarren Mill                60 querem |    598,000g (reino) |   35,880,000g em falta
+   Silvermoon                140 querem |    240,330g (reino) |   33,646,227g em falta
+   Draenor                    76 querem |    400,000g (reino) |   30,399,999g em falta
+   Sylvanas                  131 querem |    176,527g (região) |   23,125,068g em falta
+   Blackmoore                 40 querem |    490,000g (reino) |   19,600,000g em falta
+
+== Kyros's Spare Chestplate | Kyros's Spare Chestplate | 1860 de 3130 (59.4%) | região 198,000g ==
+   Twisting Nether            37 querem |  3,038,574g (reino) |  112,427,242g em falta
+   Drak'thul                  27 querem |    990,000g (reino) |   26,730,000g em falta
+   Sylvanas                  116 querem |    198,000g (região) |   22,968,000g em falta
+   Blackmoore                 35 querem |    396,000g (reino) |   13,860,000g em falta
+   Draenor                    64 querem |    198,000g (região) |   12,672,000g em falta
+
+== Kyros's Spare Handguards | Kyros's Spare Handguards | 1855 de 3130 (59.3%) | região 198,000g ==
+   Sylvanas                  121 querem |    198,000g (região) |   23,958,000g em falta
+   Twisting Nether            34 querem |    676,612g (reino) |   23,004,812g em falta
+   Silvermoon                106 querem |    198,000g (reino) |   20,988,000g em falta
+   Tarren Mill                49 querem |    278,767g (reino) |   13,659,604g em falta
+   Antonidas                  54 querem |    198,000g (região) |   10,692,000g em falta
+
+== Nisa's Spare Cassock | Nisa's Spare Cassock | 1850 de 3130 (59.1%) | região 198,000g ==
+   Draenor                    68 querem |    394,666g (reino) |   26,837,295g em falta
+   Tarren Mill                50 querem |    529,371g (reino) |   26,468,550g em falta
+   Silvermoon                111 querem |    206,986g (reino) |   22,975,482g em falta
+   Sylvanas                  106 querem |    198,000g (região) |   20,988,000g em falta
+   Blackrock                  27 querem |    638,662g (reino) |   17,243,870g em falta
+
+== Kyros's Spare Helm | Kyros's Spare Helm | 1843 de 3130 (58.9%) | região 198,000g ==
+   Sylvanas                  115 querem |    198,000g (região) |   22,770,000g em falta
+   Silvermoon                112 querem |    165,608g (reino) |   18,548,099g em falta
+   Stormreaver                60 querem |    208,462g (reino) |   12,507,734g em falta
+   Kazzak                     49 querem |    198,000g (região) |    9,702,000g em falta
+   Hyjal                      47 querem |    198,000g (região) |    9,306,000g em falta
+
+== Nisa's Spare Coronet | Nisa's Spare Coronet | 1835 de 3130 (58.6%) | região 198,000g ==
+   Sylvanas                  113 querem |    198,000g (região) |   22,374,000g em falta
+   Twisting Nether            42 querem |    337,423g (reino) |   14,171,771g em falta
+   Draenor                    67 querem |    198,000g (reino) |   13,266,000g em falta
+   Drak'thul                  20 querem |    564,230g (reino) |   11,284,609g em falta
+   Stormreaver                56 querem |    198,000g (reino) |   11,088,000g em falta
+
+== Kyros's Spare Shoulder Plates | Kyros's Spare Shoulder Plates | 1831 de 3130 (58.5%) | região 198,000g ==
+   Blackmoore                 39 querem |  1,278,042g (reino) |   49,843,631g em falta
+   Draenor                    61 querem |    801,629g (reino) |   48,899,367g em falta
+   Sylvanas                  115 querem |    198,000g (região) |   22,770,000g em falta
+   Silvermoon                103 querem |    198,000g (reino) |   20,394,000g em falta
+   Argent Dawn                35 querem |    401,508g (reino) |   14,052,787g em falta
+
+== Azra's Spare Gloves | Azra's Spare Gloves | 1829 de 3130 (58.4%) | região 198,000g ==
+   Alleria                     9 querem |  9,911,139g (reino) |   89,200,250g em falta
+   Rexxar                      4 querem |  9,911,139g (reino) |   39,644,556g em falta
+   Silvermoon                117 querem |    334,125g (reino) |   39,092,625g em falta
+   Sylvanas                  101 querem |    198,000g (região) |   19,998,000g em falta
+   Draenor                    68 querem |    198,000g (reino) |   13,464,000g em falta
+
+== Steelbark Gauntlets | Steelbark Gauntlets | 927 de 3130 (29.6%) | região 389,260g ==
+   Sylvanas                   68 querem |    389,260g (região) |   26,469,713g em falta
+   Silvermoon                 66 querem |    389,260g (região) |   25,691,192g em falta
+   Draenor                    34 querem |    389,260g (região) |   13,234,857g em falta
+   Tarren Mill                30 querem |    389,260g (região) |   11,677,815g em falta
+   Ravencrest                 28 querem |    389,260g (região) |   10,899,294g em falta
+
+== Aevery's Spare Cowl | Aevery's Spare Cowl | 1820 de 3130 (58.1%) | região 198,000g ==
+   Sylvanas                  111 querem |    198,000g (região) |   21,978,000g em falta
+   Draenor                    63 querem |    198,000g (reino) |   12,474,000g em falta
+   Stormreaver                57 querem |    198,000g (reino) |   11,286,000g em falta
+   Tarren Mill                47 querem |    198,000g (reino) |    9,306,000g em falta
+   Kazzak                     47 querem |    198,000g (região) |    9,306,000g em falta
+
+== Aevery's Spare Shoulderguards | Aevery's Spare Shoulderguards | 1807 de 3130 (57.7%) | região 199,389g ==
+   Draenor                    55 querem |  1,499,000g (reino) |   82,445,000g em falta
+   Sylvanas                  110 querem |    199,389g (região) |   21,932,822g em falta
+   Silvermoon                110 querem |    170,216g (reino) |   18,723,754g em falta
+   Stormreaver                62 querem |    198,000g (reino) |   12,276,000g em falta
+   Kazzak                     56 querem |    199,389g (região) |   11,165,800g em falta
+
+== Aevery's Spare Gauntlets | Aevery's Spare Gauntlets | 1816 de 3130 (58.0%) | região 198,000g ==
+   Draenor                    61 querem |  1,499,000g (reino) |   91,439,000g em falta
+   Sylvanas                  111 querem |    198,000g (região) |   21,978,000g em falta
+   Blackmoore                 35 querem |    612,838g (reino) |   21,449,329g em falta
+   Stormreaver                62 querem |    299,323g (reino) |   18,558,042g em falta
+   Hyjal                      46 querem |    198,000g (região) |    9,108,000g em falta
+
+== Azra's Spare Shoulderguards | Azra's Spare Shoulderguards | 1814 de 3130 (58.0%) | região 198,000g ==
+   Silvermoon                111 querem |    396,000g (reino) |   43,956,000g em falta
+   Sylvanas                  109 querem |    198,000g (região) |   21,582,000g em falta
+   Twisting Nether            33 querem |    594,000g (reino) |   19,602,000g em falta
+   Blackmoore                 32 querem |    420,000g (reino) |   13,440,007g em falta
+   Stormreaver                62 querem |    198,000g (região) |   12,276,000g em falta
+
+== Azra's Spare Chestguard | Azra's Spare Chestguard | 1803 de 3130 (57.6%) | região 198,000g ==
+   Silvermoon                105 querem |    232,031g (reino) |   24,363,297g em falta
+   Sylvanas                  114 querem |    198,000g (região) |   22,572,000g em falta
+   Stormreaver                58 querem |    198,000g (reino) |   11,484,000g em falta
+   Kazzak                     53 querem |    198,000g (região) |   10,494,000g em falta
+   Hyjal                      45 querem |    198,000g (região) |    8,910,000g em falta
+
+== Nisa's Spare Shoulderpads | Nisa's Spare Shoulderpads | 1793 de 3130 (57.3%) | região 198,000g ==
+   Sylvanas                  119 querem |    198,000g (região) |   23,562,000g em falta
+   Stormreaver                58 querem |    208,511g (reino) |   12,093,613g em falta
+   Silvermoon                106 querem |     97,025g (reino) |   10,284,650g em falta
+   Blackhand                  46 querem |    198,000g (região) |    9,108,000g em falta
+   Kazzak                     44 querem |    198,000g (região) |    8,712,000g em falta
+
+== Nisa's Spare Gloves | Nisa's Spare Gloves | 1791 de 3130 (57.2%) | região 198,000g ==
+   Sylvanas                  116 querem |    198,000g (região) |   22,968,000g em falta
+   Stormreaver                58 querem |    198,000g (reino) |   11,484,000g em falta
+   Hyjal                      44 querem |    198,000g (região) |    8,712,000g em falta
+   Kazzak                     43 querem |    198,000g (região) |    8,514,000g em falta
+   Antonidas                  43 querem |    198,000g (região) |    8,514,000g em falta
+
+== Ceinture of the Primal Core | Raging Storm Sash | 2612 de 3130 (83.5%) | região 135,302g ==
+   Silvermoon                171 querem |    550,000g (reino) |   94,049,998g em falta
+   Sylvanas                  138 querem |    135,302g (região) |   18,671,680g em falta
+   Draenor                    93 querem |    199,975g (reino) |   18,597,714g em falta
+   Twisting Nether            57 querem |    294,364g (reino) |   16,778,728g em falta
+   Stormreaver                70 querem |    199,999g (reino) |   13,999,930g em falta
+
+== Balancing Boots of the Grim Jest | Nullstrider's Boots | 2752 de 3130 (87.9%) | região 109,963g ==
+   Silvermoon                176 querem |    499,999g (reino) |   87,999,824g em falta
+   Twisting Nether            64 querem |    499,999g (reino) |   31,999,936g em falta
+   Stormreaver                73 querem |    244,444g (reino) |   17,844,412g em falta
+   Sylvanas                  151 querem |    109,963g (região) |   16,604,374g em falta
+   Kazzak                     80 querem |    109,963g (região) |    8,797,020g em falta
+
+== Relentless Rider's Stompers | Fading Dawn Sabatons | 2555 de 3130 (81.6%) | região 108,564g ==
+   Silvermoon                161 querem |     99,999g (reino) |   16,099,839g em falta
+   Sylvanas                  138 querem |    108,564g (região) |   14,981,815g em falta
+   Draenor                    91 querem |     99,990g (reino) |    9,099,052g em falta
+   Kazzak                     68 querem |    108,564g (região) |    7,382,344g em falta
+   Hyjal                      63 querem |    108,564g (região) |    6,839,524g em falta
+
+== Abyssal Immolator's Blazing Core | Infernal Greatlock Girdle | 2632 de 3130 (84.1%) | região 100,729g ==
+   Twisting Nether            56 querem |    413,445g (reino) |   23,152,937g em falta
+   Argent Dawn                51 querem |    379,361g (reino) |   19,347,414g em falta
+   Draenor                    90 querem |    199,999g (reino) |   17,999,910g em falta
+   Silvermoon                174 querem |    100,000g (reino) |   17,399,998g em falta
+   Stormreaver                76 querem |    199,999g (reino) |   15,199,924g em falta
+
+== Rootspeaker's Barkclasp | Rootspeaker's Barkclasp | 1002 de 3130 (32.0%) | região 250,000g ==
+   Sylvanas                   71 querem |    250,000g (região) |   17,749,982g em falta
+   Silvermoon                 70 querem |    250,000g (região) |   17,499,982g em falta
+   Stormreaver                32 querem |    250,000g (região) |    7,999,992g em falta
+   Draenor                    31 querem |    250,000g (região) |    7,749,992g em falta
+   Kazzak                     29 querem |    250,000g (região) |    7,249,993g em falta
+
+== Azra's Spare Bracers | Azra's Spare Bracers | 1853 de 3130 (59.2%) | região 130,748g ==
+   Draenor                    63 querem |  2,950,976g (reino) |  185,911,477g em falta
+   Sylvanas                  111 querem |    130,748g (região) |   14,513,005g em falta
+   Silvermoon                110 querem |    104,788g (reino) |   11,526,644g em falta
+   Stormreaver                66 querem |    130,748g (região) |    8,629,354g em falta
+   Kazzak                     48 querem |    130,748g (região) |    6,275,894g em falta
+
+== Lamplighter's Edge | Lamplighter's Edge | 2481 de 3130 (79.3%) | região 95,523g ==
+   Draenor                    86 querem |    490,000g (reino) |   42,140,000g em falta
+   Tarren Mill                58 querem |    482,436g (reino) |   27,981,264g em falta
+   Twisting Nether            53 querem |    498,000g (reino) |   26,394,000g em falta
+   Sylvanas                  148 querem |     95,523g (região) |   14,137,424g em falta
+   Argent Dawn                47 querem |    201,765g (reino) |    9,482,965g em falta
+
+== Kyros's Spare Sabatons | Kyros's Spare Sabatons | 1769 de 3130 (56.5%) | região 119,895g ==
+   Draenor                    57 querem |    344,758g (reino) |   19,651,180g em falta
+   Silvermoon                114 querem |    150,017g (reino) |   17,101,992g em falta
+   Sylvanas                  111 querem |    119,895g (região) |   13,308,367g em falta
+   Stormreaver                60 querem |    119,849g (reino) |    7,190,936g em falta
+   Kazzak                     46 querem |    119,895g (região) |    5,515,179g em falta
+
+== Azra's Spare Trousers | Azra's Spare Trousers | 1871 de 3130 (59.8%) | região 98,194g ==
+   Sylvanas                  116 querem |     98,194g (região) |   11,390,473g em falta
+   Silvermoon                109 querem |     83,988g (reino) |    9,154,730g em falta
+   Stormreaver                59 querem |    100,580g (reino) |    5,934,223g em falta
+   Kazzak                     51 querem |     98,194g (região) |    5,007,880g em falta
+   Antonidas                  47 querem |     98,194g (região) |    4,615,105g em falta
+
+== Lamplighter Elite's Lightstone | Lamplighter's Lightstone | 2442 de 3130 (78.0%) | região 75,000g ==
+   Blackrock                  45 querem |    498,000g (reino) |   22,410,000g em falta
+   Silvermoon                149 querem |    150,000g (reino) |   22,349,997g em falta
+   Thrall                     27 querem |    498,000g (reino) |   13,446,000g em falta
+   Tarren Mill                59 querem |    200,000g (reino) |   11,799,999g em falta
+   Sylvanas                  138 querem |     75,000g (região) |   10,349,999g em falta
+
+== Nisa's Spare Wristguards | Nisa's Spare Wristguards | 1817 de 3130 (58.1%) | região 80,605g ==
+   Sylvanas                  113 querem |     80,605g (região) |    9,108,340g em falta
+   Silvermoon                109 querem |     75,529g (reino) |    8,232,659g em falta
+   Stormreaver                58 querem |     80,568g (reino) |    4,672,942g em falta
+   Kazzak                     50 querem |     80,605g (região) |    4,030,239g em falta
+   Antonidas                  46 querem |     80,605g (região) |    3,707,820g em falta
+
+== Augur's Ephemeral Wide-Brim | Zadus's Liturgical Hat | 2594 de 3130 (82.9%) | região 53,177g ==
+   Stormreaver                76 querem |    263,134g (reino) |   19,998,219g em falta
+   Silvermoon                165 querem |     93,570g (reino) |   15,438,979g em falta
+   Draenor                    88 querem |     99,999g (reino) |    8,799,912g em falta
+   Sylvanas                  148 querem |     53,177g (região) |    7,870,208g em falta
+   Argent Dawn                52 querem |    100,000g (reino) |    5,199,999g em falta
+
+== Living Weapon's Faceshield | Bone-Melted Faceplate | 2463 de 3130 (78.7%) | região 46,220g ==
+   Silvermoon                151 querem |     75,000g (reino) |   11,325,076g em falta
+   Stormreaver                73 querem |     89,376g (reino) |    6,524,436g em falta
+   Sylvanas                  138 querem |     46,220g (região) |    6,378,338g em falta
+   Drak'thul                  33 querem |    150,000g (reino) |    4,950,000g em falta
+   Twisting Nether            61 querem |     75,000g (reino) |    4,574,999g em falta
+
+== Nisa's Spare Leggings | Nisa's Spare Leggings | 1844 de 3130 (58.9%) | região 60,094g ==
+   Silvermoon                105 querem |     78,943g (reino) |    8,288,990g em falta
+   Sylvanas                  114 querem |     60,094g (região) |    6,850,751g em falta
+   Antonidas                  52 querem |     60,094g (região) |    3,124,904g em falta
+   Hyjal                      50 querem |     60,094g (região) |    3,004,715g em falta
+   Blackhand                  44 querem |     60,094g (região) |    2,644,150g em falta
+
+== Neltharic Beatstick | Neltharic Beatstick | 1103 de 3130 (35.2%) | região 87,927g ==
+   Sylvanas                   93 querem |     87,927g (região) |    8,177,236g em falta
+   Silvermoon                 69 querem |     85,000g (reino) |    5,865,012g em falta
+   Stormreaver                41 querem |    130,564g (reino) |    5,353,131g em falta
+   Kazzak                     29 querem |     87,927g (região) |    2,549,891g em falta
+   Twisting Nether            19 querem |    130,564g (reino) |    2,480,719g em falta
+
+== Nisa's Spare Belt | Nisa's Spare Belt | 1778 de 3130 (56.8%) | região 52,886g ==
+   Draenor                    62 querem |    200,001g (reino) |   12,400,062g em falta
+   Gilneas                     4 querem |  1,592,193g (reino) |    6,368,771g em falta
+   Sylvanas                  105 querem |     52,886g (região) |    5,553,078g em falta
+   Nera'thor                   3 querem |  1,592,193g (reino) |    4,776,579g em falta
+   Silvermoon                105 querem |     38,592g (reino) |    4,052,192g em falta
+
+== Kyros's Spare Cuffs | Kyros's Spare Cuffs | 1765 de 3130 (56.4%) | região 50,000g ==
+   Argent Dawn                37 querem |    167,454g (reino) |    6,195,792g em falta
+   Sylvanas                  114 querem |     50,000g (região) |    5,700,000g em falta
+   Silvermoon                104 querem |     50,000g (região) |    5,200,000g em falta
+   Blackmoore                 32 querem |    150,430g (reino) |    4,813,768g em falta
+   Stormreaver                54 querem |     50,000g (região) |    2,700,000g em falta
+
+== Moonless Hood | Moonless Hood | 884 de 3130 (28.2%) | região 98,000g ==
+   Sylvanas                   88 querem |     98,000g (região) |    8,624,000g em falta
+   Blackmoore                 17 querem |    475,580g (reino) |    8,084,864g em falta
+   Stormreaver                43 querem |    120,000g (reino) |    5,160,000g em falta
+   Silvermoon                 63 querem |     79,000g (reino) |    4,977,023g em falta
+   Draenor                    34 querem |     98,000g (reino) |    3,332,000g em falta
+
+== Moonless Shoulderpads | Moonless Shoulderpads | 863 de 3130 (27.6%) | região 98,220g ==
+   Sylvanas                   93 querem |     98,220g (região) |    9,134,414g em falta
+   Stormreaver                42 querem |    120,000g (reino) |    5,040,000g em falta
+   Silvermoon                 64 querem |     65,000g (reino) |    4,159,981g em falta
+   Draenor                    31 querem |     87,140g (reino) |    2,701,347g em falta
+   Kazzak                     25 querem |     98,220g (região) |    2,455,488g em falta
+
+== Skyless Epaulets | Skyless Epaulets | 853 de 3130 (27.3%) | região 98,000g ==
+   Stormreaver                38 querem |    307,823g (reino) |   11,697,291g em falta
+   Sylvanas                   81 querem |     98,000g (região) |    7,938,000g em falta
+   Tarren Mill                22 querem |    198,598g (reino) |    4,369,145g em falta
+   Vashj                       9 querem |    307,823g (reino) |    2,770,411g em falta
+   Hyjal                      21 querem |     98,000g (região) |    2,058,000g em falta
+
+== Skyless Coif | Skyless Coif | 814 de 3130 (26.0%) | região 100,000g ==
+   Silvermoon                 66 querem |    146,406g (reino) |    9,662,824g em falta
+   Sylvanas                   79 querem |    100,000g (região) |    7,900,000g em falta
+   Stormreaver                37 querem |    148,732g (reino) |    5,503,086g em falta
+   Tarren Mill                17 querem |    148,732g (reino) |    2,528,445g em falta
+   Hyjal                      25 querem |    100,000g (região) |    2,500,000g em falta
+
+== Moonless Robe | Moonless Robe | 791 de 3130 (25.3%) | região 97,959g ==
+   Silvermoon                 48 querem |    176,708g (reino) |    8,482,002g em falta
+   Sylvanas                   81 querem |     97,959g (região) |    7,934,701g em falta
+   Stormreaver                40 querem |    145,573g (reino) |    5,822,927g em falta
+   Tarren Mill                19 querem |    146,673g (reino) |    2,786,782g em falta
+   Kazzak                     28 querem |     97,959g (região) |    2,742,860g em falta
+
+== Sunless Cowl | Sunless Cowl | 804 de 3130 (25.7%) | região 93,262g ==
+   Blackrock                  13 querem |    864,241g (reino) |   11,235,128g em falta
+   Sylvanas                   75 querem |     93,262g (região) |    6,994,667g em falta
+   Stormreaver                35 querem |     93,262g (região) |    3,264,178g em falta
+   Silvermoon                 65 querem |     28,599g (reino) |    1,858,935g em falta
+   Tarren Mill                19 querem |     93,347g (reino) |    1,773,600g em falta
+
+== Aevery's Spare Chausses | Aevery's Spare Chausses | 1853 de 3130 (59.2%) | região 39,905g ==
+   Silvermoon                116 querem |    109,813g (reino) |   12,738,294g em falta
+   Tarren Mill                42 querem |    200,381g (reino) |    8,416,020g em falta
+   Draenor                    63 querem |     78,909g (reino) |    4,971,273g em falta
+   Sylvanas                  110 querem |     39,905g (região) |    4,389,576g em falta
+   Argent Dawn                39 querem |    100,000g (reino) |    3,900,000g em falta
+
+== Kyros's Spare Girdle | Kyros's Spare Girdle | 1854 de 3130 (59.2%) | região 38,274g ==
+   Silvermoon                104 querem |     50,000g (reino) |    5,199,999g em falta
+   Arthas                      4 querem |  1,245,124g (reino) |    4,980,497g em falta
+   Sylvanas                  123 querem |     38,274g (região) |    4,707,711g em falta
+   Tirion                      3 querem |  1,245,124g (reino) |    3,735,373g em falta
+   Argent Dawn                40 querem |     91,400g (reino) |    3,656,013g em falta
+
+== Aevery's Spare Boots | Aevery's Spare Boots | 1822 de 3130 (58.2%) | região 38,000g ==
+   Argent Dawn                38 querem |    592,106g (reino) |   22,500,044g em falta
+   Defias Brotherhood          8 querem |  1,258,474g (reino) |   10,067,793g em falta
+   Silvermoon                116 querem |     64,792g (reino) |    7,515,834g em falta
+   Sylvanas                  118 querem |     38,000g (região) |    4,484,000g em falta
+   Sporeggar                   3 querem |  1,258,474g (reino) |    3,775,422g em falta
+
+== Azra's Spare Cord | Azra's Spare Cord | 1820 de 3130 (58.1%) | região 38,000g ==
+   Silvermoon                110 querem |     76,000g (reino) |    8,360,000g em falta
+   Draenor                    64 querem |     76,848g (reino) |    4,918,289g em falta
+   Sylvanas                  121 querem |     38,000g (região) |    4,598,000g em falta
+   Stormreaver                59 querem |     47,447g (reino) |    2,799,380g em falta
+   Tarren Mill                47 querem |     38,000g (reino) |    1,786,000g em falta
+
+== Kyros's Spare Faulds | Kyros's Spare Faulds | 1819 de 3130 (58.1%) | região 38,000g ==
+   Sylvanas                  113 querem |     38,000g (região) |    4,294,000g em falta
+   Argent Dawn                40 querem |     89,999g (reino) |    3,599,960g em falta
+   Silvermoon                102 querem |     26,600g (reino) |    2,713,200g em falta
+   Stormreaver                54 querem |     35,539g (reino) |    1,919,098g em falta
+   Hyjal                      50 querem |     38,000g (região) |    1,900,000g em falta
+
+== Aevery's Spare Belt | Aevery's Spare Belt | 1810 de 3130 (57.8%) | região 38,000g ==
+   Sylvanas                  108 querem |     38,000g (região) |    4,104,000g em falta
+   Draenor                    61 querem |     55,000g (reino) |    3,355,000g em falta
+   Blackmoore                 33 querem |     99,001g (reino) |    3,267,031g em falta
+   Stormreaver                58 querem |     40,694g (reino) |    2,360,270g em falta
+   Kazzak                     46 querem |     38,000g (região) |    1,748,000g em falta
+
+== Azra's Spare Striders | Azra's Spare Striders | 1806 de 3130 (57.7%) | região 38,000g ==
+   Blackmoore                 30 querem |  2,758,506g (reino) |   82,755,189g em falta
+   Lordaeron                   7 querem |  2,758,506g (reino) |   19,309,544g em falta
+   Tichondrius                 3 querem |  2,758,506g (reino) |    8,275,519g em falta
+   Silvermoon                116 querem |     50,000g (reino) |    5,800,000g em falta
+   Sylvanas                  114 querem |     38,000g (região) |    4,332,000g em falta
+
+== Aevery's Spare Bracers | Aevery's Spare Bracers | 1787 de 3130 (57.1%) | região 38,000g ==
+   Drak'thul                  20 querem |  1,318,707g (reino) |   26,374,145g em falta
+   Burning Blade               4 querem |  1,318,707g (reino) |    5,274,829g em falta
+   Sylvanas                  119 querem |     38,000g (região) |    4,522,000g em falta
+   Silvermoon                111 querem |     34,904g (reino) |    3,874,352g em falta
+   Stormreaver                63 querem |     38,000g (região) |    2,394,000g em falta
+
+== Nisa's Spare Shoes | Nisa's Spare Shoes | 1786 de 3130 (57.1%) | região 38,000g ==
+   Silvermoon                108 querem |     39,306g (reino) |    4,245,080g em falta
+   Sylvanas                  104 querem |     38,000g (região) |    3,952,000g em falta
+   Draenor                    69 querem |     38,000g (reino) |    2,622,000g em falta
+   Stormreaver                55 querem |     38,000g (reino) |    2,090,000g em falta
+   Argent Dawn                37 querem |     51,300g (reino) |    1,898,100g em falta
+
+== Spellweaver's Immaculate Runeslacks | Acolyte's Infused Leggings | 2862 de 3130 (91.4%) | região 14,674g ==
+   Silvermoon                180 querem |    185,431g (reino) |   33,377,503g em falta
+   Stormreaver                75 querem |    186,632g (reino) |   13,997,373g em falta
+   Argent Dawn                57 querem |    164,267g (reino) |    9,363,217g em falta
+   Draenor                    98 querem |     64,668g (reino) |    6,337,506g em falta
+   Pozzo dell'Eternità        21 querem |    300,822g (reino) |    6,317,257g em falta
+
+== Wastelander Magi's Vestments | Worn Shadowguard Seer's Vestments | 1011 de 3130 (32.3%) | região 27,168g ==
+   Sylvanas                   88 querem |     27,168g (região) |    2,390,745g em falta
+   Kazzak                     36 querem |     27,168g (região) |      978,032g em falta
+   Stormreaver                40 querem |     22,888g (reino) |      915,520g em falta
+   Draenor                    33 querem |     22,888g (reino) |      755,303g em falta
+   Blackhand                  27 querem |     27,168g (região) |      733,524g em falta
+
+== Wastelander Magi's Bands | Worn Shadowguard Seer's Bands | 975 de 3130 (31.2%) | região 26,717g ==
+   Sylvanas                   79 querem |     26,717g (região) |    2,110,611g em falta
+   Stormreaver                49 querem |     28,888g (reino) |    1,415,512g em falta
+   Silvermoon                 62 querem |     21,551g (reino) |    1,336,149g em falta
+   Tarren Mill                28 querem |     28,888g (reino) |      808,864g em falta
+   Kazzak                     29 querem |     26,717g (região) |      774,781g em falta
+
+== Wastelander Magi's Spines | Worn Shadowguard Seer's Spines | 910 de 3130 (29.1%) | região 28,267g ==
+   Sylvanas                   77 querem |     28,267g (região) |    2,176,529g em falta
+   Silvermoon                 66 querem |     20,000g (reino) |    1,320,000g em falta
+   Stormreaver                34 querem |     28,888g (reino) |      982,192g em falta
+   Kazzak                     30 querem |     28,267g (região) |      847,998g em falta
+   Antonidas                  25 querem |     28,267g (região) |      706,665g em falta
+
+== Wastelander Skirmisher's Sash | Worn Shadowguard Striker's Sash | 991 de 3130 (31.7%) | região 24,898g ==
+   Sylvanas                   79 querem |     24,898g (região) |    1,966,962g em falta
+   Silvermoon                 64 querem |     25,000g (reino) |    1,599,999g em falta
+   Kazzak                     37 querem |     24,898g (região) |      921,235g em falta
+   Stormreaver                37 querem |     22,888g (reino) |      846,856g em falta
+   Hyjal                      31 querem |     24,898g (região) |      771,846g em falta
+
+== Wastelander Magi's Crown | Worn Shadowguard Seer's Crown | 939 de 3130 (30.0%) | região 26,264g ==
+   Sylvanas                   72 querem |     26,264g (região) |    1,891,037g em falta
+   Stormreaver                34 querem |     28,888g (reino) |      982,192g em falta
+   Kazzak                     35 querem |     26,264g (região) |      919,254g em falta
+   Blackhand                  31 querem |     26,264g (região) |      814,197g em falta
+   Silvermoon                 63 querem |     11,993g (reino) |      755,568g em falta
+
+== Wastelander Skirmisher's Boots | Worn Shadowguard Striker's Boots | 919 de 3130 (29.4%) | região 26,459g ==
+   Stormreaver                36 querem |    134,540g (reino) |    4,843,445g em falta
+   Sylvanas                   72 querem |     26,459g (região) |    1,905,061g em falta
+   Vashj                      10 querem |    134,540g (reino) |    1,345,401g em falta
+   Draenor                    31 querem |     33,775g (reino) |    1,047,038g em falta
+   Pozzo dell'Eternità         6 querem |    130,952g (reino) |      785,709g em falta
+
+== Wastelander Magi's Leggings | Worn Shadowguard Seer's Leggings | 925 de 3130 (29.6%) | região 26,027g ==
+   Sylvanas                   72 querem |     26,027g (região) |    1,873,970g em falta
+   Stormreaver                44 querem |     22,888g (reino) |    1,007,072g em falta
+   Silvermoon                 62 querem |     15,000g (reino) |      930,027g em falta
+   Kazzak                     33 querem |     26,027g (região) |      858,903g em falta
+   Tarren Mill                23 querem |     27,433g (reino) |      630,965g em falta
+
+== Wastelander Skirmisher's Armguards | Worn Shadowguard Striker's Armguards | 945 de 3130 (30.2%) | região 24,553g ==
+   Sylvanas                   70 querem |     24,553g (região) |    1,718,714g em falta
+   Silvermoon                 73 querem |     19,000g (reino) |    1,387,000g em falta
+   Stormreaver                35 querem |     22,888g (reino) |      801,080g em falta
+   Draenor                    30 querem |     24,999g (reino) |      749,970g em falta
+   Antonidas                  29 querem |     24,553g (região) |      712,039g em falta
+
+== Wastelander Skirmisher's Pauldrons | Worn Shadowguard Striker's Pauldrons | 914 de 3130 (29.2%) | região 24,996g ==
+   Sylvanas                   74 querem |     24,996g (região) |    1,849,674g em falta
+   Draenor                    27 querem |     45,265g (reino) |    1,222,159g em falta
+   Kazzak                     26 querem |     24,996g (região) |      649,885g em falta
+   Ravencrest                 25 querem |     24,996g (região) |      624,890g em falta
+   Stormreaver                27 querem |     22,883g (reino) |      617,841g em falta
+
+== Wastelander Magi's Gloves | Worn Shadowguard Seer's Gloves | 880 de 3130 (28.1%) | região 25,906g ==
+   Sylvanas                   72 querem |     25,906g (região) |    1,865,225g em falta
+   Silvermoon                 65 querem |     22,888g (reino) |    1,487,720g em falta
+   Stormreaver                37 querem |     28,888g (reino) |    1,068,856g em falta
+   Kazzak                     35 querem |     25,906g (região) |      906,707g em falta
+   Draenor                    25 querem |     27,235g (reino) |      680,869g em falta
+
+== Wastelander Scout's Bracers | Worn Shadowguard Blade's Bracers | 835 de 3130 (26.7%) | região 27,246g ==
+   Twisting Nether            20 querem |    137,332g (reino) |    2,746,635g em falta
+   Sylvanas                   56 querem |     27,246g (região) |    1,525,770g em falta
+   Stormreaver                36 querem |     28,888g (reino) |    1,039,968g em falta
+   Kazzak                     23 querem |     27,246g (região) |      626,655g em falta
+   Blackhand                  23 querem |     27,246g (região) |      626,655g em falta
+
+== Wastelander Skirmisher's Legguards | Worn Shadowguard Striker's Legguards | 935 de 3130 (29.9%) | região 24,248g ==
+   Sylvanas                   80 querem |     24,248g (região) |    1,939,800g em falta
+   Silvermoon                 64 querem |     25,643g (reino) |    1,641,153g em falta
+   Stormreaver                32 querem |     28,888g (reino) |      924,416g em falta
+   Draenor                    32 querem |     22,888g (reino) |      732,416g em falta
+   Argent Dawn                26 querem |     23,457g (reino) |      609,876g em falta
+
+== Wastelander Skirmisher's Cowl | Worn Shadowguard Striker's Cowl | 962 de 3130 (30.7%) | região 22,777g ==
+   Sylvanas                   76 querem |     22,777g (região) |    1,731,028g em falta
+   Stormreaver                31 querem |     23,342g (reino) |      723,592g em falta
+   Draenor                    38 querem |     14,992g (reino) |      569,712g em falta
+   Kazzak                     25 querem |     22,777g (região) |      569,417g em falta
+   Argent Dawn                25 querem |     22,457g (reino) |      561,419g em falta
+
+== Wastelander Scout's Belt | Worn Shadowguard Blade's Belt | 832 de 3130 (26.6%) | região 26,290g ==
+   Sylvanas                   64 querem |     26,290g (região) |    1,682,570g em falta
+   Silvermoon                 58 querem |     25,000g (reino) |    1,450,000g em falta
+   Stormreaver                29 querem |     28,883g (reino) |      837,607g em falta
+   Draenor                    31 querem |     22,888g (reino) |      709,528g em falta
+   Hyjal                      24 querem |     26,290g (região) |      630,964g em falta
+
+== Wastelander Scout's Soles | Worn Shadowguard Blade's Soles | 801 de 3130 (25.6%) | região 27,050g ==
+   Argent Dawn                21 querem |    135,000g (reino) |    2,835,000g em falta
+   Sylvanas                   49 querem |     27,050g (região) |    1,325,444g em falta
+   Silvermoon                 56 querem |     19,995g (reino) |    1,119,736g em falta
+   Stormreaver                29 querem |     28,888g (reino) |      837,752g em falta
+   Kazzak                     24 querem |     27,050g (região) |      649,197g em falta
+
+== Wastelander Scout's Breeches | Worn Shadowguard Blade's Breeches | 822 de 3130 (26.3%) | região 26,300g ==
+   Silvermoon                 57 querem |     44,228g (reino) |    2,520,982g em falta
+   Sylvanas                   54 querem |     26,300g (região) |    1,420,211g em falta
+   Twisting Nether            17 querem |     72,090g (reino) |    1,225,536g em falta
+   Draenor                    30 querem |     28,888g (reino) |      866,640g em falta
+   Stormreaver                30 querem |     27,000g (reino) |      810,000g em falta
+
+== Wastelander Scout's Jerkin | Worn Shadowguard Blade's Jerkin | 826 de 3130 (26.4%) | região 26,138g ==
+   Sylvanas                   61 querem |     26,138g (região) |    1,594,430g em falta
+   Silvermoon                 62 querem |     19,999g (reino) |    1,239,938g em falta
+   Stormreaver                33 querem |     28,883g (reino) |      953,139g em falta
+   Tarren Mill                25 querem |     28,888g (reino) |      722,200g em falta
+   Antonidas                  24 querem |     26,138g (região) |      627,317g em falta
+
+== Wastelander Skirmisher's Brigandine | Worn Shadowguard Striker's Brigandine | 924 de 3130 (29.5%) | região 22,884g ==
+   Bloodhoof                   3 querem |    664,293g (reino) |    1,992,879g em falta
+   Sylvanas                   77 querem |     22,884g (região) |    1,762,034g em falta
+   Silvermoon                 62 querem |     14,875g (reino) |      922,278g em falta
+   Stormreaver                38 querem |     22,888g (reino) |      869,744g em falta
+   Kazzak                     30 querem |     22,884g (região) |      686,507g em falta
+
+== Wastelander Scout's Shoulderpads | Worn Shadowguard Blade's Shoulderpads | 792 de 3130 (25.3%) | região 26,369g ==
+   Sylvanas                   47 querem |     26,369g (região) |    1,239,332g em falta
+   Silvermoon                 42 querem |     28,709g (reino) |    1,205,770g em falta
+   Blackrock                  17 querem |     40,777g (reino) |      693,202g em falta
+   Draenor                    24 querem |     28,430g (reino) |      682,320g em falta
+   Blackhand                  21 querem |     26,369g (região) |      553,744g em falta
+
+== Wastelander Scout's Hood | Worn Shadowguard Blade's Hood | 821 de 3130 (26.2%) | região 25,291g ==
+   Sylvanas                   57 querem |     25,291g (região) |    1,441,613g em falta
+   Silvermoon                 54 querem |     23,333g (reino) |    1,260,001g em falta
+   Stormreaver                28 querem |     27,000g (reino) |      756,000g em falta
+   Kazzak                     24 querem |     25,291g (região) |      606,995g em falta
+   Tarren Mill                18 querem |     32,876g (reino) |      591,772g em falta
+
+== Wastelander Skirmisher's Gauntlets | Worn Shadowguard Striker's Gauntlets | 846 de 3130 (27.0%) | região 24,135g ==
+   Sylvanas                   74 querem |     24,135g (região) |    1,785,979g em falta
+   Stormreaver                28 querem |     28,883g (reino) |      808,724g em falta
+   Draenor                    27 querem |     22,659g (reino) |      611,796g em falta
+   Kazzak                     22 querem |     24,135g (região) |      530,967g em falta
+   Hyjal                      22 querem |     24,135g (região) |      530,967g em falta
+
+== Wastelander Brute's Greatbelt | Worn Shadowguard Captain's Greatbelt | 817 de 3130 (26.1%) | região 24,006g ==
+   Sylvanas                   62 querem |     24,006g (região) |    1,488,400g em falta
+   Anachronos                  3 querem |    208,492g (reino) |      625,477g em falta
+   Antonidas                  26 querem |     24,006g (região) |      624,168g em falta
+   Draenor                    33 querem |     15,998g (reino) |      527,948g em falta
+   Silvermoon                 56 querem |      9,256g (reino) |      518,323g em falta
+
+== Wastelander Brute's Breastplate | Worn Shadowguard Captain's Breastplate | 822 de 3130 (26.3%) | região 23,368g ==
+   Sylvanas                   63 querem |     23,368g (região) |    1,472,185g em falta
+   Draenor                    28 querem |     45,776g (reino) |    1,281,728g em falta
+   Stormreaver                31 querem |     27,000g (reino) |      837,000g em falta
+   Ravencrest                 26 querem |     23,368g (região) |      607,569g em falta
+   Kazzak                     26 querem |     23,368g (região) |      607,569g em falta
+
+== Wastelander Brute's Greaves | Worn Shadowguard Captain's Greaves | 792 de 3130 (25.3%) | região 23,142g ==
+   Sylvanas                   71 querem |     23,142g (região) |    1,643,063g em falta
+   Frostmane                   6 querem |    115,797g (reino) |      694,784g em falta
+   Stormreaver                30 querem |     22,888g (reino) |      686,640g em falta
+   Ravencrest                 25 querem |     23,142g (região) |      578,543g em falta
+   Antonidas                  25 querem |     23,142g (região) |      578,543g em falta
+
+== Wastelander Magi's Cord | Worn Shadowguard Seer's Cord | 959 de 3130 (30.6%) | região 18,971g ==
+   Sylvanas                   79 querem |     18,971g (região) |    1,498,670g em falta
+   Silvermoon                 68 querem |     18,595g (reino) |    1,264,464g em falta
+   Stormreaver                33 querem |     27,000g (reino) |      891,000g em falta
+   Kazzak                     32 querem |     18,971g (região) |      607,056g em falta
+   Argent Dawn                17 querem |     28,888g (reino) |      491,096g em falta
+
+== Wastelander Brute's Helmet | Worn Shadowguard Captain's Helmet | 794 de 3130 (25.4%) | região 22,885g ==
+   Sylvanas                   53 querem |     22,885g (região) |    1,212,887g em falta
+   Stormreaver                31 querem |     22,883g (reino) |      709,373g em falta
+   Tarren Mill                26 querem |     22,888g (reino) |      595,088g em falta
+   Kazzak                     26 querem |     22,885g (região) |      595,001g em falta
+   Hyjal                      26 querem |     22,885g (região) |      595,001g em falta
+
+== Wastelander Brute's Vambraces | Worn Shadowguard Captain's Vambraces | 803 de 3130 (25.7%) | região 22,226g ==
+   Sylvanas                   59 querem |     22,226g (região) |    1,311,314g em falta
+   Draenor                    31 querem |     24,999g (reino) |      774,969g em falta
+   Kazzak                     27 querem |     22,226g (região) |      600,093g em falta
+   Stormreaver                24 querem |     22,888g (reino) |      549,312g em falta
+   Hyjal                      20 querem |     22,226g (região) |      444,513g em falta
+
+== Wastelander Magi's Slippers | Worn Shadowguard Seer's Slippers | 897 de 3130 (28.7%) | região 18,888g ==
+   Silvermoon                 63 querem |     24,999g (reino) |    1,574,937g em falta
+   Sylvanas                   70 querem |     18,888g (região) |    1,322,160g em falta
+   Stormreaver                42 querem |     22,888g (reino) |      961,296g em falta
+   Kazzak                     33 querem |     18,888g (região) |      623,304g em falta
+   Hyjal                      23 querem |     18,888g (região) |      434,424g em falta
+
+where csv -> reports\item_demand_realms.csv (12259 linhas)
+
+notas: o denominador é o segmento >= limiar, não a população do reino;
+       uma aparência pode vir de vários itens — fica o BoE mais barato com preço;
+       no modo item, wanters é a união de quem falta pelo menos uma aparência do item;
+       fontes de vendor/Trading Post/quest/profissão ficam de fora.

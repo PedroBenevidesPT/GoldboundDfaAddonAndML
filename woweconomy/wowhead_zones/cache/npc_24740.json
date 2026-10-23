@@ -1,0 +1,26 @@
+{
+ "npc_id": 24740,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Goodie <Elenna Edune's Pet>",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 5469,
+   "item_name": "Strider Meat",
+   "item_type": "",
+   "drop_rate": 0.55,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=5469/strider-meat"
+  },
+  {
+   "category": "drops",
+   "item_id": 5829,
+   "item_name": "Razor-Sharp Beak",
+   "item_type": "",
+   "drop_rate": 0.06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=5829/razor-sharp-beak"
+  }
+ ]
+}

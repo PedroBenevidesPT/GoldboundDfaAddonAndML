@@ -1,0 +1,36 @@
+{
+  "realm": "Dragonmaw",
+  "observations": 4,
+  "confirmed_sales_examined": 210,
+  "correlation": {
+    "inferred": [],
+    "sales_examined": 210,
+    "sales_without_observation": 210,
+    "note": "confirmed rows are observations; 'buyer_relisted' is a probabilistic inference and must not be counted as a fact"
+  },
+  "confirmed": [],
+  "inferred": [],
+  "profiles": [
+    {
+      "seller": "Sotakettu-Stormreaver",
+      "seller_name": "Sotakettu",
+      "seller_realm": "Stormreaver",
+      "realms": [
+        "Dragonmaw"
+      ],
+      "observations": 2,
+      "items_observed": 2,
+      "first_seen": 1792570807,
+      "last_seen": 1792570824,
+      "sources": {
+        "tooltip": 2
+      },
+      "also_bought_from_us": 0,
+      "basis": "confirmed observations"
+    }
+  ],
+  "episodes": {
+    "co_listing": [],
+    "undercut": []
+  }
+}

@@ -1,0 +1,17 @@
+{
+ "npc_id": 36868,
+ "zone": 16,
+ "zone_name": "azshara",
+ "npc_name": "Enslaved Son of Arkkoroc",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 49642,
+   "item_name": "Heart of Arkkoroc",
+   "item_type": "Quest",
+   "drop_rate": 0.61,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=49642/heart-of-arkkoroc"
+  }
+ ]
+}

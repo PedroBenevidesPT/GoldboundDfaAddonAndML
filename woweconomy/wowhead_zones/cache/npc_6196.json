@@ -1,0 +1,53 @@
+{
+ "npc_id": 6196,
+ "zone": 16,
+ "zone_name": "azshara",
+ "npc_name": "Spitelash Myrmidon",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 7973,
+   "item_name": "Big-Mouth Clam",
+   "item_type": "Trade Good",
+   "drop_rate": 0.67,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7973/big-mouth-clam"
+  },
+  {
+   "category": "drops",
+   "item_id": 1645,
+   "item_name": "Moonberry Juice",
+   "item_type": "Food or Drink",
+   "drop_rate": 0.08,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1645/moonberry-juice"
+  },
+  {
+   "category": "drops",
+   "item_id": 4603,
+   "item_name": "Raw Spotted Yellowtail",
+   "item_type": "Meat",
+   "drop_rate": 0.07,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=4603/raw-spotted-yellowtail"
+  },
+  {
+   "category": "drops",
+   "item_id": 3928,
+   "item_name": "Superior Healing Potion",
+   "item_type": "Potion",
+   "drop_rate": 0.012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3928/superior-healing-potion"
+  },
+  {
+   "category": "drops",
+   "item_id": 4020,
+   "item_name": "Splintering Battle Axe",
+   "item_type": "Two-Handed Axe",
+   "drop_rate": 0.013999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4020/splintering-battle-axe?bonus=6657"
+  }
+ ]
+}

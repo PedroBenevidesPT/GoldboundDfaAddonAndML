@@ -1,0 +1,26 @@
+{
+ "npc_id": 36936,
+ "zone": 16,
+ "zone_name": "azshara",
+ "npc_name": "Mountainfoot Grunt",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 2589,
+   "item_name": "Linen Cloth",
+   "item_type": "Cloth",
+   "drop_rate": 0.019,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=2589/linen-cloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 2140,
+   "item_name": "Carving Knife",
+   "item_type": "Dagger",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2140/carving-knife"
+  }
+ ]
+}

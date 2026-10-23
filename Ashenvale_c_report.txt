@@ -1,0 +1,245 @@
+
+=== ashenvale vs COLECIONADORES ===
+amostra: appearances=3568, mounts=2018, recipes=2018 contas (share that still LACKS the item)
+precos: db:tsm_markets.db
+aparencias por id: 44472 ids em falta, 3568 contas (dfa.db::missing)
+binding/era: tsm_markets.db -- 176702 itens, por item id
+AVISO: os demand_*.csv sao de 2018 contas mas o dfa.db ja tem 3569 -- os missing_pct estao velhos. Refresca com:
+  python -m woweconomy.services.dataforazeroth report --out-dir C:\economics\woweconomy\dfa
+itens: 1071 | com procura: 881 | gap forte (>= 50%): 628
+join: 810 por aparencia (id) | 71 por nome | 190 sem par
+EV da zona: 24g/kill | atribuivel a coleccionadores: 38% (9g/kill)
+
+-- DROPS POR MOB (145 mobs) --
+   a lista esta' ordenada pela MONTRA: o mob cujo drop mais falta a
+   amostra vem primeiro, e dentro de cada mob o primeiro drop e' a montra
+   mob                          EV/kill  EV coleccao  falta%  falta/kill%  pago/tot
+   sem/amostra  falta%   drop%    preco   EV/kill  drop
+   Blackfathom Tide Priestess       36.2s     20.3s   62.4%   28.3% 280/322
+   3489/3568   97.8%  0.0019%    9,500g      25c  Onyx Claymore
+   3468/3568   97.2%  0.0014%    9,244g      20c  Grimclaw
+   3462/3568   97.0%  0.0029%    1,024g       1c  Spiked Chain Leggings
+   Terrowulf Packlord                  1g        1g   68.4%   76.0% 121/134
+   3481/3568   97.6%   0.800%    6,650g    10.6s  Ruffled Chaplet
+   3462/3568   97.0%   0.050%    1,024g      20c  Spiked Chain Leggings
+   3336/3568   93.5%   0.020%      285g       8c  War Paint Chestpiece
+   Goblin Technician                19.3s     11.0s   65.9%   15.1% 294/351
+   3479/3568   97.5%  0.0009%    5,252g       2c  Slayer's Slippers
+   3478/3568   97.5%  0.0009%    3,000g       2c  Sentry's Leggings
+   3466/3568   97.1%   0.010%    2,708g       8c  Slayer's Gloves
+   Cenarion Vindicator              13.9s     12.3s   68.9%    3.3%  61/77
+   3479/3568   97.5%   0.300%    5,252g     7.9s  Slayer's Slippers
+   3412/3568   95.6%   0.040%      266g      12c  War Paint Shoulder Pads
+   3394/3568   95.1%   0.400%      339g     1.2s  Ritual Tunic
+   Emeraldon Oracle                    2g        1g   78.3%   96.9%  59/74
+   3468/3568   97.2%   0.030%    2,899g     1.1s  Sanguine Armor
+   3400/3568   95.3%   0.050%      201g      12c  Feral Shoulder Pads
+   3338/3568   93.6%   0.070%      104g      12c  Hulking Boots
+   Severed Keeper                   32.5s     21.2s   67.7%   23.2% 267/320
+   3468/3568   97.2%  0.0005%    2,899g       2c  Sanguine Armor
+   3462/3568   97.0%  0.0023%    1,024g       1c  Spiked Chain Leggings
+   3413/3568   95.7%  0.0027%    1,000g       1c  Stormbringer Belt
+   Severed Druid                    28.7s     18.2s   67.8%   18.1% 271/324
+   3468/3568   97.2%  0.0005%    2,899g       2c  Sanguine Armor
+   3464/3568   97.1%  0.0049%    1,330g       2c  Sentry's Slippers
+   3462/3568   97.0%   0.020%    1,024g       8c  Spiked Chain Leggings
+   Ashenvale Scout                  21.9s      9.8s   68.5%   10.0% 248/301
+   3468/3568   97.2%  0.0007%    2,899g       3c  Sanguine Armor
+   3464/3568   97.1%   0.010%    1,330g       4c  Sentry's Slippers
+   3435/3568   96.3%  0.0007%    1,462g       1c  Sentry's Sash
+   Foulweald Pathfinder             17.8s     12.3s   79.3%   12.2%  96/122
+   3468/3568   97.2%  0.0046%    2,899g      17c  Sanguine Armor
+   3412/3568   95.6%   0.010%      266g       3c  War Paint Shoulder Pads
+   3400/3568   95.3%   0.020%      201g       5c  Feral Shoulder Pads
+   Rotting Slime                    81.5s     49.0s   66.8%   42.8% 313/363
+   3466/3568   97.1%  0.0004%    2,708g       0c  Slayer's Gloves
+   3453/3568   96.8%  0.0044%      883g       2c  Spiked Chain Slippers
+   3452/3568   96.7%  0.0031%      827g       2c  Sentry's Armsplints
+   Wrathtail Sea Witch              11.4s      5.1s   72.0%    2.9%  46/63
+   3466/3568   97.1%   0.010%    2,708g       8c  Slayer's Gloves
+   3304/3568   92.6%   0.020%      268g       6c  Grunt's Belt
+   3168/3568   88.8%   0.010%      249g       4c  Aboriginal Footwraps
+   Mystlash Hydra                      2g        1g   74.1%   82.8% 209/236
+   3464/3568   97.1%  0.0011%    1,330g       0c  Sentry's Slippers
+   3413/3568   95.7%  0.0044%    1,000g       1c  Stormbringer Belt
+   3412/3568   95.6%   0.010%      266g       3c  War Paint Shoulder Pads
+   Wildthorn Lurker                    2g      4.8s   68.2%    4.3% 112/135
+   3464/3568   97.1%  0.0030%    1,330g       1c  Sentry's Slippers
+   3452/3568   96.7%   0.010%      827g       7c  Sentry's Armsplints
+   3407/3568   95.5%  0.0015%      475g       0c  Robust Girdle
+   Apothecary Falthis               70.5s     46.4s   66.9%   51.3%  69/84
+   3464/3568   97.1%   0.010%    1,330g       4c  Sentry's Slippers
+   3180/3568   89.1%   0.070%       73g      11c  Rawhide Bracers
+   3123/3568   87.5%   0.100%       64g       9c  Brocade Pants
+   Silverwing Warrior               21.9s     14.6s   68.8%   22.2% 124/153
+   3464/3568   97.1%  0.0021%    1,330g       1c  Sentry's Slippers
+   3424/3568   96.0%  0.0021%      950g       2c  Grunt's Chestpiece
+   3412/3568   95.6%   0.020%      266g       6c  War Paint Shoulder Pads
+   Xavian Betrayer                  17.1s     12.9s   77.5%   12.1%  75/91
+   3464/3568   97.1%   0.200%    1,330g      80c  Sentry's Slippers
+   3429/3568   96.1%  0.0049%      950g       9c  Ceremonial Leather Ankleguards
+   3303/3568   92.6%   0.040%      234g       9c  War Paint Waistband
+   Ashenvale Assassin               42.6s     30.4s   58.9%   29.9% 204/240
+   3462/3568   97.0%   0.020%    1,024g       8c  Spiked Chain Leggings
+   3453/3568   96.8%   0.020%      883g       9c  Spiked Chain Slippers
+   3452/3568   96.7%   0.020%      827g      13c  Sentry's Armsplints
+   Thistlefur Ursa                  40.2s     25.8s   62.9%   34.6% 190/231
+   3462/3568   97.0%  0.0011%    1,024g       0c  Spiked Chain Leggings
+   3412/3568   95.6%   0.020%      266g       6c  War Paint Shoulder Pads
+   3400/3568   95.3%   0.020%      201g       5c  Feral Shoulder Pads
+   Foulweald Warrior                29.5s     21.9s   75.1%   27.4% 191/235
+   3462/3568   97.0%   0.010%    1,024g       4c  Spiked Chain Leggings
+   3452/3568   96.7%  0.0044%      827g       3c  Sentry's Armsplints
+   3435/3568   96.3%  0.0044%    1,462g       5c  Sentry's Sash
+   Foulweald Totemic                12.5s      7.7s   72.8%    8.2% 209/245
+   3462/3568   97.0%   0.010%    1,024g       4c  Spiked Chain Leggings
+   3452/3568   96.7%   0.010%      827g       7c  Sentry's Armsplints
+   3438/3568   96.4%  0.0037%      883g       2c  Spiked Chain Gauntlets
+   Elder Shadowhorn Stag               2g        2g   76.3%   97.0% 113/128
+   3453/3568   96.8%  0.0031%      883g       1c  Spiked Chain Slippers
+   3445/3568   96.6%   0.070%    1,041g      66c  Sentry's Gloves
+   3400/3568   95.3%   0.020%      201g       5c  Feral Shoulder Pads
+   Goblin Deforester                35.7s      6.2s   65.7%    4.5% 130/146
+   3453/3568   96.8%   0.010%      883g       4c  Spiked Chain Slippers
+   3380/3568   94.7%  0.0031%      187g       1c  Ritual Amice
+   3365/3568   94.3%   0.020%      123g       2c  Mystic's Shoulder Pads
+   Silverwing Sentinel              22.4s      9.1s   61.5%   15.2% 120/142
+   3453/3568   96.8%   0.010%      883g       4c  Spiked Chain Slippers
+   3437/3568   96.3%   0.010%      940g       6c  Pagan Vest
+   3412/3568   95.6%   0.040%      266g      12c  War Paint Shoulder Pads
+   Roaming Felguard                  7.5s      5.4s   66.8%    4.7% 234/269
+   3453/3568   96.8%  0.0004%      883g       0c  Spiked Chain Slippers
+   3413/3568   95.7%  0.0019%    1,000g       0c  Stormbringer Belt
+   3412/3568   95.6%   0.020%      266g       6c  War Paint Shoulder Pads
+   Chief Murgut <King of the Fo      5.4s      3.0s   70.9%    4.9%  63/83
+   3453/3568   96.8%   0.040%      883g      18c  Spiked Chain Slippers
+   3403/3568   95.4%   0.010%    4,234g      17c  Slayer's Cape
+   3355/3568   94.0%   0.030%      648g       4c  Raincaller Mantle
+   Ghostpaw Alpha                      2g        2g   77.3%   97.3% 172/213
+   3452/3568   96.7%   0.010%      827g       7c  Sentry's Armsplints
+   3438/3568   96.4%   0.010%      883g       4c  Spiked Chain Gauntlets
+   3435/3568   96.3%   0.010%    1,462g      12c  Sentry's Sash
+   Wild Buck                           2g        2g   74.6%   88.4% 221/254
+   3452/3568   96.7%  0.0005%      827g       0c  Sentry's Armsplints
+   3445/3568   96.6%  0.0005%    1,041g       0c  Sentry's Gloves
+   3413/3568   95.7%  0.0038%    1,000g       1c  Stormbringer Belt
+   Ashenvale Outrunner              22.5s     13.4s   64.5%   14.1% 239/292
+   3452/3568   96.7%  0.0007%      827g       0c  Sentry's Armsplints
+   3413/3568   95.7%  0.0044%    1,000g       1c  Stormbringer Belt
+   3412/3568   95.6%   0.020%      266g       6c  War Paint Shoulder Pads
+   Mannoroc Lasher                  20.3s     17.1s   68.8%    5.0% 217/250
+   3452/3568   96.7%   0.010%      827g       7c  Sentry's Armsplints
+   3413/3568   95.7%  0.0025%    1,000g       1c  Stormbringer Belt
+   3412/3568   95.6%   0.010%      266g       3c  War Paint Shoulder Pads
+   Befouled Water Elemental         13.3s      5.3s   66.1%    4.0% 249/289
+   3452/3568   96.7%  0.0020%      827g       1c  Sentry's Armsplints
+   3445/3568   96.6%   0.020%    1,041g      19c  Sentry's Gloves
+   3443/3568   96.5%  0.0027%      380g       0c  Spiked Chain Shoulder Pads
+   'sem' = contas cuja resposta nao trazia a aparencia do drop
+   (MINIMO: quem tem a aparencia por outro item conta como 'tem');
+   falta% do mob = media dos drops pesada pelo drop%; falta/kill% =
+   P(uma kill largar >= 1 item que a amostra nao tem); pago = drops
+   com audiencia E preco.  --mob-drops 0 mostra todos os drops do mob;
+   o EV de um mob conta os drops DELE (um item largado por dois mobs
+   entra nos dois) -- nao e' uma soma unica do EV da zona.
+
+-- BoE QUE A AMOSTRA AINDA NAO TEM (809 de 836) --
+   sem/amostra  falta%   drop%    preco   EV/kill     sr    spd  item
+ 3489/3568   97.8%  0.0019%    9,500g      25c  1.40%   0.0  Onyx Claymore                    <= Blackfathom Tide Pries
+ 3481/3568   97.6%   0.800%    6,650g    10.6s  0.20%   0.0  Ruffled Chaplet                  <= Terrowulf Packlord
+ 3479/3568   97.5%   0.300%    5,252g     7.9s  0.50%   0.0  Slayer's Slippers                <= Cenarion Vindicator
+ 3478/3568   97.5%  0.0009%    3,000g       2c  0.90%   0.0  Sentry's Leggings                <= Goblin Technician
+ 3468/3568   97.2%  0.0014%    9,244g      20c  1.50%   0.0  Grimclaw                         <= Blackfathom Tide Pries
+ 3468/3568   97.2%   0.030%    2,899g     1.1s  1.30%   0.0  Sanguine Armor                   <= Emeraldon Oracle
+ 3466/3568   97.1%   0.010%    2,708g       8c  0.30%   0.0  Slayer's Gloves                  <= Goblin Technician
+ 3464/3568   97.1%   0.200%    1,330g      80c  0.30%   0.0  Sentry's Slippers                <= Xavian Betrayer
+ 3462/3568   97.0%   0.050%    1,024g      20c  0.40%   0.0  Spiked Chain Leggings            <= Terrowulf Packlord
+ 3453/3568   96.8%   0.040%      883g      18c  0.50%   0.0  Spiked Chain Slippers            <= Chief Murgut <King of 
+ 3452/3568   96.7%   0.020%      827g      13c  0.80%   0.0  Sentry's Armsplints              <= Ashenvale Assassin
+ 3445/3568   96.6%   0.070%    1,041g      66c  0.90%   0.0  Sentry's Gloves                  <= Elder Shadowhorn Stag
+ 3443/3568   96.5%   0.080%      380g       9c  0.30%   0.0  Spiked Chain Shoulder Pads       <= Mavoris Cloudsbreak
+ 3440/3568   96.4%   0.010%    1,202g      12c  1.00%   0.0  Robust Boots                     <= Lesser Felguard
+ 3438/3568   96.4%   0.060%      883g      26c  0.50%   0.0  Spiked Chain Gauntlets           <= Ashenvale Assassin
+ 3437/3568   96.3%   0.030%      940g      17c  0.60%   0.0  Pagan Vest                       <= Ashenvale Assassin
+ 3435/3568   96.3%   0.040%    1,462g      47c  0.80%   0.0  Sentry's Sash                    <= Ashenvale Assassin
+ 3434/3568   96.2%   0.020%    3,620g      43c  0.60%   0.0  Thick Scale Cloak                <= Ursangous
+ 3429/3568   96.1%  0.0049%      950g       9c  1.90%   0.0  Ceremonial Leather Ankleguards   <= Xavian Betrayer
+ 3425/3568   96.0%   0.010%    3,563g      32c  0.90%   0.0  Staff of the Friar               <= Blackfathom Tide Pries
+ 3424/3568   96.0%   0.060%      950g      46c  0.80%   0.0  Grunt's Chestpiece               <= Ashenvale Assassin
+ 3413/3568   95.7%   0.010%    1,000g       2c  0.20%   0.0  Stormbringer Belt                <= Ashenvale Skirmisher
+ 3412/3568   95.6%   0.060%      266g      18c  1.10%   0.0  War Paint Shoulder Pads          <= Warsong Vanguard
+ 3408/3568   95.5%   0.040%      832g       7c  0.20%   0.0  Sanguine Mantle                  <= Thistlefur Pathfinder
+ 3407/3568   95.5%   0.020%      476g       4c  0.40%   0.0  Headhunter's Bands               <= Foulweald Warrior
+ 3407/3568   95.5%   0.200%      475g      57c  0.60%   0.0  Robust Girdle                    <= Taneel Darkwood
+ 3405/3568   95.4%  0.0015%      645g       0c  0.20%   0.0  Raincaller Vest                  <= Ashenvale Outrunner
+ 3403/3568   95.4%   0.070%    4,234g     1.2s  0.40%   0.0  Slayer's Cape                    <= Ursangous
+ 3400/3568   95.3%   0.010%      953g       4c  0.40%   0.0  Pathfinder Gloves                <= Wrathtail Sorceress
+ 3400/3568   95.3%   0.130%      201g      31c  1.20%   0.0  Feral Shoulder Pads              <= Silverwind Conqueror
+   'sem' = contas cuja resposta nao trazia a aparencia do item
+   (minimo: quem tem a aparencia por outro item conta como 'tem')
+   EV/kill = drop% x preco x liquidez, deste item, neste mob
+
+-- PROCURA FORTE (coleccionadores ainda nao tem) --
+sem/amostra  miss%     drop%  own%  valor    preco    sr    spd  item
+ 3489/3568   97.8%  0.0019%   0.55  97.2    9,500g sr= 1.4% spd=   0.0  Onyx Claymore                      [appe] <= Blackfathom Tide Pries
+ 1973/2018   97.8%   0.010%   1.70  96.1      101g sr= 1.7% spd=   0.0  Pattern: Pilferer's Gloves         [reci] <= Befouled Water Element
+ 1972/2018   97.7%   0.010%   1.69  96.1      166g sr= 1.2% spd=   0.0  Pattern: Heavy Earthen Gloves      [reci] <= Elder Ashenvale Bear
+ 1969/2018   97.6%   0.020%   1.68  95.9      114g sr= 1.9% spd=   0.0  Pattern: Barbaric Gloves           [reci] <= Lesser Felguard
+ 3481/3568   97.6%   0.800%   0.42  97.2    6,650g sr= 0.2% spd=   0.0  Ruffled Chaplet                    [appe] <= Terrowulf Packlord
+ 3479/3568   97.5%   0.300%   0.71  96.8    5,252g sr= 0.5% spd=   0.0  Slayer's Slippers                  [appe] <= Cenarion Vindicator
+ 3478/3568   97.5%  0.0009%   0.76  96.7    3,000g sr= 0.9% spd=   0.0  Sentry's Leggings                  [appe] <= Goblin Technician
+ 1967/2018   97.5%  0.0034%   1.87  95.7      195g sr= 1.2% spd=   0.0  Pattern: Guardian Armor            [reci] <= Befouled Water Element
+ 1966/2018   97.4%   0.050%   1.68  95.8      104g sr= 1.8% spd=   0.0  Pattern: Dark Leather Shoulders    [reci] <= Crazed Ancient
+ 1964/2018   97.3%   0.010%   1.68  95.7      190g sr= 1.6% spd=   0.0  Pattern: Dark Leather Gloves       [reci] <= Ashenvale Assassin
+ 1964/2018   97.3%   0.010%   1.93  95.4      261g sr= 2.1% spd=   0.0  Recipe: Elixir of Lesser Agility   [reci] <= Ashenvale Assassin
+ 1963/2018   97.3%  0.0014%   1.36  95.9      851g sr= 1.9% spd=   0.0  Manual: Strong Anti-Venom          [reci] <= Thistlefur Warrior
+ 3468/3568   97.2%  0.0014%   1.03  96.2    9,244g sr= 1.5% spd=   0.0  Grimclaw                           [appe] <= Blackfathom Tide Pries
+ 3468/3568   97.2%   0.030%   0.66  96.6    2,899g sr= 1.3% spd=   0.0  Sanguine Armor                     [appe] <= Emeraldon Oracle
+ 3466/3568   97.1%   0.010%   0.74  96.4    2,708g sr= 0.3% spd=   0.0  Slayer's Gloves                    [appe] <= Goblin Technician
+ 1960/2018   97.1%   0.020%   2.03  95.2      111g sr= 2.1% spd=   0.0  Pattern: Hillman's Belt            [reci] <= Lesser Felguard
+ 3464/3568   97.1%   0.200%   0.83  96.3    1,330g sr= 0.3% spd=   0.0  Sentry's Slippers                  [appe] <= Xavian Betrayer
+ 1958/2018   97.0%   0.010%   1.87  95.2      247g sr= 1.6% spd=   0.0  Plans: Green Iron Gauntlets        [reci] <= Befouled Water Element
+ 3462/3568   97.0%   0.050%   0.97  96.1    1,024g sr= 0.4% spd=   0.0  Spiked Chain Leggings              [appe] <= Terrowulf Packlord
+ 1957/2018   97.0%   0.020%   2.02  95.0      146g sr= 2.1% spd=   0.0  Pattern: Fine Leather Pants        [reci] <= Bleakheart Satyr
+ 1956/2018   96.9%   0.020%   1.86  95.1      298g sr= 1.7% spd=   0.0  Plans: Green Iron Boots            [reci] <= Forsaken Herbalist
+ 1954/2018   96.8%  0.0015%   1.89  95.0      207g sr= 1.4% spd=   0.0  Plans: Silvered Bronze Leggings    [reci] <= Elder Shadowhorn Stag
+ 3453/3568   96.8%   0.040%   0.92  95.9      883g sr= 0.5% spd=   0.0  Spiked Chain Slippers              [appe] <= Chief Murgut <King of 
+ 3452/3568   96.7%   0.020%   1.04  95.7      827g sr= 0.8% spd=   0.0  Sentry's Armsplints                [appe] <= Ashenvale Assassin
+ 1952/2018   96.7%  0.0023%   2.15  94.7      164g sr= 2.3% spd=   0.0  Pattern: Spider Silk Slippers      [reci] <= Goblin Technician
+ 1952/2018   96.7%   0.030%   1.91  94.9      210g sr= 2.0% spd=   0.0  Plans: Mighty Iron Hammer          [reci] <= Warsong Shaman
+ 1950/2018   96.6%   0.400%   1.73  95.0        0g sr=24.5% spd= 205.6  Major Mana Potion                  [reci] <= Painmaster Thundrak
+ 3445/3568   96.6%   0.070%   1.04  95.6    1,041g sr= 0.9% spd=   0.0  Sentry's Gloves                    [appe] <= Elder Shadowhorn Stag
+ 1948/2018   96.5%   0.200%   2.48  94.1      266g sr= 1.2% spd=   0.0  Recipe: Elixir of Ogre's Strength  [reci] <= Chief Bombgineer Splod
+ 3443/3568   96.5%   0.080%   1.00  95.5      380g sr= 0.3% spd=   0.0  Spiked Chain Shoulder Pads         [appe] <= Mavoris Cloudsbreak
+
+-- NICHO (15-50%) --
+ 1756/3568   49.2%   0.400%  29.21  34.8       67g sr= 0.6% spd=   0.0  Banded Leggings                    [appe] <= Terrowulf Packlord
+ 1753/3568   49.1%   0.040%  32.28  33.3      113g sr= 1.3% spd=   0.0  Feral Gloves                       [appe] <= Sharptalon
+ 1746/3568   48.9%   0.800%  35.09  31.8      238g sr= 1.5% spd=   0.0  Rough Wooden Staff                 [appe] <= Reef Shark
+ 1746/3568   48.9%   0.180%  35.09  31.8      102g sr= 0.7% spd=   0.0  Rottingwood Quarterstaff           [appe] <= Veiled Deathstalker
+ 1743/3568   48.9%   0.030%  30.97  33.7      143g sr= 1.0% spd=   0.0  Lupine Slippers                    [appe] <= Spined Crawler
+ 1724/3568   48.3%  0.0012%  28.89  34.4       90g sr= 0.8% spd=   0.0  Cutthroat's Boots                  [appe] <= Bleakheart Trickster
+ 1718/3568   48.2%   0.020%  33.48  32.0       48g sr= 0.7% spd=   0.0  Thistlefur Gloves                  [appe] <= Thistlefur Avenger
+ 1679/3568   47.1%   0.130%  30.67  32.6       37g sr= 1.1% spd=   0.0  Large War Club                     [appe] <= Raging Ancient
+ 1676/3568   47.0%    1.10%  33.01  31.5      109g sr= 1.2% spd=   0.0  Unraveling Cloth Shirt             [appe] <= Veiled Deathstalker
+  947/2018   46.9%   0.010%  36.94  29.6        0g sr=49.6% spd= 683.5  Minor Healing Potion               [reci] <= Kaldorei Assassin
+ 1674/3568   46.9%    5.00%  29.93  32.9       51g sr= 1.9% spd=   0.0  Rectangular Shield                 [appe] <= Thistlefur Pathfinder
+ 1668/3568   46.7%   0.020%  28.11  33.6      257g sr= 1.9% spd=   0.0  Bloodspattered Shield              [appe] <= Ashenvale Bowman
+ 1653/3568   46.3%    2.68%  37.12  29.1       30g sr= 0.2% spd=   0.0  Brocade Cloak                      [appe] <= Wrathtail Sorceress
+ 1653/3568   46.3%   0.600%  37.12  29.1       32g sr= 1.0% spd=   0.0  Sage's Cloak                       [appe] <= Akkrilus
+ 1653/3568   46.3%   0.020%  37.12  29.1      386g sr= 0.7% spd=   0.0  Raincaller Cloak                   [appe] <= Lesser Felguard
+ 1653/3568   46.3%   0.080%  37.12  29.1       48g sr= 0.4% spd=   0.0  Mystic's Cape                      [appe] <= Forsaken Herbalist
+ 1627/3568   45.6%   0.150%  34.66  29.8       93g sr= 0.6% spd=   0.0  Wrangler's Belt                    [appe] <= Tendril from Below
+ 1627/3568   45.6%   0.130%  34.66  29.8    1,098g sr= 0.3% spd=   0.0  Pathfinder Belt                    [appe] <= Silverwing Sentinel
+ 1619/3568   45.4%   0.400%  33.76  30.1      147g sr= 0.7% spd=   0.0  Rigid Buckler                      [appe] <= Sentinel Luciel Starwh
+ 1619/3568   45.4%  0.0016%  33.76  30.1    1,050g sr= 2.2% spd=   0.0  Ceremonial Buckler                 [appe] <= Thistlefur Totemic
+ 1616/3568   45.3%  0.0015%  41.78  26.4      134g sr= 0.7% spd=   0.0  Ghostwalker Buckler                [appe] <= Elder Shadowhorn Stag
+ 1565/3568   43.9%   0.180%  33.66  29.1      141g sr= 2.6% spd=   0.0  Mystic's Bracelets                 [appe] <= Geltharis
+ 1565/3568   43.9%  0.0014%  42.15  25.4       85g sr= 1.1% spd=   0.0  Dokebi Mantle                      [appe] <= Goblin Technician
+ 1560/3568   43.7%  0.0015%  38.95  26.7      254g sr= 0.3% spd=   0.0  Feral Bindings                     [appe] <= Ashenvale Scout
+ 1546/3568   43.3%   0.150%  42.40  25.0       49g sr= 1.1% spd=   0.0  Ivycloth Tunic                     [appe] <= Akkrilus
+ 1526/3568   42.8%   0.300%  42.23  24.7      123g sr= 1.2% spd=   0.0  Rigid Bracelets                    [appe] <= Felmusk Shadowstalker
+ 1471/3568   41.2%    1.00%  38.47  25.4       31g sr= 0.2% spd=   0.0  Sunbleached Cowl                   [appe] <= Darnassian Archer
+ 1471/3568   41.2%   0.600%  38.47  25.4       13g sr= 0.7% spd=   0.0  Unraveling Cloth Cowl              [appe] <= Veiled Deathstalker
+ 1461/3568   40.9%   0.190%  39.54  24.8       67g sr= 2.9% spd=   0.0  Medicine Staff                     [appe] <= Warsong Logger
+ 1460/3568   40.9%  0.0007%  39.76  24.6      109g sr= 1.6% spd=   0.0  Crystalpine Stinger                [appe] <= Ashenvale Scout

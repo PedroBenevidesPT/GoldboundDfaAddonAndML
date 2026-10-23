@@ -1,0 +1,329 @@
+item_id,name,realm,band,group,want_rate,decay_78d,local_market_g,local_wall_g,sales,expired,attempts,realized_price_g,vendor_sell_g
+58488,Potion of Treasure Finding,Spinebreaker,100-500,commodity,,1.0538300678395525,0.0,0.0,0,0,0,,0.5
+241316,Haranir Phial of Perception,Spinebreaker,100-500,commodity,,1.2193237754185278,0.0,0.0,0,0,0,,1.0381
+124671,Darkmoon Firewater,Spinebreaker,100-500,commodity,,0.7710999607375576,0.0,0.0,0,0,0,,0.0062
+244700,Greased Cogwheel,Spinebreaker,100-500,commodity,,0.526994854728139,0.0,0.0,0,0,0,,8.634
+241308,Light's Potential,Spinebreaker,100-500,commodity,,0.7874875437514244,0.0,0.0,0,0,0,,0.8345
+779,Shiny Seashell,Spinebreaker,2k-5k,commodity,,0.0007255929028739501,0.0,0.0,0,0,0,,0.0018
+5118,Large Flat Tooth,Spinebreaker,2k-5k,commodity,,0.5373610239340673,0.0,0.0,0,0,0,,0.0071
+124640,Inky Black Potion,Spinebreaker,<100,commodity,,1.0320928556722258,0.0,0.0,0,0,0,,0.8333
+3383,Elixir of Wisdom,Spinebreaker,<100,commodity,,2.8528874269005846,0.0,0.0,0,0,0,,0.01
+3371,Crystal Vial,Spinebreaker,<100,commodity,,32.093023255813954,0.0,0.0,0,0,0,,0.0005
+785,Mageroyal,Spinebreaker,<100,commodity,,0.9131030076217425,0.0,0.0,0,0,0,,0.002
+118,Minor Healing Potion,Spinebreaker,<100,commodity,,0.4510948905109489,0.0,0.0,0,0,0,,0.0005
+929,Healing Potion,Spinebreaker,<100,commodity,,0.956343792633015,0.0,0.0,0,0,0,,0.0075
+858,Lesser Healing Potion,Spinebreaker,<100,commodity,,0.7986348122866894,0.0,0.0,0,0,0,,0.0025
+2458,Elixir of Minor Fortitude,Spinebreaker,<100,commodity,,0.022611589663273295,0.0,0.0,0,0,0,,0.0015
+2934,Ruined Leather Scraps,Spinebreaker,<100,commodity,,0.8027902170168791,0.0,0.0,0,0,0,,0.0007
+180405,Rusty Gargon Chain,Spinebreaker,<100,commodity,,0.12109451952247745,0.0,0.0,0,0,0,,0.0118
+60392,Wispy Tail Hair,Spinebreaker,<100,commodity,,0.04357764700160498,0.0,0.0,0,0,0,,0.2073
+783,Light Hide,Spinebreaker,<100,commodity,,1.319281135711196,0.0,0.0,0,0,0,,0.005
+60395,Sun-Flecked Scale,Spinebreaker,<100,commodity,,0.04366824999415027,0.0,0.0,0,0,0,,0.4323
+2589,Linen Cloth,Spinebreaker,<100,commodity,,0.8604651162790697,0.0,0.0,0,0,0,,0.0013
+60393,Crushed Hoof,Spinebreaker,<100,commodity,,0.0023592247494549777,0.0,0.0,0,0,0,,0.4323
+60394,Rigid Molar,Spinebreaker,<100,commodity,,0.029541827618607287,0.0,0.0,0,0,0,,0.2073
+2318,Light Leather,Spinebreaker,<100,commodity,,0.8426146820257651,0.0,0.0,0,0,0,,0.0015
+5470,Thunder Lizard Tail,Spinebreaker,<100,commodity,,1.263849765258216,0.0,0.0,0,0,0,,0.0028
+212310,Phial of Truesight,Spinebreaker,<100,commodity,,1.8705818441096913,0.0,0.0,0,0,0,,1.1
+22795,Fel Blossom,Spinebreaker,<100,commodity,,13.38860103626943,0.0,0.0,0,0,0,,0.0
+242298,Argentleaf Tea,Spinebreaker,<100,commodity,,0.5872913378294351,0.0,0.0,0,0,0,,0.335
+212309,Phial of Truesight,Spinebreaker,<100,commodity,,2.1128198583370557,0.0,0.0,0,0,0,,1.1
+5206,Bogling Root,Spinebreaker,<100,commodity,,0.3542336548767417,0.0,0.0,0,0,0,,0.0037
+7074,Chipped Claw,Spinebreaker,<100,commodity,,0.5206349206349207,0.0,0.0,0,0,0,,0.0004
+2449,Earthroot,Spinebreaker,<100,commodity,,0.8987450662888372,0.0,0.0,0,0,0,,0.002
+1288,Large Venom Sac,Spinebreaker,<100,commodity,,2.0273972602739727,0.0,0.0,0,0,0,,0.0185
+236959,Empty Mysterious Potion,Spinebreaker,<100,commodity,,0.2564795356749725,0.0,0.0,0,0,0,,0.05
+5997,Elixir of Minor Defense,Spinebreaker,<100,commodity,,0.15375722543352602,0.0,0.0,0,0,0,,0.0005
+5465,Small Spider Leg,Spinebreaker,<100,commodity,,4.429847782925215,0.0,0.0,0,0,0,,0.0003
+55982,Inert Elemental Granule,Spinebreaker,<100,commodity,,74.9418093650553,0.0,0.0,0,0,0,,0.007
+11416,Delicate Ribcage,Spinebreaker,<100,commodity,,0.6549575129966386,0.0,0.0,0,0,0,,
+35948,Savory Snowplum,Spinebreaker,<100,commodity,,0.9742690058479532,0.0,0.0,0,0,0,,0.08
+4602,Moon Harvest Pumpkin,Spinebreaker,<100,commodity,,1.147940074906367,0.0,0.0,0,0,0,,0.01
+24511,Primordial Essence,Spinebreaker,<100,commodity,,0.5866554762903903,0.0,0.0,0,0,0,,0.1325
+5136,Torn Furry Ear,Spinebreaker,<100,commodity,,1.3962115232833465,0.0,0.0,0,0,0,,0.0177
+24508,Elemental Fragment,Spinebreaker,<100,commodity,,0.9550311665182547,0.0,0.0,0,0,0,,0.1185
+33448,Runic Mana Potion,Spinebreaker,<100,commodity,,0.9034432234432235,0.0,0.0,0,0,0,,
+55985,Inert Elemental Piece,Spinebreaker,<100,commodity,,0.006475311304988838,0.0,0.0,0,0,0,,
+17056,Light Feather,Spinebreaker,<100,commodity,,0.8059322033898305,0.0,0.0,0,0,0,,0.0007
+6149,Greater Mana Potion,Spinebreaker,<100,commodity,,2.4403361344537817,0.0,0.0,0,0,0,,0.03
+4604,Forest Mushroom Cap,Spinebreaker,<100,commodity,,0.14831130690161526,0.0,0.0,0,0,0,,0.0001
+55984,Inert Elemental Shard,Spinebreaker,<100,commodity,,0.19576414980002424,0.0,0.0,0,0,0,,
+36810,Primordial Infusion,Spinebreaker,<100,commodity,,0.024994080349390935,0.0,0.0,0,0,0,,0.1562
+3301,Sharp Canine,Spinebreaker,<100,commodity,,0.055711086226203806,0.0,0.0,0,0,0,,0.0102
+4865,Ruined Pelt,Spinebreaker,<100,commodity,,15.26450276243094,0.0,0.0,0,0,0,,0.0005
+771,Chipped Boar Tusk,Spinebreaker,<100,commodity,,0.5901862789641072,0.0,0.0,0,0,0,,0.0038
+3299,Fractured Canine,Spinebreaker,<100,commodity,,0.00015261653417007891,0.0,0.0,0,0,0,,0.0048
+117,Tough Jerky,Spinebreaker,<100,commodity,,0.28804347826086957,0.0,0.0,0,0,0,,0.0001
+190328,Rousing Frost,Spinebreaker,<100,commodity,,0.6872305526120974,0.0,0.0,0,0,0,,0.02
+276126,Serpent's Feather,Spinebreaker,<100,commodity,,,0.0,0.0,0,0,0,,0.0
+276124,Ancient Knucklebone,Spinebreaker,<100,commodity,,,0.0,0.0,0,0,0,,0.0
+260639,Fractured Bone,Spinebreaker,<100,commodity,,0.996024284102509,0.0,0.0,0,0,0,,1.8641
+242639,Practically Pork,Spinebreaker,<100,commodity,,0.2817538684598655,0.0,0.0,0,0,0,,0.01
+243734,Thalassian Phoenix Oil,Spinebreaker,<100,commodity,,1.343422866987401,0.0,0.0,0,0,0,,1.06
+276117,Clouded Blood-Pearl,Spinebreaker,<100,commodity,,,0.0,0.0,0,0,0,,0.0
+242644,Mana-Wyrm Essence,Spinebreaker,<100,commodity,,0.7276923076923076,0.0,0.0,0,0,0,,0.0154
+191378,Refreshing Healing Potion,Spinebreaker,<100,commodity,,0.9957081545064378,0.0,0.0,0,0,0,,0.1
+2996,Bolt of Linen Cloth,Spinebreaker,<100,commodity,,0.6122945830797322,0.0,0.0,0,0,0,,0.004
+10938,Lesser Magic Essence,Spinebreaker,<100,commodity,,0.9529346622369879,0.0,0.0,0,0,0,,0.0
+38679,Enchant Bracer - Minor Health,Spinebreaker,<100,commodity,,0.6522522522522523,0.0,0.0,0,0,0,,0.1
+183955,Curing Salt,Spinebreaker,<100,commodity,,0.6503014851685485,0.0,0.0,0,0,0,,
+4305,Bolt of Silk Cloth,Spinebreaker,<100,commodity,,1.0249587458745875,0.0,0.0,0,0,0,,0.06
+6261,Orange Dye,Spinebreaker,<100,commodity,,0.24990011985617258,0.0,0.0,0,0,0,,0.025
+2320,Coarse Thread,Spinebreaker,<100,commodity,,0.9523809523809523,0.0,0.0,0,0,0,,0.0002
+3859,Steel Bar,Spinebreaker,<100,commodity,,1.2973156532988357,0.0,0.0,0,0,0,,0.006
+16202,Lesser Eternal Essence,Spinebreaker,<100,commodity,,0.6975368665784452,0.0,0.0,0,0,0,,0.0
+14341,Rune Thread,Spinebreaker,<100,commodity,,0.9215790405381483,0.0,0.0,0,0,0,,
+4341,Yellow Dye,Spinebreaker,<100,commodity,,2.533596837944664,0.0,0.0,0,0,0,,0.0125
+52982,Deepsea Scale,Spinebreaker,<100,commodity,,1.1031261454678745,0.0,0.0,0,0,0,,0.11
+12644,Dense Grinding Stone,Spinebreaker,<100,commodity,,0.1589625601338632,0.0,0.0,0,0,0,,0.02
+5498,Small Lustrous Pearl,Spinebreaker,<100,commodity,,0.49355081084465596,0.0,0.0,0,0,0,,0.02
+818,Tigerseye,Spinebreaker,<100,commodity,,0.7331280376952473,0.0,0.0,0,0,0,,0.01
+8170,Rugged Leather,Spinebreaker,<100,commodity,,0.5113238947444586,0.0,0.0,0,0,0,,0.05
+1529,Jade,Spinebreaker,<100,commodity,,0.5671284282805701,0.0,0.0,0,0,0,,0.07
+3470,Rough Grinding Stone,Spinebreaker,<100,commodity,,3.2515912897822448,0.0,0.0,0,0,0,,0.0005
+4342,Purple Dye,Spinebreaker,<100,commodity,,0.2884843688167788,0.0,0.0,0,0,0,,0.0625
+2319,Medium Leather,Spinebreaker,<100,commodity,,0.772775237425255,0.0,0.0,0,0,0,,0.005
+2838,Heavy Stone,Spinebreaker,<100,commodity,,1.3700137551581844,0.0,0.0,0,0,0,,0.006
+1705,Lesser Moonstone,Spinebreaker,<100,commodity,,0.6746379626033402,0.0,0.0,0,0,0,,0.06
+2321,Fine Thread,Spinebreaker,<100,commodity,,1.2990654205607477,0.0,0.0,0,0,0,,0.0025
+3857,Coal,Spinebreaker,<100,commodity,,2.4092140921409215,0.0,0.0,0,0,0,,0.0125
+10940,Strange Dust,Spinebreaker,<100,commodity,,1.061441381600797,0.0,0.0,0,0,0,,0.0
+2771,Tin Ore,Spinebreaker,<100,commodity,,0.8745942959740349,0.0,0.0,0,0,0,,
+8838,Sungrass,Spinebreaker,<100,commodity,,1.624067913272915,0.0,0.0,0,0,0,,0.006
+2604,Red Dye,Spinebreaker,<100,commodity,,2.6166666666666667,0.0,0.0,0,0,0,,0.0012
+4304,Thick Leather,Spinebreaker,<100,commodity,,0.6295685588517844,0.0,0.0,0,0,0,,0.03
+2325,Black Dye,Spinebreaker,<100,commodity,,0.14471221338324755,0.0,0.0,0,0,0,,0.025
+36919,Cardinal Ruby,Spinebreaker,<100,commodity,,0.5828788283305999,0.0,0.0,0,0,0,,
+5500,Iridescent Pearl,Spinebreaker,<100,commodity,,0.29557412565769114,0.0,0.0,0,0,0,,0.075
+2324,Bleach,Spinebreaker,<100,commodity,,0.3297413793103448,0.0,0.0,0,0,0,,0.0006
+15410,Scale of Onyxia,Spinebreaker,<100,commodity,,0.46618201569670875,0.0,0.0,0,0,0,,
+1206,Moss Agate,Spinebreaker,<100,commodity,,0.8800892209292951,0.0,0.0,0,0,0,,0.04
+765,Silverleaf,Spinebreaker,<100,commodity,,0.8222409435551812,0.0,0.0,0,0,0,,0.001
+2997,Bolt of Woolen Cloth,Spinebreaker,<100,commodity,,0.4480566095785048,0.0,0.0,0,0,0,,0.01
+12808,Essence of Undeath,Spinebreaker,<100,commodity,,0.9211895161290322,0.0,0.0,0,0,0,,0.1
+16204,Light Illusion Dust,Spinebreaker,<100,commodity,,0.7256502601040417,0.0,0.0,0,0,0,,0.0
+4338,Mageweave Cloth,Spinebreaker,<100,commodity,,1.4831932773109244,0.0,0.0,0,0,0,,0.025
+3357,Liferoot,Spinebreaker,<100,commodity,,0.7115809735777554,0.0,0.0,0,0,0,,0.0075
+1210,Shadowgem,Spinebreaker,<100,commodity,,0.8790904048807543,0.0,0.0,0,0,0,,0.025
+2775,Silver Ore,Spinebreaker,<100,commodity,,0.9500507775080848,0.0,0.0,0,0,0,,
+12804,Powerful Mojo,Spinebreaker,<100,commodity,,0.41241013999243287,0.0,0.0,0,0,0,,0.2
+4291,Silken Thread,Spinebreaker,<100,commodity,,0.10192525481313704,0.0,0.0,0,0,0,,0.0125
+3466,Strong Flux,Spinebreaker,<100,commodity,,0.8345088161209068,0.0,0.0,0,0,0,,0.05
+10290,Pink Dye,Spinebreaker,<100,commodity,,0.9307829181494662,0.0,0.0,0,0,0,,0.0625
+2840,Copper Bar,Spinebreaker,<100,commodity,,0.9601799474410939,0.0,0.0,0,0,0,,0.001
+2447,Peacebloom,Spinebreaker,<100,commodity,,0.8260905900050142,0.0,0.0,0,0,0,,
+2605,Green Dye,Spinebreaker,<100,commodity,,0.4367816091954023,0.0,0.0,0,0,0,,0.0025
+4340,Gray Dye,Spinebreaker,<100,commodity,,0.5642458100558659,0.0,0.0,0,0,0,,0.0087
+6260,Blue Dye,Spinebreaker,<100,commodity,,1.0703703703703704,0.0,0.0,0,0,0,,0.0012
+160298,Durable Flux,Spinebreaker,<100,commodity,,0.9949937421777222,0.0,0.0,0,0,0,,0.075
+4306,Silk Cloth,Spinebreaker,<100,commodity,,0.631858407079646,0.0,0.0,0,0,0,,0.015
+774,Malachite,Spinebreaker,<100,commodity,,0.6622649482357913,0.0,0.0,0,0,0,,0.005
+3864,Citrine,Spinebreaker,<100,commodity,,0.4447342680143463,0.0,0.0,0,0,0,,0.08
+13466,Sorrowmoss,Spinebreaker,<100,commodity,,0.5014879825121473,0.0,0.0,0,0,0,,0.025
+3576,Tin Bar,Spinebreaker,<100,commodity,,0.7515766902119072,0.0,0.0,0,0,0,,0.0035
+5784,Slimy Murloc Scale,Spinebreaker,<100,commodity,,0.5597263313609467,0.0,0.0,0,0,0,,0.0075
+7909,Aquamarine,Spinebreaker,<100,commodity,,0.46765053863876954,0.0,0.0,0,0,0,,0.1
+2453,Bruiseweed,Spinebreaker,<100,commodity,,0.8417151040350433,0.0,0.0,0,0,0,,0.0025
+36934,Eye of Zul,Spinebreaker,<100,commodity,,0.36943929757791244,0.0,0.0,0,0,0,,
+8343,Heavy Silken Thread,Spinebreaker,<100,commodity,,0.3348478862109838,0.0,0.0,0,0,0,,0.05
+13467,Icecap,Spinebreaker,<100,commodity,,0.7408550219121725,0.0,0.0,0,0,0,,0.025
+38682,Enchanting Vellum,Spinebreaker,<100,commodity,,0.9867211440245148,0.0,0.0,0,0,0,,0.001
+2880,Weak Flux,Spinebreaker,<100,commodity,,1.5365853658536586,0.0,0.0,0,0,0,,0.0025
+3356,Kingsblood,Spinebreaker,<100,commodity,,0.8935701672379766,0.0,0.0,0,0,0,,0.003
+4289,Salt,Spinebreaker,<100,commodity,,2.466019417475728,0.0,0.0,0,0,0,,
+2592,Wool Cloth,Spinebreaker,<100,commodity,,1.2377300613496933,0.0,0.0,0,0,0,,0.0033
+8167,Turtle Scale,Spinebreaker,<100,commodity,,0.18440238111163132,0.0,0.0,0,0,0,,0.01
+8171,Rugged Hide,Spinebreaker,<100,commodity,,0.9177764013626509,0.0,0.0,0,0,0,,0.05
+2452,Swiftthistle,Spinebreaker,<100,commodity,,0.937930191829919,0.0,0.0,0,0,0,,0.0015
+8182,Pellet Rifle,Spinebreaker,100-500,demand_falling,0.5343422016109348,0.8789192857142857,156.03,156.03,0,0,0,,0.0068
+3778,Taut Compound Bow,Spinebreaker,100-500,demand_falling,0.5369294605809128,0.6574640835155833,455.94,0.0,0,0,0,,0.722
+82234,Highpeak Girdle of the Feverflare,Spinebreaker,100-500,demand_falling,0.18125457651940444,0.6594475708606536,0.0,0.0,0,0,0,,25.5839
+4571,War Knife,Spinebreaker,100-500,demand_falling,0.14156700024408103,0.7918563030284891,146.5756,159.0,0,0,0,,0.0979
+1822,Cedar Walking Stick,Spinebreaker,100-500,demand_falling,0.659116426653649,0.8600525866969869,256.2412,0.0,0,0,0,,0.174
+4567,Merc Sword of the Quickblade,Spinebreaker,100-500,demand_falling,0.5123260922626311,0.8515133565980539,192.9651,0.0,0,0,0,,0.1049
+2214,Wooden Buckler,Spinebreaker,100-500,demand_falling,0.27351720771296073,0.31899551141626675,241.2433,0.0,0,0,0,,0.0182
+1792,Patched Leather Pants,Spinebreaker,100-500,demand_falling,0.7381986819624116,0.6985526991634737,455.1691,0.0,0,0,0,,0.0335
+1512,Crude Battle Axe,Spinebreaker,100-500,demand_falling,0.5318525750549182,0.3222703772817575,471.0105,0.0,0,0,0,,0.0194
+62096,Clammy Mail Belt,Spinebreaker,100-500,demand_falling,0.2404686355870149,0.6791722573775743,239.6182,0.0,0,0,0,,9.6705
+3816,Reflective Heater,Spinebreaker,100-500,demand_falling,0.1414693678301196,0.637989614487482,240.0923,0.0,0,0,0,,1.5566
+1750,Linked Chain Gloves,Spinebreaker,100-500,demand_falling,0.1953136441298511,0.47481156412298414,126.7114,0.0,0,0,0,,0.0595
+62080,Perforated Plate Boots,Spinebreaker,100-500,demand_falling,0.13102269953624604,0.39329731589019334,199.2191,0.0,0,0,0,,14.6091
+9811,Fortified Bracers of the Quickblade,Spinebreaker,100-500,demand_falling,0.5214059067610447,0.5905548141668187,295.7432,242.03,0,0,0,,0.1447
+1812,Short-Handled Battle Axe,Spinebreaker,100-500,demand_falling,0.6719062728825971,0.4979769630196704,233.1207,0.0,0,0,0,,0.0453
+1821,Warped Blade,Spinebreaker,100-500,demand_falling,0.3501586526726873,0.6426185347528706,214.5431,0.0,0,0,0,,0.1679
+82194,Trellised Cord of the Peerless,Spinebreaker,100-500,demand_falling,0.12433487917988773,0.5577698350289099,139.7154,0.0,0,0,0,,24.6745
+55719,Mystral Robe of the Quickblade,Spinebreaker,100-500,demand_falling,0.2385159873077862,0.7273867899249732,188.4338,135.66,0,0,0,,48.1828
+9766,Greenweave Sash of the Quickblade,Spinebreaker,100-500,demand_falling,0.598779594825482,0.7253253243333541,231.2094,219.49,0,0,0,,0.0919
+1748,Linked Chain Bracers,Spinebreaker,100-500,demand_falling,0.1863802782523798,0.7556011536015196,102.3829,0.0,0,0,0,,0.0392
+1824,Shiny War Axe,Spinebreaker,100-500,demand_falling,0.6761532828899195,0.6793783471468094,316.1924,310.6,0,0,0,,0.1753
+25346,Dilapidated Cloth Pants,Spinebreaker,100-500,demand_falling,0.21947766658530632,0.707721063578616,109.9198,0.0,0,0,0,,16.6552
+1814,Battered Mallet,Spinebreaker,100-500,demand_falling,0.6784476446180132,0.5611077122307365,466.2796,449.14,0,0,0,,0.0694
+2783,Shoddy Blunderbuss,Spinebreaker,100-500,demand_falling,0.476055650475958,0.4007597083874693,136.822,0.0,0,0,0,,0.1421
+1794,Patched Leather Jerkin,Spinebreaker,100-500,demand_falling,0.71564559433732,0.3447549197446733,365.0058,0.0,0,0,0,,0.0447
+1735,Worn Mail Pants,Spinebreaker,100-500,demand_falling,0.053112033195020746,0.4810994505611341,221.4538,0.0,0,0,0,,0.0104
+25348,Dilapidated Cloth Vest,Spinebreaker,100-500,demand_falling,0.16460824993897974,0.665495706479313,145.6068,0.0,0,0,0,,17.2237
+62082,Dirt-Caked Pants,Spinebreaker,100-500,demand_falling,0.181156944105443,0.34324233944969434,131.7242,0.0,0,0,0,,19.6564
+1788,Patched Leather Boots,Spinebreaker,100-500,demand_falling,0.7385892116182573,0.7166887657671529,292.7484,0.0,0,0,0,,0.0284
+6568,Shimmering Trousers of the Quickblade,Spinebreaker,100-500,demand_falling,0.554893824749817,0.793814616590716,116.7879,105.0,0,0,0,,0.2738
+5516,Threshadon Fang,Spinebreaker,100-500,demand_falling,0.36387600683426896,0.8680820089773141,215.5609,0.0,0,0,0,,0.0317
+68758,Imbued Pioneer Boots,Spinebreaker,100-500,demand_falling,0.27605565047595804,0.8931980235251287,100.19,100.19,0,0,0,,0.0165
+9763,Cadet Leggings of the Aurora,Spinebreaker,100-500,demand_falling,0.09143275567488406,0.8691902482544778,287.3369,299.0,0,0,0,,0.0392
+258962,Tarnished Dawnlit Warglaive,Spinebreaker,100-500,demand_falling,0.2540883573346351,0.30431683515167507,293.0283,85.62,0,0,0,,8.8978
+258934,Tarnished Dawnlit Sentinel's Girdle,Spinebreaker,100-500,demand_falling,0.12243104710763973,0.6655088894363397,131.1127,50.0,0,0,0,,3.0406
+4330,Stylish Red Shirt,Spinebreaker,100-500,demand_falling,0.4174273858921162,0.6399837757897721,108.1252,45.08,0,0,0,,
+1818,Standard Claymore,Spinebreaker,100-500,demand_falling,0.43622162557969246,0.6315467013156719,140.3805,185.77,0,0,0,,0.2076
+120166,Gorestained Garb,Spinebreaker,100-500,demand_falling,0.508371979497193,0.66642082950046,105.914,59.23,0,0,0,,0.395
+4343,Brown Linen Pants,Spinebreaker,100-500,demand_falling,0.6339272638515987,0.8902083468523698,108.5996,0.0,0,0,0,,
+9810,Fortified Boots of the Quickblade,Spinebreaker,100-500,demand_falling,0.5548450085428362,0.7272739904028385,156.7525,156.93,0,0,0,,0.2597
+1801,Rawhide Shoulderpads,Spinebreaker,100-500,demand_falling,0.7510373443983402,0.7299658593404827,476.0686,364.23,0,0,0,,0.1064
+15118,Rigid Tunic,Spinebreaker,15k-50k,demand_falling,0.31442518916280204,0.8520787078364823,0.0,0.0,0,0,0,,0.4263
+1829,Short Cutlass,Spinebreaker,2k-5k,demand_falling,0.49153038808884547,0.8769248312406985,4032.526,2207.21,0,0,0,,0.3909
+5956,Blacksmith Hammer,Spinebreaker,2k-5k,demand_falling,0.2557969245789602,0.3984259525736828,4196.9909,2187.36,0,0,0,,0.0001
+14124,Ritual Gloves of the Fireflash,Spinebreaker,2k-5k,demand_falling,0.6840615084207957,0.5777350090632359,2016.4031,1487.59,0,0,0,,0.0592
+14564,Prospector's Mitts,Spinebreaker,2k-5k,demand_falling,0.7763729558213327,0.8287094129324595,4148.6497,3625.0,0,0,0,,0.0493
+15354,Headhunter's Cloak of the Quickblade,Spinebreaker,2k-5k,demand_falling,0.07317549426409568,0.8555176670458493,3340.9664,3781.63,0,0,0,,0.8335
+15498,Outrunner's Slippers of the Aurora,Spinebreaker,2k-5k,demand_falling,0.8171833048572126,0.8611213555473742,3776.5949,2382.07,0,0,0,,0.0898
+3306,Brackwater Vest,Spinebreaker,2k-5k,demand_falling,0.05506468147424945,0.6170773076282636,4678.5611,3033.11,0,0,0,,0.0877
+1767,Canvas Gloves,Spinebreaker,2k-5k,demand_falling,0.7352208933365878,0.8383654503419978,2720.2525,1648.56,0,0,0,,0.0205
+15512,Grunt's Shield of the Aurora,Spinebreaker,2k-5k,demand_falling,0.2107883817427386,0.825107721997355,2191.8105,1561.61,0,0,0,,0.2682
+14565,Prospector's Woolies,Spinebreaker,2k-5k,demand_falling,0.5007566512082011,0.8415299927485802,2713.4394,1763.67,0,0,0,,0.1472
+14126,Ritual Amice,Spinebreaker,2k-5k,demand_falling,0.8781547473761289,0.8868981553230291,4776.6987,859.49,0,0,0,,0.11
+1515,Rough Wooden Staff,Spinebreaker,500-2k,demand_falling,0.2207957041737857,0.4814557915258953,530.3626,835.07,0,0,0,,0.0196
+258921,Tarnished Dawnlit Corsair's Boots,Spinebreaker,500-2k,demand_falling,0.11422992433487918,0.3998849626145102,633.3623,292.65,0,0,0,,
+3940,Crochet Gloves,Spinebreaker,500-2k,demand_falling,0.26258237734927997,0.7894657843177435,691.6626,0.0,0,0,0,,6.3603
+15111,Rigid Moccasins of the Aurora,Spinebreaker,500-2k,demand_falling,0.3134976812301684,0.8419811450998955,572.3437,454.88,0,0,0,,0.1106
+15112,Rigid Bracelets of the Aurora,Spinebreaker,500-2k,demand_falling,0.23788137661703684,0.48917739852846487,949.9949,782.4,0,0,0,,0.0574
+13024,Beazel's Basher,Spinebreaker,500-2k,demand_falling,0.794971930680986,0.879949222760105,1387.2156,1288.12,0,0,0,,1.2161
+1793,Patched Leather Shoulderpads,Spinebreaker,500-2k,demand_falling,0.6197217476202099,0.649640040511067,1085.8507,709.37,0,0,0,,0.0333
+1826,Rock Maul,Spinebreaker,500-2k,demand_falling,0.4768367097876495,0.655083013985821,537.3849,463.15,0,0,0,,0.3785
+14568,Bristlebark Boots,Spinebreaker,500-2k,demand_falling,0.5860385648035148,0.7223811346319173,922.9016,725.88,0,0,0,,0.1768
+15893,Prospector's Buckler,Spinebreaker,500-2k,demand_falling,0.14537466438857702,0.8366376167659144,1219.6622,0.0,0,0,0,,0.1406
+1797,Rawhide Bracers,Spinebreaker,500-2k,demand_falling,0.759726629240908,0.7975998523823331,644.2971,523.48,0,0,0,,0.0295
+9889,Huntsman's Cap of the Quickblade,Spinebreaker,500-2k,demand_falling,0.6921649987795948,0.8690141106171039,816.5469,597.0,0,0,0,,4.7161
+3018,Hide of Lupos,Spinebreaker,500-2k,demand_falling,0.2823529411764706,0.8827158366710962,730.001,718.83,0,0,0,,0.1732
+1785,Cross-Stitched Shoulderpads,Spinebreaker,500-2k,demand_falling,0.7529899926775689,0.7428854098163367,1241.2459,1575.92,0,0,0,,0.1913
+10407,Raider's Shoulderpads,Spinebreaker,500-2k,demand_falling,0.4680009763241396,0.7593463842139482,1005.0593,721.66,0,0,0,,0.065
+2034,Scholarly Robes,Spinebreaker,500-2k,demand_falling,0.508371979497193,0.8437025596985983,555.4013,196.82,0,0,0,,0.3299
+14158,Pagan Vest of the Quickblade,Spinebreaker,50k-150k,demand_falling,0.9181352208933365,0.7090766652495235,80031.9493,52696.51,0,0,0,,0.4215
+1516,Worn Hatchet,Spinebreaker,<100,demand_falling,0.15313644129851112,0.4634019316925718,85.7587,71.12,0,0,0,,0.0237
+25359,Decaying Leather Boots,Spinebreaker,<100,demand_falling,0.17158896753722236,0.7694650094569035,85.3272,0.0,0,0,0,,12.1415
+15223,Jagged Star of the Fireflash,Spinebreaker,<100,demand_falling,0.4424212838662436,0.8008247066538633,94.3206,86.26,0,0,0,,0.4039
+25344,Dilapidated Cloth Gloves,Spinebreaker,<100,demand_falling,0.15889675372223577,0.8389301317918338,24.2258,0.0,0,0,0,,8.3125
+1760,Reinforced Chain Shoulderpads,Spinebreaker,<100,demand_falling,0.5378569685135465,0.793016593597807,48.7182,59.01,0,0,0,,0.1513
+3190,Beatstick,Spinebreaker,100-500,demand_stable,0.18686844032218697,1.139052641166328,116.639,166.01,0,0,0,,0.0099
+854,Quarter Staff,Spinebreaker,100-500,demand_stable,0.5714913351232609,1.25,249.1351,0.0,0,0,0,,0.0604
+7494,Captain's Waistguard of the Fireflash,Spinebreaker,100-500,demand_stable,0.6897241884305589,1.0054512758661,486.0997,0.0,0,0,0,,5.0211
+3039,Short Ash Bow,Spinebreaker,100-500,demand_stable,0.6174273858921162,0.9698739927016111,416.8661,0.0,0,0,0,,0.426
+1746,Linked Chain Belt,Spinebreaker,100-500,demand_stable,0.07444471564559434,1.6590493016348529,123.4648,0.0,0,0,0,,0.0709
+9792,Ivycloth Boots of the Aurora,Spinebreaker,100-500,demand_stable,0.4933854039541128,1.1763085009358891,100.6892,219.0,0,0,0,,0.2616
+15211,Militant Shortsword of the Aurora,Spinebreaker,100-500,demand_stable,0.5360507688552599,1.1673531909664083,174.2159,233.22,0,0,0,,0.2766
+62090,Perforated Plate Belt,Spinebreaker,100-500,demand_stable,0.11466927019770563,1.3373113617868522,244.9335,0.0,0,0,0,,9.4566
+9767,Greenweave Sandals of the Aurora,Spinebreaker,100-500,demand_stable,0.679179887722724,1.084718715762397,326.0555,260.77,0,0,0,,0.1708
+62132,Sooty Mail Armor,Spinebreaker,100-500,demand_stable,0.07337075909201855,1.5372119894535294,232.4617,0.0,0,0,0,,19.1535
+789,Stout Battlehammer of the Aurora,Spinebreaker,100-500,demand_stable,0.33141322919209176,0.9654380849414103,261.0939,189.19,0,0,0,,0.2841
+15224,Battlesmasher of the Aurora,Spinebreaker,100-500,demand_stable,0.5638271906272883,1.1041358501934009,298.7318,185.9,0,0,0,,0.4906
+3193,Oak Mallet of the Aurora,Spinebreaker,100-500,demand_stable,0.5886258237734928,1.0760540653869528,244.5917,219.12,0,0,0,,0.2693
+3198,Battering Hammer of the Fireflash,Spinebreaker,100-500,demand_stable,0.07200390529655845,1.0992010672626862,424.402,293.73,0,0,0,,0.4352
+62121,Sooty Mail Shoulderpads,Spinebreaker,100-500,demand_stable,0.10529655845740786,2.3634544,274.9624,0.0,0,0,0,,14.8213
+4576,Light Bow,Spinebreaker,100-500,demand_stable,0.30544300707835004,1.311687585645602,369.5765,272.19,0,0,0,,0.2565
+2079,Sergeant's Warhammer of the Aurora,Spinebreaker,100-500,demand_stable,0.4944593605076886,1.0155723504122876,270.7668,280.0,0,0,0,,0.0934
+14164,Pagan Belt of the Fireflash,Spinebreaker,100-500,demand_stable,0.598779594825482,1.469757589788827,253.541,211.25,0,0,0,,0.0715
+9812,Fortified Cloak of the Aurora,Spinebreaker,100-500,demand_stable,0.5517207712960703,1.001806021927841,323.6677,244.8,0,0,0,,0.1437
+2493,Wooden Mallet,Spinebreaker,100-500,demand_stable,0.5950695630949475,1.25,244.0086,0.0,0,0,0,,0.014
+6578,Defender Leggings of the Aurora,Spinebreaker,100-500,demand_stable,0.6349524041981938,1.0169786702926658,229.7947,319.0,0,0,0,,0.2412
+3787,Stone Club,Spinebreaker,100-500,demand_stable,0.4959726629240908,1.4367350941953523,195.2154,0.0,0,0,0,,3.414
+15269,Massive Battle Axe of the Fireflash,Spinebreaker,100-500,demand_stable,0.5890163534293386,1.5923020343627736,212.8712,195.9,0,0,0,,0.516
+1198,Claymore,Spinebreaker,100-500,demand_stable,0.4174762020990969,1.25,198.0068,0.0,0,0,0,,0.0535
+2491,Large Axe,Spinebreaker,100-500,demand_stable,0.6012692213814986,1.25,281.7585,0.0,0,0,0,,0.0096
+15249,Polished Zweihander of the Quickblade,Spinebreaker,100-500,demand_stable,0.5917500610202587,0.9091771637795341,312.2498,290.0,0,0,0,,0.7557
+1820,Wooden Maul,Spinebreaker,100-500,demand_stable,0.6759092018550159,1.0879600842728618,404.4401,0.0,0,0,0,,0.139
+8183,Precision Bow,Spinebreaker,100-500,demand_stable,0.6169880400292898,1.503142594507641,244.9835,206.95,0,0,0,,0.8669
+2131,Shortsword,Spinebreaker,100-500,demand_stable,0.6286551134976812,1.25,214.0946,0.0,0,0,0,,0.001
+2785,Stiff Recurve Bow,Spinebreaker,100-500,demand_stable,0.20605320966560897,1.1922224482585093,442.8924,0.0,0,0,0,,0.4175
+1755,Reinforced Chain Boots,Spinebreaker,100-500,demand_stable,0.14722968025384428,1.014103110233299,495.0626,0.0,0,0,0,,0.1485
+2576,White Linen Shirt,Spinebreaker,100-500,demand_stable,0.1486941664632658,0.9297638332213886,353.0411,580.91,0,0,0,,
+10046,Simple Linen Boots,Spinebreaker,100-500,demand_stable,0.7719794971930681,0.977551384178563,267.9393,0.0,0,0,0,,
+2143,Cuirboulli Boots,Spinebreaker,100-500,demand_stable,0.5278496460824994,1.25,114.3089,15.0,0,0,0,,
+3802,Hardened Leather Bracers,Spinebreaker,100-500,demand_stable,0.4510617525018306,0.9695455810016514,236.0339,0.0,0,0,0,,0.6659
+9771,Greenweave Gloves,Spinebreaker,100-500,demand_stable,0.6581401025140347,0.9354996355721853,171.8205,0.0,0,0,0,,0.1705
+6593,Battleforge Cloak of the Quickblade,Spinebreaker,100-500,demand_stable,0.46243592872833783,1.3931632908421603,309.6333,333.99,0,0,0,,0.3141
+2583,Woolen Boots,Spinebreaker,100-500,demand_stable,0.7345862826458385,0.9622984848940134,286.0968,0.0,0,0,0,,
+2584,Woolen Cape,Spinebreaker,100-500,demand_stable,0.1742250427141811,1.0368125779193793,133.5111,0.0,0,0,0,,
+2568,Brown Linen Vest,Spinebreaker,100-500,demand_stable,0.7524041981938003,1.071309480506597,118.0816,0.0,0,0,0,,
+14371,Mystic's Robe,Spinebreaker,15k-50k,demand_stable,0.8581889187210153,0.9889034944749929,16114.3056,9965.75,0,0,0,,0.2266
+2567,Evocator's Blade,Spinebreaker,15k-50k,demand_stable,0.5486941664632659,1.1014513226932923,21510.1112,14951.45,0,0,0,,0.5831
+271435,Slippers of the Hissing Cult,Spinebreaker,15k-50k,demand_stable,0.9787161337564071,,25975.6497,39623.81,0,0,0,,43.8021
+1802,Rawhide Tunic,Spinebreaker,2k-5k,demand_stable,0.754015133024164,0.9828015771999711,2027.7905,1247.5,0,0,0,,0.0614
+15519,Spiked Chain Cloak of the Fireflash,Spinebreaker,2k-5k,demand_stable,0.7931169148157188,1.0485902203199027,4550.1536,3073.9,0,0,0,,0.1683
+14196,Thistlefur Sandals of the Fireflash,Spinebreaker,2k-5k,demand_stable,0.2532584818159629,0.9049529979771973,2282.8964,1500.0,0,0,0,,0.8712
+14159,Pagan Shoes of the Aurora,Spinebreaker,2k-5k,demand_stable,0.8058579448376861,1.1814481556575325,3275.7504,3400.0,0,0,0,,0.1438
+14375,Sanguine Cuffs,Spinebreaker,2k-5k,demand_stable,0.8366121552355382,1.0023885485004527,4078.2484,2578.28,0,0,0,,0.1694
+12983,Rakzur Club,Spinebreaker,2k-5k,demand_stable,0.8088845496704906,1.0847868252724053,2747.0178,0.0,0,0,0,,0.307
+15971,Aboriginal Rod of the Quickblade,Spinebreaker,2k-5k,demand_stable,0.07620209909690018,0.9177383429022744,4397.7891,2578.0,0,0,0,,0.0934
+1783,Cross-Stitched Gloves,Spinebreaker,2k-5k,demand_stable,0.755577251647547,1.0621973781406562,4299.8076,3070.78,0,0,0,,0.0849
+14572,Bristlebark Gloves,Spinebreaker,2k-5k,demand_stable,0.6334879179887722,1.0317915278325152,2123.4825,1513.35,0,0,0,,0.1458
+1830,Long Bastard Sword,Spinebreaker,2k-5k,demand_stable,0.7093971198437882,0.9105888543775702,3119.7056,2175.23,0,0,0,,0.4206
+6574,Defender Bracers of the Quickblade,Spinebreaker,2k-5k,demand_stable,0.6534049304369051,1.0024645055723895,3075.3085,1770.28,0,0,0,,0.0961
+13114,Troll's Bane Leggings,Spinebreaker,500-2k,demand_stable,0.5082255308762509,0.904026728508015,969.926,0.0,0,0,0,,0.9555
+14165,Pagan Britches of the Fireflash,Spinebreaker,500-2k,demand_stable,0.8314376372955822,1.0517307931332385,1503.5073,0.0,0,0,0,,0.3318
+14569,Bristlebark Bindings,Spinebreaker,500-2k,demand_stable,0.5859897485965341,1.1623658914170507,1481.8826,1012.44,0,0,0,,0.0959
+1752,Linked Chain Shoulderpads,Spinebreaker,500-2k,demand_stable,0.5378569685135465,0.9524125824687153,646.3757,0.0,0,0,0,,0.0431
+6580,Defender Tunic of the Quickblade,Spinebreaker,500-2k,demand_stable,0.6318281669514278,1.124652717395805,936.5076,608.3,0,0,0,,0.243
+1764,Canvas Shoes,Spinebreaker,500-2k,demand_stable,0.7389309250671223,0.9223473041649353,712.7578,0.0,0,0,0,,0.0198
+3378,Brocade Belt,Spinebreaker,500-2k,demand_stable,0.5357578716133756,1.357602774426227,634.5896,429.68,0,0,0,,0.0302
+3379,Brocade Bracers,Spinebreaker,500-2k,demand_stable,0.2967537222357823,1.3175940287831724,1253.5736,751.38,0,0,0,,0.0387
+1768,Canvas Pants,Spinebreaker,500-2k,demand_stable,0.7345374664388578,0.9156932398231912,1135.2872,0.0,0,0,0,,0.0437
+14160,Pagan Bands of the Fireflash,Spinebreaker,500-2k,demand_stable,0.5974615572370027,1.0233355662751304,1083.8934,796.51,0,0,0,,0.0508
+9898,Jazeraint Cloak,Spinebreaker,500-2k,demand_stable,0.3216499877959483,1.1558942519431121,644.7442,550.55,0,0,0,,3.8362
+1747,Linked Chain Boots,Spinebreaker,500-2k,demand_stable,0.14722968025384428,2.3697133206784784,1386.0083,861.37,0,0,0,,0.0456
+14570,Bristlebark Blouse,Spinebreaker,50k-150k,demand_stable,0.7754454478886991,0.9234038369141324,84753.7434,44960.0,0,0,0,,0.6174
+15332,Wrangler's Buckler of the Quickblade,Spinebreaker,50k-150k,demand_stable,0.7483524530144008,1.067472704245613,131650.2071,74727.29,0,0,0,,0.4853
+15556,Pillager's Bracers of the Aurora,Spinebreaker,5k-15k,demand_stable,0.854967049060288,1.218800628918975,12217.4934,13557.81,0,0,0,,0.5936
+15505,Outrunner's Pauldrons,Spinebreaker,5k-15k,demand_stable,0.8634122528679522,0.9325849786575295,5247.0269,4439.53,0,0,0,,0.1033
+2879,Antipodean Rod,Spinebreaker,5k-15k,demand_stable,0.7893092506712228,1.2788959103191386,14519.099,19069.56,0,0,0,,0.1872
+14747,Hulking Gauntlets,Spinebreaker,5k-15k,demand_stable,0.8412496948987064,1.3047043905849167,9337.9631,10129.81,0,0,0,,0.1245
+13105,Sutarn's Ring,Spinebreaker,5k-15k,demand_stable,0.85306321698804,2.0456602621893967,14006.3527,15658.24,0,0,0,,
+863,Gloom Reaper of the Fireflash,Spinebreaker,<100,demand_stable,0.521698804002929,1.2853966959729135,93.5713,84.15,0,0,0,,6.491
+25401,Corroded Mace,Spinebreaker,<100,demand_stable,0.06360751769587503,0.9795278723632527,72.4934,38.61,0,0,0,,23.9781
+1751,Linked Chain Pants,Spinebreaker,<100,demand_stable,0.053112033195020746,1.6932774608783954,41.55,0.0,0,0,0,,0.1437
+15241,Battle Knife,Spinebreaker,<100,demand_stable,0.4474493531852575,1.2110067114093959,99.7339,0.0,0,0,0,,0.5869
+4308,Green Linen Bracers,Spinebreaker,<100,demand_stable,0.5130583353673419,0.9566587952756714,97.4682,0.0,0,0,0,,
+5213,Scorching Wand,Spinebreaker,<100,demand_stable,0.4219672931413229,0.9645965495684817,75.2264,0.0,0,0,0,,6.5953
+2582,Green Woolen Vest,Spinebreaker,<100,demand_stable,0.6497437149133513,1.2851073256798349,99.7223,0.0,0,0,0,,
+1804,Tough Leather Boots,Spinebreaker,100-500,no_demand_falling,0.04266536490114718,0.7838846769636466,381.989,267.87,0,0,0,,0.1302
+55287,Bladefist Axe of the Feverflare,Spinebreaker,2k-5k,no_demand_falling,0.025823773492799608,0.5300530273709357,3124.3038,1741.19,0,0,0,,68.8256
+15124,Robust Cloak of the Quickblade,Spinebreaker,500-2k,no_demand_falling,0.03954112765438125,0.7279914233097278,941.5681,697.84,0,0,0,,0.2694
+1810,Tough Leather Armor,Spinebreaker,100-500,no_demand_stable,0.01444959726629241,1.5030318550596244,369.6995,0.0,0,0,0,,0.1946
+4686,Barbaric Cloth Cloak,Spinebreaker,2k-5k,no_demand_stable,0.049646082499389795,1.0114595679612362,0.0,0.0,0,0,0,,0.0117
+4708,Bright Belt,Spinebreaker,500-2k,no_demand_stable,0.03993165731022699,1.6555667076897056,1948.3719,1234.46,0,0,0,,0.1381
+4632,Ornate Bronze Lockbox,Spinebreaker,<100,no_reference,,,0.0,0.0,0,0,0,,0.005
+246660,Ascension Arrestor's Bracers,Spinebreaker,<100,no_reference,,,0.0,0.0,0,0,0,,0.0
+68729,Elementium Lockbox,Spinebreaker,<100,no_reference,,,0.0,0.0,0,0,0,,0.075
+264648,Verminscale Gavel,Spinebreaker,<100,no_reference,0.16089821820844522,,0.0,0.0,0,0,0,,43.9934
+193752,Galerattle Gauntlets,Spinebreaker,<100,no_reference,0.2819135953136441,,0.0,0.0,0,0,0,,32.5634
+280689,Big Mon's Big Spear,Spinebreaker,<100,no_reference,0.258432999755919,,0.0,0.0,0,0,0,,54.8064
+212471,Copy of the Journal of Archmage Antonidas,Spinebreaker,<100,no_reference,,1.0,0.0,0.0,0,0,0,,0.0001
+264573,Taskmaster's Sadistic Shoulderguards,Spinebreaker,<100,no_reference,0.23509885281913595,,0.0,0.0,0,0,0,,21.2499
+264575,Hexwood Helm,Spinebreaker,<100,no_reference,0.25003661215523554,,0.0,0.0,0,0,0,,21.4119
+276062,Hydra Neckchopper,Spinebreaker,<100,no_reference,0.26116670734683917,,0.0,0.0,0,0,0,,65.9535
+179311,Synvir Lockbox,Spinebreaker,<100,no_reference,,,0.0,0.0,0,0,0,,0.075
+4409,Schematic: Small Seaforium Charge,Spinebreaker,100-500,unknown_falling,,0.7558096201134893,228.9133,186.77,0,0,0,,0.02
+6219,Arclight Spanner,Spinebreaker,2k-5k,unknown_falling,,0.6637063365105809,2829.5719,15.85,0,0,0,,0.0089
+4639,Enchanted Sea Kelp,Spinebreaker,5k-15k,unknown_falling,,0.6179704605664441,0.0,0.0,0,0,0,,0.0162
+3914,Journeyman's Backpack,Spinebreaker,<100,unknown_falling,,0.4983243162007815,9.0538,6.0,0,0,0,,0.625
+4240,Woolen Bag,Spinebreaker,<100,unknown_falling,,0.43831885987473146,0.0,0.0,0,0,0,,0.03
+6661,Recipe: Savory Deviate Delight,Spinebreaker,<100,unknown_falling,,0.30028972416145755,7.4611,11.02,0,0,0,,0.0115
+6663,Recipe: Elixir of Giant Growth,Spinebreaker,<100,unknown_falling,,0.21327680279660816,0.7657,0.74,0,0,0,,0.015
+21099,Recipe: Smoked Sagefish,Spinebreaker,<100,unknown_falling,,0.5824992180168909,16.6316,12.54,0,0,0,,0.0125
+32749,Pattern: Shoulders of Lightning Reflexes,Spinebreaker,<100,unknown_falling,,0.32264239970234443,40.294,49.9,0,0,0,,1.25
+3678,Recipe: Crocolisk Steak,Spinebreaker,<100,unknown_falling,,0.3175361886603538,5.3004,5.0,0,0,0,,0.01
+4346,Pattern: Heavy Woolen Cloak,Spinebreaker,100-500,unknown_stable,,1.7119118342805468,124.5797,1774.93,0,0,0,,0.01
+7092,Pattern: Hands of Darkness,Spinebreaker,15k-50k,unknown_stable,,1.2646136759673627,17097.5588,18227.55,0,0,0,,0.025
+2882,Plans: Silvered Bronze Shoulders,Spinebreaker,2k-5k,unknown_stable,,2.993938486239082,3635.8688,3713.32,0,0,0,,0.03
+6474,Pattern: Deviate Scale Cloak,Spinebreaker,2k-5k,unknown_stable,,1.2884146594076995,3769.1844,5541.03,0,0,0,,0.0137
+242948,Loch Modan Bearskin Rug,Spinebreaker,2k-5k,unknown_stable,,0.9134990198931661,3753.1728,3385.4,0,0,0,,
+4414,Schematic: Portable Bronze Mortar,Spinebreaker,500-2k,unknown_stable,,1.176899935401199,1238.907,0.0,0,0,0,,0.0462
+12007,Prairie Ring of the Aurora,Spinebreaker,500-2k,unknown_stable,,1.1582527984079565,596.9575,555.0,0,0,0,,0.1064
+69969,Plans: Mirrored Boots,Spinebreaker,500-2k,unknown_stable,,1.0252850015787782,1763.6255,0.0,0,0,0,,1.875
+3612,Plans: Green Iron Gauntlets,Spinebreaker,500-2k,unknown_stable,,1.639960284649584,1623.2928,3670.13,0,0,0,,0.05
+174790,Overseer's Mandate,Spinebreaker,50k-150k,unknown_stable,,2.14285414472214,56100.29,56100.29,0,0,0,,0.05

@@ -1,0 +1,7 @@
+# Test-only dependencies.  Not installed in the worker image.
+#
+# lupa runs the addon Lua files in a real interpreter -- the addon tests are
+# not string-matching a .lua file, they execute it against a mocked WoW API.
+-r requirements.txt
+pytest>=9.1
+lupa>=2.8

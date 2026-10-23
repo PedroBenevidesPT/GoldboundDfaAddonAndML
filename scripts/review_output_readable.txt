@@ -1,0 +1,1452 @@
+=== tsm_markets.db table counts ===
+  auction_events: 7861
+  auction_intel_events: 9395
+  blizzard_items: 1906
+  blizzard_missing: 1
+  db2_item_appearance: 153290
+  db2_items: 176702
+  db2_meta: 5
+  item_analytics: 124336
+  items: 31322
+  journal: 0
+  journal_stats: 1291
+  market_snapshots: 124336
+  snapshots: 4
+  tsm_commodity_price: 12160
+  tsm_market: 295017
+  tsm_meta: 59
+  tsm_price_change: 11088171
+  tsm_realm_group: 267
+  tsm_realm_pet_price: 85706
+  tsm_realm_price: 1193857
+  tsm_region: 31283
+  tsm_region_pet_price: 978
+  tsm_region_price: 31184
+  tsm_snapshot: 1262
+
+=== snapshots (latest 5) ===
+  id=4, ts=2026-10-13T00:21:32Z, file=tsm_region_items_ydbj74s0.csv, rows=31145, chk=1283c2e83c75d25e
+  id=3, ts=2026-10-13T00:21:32Z, file=tsm_region_items_l9zrt7na.csv, rows=31142, chk=7a4bf43b4aedbfc8
+  id=2, ts=2026-07-28T01:01:28Z, file=tsm_region_items_yhutdvae.csv, rows=30982, chk=3d48f395131f7577
+  id=1, ts=2026-07-27T00:59:53Z, file=items.csv, rows=31067, chk=3f31e2de46ab4272
+
+=== snapshots (earliest 3) ===
+  id=1, ts=2026-07-27T00:59:53Z, file=items.csv, rows=31067
+  id=2, ts=2026-07-28T01:01:28Z, file=tsm_region_items_yhutdvae.csv, rows=30982
+  id=3, ts=2026-10-13T00:21:32Z, file=tsm_region_items_l9zrt7na.csv, rows=31142
+
+=== market_snapshots summary ===
+  rows=124336, distinct_item_ids=31322
+
+=== tsm_market sample ===
+  columns: [0, 1, 2, 3, 4, 5, 6]
+  sample: {0: 249759, 1: 'Dragonmaw', 2: 118094300, 3: 121234030, 4: 5, 5: 118094300, 6: 191424700}
+  rows: 295017
+
+=== tsm_region_price sample ===
+  columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  sample: {0: 25, 1: 'Worn Shortsword', 2: 7125395932, 3: 6374837500, 4: 0, 5: 0.0, 6: 0.0, 7: '2026-10-17T00:26:55Z', 8: '2026-10-18T19:56:39Z', 9: 326}
+  rows: 31184
+
+=== tsm_snapshot sample ===
+  columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  sample: {0: 1, 1: 'garona', 2: 'realm_items', 3: '2026-10-18T09:36:04Z', 4: '2026-10-18T11:32:37Z', 5: 'c31b01324139cb398929aefd4c19226ef74edf9ad1c9bcbb521fbe20ded9d6de', 6: 7936, 7: 7936, 8: 'C:\\FarmAnalysis\\data\\tsm\\snapshots\\20261018T113237Z\\garona.realm_items.csv.gz', 9: '', 10: ''}
+  rows: 1262
+
+=== tsm_meta ===
+  columns: [0, 1]
+  row: {0: 'appdata_path', 1: 'C:/Program Files (x86)/World of Warcraft\\_retail_\\Interface\\AddOns\\TradeSkillMaster_AppHelper\\AppData.lua'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Dragonmaw', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Spinebreaker', 1: '1792319766'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Stormreaver', 1: '1792319766'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Haomarush', 1: '1792319766'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Dragonmaw', 1: '1792542363'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Spinebreaker', 1: '1792283445'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Stormreaver', 1: '1792283445'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Haomarush', 1: '1792283445'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Dragonmaw', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Spinebreaker', 1: '1792319766'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Stormreaver', 1: '1792319766'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Haomarush', 1: '1792319766'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Draenor', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Draenor', 1: '1792542243'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Draenor', 1: '1792618299'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Aggra (Portugu�s)', 1: '1792341365'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Aggra (Portugu�s)', 1: '1792283320'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Aggra (Portugu�s)', 1: '1792341365'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Shattered Halls', 1: '1792341365'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Shattered Halls', 1: '1792283408'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Shattered Halls', 1: '1792341365'}
+  row: {0: "dl_AUCTIONDB_NON_COMMODITY_DATA_Pozzo dell'Eternit�", 1: '1792337765'}
+  row: {0: "dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Pozzo dell'Eternit�", 1: '1792283336'}
+  row: {0: "dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Pozzo dell'Eternit�", 1: '1792337765'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Twisting Nether', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Twisting Nether', 1: '1792542376'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Twisting Nether', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Argent Dawn', 1: '1792402566'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Argent Dawn', 1: '1792369989'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Argent Dawn', 1: '1792402566'}
+  row: {0: 'dl_AUCTIONDB_REGION_HISTORICAL_EU', 1: '1792544040'}
+  row: {0: 'dl_AUCTIONDB_COMMODITY_DATA_EU', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_REGION_SALE_EU', 1: '1792544032'}
+  row: {0: 'dl_AUCTIONDB_COMMODITY_HISTORICAL_EU', 1: '1792541945'}
+  row: {0: 'dl_AUCTIONDB_REGION_STAT_EU', 1: '1792541951'}
+  row: {0: 'dl_AUCTIONDB_COMMODITY_SCAN_STAT_EU', 1: '1792621899'}
+  row: {0: 'app_version', 1: '41402'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Silvermoon', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Silvermoon', 1: '1792542363'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Silvermoon', 1: '1792618299'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Blackhand', 1: '1792402566'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Blackhand', 1: '1792369987'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Blackhand', 1: '1792402566'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Kazzak', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Kazzak', 1: '1792542141'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Kazzak', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Defias Brotherhood', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Defias Brotherhood', 1: '1792542072'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Defias Brotherhood', 1: '1792618299'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Auchindoun', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Auchindoun', 1: '1792542290'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Auchindoun', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Blackrock', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Blackrock', 1: '1792542018'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Blackrock', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_DATA_Antonidas', 1: '1792621899'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_HISTORICAL_Antonidas', 1: '1792542392'}
+  row: {0: 'dl_AUCTIONDB_NON_COMMODITY_SCAN_STAT_Antonidas', 1: '1792621899'}
+
+=== items sample ===
+  columns: [0, 1, 2]
+  sample: {0: 25, 1: 'Worn Shortsword', 2: '2026-07-28T08:48:49.696999+00:00'}
+  sample: {0: 35, 1: 'Bent Staff', 2: '2026-07-28T08:48:49.696999+00:00'}
+  sample: {0: 36, 1: 'Worn Mace', 2: '2026-07-28T08:48:49.696999+00:00'}
+  rows: 31322
+
+=== db2_items sample ===
+  columns: [0, 1, 2, 3, 4, 5, 6, 7]
+  sample: {0: 25, 1: 'Worn Shortsword', 2: 2, 3: 1, 4: 0, 5: 0, 6: 1, 7: 1}
+  sample: {0: 35, 1: 'Bent Staff', 2: 2, 3: 1, 4: 0, 5: 0, 6: 1, 7: 1}
+  sample: {0: 36, 1: 'Worn Mace', 2: 2, 3: 1, 4: 0, 5: 0, 6: 1, 7: 1}
+  rows: 176702
+
+=== item_analytics sample ===
+  columns: [0, 1, 2, 3, 4, 5]
+  sample: {0: 1, 1: 3469, 2: 0.013874726861767685, 3: 14081.976, 4: 1.1198821382882789, 5: 0.013874726861767685}
+  rows: 124336
+
+=== journal_stats ===
+  row: {0: 1512, 1: 'Crude Battle Axe', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2039, 1: 'Plains Ring', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1824, 1: 'Shiny War Axe', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1826, 1: 'Rock Maul', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3868, 1: 'Plans: Frost Tiger Blade', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4563, 1: 'Billy Club', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14565, 1: "Prospector's Woolies", 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12803, 1: 'Living Essence', 2: 'Dragonmaw', 3: 5, 4: 3, 5: 5, 6: 324100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1194, 1: 'Bastard Sword', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15893, 1: "Prospector's Buckler", 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62080, 1: 'Perforated Plate Boots', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1509, 1: 'Warped Leather Vest', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4232, 1: 'Medium Hide', 2: 'Dragonmaw', 3: 21, 4: 3, 5: 21, 6: 324600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3379, 1: 'Brocade Bracers', 2: 'Dragonmaw', 3: 0, 4: 8, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 854, 1: 'Quarter Staff', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1800, 1: 'Rawhide Pants', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5212, 1: 'Blazing Wand', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3378, 1: 'Brocade Belt', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4082, 1: 'Blackforge Breastplate', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2592, 1: 'Wool Cloth', 2: 'Dragonmaw', 3: 746, 4: 0, 5: 746, 6: 384100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1196, 1: 'Tabar', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13024, 1: "Beazel's Basher", 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2782, 1: 'Mishandled Recurve Bow', 2: 'Dragonmaw', 3: 0, 4: 8, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14569, 1: 'Bristlebark Bindings', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14571, 1: 'Bristlebark Cape', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5578, 1: 'Plans: Silvered Bronze Breastplate', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14169, 1: 'Aboriginal Shoulder Pads', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 69802, 1: 'Band of the Gurubashi Berserker', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1814, 1: 'Battered Mallet', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62130, 1: 'Bleached Plate Belt', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 11737, 1: 'Libram of Voracity', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2131, 1: 'Shortsword', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62128, 1: 'Bleached Plate Bracers', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62126, 1: 'Bleached Plate Chestpiece', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 180733, 1: 'Luminous Flux', 2: 'Dragonmaw', 3: 50, 4: 14, 5: 50, 6: 4450000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1730, 1: 'Worn Mail Belt', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1820, 1: 'Wooden Maul', 2: 'Dragonmaw', 3: 0, 4: 7, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 18567, 1: 'Elemental Flux', 2: 'Dragonmaw', 3: 51, 4: 50, 5: 51, 6: 2095000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12983, 1: 'Rakzur Club', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2371, 1: 'Battered Leather Belt', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1830, 1: 'Long Bastard Sword', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6375, 1: 'Formula: Enchant Bracer - Lesser Versatility', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2319, 1: 'Medium Leather', 2: 'Dragonmaw', 3: 245, 4: 21, 5: 245, 6: 5301800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 98111, 1: 'K.R.E.', 2: 'Dragonmaw', 3: 0, 4: 12, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2453, 1: 'Bruiseweed', 2: 'Dragonmaw', 3: 98, 4: 27, 5: 98, 6: 1825600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2881, 1: 'Plans: Runed Copper Breastplate', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1788, 1: 'Patched Leather Boots', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62090, 1: 'Perforated Plate Belt', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2879, 1: 'Antipodean Rod', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1510, 1: 'Heavy Hammer', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1750, 1: 'Linked Chain Gloves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1015, 1: 'Lean Wolf Flank', 2: 'Dragonmaw', 3: 56, 4: 63, 5: 56, 6: 78900, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2780, 1: 'Light Hunting Bow', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5974, 1: 'Pattern: Guardian Cloak', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 783, 1: 'Light Hide', 2: 'Dragonmaw', 3: 38, 4: 4, 5: 38, 6: 963200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62127, 1: 'Bleached Plate Shoulderpads', 2: 'Dragonmaw', 3: 0, 4: 8, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2493, 1: 'Wooden Mallet', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10424, 1: 'Plans: Silvered Bronze Leggings', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2494, 1: 'Stiletto', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 9294, 1: 'Recipe: Wildvine Potion', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1811, 1: 'Blunt Claymore', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13491, 1: 'Recipe: Elixir of the Mongoose', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1801, 1: 'Rawhide Shoulderpads', 2: 'Dragonmaw', 3: 0, 4: 9, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3730, 1: 'Big Bear Meat', 2: 'Dragonmaw', 3: 61, 4: 53, 5: 61, 6: 22600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62105, 1: 'Bleached Plate Pants', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1794, 1: 'Patched Leather Jerkin', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5524, 1: 'Thick-Shelled Clam', 2: 'Dragonmaw', 3: 64, 4: 215, 5: 64, 6: 244800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15729, 1: 'Pattern: Chimeric Gloves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1823, 1: 'Bludgeoning Cudgel', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62069, 1: 'Plugged Rifle', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1206, 1: 'Moss Agate', 2: 'Dragonmaw', 3: 12, 4: 5, 5: 12, 6: 1254500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3173, 1: 'Bear Meat', 2: 'Dragonmaw', 3: 18, 4: 5, 5: 18, 6: 55900, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25344, 1: 'Dilapidated Cloth Gloves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2220, 1: 'Box Shield', 2: 'Dragonmaw', 3: 0, 4: 7, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2783, 1: 'Shoddy Blunderbuss', 2: 'Dragonmaw', 3: 1, 4: 3, 5: 1, 6: 307100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1812, 1: 'Short-Handled Battle Axe', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1772, 1: 'Brocade Shoes', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14564, 1: "Prospector's Mitts", 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1767, 1: 'Canvas Gloves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3039, 1: 'Short Ash Bow', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2878, 1: 'Bearded Boneaxe', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2598, 1: 'Pattern: Red Linen Robe', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1792, 1: 'Patched Leather Pants', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5523, 1: 'Small Barnacled Clam', 2: 'Dragonmaw', 3: 28, 4: 119, 5: 28, 6: 23200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1795, 1: 'Rawhide Belt', 2: 'Dragonmaw', 3: 0, 4: 7, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25359, 1: 'Decaying Leather Boots', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62129, 1: 'Bleached Plate Boots', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3182, 1: "Spider's Silk", 2: 'Dragonmaw', 3: 32, 4: 62, 5: 32, 6: 24504600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5465, 1: 'Small Spider Leg', 2: 'Dragonmaw', 3: 139, 4: 4, 5: 139, 6: 124700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13114, 1: "Troll's Bane Leggings", 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15763, 1: 'Pattern: Blue Dragonscale Shoulders', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4998, 1: 'Blood Ring', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1512, 1: 'Crude Battle Axe', 2: 'Draenor', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8193, 1: 'Nightscape Pants', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3821, 1: 'Goldthorn', 2: 'Dragonmaw', 3: 1, 4: 1, 5: 1, 6: 150000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8172, 1: 'Cured Thick Hide', 2: 'Dragonmaw', 3: 1, 4: 0, 5: 1, 6: 9000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8746, 1: 'Interlaced Cowl', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12404, 1: 'Dense Sharpening Stone', 2: 'Dragonmaw', 3: 20, 4: 0, 5: 20, 6: 80000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2152, 1: 'Polished Scale Leggings', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3817, 1: 'Reinforced Buckler', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 39341, 1: 'Silvery Pigment', 2: 'Dragonmaw', 3: 18, 4: 18, 5: 18, 6: 482400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 258921, 1: "Tarnished Dawnlit Corsair's Boots", 2: 'Auchindoun', 3: 0, 4: 0, 5: 0, 6: 0, 7: 1, 8: 7900000, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14568, 1: 'Bristlebark Boots', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3831, 1: "Recipe: Major Troll's Blood Elixir", 2: 'Silvermoon', 3: 1, 4: 0, 5: 1, 6: 939900, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2568, 1: 'Brown Linen Vest', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2568, 1: 'Brown Linen Vest', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1740, 1: 'Laced Mail Bracers', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10505, 1: 'Solid Blasting Powder', 2: 'Dragonmaw', 3: 39, 4: 39, 5: 39, 6: 1560000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2309, 1: 'Embossed Leather Boots', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 48112, 1: 'Darting Hatchling', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 48112, 1: 'Darting Hatchling', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 48112, 1: 'Darting Hatchling', 2: 'Aggra (Portugu�s)', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 787, 1: 'Slitherskin Mackerel', 2: 'Dragonmaw', 3: 0, 4: 30, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10047, 1: 'Simple Kilt', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10047, 1: 'Simple Kilt', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2592, 1: 'Wool Cloth', 2: 'Twisting Nether', 3: 3, 4: 0, 5: 3, 6: 2100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4339, 1: 'Bolt of Mageweave', 2: 'Dragonmaw', 3: 2, 4: 0, 5: 2, 6: 6800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2299, 1: 'Burning War Axe', 2: 'Dragonmaw', 3: 1, 4: 2, 5: 1, 6: 27133600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2782, 1: 'Mishandled Recurve Bow', 2: 'Auchindoun', 3: 1, 4: 0, 5: 1, 6: 1772400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14530, 1: 'Heavy Runecloth Bandage', 2: 'Dragonmaw', 3: 0, 4: 10, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14569, 1: 'Bristlebark Bindings', 2: 'Auchindoun', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14569, 1: 'Bristlebark Bindings', 2: 'Argent Dawn', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 29953, 1: 'Golden Dragonhawk Hatchling', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5469, 1: 'Strider Meat', 2: 'Dragonmaw', 3: 16, 4: 0, 5: 16, 6: 171000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1515, 1: 'Rough Wooden Staff', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1515, 1: 'Rough Wooden Staff', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1515, 1: 'Rough Wooden Staff', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 238, 1: 'Cured Leather Boots', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2865, 1: 'Rough Bronze Leggings', 2: 'Blackrock', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2865, 1: 'Rough Bronze Leggings', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2865, 1: 'Rough Bronze Leggings', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2315, 1: 'Dark Leather Boots', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2315, 1: 'Dark Leather Boots', 2: 'Auchindoun', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 11737, 1: 'Libram of Voracity', 2: 'Auchindoun', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1825, 1: 'Bulky Bludgeon', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1825, 1: 'Bulky Bludgeon', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2495, 1: 'Walking Stick', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 765, 1: 'Silverleaf', 2: 'Dragonmaw', 3: 12, 4: 1, 5: 12, 6: 239700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 765, 1: 'Silverleaf', 2: 'Twisting Nether', 3: 3, 4: 0, 5: 3, 6: 46200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14572, 1: 'Bristlebark Gloves', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 11288, 1: 'Greater Magic Wand', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 11288, 1: 'Greater Magic Wand', 2: 'Draenor', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1821, 1: 'Warped Blade', 2: 'Kazzak', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1821, 1: 'Warped Blade', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1821, 1: 'Warped Blade', 2: 'Dragonmaw', 3: 0, 4: 7, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6716, 1: 'Schematic: EZ-Thro Dynamite', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6518, 1: 'Pioneer Boots', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6518, 1: 'Pioneer Boots', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1820, 1: 'Wooden Maul', 2: 'Blackrock', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1820, 1: 'Wooden Maul', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2450, 1: 'Briarthorn', 2: 'Dragonmaw', 3: 91, 4: 3, 5: 91, 6: 1832100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2450, 1: 'Briarthorn', 2: 'Twisting Nether', 3: 14, 4: 14, 5: 14, 6: 301000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 52982, 1: 'Deepsea Scale', 2: 'Dragonmaw', 3: 168, 4: 0, 5: 168, 6: 10181400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3816, 1: 'Reflective Heater', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 39774, 1: 'Midnight Ink', 2: 'Dragonmaw', 3: 20, 4: 4, 5: 20, 6: 1400000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10286, 1: 'Heart of the Wild', 2: 'Dragonmaw', 3: 4, 4: 0, 5: 4, 6: 13800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4249, 1: 'Dark Leather Belt', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 69803, 1: 'Gurubashi Punisher', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 69803, 1: 'Gurubashi Punisher', 2: 'Auchindoun', 3: 1, 4: 8, 5: 1, 6: 1658700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 69803, 1: 'Gurubashi Punisher', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 69803, 1: 'Gurubashi Punisher', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2570, 1: 'Linen Cloak', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2570, 1: 'Linen Cloak', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2488, 1: 'Gladius', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 853, 1: 'Hatchet', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 68749, 1: "Imbued Disciple's Bracers", 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 68749, 1: "Imbued Disciple's Bracers", 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14411, 1: 'Stonecloth Gloves', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4382, 1: 'Bronze Framework', 2: 'Dragonmaw', 3: 8, 4: 7, 5: 8, 6: 376100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3394, 1: 'Recipe: Potion of Curing', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 17192, 1: 'Reinforced Targe', 2: 'Draenor', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 45096, 1: 'Pattern: Blue Belt of Chaos', 2: 'Auchindoun', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 45096, 1: 'Pattern: Blue Belt of Chaos', 2: 'Argent Dawn', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3388, 1: "Strong Troll's Blood Elixir", 2: 'Dragonmaw', 3: 22, 4: 46, 5: 22, 6: 1275600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8846, 1: 'Gromsblood', 2: 'Dragonmaw', 3: 3, 4: 6, 5: 3, 6: 245700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8846, 1: 'Gromsblood', 2: 'Twisting Nether', 3: 5, 4: 0, 5: 5, 6: 400000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4409, 1: 'Schematic: Small Seaforium Charge', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62082, 1: 'Dirt-Caked Pants', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 39340, 1: 'Violet Pigment', 2: 'Dragonmaw', 3: 24, 4: 60, 5: 24, 6: 1080000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2582, 1: 'Green Woolen Vest', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2073, 1: 'Dwarven Hatchet', 2: 'Aggra (Portugu�s)', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2073, 1: 'Dwarven Hatchet', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4571, 1: 'War Knife', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4571, 1: 'War Knife', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5516, 1: 'Threshadon Fang', 2: 'Draenor', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5516, 1: 'Threshadon Fang', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5516, 1: 'Threshadon Fang', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15729, 1: 'Pattern: Chimeric Gloves', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 259085, 1: 'Void-Touched Augment Rune', 2: 'Argent Dawn', 3: 2, 4: 0, 5: 2, 6: 7560000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2446, 1: 'Kite Shield', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6533, 1: 'Aquadynamic Fish Attractor', 2: 'Dragonmaw', 3: 1, 4: 2, 5: 1, 6: 13200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1745, 1: 'Laced Mail Vest', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1745, 1: 'Laced Mail Vest', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10045, 1: 'Simple Linen Pants', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2575, 1: 'Red Linen Shirt', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2575, 1: 'Red Linen Shirt', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 98118, 1: 'Scorpion Crunchies', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7282, 1: 'Light Leather Pants', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1795, 1: 'Rawhide Belt', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1384, 1: 'Dull Blade', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3356, 1: 'Kingsblood', 2: 'Dragonmaw', 3: 11, 4: 2, 5: 11, 6: 400600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1210, 1: 'Shadowgem', 2: 'Dragonmaw', 3: 3, 4: 0, 5: 3, 6: 36500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1210, 1: 'Shadowgem', 2: 'Twisting Nether', 3: 2, 4: 0, 5: 2, 6: 25000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1468, 1: 'Murloc Fin', 2: 'Dragonmaw', 3: 114, 4: 167, 5: 114, 6: 22600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25344, 1: 'Dilapidated Cloth Gloves', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4576, 1: 'Light Bow', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4007, 1: 'Overlinked Chain Armor', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4368, 1: 'Flying Tiger Goggles', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4368, 1: 'Flying Tiger Goggles', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4239, 1: 'Embossed Leather Gloves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2479, 1: 'Broad Axe', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1772, 1: 'Brocade Shoes', 2: 'Blackrock', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1772, 1: 'Brocade Shoes', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 33427, 1: 'Frost-Encrusted Rifle', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 33427, 1: 'Frost-Encrusted Rifle', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1746, 1: 'Linked Chain Belt', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1746, 1: 'Linked Chain Belt', 2: 'Dragonmaw', 3: 0, 4: 7, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1746, 1: 'Linked Chain Belt', 2: 'Draenor', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 124671, 1: 'Darkmoon Firewater', 2: 'Twisting Nether', 3: 0, 4: 0, 5: 0, 6: 0, 7: 5, 8: 9054500, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 68744, 1: 'Imbued Pioneer Cloak', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 68744, 1: 'Imbued Pioneer Cloak', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2256, 1: 'Skeletal Club', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2256, 1: 'Skeletal Club', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1792, 1: 'Patched Leather Pants', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1792, 1: 'Patched Leather Pants', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 68743, 1: 'Imbued Infantry Cloak', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 68743, 1: 'Imbued Infantry Cloak', 2: 'Argent Dawn', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14747, 1: 'Hulking Gauntlets', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14747, 1: 'Hulking Gauntlets', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14747, 1: 'Hulking Gauntlets', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6348, 1: 'Formula: Enchant Weapon - Minor Beastslayer', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6348, 1: 'Formula: Enchant Weapon - Minor Beastslayer', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12808, 1: 'Essence of Undeath', 2: 'Dragonmaw', 3: 8, 4: 4, 5: 8, 6: 6777600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15946, 1: "Mystic's Sphere", 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2217, 1: 'Rectangular Shield', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2217, 1: 'Rectangular Shield', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1815, 1: 'Ornamental Mace', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1815, 1: 'Ornamental Mace', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1815, 1: 'Ornamental Mace', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2318, 1: 'Light Leather', 2: 'Dragonmaw', 3: 809, 4: 87, 5: 809, 6: 8379800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2251, 1: 'Gooey Spider Leg', 2: 'Dragonmaw', 3: 138, 4: 74, 5: 138, 6: 181200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2130, 1: 'Club', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12409, 1: 'Thorium Boots', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12409, 1: 'Thorium Boots', 2: 'Auchindoun', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12409, 1: 'Thorium Boots', 2: 'Dragonmaw', 3: 0, 4: 7, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 852, 1: 'Mace', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 120166, 1: 'Gorestained Garb', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 120166, 1: 'Gorestained Garb', 2: 'Blackrock', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 120166, 1: 'Gorestained Garb', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 120166, 1: 'Gorestained Garb', 2: 'Dragonmaw', 3: 0, 4: 9, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1810, 1: 'Tough Leather Armor', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 236779, 1: 'Mana Lily', 2: 'Argent Dawn', 3: 3, 4: 0, 5: 3, 6: 33000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 21841, 1: 'Netherweave Bag', 2: 'Antonidas', 3: 0, 4: 0, 5: 0, 6: 0, 7: 5, 8: 150000, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2024, 1: 'Espadon', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2024, 1: 'Espadon', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2024, 1: 'Espadon', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2216, 1: 'Simple Buckler', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 21219, 1: 'Recipe: Sagefish Delight', 2: 'Auchindoun', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 21219, 1: 'Recipe: Sagefish Delight', 2: 'Argent Dawn', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3975, 1: 'Smooth Leather Shoulderpads', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3975, 1: 'Smooth Leather Shoulderpads', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 154793, 1: 'Unraveling Cloth Amice', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 154793, 1: 'Unraveling Cloth Amice', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3375, 1: 'Calico Bracers', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 245782, 1: 'Thalassian Missive of the Aurora', 2: 'Argent Dawn', 3: 1, 4: 0, 5: 1, 6: 568900, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 67229, 1: 'Stag Flank', 2: 'Dragonmaw', 3: 46, 4: 38, 5: 46, 6: 2918100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4693, 1: 'Ceremonial Leather Belt', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4693, 1: 'Ceremonial Leather Belt', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 774, 1: 'Malachite', 2: 'Twisting Nether', 3: 1, 4: 1, 5: 1, 6: 9600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2150, 1: 'Polished Scale Bracers', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1751, 1: 'Linked Chain Pants', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1751, 1: 'Linked Chain Pants', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1751, 1: 'Linked Chain Pants', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1823, 1: 'Bludgeoning Cudgel', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4338, 1: 'Mageweave Cloth', 2: 'Dragonmaw', 3: 3, 4: 0, 5: 3, 6: 2400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62113, 1: 'Singed Gloves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2567, 1: "Evocator's Blade", 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5523, 1: 'Small Barnacled Clam', 2: 'Twisting Nether', 3: 2, 4: 0, 5: 2, 6: 1600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4235, 1: 'Heavy Hide', 2: 'Dragonmaw', 3: 3, 4: 1, 5: 3, 6: 1622200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2583, 1: 'Woolen Boots', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12804, 1: 'Powerful Mojo', 2: 'Dragonmaw', 3: 9, 4: 0, 5: 9, 6: 27000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1497, 1: 'Calico Cloak', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12364, 1: 'Huge Emerald', 2: 'Dragonmaw', 3: 4, 4: 0, 5: 4, 6: 75600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1495, 1: 'Calico Shoes', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1516, 1: 'Worn Hatchet', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1516, 1: 'Worn Hatchet', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1516, 1: 'Worn Hatchet', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3784, 1: 'Metal Stave', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3784, 1: 'Metal Stave', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 132543, 1: 'Spritescale Epaulets', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3036, 1: 'Heavy Shortbow', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3036, 1: 'Heavy Shortbow', 2: 'Auchindoun', 3: 1, 4: 1, 5: 1, 6: 2144000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4314, 1: 'Double-Stitched Woolen Shoulders', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4314, 1: 'Double-Stitched Woolen Shoulders', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 785, 1: 'Mageroyal', 2: 'Dragonmaw', 3: 91, 4: 9, 5: 91, 6: 1773000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 785, 1: 'Mageroyal', 2: 'Twisting Nether', 3: 16, 4: 16, 5: 16, 6: 320000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2589, 1: 'Linen Cloth', 2: 'Dragonmaw', 3: 897, 4: 172, 5: 897, 6: 427300, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2589, 1: 'Linen Cloth', 2: 'Twisting Nether', 3: 4, 4: 0, 5: 4, 6: 3200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2207, 1: 'Jambiya', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62122, 1: 'Sooty Mail Pants', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62122, 1: 'Sooty Mail Pants', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6358, 1: 'Oily Blackmouth', 2: 'Dragonmaw', 3: 4, 4: 0, 5: 4, 6: 89200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8183, 1: 'Precision Bow', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1817, 1: 'Stock Shortsword', 2: 'Aggra (Portugu�s)', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1817, 1: 'Stock Shortsword', 2: 'Dragonmaw', 3: 0, 4: 8, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1817, 1: 'Stock Shortsword', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3950, 1: 'Twill Shoulderpads', 2: 'Twisting Nether', 3: 1, 4: 0, 5: 1, 6: 155800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14571, 1: 'Bristlebark Cape', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3376, 1: 'Canvas Belt', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3389, 1: 'Elixir of Defense', 2: 'Dragonmaw', 3: 9, 4: 18, 5: 9, 6: 216000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1755, 1: 'Reinforced Chain Boots', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2924, 1: 'Crocolisk Meat', 2: 'Dragonmaw', 3: 2, 4: 0, 5: 2, 6: 10000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7078, 1: 'Essence of Fire', 2: 'Dragonmaw', 3: 1, 4: 0, 5: 1, 6: 2000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2580, 1: 'Reinforced Linen Cape', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2580, 1: 'Reinforced Linen Cape', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14367, 1: "Mystic's Gloves", 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14102, 1: 'Native Handwraps', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2030, 1: 'Gnarled Staff', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2030, 1: 'Gnarled Staff', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 154785, 1: 'Ruptured Plate Belt', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 154785, 1: 'Ruptured Plate Belt', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6787, 1: 'White Woolen Dress', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8748, 1: 'Double Mail Coif', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3806, 1: 'Hardened Leather Shoulderpads', 2: 'Twisting Nether', 3: 1, 4: 1, 5: 1, 6: 2548200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3842, 1: 'Green Iron Leggings', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3842, 1: 'Green Iron Leggings', 2: 'Silvermoon', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3842, 1: 'Green Iron Leggings', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2057, 1: 'Pitted Defias Shortsword', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10407, 1: "Raider's Shoulderpads", 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6379, 1: 'Inscribed Leather Belt', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 20816, 1: 'Delicate Copper Wire', 2: 'Dragonmaw', 3: 85, 4: 158, 5: 85, 6: 4250000, 7: 23, 8: 690000, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1764, 1: 'Canvas Shoes', 2: 'Auchindoun', 3: 1, 4: 0, 5: 1, 6: 2313600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1764, 1: 'Canvas Shoes', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1764, 1: 'Canvas Shoes', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1764, 1: 'Canvas Shoes', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1785, 1: 'Cross-Stitched Shoulderpads', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2149, 1: 'Polished Scale Boots', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3308, 1: 'Barbaric Cloth Gloves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4592, 1: 'Longjaw Mud Snapper', 2: 'Dragonmaw', 3: 5, 4: 0, 5: 5, 6: 500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1738, 1: 'Laced Mail Belt', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 39339, 1: 'Emerald Pigment', 2: 'Dragonmaw', 3: 80, 4: 36, 5: 80, 6: 18982200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4233, 1: 'Cured Medium Hide', 2: 'Dragonmaw', 3: 15, 4: 8, 5: 15, 6: 458600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5001, 1: 'Heart Ring', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5001, 1: 'Heart Ring', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14746, 1: 'Hulking Belt', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14746, 1: 'Hulking Belt', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2852, 1: 'Copper Chain Pants', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2852, 1: 'Copper Chain Pants', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2835, 1: 'Rough Stone', 2: 'Twisting Nether', 3: 44, 4: 0, 5: 44, 6: 8800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2835, 1: 'Rough Stone', 2: 'Dragonmaw', 3: 218, 4: 0, 5: 218, 6: 65400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15962, 1: "Satyr's Rod", 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4231, 1: 'Cured Light Hide', 2: 'Dragonmaw', 3: 8, 4: 0, 5: 8, 6: 484100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2847, 1: 'Copper Shortsword', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2847, 1: 'Copper Shortsword', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6214, 1: 'Heavy Copper Maul', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6214, 1: 'Heavy Copper Maul', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15300, 1: 'Grizzly Gloves', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15300, 1: 'Grizzly Gloves', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 258918, 1: "Tarnished Dawnlit Spellbinder's Sash", 2: 'Twisting Nether', 3: 0, 4: 0, 5: 0, 6: 0, 7: 1, 8: 6000000, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5471, 1: 'Stag Meat', 2: 'Dragonmaw', 3: 100, 4: 434, 5: 100, 6: 47500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 172054, 1: 'Raw Seraphic Wing', 2: 'Dragonmaw', 3: 5, 4: 0, 5: 5, 6: 73000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3473, 1: 'Runed Copper Pants', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3473, 1: 'Runed Copper Pants', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1743, 1: 'Laced Mail Pants', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25360, 1: 'Decaying Leather Bracers', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25360, 1: 'Decaying Leather Bracers', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1288, 1: 'Large Venom Sac', 2: 'Dragonmaw', 3: 68, 4: 45, 5: 68, 6: 14400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5785, 1: 'Thick Murloc Scale', 2: 'Dragonmaw', 3: 4, 4: 0, 5: 4, 6: 82000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2449, 1: 'Earthroot', 2: 'Dragonmaw', 3: 21, 4: 0, 5: 21, 6: 311600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2449, 1: 'Earthroot', 2: 'Twisting Nether', 3: 7, 4: 0, 5: 7, 6: 98000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 41731, 1: 'Yeti Milk', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2879, 1: 'Antipodean Rod', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12206, 1: 'Tender Crab Meat', 2: 'Dragonmaw', 3: 1, 4: 2, 5: 1, 6: 9000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1770, 1: 'Canvas Vest', 2: 'Twisting Nether', 3: 1, 4: 0, 5: 1, 6: 1080100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 21099, 1: 'Recipe: Smoked Sagefish', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 21099, 1: 'Recipe: Smoked Sagefish', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 53072, 1: 'Deepsea Sagefish', 2: 'Dragonmaw', 3: 12, 4: 32, 5: 12, 6: 26000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 90769, 1: 'Shabby Armor', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1766, 1: 'Canvas Cloak', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1766, 1: 'Canvas Cloak', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1766, 1: 'Canvas Cloak', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6796, 1: "Red Swashbuckler's Shirt", 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6796, 1: "Red Swashbuckler's Shirt", 2: 'Twisting Nether', 3: 1, 4: 0, 5: 1, 6: 598800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14729, 1: 'War Paint Shield', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14729, 1: 'War Paint Shield', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14729, 1: 'War Paint Shield', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14729, 1: 'War Paint Shield', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2138, 1: 'Sharpened Letter Opener', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2138, 1: 'Sharpened Letter Opener', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2278, 1: 'Forest Tracker Epaulets', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2493, 1: 'Wooden Mallet', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25377, 1: 'Corroded Mail Circlet', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6889, 1: 'Small Egg', 2: 'Dragonmaw', 3: 218, 4: 60, 5: 218, 6: 17271700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3470, 1: 'Rough Grinding Stone', 2: 'Dragonmaw', 3: 0, 4: 16, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1812, 1: 'Short-Handled Battle Axe', 2: 'Draenor', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1812, 1: 'Short-Handled Battle Axe', 2: 'Auchindoun', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1812, 1: 'Short-Handled Battle Axe', 2: 'Argent Dawn', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7080, 1: 'Essence of Water', 2: 'Dragonmaw', 3: 5, 4: 1, 5: 5, 6: 4106800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 52180, 1: 'Nightstone', 2: 'Dragonmaw', 3: 2, 4: 0, 5: 2, 6: 360200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12999, 1: 'Drakewing Bands', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2027, 1: 'Scimitar', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 39334, 1: 'Dusky Pigment', 2: 'Dragonmaw', 3: 205, 4: 220, 5: 205, 6: 6351400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8169, 1: 'Thick Hide', 2: 'Dragonmaw', 3: 1, 4: 1, 5: 1, 6: 8800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12037, 1: 'Mystery Meat', 2: 'Dragonmaw', 3: 1, 4: 0, 5: 1, 6: 200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1747, 1: 'Linked Chain Boots', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3811, 1: 'Double-Stitched Cloak', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3811, 1: 'Double-Stitched Cloak', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3811, 1: 'Double-Stitched Cloak', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3811, 1: 'Double-Stitched Cloak', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2490, 1: 'Tomahawk', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3286, 1: 'Tribal Gloves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1850, 1: 'Cured Leather Bracers', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3793, 1: 'Interlaced Boots', 2: 'Twisting Nether', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3793, 1: 'Interlaced Boots', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 69796, 1: 'Spiritcaller Cloak', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 44143, 1: 'Ace of Demons', 2: 'Dragonmaw', 3: 1, 4: 7, 5: 1, 6: 40000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14025, 1: "Mystic's Belt", 2: 'Silvermoon', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14025, 1: "Mystic's Belt", 2: 'Dragonmaw', 3: 1, 4: 3, 5: 1, 6: 2736900, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1769, 1: 'Canvas Shoulderpads', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1769, 1: 'Canvas Shoulderpads', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1769, 1: 'Canvas Shoulderpads', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1769, 1: 'Canvas Shoulderpads', 2: 'Silvermoon', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 43535, 1: 'Glyph of the Geist', 2: 'Dragonmaw', 3: 13, 4: 35, 5: 13, 6: 5749300, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6661, 1: 'Recipe: Savory Deviate Delight', 2: 'Dragonmaw', 3: 2, 4: 0, 5: 2, 6: 400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3968, 1: 'Thick Leather Tunic', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14099, 1: 'Native Sash', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14099, 1: 'Native Sash', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 33368, 1: 'Frost-Rimed Cloth Gloves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62096, 1: 'Clammy Mail Belt', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62096, 1: 'Clammy Mail Belt', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 43103, 1: 'Verdant Pigment', 2: 'Dragonmaw', 3: 33, 4: 68, 5: 33, 6: 1746000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15945, 1: 'Runic Stave', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6786, 1: 'Simple Dress', 2: 'Draenor', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6786, 1: 'Simple Dress', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6786, 1: 'Simple Dress', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 237436, 1: "Nightfall Darkcaster's Vestment", 2: 'Argent Dawn', 3: 0, 4: 0, 5: 0, 6: 0, 7: 1, 8: 16029700, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1735, 1: 'Worn Mail Pants', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1735, 1: 'Worn Mail Pants', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1735, 1: 'Worn Mail Pants', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62106, 1: 'Bleached Plate Gloves', 2: 'Aggra (Portugu�s)', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62106, 1: 'Bleached Plate Gloves', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2598, 1: 'Pattern: Red Linen Robe', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2598, 1: 'Pattern: Red Linen Robe', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62781, 1: 'Giant Turtle Tongue', 2: 'Dragonmaw', 3: 19, 4: 76, 5: 19, 6: 157700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2765, 1: 'Hunting Knife', 2: 'Draenor', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2765, 1: 'Hunting Knife', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2765, 1: 'Hunting Knife', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 24215, 1: 'Design: Reckless Noble Topaz', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 53070, 1: 'Fathom Eel', 2: 'Dragonmaw', 3: 23, 4: 48, 5: 23, 6: 39800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2576, 1: 'White Linen Shirt', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6663, 1: 'Recipe: Elixir of Giant Growth', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6663, 1: 'Recipe: Elixir of Giant Growth', 2: 'Silvermoon', 3: 3, 4: 3, 5: 3, 6: 15700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6663, 1: 'Recipe: Elixir of Giant Growth', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3609, 1: 'Plans: Copper Chain Vest', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4594, 1: 'Rockscale Cod', 2: 'Dragonmaw', 3: 0, 4: 30, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15473, 1: "Charger's Boots", 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2480, 1: 'Large Club', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3488, 1: 'Copper Battle Axe', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3488, 1: 'Copper Battle Axe', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 170114, 1: 'Flanged Mace', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3306, 1: 'Brackwater Vest', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7070, 1: 'Elemental Water', 2: 'Dragonmaw', 3: 17, 4: 27, 5: 17, 6: 136400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62121, 1: 'Sooty Mail Shoulderpads', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 37156, 1: 'Three of Rogues', 2: 'Dragonmaw', 3: 1, 4: 1, 5: 1, 6: 20000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6040, 1: 'Golden Scale Bracers', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6040, 1: 'Golden Scale Bracers', 2: 'Silvermoon', 3: 2, 4: 3, 5: 2, 6: 200000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13463, 1: 'Dreamfoil', 2: 'Dragonmaw', 3: 245, 4: 234, 5: 245, 6: 9102300, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15313, 1: 'Feral Shoulder Pads', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1826, 1: 'Rock Maul', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1826, 1: 'Rock Maul', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1774, 1: 'Brocade Cloak', 2: 'Dragonmaw', 3: 0, 4: 7, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7281, 1: 'Light Leather Bracers', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1742, 1: 'Laced Mail Gloves', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1742, 1: 'Laced Mail Gloves', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5071, 1: 'Shadow Wand', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25346, 1: 'Dilapidated Cloth Pants', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14639, 1: 'Schematic: Minor Recombobulator', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14639, 1: 'Schematic: Minor Recombobulator', 2: 'Blackrock', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14639, 1: 'Schematic: Minor Recombobulator', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 167179, 1: 'Common White Shirt', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 167179, 1: 'Common White Shirt', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 69800, 1: 'Spiritguard Drape', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13940, 1: 'Recipe: Cooked Glossy Mightfish', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1829, 1: 'Short Cutlass', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8959, 1: 'Raw Spinefin Halibut', 2: 'Dragonmaw', 3: 4, 4: 3, 5: 4, 6: 2800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1768, 1: 'Canvas Pants', 2: 'Kazzak', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1768, 1: 'Canvas Pants', 2: 'Auchindoun', 3: 1, 4: 0, 5: 1, 6: 4266200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1768, 1: 'Canvas Pants', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2587, 1: 'Gray Woolen Shirt', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2587, 1: 'Gray Woolen Shirt', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4310, 1: 'Heavy Woolen Gloves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2491, 1: 'Large Axe', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2139, 1: 'Dirk', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1778, 1: 'Brocade Vest', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1778, 1: 'Brocade Vest', 2: 'Blackrock', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1778, 1: 'Brocade Vest', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1778, 1: 'Brocade Vest', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8176, 1: 'Nightscape Headband', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8176, 1: 'Nightscape Headband', 2: 'Auchindoun', 3: 2, 4: 3, 5: 2, 6: 138000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14375, 1: 'Sanguine Cuffs', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12207, 1: 'Giant Egg', 2: 'Dragonmaw', 3: 2, 4: 0, 5: 2, 6: 2900, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1775, 1: 'Brocade Gloves', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1775, 1: 'Brocade Gloves', 2: 'Blackrock', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1775, 1: 'Brocade Gloves', 2: 'Dragonmaw', 3: 0, 4: 7, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1775, 1: 'Brocade Gloves', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1802, 1: 'Rawhide Tunic', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7166, 1: 'Copper Dagger', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7166, 1: 'Copper Dagger', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1760, 1: 'Reinforced Chain Shoulderpads', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1760, 1: 'Reinforced Chain Shoulderpads', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1760, 1: 'Reinforced Chain Shoulderpads', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3379, 1: 'Brocade Bracers', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2132, 1: 'Short Staff', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 242948, 1: 'Loch Modan Bearskin Rug', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4308, 1: 'Green Linen Bracers', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62128, 1: 'Bleached Plate Bracers', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3478, 1: 'Coarse Grinding Stone', 2: 'Dragonmaw', 3: 324, 4: 0, 5: 324, 6: 1684800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 52078, 1: 'Chaos Orb', 2: 'Dragonmaw', 3: 1, 4: 0, 5: 1, 6: 13500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6289, 1: 'Raw Longjaw Mud Snapper', 2: 'Dragonmaw', 3: 7, 4: 7, 5: 7, 6: 11200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4307, 1: 'Heavy Linen Gloves', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4307, 1: 'Heavy Linen Gloves', 2: 'Draenor', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2777, 1: 'Feeble Shortbow', 2: 'Twisting Nether', 3: 1, 4: 2, 5: 1, 6: 748700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2777, 1: 'Feeble Shortbow', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2579, 1: 'Green Linen Shirt', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2220, 1: 'Box Shield', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 18265, 1: 'Pattern: Flarecore Wraps', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15763, 1: 'Pattern: Blue Dragonscale Shoulders', 2: 'Auchindoun', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2452, 1: 'Swiftthistle', 2: 'Dragonmaw', 3: 42, 4: 1, 5: 42, 6: 830800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2452, 1: 'Swiftthistle', 2: 'Twisting Nether', 3: 6, 4: 0, 5: 6, 6: 100800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4247, 1: "Hillman's Leather Gloves", 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5504, 1: 'Tangy Clam Meat', 2: 'Dragonmaw', 3: 167, 4: 47, 5: 167, 6: 820000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4238, 1: 'Linen Bag', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3870, 1: 'Plans: Green Iron Shoulders', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3870, 1: 'Plans: Green Iron Shoulders', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 851, 1: 'Cutlass', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 851, 1: 'Cutlass', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2934, 1: 'Ruined Leather Scraps', 2: 'Dragonmaw', 3: 194, 4: 29, 5: 194, 6: 1736300, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2934, 1: 'Ruined Leather Scraps', 2: 'Auchindoun', 3: 29, 4: 0, 5: 29, 6: 269700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1807, 1: 'Tough Leather Gloves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3787, 1: 'Stone Club', 2: 'Draenor', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3787, 1: 'Stone Club', 2: 'Silvermoon', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3787, 1: 'Stone Club', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2153, 1: 'Polished Scale Vest', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1413, 1: 'Feeble Sword', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1413, 1: 'Feeble Sword', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3377, 1: 'Canvas Bracers', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 20828, 1: 'Ring of Twilight Shadows', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14371, 1: "Mystic's Robe", 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1798, 1: 'Rawhide Cloak', 2: 'Dragonmaw', 3: 0, 4: 8, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1798, 1: 'Rawhide Cloak', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 768, 1: 'Lumberjack Axe', 2: 'Auchindoun', 3: 1, 4: 2, 5: 1, 6: 1190600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 818, 1: 'Tigerseye', 2: 'Twisting Nether', 3: 1, 4: 0, 5: 1, 6: 17900, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62130, 1: 'Bleached Plate Belt', 2: 'Silvermoon', 3: 0, 4: 7, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4726, 1: 'Chief Brigadier Cloak', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4726, 1: 'Chief Brigadier Cloak', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7079, 1: 'Globe of Water', 2: 'Dragonmaw', 3: 6, 4: 6, 5: 6, 6: 11400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25391, 1: 'Deteriorating Plate Bracers', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2494, 1: 'Stiletto', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 11287, 1: 'Lesser Magic Wand', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 11287, 1: 'Lesser Magic Wand', 2: 'Silvermoon', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 11287, 1: 'Lesser Magic Wand', 2: 'Auchindoun', 3: 1, 4: 0, 5: 1, 6: 935900, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 104105, 1: 'Glyph of Evaporation', 2: 'Dragonmaw', 3: 3, 4: 0, 5: 3, 6: 150000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2778, 1: 'Cheap Blunderbuss', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2778, 1: 'Cheap Blunderbuss', 2: 'Auchindoun', 3: 1, 4: 1, 5: 1, 6: 1703800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2778, 1: 'Cheap Blunderbuss', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2778, 1: 'Cheap Blunderbuss', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62784, 1: 'Crocolisk Tail', 2: 'Dragonmaw', 3: 6, 4: 6, 5: 6, 6: 41400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5964, 1: 'Barbaric Shoulders', 2: 'Twisting Nether', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5964, 1: 'Barbaric Shoulders', 2: 'Blackrock', 3: 1, 4: 3, 5: 1, 6: 99800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5964, 1: 'Barbaric Shoulders', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5964, 1: 'Barbaric Shoulders', 2: 'Auchindoun', 3: 1, 4: 2, 5: 1, 6: 13800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5964, 1: 'Barbaric Shoulders', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5964, 1: 'Barbaric Shoulders', 2: 'Silvermoon', 3: 1, 4: 0, 5: 1, 6: 13800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15301, 1: 'Grizzly Slippers', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15301, 1: 'Grizzly Slippers', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 236952, 1: 'Mote of Pure Void', 2: 'Argent Dawn', 3: 1, 4: 0, 5: 1, 6: 4300, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1198, 1: 'Claymore', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14529, 1: 'Runecloth Bandage', 2: 'Dragonmaw', 3: 0, 4: 30, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4304, 1: 'Thick Leather', 2: 'Dragonmaw', 3: 6, 4: 0, 5: 6, 6: 318000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2781, 1: 'Dirty Blunderbuss', 2: 'Dragonmaw', 3: 0, 4: 8, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 22644, 1: 'Crunchy Spider Leg', 2: 'Dragonmaw', 3: 104, 4: 26, 5: 104, 6: 962000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 39338, 1: 'Golden Pigment', 2: 'Dragonmaw', 3: 7, 4: 657, 5: 7, 6: 428400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7046, 1: 'Azure Silk Pants', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7046, 1: 'Azure Silk Pants', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 35953, 1: 'Mead-Basted Caribou', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13136, 1: "Lil Timmy's Peashooter", 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13136, 1: "Lil Timmy's Peashooter", 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 43120, 1: 'Celestial Ink', 2: 'Dragonmaw', 3: 5, 4: 5, 5: 5, 6: 449500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2453, 1: 'Bruiseweed', 2: 'Twisting Nether', 3: 5, 4: 0, 5: 5, 6: 105500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 33384, 1: 'Frozen Pants', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 33384, 1: 'Frozen Pants', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4324, 1: 'Azure Silk Vest', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4324, 1: 'Azure Silk Vest', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2771, 1: 'Tin Ore', 2: 'Twisting Nether', 3: 26, 4: 0, 5: 26, 6: 208000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14364, 1: "Mystic's Slippers", 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 43106, 1: 'Ruby Pigment', 2: 'Dragonmaw', 3: 3, 4: 5, 5: 3, 6: 103400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2577, 1: 'Blue Linen Shirt', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2577, 1: 'Blue Linen Shirt', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 44213, 1: 'Darkmoon Pendant', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2785, 1: 'Stiff Recurve Bow', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3835, 1: 'Green Iron Bracers', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3835, 1: 'Green Iron Bracers', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3835, 1: 'Green Iron Bracers', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14373, 1: 'Sanguine Belt', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 244719, 1: 'Farstrider Rock Satchel', 2: 'Dragonmaw', 3: 0, 4: 8, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2836, 1: 'Coarse Stone', 2: 'Twisting Nether', 3: 25, 4: 0, 5: 25, 6: 10000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 53066, 1: 'Blackbelly Mudfish', 2: 'Dragonmaw', 3: 20, 4: 0, 5: 20, 6: 26000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2025, 1: 'Bearded Axe', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1511, 1: "Commoner's Sword", 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2763, 1: 'Fisherman Knife', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2780, 1: 'Light Hunting Bow', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2780, 1: 'Light Hunting Bow', 2: 'Auchindoun', 3: 1, 4: 0, 5: 1, 6: 2307800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2134, 1: 'Hand Axe', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14743, 1: 'Hulking Bands', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62102, 1: 'Dirt-Caked Leather Helmet', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7919, 1: 'Heavy Mithril Gauntlet', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7919, 1: 'Heavy Mithril Gauntlet', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7919, 1: 'Heavy Mithril Gauntlet', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 9294, 1: 'Recipe: Wildvine Potion', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 9294, 1: 'Recipe: Wildvine Potion', 2: 'Auchindoun', 3: 1, 4: 1, 5: 1, 6: 4800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 9294, 1: 'Recipe: Wildvine Potion', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3782, 1: 'Large War Club', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 53010, 1: 'Embersilk Cloth', 2: 'Dragonmaw', 3: 47, 4: 47, 5: 47, 6: 451200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3575, 1: 'Iron Bar', 2: 'Dragonmaw', 3: 58, 4: 0, 5: 58, 6: 4379000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15481, 1: 'War Torn Greaves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62097, 1: 'Clammy Mail Armor', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 236949, 1: 'Mote of Light', 2: 'Argent Dawn', 3: 2, 4: 0, 5: 2, 6: 23600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2208, 1: 'Poniard', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2208, 1: 'Poniard', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3307, 1: 'Barbaric Cloth Boots', 2: 'Twisting Nether', 3: 1, 4: 0, 5: 1, 6: 4156800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5784, 1: 'Slimy Murloc Scale', 2: 'Dragonmaw', 3: 176, 4: 103, 5: 176, 6: 360800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3780, 1: 'Long-Barreled Musket', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3480, 1: 'Rough Bronze Shoulders', 2: 'Dragonmaw', 3: 0, 4: 8, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3480, 1: 'Rough Bronze Shoulders', 2: 'Silvermoon', 3: 3, 4: 0, 5: 3, 6: 74500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14380, 1: 'Sanguine Robe', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2300, 1: 'Embossed Leather Vest', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2300, 1: 'Embossed Leather Vest', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1799, 1: 'Rawhide Gloves', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1799, 1: 'Rawhide Gloves', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14454, 1: 'Highborne Cord', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14454, 1: 'Highborne Cord', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25401, 1: 'Corroded Mace', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25401, 1: 'Corroded Mace', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 9187, 1: 'Elixir of Greater Agility', 2: 'Dragonmaw', 3: 1, 4: 7, 5: 1, 6: 90000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62778, 1: 'Toughened Flesh', 2: 'Dragonmaw', 3: 9, 4: 0, 5: 9, 6: 20700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2772, 1: 'Iron Ore', 2: 'Dragonmaw', 3: 202, 4: 0, 5: 202, 6: 9696000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1813, 1: 'Chipped Quarterstaff', 2: 'Dragonmaw', 3: 0, 4: 7, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1813, 1: 'Chipped Quarterstaff', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2310, 1: 'Embossed Leather Cloak', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2310, 1: 'Embossed Leather Cloak', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 52327, 1: 'Volatile Earth', 2: 'Dragonmaw', 3: 7, 4: 0, 5: 7, 6: 245000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15505, 1: "Outrunner's Pauldrons", 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15505, 1: "Outrunner's Pauldrons", 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62105, 1: 'Bleached Plate Pants', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3374, 1: 'Calico Belt', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7058, 1: 'Crimson Silk Vest', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8167, 1: 'Turtle Scale', 2: 'Dragonmaw', 3: 1, 4: 0, 5: 1, 6: 13200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2492, 1: 'Cudgel', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4639, 1: 'Enchanted Sea Kelp', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62067, 1: 'Flamewashed Mace', 2: 'Twisting Nether', 3: 1, 4: 0, 5: 1, 6: 54800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62116, 1: 'Sodden Cloth Pants', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62116, 1: 'Sodden Cloth Pants', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4234, 1: 'Heavy Leather', 2: 'Dragonmaw', 3: 26, 4: 0, 5: 26, 6: 1820000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1816, 1: 'Unbalanced Axe', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1816, 1: 'Unbalanced Axe', 2: 'Silvermoon', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 44157, 1: 'Five of Demons', 2: 'Dragonmaw', 3: 3, 4: 15, 5: 3, 6: 225300, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8545, 1: 'Heavy Mageweave Bandage', 2: 'Dragonmaw', 3: 0, 4: 20, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6451, 1: 'Heavy Silk Bandage', 2: 'Dragonmaw', 3: 0, 4: 20, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 43104, 1: 'Burnt Pigment', 2: 'Dragonmaw', 3: 19, 4: 38, 5: 19, 6: 1069100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14728, 1: 'War Paint Shoulder Pads', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 17056, 1: 'Light Feather', 2: 'Dragonmaw', 3: 27, 4: 21, 5: 27, 6: 2700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62071, 1: 'Corroded Blade', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62071, 1: 'Corroded Blade', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4334, 1: 'Formal White Shirt', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4334, 1: 'Formal White Shirt', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 85663, 1: "Herbalist's Spade", 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62069, 1: 'Plugged Rifle', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2674, 1: 'Crawler Meat', 2: 'Dragonmaw', 3: 68, 4: 5, 5: 68, 6: 1411100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4237, 1: 'Handstitched Leather Belt', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4237, 1: 'Handstitched Leather Belt', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1804, 1: 'Tough Leather Boots', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3357, 1: 'Liferoot', 2: 'Dragonmaw', 3: 5, 4: 4, 5: 5, 6: 201700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3357, 1: 'Liferoot', 2: 'Twisting Nether', 3: 4, 4: 0, 5: 4, 6: 186000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 21552, 1: 'Striped Yellowtail', 2: 'Dragonmaw', 3: 0, 4: 30, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14724, 1: 'War Paint Cloak', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14724, 1: 'War Paint Cloak', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 236767, 1: 'Tranquility Bloom', 2: 'Argent Dawn', 3: 11, 4: 11, 5: 11, 6: 217800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 17062, 1: 'Recipe: Mithril Head Trout', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1499, 1: 'Calico Pants', 2: 'Draenor', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1499, 1: 'Calico Pants', 2: 'Auchindoun', 3: 1, 4: 0, 5: 1, 6: 1923500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1499, 1: 'Calico Pants', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5957, 1: 'Handstitched Leather Vest', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6712, 1: 'Clockwork Box', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1801, 1: 'Rawhide Shoulderpads', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1801, 1: 'Rawhide Shoulderpads', 2: 'Draenor', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1801, 1: 'Rawhide Shoulderpads', 2: 'Silvermoon', 3: 1, 4: 1, 5: 1, 6: 290000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1801, 1: 'Rawhide Shoulderpads', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3310, 1: 'Barbaric Cloth Vest', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3310, 1: 'Barbaric Cloth Vest', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3279, 1: 'Battle Chain Boots', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25394, 1: 'Deteriorating Plate Helmet', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25394, 1: 'Deteriorating Plate Helmet', 2: 'Argent Dawn', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1793, 1: 'Patched Leather Shoulderpads', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14126, 1: 'Ritual Amice', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14126, 1: 'Ritual Amice', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14126, 1: 'Ritual Amice', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62080, 1: 'Perforated Plate Boots', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4330, 1: 'Stylish Red Shirt', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1822, 1: 'Cedar Walking Stick', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1822, 1: 'Cedar Walking Stick', 2: 'Auchindoun', 3: 1, 4: 0, 5: 1, 6: 2269000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1822, 1: 'Cedar Walking Stick', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6369, 1: 'Recipe: Rockscale Cod', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6391, 1: 'Pattern: Stylish Green Shirt', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1732, 1: 'Worn Mail Bracers', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1732, 1: 'Worn Mail Bracers', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1732, 1: 'Worn Mail Bracers', 2: 'Silvermoon', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1732, 1: 'Worn Mail Bracers', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1732, 1: 'Worn Mail Bracers', 2: 'Argent Dawn', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15019, 1: 'Lupine Mantle', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62070, 1: 'Rusted Timber Axe', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 20817, 1: 'Bronze Setting', 2: 'Dragonmaw', 3: 5, 4: 0, 5: 5, 6: 245000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1748, 1: 'Linked Chain Bracers', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 43118, 1: 'Jadefire Ink', 2: 'Dragonmaw', 3: 2, 4: 4, 5: 2, 6: 665000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6241, 1: 'White Linen Robe', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6241, 1: 'White Linen Robe', 2: 'Draenor', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4236, 1: 'Cured Heavy Hide', 2: 'Dragonmaw', 3: 6, 4: 0, 5: 6, 6: 2999100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1777, 1: 'Brocade Shoulderpads', 2: 'Draenor', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1777, 1: 'Brocade Shoulderpads', 2: 'Kazzak', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1777, 1: 'Brocade Shoulderpads', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1777, 1: 'Brocade Shoulderpads', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1509, 1: 'Warped Leather Vest', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3940, 1: 'Crochet Gloves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6359, 1: 'Firefin Snapper', 2: 'Dragonmaw', 3: 4, 4: 2, 5: 4, 6: 100200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62132, 1: 'Sooty Mail Armor', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6238, 1: 'Brown Linen Robe', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7026, 1: 'Linen Belt', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7026, 1: 'Linen Belt', 2: 'Blackrock', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7026, 1: 'Linen Belt', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 33470, 1: 'Frostweave Cloth', 2: 'Dragonmaw', 3: 7, 4: 0, 5: 7, 6: 12600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5207, 1: 'Opaque Wand', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2026, 1: 'Rock Hammer', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8150, 1: 'Deeprock Salt', 2: 'Dragonmaw', 3: 39, 4: 0, 5: 39, 6: 31200, 7: 50, 8: 20000, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5212, 1: 'Blazing Wand', 2: 'Twisting Nether', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5212, 1: 'Blazing Wand', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1794, 1: 'Patched Leather Jerkin', 2: 'Kazzak', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 44156, 1: 'Four of Demons', 2: 'Dragonmaw', 3: 1, 4: 7, 5: 1, 6: 40000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25348, 1: 'Dilapidated Cloth Vest', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5498, 1: 'Small Lustrous Pearl', 2: 'Dragonmaw', 3: 4, 4: 0, 5: 4, 6: 56000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62779, 1: 'Monstrous Claw', 2: 'Dragonmaw', 3: 19, 4: 0, 5: 19, 6: 28500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 33412, 1: 'Frost-Worn Plate Belt', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4306, 1: 'Silk Cloth', 2: 'Dragonmaw', 3: 121, 4: 28, 5: 121, 6: 38800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12282, 1: 'Worn Battleaxe', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2214, 1: 'Wooden Buckler', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 237, 1: 'Cured Leather Pants', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14404, 1: 'Resilient Leggings', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13491, 1: 'Recipe: Elixir of the Mongoose', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4344, 1: 'Brown Linen Shirt', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4344, 1: 'Brown Linen Shirt', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2219, 1: 'Small Round Shield', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2219, 1: 'Small Round Shield', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2219, 1: 'Small Round Shield', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6308, 1: 'Raw Bristle Whisker Catfish', 2: 'Dragonmaw', 3: 17, 4: 0, 5: 17, 6: 7100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2151, 1: 'Polished Scale Gloves', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2028, 1: 'Hammer', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 39151, 1: 'Alabaster Pigment', 2: 'Dragonmaw', 3: 116, 4: 0, 5: 116, 6: 4910400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4708, 1: 'Bright Belt', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7276, 1: 'Handstitched Leather Cloak', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4246, 1: 'Fine Leather Belt', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5966, 1: 'Guardian Gloves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3820, 1: 'Stranglekelp', 2: 'Dragonmaw', 3: 21, 4: 1, 5: 21, 6: 1069300, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 52722, 1: 'Maelstrom Crystal', 2: 'Dragonmaw', 3: 1, 4: 0, 5: 1, 6: 15000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3355, 1: 'Wild Steelbloom', 2: 'Dragonmaw', 3: 44, 4: 21, 5: 44, 6: 1662900, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3355, 1: 'Wild Steelbloom', 2: 'Twisting Nether', 3: 2, 4: 2, 5: 2, 6: 79800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10046, 1: 'Simple Linen Boots', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3807, 1: 'Hardened Leather Tunic', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3807, 1: 'Hardened Leather Tunic', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3807, 1: 'Hardened Leather Tunic', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3807, 1: 'Hardened Leather Tunic', 2: 'Argent Dawn', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4364, 1: 'Coarse Blasting Powder', 2: 'Dragonmaw', 3: 0, 4: 56, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4998, 1: 'Blood Ring', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2572, 1: 'Red Linen Robe', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2489, 1: 'Two-Handed Sword', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2675, 1: 'Crawler Claw', 2: 'Dragonmaw', 3: 47, 4: 103, 5: 47, 6: 290800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2302, 1: 'Handstitched Leather Boots', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13105, 1: "Sutarn's Ring", 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 43105, 1: 'Indigo Pigment', 2: 'Dragonmaw', 3: 5, 4: 6, 5: 5, 6: 315000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7920, 1: 'Mithril Scale Pants', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7920, 1: 'Mithril Scale Pants', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7920, 1: 'Mithril Scale Pants', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1789, 1: 'Patched Leather Bracers', 2: 'Aggra (Portugu�s)', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1789, 1: 'Patched Leather Bracers', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1789, 1: 'Patched Leather Bracers', 2: 'Silvermoon', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1197, 1: 'Giant Mace', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1197, 1: 'Giant Mace', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2143, 1: 'Cuirboulli Boots', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3487, 1: 'Heavy Copper Broadsword', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2447, 1: 'Peacebloom', 2: 'Dragonmaw', 3: 23, 4: 3, 5: 23, 6: 527400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2447, 1: 'Peacebloom', 2: 'Twisting Nether', 3: 4, 4: 0, 5: 4, 6: 81600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14742, 1: 'Hulking Boots', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2565, 1: 'Rod of Molten Fire', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12983, 1: 'Rakzur Club', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4343, 1: 'Brown Linen Pants', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3313, 1: 'Ceremonial Leather Harness', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1514, 1: 'Rusty Warhammer', 2: 'Twisting Nether', 3: 1, 4: 0, 5: 1, 6: 813000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1514, 1: 'Rusty Warhammer', 2: 'Auchindoun', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1514, 1: 'Rusty Warhammer', 2: 'Dragonmaw', 3: 0, 4: 6, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1514, 1: 'Rusty Warhammer', 2: 'Argent Dawn', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1504, 1: 'Warped Leather Bracers', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1504, 1: 'Warped Leather Bracers', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1504, 1: 'Warped Leather Bracers', 2: 'Auchindoun', 3: 1, 4: 2, 5: 1, 6: 1968800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1783, 1: 'Cross-Stitched Gloves', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 33367, 1: 'Frost-Rimed Cloth Bracers', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 33367, 1: 'Frost-Rimed Cloth Bracers', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1819, 1: 'Gouging Pick', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14563, 1: "Prospector's Cloak", 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14563, 1: "Prospector's Cloak", 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14570, 1: 'Bristlebark Blouse', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2578, 1: 'Barbaric Linen Vest', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2632, 1: 'Curved Dagger', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1788, 1: 'Patched Leather Boots', 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1788, 1: 'Patched Leather Boots', 2: 'Argent Dawn', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14562, 1: "Prospector's Chestpiece", 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3796, 1: 'Interlaced Gloves', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3796, 1: 'Interlaced Gloves', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3796, 1: 'Interlaced Gloves', 2: 'Draenor', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12985, 1: 'Ring of Defense', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12985, 1: 'Ring of Defense', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62065, 1: 'Melted Cleaver', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62065, 1: 'Melted Cleaver', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62065, 1: 'Melted Cleaver', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4593, 1: 'Bristle Whisker Catfish', 2: 'Dragonmaw', 3: 5, 4: 0, 5: 5, 6: 1500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 236950, 1: 'Mote of Primal Energy', 2: 'Dragonmaw', 3: 1, 4: 0, 5: 1, 6: 6400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5503, 1: 'Clam Meat', 2: 'Dragonmaw', 3: 141, 4: 26, 5: 141, 6: 290200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1739, 1: 'Laced Mail Boots', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15407, 1: 'Cured Rugged Hide', 2: 'Dragonmaw', 3: 9, 4: 0, 5: 9, 6: 685700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14429, 1: 'Windchaser Cuffs', 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1767, 1: 'Canvas Gloves', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1767, 1: 'Canvas Gloves', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1767, 1: 'Canvas Gloves', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 52185, 1: 'Elementium Ore', 2: 'Dragonmaw', 3: 17, 4: 17, 5: 17, 6: 1188300, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3802, 1: 'Hardened Leather Bracers', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1752, 1: 'Linked Chain Shoulderpads', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15084, 1: 'Wicked Leather Bracers', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15084, 1: 'Wicked Leather Bracers', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15084, 1: 'Wicked Leather Bracers', 2: 'Auchindoun', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15084, 1: 'Wicked Leather Bracers', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15084, 1: 'Wicked Leather Bracers', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1731, 1: 'Worn Mail Boots', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1731, 1: 'Worn Mail Boots', 2: 'Draenor', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5213, 1: 'Scorching Wand', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1797, 1: 'Rawhide Bracers', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1797, 1: 'Rawhide Bracers', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3857, 1: 'Coal', 2: 'Dragonmaw', 3: 1, 4: 0, 5: 1, 6: 1500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6795, 1: "White Swashbuckler's Shirt", 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6795, 1: "White Swashbuckler's Shirt", 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4309, 1: 'Handstitched Linen Britches', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4309, 1: 'Handstitched Linen Britches', 2: 'Draenor', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1749, 1: 'Linked Chain Cloak', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1749, 1: 'Linked Chain Cloak', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1749, 1: 'Linked Chain Cloak', 2: 'Argent Dawn', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 39469, 1: 'Moonglow Ink', 2: 'Dragonmaw', 3: 1, 4: 0, 5: 1, 6: 77600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13049, 1: 'Deanship Claymore', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13049, 1: 'Deanship Claymore', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13049, 1: 'Deanship Claymore', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1796, 1: 'Rawhide Boots', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8170, 1: 'Rugged Leather', 2: 'Dragonmaw', 3: 18, 4: 0, 5: 18, 6: 684000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 52178, 1: 'Zephyrite', 2: 'Dragonmaw', 3: 2, 4: 0, 5: 2, 6: 260000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3383, 1: 'Elixir of Wisdom', 2: 'Dragonmaw', 3: 5, 4: 3, 5: 5, 6: 55800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12205, 1: 'White Spider Meat', 2: 'Dragonmaw', 3: 2, 4: 1, 5: 2, 6: 600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 52976, 1: 'Savage Leather', 2: 'Dragonmaw', 3: 152, 4: 152, 5: 152, 6: 3252800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13011, 1: 'Silver-Lined Belt', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13011, 1: 'Silver-Lined Belt', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13011, 1: 'Silver-Lined Belt', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3815, 1: 'Double Mail Vest', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3815, 1: 'Double Mail Vest', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 19768, 1: 'Primal Tiger Leather', 2: 'Dragonmaw', 3: 3, 4: 3, 5: 3, 6: 964500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1818, 1: 'Standard Claymore', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1818, 1: 'Standard Claymore', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 239, 1: 'Cured Leather Gloves', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4577, 1: 'Compact Shotgun', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4577, 1: 'Compact Shotgun', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 37145, 1: 'Ace of Swords', 2: 'Dragonmaw', 3: 1, 4: 14, 5: 1, 6: 10000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3712, 1: 'Turtle Meat', 2: 'Dragonmaw', 3: 13, 4: 13, 5: 13, 6: 196200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 68752, 1: 'Imbued Infantry Belt', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 68752, 1: 'Imbued Infantry Belt', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 19767, 1: 'Primal Bat Leather', 2: 'Dragonmaw', 3: 5, 4: 5, 5: 5, 6: 5488500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25345, 1: 'Dilapidated Cloth Hat', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7973, 1: 'Big-Mouth Clam', 2: 'Twisting Nether', 3: 2, 4: 2, 5: 2, 6: 258000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7973, 1: 'Big-Mouth Clam', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2770, 1: 'Copper Ore', 2: 'Twisting Nether', 3: 50, 4: 50, 5: 50, 6: 875000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2770, 1: 'Copper Ore', 2: 'Dragonmaw', 3: 148, 4: 0, 5: 148, 6: 2456800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2786, 1: 'Oiled Blunderbuss', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2786, 1: 'Oiled Blunderbuss', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3799, 1: 'Interlaced Vest', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3795, 1: 'Interlaced Cloak', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12425, 1: 'Imperial Plate Bracers', 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12425, 1: 'Imperial Plate Bracers', 2: 'Silvermoon', 3: 1, 4: 2, 5: 1, 6: 248700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7453, 1: 'Pattern: Swift Boots', 2: 'Twisting Nether', 3: 1, 4: 0, 5: 1, 6: 99800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7453, 1: 'Pattern: Swift Boots', 2: 'Kazzak', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7453, 1: 'Pattern: Swift Boots', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7453, 1: 'Pattern: Swift Boots', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 242639, 1: 'Practically Pork', 2: 'Argent Dawn', 3: 12, 4: 0, 5: 12, 6: 111600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1753, 1: 'Linked Chain Vest', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1753, 1: 'Linked Chain Vest', 2: 'Silvermoon', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14369, 1: "Mystic's Wrap", 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25396, 1: 'Deteriorating Plate Shoulderpads', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3358, 1: "Khadgar's Whisker", 2: 'Dragonmaw', 3: 3, 4: 0, 5: 3, 6: 222000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2148, 1: 'Polished Scale Belt', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62072, 1: "Robble's Wobbly Staff", 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62072, 1: "Robble's Wobbly Staff", 2: 'Dragonmaw', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62072, 1: "Robble's Wobbly Staff", 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 16008, 1: "Master Engineer's Goggles", 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 16008, 1: "Master Engineer's Goggles", 2: 'Auchindoun', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 16008, 1: "Master Engineer's Goggles", 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2029, 1: 'Cleaver', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14377, 1: 'Sanguine Handwraps', 2: 'Dragonmaw', 3: 0, 4: 4, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7071, 1: 'Iron Buckle', 2: 'Dragonmaw', 3: 0, 4: 0, 5: 0, 6: 0, 7: 1, 8: 30000, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3039, 1: 'Short Ash Bow', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1498, 1: 'Calico Gloves', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1791, 1: 'Patched Leather Gloves', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5961, 1: 'Dark Leather Pants', 2: 'Silvermoon', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13943, 1: 'Recipe: Hot Smoked Bass', 2: 'Blackrock', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13943, 1: 'Recipe: Hot Smoked Bass', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13943, 1: 'Recipe: Hot Smoked Bass', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8957, 1: 'Spinefin Halibut', 2: 'Dragonmaw', 3: 0, 4: 210, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1831, 1: 'Oaken War Staff', 2: 'Dragonmaw', 3: 0, 4: 5, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 53069, 1: 'Murglesnout', 2: 'Dragonmaw', 3: 8, 4: 8, 5: 8, 6: 16000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14593, 1: "Hawkeye's Cloak", 2: 'Twisting Nether', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2857, 1: 'Runed Copper Belt', 2: 'Dragonmaw', 3: 1, 4: 1, 5: 1, 6: 657300, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 43107, 1: 'Sapphire Pigment', 2: 'Dragonmaw', 3: 12, 4: 42, 5: 12, 6: 3339300, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2584, 1: 'Woolen Cape', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8193, 1: 'Nightscape Pants', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8193, 1: 'Nightscape Pants', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8746, 1: 'Interlaced Cowl', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14568, 1: 'Bristlebark Boots', 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 21071, 1: 'Raw Sagefish', 2: 'Dragonmaw', 3: 10, 4: 0, 5: 10, 6: 24000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2568, 1: 'Brown Linen Vest', 2: 'Defias Brotherhood', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2309, 1: 'Embossed Leather Boots', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 48112, 1: 'Darting Hatchling', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4406, 1: 'Standard Scope', 2: 'Dragonmaw', 3: 2, 4: 4, 5: 2, 6: 560000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10047, 1: 'Simple Kilt', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14569, 1: 'Bristlebark Bindings', 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14569, 1: 'Bristlebark Bindings', 2: 'Defias Brotherhood', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 29953, 1: 'Golden Dragonhawk Hatchling', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1515, 1: 'Rough Wooden Staff', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 238, 1: 'Cured Leather Boots', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2315, 1: 'Dark Leather Boots', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14572, 1: 'Bristlebark Gloves', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14572, 1: 'Bristlebark Gloves', 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1821, 1: 'Warped Blade', 2: 'Defias Brotherhood', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1821, 1: 'Warped Blade', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1820, 1: 'Wooden Maul', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1820, 1: 'Wooden Maul', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3816, 1: 'Reflective Heater', 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 69803, 1: 'Gurubashi Punisher', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2098, 1: 'Double-Barreled Shotgun', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 43116, 1: "Lion's Ink", 2: 'Dragonmaw', 3: 64, 4: 0, 5: 64, 6: 8268800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14411, 1: 'Stonecloth Gloves', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2996, 1: 'Bolt of Linen Cloth', 2: 'Dragonmaw', 3: 111, 4: 0, 5: 111, 6: 122100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3577, 1: 'Gold Bar', 2: 'Dragonmaw', 3: 6, 4: 0, 5: 6, 6: 594000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2841, 1: 'Bronze Bar', 2: 'Dragonmaw', 3: 12, 4: 0, 5: 12, 6: 224400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4377, 1: 'Heavy Blasting Powder', 2: 'Dragonmaw', 3: 5, 4: 5, 5: 5, 6: 20000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7082, 1: 'Essence of Air', 2: 'Dragonmaw', 3: 4, 4: 0, 5: 4, 6: 520000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3375, 1: 'Calico Bracers', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5516, 1: 'Threshadon Fang', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2029, 1: 'Cleaver', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10045, 1: 'Simple Linen Pants', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1795, 1: 'Rawhide Belt', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1755, 1: 'Reinforced Chain Boots', 2: 'Defias Brotherhood', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1755, 1: 'Reinforced Chain Boots', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 33447, 1: 'Runic Healing Potion', 2: 'Dragonmaw', 3: 2, 4: 0, 5: 2, 6: 63600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1737, 1: 'Worn Mail Vest', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25344, 1: 'Dilapidated Cloth Gloves', 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25344, 1: 'Dilapidated Cloth Gloves', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1746, 1: 'Linked Chain Belt', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4368, 1: 'Flying Tiger Goggles', 2: 'Defias Brotherhood', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1772, 1: 'Brocade Shoes', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12425, 1: 'Imperial Plate Bracers', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2256, 1: 'Skeletal Club', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5523, 1: 'Small Barnacled Clam', 2: 'Kazzak', 3: 9, 4: 0, 5: 9, 6: 7200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14747, 1: 'Hulking Gauntlets', 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14747, 1: 'Hulking Gauntlets', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14747, 1: 'Hulking Gauntlets', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1725, 1: 'Large Knapsack', 2: 'Draenor', 3: 0, 4: 0, 5: 0, 6: 0, 7: 2, 8: 54000, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6348, 1: 'Formula: Enchant Weapon - Minor Beastslayer', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2217, 1: 'Rectangular Shield', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2217, 1: 'Rectangular Shield', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 120166, 1: 'Gorestained Garb', 2: 'Defias Brotherhood', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25345, 1: 'Dilapidated Cloth Hat', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14565, 1: "Prospector's Woolies", 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14565, 1: "Prospector's Woolies", 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1785, 1: 'Cross-Stitched Shoulderpads', 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3473, 1: 'Runed Copper Pants', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13011, 1: 'Silver-Lined Belt', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2034, 1: 'Scholarly Robes', 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3784, 1: 'Metal Stave', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7973, 1: 'Big-Mouth Clam', 2: 'Dragonmaw', 3: 2, 4: 1, 5: 2, 6: 279400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8183, 1: 'Precision Bow', 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1817, 1: 'Stock Shortsword', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1817, 1: 'Stock Shortsword', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14571, 1: 'Bristlebark Cape', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10407, 1: "Raider's Shoulderpads", 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 36934, 1: 'Eye of Zul', 2: 'Dragonmaw', 3: 1, 4: 1, 5: 1, 6: 19500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8748, 1: 'Double Mail Coif', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5213, 1: 'Scorching Wand', 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3842, 1: 'Green Iron Leggings', 2: 'Draenor', 3: 1, 4: 0, 5: 1, 6: 1139900, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3370, 1: 'Patchwork Belt', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6214, 1: 'Heavy Copper Maul', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13940, 1: 'Recipe: Cooked Glossy Mightfish', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1770, 1: 'Canvas Vest', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1510, 1: 'Heavy Hammer', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2215, 1: 'Wooden Shield', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2490, 1: 'Tomahawk', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1850, 1: 'Cured Leather Bracers', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2212, 1: 'Cracked Buckler', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1769, 1: 'Canvas Shoulderpads', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 132532, 1: 'Heavy Scale Pants', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3487, 1: 'Heavy Copper Broadsword', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1747, 1: 'Linked Chain Boots', 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3802, 1: 'Hardened Leather Bracers', 2: 'Antonidas', 3: 1, 4: 2, 5: 1, 6: 817700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1735, 1: 'Worn Mail Pants', 2: 'Antonidas', 3: 1, 4: 2, 5: 1, 6: 517600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1735, 1: 'Worn Mail Pants', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1735, 1: 'Worn Mail Pants', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1775, 1: 'Brocade Gloves', 2: 'Defias Brotherhood', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1775, 1: 'Brocade Gloves', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2765, 1: 'Hunting Knife', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4375, 1: 'Whirring Bronze Gizmo', 2: 'Dragonmaw', 3: 38, 4: 76, 5: 38, 6: 1710000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3488, 1: 'Copper Battle Axe', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 170114, 1: 'Flanged Mace', 2: 'Defias Brotherhood', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 170114, 1: 'Flanged Mace', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 170114, 1: 'Flanged Mace', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6040, 1: 'Golden Scale Bracers', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1774, 1: 'Brocade Cloak', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3306, 1: 'Brackwater Vest', 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3306, 1: 'Brackwater Vest', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1826, 1: 'Rock Maul', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7281, 1: 'Light Leather Bracers', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1742, 1: 'Laced Mail Gloves', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13105, 1: "Sutarn's Ring", 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14639, 1: 'Schematic: Minor Recombobulator', 2: 'Defias Brotherhood', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3377, 1: 'Canvas Bracers', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14570, 1: 'Bristlebark Blouse', 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1768, 1: 'Canvas Pants', 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1778, 1: 'Brocade Vest', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14375, 1: 'Sanguine Cuffs', 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1760, 1: 'Reinforced Chain Shoulderpads', 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3379, 1: 'Brocade Bracers', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1800, 1: 'Rawhide Pants', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3782, 1: 'Large War Club', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4371, 1: 'Bronze Tube', 2: 'Dragonmaw', 3: 9, 4: 0, 5: 9, 6: 399600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13024, 1: "Beazel's Basher", 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1798, 1: 'Rawhide Cloak', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1413, 1: 'Feeble Sword', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 11287, 1: 'Lesser Magic Wand', 2: 'Kazzak', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2302, 1: 'Handstitched Leather Boots', 2: 'Defias Brotherhood', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2781, 1: 'Dirty Blunderbuss', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2026, 1: 'Rock Hammer', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 33384, 1: 'Frozen Pants', 2: 'Defias Brotherhood', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1794, 1: 'Patched Leather Jerkin', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14380, 1: 'Sanguine Robe', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3835, 1: 'Green Iron Bracers', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14373, 1: 'Sanguine Belt', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1801, 1: 'Rawhide Shoulderpads', 2: 'Defias Brotherhood', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1801, 1: 'Rawhide Shoulderpads', 2: 'Kazzak', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62071, 1: 'Corroded Blade', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5957, 1: 'Handstitched Leather Vest', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1777, 1: 'Brocade Shoulderpads', 2: 'Auchindoun', 3: 1, 4: 2, 5: 1, 6: 688000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2997, 1: 'Bolt of Woolen Cloth', 2: 'Dragonmaw', 3: 2, 4: 0, 5: 2, 6: 13200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7974, 1: 'Zesty Clam Meat', 2: 'Dragonmaw', 3: 1, 4: 2, 5: 1, 6: 700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7919, 1: 'Heavy Mithril Gauntlet', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2780, 1: 'Light Hunting Bow', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3780, 1: 'Long-Barreled Musket', 2: 'Auchindoun', 3: 1, 4: 0, 5: 1, 6: 635700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3780, 1: 'Long-Barreled Musket', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14454, 1: 'Highborne Cord', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2214, 1: 'Wooden Buckler', 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2214, 1: 'Wooden Buckler', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2214, 1: 'Wooden Buckler', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13491, 1: 'Recipe: Elixir of the Mongoose', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1813, 1: 'Chipped Quarterstaff', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2300, 1: 'Embossed Leather Vest', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2310, 1: 'Embossed Leather Cloak', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25401, 1: 'Corroded Mace', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2492, 1: 'Cudgel', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4639, 1: 'Enchanted Sea Kelp', 2: 'Defias Brotherhood', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62116, 1: 'Sodden Cloth Pants', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1811, 1: 'Blunt Claymore', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1705, 1: 'Lesser Moonstone', 2: 'Dragonmaw', 3: 6, 4: 6, 5: 6, 6: 14100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15505, 1: "Outrunner's Pauldrons", 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62069, 1: 'Plugged Rifle', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62069, 1: 'Plugged Rifle', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1804, 1: 'Tough Leather Boots', 2: 'Defias Brotherhood', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3279, 1: 'Battle Chain Boots', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14126, 1: 'Ritual Amice', 2: 'Blackrock', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14126, 1: 'Ritual Amice', 2: 'Defias Brotherhood', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14750, 1: "Slayer's Cuffs", 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4330, 1: 'Stylish Red Shirt', 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1822, 1: 'Cedar Walking Stick', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1793, 1: 'Patched Leather Shoulderpads', 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4563, 1: 'Billy Club', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8500, 1: 'Great Horned Owl', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6391, 1: 'Pattern: Stylish Green Shirt', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 36919, 1: 'Cardinal Ruby', 2: 'Dragonmaw', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7068, 1: 'Elemental Fire', 2: 'Dragonmaw', 3: 4, 4: 0, 5: 4, 6: 1600, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7067, 1: 'Elemental Earth', 2: 'Dragonmaw', 3: 2, 4: 0, 5: 2, 6: 7000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1748, 1: 'Linked Chain Bracers', 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2763, 1: 'Fisherman Knife', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2836, 1: 'Coarse Stone', 2: 'Dragonmaw', 3: 37, 4: 0, 5: 37, 6: 20700, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7920, 1: 'Mithril Scale Pants', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 818, 1: 'Tigerseye', 2: 'Dragonmaw', 3: 1, 4: 0, 5: 1, 6: 10000, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3378, 1: 'Brocade Belt', 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2785, 1: 'Stiff Recurve Bow', 2: 'Defias Brotherhood', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2219, 1: 'Small Round Shield', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4708, 1: 'Bright Belt', 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4246, 1: 'Fine Leather Belt', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3480, 1: 'Rough Bronze Shoulders', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4324, 1: 'Azure Silk Vest', 2: 'Defias Brotherhood', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 9294, 1: 'Recipe: Wildvine Potion', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2579, 1: 'Green Linen Shirt', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7166, 1: 'Copper Dagger', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7081, 1: 'Breath of Wind', 2: 'Dragonmaw', 3: 3, 4: 0, 5: 3, 6: 2327400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2576, 1: 'White Linen Shirt', 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2143, 1: 'Cuirboulli Boots', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25346, 1: 'Dilapidated Cloth Pants', 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1767, 1: 'Canvas Gloves', 2: 'Defias Brotherhood', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2278, 1: 'Forest Tracker Epaulets', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 929, 1: 'Healing Potion', 2: 'Dragonmaw', 3: 2, 4: 0, 5: 2, 6: 800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1789, 1: 'Patched Leather Bracers', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1783, 1: 'Cross-Stitched Gloves', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3796, 1: 'Interlaced Gloves', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2480, 1: 'Large Club', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 13444, 1: 'Major Mana Potion', 2: 'Dragonmaw', 3: 1, 4: 0, 5: 1, 6: 1500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3793, 1: 'Interlaced Boots', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1788, 1: 'Patched Leather Boots', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1752, 1: 'Linked Chain Shoulderpads', 2: 'Draenor', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1752, 1: 'Linked Chain Shoulderpads', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15084, 1: 'Wicked Leather Bracers', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7076, 1: 'Essence of Earth', 2: 'Dragonmaw', 3: 1, 4: 0, 5: 1, 6: 8400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1812, 1: 'Short-Handled Battle Axe', 2: 'Kazzak', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1797, 1: 'Rawhide Bracers', 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1797, 1: 'Rawhide Bracers', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1753, 1: 'Linked Chain Vest', 2: 'Kazzak', 3: 0, 4: 3, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2852, 1: 'Copper Chain Pants', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1818, 1: 'Standard Claymore', 2: 'Blackrock', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15962, 1: "Satyr's Rod", 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14746, 1: 'Hulking Belt', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1792, 1: 'Patched Leather Pants', 2: 'Antonidas', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1792, 1: 'Patched Leather Pants', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10498, 1: 'Gyromatic Micro-Adjustor', 2: 'Defias Brotherhood', 3: 1, 4: 1, 5: 1, 6: 21369500, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14369, 1: "Mystic's Wrap", 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 132543, 1: 'Spritescale Epaulets', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14377, 1: 'Sanguine Handwraps', 2: 'Auchindoun', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15729, 1: 'Pattern: Chimeric Gloves', 2: 'Defias Brotherhood', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2783, 1: 'Shoddy Blunderbuss', 2: 'Silvermoon', 3: 0, 4: 2, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10938, 1: 'Lesser Magic Essence', 2: 'Dragonmaw', 3: 2, 4: 0, 5: 2, 6: 5200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7387, 1: 'Dusky Belt', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2584, 1: 'Woolen Cape', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8193, 1: 'Nightscape Pants', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10047, 1: 'Simple Kilt', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2315, 1: 'Dark Leather Boots', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1821, 1: 'Warped Blade', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4249, 1: 'Dark Leather Belt', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 17192, 1: 'Reinforced Targe', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 10045, 1: 'Simple Linen Pants', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1384, 1: 'Dull Blade', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 21219, 1: 'Recipe: Sagefish Delight', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1751, 1: 'Linked Chain Pants', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1497, 1: 'Calico Cloak', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1764, 1: 'Canvas Shoes', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2149, 1: 'Polished Scale Boots', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2138, 1: 'Sharpened Letter Opener', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4247, 1: "Hillman's Leather Gloves", 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1769, 1: 'Canvas Shoulderpads', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3487, 1: 'Heavy Copper Broadsword', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6786, 1: 'Simple Dress', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2598, 1: 'Pattern: Red Linen Robe', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 167179, 1: 'Common White Shirt', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2587, 1: 'Gray Woolen Shirt', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2577, 1: 'Blue Linen Shirt', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2579, 1: 'Green Linen Shirt', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1760, 1: 'Reinforced Chain Shoulderpads', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3379, 1: 'Brocade Bracers', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3480, 1: 'Rough Bronze Shoulders', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1807, 1: 'Tough Leather Gloves', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15302, 1: 'Grizzly Belt', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5957, 1: 'Handstitched Leather Vest', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4334, 1: 'Formal White Shirt', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1734, 1: 'Worn Mail Gloves', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6391, 1: 'Pattern: Stylish Green Shirt', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1499, 1: 'Calico Pants', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 6241, 1: 'White Linen Robe', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12282, 1: 'Worn Battleaxe', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4344, 1: 'Brown Linen Shirt', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2219, 1: 'Small Round Shield', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3807, 1: 'Hardened Leather Tunic', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15301, 1: 'Grizzly Slippers', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1767, 1: 'Canvas Gloves', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 18265, 1: 'Pattern: Flarecore Wraps', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3811, 1: 'Double-Stitched Cloak', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1514, 1: 'Rusty Warhammer', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 69800, 1: 'Spiritguard Drape', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14374, 1: 'Sanguine Sandals', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15084, 1: 'Wicked Leather Bracers', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2034, 1: 'Scholarly Robes', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7453, 1: 'Pattern: Swift Boots', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1738, 1: 'Laced Mail Belt', 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62072, 1: "Robble's Wobbly Staff", 2: 'Blackrock', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1512, 1: 'Crude Battle Axe', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8193, 1: 'Nightscape Pants', 2: 'Antonidas', 3: 1, 4: 0, 5: 1, 6: 116200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12989, 1: "Gargoyle's Bite", 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1820, 1: 'Wooden Maul', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14723, 1: 'War Paint Bindings', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2073, 1: 'Dwarven Hatchet', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5516, 1: 'Threshadon Fang', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15962, 1: "Satyr's Rod", 2: 'Antonidas', 3: 1, 4: 0, 5: 1, 6: 17775400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4251, 1: "Hillman's Shoulders", 2: 'Antonidas', 3: 1, 4: 1, 5: 1, 6: 1140400, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7956, 1: 'Bronze Warhammer', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 12999, 1: 'Drakewing Bands', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 69802, 1: 'Band of the Gurubashi Berserker', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3415, 1: 'Staff of the Friar', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1767, 1: 'Canvas Gloves', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1747, 1: 'Linked Chain Boots', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1775, 1: 'Brocade Gloves', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2766, 1: 'Deft Stiletto', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8176, 1: 'Nightscape Headband', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14375, 1: 'Sanguine Cuffs', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7957, 1: 'Bronze Greatsword', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14169, 1: 'Aboriginal Shoulder Pads', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1798, 1: 'Rawhide Cloak', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5964, 1: 'Barbaric Shoulders', 2: 'Antonidas', 3: 1, 4: 1, 5: 1, 6: 99800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3836, 1: 'Green Iron Helm', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 25394, 1: 'Deteriorating Plate Helmet', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1813, 1: 'Chipped Quarterstaff', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1732, 1: 'Worn Mail Bracers', 2: 'Antonidas', 3: 1, 4: 0, 5: 1, 6: 301100, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1801, 1: 'Rawhide Shoulderpads', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3782, 1: 'Large War Club', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14429, 1: 'Windchaser Cuffs', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1818, 1: 'Standard Claymore', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 120166, 1: 'Gorestained Garb', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2783, 1: 'Shoddy Blunderbuss', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 242948, 1: 'Loch Modan Bearskin Rug', 2: 'Twisting Nether', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 8175, 1: 'Nightscape Tunic', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2879, 1: 'Antipodean Rod', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2143, 1: 'Cuirboulli Boots', 2: 'Antonidas', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2598, 1: 'Pattern: Red Linen Robe', 2: 'Auchindoun', 3: 1, 4: 0, 5: 1, 6: 22200, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 242948, 1: 'Loch Modan Bearskin Rug', 2: 'Auchindoun', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1794, 1: 'Patched Leather Jerkin', 2: 'Antonidas', 3: 1, 4: 0, 5: 1, 6: 1778800, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 48112, 1: 'Darting Hatchling', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1823, 1: 'Bludgeoning Cudgel', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1738, 1: 'Laced Mail Belt', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1795, 1: 'Rawhide Belt', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 4007, 1: 'Overlinked Chain Armor', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1792, 1: 'Patched Leather Pants', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 120166, 1: 'Gorestained Garb', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 852, 1: 'Mace', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3975, 1: 'Smooth Leather Shoulderpads', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62113, 1: 'Singed Gloves', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1516, 1: 'Worn Hatchet', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2057, 1: 'Pitted Defias Shortsword', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 5071, 1: 'Shadow Wand', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3377, 1: 'Canvas Bracers', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7281, 1: 'Light Leather Bracers', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2777, 1: 'Feeble Shortbow', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3374, 1: 'Calico Belt', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 7920, 1: 'Mithril Scale Pants', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1511, 1: "Commoner's Sword", 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2781, 1: 'Dirty Blunderbuss', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1830, 1: 'Long Bastard Sword', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 62080, 1: 'Perforated Plate Boots', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1803, 1: 'Tough Leather Belt', 2: 'Dragonmaw', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2208, 1: 'Poniard', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3780, 1: 'Long-Barreled Musket', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1813, 1: 'Chipped Quarterstaff', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1816, 1: 'Unbalanced Axe', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1732, 1: 'Worn Mail Bracers', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1774, 1: 'Brocade Cloak', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1197, 1: 'Giant Mace', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3784, 1: 'Metal Stave', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1796, 1: 'Rawhide Boots', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1749, 1: 'Linked Chain Cloak', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1818, 1: 'Standard Claymore', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 68744, 1: 'Imbued Pioneer Cloak', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 68752, 1: 'Imbued Infantry Belt', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 15300, 1: 'Grizzly Gloves', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1821, 1: 'Warped Blade', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 2783, 1: 'Shoddy Blunderbuss', 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 14593, 1: "Hawkeye's Cloak", 2: 'Draenor', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1750, 1: 'Linked Chain Gloves', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1749, 1: 'Linked Chain Cloak', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1770, 1: 'Canvas Vest', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 1510, 1: 'Heavy Hammer', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+  row: {0: 3940, 1: 'Crochet Gloves', 2: 'Silvermoon', 3: 0, 4: 1, 5: 0, 6: 0, 7: 0, 8: 0, 9: 'journalator', 10: '2026-10-21T22:00:13Z'}
+
+=== Integrity check (READ ONLY) ===
+  (Skipped in this pass - will run separately)
+
+=== WAL checkpoint status ===
+  wal_checkpoint: (0, 0, 0)
+
+=== data/intel.sqlite table counts ===
+  ah_auction: 38395
+  ah_realm: 267
+  ah_snapshot: 2
+  import_log: 0
+  inventory_posted_listing: 760
+  inventory_row: 2430
+  inventory_snapshot: 25
+  mail_invoice: 22
+  realm_model_run: 10
+  reconciliation: 1202
+  sale_buyer_link: 0
+  seller_observation: 299
+  undercut_observation: 115
+
+=== intel.sqlite Integrity check ===
+  integrity_check: ok

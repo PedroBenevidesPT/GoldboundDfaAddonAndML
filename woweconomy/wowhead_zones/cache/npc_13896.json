@@ -1,0 +1,1907 @@
+{
+ "npc_id": 13896,
+ "zone": 16,
+ "zone_name": "azshara",
+ "npc_name": "Scalebeard",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 68746,
+   "item_name": "Imbued Primal Cape",
+   "item_type": "Cloak",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=68746/imbued-primal-cape?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 5523,
+   "item_name": "Small Barnacled Clam",
+   "item_type": "Trade Good",
+   "drop_rate": 0.19,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=5523/small-barnacled-clam"
+  },
+  {
+   "category": "drops",
+   "item_id": 3712,
+   "item_name": "Turtle Meat",
+   "item_type": "Meat",
+   "drop_rate": 0.13,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3712/turtle-meat"
+  },
+  {
+   "category": "drops",
+   "item_id": 7973,
+   "item_name": "Big-Mouth Clam",
+   "item_type": "Trade Good",
+   "drop_rate": 0.09,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7973/big-mouth-clam"
+  },
+  {
+   "category": "drops",
+   "item_id": 6557,
+   "item_name": "Bard's Boots",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6557/bards-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9786,
+   "item_name": "Raider's Cloak",
+   "item_type": "Cloak",
+   "drop_rate": 0.06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9786/raiders-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6548,
+   "item_name": "Soldier's Girdle",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6548/soldiers-girdle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6539,
+   "item_name": "Willow Belt",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6539/willow-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6541,
+   "item_name": "Willow Gloves",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6541/willow-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6554,
+   "item_name": "Bard's Gloves",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.03,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6554/bards-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10157,
+   "item_name": "Mercurial Breastplate",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.02,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10157/mercurial-breastplate?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9785,
+   "item_name": "Raider's Bracers",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.02,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9785/raiders-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6547,
+   "item_name": "Soldier's Gauntlets",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.02,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6547/soldiers-gauntlets?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6546,
+   "item_name": "Soldier's Leggings",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.02,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6546/soldiers-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9757,
+   "item_name": "Nomad Tunic",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.019,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9757/nomad-tunic?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9765,
+   "item_name": "Cadet Vest",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.018000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9765/cadet-vest?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6558,
+   "item_name": "Bard's Belt",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.017,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6558/bards-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6556,
+   "item_name": "Bard's Bracers",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.017,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6556/bards-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6540,
+   "item_name": "Willow Pants",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.017,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6540/willow-pants?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6553,
+   "item_name": "Bard's Trousers",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.016,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6553/bards-trousers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6542,
+   "item_name": "Willow Cape",
+   "item_type": "Cloak",
+   "drop_rate": 0.016,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6542/willow-cape?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6551,
+   "item_name": "Soldier's Boots",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6551/soldiers-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10266,
+   "item_name": "Masterwork Breastplate",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.013999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10266/masterwork-breastplate?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9749,
+   "item_name": "Simple Blouse",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.013999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9749/simple-blouse?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6543,
+   "item_name": "Willow Bracers",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.013999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6543/willow-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9842,
+   "item_name": "Banded Pauldrons",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.013000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9842/banded-pauldrons?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9779,
+   "item_name": "Bandit Cloak",
+   "item_type": "Cloak",
+   "drop_rate": 0.013000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9779/bandit-cloak"
+  },
+  {
+   "category": "drops",
+   "item_id": 9748,
+   "item_name": "Simple Robe",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.013000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9748/simple-robe?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6545,
+   "item_name": "Soldier's Armor",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.013000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6545/soldiers-armor?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6550,
+   "item_name": "Soldier's Wristguards",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.013000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6550/soldiers-wristguards?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9289,
+   "item_name": "Field Plate Boots",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9289/field-plate-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7411,
+   "item_name": "Infiltrator Cloak",
+   "item_type": "Cloak",
+   "drop_rate": 0.012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7411/infiltrator-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10265,
+   "item_name": "Masterwork Bracers",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10265/masterwork-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7431,
+   "item_name": "Twilight Pants",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7431/twilight-pants?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9788,
+   "item_name": "Raider's Belt",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.011000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9788/raiders-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7370,
+   "item_name": "Elder's Sash",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7370/elders-sash?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6537,
+   "item_name": "Willow Boots",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6537/willow-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9945,
+   "item_name": "Abjurer's Sash",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9945/abjurers-sash?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10138,
+   "item_name": "High Councillor's Cloak",
+   "item_type": "Cloak",
+   "drop_rate": 0.008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10138/high-councillors-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9799,
+   "item_name": "Ivycloth Sash",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9799/ivycloth-sash?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10389,
+   "item_name": "Hyperion Legplates",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10389/hyperion-legplates?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10408,
+   "item_name": "Banded Helm",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10408/banded-helm?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6552,
+   "item_name": "Bard's Tunic",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6552/bards-tunic?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10255,
+   "item_name": "Master's Belt",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10255/masters-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9839,
+   "item_name": "Banded Gauntlets",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9839/banded-gauntlets?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10289,
+   "item_name": "Durable Hat",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10289/durable-hat?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7524,
+   "item_name": "Gossamer Cape",
+   "item_type": "Cloak",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7524/gossamer-cape?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9768,
+   "item_name": "Greenweave Bracers",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9768/greenweave-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9787,
+   "item_name": "Raider's Gauntlets",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9787/raiders-gauntlets?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9775,
+   "item_name": "Bandit Cinch",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9775/bandit-cinch?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9933,
+   "item_name": "Brigade Leggings",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9933/brigade-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7540,
+   "item_name": "Champion's Helmet",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7540/champions-helmet?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9770,
+   "item_name": "Greenweave Cloak",
+   "item_type": "Cloak",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9770/greenweave-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9797,
+   "item_name": "Ivycloth Pants",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9797/ivycloth-pants?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9789,
+   "item_name": "Raider's Legguards",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9789/raiders-legguards?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9829,
+   "item_name": "Scaled Leather Bracers",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9829/scaled-leather-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6538,
+   "item_name": "Willow Robe",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6538/willow-robe?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6536,
+   "item_name": "Willow Vest",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6536/willow-vest?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9777,
+   "item_name": "Bandit Bracers",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9777/bandit-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10379,
+   "item_name": "Commander's Helm",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10379/commanders-helm?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9847,
+   "item_name": "Conjurer's Cloak",
+   "item_type": "Cloak",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9847/conjurers-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10196,
+   "item_name": "Crusader's Gauntlets",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10196/crusaders-gauntlets?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9767,
+   "item_name": "Greenweave Sandals",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9767/greenweave-sandals?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10252,
+   "item_name": "Master's Leggings",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10252/masters-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9874,
+   "item_name": "Sorcerer Drape",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9874/sorcerer-drape?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9823,
+   "item_name": "Durable Gloves",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9823/durable-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10092,
+   "item_name": "Gothic Plate Spaulders",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10092/gothic-plate-spaulders?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9868,
+   "item_name": "Renegade Gauntlets",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9868/renegade-gauntlets?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9807,
+   "item_name": "Superior Shoulders",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9807/superior-shoulders?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6605,
+   "item_name": "Dervish Gloves",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0018,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6605/dervish-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7410,
+   "item_name": "Infiltrator Bracers",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0018,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7410/infiltrator-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6592,
+   "item_name": "Battleforge Armor",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6592/battleforge-armor?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10237,
+   "item_name": "Engraved Pauldrons",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10237/engraved-pauldrons?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7406,
+   "item_name": "Infiltrator Cord",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7406/infiltrator-cord?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7462,
+   "item_name": "Knight's Girdle",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7462/knights-girdle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10153,
+   "item_name": "Mighty Spaulders",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10153/mighty-spaulders?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7432,
+   "item_name": "Twilight Cowl",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7432/twilight-cowl?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10382,
+   "item_name": "Commander's Leggings",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.0015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10382/commanders-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7367,
+   "item_name": "Elder's Mantle",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0013,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7367/elders-mantle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9903,
+   "item_name": "Jazeraint Leggings",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0013,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9903/jazeraint-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7457,
+   "item_name": "Knight's Gauntlets",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0013,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7457/knights-gauntlets?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9784,
+   "item_name": "Raider's Boots",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0013,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9784/raiders-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6565,
+   "item_name": "Shimmering Gloves",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0013,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6565/shimmering-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9845,
+   "item_name": "Conjurer's Shoes",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9845/conjurers-shoes?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 1210,
+   "item_name": "Shadowgem",
+   "item_type": "Jewelcrafting",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1210/shadowgem"
+  },
+  {
+   "category": "drops",
+   "item_id": 6617,
+   "item_name": "Sage's Mantle",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6617/sages-mantle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9840,
+   "item_name": "Banded Girdle",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9840/banded-girdle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6267,
+   "item_name": "Disciple's Pants",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6267/disciples-pants?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7356,
+   "item_name": "Elder's Cloak",
+   "item_type": "Cloak",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7356/elders-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15306,
+   "item_name": "Feral Bindings",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15306/feral-bindings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10160,
+   "item_name": "Mercurial Circlet",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10160/mercurial-circlet?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10173,
+   "item_name": "Mystical Bracers",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10173/mystical-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6268,
+   "item_name": "Pioneer Tunic",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6268/pioneer-tunic?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9833,
+   "item_name": "Scaled Leather Leggings",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9833/scaled-leather-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10378,
+   "item_name": "Commander's Armor",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.0007000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10378/commanders-armor?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7461,
+   "item_name": "Knight's Bracers",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0007000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7461/knights-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9808,
+   "item_name": "Superior Leggings",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0007000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9808/superior-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7538,
+   "item_name": "Champion's Armor",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7538/champions-armor?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7541,
+   "item_name": "Champion's Gauntlets",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7541/champions-gauntlets?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9826,
+   "item_name": "Durable Robe",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9826/durable-robe?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10219,
+   "item_name": "Elegant Circlet",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10219/elegant-circlet?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9886,
+   "item_name": "Huntsman's Bands",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9886/huntsmans-bands?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9872,
+   "item_name": "Renegade Pauldrons",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9872/renegade-pauldrons?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10074,
+   "item_name": "Righteous Leggings",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10074/righteous-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10111,
+   "item_name": "Wanderer's Hat",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10111/wanderers-hat?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9963,
+   "item_name": "Warmonger's Circlet",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9963/warmongers-circlet?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10256,
+   "item_name": "Adventurer's Bracers",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10256/adventurers-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10260,
+   "item_name": "Adventurer's Gloves",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10260/adventurers-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9856,
+   "item_name": "Archer's Boots",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9856/archers-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9857,
+   "item_name": "Archer's Bracers",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9857/archers-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9861,
+   "item_name": "Archer's Gloves",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9861/archers-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10376,
+   "item_name": "Commander's Boots",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10376/commanders-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9849,
+   "item_name": "Conjurer's Hood",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9849/conjurers-hood?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9852,
+   "item_name": "Conjurer's Robe",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9852/conjurers-robe?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10197,
+   "item_name": "Crusader's Belt",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10197/crusaders-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6573,
+   "item_name": "Defender Boots",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6573/defender-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7353,
+   "item_name": "Elder's Padded Armor",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7353/elders-padded-armor?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7368,
+   "item_name": "Elder's Pants",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7368/elders-pants?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10212,
+   "item_name": "Elegant Cloak",
+   "item_type": "Cloak",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10212/elegant-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10234,
+   "item_name": "Engraved Boots",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10234/engraved-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10229,
+   "item_name": "Engraved Bracers",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10229/engraved-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10232,
+   "item_name": "Engraved Gauntlets",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10232/engraved-gauntlets?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10233,
+   "item_name": "Engraved Girdle",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10233/engraved-girdle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7520,
+   "item_name": "Gossamer Headpiece",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7520/gossamer-headpiece?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10244,
+   "item_name": "Heavy Lamellar Leggings",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10244/heavy-lamellar-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10139,
+   "item_name": "High Councillor's Circlet",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10139/high-councillors-circlet?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6337,
+   "item_name": "Infantry Leggings",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6337/infantry-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7414,
+   "item_name": "Infiltrator Pants",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7414/infiltrator-pants?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9791,
+   "item_name": "Ivycloth Tunic",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9791/ivycloth-tunic?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9898,
+   "item_name": "Jazeraint Cloak",
+   "item_type": "Cloak",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9898/jazeraint-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10246,
+   "item_name": "Master's Vest",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10246/masters-vest?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10163,
+   "item_name": "Mercurial Pauldrons",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10163/mercurial-pauldrons?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10227,
+   "item_name": "Nightshade Leggings",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10227/nightshade-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10122,
+   "item_name": "Ornate Girdle",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10122/ornate-girdle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10125,
+   "item_name": "Ornate Pauldrons",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10125/ornate-pauldrons?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7416,
+   "item_name": "Phalanx Bracers",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7416/phalanx-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7420,
+   "item_name": "Phalanx Headguard",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7420/phalanx-headguard?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7423,
+   "item_name": "Phalanx Leggings",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7423/phalanx-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9864,
+   "item_name": "Renegade Boots",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9864/renegade-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9865,
+   "item_name": "Renegade Bracers",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9865/renegade-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10134,
+   "item_name": "Revenant Shoulders",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10134/revenant-shoulders?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6563,
+   "item_name": "Shimmering Bracers",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6563/shimmering-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6564,
+   "item_name": "Shimmering Cloak",
+   "item_type": "Cloak",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6564/shimmering-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10170,
+   "item_name": "Templar Pauldrons",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10170/templar-pauldrons?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 15485,
+   "item_name": "War Torn Pants",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=15485/war-torn-pants?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 4681,
+   "item_name": "Brackwater Girdle",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4681/brackwater-girdle"
+  },
+  {
+   "category": "drops",
+   "item_id": 5571,
+   "item_name": "Small Black Pouch",
+   "item_type": "Bag",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=5571/small-black-pouch"
+  },
+  {
+   "category": "drops",
+   "item_id": 805,
+   "item_name": "Small Red Pouch",
+   "item_type": "Bag",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=805/small-red-pouch"
+  },
+  {
+   "category": "drops",
+   "item_id": 9937,
+   "item_name": "Abjurer's Bands",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9937/abjurers-bands?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10258,
+   "item_name": "Adventurer's Cape",
+   "item_type": "Cloak",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10258/adventurers-cape?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9929,
+   "item_name": "Brigade Cloak",
+   "item_type": "Cloak",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9929/brigade-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 3313,
+   "item_name": "Ceremonial Leather Harness",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3313/ceremonial-leather-harness?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9947,
+   "item_name": "Chieftain's Belt",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9947/chieftains-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10099,
+   "item_name": "Councillor's Gloves",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10099/councillors-gloves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10100,
+   "item_name": "Councillor's Shoulders",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10100/councillors-shoulders?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6576,
+   "item_name": "Defender Girdle",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6576/defender-girdle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6578,
+   "item_name": "Defender Leggings",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6578/defender-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7357,
+   "item_name": "Elder's Hat",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7357/elders-hat?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10210,
+   "item_name": "Elegant Mantle",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10210/elegant-mantle?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10277,
+   "item_name": "Emerald Gauntlets",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10277/emerald-gauntlets?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10282,
+   "item_name": "Emerald Vambraces",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10282/emerald-vambraces?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9815,
+   "item_name": "Fortified Leggings",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9815/fortified-leggings?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 7519,
+   "item_name": "Gossamer Pants",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7519/gossamer-pants?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10136,
+   "item_name": "High Councillor's Bracers",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10136/high-councillors-bracers?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10391,
+   "item_name": "Hyperion Vambraces",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10391/hyperion-vambraces?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 68761,
+   "item_name": "Imbued Infantry Boots",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=68761/imbued-infantry-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 68744,
+   "item_name": "Imbued Pioneer Cloak",
+   "item_type": "Cloak",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=68744/imbued-pioneer-cloak?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10223,
+   "item_name": "Nightshade Armguards",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10223/nightshade-armguards?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9869,
+   "item_name": "Renegade Belt",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9869/renegade-belt?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10406,
+   "item_name": "Scaled Leather Headband",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10406/scaled-leather-headband?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 6562,
+   "item_name": "Shimmering Boots",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6562/shimmering-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9809,
+   "item_name": "Superior Tunic",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9809/superior-tunic?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10183,
+   "item_name": "Swashbuckler's Boots",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10183/swashbucklers-boots?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10169,
+   "item_name": "Templar Legplates",
+   "item_type": "Plate Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10169/templar-legplates?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 10113,
+   "item_name": "Wanderer's Shoulders",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10113/wanderers-shoulders?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9960,
+   "item_name": "Warmonger's Gauntlets",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9960/warmongers-gauntlets?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 9962,
+   "item_name": "Warmonger's Greaves",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9962/warmongers-greaves?bonus=6654"
+  },
+  {
+   "category": "drops",
+   "item_id": 4555,
+   "item_name": "Thick Scaly Tail",
+   "item_type": "Junk",
+   "drop_rate": 0.13,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4555/thick-scaly-tail"
+  },
+  {
+   "category": "drops",
+   "item_id": 1789,
+   "item_name": "Patched Leather Bracers",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1789/patched-leather-bracers?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1764,
+   "item_name": "Canvas Shoes",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1764/canvas-shoes?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1813,
+   "item_name": "Chipped Quarterstaff",
+   "item_type": "Staff",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1813/chipped-quarterstaff?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1812,
+   "item_name": "Short-Handled Battle Axe",
+   "item_type": "Two-Handed Axe",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1812/short-handled-battle-axe?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 2778,
+   "item_name": "Cheap Blunderbuss",
+   "item_type": "Gun",
+   "drop_rate": 0.0018,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2778/cheap-blunderbuss?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1787,
+   "item_name": "Patched Leather Belt",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0018,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1787/patched-leather-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 3376,
+   "item_name": "Canvas Belt",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3376/canvas-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1815,
+   "item_name": "Ornamental Mace",
+   "item_type": "One-Handed Mace",
+   "drop_rate": 0.0015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1815/ornamental-mace?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1816,
+   "item_name": "Unbalanced Axe",
+   "item_type": "One-Handed Axe",
+   "drop_rate": 0.0015,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1816/unbalanced-axe?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 1769,
+   "item_name": "Canvas Shoulderpads",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0013,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1769/canvas-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1792,
+   "item_name": "Patched Leather Pants",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0013,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1792/patched-leather-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 1770,
+   "item_name": "Canvas Vest",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1770/canvas-vest?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 2781,
+   "item_name": "Dirty Blunderbuss",
+   "item_type": "Gun",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2781/dirty-blunderbuss?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1738,
+   "item_name": "Laced Mail Belt",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1738/laced-mail-belt?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1811,
+   "item_name": "Blunt Claymore",
+   "item_type": "Two-Handed Sword",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1811/blunt-claymore?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1767,
+   "item_name": "Canvas Gloves",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1767/canvas-gloves?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1740,
+   "item_name": "Laced Mail Bracers",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1740/laced-mail-bracers?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1817,
+   "item_name": "Stock Shortsword",
+   "item_type": "One-Handed Sword",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1817/stock-shortsword?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1814,
+   "item_name": "Battered Mallet",
+   "item_type": "Two-Handed Mace",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1814/battered-mallet?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1744,
+   "item_name": "Laced Mail Shoulderpads",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1744/laced-mail-shoulderpads?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1512,
+   "item_name": "Crude Battle Axe",
+   "item_type": "Two-Handed Axe",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1512/crude-battle-axe?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 2763,
+   "item_name": "Fisherman Knife",
+   "item_type": "Dagger",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2763/fisherman-knife?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1506,
+   "item_name": "Warped Leather Gloves",
+   "item_type": "Leather Armor",
+   "drop_rate": 0.0003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1506/warped-leather-gloves?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1495,
+   "item_name": "Calico Shoes",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1495/calico-shoes?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1511,
+   "item_name": "Commoner's Sword",
+   "item_type": "One-Handed Sword",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1511/commoners-sword?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 2214,
+   "item_name": "Wooden Buckler",
+   "item_type": "Shield",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2214/wooden-buckler?bonus=6657"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1730,
+   "item_name": "Worn Mail Belt",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1730/worn-mail-belt?bonus=6656"
+  },
+  {
+   "category": "drops+skinning",
+   "item_id": 1735,
+   "item_name": "Worn Mail Pants",
+   "item_type": "Mail Armor",
+   "drop_rate": 0.0002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=1735/worn-mail-pants?bonus=6656"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2318,
+   "item_name": "Light Leather",
+   "item_type": "Leather",
+   "drop_rate": 0.77,
+   "qty": 2.5,
+   "source_url": "https://www.wowhead.com/item=2318/light-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2319,
+   "item_name": "Medium Leather",
+   "item_type": "Leather",
+   "drop_rate": 0.12,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2319/medium-leather"
+  },
+  {
+   "category": "skinning",
+   "item_id": 783,
+   "item_name": "Light Hide",
+   "item_type": "Leather",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=783/light-hide"
+  },
+  {
+   "category": "skinning",
+   "item_id": 2934,
+   "item_name": "Ruined Leather Scraps",
+   "item_type": "Leather",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=2934/ruined-leather-scraps"
+  },
+  {
+   "category": "skinning",
+   "item_id": 4232,
+   "item_name": "Medium Hide",
+   "item_type": "Leather",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4232/medium-hide"
+  }
+ ]
+}

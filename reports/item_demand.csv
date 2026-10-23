@@ -1,0 +1,96 @@
+item_id,item_name,appearance_id,name,source,grants,wanters,eligible,want_rate,price_copper,gold_gap
+229149,Lamplighter's Rifle,84789,Lamplighter Elite's Slugthrower,World Drop,1,2452,3130,0.7834,50525973507,12388968704.0
+257020,Deepvine Waistguard,121147,Deepvine Waistguard,World Drop,1,1008,3130,0.322,96287544810,9705784517.0
+229150,Lamplighter's Splitter,84695,Lamplighter's Splitter,World Drop,1,2741,3130,0.8757,22624329229,6201328642.0
+229153,Lamplighter's Cudgel,91742,Lamplighter's Cudgel,World Drop,1,2494,3130,0.7968,12554802295,3131167692.0
+229155,Lamplighter's Greataxe,84727,Lamplighter's Greataxe,World Drop,1,2784,3130,0.8895,11168577216,3109331897.0
+229148,Lamplighter's Staff,83688,Lamplighter Elite's Spellstaff,World Drop,1,2483,3130,0.7933,11758606886,2919662090.0
+229157,Lamplighter's Bulwark,84799,Lamplighter Elite's Shield,World Drop,1,2514,3130,0.8032,9338999900,2347824575.0
+260370,Visage of Unseen Truths,126906,Blind Oath's Winged Crest,Lightblinded Vanguard (The Voidspire),8,2658,3130,0.8492,2998226345,796928563.0
+229069,Nisa's Spare Cloak,84840,Nisa's Spare Cloak,World Drop,1,2456,3130,0.7847,3212098665,788891432.0
+260374,Primal Spark Pauldrons,127078,Tempests of the Primal Core,Fallen-King Salhadaar (The Voidspire),8,2664,3130,0.8511,2207424849,588057980.0
+256979,Verdant Tracker's Claws,120862,Verdant Tracker's Claws,World Drop,1,867,3130,0.277,6504379565,563929708.0
+229160,Lamplighter's Glaive,84743,Lamplighter Elite's Glaive,World Drop,1,2489,3130,0.7952,2234806232,556243271.0
+260373,Power Stance Breeches,125539,Swiftsweepers of Ra-den's Chosen,Vaelgor & Ezzorak (The Voidspire),4,2631,3130,0.8406,1913562304,503458242.0
+260376,Breastplate of the Final Defense,127284,Night Ender's Breastplate,Chimaerus the Undreamt God (The Dreamrift),4,2489,3130,0.7952,1981000390,493070997.0
+229072,Azra's Spare Mask,84880,Azra's Spare Mask,World Drop,1,1850,3130,0.5911,2427904091,449162257.0
+229147,Lamplighter's Polearm,84711,Lamplighter Elite's Polearm,World Drop,1,2474,3130,0.7904,1809532567,447678357.0
+229078,Aevery's Spare Brigandine,90823,Aevery's Spare Brigandine,World Drop,1,1820,3130,0.5815,2314439548,421227998.0
+238031,Veiled Manta Vest,117765,Tactical Vest of the Sudden Eclipse,Fractillus (Manaforge Omega),4,2781,3130,0.8885,1465893625,407665017.0
+229162,Lamplighter's Sword,84794,Lamplighter Elite's Blade,World Drop,1,2236,3130,0.7144,1765272355,394714899.0
+229087,Kyros's Spare Chestplate,90738,Kyros's Spare Chestplate,World Drop,1,1860,3130,0.5942,1980000000,368280000.0
+229089,Kyros's Spare Handguards,90743,Kyros's Spare Handguards,World Drop,1,1855,3130,0.5927,1980000000,367290000.0
+229066,Nisa's Spare Cassock,84834,Nisa's Spare Cassock,World Drop,1,1850,3130,0.5911,1980000000,366300000.0
+229086,Kyros's Spare Helm,90736,Kyros's Spare Helm,World Drop,1,1843,3130,0.5888,1980000000,364914000.0
+229062,Nisa's Spare Coronet,84832,Nisa's Spare Coronet,World Drop,1,1835,3130,0.5863,1980000000,363330000.0
+229091,Kyros's Spare Shoulder Plates,90737,Kyros's Spare Shoulder Plates,World Drop,1,1831,3130,0.585,1980000000,362538000.0
+229071,Azra's Spare Gloves,84887,Azra's Spare Gloves,World Drop,1,1829,3130,0.5843,1980000000,362142000.0
+256977,Steelbark Gauntlets,121034,Steelbark Gauntlets,World Drop,1,927,3130,0.2962,3892604896,360844474.0
+229081,Aevery's Spare Cowl,90821,Aevery's Spare Cowl,World Drop,1,1820,3130,0.5815,1980000000,360360000.0
+229083,Aevery's Spare Shoulderguards,90822,Aevery's Spare Shoulderguards,World Drop,1,1807,3130,0.5773,1993892928,360296452.0
+229080,Aevery's Spare Gauntlets,90828,Aevery's Spare Gauntlets,World Drop,1,1816,3130,0.5802,1980000000,359568000.0
+229077,Azra's Spare Shoulderguards,84881,Azra's Spare Shoulderguards,World Drop,1,1814,3130,0.5796,1980000000,359172000.0
+229076,Azra's Spare Chestguard,84882,Azra's Spare Chestguard,World Drop,1,1803,3130,0.576,1980000000,356994000.0
+229068,Nisa's Spare Shoulderpads,84833,Nisa's Spare Shoulderpads,World Drop,1,1793,3130,0.5728,1980000000,355014000.0
+229065,Nisa's Spare Gloves,84839,Nisa's Spare Gloves,World Drop,1,1791,3130,0.5722,1980000000,354618000.0
+260375,Raging Storm Sash,127080,Ceinture of the Primal Core,Drop,4,2612,3130,0.8345,1353020299,353408902.0
+260372,Nullstrider's Boots,123436,Balancing Boots of the Grim Jest,Drop,4,2752,3130,0.8792,1099627450,302617474.0
+260377,Fading Dawn Sabatons,125625,Relentless Rider's Stompers,Drop,4,2555,3130,0.8163,1085638780,277380708.0
+260371,Infernal Greatlock Girdle,126492,Abyssal Immolator's Blazing Core,Drop,4,2632,3130,0.8409,1007290025,265118735.0
+257018,Rootspeaker's Barkclasp,121192,Rootspeaker's Barkclasp,World Drop,1,1002,3130,0.3201,2499997500,250499750.0
+229075,Azra's Spare Bracers,84886,Azra's Spare Bracers,World Drop,1,1853,3130,0.592,1307477905,242275656.0
+229154,Lamplighter's Edge,84804,Lamplighter's Edge,World Drop,1,2481,3130,0.7927,955231381,236992906.0
+229088,Kyros's Spare Sabatons,90741,Kyros's Spare Sabatons,World Drop,1,1769,3130,0.5652,1198951995,212094608.0
+229073,Azra's Spare Trousers,84884,Azra's Spare Trousers,World Drop,1,1871,3130,0.5978,981937313,183720471.0
+229159,Lamplighter's Lightstone,84748,Lamplighter Elite's Lightstone,World Drop,1,2442,3130,0.7802,749999900,183149976.0
+229063,Nisa's Spare Wristguards,84838,Nisa's Spare Wristguards,World Drop,1,1817,3130,0.5805,806047804,146458886.0
+238033,Zadus's Liturgical Hat,116918,Augur's Ephemeral Wide-Brim,Forgeweaver Araz (Manaforge Omega),4,2594,3130,0.8288,531770781,137941341.0
+238028,Bone-Melted Faceplate,116679,Living Weapon's Faceshield,Forgeweaver Araz (Manaforge Omega),4,2463,3130,0.7869,462198409,113839468.0
+229067,Nisa's Spare Leggings,84836,Nisa's Spare Leggings,World Drop,1,1844,3130,0.5891,600943096,110813907.0
+204955,Neltharic Beatstick,80333,Neltharic Beatstick,World Drop,1,1103,3130,0.3524,879272727,96983782.0
+229061,Nisa's Spare Belt,84835,Nisa's Spare Belt,World Drop,1,1778,3130,0.5681,528864528,94032113.0
+229093,Kyros's Spare Cuffs,90742,Kyros's Spare Cuffs,World Drop,1,1765,3130,0.5639,500000000,88250000.0
+204923,Moonless Hood,79402,Moonless Hood,World Drop,2,884,3130,0.2824,980000000,86632000.0
+204925,Moonless Shoulderpads,79403,Moonless Shoulderpads,World Drop,2,863,3130,0.2757,982195041,84763432.0
+204942,Skyless Epaulets,80179,Skyless Epaulets,World Drop,2,853,3130,0.2725,980000000,83594000.0
+204940,Skyless Coif,80178,Skyless Coif,World Drop,2,814,3130,0.2601,1000000000,81400000.0
+204920,Moonless Robe,79404,Moonless Robe,World Drop,1,791,3130,0.2527,979592731,77485785.0
+204931,Sunless Cowl,80242,Sunless Cowl,World Drop,2,804,3130,0.2569,932622254,74982829.0
+229082,Aevery's Spare Chausses,90825,Aevery's Spare Chausses,World Drop,1,1853,3130,0.592,399052385,73944407.0
+229092,Kyros's Spare Girdle,90739,Kyros's Spare Girdle,World Drop,1,1854,3130,0.5923,382740739,70960133.0
+229079,Aevery's Spare Boots,90826,Aevery's Spare Boots,World Drop,1,1822,3130,0.5821,380000000,69236000.0
+229074,Azra's Spare Cord,84883,Azra's Spare Cord,World Drop,1,1820,3130,0.5815,380000000,69160000.0
+229090,Kyros's Spare Faulds,90740,Kyros's Spare Faulds,World Drop,1,1819,3130,0.5812,380000000,69122000.0
+229084,Aevery's Spare Belt,90824,Aevery's Spare Belt,World Drop,1,1810,3130,0.5783,380000000,68780000.0
+229070,Azra's Spare Striders,84885,Azra's Spare Striders,World Drop,1,1806,3130,0.577,380000000,68628000.0
+229085,Aevery's Spare Bracers,90827,Aevery's Spare Bracers,World Drop,1,1787,3130,0.5709,380000000,67906000.0
+229064,Nisa's Spare Shoes,84837,Nisa's Spare Shoes,World Drop,1,1786,3130,0.5706,380000000,67868000.0
+238032,Acolyte's Infused Leggings,104829,Spellweaver's Immaculate Runeslacks,Loom'ithar (Manaforge Omega),4,2862,3130,0.9144,146736238,41995911.0
+244477,Worn Shadowguard Seer's Vestments,119444,Wastelander Magi's Vestments,World Drop,1,1011,3130,0.323,271675609,27466404.0
+244484,Worn Shadowguard Seer's Bands,119448,Wastelander Magi's Bands,World Drop,1,975,3130,0.3115,267166005,26048685.0
+244482,Worn Shadowguard Seer's Spines,119443,Wastelander Magi's Spines,World Drop,1,910,3130,0.2907,282666041,25722610.0
+244499,Worn Shadowguard Striker's Sash,119558,Wastelander Skirmisher's Sash,World Drop,1,991,3130,0.3166,248982558,24674171.0
+244480,Worn Shadowguard Seer's Crown,119442,Wastelander Magi's Crown,World Drop,1,939,3130,0.3,262644097,24662281.0
+244494,Worn Shadowguard Striker's Boots,119560,Wastelander Skirmisher's Boots,World Drop,1,919,3130,0.2936,264591752,24315982.0
+244481,Worn Shadowguard Seer's Leggings,119446,Wastelander Magi's Leggings,World Drop,1,925,3130,0.2955,260273601,24075308.0
+244500,Worn Shadowguard Striker's Armguards,119561,Wastelander Skirmisher's Armguards,World Drop,1,945,3130,0.3019,245530565,23202638.0
+244498,Worn Shadowguard Striker's Pauldrons,119556,Wastelander Skirmisher's Pauldrons,World Drop,1,914,3130,0.292,249955952,22845974.0
+244479,Worn Shadowguard Seer's Gloves,119449,Wastelander Magi's Gloves,World Drop,1,880,3130,0.2812,259059044,22797196.0
+244492,Worn Shadowguard Blade's Bracers,119615,Wastelander Scout's Bracers,World Drop,1,835,3130,0.2668,272458869,22750316.0
+244497,Worn Shadowguard Striker's Legguards,119559,Wastelander Skirmisher's Legguards,World Drop,1,935,3130,0.2987,242475026,22671415.0
+244496,Worn Shadowguard Striker's Cowl,119555,Wastelander Skirmisher's Cowl,World Drop,1,962,3130,0.3073,227766874,21911173.0
+244491,Worn Shadowguard Blade's Belt,119612,Wastelander Scout's Belt,World Drop,1,832,3130,0.2658,262901498,21873405.0
+244486,Worn Shadowguard Blade's Soles,119614,Wastelander Scout's Soles,World Drop,1,801,3130,0.2559,270498788,21666953.0
+244489,Worn Shadowguard Blade's Breeches,119613,Wastelander Scout's Breeches,World Drop,1,822,3130,0.2626,263001994,21618764.0
+244485,Worn Shadowguard Blade's Jerkin,119611,Wastelander Scout's Jerkin,World Drop,1,826,3130,0.2639,261382048,21590157.0
+244493,Worn Shadowguard Striker's Brigandine,119557,Wastelander Skirmisher's Brigandine,World Drop,1,924,3130,0.2952,228835625,21144412.0
+244490,Worn Shadowguard Blade's Shoulderpads,119610,Wastelander Scout's Shoulderpads,World Drop,1,792,3130,0.253,263687588,20884057.0
+244488,Worn Shadowguard Blade's Hood,119609,Wastelander Scout's Hood,World Drop,1,821,3130,0.2623,252914578,20764287.0
+244495,Worn Shadowguard Striker's Gauntlets,119562,Wastelander Skirmisher's Gauntlets,World Drop,1,846,3130,0.2703,241348491,20418082.0
+244507,Worn Shadowguard Captain's Greatbelt,119504,Wastelander Brute's Greatbelt,World Drop,1,817,3130,0.261,240064556,19613274.0
+244501,Worn Shadowguard Captain's Breastplate,119503,Wastelander Brute's Breastplate,World Drop,1,822,3130,0.2626,233680227,19208515.0
+244505,Worn Shadowguard Captain's Greaves,119505,Wastelander Brute's Greaves,World Drop,1,792,3130,0.253,231417259,18328247.0
+244483,Worn Shadowguard Seer's Cord,119445,Wastelander Magi's Cord,World Drop,1,959,3130,0.3064,189705111,18192720.0
+244504,Worn Shadowguard Captain's Helmet,119501,Wastelander Brute's Helmet,World Drop,1,794,3130,0.2537,228846671,18170426.0
+244508,Worn Shadowguard Captain's Vambraces,119507,Wastelander Brute's Vambraces,World Drop,1,803,3130,0.2565,222256591,17847204.0
+244478,Worn Shadowguard Seer's Slippers,119447,Wastelander Magi's Slippers,World Drop,1,897,3130,0.2866,188880000,16942536.0

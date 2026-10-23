@@ -1,0 +1,404 @@
+{
+ "npc_id": 3736,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Darkslayer Mordenthal",
+ "items": [
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9781,
+   "item_name": "Bandit Pants",
+   "item_type": "",
+   "drop_rate": 0.63,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9781/bandit-pants?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 2589,
+   "item_name": "Linen Cloth",
+   "item_type": "",
+   "drop_rate": 0.09,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=2589/linen-cloth"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 2592,
+   "item_name": "Wool Cloth",
+   "item_type": "",
+   "drop_rate": 0.08,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=2592/wool-cloth"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6563,
+   "item_name": "Shimmering Bracers",
+   "item_type": "",
+   "drop_rate": 0.06,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6563/shimmering-bracers?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6581,
+   "item_name": "Scouting Belt",
+   "item_type": "",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6581/scouting-belt?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6583,
+   "item_name": "Scouting Bracers",
+   "item_type": "",
+   "drop_rate": 0.03,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6583/scouting-bracers?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6564,
+   "item_name": "Shimmering Cloak",
+   "item_type": "",
+   "drop_rate": 0.02,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6564/shimmering-cloak?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 4306,
+   "item_name": "Silk Cloth",
+   "item_type": "",
+   "drop_rate": 0.019,
+   "qty": 1.5,
+   "source_url": "https://www.wowhead.com/item=4306/silk-cloth"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9766,
+   "item_name": "Greenweave Sash",
+   "item_type": "",
+   "drop_rate": 0.019,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9766/greenweave-sash?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6562,
+   "item_name": "Shimmering Boots",
+   "item_type": "",
+   "drop_rate": 0.018000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6562/shimmering-boots?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6586,
+   "item_name": "Scouting Gloves",
+   "item_type": "",
+   "drop_rate": 0.013000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6586/scouting-gloves?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6570,
+   "item_name": "Shimmering Sash",
+   "item_type": "",
+   "drop_rate": 0.013000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6570/shimmering-sash?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9783,
+   "item_name": "Raider's Chestpiece",
+   "item_type": "",
+   "drop_rate": 0.012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9783/raiders-chestpiece?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 4606,
+   "item_name": "Spongy Morel",
+   "item_type": "",
+   "drop_rate": 0.011000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4606/spongy-morel"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9780,
+   "item_name": "Bandit Gloves",
+   "item_type": "",
+   "drop_rate": 0.011000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9780/bandit-gloves?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9771,
+   "item_name": "Greenweave Gloves",
+   "item_type": "",
+   "drop_rate": 0.01,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9771/greenweave-gloves?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6585,
+   "item_name": "Scouting Cloak",
+   "item_type": "",
+   "drop_rate": 0.01,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6585/scouting-cloak?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9776,
+   "item_name": "Bandit Boots",
+   "item_type": "",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9776/bandit-boots?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6582,
+   "item_name": "Scouting Boots",
+   "item_type": "",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6582/scouting-boots?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6575,
+   "item_name": "Defender Cloak",
+   "item_type": "",
+   "drop_rate": 0.008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6575/defender-cloak?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6578,
+   "item_name": "Defender Leggings",
+   "item_type": "",
+   "drop_rate": 0.008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6578/defender-leggings?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6574,
+   "item_name": "Defender Bracers",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6574/defender-bracers?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6576,
+   "item_name": "Defender Girdle",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6576/defender-girdle?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9774,
+   "item_name": "Greenweave Vest",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9774/greenweave-vest?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6565,
+   "item_name": "Shimmering Gloves",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6565/shimmering-gloves?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9782,
+   "item_name": "Bandit Jerkin",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9782/bandit-jerkin?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 10287,
+   "item_name": "Greenweave Mantle",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10287/greenweave-mantle?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9773,
+   "item_name": "Greenweave Robe",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9773/greenweave-robe?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 10407,
+   "item_name": "Raider's Shoulderpads",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10407/raiders-shoulderpads"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9814,
+   "item_name": "Fortified Belt",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9814/fortified-belt?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9811,
+   "item_name": "Fortified Bracers",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9811/fortified-bracers?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9812,
+   "item_name": "Fortified Cloak",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9812/fortified-cloak?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6577,
+   "item_name": "Defender Gauntlets",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6577/defender-gauntlets?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6580,
+   "item_name": "Defender Tunic",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6580/defender-tunic?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9772,
+   "item_name": "Greenweave Leggings",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9772/greenweave-leggings?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6568,
+   "item_name": "Shimmering Trousers",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6568/shimmering-trousers?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 10405,
+   "item_name": "Bandit Shoulders",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=10405/bandit-shoulders"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6573,
+   "item_name": "Defender Boots",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6573/defender-boots?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 8948,
+   "item_name": "Dried King Bolete",
+   "item_type": "",
+   "drop_rate": 0.0017000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8948/dried-king-bolete"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 9805,
+   "item_name": "Superior Cloak",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=9805/superior-cloak?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 6587,
+   "item_name": "Scouting Trousers",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6587/scouting-trousers?bonus=6654"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 828,
+   "item_name": "Small Blue Pouch",
+   "item_type": "",
+   "drop_rate": 0.0007000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=828/small-blue-pouch"
+  },
+  {
+   "category": "drops+pickpocketing",
+   "item_id": 14374,
+   "item_name": "Sanguine Sandals",
+   "item_type": "",
+   "drop_rate": 0.0007000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=14374/sanguine-sandals?bonus=6654"
+  },
+  {
+   "category": "pickpocketing",
+   "item_id": 4542,
+   "item_name": "Moist Cornbread",
+   "item_type": "",
+   "drop_rate": 0.08,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4542/moist-cornbread"
+  }
+ ]
+}

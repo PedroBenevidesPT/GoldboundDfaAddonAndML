@@ -1,0 +1,250 @@
+
+=== ashenvale / azshara / blackfathom-deeps vs COLECIONADORES ===
+amostra: appearances=13527, mounts=7304, recipes=7302 contas (share that still LACKS the item)
+precos: db:tsm_markets.db
+aparencias por id: 44472 ids em falta, 13527 contas (dfa.db::missing)
+binding/era: tsm_markets.db -- 176702 itens, por item id
+AVISO: os demand_*.csv sao de 7304 contas mas o dfa.db ja tem 13529 -- os missing_pct estao velhos. Refresca com:
+  python -m woweconomy.services.dataforazeroth report --out-dir C:\economics\woweconomy\dfa
+itens: 1653 | com procura: 1418 | gap forte (>= 50%): 754
+join: 1339 por aparencia (id) | 79 por nome | 235 sem par
+EV da zona: 49g/kill | atribuivel a coleccionadores: 34% (17g/kill)
+
+-- DROPS POR MOB (257 mobs) --
+   a lista esta' ordenada pela MONTRA: o mob cujo drop mais falta a
+   amostra vem primeiro, e dentro de cada mob o primeiro drop e' a montra
+   mob                          EV/kill  EV coleccao    montra  falta%  falta/kill%  pago/tot
+   sem/amostra  falta%   drop%    preco   EV/kill  drop
+   Blindlight Bilefin                  3g        2g  107,289g   62.2%   33.4% 209/247
+  12987/13527  96.0%   0.010%   22,845g     1.8s  Axe of the Enforcer
+  12716/13527  94.0%   0.030%    9,500g     4.0s  Onyx Claymore
+  12544/13527  92.7%   0.010%    9,244g     1.4s  Grimclaw
+   Ghamoo-Ra                           3g        2g   84,777g   56.9%   75.8% 165/190
+  12987/13527  96.0%  0.0015%   22,845g      28c  Axe of the Enforcer
+  12716/13527  94.0%  0.0046%    9,500g      61c  Onyx Claymore
+  12250/13527  90.6%   0.010%    1,024g       4c  Spiked Chain Leggings
+   Twilight Storm Mender               2g        1g   92,977g   50.7%   32.5% 170/198
+  12987/13527  96.0%   0.010%   22,845g     1.8s  Axe of the Enforcer
+  12716/13527  94.0%   0.010%    9,500g     1.3s  Onyx Claymore
+  12544/13527  92.7%  0.0046%    9,244g      63c  Grimclaw
+   Twilight Disciple                42.1s     23.5s   54,265g   48.6%   37.8% 135/153
+  12987/13527  96.0%   0.010%   22,845g     1.8s  Axe of the Enforcer
+  12544/13527  92.7%   0.070%    9,244g     9.7s  Grimclaw
+  11981/13527  88.6%  0.0044%      883g       2c  Spiked Chain Gauntlets
+   Twilight Disciple                39.4s     25.8s   41,347g   60.8%   17.5% 124/147
+  12987/13527  96.0%   0.060%   22,845g    11.0s  Axe of the Enforcer
+  12075/13527  89.3%   0.010%      827g       7c  Sentry's Armsplints
+  12012/13527  88.8%   0.090%    1,462g     1.1s  Sentry's Sash
+   Blindlight Razorjaw              35.6s     16.9s   70,535g   50.2%   14.4% 140/163
+  12987/13527  96.0%   0.010%   22,845g     1.8s  Axe of the Enforcer
+  12716/13527  94.0%   0.010%    9,500g     1.3s  Onyx Claymore
+  12544/13527  92.7%  0.0042%    9,244g      58c  Grimclaw
+   Tormented Sacrifice              23.3s     12.9s   83,477g   52.5%    5.4% 179/204
+  12987/13527  96.0%   0.010%   22,845g     1.8s  Axe of the Enforcer
+  12544/13527  92.7%   0.020%    9,244g     2.8s  Grimclaw
+  12205/13527  90.2%   0.020%      940g      11c  Pagan Vest
+   Weakened Mosshoof Stag              2g     63.9s  116,678g   44.7%   53.5% 305/340
+  12944/13527  95.7%   0.050%    2,719g     2.2s  Battle Shield
+  12703/13527  93.9%   0.060%    4,964g     2.7s  Charger's Cloak
+  12612/13527  93.2%   0.080%       20g       1c  Charger's Bindings
+   Talrendis Scout                  75.5s     45.8s  125,612g   54.7%   22.5% 301/349
+  12944/13527  95.7%   0.020%    2,719g      87c  Battle Shield
+  12612/13527  93.2%  0.0042%       20g       0c  Charger's Bindings
+  12542/13527  92.7%   0.090%    1,901g     1.4s  Tribal Buckler
+   Twilight Shadow                  94.4s     27.6s   50,846g   52.0%   20.6% 177/207
+  12716/13527  94.0%   0.020%    9,500g     2.7s  Onyx Claymore
+  12205/13527  90.2%   0.010%      940g       6c  Pagan Vest
+  12134/13527  89.7%  0.0026%      883g       1c  Spiked Chain Slippers
+   Blindlight Murloc                61.7s     16.3s   49,473g   51.0%   57.2% 227/280
+  12716/13527  94.0%  0.0015%    9,500g      20c  Onyx Claymore
+  12075/13527  89.3%  0.0015%      827g       1c  Sentry's Armsplints
+  11947/13527  88.3%  0.0015%    3,563g       5c  Staff of the Friar
+   Twilight Aquamancer              60.0s     28.3s   55,460g   48.7%   25.8% 169/201
+  12716/13527  94.0%   0.010%    9,500g     1.3s  Onyx Claymore
+  12250/13527  90.6%   0.010%    1,024g       4c  Spiked Chain Leggings
+  12205/13527  90.2%   0.020%      940g      11c  Pagan Vest
+   Twilight Aquamancer              53.7s     30.7s   80,969g   53.1%   25.7% 201/233
+  12716/13527  94.0%   0.010%    9,500g     1.3s  Onyx Claymore
+  12544/13527  92.7%   0.010%    9,244g     1.4s  Grimclaw
+  12250/13527  90.6%   0.010%    1,024g       4c  Spiked Chain Leggings
+   Twilight Storm Mender            52.0s     25.3s   55,971g   46.3%   17.9% 190/222
+  12716/13527  94.0%  0.0041%    9,500g      54c  Onyx Claymore
+  12250/13527  90.6%  0.0041%    1,024g       2c  Spiked Chain Leggings
+  12205/13527  90.2%  0.0041%      940g       2c  Pagan Vest
+   Twilight Disciple                48.2s     23.3s   72,713g   53.6%   20.3% 222/264
+  12716/13527  94.0%  0.0036%    9,500g      48c  Onyx Claymore
+  12544/13527  92.7%   0.010%    9,244g     1.4s  Grimclaw
+  12250/13527  90.6%   0.010%    1,024g       4c  Spiked Chain Leggings
+   Twilight Shadow                  46.6s     26.4s   66,420g   54.5%   24.3% 200/235
+  12716/13527  94.0%   0.020%    9,500g     2.7s  Onyx Claymore
+  12544/13527  92.7%  0.0025%    9,244g      35c  Grimclaw
+  12205/13527  90.2%  0.0038%      940g       2c  Pagan Vest
+   Twilight Storm Mender            38.3s     18.7s   53,264g   56.0%   21.5% 178/206
+  12716/13527  94.0%   0.010%    9,500g     1.3s  Onyx Claymore
+  12250/13527  90.6%   0.010%    1,024g       4c  Spiked Chain Leggings
+  12205/13527  90.2%   0.040%      940g      23c  Pagan Vest
+   Twilight Storm Mender            36.7s     13.1s   42,606g   52.8%   14.0% 144/168
+  12716/13527  94.0%   0.010%    9,500g     1.3s  Onyx Claymore
+  12150/13527  89.8%   0.020%    1,041g      19c  Sentry's Gloves
+  12134/13527  89.7%   0.040%      883g      18c  Spiked Chain Slippers
+   Blackfathom Tide Priestess       36.2s     16.2s   98,168g   44.4%   21.0% 280/322
+  12716/13527  94.0%  0.0019%    9,500g      25c  Onyx Claymore
+  12544/13527  92.7%  0.0014%    9,244g      20c  Grimclaw
+  12250/13527  90.6%  0.0029%    1,024g       1c  Spiked Chain Leggings
+   Twilight Disciple                34.1s     18.7s   23,858g   53.0%   18.1%  97/109
+  12716/13527  94.0%  0.0045%    9,500g      59c  Onyx Claymore
+  12075/13527  89.3%   0.010%      827g       7c  Sentry's Armsplints
+  11878/13527  87.8%   0.020%      266g       6c  War Paint Shoulder Pads
+   Blindlight Murloc                32.8s     13.5s   60,288g   51.2%   11.8% 177/213
+  12716/13527  94.0%   0.010%    9,500g     1.3s  Onyx Claymore
+  12544/13527  92.7%  0.0024%    9,244g      33c  Grimclaw
+  12205/13527  90.2%  0.0043%      940g       2c  Pagan Vest
+   Greystone Basilisk                  2g     75.1s   80,512g   47.5%   53.6% 257/294
+  12703/13527  93.9%  0.0005%    4,964g       2c  Charger's Cloak
+  12542/13527  92.7%   0.040%    1,901g      61c  Tribal Buckler
+  12445/13527  92.0%   0.050%      488g      32c  Brackwater Bracers
+   Mistwing Cliffdweller               1g     70.4s   55,775g   47.9%   52.3% 220/241
+  12703/13527  93.9%  0.0005%    4,964g       2c  Charger's Cloak
+  12542/13527  92.7%   0.020%    1,901g      30c  Tribal Buckler
+  12445/13527  92.0%   0.060%      488g      38c  Brackwater Bracers
+   Razorshell Snapjaw                  1g     68.8s   44,123g   53.6%   64.2% 156/179
+  12544/13527  92.7%  0.0029%    9,244g      41c  Grimclaw
+  12312/13527  91.0%  0.0044%    1,330g       2c  Sentry's Slippers
+  12205/13527  90.2%  0.0015%      940g       1c  Pagan Vest
+   Twilight Shadowmage              78.6s     50.4s   36,879g   56.2%   23.5% 152/181
+  12544/13527  92.7%   0.170%    9,244g    23.6s  Grimclaw
+  12250/13527  90.6%   0.050%    1,024g      20c  Spiked Chain Leggings
+  12150/13527  89.8%   0.010%    1,041g       9c  Sentry's Gloves
+   Twilight Shadowmage              38.7s     22.5s   31,460g   52.1%   37.4% 131/152
+  12544/13527  92.7%   0.020%    9,244g     2.8s  Grimclaw
+  12150/13527  89.8%   0.010%    1,041g       9c  Sentry's Gloves
+  12075/13527  89.3%   0.300%      827g     2.0s  Sentry's Armsplints
+   Blindlight Rotmouth              31.7s     11.6s   46,054g   45.3%    8.7% 154/182
+  12544/13527  92.7%   0.030%    9,244g     4.2s  Grimclaw
+  12250/13527  90.6%  0.0045%    1,024g       2c  Spiked Chain Leggings
+  11981/13527  88.6%  0.0045%      883g       2c  Spiked Chain Gauntlets
+   Static-Charged Hippogryph           4g     94.9s   87,716g   46.6%   64.4% 246/274
+  12542/13527  92.7%   0.020%    1,901g      30c  Tribal Buckler
+  12445/13527  92.0%   0.040%      488g      25c  Brackwater Bracers
+  12344/13527  91.3%   0.020%      734g      15c  Brackwater Girdle
+   Coralshell Lurker                   2g     75.9s   23,981g   50.4%   55.1%  62/70
+  12542/13527  92.7%   0.010%    1,901g      15c  Tribal Buckler
+  12222/13527  90.4%   0.010%      951g       5c  Tribal Boots
+  12134/13527  89.7%   0.010%      569g       5c  Barbaric Cloth Belt
+   Restless Spirit                  72.5s     41.3s   68,760g   46.4%   29.4% 208/224
+  12542/13527  92.7%   0.060%    1,901g      91c  Tribal Buckler
+  12445/13527  92.0%   0.090%      488g      57c  Brackwater Bracers
+  12344/13527  91.3%   0.060%      734g      44c  Brackwater Girdle
+   'sem' = contas cuja resposta nao trazia a aparencia do drop
+   (MINIMO: quem tem a aparencia por outro item conta como 'tem');
+   falta% do mob = media dos drops pesada pelo drop%; falta/kill% =
+   P(uma kill largar >= 1 item que a amostra nao tem); pago = drops
+   com audiencia E preco.  montra = soma do preco TSM de cada drop
+   vendavel do mob, uma vez (o que terias na AH se listasses tudo):
+   e' um portfolio, somado sobre TODOS os drops -- os que --mob-drops
+   nao mostra contam na mesma -- e nao e' EV por kill nem promessa
+   de venda.  O preco da montra (o drop do topo) esta' na linha dele.
+   --mob-drops 0 mostra todos os drops do mob;
+   o EV de um mob conta os drops DELE (um item largado por dois mobs
+   entra nos dois) -- nao e' uma soma unica do EV da zona.
+
+-- BoE QUE A AMOSTRA AINDA NAO TEM (1338 de 1365) --
+   sem/amostra  falta%   drop%    preco   EV/kill     sr    spd  item
+12987/13527  96.0%   0.060%   22,845g    11.0s  0.80%   0.0  Axe of the Enforcer              <= Twilight Disciple
+12944/13527  95.7%   0.050%    2,719g     2.2s  1.60%   0.0  Battle Shield                    <= Weakened Mosshoof Stag
+12716/13527  94.0%   0.030%    9,500g     4.0s  1.40%   0.0  Onyx Claymore                    <= Blindlight Bilefin
+12703/13527  93.9%   0.060%    4,964g     2.7s  0.90%   0.0  Charger's Cloak                  <= Weakened Mosshoof Stag
+12612/13527  93.2%   0.080%       20g       1c  0.50%   0.0  Charger's Bindings               <= Weakened Mosshoof Stag
+12544/13527  92.7%   0.170%    9,244g    23.6s  1.50%   0.0  Grimclaw                         <= Twilight Shadowmage
+12542/13527  92.7%   0.120%    1,901g     1.8s  0.80%   0.0  Tribal Buckler                   <= Warlord Krellian
+12540/13527  92.7%   0.800%    6,650g    10.6s  0.20%   0.0  Ruffled Chaplet                  <= Terrowulf Packlord
+12482/13527  92.3%  0.0009%    3,000g       2c  0.90%   0.0  Sentry's Leggings                <= Goblin Technician
+12477/13527  92.2%   0.300%    5,252g     7.9s  0.50%   0.0  Slayer's Slippers                <= Cenarion Vindicator
+12463/13527  92.1%   0.030%    2,899g     1.1s  1.30%   0.0  Sanguine Armor                   <= Emeraldon Oracle
+12445/13527  92.0%   0.300%      488g     1.9s  1.30%   0.0  Brackwater Bracers               <= Spitelash Seacaller
+12363/13527  91.4%   0.010%    2,708g       8c  0.30%   0.0  Slayer's Gloves                  <= Goblin Technician
+12344/13527  91.3%   0.120%      734g      88c  1.00%   0.0  Brackwater Girdle                <= Blackmaw Pathfinder
+12333/13527  91.2%   0.140%      665g      56c  0.60%   0.0  Brackwater Gauntlets             <= Blackmaw Warrior
+12328/13527  91.1%   0.080%    1,000g      88c  1.10%   0.0  Burnt Buckler                    <= Sand Crawler
+12319/13527  91.1%   0.300%      633g     3.2s  1.70%   0.0  War Torn Greaves                 <= Lady Vesthra
+12312/13527  91.0%    2.20%    1,330g     8.8s  0.30%   0.0  Sentry's Slippers                <= Blindlight Bilefin
+12297/13527  90.9%   0.300%    1,950g     5.8s  1.00%   0.0  Brackwater Cloak                 <= Lady Silisthra
+12282/13527  90.8%   0.180%      912g     1.5s  0.90%   0.0  War Torn Handgrips               <= Lady Vesthra
+12272/13527  90.7%   0.170%    2,102g     5.0s  1.40%   0.0  Grizzly Cape                     <= Talrendis Scout
+12250/13527  90.6%    3.85%    1,024g    15.7s  0.40%   0.0  Spiked Chain Leggings            <= Guardian of the Deep
+12239/13527  90.5%   0.120%    1,129g      95c  0.70%   0.0  Charger's Belt                   <= Weakened Mosshoof Stag
+12231/13527  90.4%   0.020%    3,620g      43c  0.60%   0.0  Thick Scale Cloak                <= Ursangous
+12222/13527  90.4%   0.400%      951g     1.9s  0.50%   0.0  Tribal Boots                     <= Lady Silisthra
+12221/13527  90.3%   0.300%    1,057g     2.9s  0.90%   0.0  Grizzly Slippers                 <= Lady Vesthra
+12210/13527  90.3%   0.010%    1,202g      12c  1.00%   0.0  Robust Boots                     <= Lesser Felguard
+12205/13527  90.2%   0.180%      940g     1.0s  0.60%   0.0  Pagan Vest                       <= Guardian of the Deep
+12157/13527  89.9%   0.150%      996g     1.5s  1.00%   0.0  Ancestral Boots                  <= Talrendis Scout
+12150/13527  89.8%   0.070%    1,041g      66c  0.90%   0.0  Sentry's Gloves                  <= Elder Shadowhorn Stag
+   'sem' = contas cuja resposta nao trazia a aparencia do item
+   (minimo: quem tem a aparencia por outro item conta como 'tem')
+   EV/kill = drop% x preco x liquidez, deste item, neste mob
+
+-- PROCURA FORTE (coleccionadores ainda nao tem) --
+sem/amostra  miss%     drop%  own%  valor    preco    sr    spd  item
+12987/13527  96.0%   0.060%   0.29  95.7   22,845g sr= 0.8% spd=   0.0  Axe of the Enforcer                [appe] <= Twilight Disciple
+12944/13527  95.7%   0.050%   0.71  95.0    2,719g sr= 1.6% spd=   0.0  Battle Shield                      [appe] <= Weakened Mosshoof Stag
+12716/13527  94.0%   0.030%   0.55  93.5    9,500g sr= 1.4% spd=   0.0  Onyx Claymore                      [appe] <= Blindlight Bilefin
+12703/13527  93.9%   0.060%   1.29  92.7    4,964g sr= 0.9% spd=   0.0  Charger's Cloak                    [appe] <= Weakened Mosshoof Stag
+ 6830/7302   93.5%   0.010%   0.33  93.2   14,251g sr= 1.3% spd=   0.0  Pattern: Chimeric Gloves           [reci] <= Legashi Satyr
+ 6827/7302   93.5%   0.020%   0.43  93.1   22,782g sr= 1.2% spd=   0.0  Pattern: Blue Dragonscale Breastpl [reci] <= Northwatch Bodyguard
+12612/13527  93.2%   0.080%   1.17  92.1       20g sr= 0.5% spd=   0.0  Charger's Bindings                 [appe] <= Weakened Mosshoof Stag
+12544/13527  92.7%   0.170%   1.03  91.8    9,244g sr= 1.5% spd=   0.0  Grimclaw                           [appe] <= Twilight Shadowmage
+12542/13527  92.7%   0.120%   1.05  91.7    1,901g sr= 0.8% spd=   0.0  Tribal Buckler                     [appe] <= Warlord Krellian
+12540/13527  92.7%   0.800%   0.42  92.3    6,650g sr= 0.2% spd=   0.0  Ruffled Chaplet                    [appe] <= Terrowulf Packlord
+12482/13527  92.3%  0.0009%   0.76  91.6    3,000g sr= 0.9% spd=   0.0  Sentry's Leggings                  [appe] <= Goblin Technician
+12477/13527  92.2%   0.300%   0.71  91.6    5,252g sr= 0.5% spd=   0.0  Slayer's Slippers                  [appe] <= Cenarion Vindicator
+12463/13527  92.1%   0.030%   0.66  91.5    2,899g sr= 1.3% spd=   0.0  Sanguine Armor                     [appe] <= Emeraldon Oracle
+12445/13527  92.0%   0.300%   1.04  91.0      488g sr= 1.3% spd=   0.0  Brackwater Bracers                 [appe] <= Spitelash Seacaller
+12363/13527  91.4%   0.010%   0.74  90.7    2,708g sr= 0.3% spd=   0.0  Slayer's Gloves                    [appe] <= Goblin Technician
+12344/13527  91.3%   0.120%   0.88  90.4      734g sr= 1.0% spd=   0.0  Brackwater Girdle                  [appe] <= Blackmaw Pathfinder
+12333/13527  91.2%   0.140%   0.88  90.4      665g sr= 0.6% spd=   0.0  Brackwater Gauntlets               [appe] <= Blackmaw Warrior
+12328/13527  91.1%   0.080%   1.48  89.8    1,000g sr= 1.1% spd=   0.0  Burnt Buckler                      [appe] <= Sand Crawler
+12319/13527  91.1%   0.300%   0.99  90.2      633g sr= 1.7% spd=   0.0  War Torn Greaves                   [appe] <= Lady Vesthra
+12312/13527  91.0%    2.20%   0.83  90.3    1,330g sr= 0.3% spd=   0.0  Sentry's Slippers                  [appe] <= Blindlight Bilefin
+12297/13527  90.9%   0.300%   1.35  89.7    1,950g sr= 1.0% spd=   0.0  Brackwater Cloak                   [appe] <= Lady Silisthra
+12282/13527  90.8%   0.180%   1.11  89.8      912g sr= 0.9% spd=   0.0  War Torn Handgrips                 [appe] <= Lady Vesthra
+12272/13527  90.7%   0.170%   2.03  88.9    2,102g sr= 1.4% spd=   0.0  Grizzly Cape                       [appe] <= Talrendis Scout
+12250/13527  90.6%    3.85%   0.97  89.7    1,024g sr= 0.4% spd=   0.0  Spiked Chain Leggings              [appe] <= Guardian of the Deep
+12239/13527  90.5%   0.120%   1.85  88.8    1,129g sr= 0.7% spd=   0.0  Charger's Belt                     [appe] <= Weakened Mosshoof Stag
+12231/13527  90.4%   0.020%   1.04  89.5    3,620g sr= 0.6% spd=   0.0  Thick Scale Cloak                  [appe] <= Ursangous
+12222/13527  90.4%   0.400%   1.28  89.2      951g sr= 0.5% spd=   0.0  Tribal Boots                       [appe] <= Lady Silisthra
+12221/13527  90.3%   0.300%   1.21  89.3    1,057g sr= 0.9% spd=   0.0  Grizzly Slippers                   [appe] <= Lady Vesthra
+12210/13527  90.3%   0.010%   0.93  89.4    1,202g sr= 1.0% spd=   0.0  Robust Boots                       [appe] <= Lesser Felguard
+12205/13527  90.2%   0.180%   0.84  89.5      940g sr= 0.6% spd=   0.0  Pagan Vest                         [appe] <= Guardian of the Deep
+
+-- NICHO (15-50%) --
+ 6752/13527  49.9%    4.00%  13.02  43.4        9g sr= 0.8% spd=   0.0  Greenweave Mantle                  [appe] <= Apothecary Falthis
+ 6752/13527  49.9%    1.70%  13.02  43.4       10g sr= 1.8% spd=   0.0  Shimmering Amice                   [appe] <= Oakpaw
+ 6740/13527  49.8%   0.010%  20.01  39.9      190g sr= 1.6% spd=   0.0  Magician's Mantle                  [appe] <= Lesser Felguard
+ 6737/13527  49.8%   0.090%  19.64  40.0       67g sr= 1.3% spd=   0.0  Mystic's Slippers                  [appe] <= Twilight Dragon Hunter
+ 6722/13527  49.7%  0.0004%  12.87  43.3       49g sr= 3.1% spd=   0.1  Mercenary Blade                    [appe] <= Roaming Felguard
+ 6722/13527  49.7%    9.00%  19.08  40.2       19g sr= 1.2% spd=   0.0  Scholarly Robes                    [appe] <= Twilight Disciple
+ 6722/13527  49.7%   82.00%  19.08  40.2        8g sr= 1.3% spd=   0.0  Gorestained Garb                   [appe] <= Executioner Gore
+ 6716/13527  49.6%    5.00%  14.97  42.2       18g sr= 1.2% spd=   0.0  Raider's Bracers                   [appe] <= Lady Sesspira
+ 6702/13527  49.5%   0.300%  16.76  41.2       26g sr= 2.7% spd=   0.0  Heavy Shortbow                     [appe] <= Spitelash Stormfury
+ 6694/13527  49.5%   0.400%  11.84  43.6       48g sr= 1.0% spd=   0.0  Lord's Cape                        [appe] <= The Evalcharr
+ 6686/13527  49.4%    1.10%  11.13  43.9       46g sr= 1.3% spd=   0.0  Duskwoven Amice                    [appe] <= General Fangferror
+ 6676/13527  49.4%    7.00%  17.09  40.9       14g sr= 2.4% spd=   0.0  Infantry Leggings                  [appe] <= Varo'then's Ghost
+ 6665/13527  49.3%   0.030%  12.79  43.0       47g sr= 1.1% spd=   0.0  High Councillor's Circlet          [appe] <= Scalebeard
+ 6659/13527  49.2%   0.700%  15.28  41.7      167g sr= 0.9% spd=   0.0  Rigid Cape                         [appe] <= Roaming Felguard
+ 6659/13527  49.2%  0.0004%  15.28  41.7      142g sr= 0.4% spd=   0.0  Sparkleshell Cloak                 [appe] <= Rotting Slime
+ 6647/13527  49.1%    1.00%  19.81  39.4       95g sr= 0.6% spd=   0.0  Nomad Bands                        [appe] <= Varo'then's Ghost
+ 6644/13527  49.1%    8.00%  21.23  38.7       65g sr= 1.0% spd=   0.0  Brocade Shoes                      [appe] <= Twilight Disciple
+ 6641/13527  49.1%    1.80%  14.73  41.9       30g sr= 1.6% spd=   0.0  Raider's Legguards                 [appe] <= The Evalcharr
+ 6640/13527  49.1%   0.300%  13.45  42.5       71g sr= 1.7% spd=   0.0  Dervish Spaulders                  [appe] <= Akkrilus
+ 6629/13527  49.0%   0.020%  12.93  42.7       50g sr= 1.1% spd=   0.0  High Councillor's Bracers          [appe] <= Scalebeard
+ 6617/13527  48.9%   0.180%  17.21  40.5       31g sr= 0.9% spd=   0.0  Interlaced Bracers                 [appe] <= Raging Ancient
+ 6617/13527  48.9%    1.30%  17.21  40.5       21g sr= 1.2% spd=   0.0  Simple Bands                       [appe] <= Varo'then's Ghost
+ 6610/13527  48.9%   0.400%  20.18  39.0   13,876g sr= 0.1% spd=   0.0  Joonho's Mercy                     [appe] <= General Fangferror
+ 6603/13527  48.8%    1.70%  13.62  42.2       42g sr= 1.2% spd=   0.0  Cabalist Chestpiece                [appe] <= Antilos
+ 6595/13527  48.8%   0.300%  16.72  40.6      160g sr= 1.7% spd=   0.0  Prospector's Woolies               [appe] <= Kaldorei Assassin
+ 6584/13527  48.7%   0.400%  17.84  40.0       40g sr= 2.0% spd=   0.0  Shadow Wand                        [appe] <= Blackmaw Shaman
+ 6583/13527  48.7%   0.150%  16.45  40.7      125g sr= 2.6% spd=   0.0  Twin-Bladed Axe                    [appe] <= Talrendis Ambassador
+ 6582/13527  48.7%   0.200%  13.97  41.9       34g sr= 0.5% spd=   0.0  Scaled Cloak                       [appe] <= Akkrilus
+ 6578/13527  48.6%   0.400%  17.32  40.2       55g sr= 1.0% spd=   0.0  Stone Club                         [appe] <= Raging Ancient
+ 6573/13527  48.6%    4.00%  16.35  40.6       18g sr= 2.3% spd=   0.0  Disciple's Vest                    [appe] <= General Fangferror

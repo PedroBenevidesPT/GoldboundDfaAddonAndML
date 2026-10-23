@@ -1,0 +1,286 @@
+{
+  "price_rows": 398,
+  "local_share": 0.03768844221105527,
+  "variants": {
+    "regional only (ships today)": {
+      "references": [
+        "dbregionmarketavg",
+        "dbregionhistorical",
+        "dbregionsaleavg"
+      ],
+      "folds": [
+        {
+          "n": 113,
+          "rmse_log": 0.9386870340035273,
+          "mae_log": 0.6297530817806052,
+          "median_ratio": 0.7724171831335349,
+          "within_25pct": 0.336283185840708,
+          "within_50pct": 0.6637168141592921
+        },
+        {
+          "n": 95,
+          "rmse_log": 0.5159564031854739,
+          "mae_log": 0.3691194843104621,
+          "median_ratio": 0.8950599804670402,
+          "within_25pct": 0.5157894736842106,
+          "within_50pct": 0.7894736842105263
+        }
+      ],
+      "walk_forward": {
+        "rmse_log": 0.7273217185945006,
+        "median_ratio": 0.8337385818002876,
+        "within_25pct": 0.4260363297624593,
+        "within_50pct": 0.7265952491849093
+      },
+      "test": {
+        "n": 25,
+        "rmse_log": 0.7341136210362377,
+        "mae_log": 0.542208707034067,
+        "median_ratio": 1.050992451804981,
+        "within_25pct": 0.44,
+        "within_50pct": 0.52
+      },
+      "coefficients": [
+        0.2355,
+        0.2035,
+        0.584
+      ],
+      "n_train_dev": 373
+    },
+    "all six": {
+      "references": [
+        "dbmarket",
+        "dbrecent",
+        "dbhistorical",
+        "dbregionmarketavg",
+        "dbregionhistorical",
+        "dbregionsaleavg"
+      ],
+      "folds": [
+        {
+          "n": 95,
+          "rmse_log": 0.862836278205212,
+          "mae_log": 0.4511024170167148,
+          "median_ratio": 0.9061150888491333,
+          "within_25pct": 0.5157894736842106,
+          "within_50pct": 0.7578947368421053
+        }
+      ],
+      "walk_forward": {
+        "rmse_log": 0.862836278205212,
+        "median_ratio": 0.9061150888491333,
+        "within_25pct": 0.5157894736842106,
+        "within_50pct": 0.7578947368421053
+      },
+      "test": {
+        "n": 25,
+        "rmse_log": 0.7376337608741167,
+        "mae_log": 0.5428599188332054,
+        "median_ratio": 1.0269327646484692,
+        "within_25pct": 0.44,
+        "within_50pct": 0.52
+      },
+      "coefficients": [
+        0.814,
+        0.0419,
+        -0.9077,
+        0.2205,
+        0.1635,
+        0.6236
+      ],
+      "n_train_dev": 373
+    },
+    "regional + local market": {
+      "references": [
+        "dbmarket",
+        "dbregionmarketavg",
+        "dbregionhistorical",
+        "dbregionsaleavg"
+      ],
+      "folds": [
+        {
+          "n": 95,
+          "rmse_log": 0.5230850929944305,
+          "mae_log": 0.37267791817793927,
+          "median_ratio": 0.9379441171471481,
+          "within_25pct": 0.5052631578947369,
+          "within_50pct": 0.7578947368421053
+        }
+      ],
+      "walk_forward": {
+        "rmse_log": 0.5230850929944305,
+        "median_ratio": 0.9379441171471481,
+        "within_25pct": 0.5052631578947369,
+        "within_50pct": 0.7578947368421053
+      },
+      "test": {
+        "n": 25,
+        "rmse_log": 0.7341231828190989,
+        "mae_log": 0.5409820238661083,
+        "median_ratio": 1.0431237486383356,
+        "within_25pct": 0.44,
+        "within_50pct": 0.52
+      },
+      "coefficients": [
+        0.1051,
+        0.2191,
+        0.2237,
+        0.5728
+      ],
+      "n_train_dev": 373
+    },
+    "regional + local historical": {
+      "references": [
+        "dbhistorical",
+        "dbregionmarketavg",
+        "dbregionhistorical",
+        "dbregionsaleavg"
+      ],
+      "folds": [
+        {
+          "n": 95,
+          "rmse_log": 0.5039154672658674,
+          "mae_log": 0.35891521542987204,
+          "median_ratio": 0.9376215898965129,
+          "within_25pct": 0.5157894736842106,
+          "within_50pct": 0.7684210526315789
+        }
+      ],
+      "walk_forward": {
+        "rmse_log": 0.5039154672658674,
+        "median_ratio": 0.9376215898965129,
+        "within_25pct": 0.5157894736842106,
+        "within_50pct": 0.7684210526315789
+      },
+      "test": {
+        "n": 25,
+        "rmse_log": 0.7338993174896683,
+        "mae_log": 0.5415902021227974,
+        "median_ratio": 1.0486824277869495,
+        "within_25pct": 0.44,
+        "within_50pct": 0.52
+      },
+      "coefficients": [
+        0.053,
+        0.2286,
+        0.2154,
+        0.5763
+      ],
+      "n_train_dev": 373
+    },
+    "regional + local market + historical": {
+      "references": [
+        "dbmarket",
+        "dbhistorical",
+        "dbregionmarketavg",
+        "dbregionhistorical",
+        "dbregionsaleavg"
+      ],
+      "folds": [
+        {
+          "n": 95,
+          "rmse_log": 0.801797065480145,
+          "mae_log": 0.44288996652470425,
+          "median_ratio": 0.9061150888491109,
+          "within_25pct": 0.5052631578947369,
+          "within_50pct": 0.7578947368421053
+        }
+      ],
+      "walk_forward": {
+        "rmse_log": 0.801797065480145,
+        "median_ratio": 0.9061150888491109,
+        "within_25pct": 0.5052631578947369,
+        "within_50pct": 0.7578947368421053
+      },
+      "test": {
+        "n": 25,
+        "rmse_log": 0.7376161906808879,
+        "mae_log": 0.5428412536541226,
+        "median_ratio": 1.026857559389547,
+        "within_25pct": 0.44,
+        "within_50pct": 0.52
+      },
+      "coefficients": [
+        0.8501,
+        -0.9051,
+        0.2204,
+        0.1637,
+        0.6234
+      ],
+      "n_train_dev": 373
+    },
+    "local only": {
+      "references": [
+        "dbmarket",
+        "dbrecent",
+        "dbhistorical"
+      ],
+      "folds": [
+        {
+          "n": 5,
+          "rmse_log": 34.960543862584615,
+          "mae_log": 19.932070801561846,
+          "median_ratio": 0.5810485800870485,
+          "within_25pct": 0.0,
+          "within_50pct": 0.2
+        }
+      ],
+      "walk_forward": {
+        "rmse_log": 34.960543862584615,
+        "median_ratio": 0.5810485800870485,
+        "within_25pct": 0.0,
+        "within_50pct": 0.2
+      },
+      "test": {
+        "n": 0
+      },
+      "coefficients": [
+        4.1275,
+        0.0491,
+        -4.1441
+      ],
+      "n_train_dev": 373
+    },
+    "the regional sale average alone": {
+      "references": [
+        "dbregionsaleavg"
+      ],
+      "folds": [
+        {
+          "n": 113,
+          "rmse_log": 0.8986559571405508,
+          "mae_log": 0.6055368938072638,
+          "median_ratio": 0.898142777043685,
+          "within_25pct": 0.3893805309734513,
+          "within_50pct": 0.6371681415929203
+        },
+        {
+          "n": 95,
+          "rmse_log": 0.6044602459320662,
+          "mae_log": 0.41559810650089657,
+          "median_ratio": 1.049946299212715,
+          "within_25pct": 0.4842105263157895,
+          "within_50pct": 0.7157894736842105
+        }
+      ],
+      "walk_forward": {
+        "rmse_log": 0.7515581015363084,
+        "median_ratio": 0.9740445381282,
+        "within_25pct": 0.4367955286446204,
+        "within_50pct": 0.6764788076385655
+      },
+      "test": {
+        "n": 25,
+        "rmse_log": 0.7823931983353574,
+        "mae_log": 0.5644860606634186,
+        "median_ratio": 1.2354429331904329,
+        "within_25pct": 0.36,
+        "within_50pct": 0.56
+      },
+      "coefficients": [
+        1.0135
+      ],
+      "n_train_dev": 373
+    }
+  }
+}

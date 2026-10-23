@@ -1,0 +1,100 @@
+# 95 itens | 202 reinos | 188 reinos e 760 contas com score >= 1,000,000
+
+== por reino: onde está o dinheiro ==
+
+reino                  contas  itens compradores  ouro em falta  melhor item
+----------------------------------------------------------------------------------------------------------------------
+Sylvanas                    7     95        9861  3,600,248,082  Deepvine Waistguard
+Silvermoon                 32     95        9783  2,353,834,617  Deepvine Waistguard
+Stormreaver                 3     95        4953  1,966,676,057  Deepvine Waistguard
+Draenor                    30     95        5343  1,919,072,337  Deepvine Waistguard
+Kazzak                     33     95        4314  1,630,146,680  Lamplighter Elite's Slugthrower
+Antonidas                  16     95        3806  1,347,566,699  Lamplighter Elite's Slugthrower
+Hyjal                      25     95        3772  1,332,256,193  Lamplighter Elite's Slugthrower
+Blackhand                  23     95        3431  1,278,401,912  Lamplighter Elite's Slugthrower
+Ravencrest                 30     95        3356  1,240,229,699  Lamplighter Elite's Slugthrower
+Twisting Nether            24     95        3301  1,202,592,492  Deepvine Waistguard
+Howling Fjord              18     95        2832  1,036,723,513  Lamplighter Elite's Slugthrower
+Gordunni                   15     95        2769  1,016,070,994  Lamplighter Elite's Slugthrower
+
+== por item: quem falta e onde ==
+
+     item  querem      %        preço  ouro em falta  nome
+----------------------------------------------------------------------------------------------------------------------
+   229149   2,452  78.3%    5,052,597 12,388,968,704  Lamplighter's Rifle
+   Silvermoon              148 querem (462.5% de 32) |     299,999g (reino) |    44,399,910g
+   Sylvanas                141 querem (2014.3% de 7) |   5,052,597g (região) |   712,416,226g
+   Draenor                  78 querem (260.0% de 30) |   1,299,999g (reino) |   101,399,919g
+
+   257020   1,008  32.2%    9,628,754  9,705,784,517  Deepvine Waistguard
+   Sylvanas                 88 querem (1257.1% de 7) |   9,628,754g (região) |   847,330,394g
+   Silvermoon               63 querem (196.9% de 32) |   9,628,754g (região) |   606,611,532g
+   Stormreaver              43 querem (1433.3% de 3) |   9,628,754g (região) |   414,036,443g
+
+   229150   2,741  87.6%    2,262,433  6,201,328,642  Lamplighter's Splitter
+   Silvermoon              161 querem (503.1% de 32) |     800,000g (reino) |   128,799,998g
+   Sylvanas                152 querem (2171.4% de 7) |   2,262,433g (região) |   343,889,804g
+   Draenor                  99 querem (330.0% de 30) |     333,612g (reino) |    33,027,602g
+
+   229153   2,494  79.7%    1,255,480  3,131,167,692  Lamplighter's Cudgel
+   Silvermoon              151 querem (471.9% de 32) |     779,824g (reino) |   117,753,424g
+   Sylvanas                141 querem (2014.3% de 7) |   1,255,480g (região) |   177,022,712g
+   Draenor                  84 querem (280.0% de 30) |     300,000g (reino) |    25,199,999g
+
+   229155   2,784  88.9%    1,116,858  3,109,331,897  Lamplighter's Greataxe
+   Silvermoon              173 querem (540.6% de 32) |     490,000g (reino) |    84,770,001g
+   Sylvanas                152 querem (2171.4% de 7) |   1,116,858g (região) |   169,762,374g
+   Draenor                  96 querem (320.0% de 30) |   1,000,000g (reino) |    95,999,999g
+
+   229148   2,483  79.3%    1,175,861  2,919,662,090  Lamplighter's Staff
+   Silvermoon              157 querem (490.6% de 32) |     777,778g (reino) |   122,111,110g
+   Sylvanas                142 querem (2028.6% de 7) |   1,175,861g (região) |   166,972,218g
+   Draenor                  86 querem (286.7% de 30) |   1,175,861g (região) |   101,124,019g
+
+   229157   2,514  80.3%      933,900  2,347,824,575  Lamplighter's Bulwark
+   Silvermoon              159 querem (496.9% de 32) |     515,258g (reino) |    81,925,955g
+   Sylvanas                146 querem (2085.7% de 7) |     933,900g (região) |   136,349,399g
+   Draenor                  88 querem (293.3% de 30) |     499,000g (reino) |    43,912,000g
+
+   260370   2,658  84.9%      299,823    796,928,563  Visage of Unseen Truths
+   Silvermoon              166 querem (518.8% de 32) |     299,999g (reino) |    49,799,834g
+   Sylvanas                149 querem (2128.6% de 7) |     299,823g (região) |    44,673,573g
+   Draenor                  94 querem (313.3% de 30) |     199,938g (reino) |    18,794,150g
+
+== por item: onde comprar mais barato (mercado do reino) ==
+
+     item       região              reino      mercado      listing  nome
+----------------------------------------------------------------------------------------------------------------------
+   229149    5,052,597         blackmoore      296,000     296,000g  Lamplighter's Rifle
+                                  dentarg      296,000     296,000g  Lamplighter's Rifle
+                               silvermoon      299,999     299,999g  Lamplighter's Rifle
+
+   229150    2,262,433         blackmoore      296,000     296,000g  Lamplighter's Splitter
+                              argent-dawn      296,000     296,000g  Lamplighter's Splitter
+                        scarshield-legion      512,578     500,000g  Lamplighter's Splitter
+
+   229153    1,255,480         blackmoore      296,000     296,000g  Lamplighter's Cudgel
+                              argent-dawn      302,964   1,901,023g  Lamplighter's Cudgel
+                                  dentarg      463,780     490,000g  Lamplighter's Cudgel
+
+   229155    1,116,858             thrall      598,000     598,000g  Lamplighter's Greataxe
+                                  draenor      989,731   1,000,000g  Lamplighter's Greataxe
+                          twisting-nether      994,100   1,000,000g  Lamplighter's Greataxe
+
+   229148    1,175,861            dentarg      311,956     350,000g  Lamplighter's Staff
+                               blackmoore      527,065     555,000g  Lamplighter's Staff
+                               silvermoon      598,000     777,778g  Lamplighter's Staff
+
+   229157      933,900         silvermoon      408,096     515,258g  Lamplighter's Bulwark
+                                  draenor      414,055     499,000g  Lamplighter's Bulwark
+                                 drakthul      598,000     598,000g  Lamplighter's Bulwark
+
+   260370      299,823            draenor       90,000     199,938g  Visage of Unseen Truths
+                               silvermoon      123,084     299,999g  Visage of Unseen Truths
+                          twisting-nether      123,199     106,183g  Visage of Unseen Truths
+
+notas: 'listing' = min_buyout agora; '—' = sem anúncio, o valor é o
+       mercado estimado do reino e vem de poucas amostras.
+
+
+csv -> reports\realm_gaps.csv

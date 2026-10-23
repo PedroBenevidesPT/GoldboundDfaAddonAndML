@@ -1,0 +1,35 @@
+{
+ "npc_id": 14753,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Illiyana Moonblaze <Silverwing Supply Officer>",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 14047,
+   "item_name": "Runecloth",
+   "item_type": "",
+   "drop_rate": 0.68,
+   "qty": 2.5,
+   "source_url": "https://www.wowhead.com/item=14047/runecloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 8953,
+   "item_name": "Deep Fried Plantains",
+   "item_type": "",
+   "drop_rate": 0.15,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8953/deep-fried-plantains"
+  },
+  {
+   "category": "drops",
+   "item_id": 13443,
+   "item_name": "Superior Mana Potion",
+   "item_type": "",
+   "drop_rate": 0.08,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=13443/superior-mana-potion"
+  }
+ ]
+}

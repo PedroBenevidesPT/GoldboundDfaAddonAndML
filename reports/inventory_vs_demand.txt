@@ -1,0 +1,194 @@
+# inventário: 76 itens | 87 unidades | C:\FarmAnalysis\inventory.csv
+# demand: 95 itens BoE | C:\FarmAnalysis\reports\item_demand.csv
+# nomes do item (ItemID), não da aparência
+# tens: 0 | faltam: 95 | fora da lista: 76
+
+(não tens nenhum dos itens da lista de demanda)
+
+== em falta (95) ==
+
+     item  querem      %        preço  ouro em falta apar.  item
+----------------------------------------------------------------------------------------------------------------
+   238032   2,862  91.4%       14,674     41,995,911     4  Acolyte's Infused Leggings
+   229155   2,784  88.9%    1,116,858  3,109,331,897     1  Lamplighter's Greataxe
+   238031   2,781  88.8%      146,589    407,665,017     4  Veiled Manta Vest
+   260372   2,752  87.9%      109,963    302,617,474     4  Nullstrider's Boots
+   229150   2,741  87.6%    2,262,433  6,201,328,642     1  Lamplighter's Splitter
+   260374   2,664  85.1%      220,742    588,057,980     8  Primal Spark Pauldrons
+   260370   2,658  84.9%      299,823    796,928,563     8  Visage of Unseen Truths
+   260371   2,632  84.1%      100,729    265,118,735     4  Infernal Greatlock Girdle
+   260373   2,631  84.1%      191,356    503,458,242     4  Power Stance Breeches
+   260375   2,612  83.5%      135,302    353,408,902     4  Raging Storm Sash
+   238033   2,594  82.9%       53,177    137,941,341     4  Zadus's Liturgical Hat
+   260377   2,555  81.6%      108,564    277,380,708     4  Fading Dawn Sabatons
+   229157   2,514  80.3%      933,900  2,347,824,575     1  Lamplighter's Bulwark
+   229153   2,494  79.7%    1,255,480  3,131,167,692     1  Lamplighter's Cudgel
+   229160   2,489  79.5%      223,481    556,243,271     1  Lamplighter's Glaive
+   260376   2,489  79.5%      198,100    493,070,997     4  Breastplate of the Final Defense
+   229148   2,483  79.3%    1,175,861  2,919,662,090     1  Lamplighter's Staff
+   229154   2,481  79.3%       95,523    236,992,906     1  Lamplighter's Edge
+   229147   2,474  79.0%      180,953    447,678,357     1  Lamplighter's Polearm
+   238028   2,463  78.7%       46,220    113,839,468     4  Bone-Melted Faceplate
+   229069   2,456  78.5%      321,210    788,891,432     1  Nisa's Spare Cloak
+   229149   2,452  78.3%    5,052,597 12,388,968,704     1  Lamplighter's Rifle
+   229159   2,442  78.0%       75,000    183,149,976     1  Lamplighter's Lightstone
+   229162   2,236  71.4%      176,527    394,714,899     1  Lamplighter's Sword
+   229073   1,871  59.8%       98,194    183,720,471     1  Azra's Spare Trousers
+   229087   1,860  59.4%      198,000    368,280,000     1  Kyros's Spare Chestplate
+   229089   1,855  59.3%      198,000    367,290,000     1  Kyros's Spare Handguards
+   229092   1,854  59.2%       38,274     70,960,133     1  Kyros's Spare Girdle
+   229075   1,853  59.2%      130,748    242,275,656     1  Azra's Spare Bracers
+   229082   1,853  59.2%       39,905     73,944,407     1  Aevery's Spare Chausses
+   229072   1,850  59.1%      242,790    449,162,257     1  Azra's Spare Mask
+   229066   1,850  59.1%      198,000    366,300,000     1  Nisa's Spare Cassock
+   229067   1,844  58.9%       60,094    110,813,907     1  Nisa's Spare Leggings
+   229086   1,843  58.9%      198,000    364,914,000     1  Kyros's Spare Helm
+   229062   1,835  58.6%      198,000    363,330,000     1  Nisa's Spare Coronet
+   229091   1,831  58.5%      198,000    362,538,000     1  Kyros's Spare Shoulder Plates
+   229071   1,829  58.4%      198,000    362,142,000     1  Azra's Spare Gloves
+   229079   1,822  58.2%       38,000     69,236,000     1  Aevery's Spare Boots
+   229078   1,820  58.1%      231,444    421,227,998     1  Aevery's Spare Brigandine
+   229081   1,820  58.1%      198,000    360,360,000     1  Aevery's Spare Cowl
+   229074   1,820  58.1%       38,000     69,160,000     1  Azra's Spare Cord
+   229090   1,819  58.1%       38,000     69,122,000     1  Kyros's Spare Faulds
+   229063   1,817  58.1%       80,605    146,458,886     1  Nisa's Spare Wristguards
+   229080   1,816  58.0%      198,000    359,568,000     1  Aevery's Spare Gauntlets
+   229077   1,814  58.0%      198,000    359,172,000     1  Azra's Spare Shoulderguards
+   229084   1,810  57.8%       38,000     68,780,000     1  Aevery's Spare Belt
+   229083   1,807  57.7%      199,389    360,296,452     1  Aevery's Spare Shoulderguards
+   229070   1,806  57.7%       38,000     68,628,000     1  Azra's Spare Striders
+   229076   1,803  57.6%      198,000    356,994,000     1  Azra's Spare Chestguard
+   229068   1,793  57.3%      198,000    355,014,000     1  Nisa's Spare Shoulderpads
+   229065   1,791  57.2%      198,000    354,618,000     1  Nisa's Spare Gloves
+   229085   1,787  57.1%       38,000     67,906,000     1  Aevery's Spare Bracers
+   229064   1,786  57.1%       38,000     67,868,000     1  Nisa's Spare Shoes
+   229061   1,778  56.8%       52,886     94,032,113     1  Nisa's Spare Belt
+   229088   1,769  56.5%      119,895    212,094,608     1  Kyros's Spare Sabatons
+   229093   1,765  56.4%       50,000     88,250,000     1  Kyros's Spare Cuffs
+   204955   1,103  35.2%       87,927     96,983,782     1  Neltharic Beatstick
+   244477   1,011  32.3%       27,168     27,466,404     1  Worn Shadowguard Seer's Vestments
+   257020   1,008  32.2%    9,628,754  9,705,784,517     1  Deepvine Waistguard
+   257018   1,002  32.0%      250,000    250,499,750     1  Rootspeaker's Barkclasp
+   244499     991  31.7%       24,898     24,674,171     1  Worn Shadowguard Striker's Sash
+   244484     975  31.1%       26,717     26,048,685     1  Worn Shadowguard Seer's Bands
+   244496     962  30.7%       22,777     21,911,173     1  Worn Shadowguard Striker's Cowl
+   244483     959  30.6%       18,971     18,192,720     1  Worn Shadowguard Seer's Cord
+   244500     945  30.2%       24,553     23,202,638     1  Worn Shadowguard Striker's Armguards
+   244480     939  30.0%       26,264     24,662,281     1  Worn Shadowguard Seer's Crown
+   244497     935  29.9%       24,248     22,671,415     1  Worn Shadowguard Striker's Legguards
+   256977     927  29.6%      389,260    360,844,474     1  Steelbark Gauntlets
+   244481     925  29.5%       26,027     24,075,308     1  Worn Shadowguard Seer's Leggings
+   244493     924  29.5%       22,884     21,144,412     1  Worn Shadowguard Striker's Brigandine
+   244494     919  29.4%       26,459     24,315,982     1  Worn Shadowguard Striker's Boots
+   244498     914  29.2%       24,996     22,845,974     1  Worn Shadowguard Striker's Pauldrons
+   244482     910  29.1%       28,267     25,722,610     1  Worn Shadowguard Seer's Spines
+   244478     897  28.7%       18,888     16,942,536     1  Worn Shadowguard Seer's Slippers
+   204923     884  28.2%       98,000     86,632,000     2  Moonless Hood
+   244479     880  28.1%       25,906     22,797,196     1  Worn Shadowguard Seer's Gloves
+   256979     867  27.7%      650,438    563,929,708     1  Verdant Tracker's Claws
+   204925     863  27.6%       98,220     84,763,432     2  Moonless Shoulderpads
+   204942     853  27.3%       98,000     83,594,000     2  Skyless Epaulets
+   244495     846  27.0%       24,135     20,418,082     1  Worn Shadowguard Striker's Gauntlets
+   244492     835  26.7%       27,246     22,750,316     1  Worn Shadowguard Blade's Bracers
+   244491     832  26.6%       26,290     21,873,405     1  Worn Shadowguard Blade's Belt
+   244485     826  26.4%       26,138     21,590,157     1  Worn Shadowguard Blade's Jerkin
+   244489     822  26.3%       26,300     21,618,764     1  Worn Shadowguard Blade's Breeches
+   244501     822  26.3%       23,368     19,208,515     1  Worn Shadowguard Captain's Breastplate
+   244488     821  26.2%       25,291     20,764,287     1  Worn Shadowguard Blade's Hood
+   244507     817  26.1%       24,006     19,613,274     1  Worn Shadowguard Captain's Greatbelt
+   204940     814  26.0%      100,000     81,400,000     2  Skyless Coif
+   204931     804  25.7%       93,262     74,982,829     2  Sunless Cowl
+   244508     803  25.7%       22,226     17,847,204     1  Worn Shadowguard Captain's Vambraces
+   244486     801  25.6%       27,050     21,666,953     1  Worn Shadowguard Blade's Soles
+   244504     794  25.4%       22,885     18,170,426     1  Worn Shadowguard Captain's Helmet
+   244490     792  25.3%       26,369     20,884,057     1  Worn Shadowguard Blade's Shoulderpads
+   244505     792  25.3%       23,142     18,328,247     1  Worn Shadowguard Captain's Greaves
+   204920     791  25.3%       97,959     77,485,785     1  Moonless Robe
+
+== o teu inventário (76) vs demanda ==
+
+     item   qty  na lista  estado | nome
+----------------------------------------------------------------------------------------------------------------
+    12409     4         -  fora da lista          | Thorium Boots
+    15084     3         -  fora da lista          | Wicked Leather Bracers
+     6663     2         -  fora da lista          | Recipe: Elixir of Giant Growth
+    14569     2         -  fora da lista          | Bristlebark Bindings
+    25401     2         -  fora da lista          | Corroded Mace
+     2024     2         -  fora da lista          | Espadon
+     1820     2         -  fora da lista          | Wooden Maul
+     1821     2         -  fora da lista          | Warped Blade
+     1515     1         -  fora da lista          | Rough Wooden Staff
+     6661     1         -  fora da lista          | Recipe: Savory Deviate Delight
+    21099     1         -  fora da lista          | Recipe: Smoked Sagefish
+      854     1         -  fora da lista          | Quarter Staff
+     4571     1         -  fora da lista          | War Knife
+     8176     1         -  fora da lista          | Nightscape Headband
+     2315     1         -  fora da lista          | Dark Leather Boots
+    14639     1         -  fora da lista          | Schematic: Minor Recombobulator
+     1812     1         -  fora da lista          | Short-Handled Battle Axe
+    69969     1         -  fora da lista          | Plans: Mirrored Boots
+     1822     1         -  fora da lista          | Cedar Walking Stick
+     2026     1         -  fora da lista          | Rock Hammer
+     1197     1         -  fora da lista          | Giant Mace
+     1510     1         -  fora da lista          | Heavy Hammer
+     2490     1         -  fora da lista          | Tomahawk
+     2131     1         -  fora da lista          | Shortsword
+     2030     1         -  fora da lista          | Gnarled Staff
+    32749     1         -  fora da lista          | Pattern: Shoulders of Lightning Reflexes
+     2492     1         -  fora da lista          | Cudgel
+     2493     1         -  fora da lista          | Wooden Mallet
+     1516     1         -  fora da lista          | Worn Hatchet
+     9763     1         -  fora da lista          | Cadet Leggings of the Aurora
+   276062     1         -  fora da lista          | Hydra Neckchopper
+   264560     1         -  fora da lista          | Sharpclaw Gauntlets
+     2568     1         -  fora da lista          | Brown Linen Vest
+     2582     1         -  fora da lista          | Green Woolen Vest
+     4308     1         -  fora da lista          | Green Linen Bracers
+     4330     1         -  fora da lista          | Stylish Red Shirt
+     2578     1         -  fora da lista          | Barbaric Linen Vest
+     6787     1         -  fora da lista          | White Woolen Dress
+     4238     1         -  fora da lista          | Linen Bag
+     6238     1         -  fora da lista          | Brown Linen Robe
+    10046     1         -  fora da lista          | Simple Linen Boots
+     2583     1         -  fora da lista          | Woolen Boots
+     4343     1         -  fora da lista          | Brown Linen Pants
+     2584     1         -  fora da lista          | Woolen Cape
+     7058     1         -  fora da lista          | Crimson Silk Vest
+     2572     1         -  fora da lista          | Red Linen Robe
+     4310     1         -  fora da lista          | Heavy Woolen Gloves
+     2576     1         -  fora da lista          | White Linen Shirt
+     2302     1         -  fora da lista          | Handstitched Leather Boots
+     3870     1         -  fora da lista          | Plans: Green Iron Shoulders
+     7281     1         -  fora da lista          | Light Leather Bracers
+     1514     1         -  fora da lista          | Rusty Warhammer
+     4563     1         -  fora da lista          | Billy Club
+     3473     1         -  fora da lista          | Runed Copper Pants
+     2847     1         -  fora da lista          | Copper Shortsword
+    12425     1         -  fora da lista          | Imperial Plate Bracers
+     2309     1         -  fora da lista          | Embossed Leather Boots
+    16008     1         -  fora da lista          | Master Engineer's Goggles
+     2852     1         -  fora da lista          | Copper Chain Pants
+     2300     1         -  fora da lista          | Embossed Leather Vest
+   132543     1         -  fora da lista          | Spritescale Epaulets
+     4409     1         -  fora da lista          | Schematic: Small Seaforium Charge
+     2310     1         -  fora da lista          | Embossed Leather Cloak
+     2763     1         -  fora da lista          | Fisherman Knife
+     4246     1         -  fora da lista          | Fine Leather Belt
+   179311     1         -  fora da lista          | Synvir Lockbox
+     5957     1         -  fora da lista          | Handstitched Leather Vest
+     6337     1         -  fora da lista          | Infantry Leggings
+     3375     1         -  fora da lista          | Calico Bracers
+     1764     1         -  fora da lista          | Canvas Shoes
+     3488     1         -  fora da lista          | Copper Battle Axe
+     7166     1         -  fora da lista          | Copper Dagger
+     6214     1         -  fora da lista          | Heavy Copper Maul
+    10045     1         -  fora da lista          | Simple Linen Pants
+     2579     1         -  fora da lista          | Green Linen Shirt
+     3609     1         -  fora da lista          | Plans: Copper Chain Vest
+
+csv -> reports\inventory_vs_demand.csv
+
+notas: junta por ItemID base; o inventário não traz aparência, só o item;
+       as linhas mostram o nome do item BoE (o que se compra/vende), não o da aparência;
+       'cobertura' = qty / wanters (não é procura garantida);
+       'stock' = qty x preço regional, valor de mercado, não receita.

@@ -1,0 +1,194 @@
+item_id,name,qty,realm,rank,wanters,accounts,share,auctions,per_listing,note,price_copper,sale_rate,sold_per_day
+854,Quarter Staff,1,Sylvanas,1,82,161,0.5093,0,0.0,sem dados de anúncios,2500000,0.021,0.021
+854,Quarter Staff,1,Silvermoon,2,45,193,0.2332,11,4.091,,2500000,0.021,0.021
+854,Quarter Staff,1,Stormreaver,3,37,80,0.4625,1,37.0,,2500000,0.021,0.021
+1197,Giant Mace,1,Stormreaver,1,15,80,0.1875,1,15.0,,2500000,0.007,0.007
+1197,Giant Mace,1,Sylvanas,2,10,161,0.0621,0,0.0,sem dados de anúncios,2500000,0.007,0.007
+1197,Giant Mace,1,Twisting Nether,3,7,79,0.0886,1,7.0,,2500000,0.007,0.007
+1510,Heavy Hammer,1,Sylvanas,1,78,161,0.4845,0,0.0,sem dados de anúncios,3848301,0.011,0.0
+1510,Heavy Hammer,1,Silvermoon,2,48,193,0.2487,6,8.0,,3848301,0.011,0.0
+1510,Heavy Hammer,1,Stormreaver,3,37,80,0.4625,2,18.5,,3848301,0.011,0.0
+1514,Rusty Warhammer,1,Sylvanas,1,80,161,0.4969,0,0.0,sem dados de anúncios,5565829,0.018,0.018
+1514,Rusty Warhammer,1,Silvermoon,2,48,193,0.2487,2,24.0,,5565829,0.018,0.018
+1514,Rusty Warhammer,1,Stormreaver,3,43,80,0.5375,2,21.5,,5565829,0.018,0.018
+1515,Rough Wooden Staff,1,Sylvanas,1,20,161,0.1242,0,0.0,sem dados de anúncios,4549344,0.012,0.012
+1515,Rough Wooden Staff,1,Stormreaver,2,14,80,0.175,1,14.0,,4549344,0.012,0.012
+1515,Rough Wooden Staff,1,Draenor,3,8,108,0.0741,5,1.6,,4549344,0.012,0.012
+1516,Worn Hatchet,1,Sylvanas,1,20,161,0.1242,0,0.0,sem dados de anúncios,1584045,0.004,0.004
+1516,Worn Hatchet,1,Silvermoon,2,7,193,0.0363,4,1.75,,1584045,0.004,0.004
+1516,Worn Hatchet,1,Stormreaver,3,6,80,0.075,3,2.0,,1584045,0.004,0.004
+1764,Canvas Shoes,1,Sylvanas,1,108,161,0.6708,0,0.0,sem dados de anúncios,9742054,0.016,0.016
+1764,Canvas Shoes,1,Silvermoon,2,85,193,0.4404,12,7.083,,9742054,0.016,0.016
+1764,Canvas Shoes,1,Draenor,3,53,108,0.4907,9,5.889,,9742054,0.016,0.016
+1812,Short-Handled Battle Axe,1,Sylvanas,1,99,161,0.6149,0,0.0,sem dados de anúncios,2691186,0.018,0.018
+1812,Short-Handled Battle Axe,1,Silvermoon,2,72,193,0.3731,6,12.0,,2691186,0.018,0.018
+1812,Short-Handled Battle Axe,1,Stormreaver,3,46,80,0.575,2,23.0,,2691186,0.018,0.018
+1820,Wooden Maul,2,Sylvanas,1,96,161,0.5963,0,0.0,sem dados de anúncios,3869863,0.009,0.009
+1820,Wooden Maul,2,Silvermoon,2,75,193,0.3886,6,12.5,,3869863,0.009,0.009
+1820,Wooden Maul,2,Stormreaver,3,47,80,0.5875,3,15.667,,3869863,0.009,0.009
+1821,Warped Blade,2,Sylvanas,1,42,161,0.2609,0,0.0,sem dados de anúncios,1546200,0.019,0.019
+1821,Warped Blade,2,Stormreaver,2,21,80,0.2625,3,7.0,,1546200,0.019,0.019
+1821,Warped Blade,2,Silvermoon,3,21,193,0.1088,4,5.25,,1546200,0.019,0.019
+1822,Cedar Walking Stick,1,Sylvanas,1,94,161,0.5839,0,0.0,sem dados de anúncios,4252907,0.015,0.015
+1822,Cedar Walking Stick,1,Silvermoon,2,66,193,0.342,8,8.25,,4252907,0.015,0.015
+1822,Cedar Walking Stick,1,Stormreaver,3,44,80,0.55,2,22.0,,4252907,0.015,0.015
+2024,Espadon,2,Sylvanas,1,89,161,0.5528,0,0.0,sem dados de anúncios,2500000,0.018,0.018
+2024,Espadon,2,Silvermoon,2,46,193,0.2383,16,2.875,,2500000,0.018,0.018
+2024,Espadon,2,Stormreaver,3,42,80,0.525,2,21.0,,2500000,0.018,0.018
+2026,Rock Hammer,1,Sylvanas,1,56,161,0.3478,0,0.0,sem dados de anúncios,2500000,0.006,0.006
+2026,Rock Hammer,1,Silvermoon,2,33,193,0.171,12,2.75,,2500000,0.006,0.006
+2026,Rock Hammer,1,Stormreaver,3,17,80,0.2125,1,17.0,,2500000,0.006,0.006
+2030,Gnarled Staff,1,Sylvanas,1,6,161,0.0373,0,0.0,sem dados de anúncios,2500000,0.012,0.012
+2030,Gnarled Staff,1,Stormreaver,2,5,80,0.0625,1,5.0,,2500000,0.012,0.012
+2030,Gnarled Staff,1,Frostmane,3,2,17,0.1176,0,0.0,sem dados de anúncios,2500000,0.012,0.012
+2131,Shortsword,1,Sylvanas,1,94,161,0.5839,0,0.0,sem dados de anúncios,2500000,0.014,0.014
+2131,Shortsword,1,Silvermoon,2,61,193,0.3161,3,20.333,,2500000,0.014,0.014
+2131,Shortsword,1,Stormreaver,3,47,80,0.5875,1,47.0,,2500000,0.014,0.014
+2300,Embossed Leather Vest,1,Sylvanas,1,59,161,0.3665,0,0.0,sem dados de anúncios,1932783,0.012,0.012
+2300,Embossed Leather Vest,1,Silvermoon,2,35,193,0.1813,13,2.692,,1932783,0.012,0.012
+2300,Embossed Leather Vest,1,Antonidas,3,12,77,0.1558,0,0.0,sem dados de anúncios,1932783,0.012,0.012
+2302,Handstitched Leather Boots,1,Sylvanas,1,47,161,0.2919,0,0.0,sem dados de anúncios,1396717,0.039,0.039
+2302,Handstitched Leather Boots,1,Silvermoon,2,32,193,0.1658,11,2.909,,1396717,0.039,0.039
+2302,Handstitched Leather Boots,1,Stormreaver,3,15,80,0.1875,0,15.0,sem anúncio,1396717,0.039,0.039
+2309,Embossed Leather Boots,1,Sylvanas,1,43,161,0.2671,0,0.0,sem dados de anúncios,3844565,0.007,0.007
+2309,Embossed Leather Boots,1,Silvermoon,2,23,193,0.1192,11,2.091,,3844565,0.007,0.007
+2309,Embossed Leather Boots,1,Stormreaver,3,22,80,0.275,2,11.0,,3844565,0.007,0.007
+2310,Embossed Leather Cloak,1,Sylvanas,1,1,161,0.0062,0,0.0,sem dados de anúncios,5546631,0.017,0.017
+2315,Dark Leather Boots,1,Sylvanas,1,94,161,0.5839,0,0.0,sem dados de anúncios,3348545,0.023,0.023
+2315,Dark Leather Boots,1,Silvermoon,2,65,193,0.3368,33,1.97,,3348545,0.023,0.023
+2315,Dark Leather Boots,1,Stormreaver,3,50,80,0.625,0,50.0,sem anúncio,3348545,0.023,0.023
+2490,Tomahawk,1,Sylvanas,1,5,161,0.0311,0,0.0,sem dados de anúncios,2500000,0.001,0.001
+2490,Tomahawk,1,Auchindoun,2,2,37,0.0541,0,0.0,sem dados de anúncios,2500000,0.001,0.001
+2490,Tomahawk,1,Ravencrest,3,2,76,0.0263,0,0.0,sem dados de anúncios,2500000,0.001,0.001
+2492,Cudgel,1,Stormreaver,1,19,80,0.2375,1,19.0,,2500000,0.01,0.01
+2492,Cudgel,1,Sylvanas,2,13,161,0.0807,0,0.0,sem dados de anúncios,2500000,0.01,0.01
+2492,Cudgel,1,Twisting Nether,3,12,79,0.1519,2,6.0,,2500000,0.01,0.01
+2493,Wooden Mallet,1,Sylvanas,1,89,161,0.5528,0,0.0,sem dados de anúncios,2500000,0.009,0.009
+2493,Wooden Mallet,1,Silvermoon,2,47,193,0.2435,8,5.875,,2500000,0.009,0.009
+2493,Wooden Mallet,1,Stormreaver,3,40,80,0.5,1,40.0,,2500000,0.009,0.009
+2568,Brown Linen Vest,1,Sylvanas,1,119,161,0.7391,0,0.0,sem dados de anúncios,3172798,0.02,0.04
+2568,Brown Linen Vest,1,Silvermoon,2,91,193,0.4715,4,22.75,,3172798,0.02,0.04
+2568,Brown Linen Vest,1,Stormreaver,3,57,80,0.7125,2,28.5,,3172798,0.02,0.04
+2572,Red Linen Robe,1,Sylvanas,1,114,161,0.7081,0,0.0,sem dados de anúncios,3369113,0.025,0.025
+2572,Red Linen Robe,1,Silvermoon,2,84,193,0.4352,7,12.0,,3369113,0.025,0.025
+2572,Red Linen Robe,1,Stormreaver,3,55,80,0.6875,0,55.0,sem anúncio,3369113,0.025,0.025
+2576,White Linen Shirt,1,Sylvanas,1,10,161,0.0621,0,0.0,sem dados de anúncios,1339115,0.023,0.092
+2576,White Linen Shirt,1,Stormreaver,2,7,80,0.0875,1,7.0,,1339115,0.023,0.092
+2576,White Linen Shirt,1,Silvermoon,3,4,193,0.0207,15,0.267,,1339115,0.023,0.092
+2578,Barbaric Linen Vest,1,Sylvanas,1,90,161,0.559,0,0.0,sem dados de anúncios,3802302,0.012,0.012
+2578,Barbaric Linen Vest,1,Silvermoon,2,65,193,0.3368,11,5.909,,3802302,0.012,0.012
+2578,Barbaric Linen Vest,1,Stormreaver,3,34,80,0.425,1,34.0,,3802302,0.012,0.012
+2579,Green Linen Shirt,1,Sylvanas,1,52,161,0.323,0,0.0,sem dados de anúncios,1267552,0.022,0.066
+2579,Green Linen Shirt,1,Stormreaver,2,31,80,0.3875,1,31.0,,1267552,0.022,0.066
+2579,Green Linen Shirt,1,Silvermoon,3,21,193,0.1088,9,2.333,,1267552,0.022,0.066
+2582,Green Woolen Vest,1,Sylvanas,1,105,161,0.6522,0,0.0,sem dados de anúncios,2990047,0.027,0.041
+2582,Green Woolen Vest,1,Silvermoon,2,69,193,0.3575,3,23.0,,2990047,0.027,0.041
+2582,Green Woolen Vest,1,Stormreaver,3,54,80,0.675,1,54.0,,2990047,0.027,0.041
+2583,Woolen Boots,1,Sylvanas,1,111,161,0.6894,0,0.0,sem dados de anúncios,7146375,0.011,0.022
+2583,Woolen Boots,1,Silvermoon,2,82,193,0.4249,4,20.5,,7146375,0.011,0.022
+2583,Woolen Boots,1,Stormreaver,3,62,80,0.775,1,62.0,,7146375,0.011,0.022
+2584,Woolen Cape,1,Sylvanas,1,27,161,0.1677,0,0.0,sem dados de anúncios,2930293,0.015,0.015
+2584,Woolen Cape,1,Silvermoon,2,9,193,0.0466,5,1.8,,2930293,0.015,0.015
+2584,Woolen Cape,1,Stormreaver,3,8,80,0.1,1,8.0,,2930293,0.015,0.015
+2763,Fisherman Knife,1,Sylvanas,1,8,161,0.0497,0,0.0,sem dados de anúncios,990000,0.021,0.0
+2763,Fisherman Knife,1,Argent Dawn,2,2,62,0.0323,7,0.286,,990000,0.021,0.0
+2763,Fisherman Knife,1,Hyjal,3,2,76,0.0263,0,0.0,sem dados de anúncios,990000,0.021,0.0
+2847,Copper Shortsword,1,Sylvanas,1,128,161,0.795,0,0.0,sem dados de anúncios,11604169,0.017,0.017
+2847,Copper Shortsword,1,Silvermoon,2,99,193,0.513,9,11.0,,11604169,0.017,0.017
+2847,Copper Shortsword,1,Stormreaver,3,65,80,0.8125,0,65.0,sem anúncio,11604169,0.017,0.017
+2852,Copper Chain Pants,1,Sylvanas,1,122,161,0.7578,0,0.0,sem dados de anúncios,1883738,0.018,0.018
+2852,Copper Chain Pants,1,Silvermoon,2,90,193,0.4663,10,9.0,,1883738,0.018,0.018
+2852,Copper Chain Pants,1,Stormreaver,3,59,80,0.7375,0,59.0,sem anúncio,1883738,0.018,0.018
+3375,Calico Bracers,1,Sylvanas,1,62,161,0.3851,0,0.0,sem dados de anúncios,3039698,0.027,0.0
+3375,Calico Bracers,1,Stormreaver,2,37,80,0.4625,0,37.0,sem anúncio,3039698,0.027,0.0
+3375,Calico Bracers,1,Silvermoon,3,33,193,0.171,5,6.6,,3039698,0.027,0.0
+3473,Runed Copper Pants,1,Sylvanas,1,122,161,0.7578,0,0.0,sem dados de anúncios,9826484,0.017,0.026
+3473,Runed Copper Pants,1,Silvermoon,2,103,193,0.5337,12,8.583,,9826484,0.017,0.026
+3473,Runed Copper Pants,1,Stormreaver,3,62,80,0.775,0,62.0,sem anúncio,9826484,0.017,0.026
+3488,Copper Battle Axe,1,Sylvanas,1,116,161,0.7205,0,0.0,sem dados de anúncios,26366528,0.02,0.04
+3488,Copper Battle Axe,1,Silvermoon,2,90,193,0.4663,14,6.429,,26366528,0.02,0.04
+3488,Copper Battle Axe,1,Stormreaver,3,56,80,0.7,0,56.0,sem anúncio,26366528,0.02,0.04
+4246,Fine Leather Belt,1,Sylvanas,1,76,161,0.472,0,0.0,sem dados de anúncios,2591309,0.017,0.017
+4246,Fine Leather Belt,1,Silvermoon,2,44,193,0.228,17,2.588,,2591309,0.017,0.017
+4246,Fine Leather Belt,1,Stormreaver,3,36,80,0.45,1,36.0,,2591309,0.017,0.017
+4308,Green Linen Bracers,1,Sylvanas,1,80,161,0.4969,0,0.0,sem dados de anúncios,1974530,0.022,0.044
+4308,Green Linen Bracers,1,Stormreaver,2,42,80,0.525,1,42.0,,1974530,0.022,0.044
+4308,Green Linen Bracers,1,Silvermoon,3,42,193,0.2176,4,10.5,,1974530,0.022,0.044
+4310,Heavy Woolen Gloves,1,Stormreaver,1,28,80,0.35,1,28.0,,1482989,0.028,0.028
+4310,Heavy Woolen Gloves,1,Sylvanas,2,23,161,0.1429,0,0.0,sem dados de anúncios,1482989,0.028,0.028
+4310,Heavy Woolen Gloves,1,Draenor,3,18,108,0.1667,15,1.2,,1482989,0.028,0.028
+4330,Stylish Red Shirt,1,Sylvanas,1,62,161,0.3851,0,0.0,sem dados de anúncios,1319877,0.016,0.064
+4330,Stylish Red Shirt,1,Stormreaver,2,28,80,0.35,1,28.0,,1319877,0.016,0.064
+4330,Stylish Red Shirt,1,Silvermoon,3,18,193,0.0933,14,1.286,,1319877,0.016,0.064
+4343,Brown Linen Pants,1,Sylvanas,1,98,161,0.6087,0,0.0,sem dados de anúncios,2459418,0.017,0.034
+4343,Brown Linen Pants,1,Silvermoon,2,60,193,0.3109,4,15.0,,2459418,0.017,0.034
+4343,Brown Linen Pants,1,Stormreaver,3,57,80,0.7125,1,57.0,,2459418,0.017,0.034
+4563,Billy Club,1,Stormreaver,1,9,80,0.1125,1,9.0,,906773,0.013,0.013
+4563,Billy Club,1,Sylvanas,2,7,161,0.0435,0,0.0,sem dados de anúncios,906773,0.013,0.013
+4563,Billy Club,1,Soulflayer,3,5,26,0.1923,0,0.0,sem dados de anúncios,906773,0.013,0.013
+4571,War Knife,1,Sylvanas,1,7,161,0.0435,0,0.0,sem dados de anúncios,1652094,0.033,0.033
+4571,War Knife,1,Hyjal,2,4,76,0.0526,0,0.0,sem dados de anúncios,1652094,0.033,0.033
+4571,War Knife,1,Stormreaver,3,4,80,0.05,1,4.0,,1652094,0.033,0.033
+5957,Handstitched Leather Vest,1,Sylvanas,1,117,161,0.7267,0,0.0,sem dados de anúncios,11396010,0.015,0.015
+5957,Handstitched Leather Vest,1,Silvermoon,2,90,193,0.4663,6,15.0,,11396010,0.015,0.015
+5957,Handstitched Leather Vest,1,Stormreaver,3,62,80,0.775,1,62.0,,11396010,0.015,0.015
+6214,Heavy Copper Maul,1,Sylvanas,1,111,161,0.6894,0,0.0,sem dados de anúncios,17489339,0.019,0.038
+6214,Heavy Copper Maul,1,Silvermoon,2,84,193,0.4352,6,14.0,,17489339,0.019,0.038
+6214,Heavy Copper Maul,1,Draenor,3,55,108,0.5093,5,11.0,,17489339,0.019,0.038
+6238,Brown Linen Robe,1,Sylvanas,1,92,161,0.5714,0,0.0,sem dados de anúncios,1560833,0.017,0.034
+6238,Brown Linen Robe,1,Stormreaver,2,45,80,0.5625,1,45.0,,1560833,0.017,0.034
+6238,Brown Linen Robe,1,Silvermoon,3,44,193,0.228,5,8.8,,1560833,0.017,0.034
+6337,Infantry Leggings,1,Sylvanas,1,73,161,0.4534,0,0.0,sem dados de anúncios,931391,0.024,0.024
+6337,Infantry Leggings,1,Silvermoon,2,34,193,0.1762,11,3.091,,931391,0.024,0.024
+6337,Infantry Leggings,1,Stormreaver,3,33,80,0.4125,0,33.0,sem anúncio,931391,0.024,0.024
+6787,White Woolen Dress,1,Sylvanas,1,106,161,0.6584,0,0.0,sem dados de anúncios,1970000,0.022,0.044
+6787,White Woolen Dress,1,Silvermoon,2,76,193,0.3938,26,2.923,,1970000,0.022,0.044
+6787,White Woolen Dress,1,Stormreaver,3,54,80,0.675,1,54.0,,1970000,0.022,0.044
+7058,Crimson Silk Vest,1,Sylvanas,1,87,161,0.5404,0,0.0,sem dados de anúncios,1668006,0.031,0.062
+7058,Crimson Silk Vest,1,Silvermoon,2,58,193,0.3005,8,7.25,,1668006,0.031,0.062
+7058,Crimson Silk Vest,1,Stormreaver,3,52,80,0.65,0,52.0,sem anúncio,1668006,0.031,0.062
+7166,Copper Dagger,1,Sylvanas,1,42,161,0.2609,0,0.0,sem dados de anúncios,13915407,0.013,0.013
+7166,Copper Dagger,1,Silvermoon,2,10,193,0.0518,9,1.111,,13915407,0.013,0.013
+7166,Copper Dagger,1,Antonidas,3,7,77,0.0909,0,0.0,sem dados de anúncios,13915407,0.013,0.013
+7281,Light Leather Bracers,1,Sylvanas,1,91,161,0.5652,0,0.0,sem dados de anúncios,4527401,0.015,0.015
+7281,Light Leather Bracers,1,Silvermoon,2,62,193,0.3212,7,8.857,,4527401,0.015,0.015
+7281,Light Leather Bracers,1,Stormreaver,3,55,80,0.6875,0,55.0,sem anúncio,4527401,0.015,0.015
+8176,Nightscape Headband,1,Sylvanas,1,73,161,0.4534,0,0.0,sem dados de anúncios,1926030,0.029,0.029
+8176,Nightscape Headband,1,Silvermoon,2,57,193,0.2953,36,1.583,,1926030,0.029,0.029
+8176,Nightscape Headband,1,Stormreaver,3,42,80,0.525,4,10.5,,1926030,0.029,0.029
+9763,Cadet Leggings of the Aurora,1,Sylvanas,1,9,161,0.0559,0,0.0,sem dados de anúncios,749657,0.016,0.016
+9763,Cadet Leggings of the Aurora,1,Ravencrest,2,3,76,0.0395,0,0.0,sem dados de anúncios,749657,0.016,0.016
+9763,Cadet Leggings of the Aurora,1,Stormreaver,3,3,80,0.0375,0,3.0,sem anúncio,749657,0.016,0.016
+10045,Simple Linen Pants,1,Stormreaver,1,14,80,0.175,1,14.0,,2649212,0.012,0.012
+10045,Simple Linen Pants,1,Sylvanas,2,9,161,0.0559,0,0.0,sem dados de anúncios,2649212,0.012,0.012
+10045,Simple Linen Pants,1,Auchindoun,3,5,37,0.1351,0,0.0,sem dados de anúncios,2649212,0.012,0.012
+10046,Simple Linen Boots,1,Sylvanas,1,118,161,0.7329,0,0.0,sem dados de anúncios,6194272,0.01,0.01
+10046,Simple Linen Boots,1,Silvermoon,2,87,193,0.4508,4,21.75,,6194272,0.01,0.01
+10046,Simple Linen Boots,1,Stormreaver,3,62,80,0.775,1,62.0,,6194272,0.01,0.01
+12409,Thorium Boots,4,Sylvanas,1,86,161,0.5342,0,0.0,sem dados de anúncios,20159642,0.009,0.009
+12409,Thorium Boots,4,Silvermoon,2,56,193,0.2902,7,8.0,,20159642,0.009,0.009
+12409,Thorium Boots,4,Stormreaver,3,43,80,0.5375,0,43.0,sem anúncio,20159642,0.009,0.009
+12425,Imperial Plate Bracers,1,Sylvanas,1,12,161,0.0745,0,0.0,sem dados de anúncios,1541679,0.011,0.022
+12425,Imperial Plate Bracers,1,Stormreaver,2,4,80,0.05,0,4.0,sem anúncio,1541679,0.011,0.022
+12425,Imperial Plate Bracers,1,Auchindoun,3,3,37,0.0811,0,0.0,sem dados de anúncios,1541679,0.011,0.022
+14569,Bristlebark Bindings,2,Sylvanas,1,82,161,0.5093,0,0.0,sem dados de anúncios,13311244,0.004,0.004
+14569,Bristlebark Bindings,2,Silvermoon,2,53,193,0.2746,9,5.889,,13311244,0.004,0.004
+14569,Bristlebark Bindings,2,Stormreaver,3,40,80,0.5,2,20.0,,13311244,0.004,0.004
+15084,Wicked Leather Bracers,3,Sylvanas,1,94,161,0.5839,0,0.0,sem dados de anúncios,2554100,0.008,0.016
+15084,Wicked Leather Bracers,3,Silvermoon,2,64,193,0.3316,39,1.641,,2554100,0.008,0.016
+15084,Wicked Leather Bracers,3,Stormreaver,3,49,80,0.6125,3,16.333,,2554100,0.008,0.016
+16008,Master Engineer's Goggles,1,Sylvanas,1,120,161,0.7453,0,0.0,sem dados de anúncios,105426165,0.007,0.018
+16008,Master Engineer's Goggles,1,Silvermoon,2,116,193,0.601,13,8.923,,105426165,0.007,0.018
+16008,Master Engineer's Goggles,1,Draenor,3,72,108,0.6667,7,10.286,,105426165,0.007,0.018
+25401,Corroded Mace,2,Sylvanas,1,3,161,0.0186,0,0.0,sem dados de anúncios,922332,0.006,0.006
+25401,Corroded Mace,2,Silvermoon,2,3,193,0.0155,5,0.6,,922332,0.006,0.006
+25401,Corroded Mace,2,Auchindoun,3,2,37,0.0541,0,0.0,sem dados de anúncios,922332,0.006,0.006
+132543,Spritescale Epaulets,1,Sylvanas,1,4,161,0.0248,0,0.0,sem dados de anúncios,3601633,0.014,0.014
+132543,Spritescale Epaulets,1,Auchindoun,2,2,37,0.0541,0,0.0,sem dados de anúncios,3601633,0.014,0.014
+132543,Spritescale Epaulets,1,Ravencrest,3,2,76,0.0263,0,0.0,sem dados de anúncios,3601633,0.014,0.014
+264560,Sharpclaw Gauntlets,1,Sylvanas,1,20,161,0.1242,0,0.0,sem dados de anúncios,0,0.0,0.0
+264560,Sharpclaw Gauntlets,1,Stormreaver,2,9,80,0.1125,0,9.0,sem anúncio,0,0.0,0.0
+264560,Sharpclaw Gauntlets,1,Silvermoon,3,9,193,0.0466,0,9.0,sem anúncio,0,0.0,0.0
+276062,Hydra Neckchopper,1,Sylvanas,1,33,161,0.205,0,0.0,sem dados de anúncios,0,0.0,0.0
+276062,Hydra Neckchopper,1,Silvermoon,2,28,193,0.1451,0,28.0,sem anúncio,0,0.0,0.0
+276062,Hydra Neckchopper,1,Stormreaver,3,13,80,0.1625,0,13.0,sem anúncio,0,0.0,0.0

@@ -1,0 +1,43 @@
+{
+  "total_seconds": 31.41,
+  "stages": [
+    {
+      "stage": "engine.load",
+      "seconds": 8.02
+    },
+    {
+      "stage": "fit_shipped_model",
+      "seconds": 0.0
+    },
+    {
+      "stage": "calibrate_price_interval",
+      "seconds": 0.0
+    },
+    {
+      "stage": "build_dataset",
+      "seconds": 22.53
+    },
+    {
+      "stage": "build_realm_index",
+      "seconds": 0.01
+    },
+    {
+      "stage": "to_lua",
+      "seconds": 0.02
+    },
+    {
+      "stage": "validate_dataset",
+      "seconds": 0.01
+    },
+    {
+      "stage": "write_file",
+      "seconds": 0.0
+    }
+  ],
+  "records": 237,
+  "realms_with_records": 8,
+  "realm_index": 267,
+  "region_prices": 31184,
+  "bytes": 1282643,
+  "checksum": "af4b73c601e5ba27"
+}

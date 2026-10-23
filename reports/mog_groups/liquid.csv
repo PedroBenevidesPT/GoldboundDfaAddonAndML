@@ -1,0 +1,613 @@
+item_id,name,appearance_id,variants,group,conflict,confidence,reason,spd,sale_rate,avg_sale_g,wall_g,historical_g,market_g,listings,p30,buyers,quality,era,expansion,item_level
+109646,109646,8156,4,liquid,0,high,"estimated regional spd 0.1020/day; label only, not sell-through",0.102000,0.017000,4165.56,4423.21,4444.80,4433.54,1,,,,,,
+109647,109647,8156,4,liquid,0,high,"estimated regional spd 0.1020/day; label only, not sell-through",0.102000,0.017000,4165.56,4423.21,4444.80,4433.54,1,,,,,,
+31274,31274,8156,4,liquid,0,high,"estimated regional spd 0.1020/day; label only, not sell-through",0.102000,0.017000,4165.56,4423.21,4444.80,4433.54,1,,,,,,
+203860,Venomreaver,8156,4,liquid,0,high,"estimated regional spd 0.1020/day; label only, not sell-through",0.102000,0.017000,4165.56,4423.21,4444.80,4433.54,1,,,4,0,0,29
+192057,192057,70362,6,liquid,0,high,"estimated regional spd 0.5400/day; label only, not sell-through",0.540000,0.040000,2949.38,1769.67,1899.99,1714.80,1,,,,,,
+222137,222137,70362,6,liquid,0,high,"estimated regional spd 0.5400/day; label only, not sell-through",0.540000,0.040000,2949.38,1769.67,1899.99,1714.80,1,,,,,,
+246542,246542,70362,6,liquid,0,high,"estimated regional spd 0.5400/day; label only, not sell-through",0.540000,0.040000,2949.38,1769.67,1899.99,1714.80,1,,,,,,
+194875,Scribe's Resplendent Quill,70362,6,liquid,0,high,"estimated regional spd 0.5400/day; label only, not sell-through",0.540000,0.040000,2949.38,1769.67,1899.99,1714.80,1,,,3,0,9,356
+222574,Silver Tongue's Quill,70362,6,liquid,0,high,"estimated regional spd 0.5400/day; label only, not sell-through",0.540000,0.040000,2949.38,1769.67,1899.99,1714.80,1,,,3,0,10,535
+245776,Sin'dorei Quill,70362,6,liquid,0,high,"estimated regional spd 0.5400/day; label only, not sell-through",0.540000,0.040000,2949.38,1769.67,1899.99,1714.80,1,,,3,0,11,106
+245778,Sin'dorei Alchemist's Mixing Rod,130111,1,liquid,1,high,"wall/historical 0.11x; market/wall 7.72x; estimated regional spd 1.1280/day; label only, not sell-through",1.128000,0.094000,2499.98,455.00,4030.42,3511.37,1,,,3,0,11,106
+219874,Earthen Forgemaster's Apron,70478,4,liquid,0,high,"estimated regional spd 0.3250/day; label only, not sell-through",0.325000,0.026000,2360.28,2998.92,2842.77,2848.67,1,,,3,0,10,535
+193613,Flameproof Apron,70478,4,liquid,0,high,"estimated regional spd 0.3250/day; label only, not sell-through",0.325000,0.026000,2360.28,2998.92,2842.77,2848.67,1,,,3,0,9,356
+244628,Sin'dorei Forgemaster's Cover,70478,4,liquid,0,high,"estimated regional spd 0.3250/day; label only, not sell-through",0.325000,0.026000,2360.28,2998.92,2842.77,2848.67,1,,,3,0,11,106
+244813,Thalassian Ironbender's Regalia,70478,4,liquid,0,high,"estimated regional spd 0.3250/day; label only, not sell-through",0.325000,0.026000,2360.28,2998.92,2842.77,2848.67,1,,,4,0,11,132
+193488,Lavish Floral Pack,78193,4,liquid,0,high,"estimated regional spd 0.6600/day; label only, not sell-through",0.660000,0.060000,2328.32,1666.60,2222.81,1677.38,15,,,3,0,9,356
+244621,Sin'dorei Herbalist's Backpack,78193,4,liquid,0,high,"estimated regional spd 0.6600/day; label only, not sell-through",0.660000,0.060000,2328.32,1666.60,2222.81,1677.38,15,,,3,0,11,106
+219867,Stonebound Herbalist's Pack,78193,4,liquid,0,high,"estimated regional spd 0.6600/day; label only, not sell-through",0.660000,0.060000,2328.32,1666.60,2222.81,1677.38,15,,,3,0,10,535
+244807,Thalassian Herbtender's Cradle,78193,4,liquid,0,high,"estimated regional spd 0.6600/day; label only, not sell-through",0.660000,0.060000,2328.32,1666.60,2222.81,1677.38,15,,,4,0,11,132
+249760,Void-Touched Winter Boots,120334,1,liquid,0,high,"estimated regional spd 0.1410/day; label only, not sell-through",0.141000,0.047000,2327.49,4890.71,7661.78,4377.42,5,,,3,0,-3,1
+193039,Fine-Print Trifocals,70363,4,liquid,0,high,"estimated regional spd 0.4200/day; label only, not sell-through",0.420000,0.030000,2131.48,3999.00,2999.00,3940.91,1,,,3,0,9,356
+246524,Flawless Text Scrutinizers,70363,4,liquid,0,high,"estimated regional spd 0.4200/day; label only, not sell-through",0.420000,0.030000,2131.48,3999.00,2999.00,3940.91,1,,,4,0,11,132
+215122,Novelist's Specs,70363,4,liquid,0,high,"estimated regional spd 0.4200/day; label only, not sell-through",0.420000,0.030000,2131.48,3999.00,2999.00,3940.91,1,,,3,0,10,535
+240957,Sin'dorei Scribe's Spectacles,70363,4,liquid,0,high,"estimated regional spd 0.4200/day; label only, not sell-through",0.420000,0.030000,2131.48,3999.00,2999.00,3940.91,1,,,3,0,11,106
+271043,Twilight Assassin's Glaive,99373,1,liquid,1,high,"wall/historical 0.30x; estimated regional spd 0.1240/day; label only, not sell-through",0.124000,0.062000,1930.90,3700.51,12260.16,4583.11,0,,,3,2,-3,1
+146307,146307,8830,3,liquid,0,high,"estimated regional spd 0.1000/day; label only, not sell-through",0.100000,0.020000,1900.00,2090.00,2481.00,2130.48,8,,,,,,
+34086,Winter Boots,8830,3,liquid,0,high,"estimated regional spd 0.1000/day; label only, not sell-through",0.100000,0.020000,1900.00,2090.00,2481.00,2130.48,8,,,1,0,-3,1
+151791,Winter Boots,8830,3,liquid,0,high,"estimated regional spd 0.1000/day; label only, not sell-through",0.100000,0.020000,1900.00,2090.00,2481.00,2130.48,8,,,2,0,-3,1
+274802,Envenomed Gavel,85065,1,liquid,1,high,"wall/historical 0.17x; estimated regional spd 0.2040/day; label only, not sell-through",0.204000,0.051000,1895.00,2992.92,17777.51,4852.30,6,,,4,2,11,1
+130101,130101,12007,7,liquid,1,high,"wall/historical 0.06x; estimated regional spd 1.1900/day; label only, not sell-through",1.190000,0.119000,1831.64,601.58,10071.42,810.42,4,,,,,,
+68012,Gug's Mug,12007,7,liquid,1,high,"wall/historical 0.06x; estimated regional spd 1.1900/day; label only, not sell-through",1.190000,0.119000,1831.64,601.58,10071.42,810.42,4,,,0,0,0,4
+48663,Tankard O' Terror,12007,7,liquid,1,high,"wall/historical 0.06x; estimated regional spd 1.1900/day; label only, not sell-through",1.190000,0.119000,1831.64,601.58,10071.42,810.42,4,,,4,0,2,35
+150922,Terrific Tankard O' Terror,12007,7,liquid,1,high,"wall/historical 0.06x; estimated regional spd 1.1900/day; label only, not sell-through",1.190000,0.119000,1831.64,601.58,10071.42,810.42,4,,,4,0,-3,44
+71332,Tremendous Tankard O' Terror,12007,7,liquid,1,high,"wall/historical 0.06x; estimated regional spd 1.1900/day; label only, not sell-through",1.190000,0.119000,1831.64,601.58,10071.42,810.42,4,,,4,0,-3,37
+107218,Tremendous Tankard O' Terror,12007,7,liquid,1,high,"wall/historical 0.06x; estimated regional spd 1.1900/day; label only, not sell-through",1.190000,0.119000,1831.64,601.58,10071.42,810.42,4,,,4,0,-3,39
+117379,Tremendous Tankard O' Terror,12007,7,liquid,1,high,"wall/historical 0.06x; estimated regional spd 1.1900/day; label only, not sell-through",1.190000,0.119000,1831.64,601.58,10071.42,810.42,4,,,4,0,-3,44
+193437,Crimson Combatant's Resilient Wristwraps,70292,8,liquid,0,high,"estimated regional spd 0.3920/day; label only, not sell-through",0.392000,0.098000,1807.09,199.00,199.00,236.60,8,,,2,0,9,330
+211545,Draconic Combatant's Resilient Wristwraps,70292,8,liquid,0,high,"estimated regional spd 0.3920/day; label only, not sell-through",0.392000,0.098000,1807.09,199.00,199.00,236.60,8,,,2,0,9,330
+245342,Evercore Binding,70292,8,liquid,0,high,"estimated regional spd 0.3920/day; label only, not sell-through",0.392000,0.098000,1807.09,199.00,199.00,236.60,8,,,3,0,11,197
+198327,Needlessly Complex Wristguards,70292,8,liquid,0,high,"estimated regional spd 0.3920/day; label only, not sell-through",0.392000,0.098000,1807.09,199.00,199.00,236.60,8,,,4,0,9,350
+204103,Obsidian Combatant's Resilient Wristwraps,70292,8,liquid,0,high,"estimated regional spd 0.3920/day; label only, not sell-through",0.392000,0.098000,1807.09,199.00,199.00,236.60,8,,,2,0,9,330
+193388,Pioneer's Leather Wristguards,70292,8,liquid,0,high,"estimated regional spd 0.3920/day; label only, not sell-through",0.392000,0.098000,1807.09,199.00,199.00,236.60,8,,,3,0,9,270
+221806,Venting Vambraces,70292,8,liquid,0,high,"estimated regional spd 0.3920/day; label only, not sell-through",0.392000,0.098000,1807.09,199.00,199.00,236.60,8,,,4,0,10,577
+208246,Verdant Combatant's Resilient Wristwraps,70292,8,liquid,0,high,"estimated regional spd 0.3920/day; label only, not sell-through",0.392000,0.098000,1807.09,199.00,199.00,236.60,8,,,2,0,9,330
+219876,Earthen Jeweler's Cover,70356,4,liquid,0,high,"estimated regional spd 0.3500/day; label only, not sell-through",0.350000,0.025000,1791.69,1798.96,1800.00,1517.54,1,,,3,0,10,535
+193616,Resplendent Cover,70356,4,liquid,0,high,"estimated regional spd 0.3500/day; label only, not sell-through",0.350000,0.025000,1791.69,1798.96,1800.00,1517.54,1,,,3,0,9,356
+244630,Sin'dorei Jeweler's Cover,70356,4,liquid,0,high,"estimated regional spd 0.3500/day; label only, not sell-through",0.350000,0.025000,1791.69,1798.96,1800.00,1517.54,1,,,3,0,11,106
+244814,Thalassian Gemshaper's Grand Cover,70356,4,liquid,0,high,"estimated regional spd 0.3500/day; label only, not sell-through",0.350000,0.025000,1791.69,1798.96,1800.00,1517.54,1,,,4,0,11,132
+192087,192087,70359,7,liquid,0,high,"estimated regional spd 0.8550/day; label only, not sell-through",0.855000,0.095000,1767.36,1498.54,1599.00,1392.63,2,,,,,,
+222141,222141,70359,7,liquid,0,high,"estimated regional spd 0.8550/day; label only, not sell-through",0.855000,0.095000,1767.36,1498.54,1599.00,1392.63,2,,,,,,
+246544,246544,70359,7,liquid,0,high,"estimated regional spd 0.8550/day; label only, not sell-through",0.855000,0.095000,1767.36,1498.54,1599.00,1392.63,2,,,,,,
+191232,Chef's Splendid Rolling Pin,70359,7,liquid,0,high,"estimated regional spd 0.8550/day; label only, not sell-through",0.855000,0.095000,1767.36,1498.54,1599.00,1392.63,2,,,3,0,9,356
+259207,Gilded Sin'dorei Rolling Pin,70359,7,liquid,0,high,"estimated regional spd 0.8550/day; label only, not sell-through",0.855000,0.095000,1767.36,1498.54,1599.00,1392.63,2,,,4,0,11,132
+222578,Inscribed Rolling Pin,70359,7,liquid,0,high,"estimated regional spd 0.8550/day; label only, not sell-through",0.855000,0.095000,1767.36,1498.54,1599.00,1392.63,2,,,3,0,10,535
+245780,Sin'dorei Rolling Pin,70359,7,liquid,0,high,"estimated regional spd 0.8550/day; label only, not sell-through",0.855000,0.095000,1767.36,1498.54,1599.00,1392.63,2,,,3,0,11,106
+249755,Void-Touched Winter Hood,120329,1,liquid,0,high,"estimated regional spd 0.1140/day; label only, not sell-through",0.114000,0.038000,1688.37,1991.15,2997.01,3178.45,4,,,3,0,-3,1
+193041,Alexstraszite Loupes,70354,4,liquid,1,high,"wall/historical 0.39x; estimated regional spd 0.7020/day; label only, not sell-through",0.702000,0.039000,1477.94,1200.01,3098.84,2383.36,2,,,3,0,9,356
+215124,Extravagant Loupes,70354,4,liquid,1,high,"wall/historical 0.39x; estimated regional spd 0.7020/day; label only, not sell-through",0.702000,0.039000,1477.94,1200.01,3098.84,2383.36,2,,,3,0,10,535
+246526,Mage-Eye Precision Loupes,70354,4,liquid,1,high,"wall/historical 0.39x; estimated regional spd 0.7020/day; label only, not sell-through",0.702000,0.039000,1477.94,1200.01,3098.84,2383.36,2,,,4,0,11,132
+240959,Sin'dorei Jeweler's Loupes,70354,4,liquid,1,high,"wall/historical 0.39x; estimated regional spd 0.7020/day; label only, not sell-through",0.702000,0.039000,1477.94,1200.01,3098.84,2383.36,2,,,3,0,11,106
+257138,257138,122374,3,liquid,1,high,"wall/historical 0.17x; estimated regional spd 0.6120/day; label only, not sell-through",0.612000,0.072000,1427.50,3.99,24.00,,14,,,,,,
+266386,Sanctum Acolyte's Post,122374,3,liquid,1,high,"wall/historical 0.17x; estimated regional spd 0.6120/day; label only, not sell-through",0.612000,0.072000,1427.50,3.99,24.00,,14,,,3,2,11,1
+268365,Thalassian Competitor's Staff,122374,3,liquid,1,high,"wall/historical 0.17x; estimated regional spd 0.6120/day; label only, not sell-through",0.612000,0.072000,1427.50,3.99,24.00,,14,,,2,2,11,197
+221698,221698,78217,6,liquid,1,high,"wall/historical 0.43x; market/wall 2.22x; estimated regional spd 0.2160/day; label only, not sell-through",0.216000,0.024000,1425.99,900.01,2107.25,1994.97,1,,,,,,
+224720,224720,78217,6,liquid,1,high,"wall/historical 0.43x; market/wall 2.22x; estimated regional spd 0.2160/day; label only, not sell-through",0.216000,0.024000,1425.99,900.01,2107.25,1994.97,1,,,,,,
+267058,267058,78217,6,liquid,1,high,"wall/historical 0.43x; market/wall 2.22x; estimated regional spd 0.2160/day; label only, not sell-through",0.216000,0.024000,1425.99,900.01,2107.25,1994.97,1,,,,,,
+222848,Artisan Fishing Cap,78217,6,liquid,1,high,"wall/historical 0.43x; market/wall 2.22x; estimated regional spd 0.2160/day; label only, not sell-through",0.216000,0.024000,1425.99,900.01,2107.25,1994.97,1,,,3,0,10,535
+239638,Elegant Artisan's Fishing Hat,78217,6,liquid,1,high,"wall/historical 0.43x; market/wall 2.22x; estimated regional spd 0.2160/day; label only, not sell-through",0.216000,0.024000,1425.99,900.01,2107.25,1994.97,1,,,3,0,11,106
+193543,Master's Wildercloth Fishing Cap,78217,6,liquid,1,high,"wall/historical 0.43x; market/wall 2.22x; estimated regional spd 0.2160/day; label only, not sell-through",0.216000,0.024000,1425.99,900.01,2107.25,1994.97,1,,,3,0,9,356
+221701,221701,70361,7,liquid,0,high,"estimated regional spd 1.6520/day; label only, not sell-through",1.652000,0.118000,1425.04,1910.32,2510.59,1910.45,1,,,,,,
+222851,Artisan Chef's Hat,70361,7,liquid,0,high,"estimated regional spd 1.6520/day; label only, not sell-through",1.652000,0.118000,1425.04,1910.32,2510.59,1910.45,1,,,3,0,10,535
+243344,Chef's Hat,70361,7,liquid,0,high,"estimated regional spd 1.6520/day; label only, not sell-through",1.652000,0.118000,1425.04,1910.32,2510.59,1910.45,1,,,1,0,-3,1
+239636,Elegant Artisan's Cooking Hat,70361,7,liquid,0,high,"estimated regional spd 1.6520/day; label only, not sell-through",1.652000,0.118000,1425.04,1910.32,2510.59,1910.45,1,,,3,0,11,106
+193545,Master's Wildercloth Chef's Hat,70361,7,liquid,0,high,"estimated regional spd 1.6520/day; label only, not sell-through",1.652000,0.118000,1425.04,1910.32,2510.59,1910.45,1,,,3,0,9,356
+246522,Super Elegant Artisan's Cooking Hat,70361,7,liquid,0,high,"estimated regional spd 1.6520/day; label only, not sell-through",1.652000,0.118000,1425.04,1910.32,2510.59,1910.45,1,,,4,0,11,132
+267054,Thalassian Chef's Chapeau,70361,7,liquid,0,high,"estimated regional spd 1.6520/day; label only, not sell-through",1.652000,0.118000,1425.04,1910.32,2510.59,1910.45,1,,,4,2,11,132
+249756,Void-Touched Winter Pauldrons,120330,1,liquid,1,high,"wall/historical 0.42x; estimated regional spd 0.1920/day; label only, not sell-through",0.192000,0.064000,1425.00,4244.73,10000.21,4490.27,6,,,3,0,-3,1
+193540,Dragoncloth Tailoring Vestments,78212,4,liquid,1,high,"wall/historical 0.42x; estimated regional spd 0.7140/day; label only, not sell-through",0.714000,0.051000,1307.85,800.01,1900.12,1300.12,7,,,4,0,9,382
+239640,Elegant Artisan's Tailoring Robe,78212,4,liquid,1,high,"wall/historical 0.42x; estimated regional spd 0.7140/day; label only, not sell-through",0.714000,0.051000,1307.85,800.01,1900.12,1300.12,7,,,3,0,11,106
+246514,Super Elegant Artisan's Tailoring Robe,78212,4,liquid,1,high,"wall/historical 0.42x; estimated regional spd 0.7140/day; label only, not sell-through",0.714000,0.051000,1307.85,800.01,1900.12,1300.12,7,,,4,0,11,132
+267062,Thalassian Tailor's Threads,78212,4,liquid,1,high,"wall/historical 0.42x; estimated regional spd 0.7140/day; label only, not sell-through",0.714000,0.051000,1307.85,800.01,1900.12,1300.12,7,,,4,2,11,132
+238014,Sun-Blessed Sickle,127609,1,liquid,0,high,"estimated regional spd 1.6680/day; label only, not sell-through",1.668000,0.139000,1284.69,1498.63,1999.00,1441.15,1,,,3,0,11,106
+266221,Frayed Shroud,121386,2,liquid,0,high,"estimated regional spd 1.3640/day; label only, not sell-through",1.364000,0.124000,1234.99,699.94,1299.66,1111.70,1,,,0,2,11,78
+266208,Tarnished Dawnlit Corsair's Shroud,121386,2,liquid,0,high,"estimated regional spd 1.3640/day; label only, not sell-through",1.364000,0.124000,1234.99,699.94,1299.66,1111.70,1,,,2,2,11,197
+238015,Sun-Blessed Pickaxe,122746,1,liquid,0,high,"estimated regional spd 1.6250/day; label only, not sell-through",1.625000,0.125000,1188.03,1498.63,2000.30,1444.39,1,,,3,0,11,106
+266224,Brittle Cape,121340,2,liquid,0,high,"estimated regional spd 1.8360/day; label only, not sell-through",1.836000,0.136000,1183.76,1998.99,1889.90,1602.00,2,,,0,2,11,78
+266210,Tarnished Dawnlit Commander's Cape,121340,2,liquid,0,high,"estimated regional spd 1.8360/day; label only, not sell-through",1.836000,0.136000,1183.76,1998.99,1889.90,1602.00,2,,,2,2,11,197
+238016,Sun-Blessed Skinning Knife,127615,1,liquid,0,high,"estimated regional spd 0.9620/day; label only, not sell-through",0.962000,0.074000,1149.61,1498.59,2291.22,1433.52,2,,,3,0,11,106
+238018,Sun-Blessed Blacksmith's Hammer,122752,1,liquid,0,high,"estimated regional spd 1.4790/day; label only, not sell-through",1.479000,0.087000,1140.94,1498.66,1570.51,1443.38,1,,,3,0,11,106
+266207,Tarnished Dawnlit Spellbinder's Cloak,121806,2,liquid,1,high,"wall/historical 0.19x; estimated regional spd 1.4080/day; label only, not sell-through",1.408000,0.128000,1140.59,299.09,1600.00,344.27,3,,,2,2,11,197
+266216,Threadbare Cloak,121806,2,liquid,1,high,"wall/historical 0.19x; estimated regional spd 1.4080/day; label only, not sell-through",1.408000,0.128000,1140.59,299.09,1600.00,344.27,3,,,0,2,11,78
+244176,Runed Brilliant Silver Rod,127621,1,liquid,0,high,"estimated regional spd 2.6390/day; label only, not sell-through",2.639000,0.203000,1140.00,999.31,1300.00,1586.32,1,,,3,0,11,106
+238017,Sun-Blessed Leatherworker's Knife,127612,1,liquid,0,high,"estimated regional spd 0.9380/day; label only, not sell-through",0.938000,0.067000,1139.60,1000.94,1380.00,1219.08,1,,,3,0,11,106
+271030,Living Stave of the Deepdweller,83784,1,liquid,0,high,"estimated regional spd 0.1100/day; label only, not sell-through",0.110000,0.055000,1101.72,3765.76,2500.00,3621.52,2,,,3,2,-3,1
+249762,Void-Touched Winter Cloak,120336,1,liquid,1,high,"wall/historical 0.29x; estimated regional spd 0.1800/day; label only, not sell-through",0.180000,0.060000,1074.27,3992.48,14007.45,4955.87,5,,,3,0,-3,1
+266223,Stained Drape,120764,2,liquid,1,high,"wall/historical 0.25x; estimated regional spd 1.8250/day; label only, not sell-through",1.825000,0.146000,1050.57,250.79,1000.34,385.75,4,,,0,2,11,78
+266209,Tarnished Dawnlit Sentinel's Drape,120764,2,liquid,1,high,"wall/historical 0.25x; estimated regional spd 1.8250/day; label only, not sell-through",1.825000,0.146000,1050.57,250.79,1000.34,385.75,4,,,2,2,11,197
+222850,Artisan Alchemist's Robe,78210,5,liquid,0,high,"estimated regional spd 2.8640/day; label only, not sell-through",2.864000,0.179000,1045.00,1210.21,1998.99,1237.08,1,,,3,0,10,535
+239635,Elegant Artisan's Alchemy Coveralls,78210,5,liquid,0,high,"estimated regional spd 2.8640/day; label only, not sell-through",2.864000,0.179000,1045.00,1210.21,1998.99,1237.08,1,,,3,0,11,106
+193544,Master's Wildercloth Alchemist's Robe,78210,5,liquid,0,high,"estimated regional spd 2.8640/day; label only, not sell-through",2.864000,0.179000,1045.00,1210.21,1998.99,1237.08,1,,,3,0,9,356
+246521,Super Elegant Artisan's Alchemy Coveralls,78210,5,liquid,0,high,"estimated regional spd 2.8640/day; label only, not sell-through",2.864000,0.179000,1045.00,1210.21,1998.99,1237.08,1,,,4,0,11,132
+267052,Thalassian Alchemy Coveralls,78210,5,liquid,0,high,"estimated regional spd 2.8640/day; label only, not sell-through",2.864000,0.179000,1045.00,1210.21,1998.99,1237.08,1,,,4,2,11,132
+221795,Bismuth Miner's Headgear,70364,3,liquid,0,high,"estimated regional spd 0.6750/day; label only, not sell-through",0.675000,0.135000,999.67,1500.00,1640.83,1676.14,1,,,2,0,10,486
+198243,Draconium Delver's Helmet,70364,3,liquid,0,high,"estimated regional spd 0.6750/day; label only, not sell-through",0.675000,0.135000,999.67,1500.00,1640.83,1676.14,1,,,2,0,9,317
+244715,Farstrider Hardhat,70364,3,liquid,0,high,"estimated regional spd 0.6750/day; label only, not sell-through",0.675000,0.135000,999.67,1500.00,1640.83,1676.14,1,,,2,0,11,486
+24122,Coronet of Verdant Flame,3090,5,liquid,1,high,"wall/historical 0.21x; estimated regional spd 1.9380/day; label only, not sell-through",1.938000,0.323000,999.00,555.18,2650.00,,1,,,4,0,1,31
+10097,Councillor's Circlet,3090,5,liquid,1,high,"wall/historical 0.21x; estimated regional spd 1.9380/day; label only, not sell-through",1.938000,0.323000,999.00,555.18,2650.00,,1,,,2,0,0,28
+21774,Emerald Crown of Destruction,3090,5,liquid,1,high,"wall/historical 0.21x; estimated regional spd 1.9380/day; label only, not sell-through",1.938000,0.323000,999.00,555.18,2650.00,,1,,,3,0,0,28
+37462,Sea King's Crown,3090,5,liquid,1,high,"wall/historical 0.21x; estimated regional spd 1.9380/day; label only, not sell-through",1.938000,0.323000,999.00,555.18,2650.00,,1,,,2,0,2,33
+69864,Tarnished Crown,3090,5,liquid,1,high,"wall/historical 0.21x; estimated regional spd 1.9380/day; label only, not sell-through",1.938000,0.323000,999.00,555.18,2650.00,,1,,,1,0,0,1
+274806,Envenomed Gut-Puncher,93400,1,liquid,0,high,"estimated regional spd 0.2200/day; label only, not sell-through",0.220000,0.055000,998.98,3312.16,5000.00,3758.53,9,,,3,2,11,1
+221697,Artisan Gardening Hat,78224,7,liquid,1,high,"wall/historical 0.43x; estimated regional spd 1.5400/day; label only, not sell-through",1.540000,0.110000,990.61,998.13,2309.62,1013.86,1,,,3,0,10,535
+222847,Artisan Gardening Hat,78224,7,liquid,1,high,"wall/historical 0.43x; estimated regional spd 1.5400/day; label only, not sell-through",1.540000,0.110000,990.61,998.13,2309.62,1013.86,1,,,3,0,10,535
+239645,Bright Linen Herbalism Hat,78224,7,liquid,1,high,"wall/historical 0.43x; estimated regional spd 1.5400/day; label only, not sell-through",1.540000,0.110000,990.61,998.13,2309.62,1013.86,1,,,2,0,11,80
+239639,Elegant Artisan's Herbalism Hat,78224,7,liquid,1,high,"wall/historical 0.43x; estimated regional spd 1.5400/day; label only, not sell-through",1.540000,0.110000,990.61,998.13,2309.62,1013.86,1,,,3,0,11,106
+193542,Master's Wildercloth Gardening Hat,78224,7,liquid,1,high,"wall/historical 0.43x; estimated regional spd 1.5400/day; label only, not sell-through",1.540000,0.110000,990.61,998.13,2309.62,1013.86,1,,,3,0,9,356
+246515,Super Elegant Artisan's Herbalism Hat,78224,7,liquid,1,high,"wall/historical 0.43x; estimated regional spd 1.5400/day; label only, not sell-through",1.540000,0.110000,990.61,998.13,2309.62,1013.86,1,,,4,0,11,132
+267060,Thalassian Herbalist's Cowl,78224,7,liquid,1,high,"wall/historical 0.43x; estimated regional spd 1.5400/day; label only, not sell-through",1.540000,0.110000,990.61,998.13,2309.62,1013.86,1,,,4,2,11,132
+146306,146306,8831,7,liquid,0,high,"estimated regional spd 0.1350/day; label only, not sell-through",0.135000,0.027000,950.01,464.00,654.00,464.37,7,,,,,,
+146845,146845,8831,7,liquid,0,high,"estimated regional spd 0.1350/day; label only, not sell-through",0.135000,0.027000,950.01,464.00,654.00,464.37,7,,,,,,
+146846,146846,8831,7,liquid,0,high,"estimated regional spd 0.1350/day; label only, not sell-through",0.135000,0.027000,950.01,464.00,654.00,464.37,7,,,,,,
+146973,146973,8831,7,liquid,0,high,"estimated regional spd 0.1350/day; label only, not sell-through",0.135000,0.027000,950.01,464.00,654.00,464.37,7,,,,,,
+146974,146974,8831,7,liquid,0,high,"estimated regional spd 0.1350/day; label only, not sell-through",0.135000,0.027000,950.01,464.00,654.00,464.37,7,,,,,,
+34087,Green Winter Clothes,8831,7,liquid,0,high,"estimated regional spd 0.1350/day; label only, not sell-through",0.135000,0.027000,950.01,464.00,654.00,464.37,7,,,1,0,-3,1
+151792,Green Winter Clothes,8831,7,liquid,0,high,"estimated regional spd 0.1350/day; label only, not sell-through",0.135000,0.027000,950.01,464.00,654.00,464.37,7,,,2,0,-3,1
+33049,33049,8554,2,liquid,0,medium,"estimated regional spd 0.1890/day; label only, not sell-through",0.189000,0.063000,949.05,,5554.50,4768.54,0,,,,,,
+244748,Aetherlume Bands,121393,5,liquid,1,high,"wall/historical 0.39x; market/wall 2.31x; estimated regional spd 0.7560/day; label only, not sell-through",0.756000,0.054000,949.05,60.00,154.58,138.79,1,,,4,0,11,197
+244749,Aetherlume Bracelets,120771,6,liquid,0,high,"estimated regional spd 0.6820/day; label only, not sell-through",0.682000,0.047000,949.05,299.00,150.95,297.15,7,,,4,0,11,197
+244750,Aetherlume Guards,121347,6,liquid,0,high,"estimated regional spd 0.7200/day; label only, not sell-through",0.720000,0.080000,949.05,199.00,295.31,228.72,14,,,4,0,11,197
+244772,Aetherlume Runners,121392,6,liquid,1,high,"wall/historical 9.72x; market/wall 0.12x; estimated regional spd 0.8280/day; label only, not sell-through",0.828000,0.092000,949.05,1999.97,205.79,238.33,1,,,4,0,11,197
+244747,Aetherlume Silken Cuffs,121812,6,liquid,0,high,"estimated regional spd 1.6100/day; label only, not sell-through",1.610000,0.140000,949.05,99.00,124.50,165.91,11,,,4,0,11,197
+244771,Aetherlume Softsteppers,121814,6,liquid,1,high,"wall/historical 4.59x; market/wall 0.40x; estimated regional spd 1.0300/day; label only, not sell-through",1.030000,0.103000,949.05,913.43,198.99,363.64,1,,,4,0,11,197
+244774,Aetherlume Stompers,121346,6,liquid,0,high,"estimated regional spd 2.6560/day; label only, not sell-through",2.656000,0.113000,949.05,100.00,160.00,96.79,2,,,4,0,11,197
+237923,Blood-Tempered Bracers,121347,6,liquid,0,high,"estimated regional spd 0.7200/day; label only, not sell-through",0.720000,0.080000,949.05,199.00,295.31,228.72,14,,,3,0,11,197
+237917,Blood-Tempered Greaves,121346,6,liquid,0,high,"estimated regional spd 2.6560/day; label only, not sell-through",2.656000,0.113000,949.05,100.00,160.00,96.79,2,,,3,0,11,197
+239673,Courtly Slippers,121814,6,liquid,1,high,"wall/historical 4.59x; market/wall 0.40x; estimated regional spd 1.0300/day; label only, not sell-through",1.030000,0.103000,949.05,913.43,198.99,363.64,1,,,3,0,11,197
+239671,Courtly Wrists,121812,6,liquid,0,high,"estimated regional spd 1.6100/day; label only, not sell-through",1.610000,0.140000,949.05,99.00,124.50,165.91,11,,,3,0,11,197
+274805,Envenomed Chopper,8554,2,liquid,0,medium,"estimated regional spd 0.1890/day; label only, not sell-through",0.189000,0.063000,949.05,,5554.50,4768.54,0,,,3,2,11,1
+245343,Evercore Chainguards,120771,6,liquid,0,high,"estimated regional spd 0.6820/day; label only, not sell-through",0.682000,0.047000,949.05,299.00,150.95,297.15,7,,,3,0,11,197
+245344,Evercore Gear Weight,121347,6,liquid,0,high,"estimated regional spd 0.7200/day; label only, not sell-through",0.720000,0.080000,949.05,199.00,295.31,228.72,14,,,3,0,11,197
+245340,Evercore Greaseplates,121346,6,liquid,0,high,"estimated regional spd 2.6560/day; label only, not sell-through",2.656000,0.113000,949.05,100.00,160.00,96.79,2,,,3,0,11,197
+245338,Evercore Stitchwraps,121392,6,liquid,1,high,"wall/historical 9.72x; market/wall 0.12x; estimated regional spd 0.8280/day; label only, not sell-through",0.828000,0.092000,949.05,1999.97,205.79,238.33,1,,,3,0,11,197
+245337,Evercore Swiftfeet,121814,6,liquid,1,high,"wall/historical 4.59x; market/wall 0.40x; estimated regional spd 1.0300/day; label only, not sell-through",1.030000,0.103000,949.05,913.43,198.99,363.64,1,,,3,0,11,197
+245341,Evercore Wrist Latch,121812,6,liquid,0,high,"estimated regional spd 1.6100/day; label only, not sell-through",1.610000,0.140000,949.05,99.00,124.50,165.91,11,,,3,0,11,197
+859,Fine Cloth Shirt,264,2,liquid,1,high,"wall/historical 0.21x; estimated regional spd 0.1160/day; label only, not sell-through",0.116000,0.058000,949.05,2021.55,9842.96,2249.29,5,,,2,0,0,1
+138385,Lucky Shirt,264,2,liquid,1,high,"wall/historical 0.21x; estimated regional spd 0.1160/day; label only, not sell-through",0.116000,0.058000,949.05,2021.55,9842.96,2249.29,5,,,2,0,0,1
+244756,Quel'dorei Bands,121393,5,liquid,1,high,"wall/historical 0.39x; market/wall 2.31x; estimated regional spd 0.7560/day; label only, not sell-through",0.756000,0.054000,949.05,60.00,154.58,138.79,1,,,3,0,11,197
+244757,Quel'dorei Bracelets,120771,6,liquid,0,high,"estimated regional spd 0.6820/day; label only, not sell-through",0.682000,0.047000,949.05,299.00,150.95,297.15,7,,,3,0,11,197
+244758,Quel'dorei Guards,121347,6,liquid,0,high,"estimated regional spd 0.7200/day; label only, not sell-through",0.720000,0.080000,949.05,199.00,295.31,228.72,14,,,3,0,11,197
+244768,Quel'dorei Runners,121392,6,liquid,1,high,"wall/historical 9.72x; market/wall 0.12x; estimated regional spd 0.8280/day; label only, not sell-through",0.828000,0.092000,949.05,1999.97,205.79,238.33,1,,,3,0,11,197
+244755,Quel'dorei Silken Cuffs,121812,6,liquid,0,high,"estimated regional spd 1.6100/day; label only, not sell-through",1.610000,0.140000,949.05,99.00,124.50,165.91,11,,,3,0,11,197
+244767,Quel'dorei Softsteppers,121814,6,liquid,1,high,"wall/historical 4.59x; market/wall 0.40x; estimated regional spd 1.0300/day; label only, not sell-through",1.030000,0.103000,949.05,913.43,198.99,363.64,1,,,3,0,11,197
+244770,Quel'dorei Stompers,121346,6,liquid,0,high,"estimated regional spd 2.6560/day; label only, not sell-through",2.656000,0.113000,949.05,100.00,160.00,96.79,2,,,3,0,11,197
+244589,Scout's Scaled Bracers,120771,6,liquid,0,high,"estimated regional spd 0.6820/day; label only, not sell-through",0.682000,0.047000,949.05,299.00,150.95,297.15,7,,,3,0,11,183
+244585,Smuggler's Leather Footpads,121392,6,liquid,1,high,"wall/historical 9.72x; market/wall 0.12x; estimated regional spd 0.8280/day; label only, not sell-through",0.828000,0.092000,949.05,1999.97,205.79,238.33,1,,,3,0,11,197
+244586,Smuggler's Leather Wristbands,121393,5,liquid,1,high,"wall/historical 0.39x; market/wall 2.31x; estimated regional spd 0.7560/day; label only, not sell-through",0.756000,0.054000,949.05,60.00,154.58,138.79,1,,,3,0,11,197
+244568,Thalassian Competitor's Chain Cuffs,120771,6,liquid,0,high,"estimated regional spd 0.6820/day; label only, not sell-through",0.682000,0.047000,949.05,299.00,150.95,297.15,7,,,2,0,11,197
+239677,Thalassian Competitor's Cloth Bands,121812,6,liquid,0,high,"estimated regional spd 1.6100/day; label only, not sell-through",1.610000,0.140000,949.05,99.00,124.50,165.91,11,,,2,0,11,197
+244739,Thalassian Competitor's Cloth Cuffs,121812,6,liquid,0,high,"estimated regional spd 1.6100/day; label only, not sell-through",1.610000,0.140000,949.05,99.00,124.50,165.91,11,,,2,0,11,197
+244763,Thalassian Competitor's Cloth Tip-Toes,121814,6,liquid,1,high,"wall/historical 4.59x; market/wall 0.40x; estimated regional spd 1.0300/day; label only, not sell-through",1.030000,0.103000,949.05,913.43,198.99,363.64,1,,,2,0,11,197
+239684,Thalassian Competitor's Cloth Treads,121814,6,liquid,1,high,"wall/historical 4.59x; market/wall 0.40x; estimated regional spd 1.0300/day; label only, not sell-through",1.030000,0.103000,949.05,913.43,198.99,363.64,1,,,2,0,11,197
+244740,Thalassian Competitor's Leather Bands,121393,5,liquid,1,high,"wall/historical 0.39x; market/wall 2.31x; estimated regional spd 0.7560/day; label only, not sell-through",0.756000,0.054000,949.05,60.00,154.58,138.79,1,,,2,0,11,197
+244553,Thalassian Competitor's Leather Boots,121392,6,liquid,1,high,"wall/historical 9.72x; market/wall 0.12x; estimated regional spd 0.8280/day; label only, not sell-through",0.828000,0.092000,949.05,1999.97,205.79,238.33,1,,,2,0,11,197
+244764,Thalassian Competitor's Leather Sliders,121392,6,liquid,1,high,"wall/historical 9.72x; market/wall 0.12x; estimated regional spd 0.8280/day; label only, not sell-through",0.828000,0.092000,949.05,1999.97,205.79,238.33,1,,,2,0,11,197
+244560,Thalassian Competitor's Leather Wristwraps,121393,5,liquid,1,high,"wall/historical 0.39x; market/wall 2.31x; estimated regional spd 0.7560/day; label only, not sell-through",0.756000,0.054000,949.05,60.00,154.58,138.79,1,,,2,0,11,197
+244741,Thalassian Competitor's Mail Links,120771,6,liquid,0,high,"estimated regional spd 0.6820/day; label only, not sell-through",0.682000,0.047000,949.05,299.00,150.95,297.15,7,,,2,0,11,197
+237908,Thalassian Competitor's Plate Armguards,121347,6,liquid,0,high,"estimated regional spd 0.7200/day; label only, not sell-through",0.720000,0.080000,949.05,199.00,295.31,228.72,14,,,2,0,11,197
+244742,Thalassian Competitor's Plate Bindings,121347,6,liquid,0,high,"estimated regional spd 0.7200/day; label only, not sell-through",0.720000,0.080000,949.05,199.00,295.31,228.72,14,,,2,0,11,197
+244766,Thalassian Competitor's Plate Dunkers,121346,6,liquid,0,high,"estimated regional spd 2.6560/day; label only, not sell-through",2.656000,0.113000,949.05,100.00,160.00,96.79,2,,,2,0,11,197
+237902,Thalassian Competitor's Plate Sabatons,121346,6,liquid,0,high,"estimated regional spd 2.6560/day; label only, not sell-through",2.656000,0.113000,949.05,100.00,160.00,96.79,2,,,2,0,11,197
+219863,Hideseeker's Hat,70305,3,liquid,1,high,"wall/historical 2.75x; estimated regional spd 0.1890/day; label only, not sell-through",0.189000,0.021000,949.04,2751.97,999.55,1873.56,3,,,2,0,10,486
+193482,Skinner's Cap,70305,3,liquid,1,high,"wall/historical 2.75x; estimated regional spd 0.1890/day; label only, not sell-through",0.189000,0.021000,949.04,2751.97,999.55,1873.56,3,,,2,0,9,317
+244617,Skinner's Cap,70305,3,liquid,1,high,"wall/historical 2.75x; estimated regional spd 0.1890/day; label only, not sell-through",0.189000,0.021000,949.04,2751.97,999.55,1873.56,3,,,2,0,11,80
+198262,Bottomless Stonecrust Ore Satchel,70464,3,liquid,0,high,"estimated regional spd 0.7800/day; label only, not sell-through",0.780000,0.130000,949.03,1500.00,1890.77,1698.19,1,,,2,0,9,317
+244615,Eversong Botanist's Satchel,78192,3,liquid,1,high,"market/wall 2.39x; estimated regional spd 0.5040/day; label only, not sell-through",0.504000,0.072000,949.03,1111.00,1020.94,2653.94,1,,,2,0,11,80
+244719,Farstrider Rock Satchel,70464,3,liquid,0,high,"estimated regional spd 0.7800/day; label only, not sell-through",0.780000,0.130000,949.03,1500.00,1890.77,1698.19,1,,,2,0,11,486
+193479,Floral Basket,78192,3,liquid,1,high,"market/wall 2.39x; estimated regional spd 0.5040/day; label only, not sell-through",0.504000,0.072000,949.03,1111.00,1020.94,2653.94,1,,,2,0,9,317
+219861,Gardener's Basket,78192,3,liquid,1,high,"market/wall 2.39x; estimated regional spd 0.5040/day; label only, not sell-through",0.504000,0.072000,949.03,1111.00,1020.94,2653.94,1,,,2,0,10,486
+221799,Miner's Bismuth Hoard,70464,3,liquid,0,high,"estimated regional spd 0.7800/day; label only, not sell-through",0.780000,0.130000,949.03,1500.00,1890.77,1698.19,1,,,2,0,10,486
+193487,Alchemist's Hat,78186,3,liquid,1,high,"wall/historical 0.07x; market/wall 4.21x; estimated regional spd 0.3700/day; label only, not sell-through",0.370000,0.037000,948.10,50.00,690.92,210.32,3,,,2,0,9,317
+219866,Apothecary's Cap,78186,3,liquid,1,high,"wall/historical 0.07x; market/wall 4.21x; estimated regional spd 0.3700/day; label only, not sell-through",0.370000,0.037000,948.10,50.00,690.92,210.32,3,,,2,0,10,486
+244620,Chemist's Cap,78186,3,liquid,1,high,"wall/historical 0.07x; market/wall 4.21x; estimated regional spd 0.3700/day; label only, not sell-through",0.370000,0.037000,948.10,50.00,690.92,210.32,3,,,2,0,11,486
+245950,Dark Iron Portable Forge,117252,1,liquid,1,high,"wall/historical 0.15x; estimated regional spd 0.6540/day; label only, not sell-through",0.654000,0.109000,948.10,2500.00,17000.00,2947.94,8,,,3,0,-3,1
+246523,246523,78215,6,liquid,0,high,"estimated regional spd 1.3020/day; label only, not sell-through",1.302000,0.093000,947.88,1209.98,1665.48,1210.34,1,,,,,,
+222849,Artisan Enchanter's Hat,78215,6,liquid,0,high,"estimated regional spd 1.3020/day; label only, not sell-through",1.302000,0.093000,947.88,1209.98,1665.48,1210.34,1,,,3,0,10,535
+239643,Bright Linen Enchanting Hat,78215,6,liquid,0,high,"estimated regional spd 1.3020/day; label only, not sell-through",1.302000,0.093000,947.88,1209.98,1665.48,1210.34,1,,,2,0,11,80
+239637,Elegant Artisan's Enchanting Hat,78215,6,liquid,0,high,"estimated regional spd 1.3020/day; label only, not sell-through",1.302000,0.093000,947.88,1209.98,1665.48,1210.34,1,,,3,0,11,106
+193533,Master's Wildercloth Enchanter's Hat,78215,6,liquid,0,high,"estimated regional spd 1.3020/day; label only, not sell-through",1.302000,0.093000,947.88,1209.98,1665.48,1210.34,1,,,3,0,9,356
+267056,Thalassian Enchanter's Bonnet,78215,6,liquid,0,high,"estimated regional spd 1.3020/day; label only, not sell-through",1.302000,0.093000,947.88,1209.98,1665.48,1210.34,1,,,4,2,11,132
+224082,224082,70355,4,liquid,1,high,"wall/historical 4.61x; estimated regional spd 0.2420/day; label only, not sell-through",0.242000,0.022000,943.34,999.00,216.67,709.55,1,,,,,,
+244629,Apprentice Jeweler's Apron,70355,4,liquid,1,high,"wall/historical 4.61x; estimated regional spd 0.2420/day; label only, not sell-through",0.242000,0.022000,943.34,999.00,216.67,709.55,1,,,2,0,11,80
+219875,Gemcutter's Apron,70355,4,liquid,1,high,"wall/historical 4.61x; estimated regional spd 0.2420/day; label only, not sell-through",0.242000,0.022000,943.34,999.00,216.67,709.55,1,,,2,0,10,486
+193615,Jeweler's Cover,70355,4,liquid,1,high,"wall/historical 4.61x; estimated regional spd 0.2420/day; label only, not sell-through",0.242000,0.022000,943.34,999.00,216.67,709.55,1,,,2,0,9,317
+193485,Protective Gloves,78190,3,liquid,1,high,"wall/historical 0.45x; market/wall 2.27x; estimated regional spd 0.1300/day; label only, not sell-through",0.130000,0.010000,943.23,50.00,111.79,113.59,1,,,2,0,9,317
+219864,Scrapsmith's Gloves,78190,3,liquid,1,high,"wall/historical 0.45x; market/wall 2.27x; estimated regional spd 0.1300/day; label only, not sell-through",0.130000,0.010000,943.23,50.00,111.79,113.59,1,,,2,0,10,486
+244618,Tinker's Handguard,78190,3,liquid,1,high,"wall/historical 0.45x; market/wall 2.27x; estimated regional spd 0.1300/day; label only, not sell-through",0.130000,0.010000,943.23,50.00,111.79,113.59,1,,,2,0,11,80
+58846,58846,13922,2,liquid,0,high,"estimated regional spd 0.1040/day; label only, not sell-through",0.104000,0.052000,931.59,1923.36,1700.00,2208.42,1,,,,,,
+271033,Skull-Bearer's Ritual Stave,13922,2,liquid,0,high,"estimated regional spd 0.1040/day; label only, not sell-through",0.104000,0.052000,931.59,1923.36,1700.00,2208.42,1,,,3,2,-3,1
+262501,262501,122216,3,liquid,1,high,"wall/historical 0.03x; market/wall 2.77x; estimated regional spd 0.1380/day; label only, not sell-through",0.138000,0.046000,926.24,699.00,20314.90,1936.74,3,,,,,,
+265869,265869,122216,3,liquid,1,high,"wall/historical 0.03x; market/wall 2.77x; estimated regional spd 0.1380/day; label only, not sell-through",0.138000,0.046000,926.24,699.00,20314.90,1936.74,3,,,,,,
+271037,Battle Shaman's Ritual Staff,122216,3,liquid,1,high,"wall/historical 0.03x; market/wall 2.77x; estimated regional spd 0.1380/day; label only, not sell-through",0.138000,0.046000,926.24,699.00,20314.90,1936.74,3,,,3,2,-3,1
+256343,256343,122364,2,liquid,1,high,"wall/historical 0.35x; estimated regional spd 3.6670/day; label only, not sell-through",3.667000,0.193000,902.87,175.01,500.00,212.08,1,,,,,,
+258961,Tarnished Dawnlit Defender,122364,2,liquid,1,high,"wall/historical 0.35x; estimated regional spd 3.6670/day; label only, not sell-through",3.667000,0.193000,902.87,175.01,500.00,212.08,1,,,2,0,11,197
+257137,257137,122373,3,liquid,0,high,"estimated regional spd 3.5420/day; label only, not sell-through",3.542000,0.161000,902.50,444.01,300.00,859.48,2,,,,,,
+258956,Tarnished Dawnlit Scepter,122373,3,liquid,0,high,"estimated regional spd 3.5420/day; label only, not sell-through",3.542000,0.161000,902.50,444.01,300.00,859.48,2,,,2,0,11,197
+258957,Tarnished Dawnlit Staff,122373,3,liquid,0,high,"estimated regional spd 3.5420/day; label only, not sell-through",3.542000,0.161000,902.50,444.01,300.00,859.48,2,,,2,0,11,197
+274815,Envenomed Pages,69889,1,liquid,0,medium,"estimated regional spd 0.2010/day; label only, not sell-through",0.201000,0.067000,900.00,,6000.41,3236.03,0,,,3,2,11,1
+240493,240493,115433,3,liquid,0,medium,"estimated regional spd 0.1290/day; label only, not sell-through",0.129000,0.043000,876.76,,5099.22,,0,,,,,,
+274882,Hal'hadar Pulse Rifle,115433,3,liquid,0,medium,"estimated regional spd 0.1290/day; label only, not sell-through",0.129000,0.043000,876.76,,5099.22,,0,,,3,2,11,1
+275223,Phasebolt Thrower,115433,3,liquid,0,medium,"estimated regional spd 0.1290/day; label only, not sell-through",0.129000,0.043000,876.76,,5099.22,,0,,,4,2,11,197
+31348,31348,8180,3,liquid,0,high,"estimated regional spd 0.2190/day; label only, not sell-through",0.219000,0.073000,855.00,2266.50,2265.32,2041.28,1,,,,,,
+34273,34273,8180,3,liquid,0,high,"estimated regional spd 0.2190/day; label only, not sell-through",0.219000,0.073000,855.00,2266.50,2265.32,2041.28,1,,,,,,
+258868,Brittle Legguards,121336,2,liquid,1,high,"wall/historical 0.15x; market/wall 3.98x; estimated regional spd 4.1070/day; label only, not sell-through",4.107000,0.222000,855.00,105.00,710.00,417.45,1,,,0,0,11,78
+271003,Sunfury Phoenix Bow,8180,3,liquid,0,high,"estimated regional spd 0.2190/day; label only, not sell-through",0.219000,0.073000,855.00,2266.50,2265.32,2041.28,1,,,3,2,-3,1
+258940,Tarnished Dawnlit Commander's Greaves,121336,2,liquid,1,high,"wall/historical 0.15x; market/wall 3.98x; estimated regional spd 4.1070/day; label only, not sell-through",4.107000,0.222000,855.00,105.00,710.00,417.45,1,,,2,0,11,197
+258871,Brittle Armplates,121338,2,liquid,1,high,"wall/historical 0.35x; market/wall 2.14x; estimated regional spd 4.3680/day; label only, not sell-through",4.368000,0.182000,854.05,120.01,340.60,257.10,1,,,0,0,11,78
+258943,Tarnished Dawnlit Commander's Armplates,121338,2,liquid,1,high,"wall/historical 0.35x; market/wall 2.14x; estimated regional spd 4.3680/day; label only, not sell-through",4.368000,0.182000,854.05,120.01,340.60,257.10,1,,,2,0,11,197
+219871,Arathi Leatherworker's Smock,78188,4,liquid,0,high,"estimated regional spd 0.3220/day; label only, not sell-through",0.322000,0.023000,852.16,979.58,1100.04,984.29,1,,,3,0,10,535
+193492,Masterwork Smock,78188,4,liquid,0,high,"estimated regional spd 0.3220/day; label only, not sell-through",0.322000,0.023000,852.16,979.58,1100.04,984.29,1,,,3,0,9,356
+244625,Sin'dorei Leathershaper's Smock,78188,4,liquid,0,high,"estimated regional spd 0.3220/day; label only, not sell-through",0.322000,0.023000,852.16,979.58,1100.04,984.29,1,,,3,0,11,106
+244811,Thalassian Hideshaper's Regalia,78188,4,liquid,0,high,"estimated regional spd 0.3220/day; label only, not sell-through",0.322000,0.023000,852.16,979.58,1100.04,984.29,1,,,4,0,11,132
+219868,Deep Tracker's Pack,70304,4,liquid,0,high,"estimated regional spd 0.4810/day; label only, not sell-through",0.481000,0.037000,847.30,820.42,1111.28,859.63,1,,,3,0,10,535
+193489,Reinforced Pack,70304,4,liquid,0,high,"estimated regional spd 0.4810/day; label only, not sell-through",0.481000,0.037000,847.30,820.42,1111.28,859.63,1,,,3,0,9,356
+244622,Sin'dorei Hunter's Pack,70304,4,liquid,0,high,"estimated regional spd 0.4810/day; label only, not sell-through",0.481000,0.037000,847.30,820.42,1111.28,859.63,1,,,3,0,11,106
+244808,Thalassian Wildseeker's Workbag,70304,4,liquid,0,high,"estimated regional spd 0.4810/day; label only, not sell-through",0.481000,0.037000,847.30,820.42,1111.28,859.63,1,,,4,0,11,132
+219869,Deep Tracker's Cap,74722,4,liquid,0,high,"estimated regional spd 0.4900/day; label only, not sell-through",0.490000,0.035000,835.98,795.89,1329.17,810.15,1,,,3,0,10,535
+244623,Eversong Hunter's Headcover,74722,4,liquid,0,high,"estimated regional spd 0.4900/day; label only, not sell-through",0.490000,0.035000,835.98,795.89,1329.17,810.15,1,,,3,0,11,106
+193490,Expert Skinner's Cap,74722,4,liquid,0,high,"estimated regional spd 0.4900/day; label only, not sell-through",0.490000,0.035000,835.98,795.89,1329.17,810.15,1,,,3,0,9,356
+244809,Thalassian Wildseeker's Stridercap,74722,4,liquid,0,high,"estimated regional spd 0.4900/day; label only, not sell-through",0.490000,0.035000,835.98,795.89,1329.17,810.15,1,,,4,0,11,132
+53852,Embroidered Shirt,13006,2,liquid,1,high,"wall/historical 21.04x; market/wall 0.30x; estimated regional spd 0.1040/day; label only, not sell-through",0.104000,0.026000,817.86,198.01,9.41,59.04,4,,,2,0,0,1
+167192,Embroidered Shirt,13006,2,liquid,1,high,"wall/historical 21.04x; market/wall 0.30x; estimated regional spd 0.1040/day; label only, not sell-through",0.104000,0.026000,817.86,198.01,9.41,59.04,4,,,2,0,-3,1
+271044,Deeplurk Shock Wand,83855,1,liquid,1,high,"wall/historical 0.39x; market/wall 2.63x; estimated regional spd 0.1020/day; label only, not sell-through",0.102000,0.034000,796.62,699.00,1794.11,1841.15,4,,,3,2,-3,1
+256344,256344,122365,3,liquid,0,high,"estimated regional spd 0.2310/day; label only, not sell-through",0.231000,0.033000,777.01,199.00,299.00,296.31,7,,,,,,
+237920,Blood-Tempered Bulwark,122365,3,liquid,0,high,"estimated regional spd 0.2310/day; label only, not sell-through",0.231000,0.033000,777.01,199.00,299.00,296.31,7,,,3,0,11,197
+237912,Thalassian Competitor's Bulwark,122365,3,liquid,0,high,"estimated regional spd 0.2310/day; label only, not sell-through",0.231000,0.033000,777.01,199.00,299.00,296.31,7,,,2,0,11,197
+254202,254202,121779,2,liquid,1,high,"wall/historical 0.12x; market/wall 2.73x; estimated regional spd 0.1140/day; label only, not sell-through",0.114000,0.019000,760.00,499.00,3998.87,1361.60,5,,,,,,
+237915,Thalassian Competitor's Greatsword,121779,2,liquid,1,high,"wall/historical 0.12x; market/wall 2.73x; estimated regional spd 0.1140/day; label only, not sell-through",0.114000,0.019000,760.00,499.00,3998.87,1361.60,5,,,2,0,11,197
+258867,Brittle Faceguard,121332,2,liquid,1,high,"wall/historical 2.06x; estimated regional spd 3.9560/day; label only, not sell-through",3.956000,0.172000,752.60,499.90,242.91,335.86,1,,,0,0,11,78
+258939,Tarnished Dawnlit Commander's Helmet,121332,2,liquid,1,high,"wall/historical 2.06x; estimated regional spd 3.9560/day; label only, not sell-through",3.956000,0.172000,752.60,499.90,242.91,335.86,1,,,2,0,11,197
+221696,221696,70360,4,liquid,1,high,"wall/historical 0.28x; market/wall 2.06x; estimated regional spd 0.3900/day; label only, not sell-through",0.390000,0.039000,747.96,499.24,1791.02,1030.60,1,,,,,,
+239642,Chef's Bright Linen Cooking Chapeau,70360,4,liquid,1,high,"wall/historical 0.28x; market/wall 2.06x; estimated regional spd 0.3900/day; label only, not sell-through",0.390000,0.039000,747.96,499.24,1791.02,1030.60,1,,,2,0,11,80
+222846,Weavercloth Chef's Hat,70360,4,liquid,1,high,"wall/historical 0.28x; market/wall 2.06x; estimated regional spd 0.3900/day; label only, not sell-through",0.390000,0.039000,747.96,499.24,1791.02,1030.60,1,,,2,0,10,486
+193534,Wildercloth Chef's Hat,70360,4,liquid,1,high,"wall/historical 0.28x; market/wall 2.06x; estimated regional spd 0.3900/day; label only, not sell-through",0.390000,0.039000,747.96,499.24,1791.02,1030.60,1,,,2,0,9,317
+254164,254164,121761,3,liquid,0,high,"estimated regional spd 0.1450/day; label only, not sell-through",0.145000,0.017000,738.73,500.00,397.00,632.65,7,,,,,,
+237927,Dawnforged Edge,121761,3,liquid,0,high,"estimated regional spd 0.1450/day; label only, not sell-through",0.145000,0.017000,738.73,500.00,397.00,632.65,7,,,3,0,11,197
+237910,Thalassian Competitor's Knife,121761,3,liquid,0,high,"estimated regional spd 0.1450/day; label only, not sell-through",0.145000,0.017000,738.73,500.00,397.00,632.65,7,,,2,0,11,197
+258865,Brittle Breastplate,121334,2,liquid,1,high,"wall/historical 0.05x; market/wall 29.84x; estimated regional spd 3.8540/day; label only, not sell-through",3.854000,0.164000,737.20,19.69,399.72,587.48,1,,,0,0,11,78
+258936,Tarnished Dawnlit Commander's Breastplate,121334,2,liquid,1,high,"wall/historical 0.05x; market/wall 29.84x; estimated regional spd 3.8540/day; label only, not sell-through",3.854000,0.164000,737.20,19.69,399.72,587.48,1,,,2,0,11,197
+270991,Sunfury Great Bulwark,84045,1,liquid,0,high,"estimated regional spd 0.1620/day; label only, not sell-through",0.162000,0.081000,732.50,1499.98,2210.20,1976.47,4,,,3,2,-3,1
+258866,Brittle Gauntlets,121339,2,liquid,0,high,"estimated regional spd 4.2020/day; label only, not sell-through",4.202000,0.191000,723.88,300.71,375.74,335.41,2,,,0,0,11,78
+258938,Tarnished Dawnlit Commander's Gauntlets,121339,2,liquid,0,high,"estimated regional spd 4.2020/day; label only, not sell-through",4.202000,0.191000,723.88,300.71,375.74,335.41,2,,,2,0,11,197
+271012,Forest Tiki Twinblade,84265,1,liquid,0,high,"estimated regional spd 0.1410/day; label only, not sell-through",0.141000,0.047000,712.98,1649.59,1879.02,1650.86,5,,,3,2,-3,1
+244753,Evercore Reconnaissance,3282,5,liquid,0,high,"estimated regional spd 1.8420/day; label only, not sell-through",1.842000,0.127000,702.65,85.00,100.00,168.42,1,,,3,0,11,197
+244752,Evercore Shade,3282,5,liquid,0,high,"estimated regional spd 1.8420/day; label only, not sell-through",1.842000,0.127000,702.65,85.00,100.00,168.42,1,,,3,0,11,197
+244754,Evercore Vision Guard,3282,5,liquid,0,high,"estimated regional spd 1.8420/day; label only, not sell-through",1.842000,0.127000,702.65,85.00,100.00,168.42,1,,,3,0,11,197
+244751,Evercore Zoomshroud,3282,5,liquid,0,high,"estimated regional spd 1.8420/day; label only, not sell-through",1.842000,0.127000,702.65,85.00,100.00,168.42,1,,,3,0,11,197
+10500,Fire Goggles,3282,5,liquid,0,high,"estimated regional spd 1.8420/day; label only, not sell-through",1.842000,0.127000,702.65,85.00,100.00,168.42,1,,,2,0,0,22
+258874,Frayed Shoulderpads,121379,2,liquid,0,high,"estimated regional spd 3.3990/day; label only, not sell-through",3.399000,0.206000,684.00,349.95,350.00,384.07,1,,,0,0,11,78
+258925,Tarnished Dawnlit Corsair's Spaulders,121379,2,liquid,0,high,"estimated regional spd 3.3990/day; label only, not sell-through",3.399000,0.206000,684.00,349.95,350.00,384.07,1,,,2,0,11,197
+258915,Tarnished Dawnlit Spellbinder's Crown,121799,2,liquid,0,high,"estimated regional spd 4.1170/day; label only, not sell-through",4.117000,0.179000,683.99,350.91,347.04,531.63,1,,,2,0,11,197
+258858,Threadbare Crown,121799,2,liquid,0,high,"estimated regional spd 4.1170/day; label only, not sell-through",4.117000,0.179000,683.99,350.91,347.04,531.63,1,,,0,0,11,78
+258916,Tarnished Dawnlit Spellbinder's Trousers,121801,2,liquid,0,high,"estimated regional spd 3.9060/day; label only, not sell-through",3.906000,0.186000,669.96,150.94,249.94,192.42,1,,,2,0,11,197
+258860,Threadbare Leggings,121801,2,liquid,0,high,"estimated regional spd 3.9060/day; label only, not sell-through",3.906000,0.186000,669.96,150.94,249.94,192.42,1,,,0,0,11,78
+258869,Brittle Pauldrons,121333,2,liquid,0,high,"estimated regional spd 4.7040/day; label only, not sell-through",4.704000,0.196000,665.00,133.70,170.95,135.88,1,,,0,0,11,78
+258941,Tarnished Dawnlit Commander's Mantle,121333,2,liquid,0,high,"estimated regional spd 4.7040/day; label only, not sell-through",4.704000,0.196000,665.00,133.70,170.95,135.88,1,,,2,0,11,197
+193493,Expert Alchemist's Hat,78187,4,liquid,1,high,"wall/historical 0.15x; market/wall 2.46x; estimated regional spd 1.3440/day; label only, not sell-through",1.344000,0.096000,663.92,150.00,1000.09,368.79,14,,,3,0,9,356
+219872,Nerubian Alchemist's Hat,78187,4,liquid,1,high,"wall/historical 0.15x; market/wall 2.46x; estimated regional spd 1.3440/day; label only, not sell-through",1.344000,0.096000,663.92,150.00,1000.09,368.79,14,,,3,0,10,535
+244626,Sin'dorei Alchemist's Hat,78187,4,liquid,1,high,"wall/historical 0.15x; market/wall 2.46x; estimated regional spd 1.3440/day; label only, not sell-through",1.344000,0.096000,663.92,150.00,1000.09,368.79,14,,,3,0,11,535
+244812,Thalassian Alchemist's Mixcap,78187,4,liquid,1,high,"wall/historical 0.15x; market/wall 2.46x; estimated regional spd 1.3440/day; label only, not sell-through",1.344000,0.096000,663.92,150.00,1000.09,368.79,14,,,4,0,11,136
+258864,Brittle Waistguard,121335,2,liquid,1,high,"wall/historical 0.31x; market/wall 6.38x; estimated regional spd 4.1360/day; label only, not sell-through",4.136000,0.176000,662.17,92.00,300.00,586.65,1,,,0,0,11,78
+258942,Tarnished Dawnlit Commander's Greatbelt,121335,2,liquid,1,high,"wall/historical 0.31x; market/wall 6.38x; estimated regional spd 4.1360/day; label only, not sell-through",4.136000,0.176000,662.17,92.00,300.00,586.65,1,,,2,0,11,197
+258872,Frayed Wristwraps,121384,2,liquid,1,high,"wall/historical 0.14x; market/wall 7.83x; estimated regional spd 4.0040/day; label only, not sell-through",4.004000,0.182000,656.88,99.00,731.42,774.71,1,,,0,0,11,78
+258927,Tarnished Dawnlit Corsair's Bracers,121384,2,liquid,1,high,"wall/historical 0.14x; market/wall 7.83x; estimated regional spd 4.0040/day; label only, not sell-through",4.004000,0.182000,656.88,99.00,731.42,774.71,1,,,2,0,11,197
+76396,76396,16931,2,liquid,1,high,"wall/historical 3.50x; market/wall 0.24x; estimated regional spd 0.1290/day; label only, not sell-through",0.129000,0.043000,650.00,4273.44,1222.51,1042.38,4,,,,,,
+271017,Twilight Slug Belcher,16931,2,liquid,1,high,"wall/historical 3.50x; market/wall 0.24x; estimated regional spd 0.1290/day; label only, not sell-through",0.129000,0.043000,650.00,4273.44,1222.51,1042.38,4,,,3,2,-3,1
+258873,Frayed Tunic,121380,2,liquid,1,high,"market/wall 2.42x; estimated regional spd 3.7720/day; label only, not sell-through",3.772000,0.184000,632.70,150.95,149.00,365.92,1,,,0,0,11,78
+258920,Tarnished Dawnlit Corsair's Tunic,121380,2,liquid,1,high,"market/wall 2.42x; estimated regional spd 3.7720/day; label only, not sell-through",3.772000,0.184000,632.70,150.95,149.00,365.92,1,,,2,0,11,197
+244627,Apprentice Smith's Apron,70479,3,liquid,1,high,"wall/historical 60.13x; market/wall 0.18x; estimated regional spd 0.4050/day; label only, not sell-through",0.405000,0.030000,628.56,3006.65,50.00,535.92,1,,,2,0,11,80
+193612,Smithing Apron,70479,3,liquid,1,high,"wall/historical 60.13x; market/wall 0.18x; estimated regional spd 0.4050/day; label only, not sell-through",0.405000,0.030000,628.56,3006.65,50.00,535.92,1,,,2,0,9,317
+219873,Steelsmith's Apron,70479,3,liquid,1,high,"wall/historical 60.13x; market/wall 0.18x; estimated regional spd 0.4050/day; label only, not sell-through",0.405000,0.030000,628.56,3006.65,50.00,535.92,1,,,2,0,10,486
+23499,Fel Iron Greatsword,6213,1,liquid,0,high,"estimated regional spd 0.1080/day; label only, not sell-through",0.108000,0.018000,619.14,1538.48,1999.00,1906.86,6,,,2,0,1,31
+258875,Frayed Britches,121382,2,liquid,0,high,"estimated regional spd 4.1150/day; label only, not sell-through",4.115000,0.211000,613.08,371.30,371.30,471.89,1,,,0,0,11,78
+258924,Tarnished Dawnlit Corsair's Breeches,121382,2,liquid,0,high,"estimated regional spd 4.1150/day; label only, not sell-through",4.115000,0.211000,613.08,371.30,371.30,471.89,1,,,2,0,11,197
+244714,Sin'dorei Clampers,122749,1,liquid,1,high,"wall/historical 0.19x; estimated regional spd 1.3370/day; label only, not sell-through",1.337000,0.099000,593.20,500.00,2693.13,824.72,14,,,3,0,11,106
+258876,Frayed Guise,121378,2,liquid,0,high,"estimated regional spd 3.3930/day; label only, not sell-through",3.393000,0.174000,577.82,555.00,333.91,1023.12,1,,,0,0,11,78
+258923,Tarnished Dawnlit Corsair's Hood,121378,2,liquid,0,high,"estimated regional spd 3.3930/day; label only, not sell-through",3.393000,0.174000,577.82,555.00,333.91,1023.12,1,,,2,0,11,197
+258870,Brittle Warboots,121337,2,liquid,0,high,"estimated regional spd 3.9360/day; label only, not sell-through",3.936000,0.164000,570.94,300.23,411.38,512.92,1,,,0,0,11,78
+258937,Tarnished Dawnlit Commander's Warboots,121337,2,liquid,0,high,"estimated regional spd 3.9360/day; label only, not sell-through",3.936000,0.164000,570.94,300.23,411.38,512.92,1,,,2,0,11,197
+258851,Stained Hauberk,120758,2,liquid,0,high,"estimated regional spd 3.4580/day; label only, not sell-through",3.458000,0.133000,570.21,349.30,299.99,354.86,3,,,0,0,11,78
+258928,Tarnished Dawnlit Sentinel's Hauberk,120758,2,liquid,0,high,"estimated regional spd 3.4580/day; label only, not sell-through",3.458000,0.133000,570.21,349.30,299.99,354.86,3,,,2,0,11,197
+258878,Frayed Boots,121383,2,liquid,1,high,"wall/historical 0.35x; market/wall 2.16x; estimated regional spd 4.2090/day; label only, not sell-through",4.209000,0.183000,570.08,292.65,840.00,633.36,1,99.737354,8,0,0,11,78
+258921,Tarnished Dawnlit Corsair's Boots,121383,2,liquid,1,high,"wall/historical 0.35x; market/wall 2.16x; estimated regional spd 4.2090/day; label only, not sell-through",4.209000,0.183000,570.08,292.65,840.00,633.36,1,99.737354,8,2,0,11,197
+258877,Frayed Handwraps,121385,2,liquid,0,high,"estimated regional spd 3.9820/day; label only, not sell-through",3.982000,0.181000,570.00,400.01,250.99,616.47,3,,,0,0,11,78
+69865,Gem Studded Bracelets,15525,1,liquid,0,medium,"estimated regional spd 1.7910/day; label only, not sell-through",1.791000,0.199000,570.00,,850.10,,,,,1,0,0,1
+258922,Tarnished Dawnlit Corsair's Gloves,121385,2,liquid,0,high,"estimated regional spd 3.9820/day; label only, not sell-through",3.982000,0.181000,570.00,400.01,250.99,616.47,3,,,2,0,11,197
+271025,Twilight Guardian's Maul,99187,1,liquid,0,high,"estimated regional spd 0.1250/day; label only, not sell-through",0.125000,0.050000,569.83,1091.01,1250.00,1239.25,2,,,3,2,-3,1
+193480,Durable Pack,74723,3,liquid,0,high,"estimated regional spd 0.2600/day; label only, not sell-through",0.260000,0.026000,560.50,200.29,350.00,382.65,1,,,2,0,9,317
+219862,Hideseeker's Pack,74723,3,liquid,0,high,"estimated regional spd 0.2600/day; label only, not sell-through",0.260000,0.026000,560.50,200.29,350.00,382.65,1,,,2,0,10,486
+244616,Skinner's Backpack,74723,3,liquid,0,high,"estimated regional spd 0.2600/day; label only, not sell-through",0.260000,0.026000,560.50,200.29,350.00,382.65,1,,,2,0,11,106
+271021,Loa Battle Font,84255,1,liquid,0,high,"estimated regional spd 0.1290/day; label only, not sell-through",0.129000,0.043000,555.25,1124.59,1800.79,1323.03,7,,,3,2,-3,1
+258854,Stained Pauldrons,120757,2,liquid,1,high,"wall/historical 4.60x; estimated regional spd 3.4070/day; label only, not sell-through",3.407000,0.145000,553.94,999.00,217.16,603.76,1,,,0,0,11,78
+258933,Tarnished Dawnlit Sentinel's Epaulets,120757,2,liquid,1,high,"wall/historical 4.60x; estimated regional spd 3.4070/day; label only, not sell-through",3.407000,0.145000,553.94,999.00,217.16,603.76,1,,,2,0,11,197
+244712,Sin'dorei Angler's Rod,127464,1,liquid,1,high,"wall/historical 4.45x; market/wall 0.14x; estimated regional spd 1.4980/day; label only, not sell-through",1.498000,0.107000,552.00,3456.16,776.80,488.05,1,,,3,0,11,535
+258914,Tarnished Dawnlit Spellbinder's Mitts,121804,2,liquid,0,high,"estimated regional spd 3.9330/day; label only, not sell-through",3.933000,0.171000,550.02,65.70,125.00,81.81,1,,,2,0,11,197
+258859,Threadbare Mitts,121804,2,liquid,0,high,"estimated regional spd 3.9330/day; label only, not sell-through",3.933000,0.171000,550.02,65.70,125.00,81.81,1,,,0,0,11,78
+258917,Tarnished Dawnlit Spellbinder's Pads,121800,2,liquid,1,high,"wall/historical 2.56x; estimated regional spd 3.6900/day; label only, not sell-through",3.690000,0.164000,539.95,550.97,215.30,589.88,2,,,2,0,11,197
+258856,Threadbare Mantle,121800,2,liquid,1,high,"wall/historical 2.56x; estimated regional spd 3.6900/day; label only, not sell-through",3.690000,0.164000,539.95,550.97,215.30,589.88,2,,,0,0,11,78
+272144,Onyx Bloodknight Bladestaff,130249,1,liquid,1,high,"wall/historical 0.42x; estimated regional spd 0.1060/day; label only, not sell-through",0.106000,0.053000,534.47,900.00,2160.99,1440.84,7,,,3,2,-3,1
+254200,254200,121778,3,liquid,0,high,"estimated regional spd 2.5200/day; label only, not sell-through",2.520000,0.120000,513.94,99.63,140.81,133.97,1,,,,,,
+258959,Tarnished Dawnlit Blade,121778,3,liquid,0,high,"estimated regional spd 2.5200/day; label only, not sell-through",2.520000,0.120000,513.94,99.63,140.81,133.97,1,,,2,0,11,197
+258958,Tarnished Dawnlit Greatsword,121778,3,liquid,0,high,"estimated regional spd 2.5200/day; label only, not sell-through",2.520000,0.120000,513.94,99.63,140.81,133.97,1,,,2,0,11,197
+258912,Tarnished Dawnlit Spellbinder's Robe,121798,2,liquid,0,high,"estimated regional spd 3.7130/day; label only, not sell-through",3.713000,0.165000,500.91,150.44,145.57,266.98,1,,,2,0,11,197
+258862,Threadbare Vestments,121798,2,liquid,0,high,"estimated regional spd 3.7130/day; label only, not sell-through",3.713000,0.165000,500.91,150.44,145.57,266.98,1,,,0,0,11,78
+245777,Hobbyist Alchemist's Mixing Rod,130110,1,liquid,0,high,"estimated regional spd 0.3360/day; label only, not sell-through",0.336000,0.048000,500.00,3992.23,3704.11,4112.02,1,,,2,0,11,80
+270993,Twilight Blade Barrier,99199,1,liquid,1,high,"wall/historical 0.26x; market/wall 3.52x; estimated regional spd 0.1040/day; label only, not sell-through",0.104000,0.052000,500.00,699.00,2664.64,2461.95,6,,,3,2,-3,1
+271031,Onyx Bloodknight Stave,84029,1,liquid,1,high,"wall/historical 0.37x; market/wall 2.05x; estimated regional spd 0.1410/day; label only, not sell-through",0.141000,0.047000,499.99,941.07,2555.82,1926.52,6,,,3,2,-3,1
+258850,Stained Fistguards,120763,2,liquid,0,high,"estimated regional spd 3.6960/day; label only, not sell-through",3.696000,0.154000,490.50,138.63,175.72,148.68,5,,,0,0,11,78
+258930,Tarnished Dawnlit Sentinel's Handguards,120763,2,liquid,0,high,"estimated regional spd 3.6960/day; label only, not sell-through",3.696000,0.154000,490.50,138.63,175.72,148.68,5,,,2,0,11,197
+258852,Stained Greaves,120760,2,liquid,0,high,"estimated regional spd 3.4270/day; label only, not sell-through",3.427000,0.149000,479.79,499.89,388.25,819.60,1,,,0,0,11,78
+258932,Tarnished Dawnlit Sentinel's Chausses,120760,2,liquid,0,high,"estimated regional spd 3.4270/day; label only, not sell-through",3.427000,0.149000,479.79,499.89,388.25,819.60,1,,,2,0,11,197
+258879,Frayed Strap,121381,2,liquid,0,high,"estimated regional spd 3.9590/day; label only, not sell-through",3.959000,0.203000,475.98,599.97,612.00,777.10,1,,,0,0,11,78
+258926,Tarnished Dawnlit Corsair's Belt,121381,2,liquid,0,high,"estimated regional spd 3.9590/day; label only, not sell-through",3.959000,0.203000,475.98,599.97,612.00,777.10,1,,,2,0,11,197
+258918,Tarnished Dawnlit Spellbinder's Sash,121802,2,liquid,1,high,"wall/historical 0.48x; estimated regional spd 4.5090/day; label only, not sell-through",4.509000,0.167000,475.92,170.85,355.44,289.53,3,,,2,0,11,197
+258857,Threadbare Sash,121802,2,liquid,1,high,"wall/historical 0.48x; estimated regional spd 4.5090/day; label only, not sell-through",4.509000,0.167000,475.92,170.85,355.44,289.53,3,,,0,0,11,78
+258913,Tarnished Dawnlit Spellbinder's Slippers,121805,2,liquid,1,high,"wall/historical 2.96x; estimated regional spd 3.8880/day; label only, not sell-through",3.888000,0.162000,475.10,900.01,304.53,784.33,6,,,2,0,11,197
+258861,Threadbare Slippers,121805,2,liquid,1,high,"wall/historical 2.96x; estimated regional spd 3.8880/day; label only, not sell-through",3.888000,0.162000,475.10,900.01,304.53,784.33,6,,,0,0,11,78
+221694,221694,78213,5,liquid,1,high,"market/wall 3.87x; estimated regional spd 0.1980/day; label only, not sell-through",0.198000,0.018000,475.00,500.01,400.00,1935.19,1,,,,,,
+222852,Artisan Tailor's Coat,78213,5,liquid,1,high,"market/wall 3.87x; estimated regional spd 0.1980/day; label only, not sell-through",0.198000,0.018000,475.00,500.01,400.00,1935.19,1,,,3,0,10,535
+239646,Bright Linen Tailoring Robe,78213,5,liquid,1,high,"market/wall 3.87x; estimated regional spd 0.1980/day; label only, not sell-through",0.198000,0.018000,475.00,500.01,400.00,1935.19,1,,,2,0,11,80
+222844,Weavercloth Tailor's Coat,78213,5,liquid,1,high,"market/wall 3.87x; estimated regional spd 0.1980/day; label only, not sell-through",0.198000,0.018000,475.00,500.01,400.00,1935.19,1,,,2,0,10,486
+193541,Wildercloth Tailor's Coat,78213,5,liquid,1,high,"market/wall 3.87x; estimated regional spd 0.1980/day; label only, not sell-through",0.198000,0.018000,475.00,500.01,400.00,1935.19,1,,,2,0,9,317
+258848,Stained Girdle,120759,2,liquid,1,high,"wall/historical 0.36x; market/wall 2.62x; estimated regional spd 2.9890/day; label only, not sell-through",2.989000,0.139000,474.96,50.00,138.18,131.11,1,98.222767,8,0,0,11,78
+258934,Tarnished Dawnlit Sentinel's Girdle,120759,2,liquid,1,high,"wall/historical 0.36x; market/wall 2.62x; estimated regional spd 2.9890/day; label only, not sell-through",2.989000,0.139000,474.96,50.00,138.18,131.11,1,98.222767,8,2,0,11,197
+254211,254211,121774,3,liquid,0,high,"estimated regional spd 0.1530/day; label only, not sell-through",0.153000,0.017000,474.05,199.00,396.00,316.71,4,,,,,,
+237928,Dawnforged Long Blade,121774,3,liquid,0,high,"estimated regional spd 0.1530/day; label only, not sell-through",0.153000,0.017000,474.05,199.00,396.00,316.71,4,,,3,0,11,197
+258855,Stained Armguards,120762,2,liquid,1,high,"market/wall 3.81x; estimated regional spd 4.1310/day; label only, not sell-through",4.131000,0.153000,474.05,199.00,212.66,758.22,1,,,0,0,11,78
+258849,Stained Headguard,120756,2,liquid,1,high,"market/wall 5.86x; estimated regional spd 3.5200/day; label only, not sell-through",3.520000,0.128000,474.05,93.20,171.15,546.13,1,,,0,0,11,78
+258935,Tarnished Dawnlit Sentinel's Armguards,120762,2,liquid,1,high,"market/wall 3.81x; estimated regional spd 4.1310/day; label only, not sell-through",4.131000,0.153000,474.05,199.00,212.66,758.22,1,,,2,0,11,197
+258931,Tarnished Dawnlit Sentinel's Cover,120756,2,liquid,1,high,"market/wall 5.86x; estimated regional spd 3.5200/day; label only, not sell-through",3.520000,0.128000,474.05,93.20,171.15,546.13,1,,,2,0,11,197
+237916,Thalassian Competitor's Sword,121774,3,liquid,0,high,"estimated regional spd 0.1530/day; label only, not sell-through",0.153000,0.017000,474.05,199.00,396.00,316.71,4,,,2,0,11,197
+254179,254179,121794,3,liquid,0,high,"estimated regional spd 0.1530/day; label only, not sell-through",0.153000,0.017000,474.04,198.00,278.30,197.67,1,,,,,,
+237926,Dawnforged Ritual Knife,121794,3,liquid,0,high,"estimated regional spd 0.1530/day; label only, not sell-through",0.153000,0.017000,474.04,198.00,278.30,197.67,1,,,3,0,11,197
+237914,Thalassian Competitor's Skewer,121794,3,liquid,0,high,"estimated regional spd 0.1530/day; label only, not sell-through",0.153000,0.017000,474.04,198.00,278.30,197.67,1,,,2,0,11,197
+270997,Blood Oath Tome,84020,1,liquid,0,high,"estimated regional spd 0.1350/day; label only, not sell-through",0.135000,0.045000,469.97,800.00,1200.00,841.90,0,,,3,2,-3,1
+254156,254156,121470,3,liquid,1,high,"wall/historical 6.40x; market/wall 0.03x; estimated regional spd 0.6600/day; label only, not sell-through",0.660000,0.088000,465.50,88.70,13.86,2.33,13,,,,,,
+266396,Farstrider's Solemn Bow,121470,3,liquid,1,high,"wall/historical 6.40x; market/wall 0.03x; estimated regional spd 0.6600/day; label only, not sell-through",0.660000,0.088000,465.50,88.70,13.86,2.33,13,,,3,2,11,1
+245869,Thalassian Competitor's Bow,121470,3,liquid,1,high,"wall/historical 6.40x; market/wall 0.03x; estimated regional spd 0.6600/day; label only, not sell-through",0.660000,0.088000,465.50,88.70,13.86,2.33,13,,,2,0,11,197
+219870,Charged Scrapmaster's Gauntlets,78191,4,liquid,0,high,"estimated regional spd 0.2730/day; label only, not sell-through",0.273000,0.021000,461.36,273.49,324.73,272.02,1,,,3,0,10,535
+193491,Shockproof Gloves,78191,4,liquid,0,high,"estimated regional spd 0.2730/day; label only, not sell-through",0.273000,0.021000,461.36,273.49,324.73,272.02,1,,,3,0,9,356
+244624,Sin'dorei Engineer's Gloves,78191,4,liquid,0,high,"estimated regional spd 0.2730/day; label only, not sell-through",0.273000,0.021000,461.36,273.49,324.73,272.02,1,,,3,0,11,106
+244810,Thalassian Scrapmaster's Gauntlets,78191,4,liquid,0,high,"estimated regional spd 0.2730/day; label only, not sell-through",0.273000,0.021000,461.36,273.49,324.73,272.02,1,,,4,0,11,132
+202285,202285,55717,2,liquid,0,high,"estimated regional spd 0.2080/day; label only, not sell-through",0.208000,0.026000,460.54,1265.35,2038.20,,11,,,,,,
+194748,Split-Lens Specs,55717,2,liquid,0,high,"estimated regional spd 0.2080/day; label only, not sell-through",0.208000,0.026000,460.54,1265.35,2038.20,,11,,,3,0,9,1
+238009,Thalassian Sickle,127611,1,liquid,0,high,"estimated regional spd 0.4140/day; label only, not sell-through",0.414000,0.046000,449.75,999.98,999.98,980.29,1,,,2,0,11,80
+256317,256317,121958,2,liquid,0,high,"estimated regional spd 2.5960/day; label only, not sell-through",2.596000,0.118000,446.50,244.00,299.00,309.79,2,,,,,,
+258960,Tarnished Dawnlit Beacon,121958,2,liquid,0,high,"estimated regional spd 2.5960/day; label only, not sell-through",2.596000,0.118000,446.50,244.00,299.00,309.79,2,,,2,0,11,197
+237918,Blood-Tempered Chestplate,121343,2,liquid,1,high,"wall/historical 0.33x; market/wall 3.25x; estimated regional spd 1.2100/day; label only, not sell-through",1.210000,0.110000,437.00,100.00,299.00,324.95,13,,,3,0,11,197
+237901,Thalassian Competitor's Plate Breastplate,121343,2,liquid,1,high,"wall/historical 0.33x; market/wall 3.25x; estimated regional spd 1.2100/day; label only, not sell-through",1.210000,0.110000,437.00,100.00,299.00,324.95,13,,,2,0,11,197
+258919,Tarnished Dawnlit Spellbinder's Bands,121803,2,liquid,1,high,"wall/historical 2.50x; estimated regional spd 4.0920/day; label only, not sell-through",4.092000,0.167000,435.24,500.01,200.10,437.94,1,,,2,0,11,197
+258863,Threadbare Armbands,121803,2,liquid,1,high,"wall/historical 2.50x; estimated regional spd 4.0920/day; label only, not sell-through",4.092000,0.167000,435.24,500.01,200.10,437.94,1,,,0,0,11,78
+246528,246528,78195,6,liquid,0,high,"estimated regional spd 0.3600/day; label only, not sell-through",0.360000,0.030000,434.14,434.10,603.57,473.74,1,,,,,,
+259157,259157,78195,6,liquid,0,high,"estimated regional spd 0.3600/day; label only, not sell-through",0.360000,0.030000,434.14,434.10,603.57,473.74,1,,,,,,
+221789,Aqirite Brainwave Projector,78195,6,liquid,0,high,"estimated regional spd 0.3600/day; label only, not sell-through",0.360000,0.030000,434.14,434.10,603.57,473.74,1,,,3,0,10,535
+259171,Head-Mounted Beam Bummer,78195,6,liquid,0,high,"estimated regional spd 0.3600/day; label only, not sell-through",0.360000,0.030000,434.14,434.10,603.57,473.74,1,,,4,0,11,535
+198205,Khaz'gorite Brainwave Amplifier,78195,6,liquid,0,high,"estimated regional spd 0.3600/day; label only, not sell-through",0.360000,0.030000,434.14,434.10,603.57,473.74,1,,,3,0,9,356
+244710,Sin'dorei Headlamp,78195,6,liquid,0,high,"estimated regional spd 0.3600/day; label only, not sell-through",0.360000,0.030000,434.14,434.10,603.57,473.74,1,,,3,0,11,535
+34085,Red Winter Clothes,8829,2,liquid,1,high,"wall/historical 0.23x; market/wall 4.24x; estimated regional spd 0.1750/day; label only, not sell-through",0.175000,0.035000,432.25,222.00,985.98,941.38,4,,,1,0,-3,1
+151790,Red Winter Clothes,8829,2,liquid,1,high,"wall/historical 0.23x; market/wall 4.24x; estimated regional spd 0.1750/day; label only, not sell-through",0.175000,0.035000,432.25,222.00,985.98,941.38,4,,,2,0,-3,1
+244590,Scout's Scaled Vest,120767,2,liquid,0,high,"estimated regional spd 0.7100/day; label only, not sell-through",0.710000,0.071000,432.18,398.96,282.67,359.86,7,,,3,0,11,183
+244562,Thalassian Competitor's Chain Tunic,120767,2,liquid,0,high,"estimated regional spd 0.7100/day; label only, not sell-through",0.710000,0.071000,432.18,398.96,282.67,359.86,7,,,2,0,11,197
+254163,254163,121760,2,liquid,1,high,"wall/historical 3.99x; estimated regional spd 1.8050/day; label only, not sell-through",1.805000,0.095000,427.50,399.41,99.99,222.86,1,,,,,,
+165925,Drape of Valiant Defense,38853,1,liquid,1,high,"wall/historical 0.40x; estimated regional spd 0.1760/day; label only, not sell-through",0.176000,0.027000,427.50,800.09,2000.49,,9,,,4,0,7,60
+271020,Phoenix Wing Basher,84362,1,liquid,1,high,"wall/historical 0.47x; estimated regional spd 0.1720/day; label only, not sell-through",0.172000,0.043000,427.50,555.00,1183.33,797.30,6,,,3,2,-3,1
+258853,Stained Sabatons,120761,2,liquid,1,high,"wall/historical 0.38x; estimated regional spd 3.5370/day; label only, not sell-through",3.537000,0.131000,427.50,140.40,365.15,190.66,1,,,0,0,11,78
+258948,Tarnished Dawnlit Knife,121760,2,liquid,1,high,"wall/historical 3.99x; estimated regional spd 1.8050/day; label only, not sell-through",1.805000,0.095000,427.50,399.41,99.99,222.86,1,,,2,0,11,197
+258929,Tarnished Dawnlit Sentinel's Sabatons,120761,2,liquid,1,high,"wall/historical 0.38x; estimated regional spd 3.5370/day; label only, not sell-through",3.537000,0.131000,427.50,140.40,365.15,190.66,1,,,2,0,11,197
+237919,Blood-Tempered Greatbelt,121344,2,liquid,1,high,"wall/historical 0.33x; estimated regional spd 0.3900/day; label only, not sell-through",0.390000,0.039000,427.02,99.00,297.00,197.04,6,,,3,0,11,197
+237907,Thalassian Competitor's Plate Waistguard,121344,2,liquid,1,high,"wall/historical 0.33x; estimated regional spd 0.3900/day; label only, not sell-through",0.390000,0.039000,427.02,99.00,297.00,197.04,6,,,2,0,11,197
+271016,Golden Phoenix's Beak,83988,1,liquid,0,high,"estimated regional spd 0.1470/day; label only, not sell-through",0.147000,0.049000,418.00,1800.88,1995.49,,5,,,3,2,-3,1
+271019,Sin'dorei Magister's Gavel,84013,1,liquid,0,high,"estimated regional spd 0.1260/day; label only, not sell-through",0.126000,0.042000,403.43,900.00,1095.03,1049.18,4,,,3,2,-3,1
+238010,Thalassian Pickaxe,122748,1,liquid,0,high,"estimated regional spd 0.4090/day; label only, not sell-through",0.409000,0.043000,399.62,500.98,999.79,827.81,1,,,2,0,11,80
+237922,Blood-Tempered Leggings,121345,2,liquid,0,high,"estimated regional spd 0.3280/day; label only, not sell-through",0.328000,0.041000,390.00,199.00,299.40,261.26,6,,,3,0,11,197
+237905,Thalassian Competitor's Plate Greaves,121345,2,liquid,0,high,"estimated regional spd 0.3280/day; label only, not sell-through",0.328000,0.041000,390.00,199.00,299.40,261.26,6,,,2,0,11,197
+237925,Blood-Tempered Gauntlets,121348,2,liquid,1,high,"wall/historical 0.33x; market/wall 5.76x; estimated regional spd 0.3150/day; label only, not sell-through",0.315000,0.035000,380.92,100.00,299.00,576.00,9,,,3,0,11,197
+237903,Thalassian Competitor's Plate Gauntlets,121348,2,liquid,1,high,"wall/historical 0.33x; market/wall 5.76x; estimated regional spd 0.3150/day; label only, not sell-through",0.315000,0.035000,380.92,100.00,299.00,576.00,9,,,2,0,11,197
+237924,Blood-Tempered Pauldrons,121342,2,liquid,1,high,"wall/historical 0.45x; estimated regional spd 0.3330/day; label only, not sell-through",0.333000,0.037000,380.00,99.00,222.00,141.59,2,,,3,0,11,197
+245955,Dark Iron's Ceremonial Mace,117256,1,liquid,0,high,"estimated regional spd 0.5400/day; label only, not sell-through",0.540000,0.090000,380.00,999.99,1111.84,1078.64,6,,,3,0,-3,1
+237906,Thalassian Competitor's Plate Pauldrons,121342,2,liquid,1,high,"wall/historical 0.45x; estimated regional spd 0.3330/day; label only, not sell-through",0.333000,0.037000,380.00,99.00,222.00,141.59,2,,,2,0,11,197
+237921,Blood-Tempered Basinet,121341,2,liquid,1,high,"wall/historical 0.34x; market/wall 2.06x; estimated regional spd 0.3510/day; label only, not sell-through",0.351000,0.039000,379.98,99.00,295.00,204.14,6,,,3,0,11,197
+237904,Thalassian Competitor's Plate Helm,121341,2,liquid,1,high,"wall/historical 0.34x; market/wall 2.06x; estimated regional spd 0.3510/day; label only, not sell-through",0.351000,0.039000,379.98,99.00,295.00,204.14,6,,,2,0,11,197
+244773,Aetherlume Clonkers,120770,5,liquid,0,high,"estimated regional spd 0.4640/day; label only, not sell-through",0.464000,0.058000,379.05,299.00,184.29,247.66,6,,,4,0,11,197
+245339,Evercore Turbochains,120770,5,liquid,0,high,"estimated regional spd 0.4640/day; label only, not sell-through",0.464000,0.058000,379.05,299.00,184.29,247.66,6,,,3,0,11,197
+244769,Quel'dorei Clonkers,120770,5,liquid,0,high,"estimated regional spd 0.4640/day; label only, not sell-through",0.464000,0.058000,379.05,299.00,184.29,247.66,6,,,3,0,11,197
+244588,Scout's Scaled Boots,120770,5,liquid,0,high,"estimated regional spd 0.4640/day; label only, not sell-through",0.464000,0.058000,379.05,299.00,184.29,247.66,6,,,3,0,11,183
+244561,Thalassian Competitor's Chain Stompers,120770,5,liquid,0,high,"estimated regional spd 0.4640/day; label only, not sell-through",0.464000,0.058000,379.05,299.00,184.29,247.66,6,,,2,0,11,197
+244594,Smuggler's Reinforced Pants,121391,2,liquid,0,high,"estimated regional spd 0.1610/day; label only, not sell-through",0.161000,0.023000,337.25,673.58,400.00,512.44,5,,,3,0,11,197
+244592,Smuggler's Reinforced Shoulderguards,121388,2,liquid,0,high,"estimated regional spd 0.2090/day; label only, not sell-through",0.209000,0.022000,337.25,99.99,191.34,109.58,1,,,3,0,11,197
+244556,Thalassian Competitor's Leather Shoulderpads,121388,2,liquid,0,high,"estimated regional spd 0.2090/day; label only, not sell-through",0.209000,0.022000,337.25,99.99,191.34,109.58,1,,,2,0,11,197
+244558,Thalassian Competitor's Leather Trousers,121391,2,liquid,0,high,"estimated regional spd 0.1610/day; label only, not sell-through",0.161000,0.023000,337.25,673.58,400.00,512.44,5,,,2,0,11,197
+244599,Scout's Polished Legguards,120769,2,liquid,0,high,"estimated regional spd 0.1330/day; label only, not sell-through",0.133000,0.019000,337.16,307.87,310.93,221.82,5,,,3,0,11,197
+244597,Scout's Polished Spaulders,120766,2,liquid,0,high,"estimated regional spd 0.2070/day; label only, not sell-through",0.207000,0.023000,337.16,99.00,127.86,102.23,1,,,3,0,11,197
+244564,Thalassian Competitor's Chain Epaulets,120766,2,liquid,0,high,"estimated regional spd 0.2070/day; label only, not sell-through",0.207000,0.023000,337.16,99.00,127.86,102.23,1,,,2,0,11,197
+244566,Thalassian Competitor's Chain Leggings,120769,2,liquid,0,high,"estimated regional spd 0.1330/day; label only, not sell-through",0.133000,0.019000,337.16,307.87,310.93,221.82,5,,,2,0,11,197
+244708,Sin'dorei Snippers,127467,1,liquid,1,high,"wall/historical 0.39x; estimated regional spd 1.5840/day; label only, not sell-through",1.584000,0.099000,333.73,434.59,1111.81,438.11,1,,,3,0,11,535
+244587,Smuggler's Leather Tunic,121389,2,liquid,1,high,"wall/historical 2.50x; market/wall 0.32x; estimated regional spd 0.8500/day; label only, not sell-through",0.850000,0.085000,332.50,374.97,150.00,118.17,1,,,3,0,11,197
+244595,Smuggler's Reinforced Binding,121390,2,liquid,0,high,"estimated regional spd 0.2970/day; label only, not sell-through",0.297000,0.027000,332.50,99.99,150.00,101.71,2,,,3,0,11,197
+244593,Smuggler's Reinforced Gloves,121394,2,liquid,0,high,"estimated regional spd 0.1600/day; label only, not sell-through",0.160000,0.020000,332.50,227.18,200.00,206.23,6,,,3,0,11,197
+244557,Thalassian Competitor's Leather Belt,121390,2,liquid,0,high,"estimated regional spd 0.2970/day; label only, not sell-through",0.297000,0.027000,332.50,99.99,150.00,101.71,2,,,2,0,11,197
+244554,Thalassian Competitor's Leather Chestpiece,121389,2,liquid,1,high,"wall/historical 2.50x; market/wall 0.32x; estimated regional spd 0.8500/day; label only, not sell-through",0.850000,0.085000,332.50,374.97,150.00,118.17,1,,,2,0,11,197
+244559,Thalassian Competitor's Leather Gloves,121394,2,liquid,0,high,"estimated regional spd 0.1600/day; label only, not sell-through",0.160000,0.020000,332.50,227.18,200.00,206.23,6,,,2,0,11,197
+244591,Smuggler's Reinforced Hood,121387,2,liquid,0,high,"estimated regional spd 0.7200/day; label only, not sell-through",0.720000,0.040000,332.48,100.01,125.00,80.68,4,,,3,0,11,197
+244555,Thalassian Competitor's Leather Mask,121387,2,liquid,0,high,"estimated regional spd 0.7200/day; label only, not sell-through",0.720000,0.040000,332.48,100.01,125.00,80.68,4,,,2,0,11,197
+244718,Turbo-Junker's Multitool,127619,1,liquid,1,high,"market/wall 0.37x; estimated regional spd 1.2060/day; label only, not sell-through",1.206000,0.067000,305.09,1068.99,675.11,399.35,1,,,3,0,11,106
+244600,Scout's Polished Wrap,120768,2,liquid,0,high,"estimated regional spd 0.2100/day; label only, not sell-through",0.210000,0.020000,299.91,74.00,100.00,52.96,1,,,3,0,11,197
+244565,Thalassian Competitor's Chain Girdle,120768,2,liquid,0,high,"estimated regional spd 0.2100/day; label only, not sell-through",0.210000,0.020000,299.91,74.00,100.00,52.96,1,,,2,0,11,197
+270995,Sin'dorei Crystal Focus,84354,1,liquid,0,high,"estimated regional spd 0.1260/day; label only, not sell-through",0.126000,0.042000,293.00,899.39,794.50,816.14,4,,,3,2,-3,1
+35058,Brutal Gladiator's Mutilator,9137,4,liquid,1,high,"wall/historical 0.43x; estimated regional spd 0.1080/day; label only, not sell-through",0.108000,0.036000,290.99,597.30,1380.08,1033.01,2,,,4,0,1,33
+35093,Brutal Gladiator's Shanker,9137,4,liquid,1,high,"wall/historical 0.43x; estimated regional spd 0.1080/day; label only, not sell-through",0.108000,0.036000,290.99,597.30,1380.08,1033.01,2,,,4,0,1,33
+35095,Brutal Gladiator's Shiv,9137,4,liquid,1,high,"wall/historical 0.43x; estimated regional spd 0.1080/day; label only, not sell-through",0.108000,0.036000,290.99,597.30,1380.08,1033.01,2,,,4,0,1,33
+271010,Glistening Sin'dorei Twinblade,9137,4,liquid,1,high,"wall/historical 0.43x; estimated regional spd 0.1080/day; label only, not sell-through",0.108000,0.036000,290.99,597.30,1380.08,1033.01,2,,,3,2,-3,1
+225646,4UT0-41M3R,78221,3,liquid,1,high,"wall/historical 0.23x; estimated regional spd 0.1260/day; label only, not sell-through",0.126000,0.014000,285.30,100.00,430.33,124.72,5,,,3,0,10,447
+268475,Evercore Dome Dinger,78221,3,liquid,1,high,"wall/historical 0.23x; estimated regional spd 0.1260/day; label only, not sell-through",0.126000,0.014000,285.30,100.00,430.33,124.72,5,,,3,2,11,197
+198334,P.E.W. x2,78221,3,liquid,1,high,"wall/historical 0.23x; estimated regional spd 0.1260/day; label only, not sell-through",0.126000,0.014000,285.30,100.00,430.33,124.72,5,,,3,0,9,270
+244598,Scout's Polished Gauntlets,120772,2,liquid,1,high,"market/wall 0.44x; estimated regional spd 0.1360/day; label only, not sell-through",0.136000,0.017000,284.95,179.32,200.00,78.97,1,,,3,0,11,197
+244567,Thalassian Competitor's Chain Grips,120772,2,liquid,1,high,"market/wall 0.44x; estimated regional spd 0.1360/day; label only, not sell-through",0.136000,0.017000,284.95,179.32,200.00,78.97,1,,,2,0,11,197
+254215,254215,121768,4,liquid,1,high,"market/wall 2.88x; estimated regional spd 2.0200/day; label only, not sell-through",2.020000,0.101000,284.52,99.25,99.25,285.87,2,,,,,,
+258945,Tarnished Dawnlit Carver,121768,4,liquid,1,high,"market/wall 2.88x; estimated regional spd 2.0200/day; label only, not sell-through",2.020000,0.101000,284.52,99.25,99.25,285.87,2,,,2,0,11,197
+258946,Tarnished Dawnlit Chopper,121768,4,liquid,1,high,"market/wall 2.88x; estimated regional spd 2.0200/day; label only, not sell-through",2.020000,0.101000,284.52,99.25,99.25,285.87,2,,,2,0,11,197
+258944,Tarnished Dawnlit Cleaver,121768,4,liquid,1,high,"market/wall 2.88x; estimated regional spd 2.0200/day; label only, not sell-through",2.020000,0.101000,284.52,99.25,99.25,285.87,2,,,2,0,11,197
+262583,262583,123146,2,liquid,0,high,"estimated regional spd 0.1440/day; label only, not sell-through",0.144000,0.072000,284.22,1498.31,2364.34,1755.43,5,,,,,,
+276299,Umbralwarden's Soul Gavel,123146,2,liquid,0,high,"estimated regional spd 0.1440/day; label only, not sell-through",0.144000,0.072000,284.22,1498.31,2364.34,1755.43,5,,,4,2,11,1
+244711,Farstrider Hobbyist Rod,127466,1,liquid,0,high,"estimated regional spd 0.1760/day; label only, not sell-through",0.176000,0.022000,284.05,1000.00,1398.69,1045.52,1,,,2,0,11,486
+245959,Dark Iron's Crystal Ward,117260,1,liquid,1,high,"wall/historical 0.44x; estimated regional spd 0.3960/day; label only, not sell-through",0.396000,0.066000,283.50,1111.45,2500.00,,14,,,3,0,-3,1
+246801,Dark Iron's Mighty Crossbow,117653,1,liquid,0,high,"estimated regional spd 0.6000/day; label only, not sell-through",0.600000,0.100000,283.09,1000.00,1111.01,1045.84,9,,,3,0,-3,1
+120433,Glamorous Purple Mask,3035,2,liquid,0,high,"estimated regional spd 0.1000/day; label only, not sell-through",0.100000,0.020000,279.43,2999.00,2999.00,2791.52,5,,,2,0,5,31
+10025,Shadoweave Mask,3035,2,liquid,0,high,"estimated regional spd 0.1000/day; label only, not sell-through",0.100000,0.020000,279.43,2999.00,2999.00,2791.52,5,,,2,0,0,25
+221695,221695,78211,4,liquid,1,high,"wall/historical 0.29x; market/wall 2.08x; estimated regional spd 0.6190/day; label only, not sell-through",0.619000,0.059000,253.47,450.05,1541.71,937.51,1,,,,,,
+239641,Bright Linen Alchemy Apron,78211,4,liquid,1,high,"wall/historical 0.29x; market/wall 2.08x; estimated regional spd 0.6190/day; label only, not sell-through",0.619000,0.059000,253.47,450.05,1541.71,937.51,1,,,2,0,11,80
+222845,Weavercloth Alchemist's Robe,78211,4,liquid,1,high,"wall/historical 0.29x; market/wall 2.08x; estimated regional spd 0.6190/day; label only, not sell-through",0.619000,0.059000,253.47,450.05,1541.71,937.51,1,,,2,0,10,486
+193528,Wildercloth Alchemist's Robe,78211,4,liquid,1,high,"wall/historical 0.29x; market/wall 2.08x; estimated regional spd 0.6190/day; label only, not sell-through",0.619000,0.059000,253.47,450.05,1541.71,937.51,1,,,2,0,9,317
+18231,Sleeveless T-Shirt,5221,1,liquid,0,high,"estimated regional spd 0.1050/day; label only, not sell-through",0.105000,0.035000,242.50,799.89,1000.00,799.93,4,,,2,0,0,1
+254180,254180,121793,2,liquid,0,high,"estimated regional spd 1.8360/day; label only, not sell-through",1.836000,0.102000,240.97,175.00,175.00,177.13,3,,,,,,
+258947,Tarnished Dawnlit Dagger,121793,2,liquid,0,high,"estimated regional spd 1.8360/day; label only, not sell-through",1.836000,0.102000,240.97,175.00,175.00,177.13,3,,,2,0,11,197
+256321,256321,121962,6,liquid,1,high,"wall/historical 2.07x; estimated regional spd 0.3900/day; label only, not sell-through",0.390000,0.039000,237.95,2000.01,963.92,1469.12,1,,,,,,
+264625,Gale Force Focus,121962,6,liquid,1,high,"wall/historical 2.07x; estimated regional spd 0.3900/day; label only, not sell-through",0.390000,0.039000,237.95,2000.01,963.92,1469.12,1,,,2,2,11,80
+250447,Radiant Eversong Scepter,121962,6,liquid,1,high,"wall/historical 2.07x; estimated regional spd 0.3900/day; label only, not sell-through",0.390000,0.039000,237.95,2000.01,963.92,1469.12,1,,,4,0,11,197
+264626,Scepter of Radiant Conversion,121962,6,liquid,1,high,"wall/historical 2.07x; estimated regional spd 0.3900/day; label only, not sell-through",0.390000,0.039000,237.95,2000.01,963.92,1469.12,1,,,2,2,11,80
+240956,Silvermoon Focusing Shard,121962,6,liquid,1,high,"wall/historical 2.07x; estimated regional spd 0.3900/day; label only, not sell-through",0.390000,0.039000,237.95,2000.01,963.92,1469.12,1,,,2,0,11,80
+264521,Striderplume Focus,121962,6,liquid,1,high,"wall/historical 2.07x; estimated regional spd 0.3900/day; label only, not sell-through",0.390000,0.039000,237.95,2000.01,963.92,1469.12,1,,,2,2,11,80
+245689,245689,121472,3,liquid,1,high,"market/wall 2.17x; estimated regional spd 0.3060/day; label only, not sell-through",0.306000,0.068000,237.50,1000.99,698.32,2169.50,6,,,,,,
+254158,254158,121472,3,liquid,1,high,"market/wall 2.17x; estimated regional spd 0.3060/day; label only, not sell-through",0.306000,0.068000,237.50,1000.99,698.32,2169.50,6,,,,,,
+244713,Farstrider Clampers,122751,1,liquid,0,high,"estimated regional spd 0.1140/day; label only, not sell-through",0.114000,0.019000,237.50,1000.00,1222.00,864.88,1,,,2,0,11,80
+266393,Farstrider's Gilded Bow,121472,3,liquid,1,high,"market/wall 2.17x; estimated regional spd 0.3060/day; label only, not sell-through",0.306000,0.068000,237.50,1000.99,698.32,2169.50,6,,,4,2,11,1
+219865,Hideshaper's Cover,78189,3,liquid,1,high,"wall/historical 2.03x; estimated regional spd 0.1300/day; label only, not sell-through",0.130000,0.013000,227.64,1579.62,777.53,1092.58,1,,,2,0,10,486
+244619,Hideworker's Cover,78189,3,liquid,1,high,"wall/historical 2.03x; estimated regional spd 0.1300/day; label only, not sell-through",0.130000,0.013000,227.64,1579.62,777.53,1092.58,1,,,2,0,11,80
+193486,Resilient Smock,78189,3,liquid,1,high,"wall/historical 2.03x; estimated regional spd 0.1300/day; label only, not sell-through",0.130000,0.013000,227.64,1579.62,777.53,1092.58,1,,,2,0,9,317
+180751,Red Noggin Candle,38440,1,liquid,0,high,"estimated regional spd 0.1480/day; label only, not sell-through",0.148000,0.037000,211.84,2195.00,2199.00,2195.60,9,,,2,0,8,1
+38278,Haliscan Pantaloons,9989,1,liquid,0,high,"estimated regional spd 0.1440/day; label only, not sell-through",0.144000,0.036000,211.08,332.85,451.47,332.86,10,,,1,0,0,20
+244174,Refulgent Copper Rod,127623,2,liquid,1,high,"market/wall 49.71x; estimated regional spd 0.4320/day; label only, not sell-through",0.432000,0.108000,205.49,80.00,125.00,3976.60,9,,,1,0,11,80
+244175,Runed Refulgent Copper Rod,127623,2,liquid,1,high,"market/wall 49.71x; estimated regional spd 0.4320/day; label only, not sell-through",0.432000,0.108000,205.49,80.00,125.00,3976.60,9,,,2,0,11,80
+10034,Tuxedo Shirt,2271,2,liquid,1,high,"wall/historical 0.05x; market/wall 3.85x; estimated regional spd 0.1560/day; label only, not sell-through",0.156000,0.039000,202.52,500.01,10000.01,1926.88,6,,,2,0,0,1
+6833,White Tuxedo Shirt,2271,2,liquid,1,high,"wall/historical 0.05x; market/wall 3.85x; estimated regional spd 0.1560/day; label only, not sell-through",0.156000,0.039000,202.52,500.01,10000.01,1926.88,6,,,2,0,-3,1
+265882,265882,123137,2,liquid,1,high,"market/wall 0.22x; estimated regional spd 0.2650/day; label only, not sell-through",0.265000,0.053000,199.90,999.00,500.00,221.40,5,,,,,,
+265562,Amani Warrior's Spear,123137,2,liquid,1,high,"market/wall 0.22x; estimated regional spd 0.2650/day; label only, not sell-through",0.265000,0.053000,199.90,999.00,500.00,221.40,5,,,3,2,11,1
+238011,Thalassian Skinning Knife,127617,1,liquid,1,high,"wall/historical 0.25x; market/wall 2.05x; estimated regional spd 0.1870/day; label only, not sell-through",0.187000,0.017000,190.09,250.00,1000.48,513.10,3,,,2,0,11,80
+180752,Pink Party Hat,43252,1,liquid,0,high,"estimated regional spd 0.1760/day; label only, not sell-through",0.176000,0.027000,190.04,1499.43,1814.43,1525.21,8,,,2,0,8,1
+267612,267612,122754,2,liquid,1,high,"wall/historical 0.10x; market/wall 2.88x; estimated regional spd 0.1400/day; label only, not sell-through",0.140000,0.014000,190.00,100.00,1000.00,288.11,1,,,,,,
+238013,Thalassian Blacksmith's Hammer,122754,2,liquid,1,high,"wall/historical 0.10x; market/wall 2.88x; estimated regional spd 0.1400/day; label only, not sell-through",0.140000,0.014000,190.00,100.00,1000.00,288.11,1,,,2,0,11,80
+240953,Bold Biographer's Bifocals,74698,3,liquid,0,high,"estimated regional spd 0.1470/day; label only, not sell-through",0.147000,0.014000,180.56,333.33,444.00,378.68,1,,,2,0,11,80
+193035,Bold-Print Bifocals,74698,3,liquid,0,high,"estimated regional spd 0.1470/day; label only, not sell-through",0.147000,0.014000,180.56,333.33,444.00,378.68,1,,,2,0,9,317
+215117,Storyteller's Glasses,74698,3,liquid,0,high,"estimated regional spd 0.1470/day; label only, not sell-through",0.147000,0.014000,180.56,333.33,444.00,378.68,1,,,2,0,10,486
+34718,Black Leather Shoes,2274,2,liquid,0,high,"estimated regional spd 0.1160/day; label only, not sell-through",0.116000,0.029000,180.24,454.00,499.00,454.37,10,,,1,0,0,1
+6836,Dress Shoes,2274,2,liquid,0,high,"estimated regional spd 0.1160/day; label only, not sell-through",0.116000,0.029000,180.24,454.00,499.00,454.37,10,,,1,0,0,1
+254210,254210,121773,3,liquid,1,high,"wall/historical 2.19x; market/wall 2.55x; estimated regional spd 1.9760/day; label only, not sell-through",1.976000,0.076000,177.01,150.97,69.00,384.87,1,,,,,,
+258952,Tarnished Dawnlit Longsword,121773,3,liquid,1,high,"wall/historical 2.19x; market/wall 2.55x; estimated regional spd 1.9760/day; label only, not sell-through",1.976000,0.076000,177.01,150.97,69.00,384.87,1,,,2,0,11,197
+258951,Tarnished Dawnlit Shortsword,121773,3,liquid,1,high,"wall/historical 2.19x; market/wall 2.55x; estimated regional spd 1.9760/day; label only, not sell-through",1.976000,0.076000,177.01,150.97,69.00,384.87,1,,,2,0,11,197
+238012,Thalassian Leatherworker's Knife,127614,1,liquid,1,high,"wall/historical 0.50x; market/wall 3.41x; estimated regional spd 0.1440/day; label only, not sell-through",0.144000,0.016000,175.32,499.00,1000.00,1702.94,1,,,2,0,11,80
+4333,Dark Silk Shirt,1591,1,liquid,1,high,"wall/historical 0.28x; estimated regional spd 0.1200/day; label only, not sell-through",0.120000,0.024000,172.88,774.17,2749.81,1451.44,4,,,2,0,0,1
+50444,Rowan's Rifle of Silver Bullets,12437,1,liquid,0,high,"estimated regional spd 0.1290/day; label only, not sell-through",0.129000,0.043000,171.89,349.99,487.35,388.73,5,,,4,0,2,35
+254243,254243,122687,3,liquid,1,high,"wall/historical 2.50x; market/wall 0.24x; estimated regional spd 0.1320/day; label only, not sell-through",0.132000,0.022000,161.50,831.58,332.67,195.91,1,,,,,,
+256988,Lumenbloom Lantern,122687,3,liquid,1,high,"wall/historical 2.50x; market/wall 0.24x; estimated regional spd 0.1320/day; label only, not sell-through",0.132000,0.022000,161.50,831.58,332.67,195.91,1,,,2,0,11,80
+245768,Rootwarden's Lamp,122687,3,liquid,1,high,"wall/historical 2.50x; market/wall 0.24x; estimated regional spd 0.1320/day; label only, not sell-through",0.132000,0.022000,161.50,831.58,332.67,195.91,1,,,3,0,11,197
+257140,257140,122376,2,liquid,1,high,"wall/historical 0.20x; market/wall 3.43x; estimated regional spd 0.3500/day; label only, not sell-through",0.350000,0.070000,150.71,100.99,499.00,346.36,10,,,,,,
+266384,Sanctum Magister's Post,122376,2,liquid,1,high,"wall/historical 0.20x; market/wall 3.43x; estimated regional spd 0.3500/day; label only, not sell-through",0.350000,0.070000,150.71,100.99,499.00,346.36,10,,,4,2,11,1
+239672,Courtly Robes,121807,2,liquid,1,high,"wall/historical 0.21x; market/wall 6.01x; estimated regional spd 0.6400/day; label only, not sell-through",0.640000,0.064000,149.98,20.92,99.00,125.78,1,,,3,0,11,197
+239685,Thalassian Competitor's Cloth Tunic,121807,2,liquid,1,high,"wall/historical 0.21x; market/wall 6.01x; estimated regional spd 0.6400/day; label only, not sell-through",0.640000,0.064000,149.98,20.92,99.00,125.78,1,,,2,0,11,197
+239675,Courtly Shoulders,121809,2,liquid,1,high,"wall/historical 0.26x; market/wall 3.50x; estimated regional spd 1.2710/day; label only, not sell-through",1.271000,0.062000,149.95,25.68,99.00,89.97,4,,,3,0,11,197
+239683,Thalassian Competitor's Cloth Shoulderpads,121809,2,liquid,1,high,"wall/historical 0.26x; market/wall 3.50x; estimated regional spd 1.2710/day; label only, not sell-through",1.271000,0.062000,149.95,25.68,99.00,89.97,4,,,2,0,11,197
+239674,Courtly Cloak,121815,3,liquid,1,high,"wall/historical 0.20x; market/wall 5.61x; estimated regional spd 0.6500/day; label only, not sell-through",0.650000,0.065000,147.25,20.00,99.00,112.13,1,,,3,0,11,197
+267491,Novice Combatant's Cloak,121815,3,liquid,1,high,"wall/historical 0.20x; market/wall 5.61x; estimated regional spd 0.6500/day; label only, not sell-through",0.650000,0.065000,147.25,20.00,99.00,112.13,1,,,3,2,11,197
+239678,Thalassian Competitor's Cloth Cloak,121815,3,liquid,1,high,"wall/historical 0.20x; market/wall 5.61x; estimated regional spd 0.6500/day; label only, not sell-through",0.650000,0.065000,147.25,20.00,99.00,112.13,1,,,2,0,11,197
+239668,Courtly Helm,121808,2,liquid,0,high,"estimated regional spd 0.3120/day; label only, not sell-through",0.312000,0.039000,146.23,99.00,99.00,118.55,9,,,3,0,11,197
+239680,Thalassian Competitor's Cloth Hood,121808,2,liquid,0,high,"estimated regional spd 0.3120/day; label only, not sell-through",0.312000,0.039000,146.23,99.00,99.00,118.55,9,,,2,0,11,197
+239669,Courtly Gloves,121813,2,liquid,0,high,"estimated regional spd 0.3330/day; label only, not sell-through",0.333000,0.037000,146.19,99.00,99.00,117.38,8,,,3,0,11,197
+239679,Thalassian Competitor's Cloth Gloves,121813,2,liquid,0,high,"estimated regional spd 0.3330/day; label only, not sell-through",0.333000,0.037000,146.19,99.00,99.00,117.38,8,,,2,0,11,197
+239676,Courtly Pants,121810,2,liquid,0,high,"estimated regional spd 0.5760/day; label only, not sell-through",0.576000,0.064000,145.49,99.00,99.00,130.97,3,,,3,0,11,197
+239681,Thalassian Competitor's Cloth Leggings,121810,2,liquid,0,high,"estimated regional spd 0.5760/day; label only, not sell-through",0.576000,0.064000,145.49,99.00,99.00,130.97,3,,,2,0,11,197
+4336,Black Swashbuckler's Shirt,1594,1,liquid,1,high,"wall/historical 0.24x; estimated regional spd 0.1000/day; label only, not sell-through",0.100000,0.025000,142.70,796.23,3252.33,1176.22,5,,,2,0,0,1
+239670,Courtly Belt,121811,2,liquid,1,high,"wall/historical 3.02x; estimated regional spd 0.8800/day; label only, not sell-through",0.880000,0.088000,142.46,298.99,99.00,281.05,1,,,3,0,11,197
+239682,Thalassian Competitor's Cloth Sash,121811,2,liquid,1,high,"wall/historical 3.02x; estimated regional spd 0.8800/day; label only, not sell-through",0.880000,0.088000,142.46,298.99,99.00,281.05,1,,,2,0,11,197
+10055,Pink Mageweave Shirt,3054,1,liquid,1,high,"wall/historical 0.09x; estimated regional spd 0.1020/day; label only, not sell-through",0.102000,0.034000,142.28,25.46,299.00,25.78,0,,,2,0,0,1
+38277,Haliscan Jacket,9988,1,liquid,1,high,"wall/historical 0.37x; market/wall 13.85x; estimated regional spd 0.1160/day; label only, not sell-through",0.116000,0.029000,135.59,111.00,303.00,1536.83,5,,,1,0,0,1
+260908,Lost Frostwolf's Stand,85327,1,liquid,0,high,"estimated regional spd 0.8640/day; label only, not sell-through",0.864000,0.108000,122.70,500.21,699.77,634.04,14,,,4,0,11,1
+252379,252379,121466,3,liquid,0,high,"estimated regional spd 0.1540/day; label only, not sell-through",0.154000,0.022000,118.74,349.44,396.00,505.19,6,,,,,,
+237932,Primalforged Heavy Axe,121466,3,liquid,0,high,"estimated regional spd 0.1540/day; label only, not sell-through",0.154000,0.022000,118.74,349.44,396.00,505.19,6,,,3,0,11,197
+259358,Underbrush-Clearing Cleaver,121466,3,liquid,0,high,"estimated regional spd 0.1540/day; label only, not sell-through",0.154000,0.022000,118.74,349.44,396.00,505.19,6,,,2,0,11,80
+10040,White Wedding Dress,3044,1,liquid,1,high,"wall/historical 0.09x; market/wall 8.25x; estimated regional spd 0.1200/day; label only, not sell-through",0.120000,0.030000,118.05,222.40,2432.94,1835.61,2,,,1,0,0,20
+4335,Rich Purple Silk Shirt,1593,1,liquid,0,high,"estimated regional spd 0.1440/day; label only, not sell-through",0.144000,0.036000,115.92,3602.46,2977.39,2888.06,1,,,2,0,0,1
+254440,254440,121953,3,liquid,1,high,"wall/historical 2.50x; estimated regional spd 1.8330/day; label only, not sell-through",1.833000,0.078000,104.96,200.04,80.00,235.52,2,,,,,,
+258955,Tarnished Dawnlit Halberd,121953,3,liquid,1,high,"wall/historical 2.50x; estimated regional spd 1.8330/day; label only, not sell-through",1.833000,0.078000,104.96,200.04,80.00,235.52,2,,,2,0,11,197
+258954,Tarnished Dawnlit Poleaxe,121953,3,liquid,1,high,"wall/historical 2.50x; estimated regional spd 1.8330/day; label only, not sell-through",1.833000,0.078000,104.96,200.04,80.00,235.52,2,,,2,0,11,197
+221692,221692,78216,4,liquid,0,high,"estimated regional spd 0.1620/day; label only, not sell-through",0.162000,0.017000,102.96,200.01,272.53,341.82,1,,,,,,
+239644,Bright Linen Fishing Hat,78216,4,liquid,0,high,"estimated regional spd 0.1620/day; label only, not sell-through",0.162000,0.017000,102.96,200.01,272.53,341.82,1,,,2,0,11,80
+222842,Weavercloth Fishing Cap,78216,4,liquid,0,high,"estimated regional spd 0.1620/day; label only, not sell-through",0.162000,0.017000,102.96,200.01,272.53,341.82,1,,,2,0,10,486
+193529,Wildercloth Fishing Cap,78216,4,liquid,0,high,"estimated regional spd 0.1620/day; label only, not sell-through",0.162000,0.017000,102.96,200.01,272.53,341.82,1,,,2,0,9,317
+260907,Lost Winter's Hunger,94972,1,liquid,1,high,"wall/historical 0.19x; estimated regional spd 1.0720/day; label only, not sell-through",1.072000,0.134000,99.98,186.88,1000.00,189.48,8,,,4,0,11,1
+44693,Wound Dressing,11241,2,liquid,0,high,"estimated regional spd 0.1250/day; label only, not sell-through",0.125000,0.025000,94.33,130.88,116.27,129.22,4,,,2,0,0,1
+167196,Wound Dressing,11241,2,liquid,0,high,"estimated regional spd 0.1250/day; label only, not sell-through",0.125000,0.025000,94.33,130.88,116.27,129.22,4,,,2,0,-3,1
+260898,Lost Cerulean Edge,93401,1,liquid,1,high,"wall/historical 2.37x; estimated regional spd 0.9700/day; label only, not sell-through",0.970000,0.097000,94.06,474.89,199.99,326.65,11,,,4,0,11,1
+256320,256320,121961,3,liquid,1,high,"wall/historical 0.05x; estimated regional spd 0.2560/day; label only, not sell-through",0.256000,0.064000,91.02,49.50,989.01,70.83,6,,,,,,
+246527,Attuned Thalassian Rune-Prism,121961,3,liquid,1,high,"wall/historical 0.05x; estimated regional spd 0.2560/day; label only, not sell-through",0.256000,0.064000,91.02,49.50,989.01,70.83,6,,,4,0,11,132
+266387,Sanctum Magister's Pylon,121961,3,liquid,1,high,"wall/historical 0.05x; estimated regional spd 0.2560/day; label only, not sell-through",0.256000,0.064000,91.02,49.50,989.01,70.83,6,,,4,2,11,1
+42376,Yellow Martial Shirt,10948,2,liquid,1,high,"wall/historical 5.16x; market/wall 0.20x; estimated regional spd 0.1000/day; label only, not sell-through",0.100000,0.025000,87.46,98.01,19.01,19.60,6,,,2,0,0,1
+167193,Yellow Martial Shirt,10948,2,liquid,1,high,"wall/historical 5.16x; market/wall 0.20x; estimated regional spd 0.1000/day; label only, not sell-through",0.100000,0.025000,87.46,98.01,19.01,19.60,6,,,2,0,-3,1
+254155,254155,121469,2,liquid,1,high,"market/wall 3.13x; estimated regional spd 1.8100/day; label only, not sell-through",1.810000,0.071000,84.54,50.87,81.31,159.31,1,,,,,,
+258953,Tarnished Dawnlit Longbow,121469,2,liquid,1,high,"market/wall 3.13x; estimated regional spd 1.8100/day; label only, not sell-through",1.810000,0.071000,84.54,50.87,81.31,159.31,1,,,2,0,11,197
+254187,254187,121788,2,liquid,1,high,"market/wall 3.42x; estimated regional spd 1.9000/day; label only, not sell-through",1.900000,0.076000,73.50,85.62,85.63,293.03,5,90.390959,18,,,,
+258962,Tarnished Dawnlit Warglaive,121788,2,liquid,1,high,"market/wall 3.42x; estimated regional spd 1.9000/day; label only, not sell-through",1.900000,0.076000,73.50,85.62,85.63,293.03,5,90.390959,18,2,0,11,197
+260905,Lost Blade of Spacial Descent,99154,1,liquid,1,high,"market/wall 5.67x; estimated regional spd 0.7070/day; label only, not sell-through",0.707000,0.101000,70.02,145.00,234.45,822.01,10,,,4,0,11,1
+6795,White Swashbuckler's Shirt,2259,1,liquid,1,high,"wall/historical 0.46x; estimated regional spd 0.2800/day; label only, not sell-through",0.280000,0.056000,69.64,122.29,267.11,,6,,,2,0,0,1
+276288,Forgotten Sword of Vilaldoun,109900,1,liquid,1,high,"wall/historical 6.53x; estimated regional spd 0.2400/day; label only, not sell-through",0.240000,0.080000,64.24,999.00,153.03,942.25,0,,,3,2,11,1
+254193,254193,121783,3,liquid,0,high,"estimated regional spd 1.5810/day; label only, not sell-through",1.581000,0.062000,57.00,80.01,62.35,100.84,2,,,,,,
+258949,Tarnished Dawnlit Mace,121783,3,liquid,0,high,"estimated regional spd 1.5810/day; label only, not sell-through",1.581000,0.062000,57.00,80.01,62.35,100.84,2,,,2,0,11,197
+258950,Tarnished Dawnlit Warmace,121783,3,liquid,0,high,"estimated regional spd 1.5810/day; label only, not sell-through",1.581000,0.062000,57.00,80.01,62.35,100.84,2,,,2,0,11,197
+19486,19486,1884,4,liquid,0,medium,"estimated regional spd 58.6740/day; label only, not sell-through",58.674000,0.462000,53.25,,73.67,,,,,,,,
+5561,5561,1884,4,liquid,0,medium,"estimated regional spd 58.6740/day; label only, not sell-through",58.674000,0.462000,53.25,,73.67,,,,,,,,
+6227,6227,1884,4,liquid,0,medium,"estimated regional spd 58.6740/day; label only, not sell-through",58.674000,0.462000,53.25,,73.67,,,,,,,,
+27515,Huge Spotted Feltail,1884,4,liquid,0,medium,"estimated regional spd 58.6740/day; label only, not sell-through",58.674000,0.462000,53.25,,73.67,,,,,1,0,1,15
+3426,Bold Yellow Shirt,1207,2,liquid,0,high,"estimated regional spd 0.1080/day; label only, not sell-through",0.108000,0.036000,52.04,229.56,283.05,246.44,12,,,2,0,0,1
+167081,Bold Yellow Shirt,1207,2,liquid,0,high,"estimated regional spd 0.1080/day; label only, not sell-through",0.108000,0.036000,52.04,229.56,283.05,246.44,12,,,2,0,-3,1
+254199,254199,117410,3,liquid,0,high,"estimated regional spd 0.1200/day; label only, not sell-through",0.120000,0.016000,47.22,199.00,397.00,191.61,1,,,,,,
+256989,Bladed Rootwarden's Stave,117410,3,liquid,0,high,"estimated regional spd 0.1200/day; label only, not sell-through",0.120000,0.016000,47.22,199.00,397.00,191.61,1,,,2,0,11,80
+245773,Faunatender's Baton,117410,3,liquid,0,high,"estimated regional spd 0.1200/day; label only, not sell-through",0.120000,0.016000,47.22,199.00,397.00,191.61,1,,,3,0,11,197
+29885,29885,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,,,,
+11284,Accurate Slugs,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+23773,Adamantite Shells,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+8068,Crafted Heavy Shot,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+8067,Crafted Light Shot,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+8069,Crafted Solid Shot,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+3465,Exploding Shot,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+23772,Fel Iron Shells,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+32883,Felbane Slugs,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+4960,Flash Pellet,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+2519,Heavy Shot,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+32882,Hellfire Shot,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+10512,Hi-Impact Mithril Slugs,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+19317,Ice Threaded Bullet,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+2516,Light Shot,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+41164,Mammoth Cutters,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+13377,Miniature Cannon Balls,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+10513,Mithril Gyro-Shot,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+67439,Monster - Thorium Shells,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+34582,Mysterious Shell,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+49256,Polished Pebbles,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+11630,Rockshard Pellets,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+52020,Shatter Rounds,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+5568,Smooth Pebble,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+3033,Solid Shot,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+15997,Thorium Shells,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+31735,Timeless Shell,870,27,liquid,0,medium,"estimated regional spd 108.6750/day; label only, not sell-through",108.675000,0.225000,42.65,,11.99,,,,,0,0,0,1
+276300,Vilaldoun Anchorite's Scepter,132415,1,liquid,1,high,"wall/historical 9.99x; estimated regional spd 0.2160/day; label only, not sell-through",0.216000,0.072000,41.90,999.00,100.00,981.03,1,,,3,2,11,1
+244596,Scout's Polished Skullcap,120765,1,liquid,0,high,"estimated regional spd 0.3500/day; label only, not sell-through",0.350000,0.025000,39.35,60.00,118.09,83.64,1,,,3,0,11,197
+260901,Lost Stave of Burrowing Contortion,83786,1,liquid,0,high,"estimated regional spd 0.7700/day; label only, not sell-through",0.770000,0.077000,35.92,69.95,99.95,71.13,30,,,4,0,11,1
+237930,Dawnforged War Mace,84962,1,liquid,0,high,"estimated regional spd 0.2310/day; label only, not sell-through",0.231000,0.021000,35.00,199.00,350.00,229.46,4,,,3,0,11,197
+4334,Formal White Shirt,1592,1,liquid,1,high,"wall/historical 0.00x; market/wall 581.38x; estimated regional spd 0.1000/day; label only, not sell-through",0.100000,0.025000,32.88,1.00,9998.00,581.38,7,,,2,0,0,1
+260903,Lost Sunwell Splitter,83969,1,liquid,1,high,"wall/historical 0.25x; estimated regional spd 0.7020/day; label only, not sell-through",0.702000,0.078000,30.00,50.00,199.00,65.17,20,,,4,0,11,1
+259331,259331,122902,3,liquid,1,high,"wall/historical 0.29x; estimated regional spd 0.4180/day; label only, not sell-through",0.418000,0.038000,28.99,50.00,175.00,59.97,1,,,,,,
+244178,Thalassian Spellweaver's Wand,122902,3,liquid,1,high,"wall/historical 0.29x; estimated regional spd 0.4180/day; label only, not sell-through",0.418000,0.038000,28.99,50.00,175.00,59.97,1,,,3,0,11,197
+257534,Voidbreaker's Baton,122902,3,liquid,1,high,"wall/historical 0.29x; estimated regional spd 0.4180/day; label only, not sell-through",0.418000,0.038000,28.99,50.00,175.00,59.97,1,,,2,0,11,90
+254152,254152,121747,4,liquid,0,high,"estimated regional spd 0.3800/day; label only, not sell-through",0.380000,0.033000,28.49,199.01,199.70,359.63,1,,,,,,
+237929,Primalforged Knuckles,121747,4,liquid,0,high,"estimated regional spd 0.3800/day; label only, not sell-through",0.380000,0.033000,28.49,199.01,199.70,359.63,1,,,3,0,11,197
+259352,Verdant Speaker's Grasp,121747,4,liquid,0,high,"estimated regional spd 0.3800/day; label only, not sell-through",0.380000,0.033000,28.49,199.01,199.70,359.63,1,,,2,0,11,80
+259351,Vinewoven Fangs,121747,4,liquid,0,high,"estimated regional spd 0.3800/day; label only, not sell-through",0.380000,0.033000,28.49,199.01,199.70,359.63,1,,,2,0,11,80
+260904,Lost Soul Collector,93838,1,liquid,1,high,"wall/historical 0.34x; market/wall 6.65x; estimated regional spd 0.9000/day; label only, not sell-through",0.900000,0.090000,25.94,20.85,61.85,138.61,10,,,4,0,11,1
+260900,Lost Thunder Fist,83799,1,liquid,1,high,"wall/historical 0.20x; estimated regional spd 0.7740/day; label only, not sell-through",0.774000,0.086000,24.99,10.00,50.16,14.65,11,,,4,0,11,1
+2577,Blue Linen Shirt,904,1,liquid,0,high,"estimated regional spd 0.1000/day; label only, not sell-through",0.100000,0.025000,20.80,44.35,44.35,60.70,2,,,2,0,0,1
+260902,Lost Sunset Scepter,83838,1,liquid,1,high,"wall/historical 0.17x; estimated regional spd 0.5800/day; label only, not sell-through",0.580000,0.058000,19.96,15.11,89.91,,12,,,4,0,11,1
+256318,256318,121959,2,liquid,1,high,"wall/historical 2.91x; market/wall 0.03x; estimated regional spd 0.7510/day; label only, not sell-through",0.751000,0.079000,8.90,84.27,29.00,2.15,25,,,,,,
+266388,Sanctum Acolyte's Pylon,121959,2,liquid,1,high,"wall/historical 2.91x; market/wall 0.03x; estimated regional spd 0.7510/day; label only, not sell-through",0.751000,0.079000,8.90,84.27,29.00,2.15,25,,,3,2,11,1
+46854,46854,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,,,,
+33803,Adamantite Stinger,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+28056,Blackflight Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+12654,Doomshot,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+10579,Explosive Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+3464,Feathered Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+30611,Halaani Razorshaft,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+11285,Jagged Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+67440,Monster - Sharp Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+34581,Mysterious Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+9399,Precision Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+3030,Razor Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+2512,Rough Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+41165,Saronite Razorheads,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+24417,Scout's Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+2515,Sharp Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+49255,Sharpened Splinters,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+41586,Terrorshaft Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+32760,The Macho Gnome's Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+18042,Thorium Headed Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+31737,Timeless Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+31949,Warden's Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1
+28053,Wicked Arrow,869,23,liquid,0,medium,"estimated regional spd 7.9440/day; label only, not sell-through",7.944000,0.004000,4.75,,100.00,,,,,0,0,0,1

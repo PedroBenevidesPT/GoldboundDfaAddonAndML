@@ -1,0 +1,125 @@
+{
+ "npc_id": 14715,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Silverwing Elite",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 14047,
+   "item_name": "Runecloth",
+   "item_type": "",
+   "drop_rate": 0.11,
+   "qty": 2.5,
+   "source_url": "https://www.wowhead.com/item=14047/runecloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 8953,
+   "item_name": "Deep Fried Plantains",
+   "item_type": "",
+   "drop_rate": 0.018000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8953/deep-fried-plantains"
+  },
+  {
+   "category": "drops",
+   "item_id": 8766,
+   "item_name": "Morning Glory Dew",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=8766/morning-glory-dew"
+  },
+  {
+   "category": "drops",
+   "item_id": 13443,
+   "item_name": "Superior Mana Potion",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=13443/superior-mana-potion"
+  },
+  {
+   "category": "drops",
+   "item_id": 2592,
+   "item_name": "Wool Cloth",
+   "item_type": "",
+   "drop_rate": 0.0008,
+   "qty": 2.5,
+   "source_url": "https://www.wowhead.com/item=2592/wool-cloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 2589,
+   "item_name": "Linen Cloth",
+   "item_type": "",
+   "drop_rate": 0.0004,
+   "qty": 5.0,
+   "source_url": "https://www.wowhead.com/item=2589/linen-cloth"
+  },
+  {
+   "category": "drops",
+   "item_id": 13824,
+   "item_name": "Recurve Long Bow",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=13824/recurve-long-bow?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 13820,
+   "item_name": "Clout Mace",
+   "item_type": "",
+   "drop_rate": 0.0014000000000000002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=13820/clout-mace?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 13819,
+   "item_name": "Balanced War Axe",
+   "item_type": "",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=13819/balanced-war-axe?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 13821,
+   "item_name": "Bulky Maul",
+   "item_type": "",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=13821/bulky-maul?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3987,
+   "item_name": "Deflecting Tower",
+   "item_type": "",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3987/deflecting-tower?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 13818,
+   "item_name": "Jagged Axe",
+   "item_type": "",
+   "drop_rate": 0.0012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=13818/jagged-axe?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 3972,
+   "item_name": "Smooth Cloak",
+   "item_type": "",
+   "drop_rate": 0.001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=3972/smooth-cloak?bonus=6656"
+  }
+ ]
+}

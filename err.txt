@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\FarmAnalysis\scripts\intel_addon_harness.py", line 633, in main
+    stack_row is not None and int(stack_row.itemId) == 1002,
+                              ~~~^^^^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'

@@ -1,0 +1,17 @@
+{
+ "npc_id": 74518,
+ "zone": 719,
+ "zone_name": "blackfathom-deeps",
+ "npc_name": "Executioner Gore",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 120166,
+   "item_name": "Gorestained Garb",
+   "item_type": "Cloth Armor",
+   "drop_rate": 0.82,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=120166/gorestained-garb"
+  }
+ ]
+}

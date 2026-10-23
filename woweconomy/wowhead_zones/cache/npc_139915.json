@@ -1,0 +1,44 @@
+{
+ "npc_id": 139915,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Darnassian Huntress",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 124437,
+   "item_name": "Shal'dorei Silk",
+   "item_type": "",
+   "drop_rate": 0.79,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=124437/shaldorei-silk"
+  },
+  {
+   "category": "drops",
+   "item_id": 121344,
+   "item_name": "Sunbleached Cord",
+   "item_type": "",
+   "drop_rate": 0.05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121344/sunbleached-cord?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121365,
+   "item_name": "Warped-Plate Leggings",
+   "item_type": "",
+   "drop_rate": 0.05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121365/warped-plate-leggings?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 121352,
+   "item_name": "Weatherworn Pants",
+   "item_type": "",
+   "drop_rate": 0.05,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=121352/weatherworn-pants?bonus=6656"
+  }
+ ]
+}

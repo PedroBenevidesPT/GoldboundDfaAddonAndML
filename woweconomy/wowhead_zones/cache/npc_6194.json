@@ -1,0 +1,35 @@
+{
+ "npc_id": 6194,
+ "zone": 16,
+ "zone_name": "azshara",
+ "npc_name": "Spitelash Serpent Guard",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 7973,
+   "item_name": "Big-Mouth Clam",
+   "item_type": "Trade Good",
+   "drop_rate": 0.73,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=7973/big-mouth-clam"
+  },
+  {
+   "category": "drops",
+   "item_id": 6149,
+   "item_name": "Greater Mana Potion",
+   "item_type": "Potion",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=6149/greater-mana-potion"
+  },
+  {
+   "category": "drops",
+   "item_id": 4603,
+   "item_name": "Raw Spotted Yellowtail",
+   "item_type": "Meat",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=4603/raw-spotted-yellowtail"
+  }
+ ]
+}

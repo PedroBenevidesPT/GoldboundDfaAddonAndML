@@ -1,0 +1,485 @@
+{
+ "npc_id": 146577,
+ "zone": 331,
+ "zone_name": "ashenvale",
+ "npc_name": "Veiled Deathstalker",
+ "items": [
+  {
+   "category": "drops",
+   "item_id": 152576,
+   "item_name": "Tidespray Linen",
+   "item_type": "",
+   "drop_rate": 0.67,
+   "qty": 2.0,
+   "source_url": "https://www.wowhead.com/item=152576/tidespray-linen"
+  },
+  {
+   "category": "drops",
+   "item_id": 152577,
+   "item_name": "Deep Sea Satin",
+   "item_type": "",
+   "drop_rate": 0.04,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=152577/deep-sea-satin"
+  },
+  {
+   "category": "drops",
+   "item_id": 160925,
+   "item_name": "Crusty Cutlass",
+   "item_type": "",
+   "drop_rate": 0.013999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160925/crusty-cutlass?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 160936,
+   "item_name": "Depleted Arcane Scepter",
+   "item_type": "",
+   "drop_rate": 0.012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160936/depleted-arcane-scepter?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 154780,
+   "item_name": "Ruptured Plate Pauldrons",
+   "item_type": "",
+   "drop_rate": 0.012,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154780/ruptured-plate-pauldrons?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154771,
+   "item_name": "Cracked Hide Boots",
+   "item_type": "",
+   "drop_rate": 0.011000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154771/cracked-hide-boots?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154787,
+   "item_name": "Unraveling Cloth Shirt",
+   "item_type": "",
+   "drop_rate": 0.011000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154787/unraveling-cloth-shirt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154798,
+   "item_name": "Crumbling Chain Hauberk",
+   "item_type": "",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154798/crumbling-chain-hauberk?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154784,
+   "item_name": "Ruptured Plate Breastplate",
+   "item_type": "",
+   "drop_rate": 0.009000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154784/ruptured-plate-breastplate?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154802,
+   "item_name": "Notched Handaxe",
+   "item_type": "",
+   "drop_rate": 0.008,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154802/notched-handaxe?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 154804,
+   "item_name": "Chipped-Blade Scimitar",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154804/chipped-blade-scimitar"
+  },
+  {
+   "category": "drops",
+   "item_id": 154775,
+   "item_name": "Cracked Hide Shoulders",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154775/cracked-hide-shoulders?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154799,
+   "item_name": "Crumbling Chain Gloves",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154799/crumbling-chain-gloves?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154796,
+   "item_name": "Crumbling Chain Sabatons",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154796/crumbling-chain-sabatons?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154779,
+   "item_name": "Ruptured Plate Stompers",
+   "item_type": "",
+   "drop_rate": 0.006999999999999999,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154779/ruptured-plate-stompers?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 160935,
+   "item_name": "Backfiring Blunderbuss",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160935/backfiring-blunderbuss?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 154800,
+   "item_name": "Crumbling Chain Coif",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154800/crumbling-chain-coif?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 160934,
+   "item_name": "Mud-Soaked Crossbow",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160934/mud-soaked-crossbow?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 154785,
+   "item_name": "Ruptured Plate Belt",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154785/ruptured-plate-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154791,
+   "item_name": "Unraveling Cloth Cowl",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154791/unraveling-cloth-cowl?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154790,
+   "item_name": "Unraveling Cloth Handwraps",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154790/unraveling-cloth-handwraps?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 160928,
+   "item_name": "Weathered Greatsword",
+   "item_type": "",
+   "drop_rate": 0.006,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160928/weathered-greatsword?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 160937,
+   "item_name": "Arrow-Pocked Aegis",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160937/arrow-pocked-aegis?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 160930,
+   "item_name": "Barnacled Greataxe",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160930/barnacled-greataxe?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 154772,
+   "item_name": "Cracked Hide Gloves",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154772/cracked-hide-gloves?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 158078,
+   "item_name": "Cracked Overlord's Scepter",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=158078/cracked-overlords-scepter?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 154795,
+   "item_name": "Crumbling Chain Spaulders",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154795/crumbling-chain-spaulders?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154794,
+   "item_name": "Crumbling Chain Wristguards",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154794/crumbling-chain-wristguards?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154781,
+   "item_name": "Ruptured Plate Leggings",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154781/ruptured-plate-leggings?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154788,
+   "item_name": "Unraveling Cloth Sandals",
+   "item_type": "",
+   "drop_rate": 0.005,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154788/unraveling-cloth-sandals?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 160938,
+   "item_name": "Bent Punching Blade",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160938/bent-punching-blade?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 154774,
+   "item_name": "Cracked Hide Pants",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154774/cracked-hide-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154776,
+   "item_name": "Cracked Hide Vest",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154776/cracked-hide-vest?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154801,
+   "item_name": "Crumbling Chain Belt",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154801/crumbling-chain-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154797,
+   "item_name": "Crumbling Chain Leggings",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154797/crumbling-chain-leggings?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 160931,
+   "item_name": "Rough Cooking Spit",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160931/rough-cooking-spit?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 154783,
+   "item_name": "Ruptured Plate Gauntlets",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154783/ruptured-plate-gauntlets?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154782,
+   "item_name": "Ruptured Plate Helmet",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154782/ruptured-plate-helmet?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 160924,
+   "item_name": "Scored Antique Blade",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160924/scored-antique-blade?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 160933,
+   "item_name": "Splintered Longbow",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160933/splintered-longbow?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 160932,
+   "item_name": "Termite-Addled Staff",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160932/termite-addled-staff?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 154793,
+   "item_name": "Unraveling Cloth Amice",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154793/unraveling-cloth-amice?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154792,
+   "item_name": "Unraveling Cloth Cord",
+   "item_type": "",
+   "drop_rate": 0.004,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154792/unraveling-cloth-cord?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154803,
+   "item_name": "Battered Greatmaul",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154803/battered-greatmaul?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 160927,
+   "item_name": "Chipped Stone Hatchet",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160927/chipped-stone-hatchet?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 154770,
+   "item_name": "Cracked Hide Belt",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154770/cracked-hide-belt?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154773,
+   "item_name": "Cracked Hide Hood",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154773/cracked-hide-hood?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154777,
+   "item_name": "Cracked Hide Wristguards",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154777/cracked-hide-wristguards?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154789,
+   "item_name": "Unraveling Cloth Pants",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154789/unraveling-cloth-pants?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154786,
+   "item_name": "Unraveling Cloth Wristwraps",
+   "item_type": "",
+   "drop_rate": 0.003,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154786/unraveling-cloth-wristwraps?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154778,
+   "item_name": "Ruptured Plate Vambraces",
+   "item_type": "",
+   "drop_rate": 0.002,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154778/ruptured-plate-vambraces?bonus=6656"
+  },
+  {
+   "category": "drops",
+   "item_id": 154805,
+   "item_name": "Rottingwood Quarterstaff",
+   "item_type": "",
+   "drop_rate": 0.0018,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=154805/rottingwood-quarterstaff?bonus=6657"
+  },
+  {
+   "category": "drops",
+   "item_id": 160929,
+   "item_name": "Cracked Cannon Ram",
+   "item_type": "",
+   "drop_rate": 0.0007000000000000001,
+   "qty": 1.0,
+   "source_url": "https://www.wowhead.com/item=160929/cracked-cannon-ram?bonus=6657"
+  }
+ ]
+}
