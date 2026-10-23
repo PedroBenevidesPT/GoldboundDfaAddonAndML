@@ -613,6 +613,30 @@ def test_a_quiet_cycle_posts_nothing(monkeypatch):
     assert rp.post_cycle_digest([]) == []
 
 
+def test_a_lease_skip_is_not_an_action(monkeypatch):
+    """Another worker running the task is not something this cycle did.
+
+    Reporting it posted a digest every couple of minutes for as long as a
+    lease outlived the container that held it -- the longest, loudest
+    messages the channel ever got, all saying nothing happened.
+    """
+    def explode(*args, **kwargs):
+        raise AssertionError("posted a cycle that only waited on a lease")
+
+    monkeypatch.setattr(rp.alerts, "post_discord", explode)
+    lease_skip = rp.TaskResult("fetch", True, 0.0,
+                               skipped="another worker holds the lease",
+                               lease_skip=True)
+    assert rp.cycle_digest([lease_skip], now=0) is None
+    assert rp.post_cycle_digest([lease_skip]) == []
+    # a real action in the same cycle still gets its message
+    alert = rp.cycle_digest([lease_skip,
+                             rp.TaskResult("addon", True, 2.0, exit_code=0)],
+                            now=0)
+    assert alert is not None and len(alert.lines) == 1
+    assert "1 action(s)" in alert.title
+
+
 def test_the_cycle_digest_reaches_the_webhook(monkeypatch):
     seen = {}
     monkeypatch.setattr(rp.alerts, "webhook_url",

@@ -358,6 +358,7 @@ def cycle_digest(results: Sequence[TaskResult], *,
     ``None`` when the cycle did nothing: an empty digest is a heartbeat, and
     the rule for every other alert here is that an alert is a *change*.
     """
+    results = [r for r in results if not r.lease_skip]
     if not results:
         return None
     lines: List[str] = []
@@ -409,6 +410,10 @@ class TaskResult:
     exit_code: Optional[int] = None
     skipped: str = ""
     detail: Dict[str, object] = field(default_factory=dict)
+    #: The lease was held by someone else, so this cycle did not attempt the
+    #: work.  Not an action: reporting it would post a digest every couple of
+    #: minutes for as long as another worker is running the task.
+    lease_skip: bool = False
 
     def line(self) -> str:
         if self.skipped:
@@ -440,7 +445,8 @@ def run_task(con, task: TaskDef, *, runner: Optional[Callable] = None,
         leases.publish_event("skipped", task=task.name, owner=token,
                              reason="another worker holds the lease")
         return TaskResult(task.name, True, 0.0,
-                          skipped="another worker holds the lease")
+                          skipped="another worker holds the lease",
+                          lease_skip=True)
 
     started = time.time()
     # Say when a task *starts*, not only when it finishes.  A fetch against
