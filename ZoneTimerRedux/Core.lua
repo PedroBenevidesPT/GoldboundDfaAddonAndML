@@ -208,6 +208,20 @@ function ZoneTimerRedux:GetSortedZones()
         table.insert(list, { zone = self.currentZone, time = liveElapsed, gold = goldDB[self.currentZone] or 0 })
     end
 
+    -- A zone can carry loot without a saved time -- entered and left before
+    -- the timer ticked, or a ledger restored from an older save -- and the
+    -- row list comes from the times table alone, so its loot would never be
+    -- shown anywhere.  Anything the loot ledger knows about gets a row.
+    local ledger = self.GetLootLedger and self:GetLootLedger(self.charView) or {}
+    local listed = {}
+    for _, row in ipairs(list) do listed[row.zone] = true end
+    for zone in pairs(ledger) do
+        if not listed[zone] then
+            table.insert(list, { zone = zone, time = times[zone] or 0,
+                                 gold = goldDB[zone] or 0 })
+        end
+    end
+
     local key, ascending = self.sortMode, self.sortAscending
     table.sort(list, function(a, b)
         -- default order: most time first
