@@ -12,6 +12,14 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
+# The URL comes from DATABASE_URL when it is set, so migrations target the
+# shared Postgres stack instead of the SQLite file baked into alembic.ini.
+# Without this, `alembic upgrade head` would silently migrate a local file
+# while the running pipeline used Postgres.
+_env_url = os.environ.get("DATABASE_URL", "").strip()
+if _env_url:
+    config.set_main_option("sqlalchemy.url", _env_url)
+
 target_metadata = Base.metadata
 
 
