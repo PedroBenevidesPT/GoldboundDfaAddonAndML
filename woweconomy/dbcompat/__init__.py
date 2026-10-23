@@ -19,6 +19,7 @@ write to Postgres is exactly the split-brain this layer exists to prevent.
 """
 from __future__ import annotations
 
+import logging
 import os
 import sqlite3
 from pathlib import Path
@@ -35,6 +36,11 @@ __all__ = [
     "database_url",
     "is_postgres",
     "store_exists",
+    "load_env",
+    "read_env_file",
+    "env_file_path",
+    "env_file_disagrees",
+    "redact_dsn",
     "Row",
     "PgConnection",
     "PgCursor",
@@ -70,6 +76,81 @@ def backend() -> str:
 
 def is_postgres() -> bool:
     return backend() == "postgres"
+
+
+#: the repository root, used to find the ``.env`` an entry point should read
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+_warned_about_env = False
+
+
+def env_file_path(path: Optional[Union[str, Path]] = None) -> Path:
+    """The ``.env`` to read: the one given, or the project's."""
+    return Path(path) if path else PROJECT_ROOT / ".env"
+
+
+def read_env_file(path: Optional[Union[str, Path]] = None) -> dict:
+    """Parse a ``.env`` file without touching ``os.environ``.
+
+    Deliberately dependency-free and forgiving: a line without ``=``, a
+    comment, a blank line -- all skipped.  Values may be quoted.
+    """
+    target = env_file_path(path)
+    try:
+        text = target.read_text(encoding="utf-8")
+    except OSError:
+        return {}
+    values = {}
+    for line in text.splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        name, _, value = line.partition("=")
+        name = name.strip()
+        if name.startswith("export "):
+            name = name[len("export "):].strip()
+        if not name:
+            continue
+        value = value.strip()
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
+            value = value[1:-1]
+        values[name] = value
+    return values
+
+
+def load_env(path: Optional[Union[str, Path]] = None,
+             *, override: bool = False) -> dict:
+    """Read ``.env`` into ``os.environ``.  Entry points call this.
+
+    **Not** done on import, on purpose.  A library that changed the backend
+    when it was imported would flip the test suite to Postgres, where every
+    test that hands over a temporary SQLite path would write to the shared
+    database instead -- the same split-brain this module exists to prevent,
+    arriving from the other side.
+
+    Existing variables win unless ``override`` is set, so
+    ``WOW_PIPELINE_BACKEND=sqlite python ...`` still means what it says.
+    """
+    values = read_env_file(path)
+    applied = {}
+    for name, value in values.items():
+        if override or name not in os.environ:
+            os.environ[name] = value
+            applied[name] = value
+    return applied
+
+
+def env_file_disagrees(path: Optional[Union[str, Path]] = None) -> str:
+    """The DSN the project's ``.env`` names, when this process is on SQLite.
+
+    Empty when there is nothing to say.  This is the check that stops a
+    hand-run script from looking like it used the shared database: the
+    fallback to SQLite is legitimate, but it must not be silent when a
+    ``.env`` right next to the code says the data lives in Postgres.
+    """
+    if backend() != "sqlite":
+        return ""
+    return read_env_file(path).get(_ENV_URL, "").strip()
 
 
 def connect(
@@ -130,7 +211,40 @@ def store_exists(target: Union[str, Path, None]) -> bool:
     """
     if backend() == "postgres":
         return True
+    _warn_if_env_disagrees()
     return target is not None and Path(target).exists()
+
+
+def _warn_if_env_disagrees() -> None:
+    """Say so, once, when a ``.env`` names a database this run is not using.
+
+    A hand-run script that quietly reads a local SQLite file while the
+    pipeline writes to Postgres answers a question nobody asked.  The
+    fallback is still allowed -- that is how the tests and a fresh
+    workstation work -- but it must not be silent.
+    """
+    global _warned_about_env
+    if _warned_about_env:
+        return
+    dsn = env_file_disagrees()
+    if not dsn:
+        return
+    _warned_about_env = True
+    logging.getLogger(__name__).warning(
+        "this run is using sqlite, but %s names %s -- export %s=postgres "
+        "(or call load_env()) to use the shared database",
+        env_file_path(), redact_dsn(dsn), _ENV_BACKEND)
+
+
+def redact_dsn(dsn: str) -> str:
+    """A DSN with the password replaced, for a log line."""
+    text = str(dsn)
+    if "@" not in text or "://" not in text:
+        return text
+    scheme, _, rest = text.partition("://")
+    credentials, _, host = rest.rpartition("@")
+    user = credentials.split(":", 1)[0]
+    return f"{scheme}://{user}:***@{host}"
 
 
 def connect_store(target: Union[str, Path, None] = None, *,

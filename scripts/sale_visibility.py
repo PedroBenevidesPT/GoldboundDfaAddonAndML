@@ -27,6 +27,14 @@ from woweconomy.analytics.sale_visibility import (  # noqa: E402
     by_realm,
     check_sale_visibility,
 )
+from woweconomy.dbcompat import backend, load_env, redact_dsn, database_url  # noqa: E402
+
+# A CLI is an entry point: read the project's `.env` so the question is
+# asked of the database the pipeline writes to.  Without this the run
+# silently fell back to a local SQLite file that does not have the
+# `ah_snapshot` table, and failed with "no such table" instead of saying
+# it was looking in the wrong place.
+load_env()
 
 DEFAULT_STORE = ROOT / "tsm_markets.db"
 

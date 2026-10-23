@@ -69,9 +69,11 @@ ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from woweconomy.dbcompat import load_env, redact_dsn, database_url  # noqa: E402
 from woweconomy.intel import alerts                      # noqa: E402
 from woweconomy.intel import store                       # noqa: E402
 from woweconomy.pipeline import leases                    # noqa: E402
+from woweconomy.pricing.dataset import dataset_content_signature  # noqa: E402
 
 PY = sys.executable
 HOUR = 3600
@@ -211,10 +213,19 @@ def _order(tasks: Dict[str, TaskDef]) -> List[str]:
 
 # ------------------------------------------------------------------- notices
 def dataset_fingerprint(path: Path = DATASET) -> str:
-    """The sha256 of the exported dataset, or "" when it does not exist."""
+    """The *content* signature of the exported dataset, or "" when absent.
+
+    Not the sha256 of the file: that covers ``generatedAt``, so every
+    export would look new and the alert would fire every six hours with
+    nothing to say.  ``dataset_content_signature`` strips the build time
+    and compares floats at 1% -- the resolution at which a probability is
+    worth telling someone about -- and is the one definition of "changed"
+    in the project.
+    """
     if not Path(path).exists():
         return ""
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+    text = Path(path).read_text(encoding="utf-8", errors="replace")
+    return dataset_content_signature(text)
 
 
 #: Scalar fields worth quoting in a "new dataset" alert.  They are read from
@@ -499,6 +510,26 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     args = build_parser().parse_args(argv)
+    # The tasks run as child processes and inherit this environment, so the
+    # backend has to be decided here -- before anything connects.  Without
+    # it every worker falls back to SQLite while the data lives in
+    # Postgres: the split-brain the compat layer exists to prevent,
+    # arriving through the one entry point that never read the `.env`.
+    # Done in `main` and not at import, because importing this module must
+    # not change the backend of the process that did it (the test suite
+    # imports it, and would then write to the shared database).
+    # Variables already set still win.
+    load_env()
+    # Say which database this run is on.  A pipeline that reports its
+    # backend is a pipeline whose reports can be trusted to come from the
+    # data you think they came from.
+    from woweconomy.dbcompat import backend as _backend
+    if _backend() == "postgres":
+        print(f"backend: postgres ({redact_dsn(database_url())})")
+    else:
+        print("backend: sqlite -- NOT the shared database"
+              + (f"; {redact_dsn(database_url())} is configured but unused"
+                 if database_url() else ""))
     con = store.connect(args.db)
 
     if args.status:
