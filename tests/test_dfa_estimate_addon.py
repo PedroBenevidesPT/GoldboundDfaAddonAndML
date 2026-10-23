@@ -110,6 +110,19 @@ def test_the_bridge_fills_the_price_field_and_reseeds_it():
     bridge.ApplyEstimate(frame)                     # the hook calls OnPriceSet
     assert lua.globals().__calls.price == 1100     # our estimate reseeded it
 
+    # Auctionator also writes the price box itself -- its own price list, the
+    # minimum buyout it just found.  That text change is not the player, and
+    # treating it as a choice left the field holding Auctionator's price for
+    # the rest of the item.  No focus, so the estimate goes back in.
+    lua.execute("""
+        _G.__calls = {}
+        local f = _G.__frame
+        f.Price.MoneyInput.GoldBox:SetText('777')       -- Auctionator's min buyout
+    """)
+    assert bridge.GetLastFill().confirmed is True
+    assert lua.globals().__calls.price == 1100, \
+        "Auctionator's own price replaced the estimate without a click"
+
     # but a price the player chose after the fill must win.  This is the
     # real flow: typing (or clicking a row in Auctionator's price list)
     # raises OnTextChanged, Auctionator then writes the choice, and the
@@ -119,6 +132,7 @@ def test_the_bridge_fills_the_price_field_and_reseeds_it():
     lua.execute("""
         _G.__calls = {}
         local f = _G.__frame
+        f.Price.MoneyInput.GoldBox:SetFocus()           -- the player clicks in
         f.Price.MoneyInput.GoldBox:SetText('2000')      -- the player types
         f.UpdateSalesPrice(f, 2000)                     -- Auctionator writes it
         Addon.DFAEstimateAuctionator.OnPriceSet(f)      -- the hook fires

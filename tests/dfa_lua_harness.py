@@ -80,6 +80,17 @@ def woW_like_lua():
                 local handler = self.scripts["OnTextChanged"]
                 if handler then handler(self, text) end
             end
+            -- A real EditBox has focus, and the bridge uses it to tell the
+            -- player typing from Auctionator writing the box itself.
+            frame.HasFocus = function(self)
+                return self.__focused == true
+            end
+            frame.SetFocus = function(self)
+                self.__focused = true
+            end
+            frame.ClearFocus = function(self)
+                self.__focused = false
+            end
             frame.SetWidth = function(self, w)
             end
             frame.SetHeight = function(self, h)
