@@ -13,6 +13,7 @@ file atomically, and reports what it skipped.
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -21,14 +22,30 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from woweconomy import addons                            # noqa: E402
+from woweconomy.dbcompat import load_env                 # noqa: E402
 
 DEFAULT_ADDONS_DIR = Path(
     r"C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns")
 
 
+def default_addons_dir() -> Path:
+    """Where the game keeps its addons.
+
+    ``WOW_ADDONS_DIR`` is how the container reaches the folder: the host's
+    path is bind-mounted at a fixed place and the variable is re-pointed at
+    the mount (see ``docker-compose.yml``), so the same copy runs in both
+    places.  Without it, the Windows default is the one
+    ``PricingConfig.addons_dir`` already assumes.
+    """
+    return Path(os.environ.get("WOW_ADDONS_DIR") or DEFAULT_ADDONS_DIR)
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--addons-dir", default=str(DEFAULT_ADDONS_DIR),
+    # A run from the source tree reads `.env`, where WOW_ADDONS_DIR lives; a
+    # container gets the same variable from its environment instead.
+    load_env()
+    parser.add_argument("--addons-dir", default=str(default_addons_dir()),
                         help="the game's Interface/AddOns directory")
     parser.add_argument("--project", default=str(ROOT),
                         help="the repository holding the addon folders")
@@ -36,6 +53,9 @@ def main(argv=None) -> int:
                         help="deploy only this addon (repeatable)")
     parser.add_argument("--check", action="store_true",
                         help="report staleness and exit 1 instead of writing")
+    parser.add_argument("--require", action="store_true",
+                        help="treat a missing AddOns folder as an error"
+                             " (default: exit 78, 'not this machine')")
     parser.add_argument("--dry-run", action="store_true",
                         help="say what would change, write nothing")
     args = parser.parse_args(argv)
@@ -45,8 +65,15 @@ def main(argv=None) -> int:
     names = args.only or tuple(addons.ADDONS)
 
     if not target.exists():
-        print(f"addons directory not found: {target}", file=sys.stderr)
-        return 2
+        # The pipeline runs in a Linux container, which cannot see the
+        # game's Program Files directory.  That is not a failure and it is
+        # not a success: exit EX_CONFIG so the pipeline reports "skipped"
+        # and does not advance `last_ok` -- claiming a deploy that never
+        # happened is worse than saying nothing.  The host-side watcher
+        # (`scripts/watch_addons.py`) is what actually copies the files.
+        message = (f"the game's AddOns folder is not on this machine: {target}")
+        print(message, file=sys.stderr)
+        return 78 if not args.require else 2
 
     if args.dry_run or args.check:
         stale = 0

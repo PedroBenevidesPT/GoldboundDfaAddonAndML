@@ -86,7 +86,10 @@ def test_the_scroll_child_is_a_frame_and_the_panel_opens(panel):
     assert layout.content.kind == "Frame"
     assert layout.scroll.scrollChild.kind == "Frame"
     assert layout.content.width == 420
-    assert layout.content.height == 240
+    # The content is sized to the report, not to a fixed 240.  A fixed
+    # height clipped everything past the header, which is why the panel
+    # looked empty; the viewport is the floor, never the ceiling.
+    assert layout.content.height >= 240
     assert layout.shown
 
 

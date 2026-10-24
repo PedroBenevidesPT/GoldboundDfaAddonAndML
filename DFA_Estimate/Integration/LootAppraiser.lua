@@ -45,6 +45,9 @@ local runtime = {
 	wrappedResolver = nil,
 	originalResolver = nil,
 	valueInstalled = false,
+	--: LootAppraiser's own GetItemValue is patched in place (see
+	--: PriceSources.dfaGetItemValuePatched); nothing to wrap, still ours
+	valuePatched = false,
 	wrappedGetValue = nil,
 	originalGetValue = nil,
 }
@@ -196,12 +199,35 @@ local function DatasetPrice(itemID)
 	if not id then
 		return nil
 	end
+	-- junk that is not a transmog is worth what a vendor pays: nobody buys
+	-- a grey, and a modelled sale price for one is a number about nobody.
+	-- The classification is the addon's, so the tooltip, MobInfo2 and this
+	-- wrapper cannot disagree about which rule applies.
+	local facts = addon and addon.ItemFacts and addon.ItemFacts(id) or nil
+	if facts and facts.quality == 0 and not facts.appearance then
+		local vendor = addon.GetVendorPrice and addon.GetVendorPrice(id) or nil
+		if type(vendor) == "number" and vendor > 0 then
+			return vendor
+		end
+		if type(facts.vendor) == "number" and facts.vendor > 0 then
+			return facts.vendor
+		end
+		return nil
+	end
 	if addon and addon.GetRecord then
 		local record = addon.GetRecord(id)
-		-- Loot value is what the sale pays, not the price it is posted at.
-		-- `net` is the realised price less the 5 % cut and the expected
-		-- deposit; falling back to `price` keeps an older dataset working.
+		-- Loot = what the sale actually pays, after cut + deposit, less any
+		-- deposit the player must first front.
+		-- `net` is price less the 5 % cut and the expected deposit; falling
+		-- back to `price` keeps an older dataset working.
 		if record and type(record.net) == "number" and record.net > 0 then
+			-- deposit-aware valuation: when expected_deposit > 0 the in-hand
+			-- value is net less that deposit; the tooltip already flags it.
+			if type(record.action) == "table"
+				and type(record.action.expected_deposit) == "number"
+				and record.action.expected_deposit > 0 then
+				return math.max(0, record.net - record.action.expected_deposit)
+			end
 			return record.net
 		end
 		if record and type(record.price) == "number" and record.price > 0 then
@@ -236,6 +262,16 @@ end
 local function InstallValueResolver(la, state)
 	local sources = la.PriceSources
 	if type(sources) ~= "table" or type(sources.GetItemValue) ~= "function" then
+		return
+	end
+	-- LootAppraiser is patched in place: GetItemValue already answers with the
+	-- DfA value, applying the junk -> vendor and commodity -> minbuyout rules.
+	-- Wrapping it here would answer first with a market-only price and undo
+	-- them, so the wrapper stands down and reports the patch as its own.
+	if sources.dfaGetItemValuePatched then
+		runtime.valuePatched = true
+		runtime.valueInstalled = false
+		runtime.wrappedGetValue = nil
 		return
 	end
 	if runtime.valueInstalled and sources.GetItemValue == runtime.wrappedGetValue then
@@ -357,7 +393,8 @@ function Integration:Status()
 		tostring(profile.classTypeRecipePriceSource),
 		tostring(general.useSubClasses),
 		runtime.resolverInstalled and "installed" or "not installed",
-		runtime.valueInstalled and "installed" or "not installed",
+		runtime.valuePatched and "patched in place"
+			or (runtime.valueInstalled and "installed" or "not installed"),
 		session and "running" or "stopped",
 		tostring(general.ignoreSoulboundItems),
 		tostring(general.autoStartLA))
@@ -371,8 +408,10 @@ function Integration:IsEnabled()
 	local profile = la.db.profile
 	-- the profile alone is not enough: on a localized client the resolver
 	-- is what makes the class ids match the three source fields, and the
-	-- value wrapper is what turns the decision into the frozen price
-	return runtime.resolverInstalled and runtime.valueInstalled
+	-- value path -- a wrapper, or LootAppraiser's own patched GetItemValue --
+	-- is what turns the decision into the frozen price
+	return runtime.resolverInstalled
+		and (runtime.valueInstalled or runtime.valuePatched)
 		and profile.classTypeArmor == true
 		and profile.classTypeArmorPriceSource == SOURCE
 		and profile.classTypeWeapon == true

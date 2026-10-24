@@ -166,6 +166,9 @@ def leaderboard(command: str, argv) -> int:
 
 
 def main(argv=None) -> int:
+    from woweconomy.dbcompat import load_env
+
+    load_env()
     argv = list(sys.argv[1:] if argv is None else argv)
     if argv and argv[0] == "realms":
         # The per-realm view: the same question asked of each auction house

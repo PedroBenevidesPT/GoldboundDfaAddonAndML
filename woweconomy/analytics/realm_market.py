@@ -79,7 +79,13 @@ from woweconomy.analytics.farm_ranking import (
     FarmRankingConfig,
     item_exclusion_reason,
 )
+from woweconomy.dbcompat import connect_store, missing_table_errors
 from woweconomy.services.db2_items import load_facts
+
+
+def _connect_ro(db_path):
+    """Read the market store, whichever backend holds it."""
+    return connect_store(db_path, readonly=True)
 
 COPPER_PER_GOLD = 10000.0
 
@@ -145,7 +151,7 @@ def appearance_items(db_path: str, appearance_ids: Sequence[int]) \
     ids = list(dict.fromkeys(int(a) for a in appearance_ids))
     if not ids:
         return out
-    con = sqlite3.connect(db_path)
+    con = _connect_ro(db_path)
     try:
         for chunk in _chunks(ids):
             marks = ",".join("?" * len(chunk))
@@ -153,7 +159,7 @@ def appearance_items(db_path: str, appearance_ids: Sequence[int]) \
                     f"SELECT appearanceId, itemId FROM db2_item_appearance "
                     f"WHERE appearanceId IN ({marks})", chunk):
                 out.setdefault(int(appearance_id), []).append(int(item_id))
-    except sqlite3.OperationalError:
+    except missing_table_errors():
         return {}  # no DB2 import: nothing to price
     finally:
         con.close()
@@ -171,7 +177,7 @@ def load_realm_market(db_path: str, item_ids: Sequence[int]) \
     ids = list(dict.fromkeys(int(i) for i in item_ids))
     if not ids:
         return out
-    con = sqlite3.connect(db_path)
+    con = _connect_ro(db_path)
     try:
         for chunk in _chunks(ids):
             marks = ",".join("?" * len(chunk))
@@ -200,7 +206,7 @@ def load_velocity(db_path: str, item_ids: Sequence[int]) \
     ids = list(dict.fromkeys(int(i) for i in item_ids))
     if not ids:
         return out
-    con = sqlite3.connect(db_path)
+    con = _connect_ro(db_path)
     try:
         for chunk in _chunks(ids):
             marks = ",".join("?" * len(chunk))
@@ -209,7 +215,7 @@ def load_velocity(db_path: str, item_ids: Sequence[int]) \
                     f"FROM tsm_region WHERE itemId IN ({marks})", chunk):
                 out[int(item_id)] = (float(sale_rate or 0.0),
                                      float(spd or 0.0))
-    except sqlite3.OperationalError:
+    except missing_table_errors():
         return {}
     finally:
         con.close()

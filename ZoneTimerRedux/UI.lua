@@ -562,6 +562,8 @@ SlashCmdList["ZONETIMEREDUX"] = function(msg)
         ShowTally()
     elseif msg == "gold" then
         ZTR:PrintPriceReport()
+    elseif msg == "loot" then
+        ZTR:PrintLootReport()
     elseif msg == "help" then
         print("|cff33ff99ZoneTimerRedux commands:|r")
 
@@ -570,6 +572,7 @@ SlashCmdList["ZONETIMEREDUX"] = function(msg)
         print("|cffffff00/zt resume|r " .. "|cffbbbbbb- resume timer|r")
         print("|cffffff00/zt tally|r or |cffffff00/ztt|r " .. "|cffbbbbbb- show zone tally|r")
         print("|cffffff00/zt gold|r " .. "|cffbbbbbb- cash, vendor and estimated market per zone|r")
+        print("|cffffff00/zt loot|r " .. "|cffbbbbbb- whether loot is being captured, and per zone|r")
         print("|cffffff00/zt help|r " .. "|cffbbbbbb- show this list|r")
     else
         ZoneTimerRedux.SetWindowVisible(not mainFrame:IsShown())

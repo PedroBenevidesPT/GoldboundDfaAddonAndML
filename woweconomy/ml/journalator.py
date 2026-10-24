@@ -186,7 +186,13 @@ def _lua_to_py(value):
 
 def extract_archive(lua_path: Path | str,
                     addons_dir: Path | str) -> Tuple[List[dict], List[dict], List[dict], List[str]]:
-    """Return ``(postings, invoices, failures, errors)`` as plain dicts."""
+    """Return ``(postings, invoices, failures, errors)`` as plain dicts.
+
+    ``addons_dir`` is where ``Journalator/Embeds/...`` is looked up: the
+    game's AddOns folder on the workstation, or the published copy under
+    ``data/game`` inside the worker container, which cannot see Program
+    Files.  Same two files either way.
+    """
     errors: List[str] = []
     lua_path = Path(lua_path)
     addons = Path(addons_dir)

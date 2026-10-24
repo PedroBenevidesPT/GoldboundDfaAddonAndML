@@ -31,11 +31,10 @@ import logging
 import math
 import os
 import shutil
-import sqlite3
 import tempfile
 import uuid
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
@@ -1355,9 +1354,12 @@ def load_snapshot_panel(tsm_db: Path,
     listing outcome to learn from, and the risk model is only claimed for
     the items in the exported records.
     """
-    if not Path(tsm_db).exists():
-        return pd.DataFrame()
-    con = sqlite3.connect(tsm_db)
+    #: ``tsm_db`` is the SQLite path on a workstation and ignored on
+    #: Postgres: opening it directly made this reader silently return an
+    #: empty panel on the stack, which the caller reads as "no signal".
+    from woweconomy.dbcompat import connect_store, missing_table_errors
+
+    con = connect_store(tsm_db)
     try:
         if scopes is None:
             traded = [str(r[0]) for r in con.execute(
@@ -1379,8 +1381,13 @@ def load_snapshot_panel(tsm_db: Path,
             where.append("c.key_id IN (%s)" % ",".join("?" * len(item_ids)))
             args.extend([int(v) for v in item_ids])
         if days and days > 0:
-            where.append("s.updated_at >= datetime('now', ?)")
-            args.append(f"-{int(days)} days")
+            #: ``updated_at`` is ISO-8601 UTC text on both backends, so the
+            #: cutoff is computed here: SQLite's ``datetime('now', '-30 days')``
+            #: has no Postgres equivalent and the string order is chronological.
+            cutoff = (datetime.now(timezone.utc) - timedelta(days=int(days))
+                      ).strftime("%Y-%m-%dT%H:%M:%SZ")
+            where.append("s.updated_at >= ?")
+            args.append(cutoff)
         query = (
             "SELECT s.updated_at, s.scope, c.key_id, c.market_value, c.min_buyout, "
             "       c.recent, c.historical, c.avg_sale_price, c.sale_rate, "
@@ -1392,7 +1399,7 @@ def load_snapshot_panel(tsm_db: Path,
             " ORDER BY s.scope, c.key_id, s.updated_at LIMIT ?")
         args.append(int(max_rows))
         rows = con.execute(query, args).fetchall()
-    except sqlite3.OperationalError as exc:
+    except missing_table_errors() as exc:
         logger.warning("snapshot panel unavailable: %s", exc)
         return pd.DataFrame()
     finally:

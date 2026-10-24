@@ -9,6 +9,7 @@ DfA pricing dataset, so the links that can break silently are covered here:
   ``DFA_ESTIMATE_API`` -- not from TSM, not from a price of its own;
 * the installed copy must be the one that was tested.
 """
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -26,7 +27,11 @@ def test_the_pricing_engine_values_the_loot_and_the_ui_shows_the_split():
     result = subprocess.run([sys.executable, str(HARNESS)],
                             capture_output=True, text=True, timeout=180)
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "61/61 checks passed" in result.stdout
+    # every check that ran must have passed; the total moves as checks are
+    # added, so it is the equality that matters, not the number
+    summary = re.search(r"(\d+)/(\d+) checks passed", result.stdout)
+    assert summary, result.stdout[-400:]
+    assert summary.group(1) == summary.group(2), result.stdout[-400:]
     assert "FAIL" not in result.stdout
 
 

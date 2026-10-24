@@ -15,6 +15,7 @@ The commands read the existing ``tsm_markets.db`` and write to
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sqlite3
 import sys
@@ -25,7 +26,8 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from woweconomy.analytics import auction_intel as ai  # noqa: E402
-from woweconomy.intel import actions, ah, ah_undercut, dynamics, farming, inventory, ledger, mail, mobs, realm_ml, relist, sellers, store, undercut  # noqa: E402
+from woweconomy.intel import actions, ah, ah_undercut, decision_ledger, dynamics, farming, inventory, ledger, mail, mobs, realm_ml, relist, sellers, store, undercut  # noqa: E402
+from woweconomy.pipeline import leases  # noqa: E402
 
 
 def _print(payload) -> None:
@@ -204,12 +206,28 @@ def _fetch_all_realms(args, con, client) -> int:
     return 1 if failed else 0
 
 
+def _file_digest(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
 def cmd_addon_import(args) -> int:
     path = Path(args.path) if args.path else ai.find_saved_variables()
     if not path:
         print("no addon SavedVariables found", file=sys.stderr)
         return 2
     con = store.connect(args.db)
+    # The pipeline polls this file because the client only writes it on
+    # /reload or logout.  Hashing it makes the poll cheap and, more
+    # importantly, silent: an unchanged export is EX_CONFIG, which is the
+    # pipeline's "nothing to do" and not a digest line.
+    digest = _file_digest(path) if args.if_changed else ""
+    if digest and leases.read_stat(con, "addon:sha256") == digest:
+        print("the addon export is unchanged", file=sys.stderr)
+        return 78
     result = {"saved_variables": str(path)}
 
     events = ai.parse_saved_variables(path)
@@ -278,6 +296,10 @@ def cmd_addon_import(args) -> int:
         result["kills"] = {"parsed": len(rows), "inserted": inserted}
     except (ValueError, OSError) as exc:
         result["kills"] = {"error": str(exc)}
+    # Only a completed import records the fingerprint: a run that failed half
+    # way has to be retried on the next poll, not remembered as done.
+    if digest:
+        leases.publish_stat(con, "addon:sha256", digest)
     _print(result)
     return 0
 
@@ -457,6 +479,31 @@ def cmd_mail_link(args) -> int:
     return 0
 
 
+def cmd_decisions(args) -> int:
+    """What was recommended, and what happened to it.
+
+    ``--record`` stores the current advice; ``--backfill`` replays the
+    stored scans at their own time; ``--link`` attaches confirmed journal
+    events to open rows.  With no flag it only reads the summary.
+    """
+    con = store.connect(args.db)
+    out: dict = {}
+    if args.backfill:
+        out["backfill"] = decision_ledger.backfill(
+            con, args.realm, args.days, now=args.now)
+    if args.record:
+        advice = relist.advise(con, args.realm, args.days, now=args.now)
+        out["record"] = decision_ledger.record(con, advice, args.realm,
+                                               now=args.now)
+    if args.link:
+        out["link"] = decision_ledger.link_outcomes(
+            con, args.tsm_db, args.realm, args.window_days, now=args.now)
+    out["summary"] = decision_ledger.summary(con, args.realm, args.days,
+                                             now=args.now)
+    _print(out)
+    return 0
+
+
 def cmd_ledger_verify(args) -> int:
     _print(ledger.ExperimentLedger(args.path).verify())
     return 0
@@ -521,6 +568,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--path")
     p.add_argument("--no-link", action="store_true",
                    help="import mail invoices but do not update the journal")
+    p.add_argument("--if-changed", action="store_true",
+                   help="exit 78 without importing when the file has not"
+                        " changed since the last successful import")
     p.set_defaults(func=cmd_addon_import)
 
     p = sub.add_parser("mail-import", help="import mailbox invoices only")
@@ -613,6 +663,24 @@ def build_parser() -> argparse.ArgumentParser:
                    help="store this dated valuation alongside the observations")
     p.set_defaults(func=cmd_mobs)
 
+    p = sub.add_parser("decisions",
+                       help="what was recommended, and what happened to it")
+    p.add_argument("--realm", default="")
+    p.add_argument("--days", type=int, default=30,
+                   help="window for the summary and the backfill")
+    p.add_argument("--record", action="store_true",
+                   help="store the current relist advice")
+    p.add_argument("--backfill", action="store_true",
+                   help="replay the stored scans at the time they were taken")
+    p.add_argument("--link", action="store_true",
+                   help="attach confirmed journal events to open rows")
+    p.add_argument("--window-days", type=int,
+                   default=decision_ledger.DEFAULT_WINDOW_DAYS,
+                   help="how long after a scan an event can be its outcome")
+    p.add_argument("--now", type=int, default=None,
+                   help="clock override, for a reproducible replay")
+    p.set_defaults(func=cmd_decisions)
+
     p = sub.add_parser("ledger-verify", help="verify an experiment ledger")
     p.add_argument("path")
     p.set_defaults(func=cmd_ledger_verify)
@@ -626,6 +694,13 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv=None) -> int:
+    # An entry point, not a library: a hand-run command must use the database
+    # the .env names.  Without this, ``decisions`` wrote to a local SQLite
+    # file while the pipeline's ledger lived in Postgres -- two ledgers, each
+    # looking complete.
+    from woweconomy.dbcompat import load_env
+
+    load_env()
     args = build_parser().parse_args(argv)
     return args.func(args)
 

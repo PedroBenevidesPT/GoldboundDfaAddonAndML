@@ -24,11 +24,13 @@ timeline so the regional reference has a real history instead of two points.
 """
 from __future__ import annotations
 
-import sqlite3
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
+
+from woweconomy.dbcompat import connect as db_connect
+from woweconomy.dbcompat import missing_table_errors
 
 #: The value fields a realm row carries.
 REALM_FIELDS = ("market_value", "min_buyout", "recent", "historical")
@@ -149,20 +151,24 @@ class TSMHistory:
 
     # -- loading ---------------------------------------------------------
     def _load_realm_map(self) -> None:
-        con = sqlite3.connect(self.db_path)
+        # db_connect, not sqlite3.connect: inside the container the TSM tables
+        # live in Postgres, and sqlite3.connect on a path that does not exist
+        # there *creates an empty file* -- every query then fails with "no
+        # such table" and the export dies before it has read anything.
+        con = db_connect(self.db_path)
         try:
             for name, slug, canon_slug, canon_name, gid in con.execute(
                     "SELECT realm_name, realm_slug, canonical_slug, "
                     "canonical_name, group_id FROM tsm_realm_group"):
                 self._realm_slug[str(name)] = str(slug)
                 self._canonical[str(name)] = (str(canon_slug), str(canon_name), int(gid))
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             pass
         finally:
             con.close()
 
     def _load(self, kinds: Sequence[str], scopes: Optional[Iterable[str]]) -> None:
-        con = sqlite3.connect(self.db_path)
+        con = db_connect(self.db_path)
         try:
             # The scope filter is about *realms*; the region is a single
             # scope that every realm needs, so it is always loaded.
@@ -314,7 +320,7 @@ def load_region_history(db_path: Path | str) -> List[Tuple[int, Dict[int, Tuple]
     import, which is the only regional history that reaches back before the
     snapshot service started.
     """
-    con = sqlite3.connect(db_path)
+    con = db_connect(db_path)
     out: List[Tuple[int, Dict[int, Tuple]]] = []
     try:
         snaps = con.execute(
@@ -332,7 +338,7 @@ def load_region_history(db_path: Path | str) -> List[Tuple[int, Dict[int, Tuple]
                 state[int(kid)] = (int(mv or 0), 0, 0, int(hi or 0),
                                    int(asp or 0), float(sr or 0.0), float(spd or 0.0))
             out.append((parse_ts(str(ts)), state))
-    except sqlite3.OperationalError:
+    except missing_table_errors():
         pass
     finally:
         con.close()

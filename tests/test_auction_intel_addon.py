@@ -19,7 +19,7 @@ def test_the_addon_syncs_and_saves_everything_on_logout():
     result = subprocess.run([sys.executable, str(HARNESS)],
                             capture_output=True, text=True, timeout=120)
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "27/27 checks passed" in result.stdout
+    assert "33/33 checks passed" in result.stdout
     assert "FAIL" not in result.stdout
 
 
@@ -33,6 +33,33 @@ def test_an_unknown_client_event_cannot_kill_the_addon():
     text = (ROOT / "DFA_AuctionIntelligence" / "Core.lua").read_text(encoding="utf-8")
     assert "PLAYERBANKTABS_CHANGED" not in text
     assert "pcall(frame.RegisterEvent" in text
+
+
+def test_the_protected_guild_bank_event_is_chosen_at_runtime():
+    """Registering the legacy guild-bank event is a protected action.
+
+    BugSack recorded, at Core.lua:109 (the RegisterEvent loop):
+
+        [ADDON_ACTION_FORBIDDEN] AddOn 'DFA_AuctionIntelligence' tried to call
+        the protected function 'UNKNOWN()'.
+        [C]: ?
+        [C]: in function 'pcall'
+        [DFA_AuctionIntelligence/Core.lua]:109: in main chunk
+
+    The protected call is Frame:RegisterEvent itself -- the client has no name
+    to report for it, hence UNKNOWN().  pcall catches the Lua error but the
+    client prints the forbidden-action message anyway, so the addon looked
+    broken at load.  No other addon in a full install registers that name
+    (Baganator and Syndicator both cache guild banks and use the interaction
+    manager instead), so the event is chosen at runtime rather than listed.
+    """
+    core = (ROOT / "DFA_AuctionIntelligence" / "Core.lua").read_text(encoding="utf-8")
+    events_block = core.split("local EVENTS = {", 1)[1].split("}", 1)[0]
+    assert "GUILDBANKFRAME_OPENED" not in events_block, (
+        "the legacy guild-bank event must not be in the static event list; "
+        "on a modern client registering it raises ADDON_ACTION_FORBIDDEN")
+    assert "guildBankEvent" in events_block
+    assert "PLAYER_INTERACTION_MANAGER_FRAME_SHOW" in core
 
 
 def test_the_addon_does_not_hook_blizzards_mailbox():

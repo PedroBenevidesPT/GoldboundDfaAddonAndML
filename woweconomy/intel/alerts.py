@@ -57,10 +57,28 @@ def webhook_url(environ: Optional[Dict[str, str]] = None) -> str:
     ``DFA_DISCORD_WEBHOOK`` wins, ``DISCORD_WEBHOOK`` is the name the repo
     already uses in ``.env``.  A missing value is not an error: the desktop
     toast still works.
+
+    When neither variable is in the environment, the project's ``.env`` is
+    read directly.  That fallback is deliberate: an alert is raised from
+    scripts that are also run by hand, and every one of them used to report
+    "no webhook configured" while the URL sat in ``.env`` two directories
+    up.  Reading the file here is safe in a way that loading the whole
+    environment is not -- it changes no backend, it only answers "where do
+    I post this".
     """
     env = environ if environ is not None else os.environ
     for name in WEBHOOK_ENVS:
         value = (env.get(name) or "").strip()
+        if value:
+            return value
+    if environ is not None:
+        return ""
+    try:
+        from ..dbcompat import read_env_file
+    except Exception:  # pragma: no cover - a partial install
+        return ""
+    for name in WEBHOOK_ENVS:
+        value = (read_env_file().get(name) or "").strip()
         if value:
             return value
     return ""
@@ -183,6 +201,29 @@ def deliver(alerts: Iterable[Alert], state: Dict[str, Any], now: int,
     return results
 
 
+def item_label(item_id: Any = None, name: Any = None) -> str:
+    """``Name (item 12345)`` -- always both, never one or the other.
+
+    An alert is read on a phone, away from the game.  A name alone is
+    ambiguous (two items share one), and an id alone is unreadable; the
+    seller needs to recognise the item *and* be able to type it into a
+    search.  When the name is unknown the id still stands on its own, and
+    when the id is unknown the line says so rather than printing "None".
+    """
+    text = str(name or "").strip()
+    try:
+        ident = int(item_id)
+    except (TypeError, ValueError):
+        ident = None
+    if text and ident:
+        return f"{text} (item {ident})"
+    if text:
+        return text
+    if ident:
+        return f"item {ident}"
+    return "unknown item"
+
+
 def undercut_alerts(advice: Dict[str, Any], limit: int = 5) -> List[Alert]:
     """One digest of actionable listings, and a separate review digest.
 
@@ -206,8 +247,7 @@ def undercut_alerts(advice: Dict[str, Any], limit: int = 5) -> List[Alert]:
         for row in review[:limit]:
             price = (row.get("own_unit_price_copper") or 0) / 10000
             low = (row.get("lowest_unit_price_copper") or 0) / 10000
-            name = (row.get("item_name") or
-                    f"item {row.get('item_id') or '?'}")
+            name = item_label(row.get("item_id"), row.get("item_name"))
             status = row.get("reference_status") or "unverified"
             lines.append(f"{name}: {price:.0f}g vs {low:.0f}g; {status}"
                          " reference, no automatic relist")
@@ -221,8 +261,7 @@ def undercut_alerts(advice: Dict[str, Any], limit: int = 5) -> List[Alert]:
         price = (row.get("own_unit_price_copper") or 0) / 10000
         low = (row.get("lowest_unit_price_copper") or 0) / 10000
         where = row.get("lowest_seller") or "a listing"
-        name = (row.get("item_name") or
-                f"item {row.get('item_id') or '?'}")
+        name = item_label(row.get("item_id"), row.get("item_name"))
         # The gap is (own - lowest) / own: the competitor is that fraction
         # below *my* ask.  Saying only "99% below" made it look as if my
         # listing were below the reference.
@@ -234,6 +273,19 @@ def undercut_alerts(advice: Dict[str, Any], limit: int = 5) -> List[Alert]:
     lines.append("relist=" + str(counts.get("cancel_and_relist", 0))
                  + " expire=" + str(counts.get("let_expire", 0))
                  + " review=" + str(len(review)))
+    # What to do, in the alert, not only in the row.  The reader is usually
+    # away from the game; a digest that stops at a count is a digest that
+    # gets skimmed and forgotten.
+    if counts.get("cancel_and_relist"):
+        lines.append("action: open the Auction House, cancel the relist= "
+                     f"{int(counts['cancel_and_relist'])} listing(s) and repost "
+                     "at the new ask the addon fills in")
+    if counts.get("let_expire"):
+        lines.append("action: nothing to do for expire= "
+                     f"{int(counts['let_expire'])} -- let them run out")
+    if review:
+        lines.append("action: relist nothing from the review list; open the "
+                     "Auction House once so the next scan is verified")
     return [Alert(key=f"undercut:{realm}:{rows[0].get('item_name')}",
                   title=f"{realm}: {len(rows)} listing(s) need attention",
                   lines=lines, level="warn")]
@@ -246,11 +298,19 @@ def reset_alerts(resets: List[Dict[str, Any]], names: Dict[int, str],
         return []
     lines = []
     for row in resets[:limit]:
-        lines.append(f"{names.get(row['item_id'], 'item ' + str(row['item_id']))}:"
+        label = item_label(row.get("item_id"),
+                           names.get(row.get("item_id")))
+        lines.append(f"{label}:"
                      f" cheapest {row['previous_cheapest'] / 10000:.0f}g ->"
                      f" {row['current_cheapest'] / 10000:.0f}g"
                      f" ({row['jump_pct'] * 100:.0f}%), supply"
                      f" -{row['supply_drop_pct'] * 100:.0f}%")
+    # A reset means the old ask is no longer the market's ask.  The danger
+    # is reacting to it by cancelling into a falling price, so the advice is
+    # to look before reposting, not to repost.
+    lines.append("action: open the Auction House and check the new floor "
+                 "before reposting; do not cancel a listing that already "
+                 "sits under it")
     return [Alert(key=f"reset:{realm}:{resets[0]['item_id']}",
                   title=f"{realm}: possible market reset ({len(resets)} item(s))",
                   lines=lines, level="crit")]
@@ -267,10 +327,15 @@ def inventory_alerts(summary: Dict[str, Any], realm: str) -> List[Alert]:
                   title=f"{realm}: {decrease} unit(s) disappeared unexplained",
                   lines=[f"snapshot {summary.get('snapshot_id')}",
                          "not a sale: no confirmed event covers it",
-                         "open the bank/AH with the addon before trusting stock"],
+                         "action: open the bank and the Auction House with "
+                         "the addon so the next snapshot re-reads the stock"],
                   level="warn")]
 
 
 def error_alert(kind: str, detail: str) -> Alert:
     return Alert(key=f"error:{kind}", title=f"DFA Sentinel: {kind} failed",
-                 lines=[str(detail)[:500]], level="crit")
+                 lines=[str(detail)[:500],
+                        "action: read the pipeline log for this run; the "
+                        "numbers the panel shows are from the last good run, "
+                        "not from now"],
+                 level="crit")

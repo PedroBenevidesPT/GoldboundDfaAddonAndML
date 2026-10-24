@@ -56,6 +56,7 @@ from statistics import mean, median
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 from ..intel import ah
+from ..dbcompat import connect_store, missing_table_errors, store_exists
 
 #: how many TSM snapshots the price path is measured over
 DEFAULT_TREND_SNAPSHOTS = 8
@@ -212,7 +213,7 @@ def _realm_slugs(con: sqlite3.Connection, realms: Sequence[str]) -> Dict[str, st
     try:
         rows = con.execute(
             "SELECT realm_name, canonical_slug FROM tsm_realm_group").fetchall()
-    except sqlite3.OperationalError:
+    except missing_table_errors():
         return out
     canonical = {str(name): str(slug) for name, slug in rows}
     for realm in realms:
@@ -239,7 +240,7 @@ def price_path(con: sqlite3.Connection, scope: str, item_ids: Sequence[int],
             "SELECT DISTINCT snapshot_id FROM tsm_price_change"
             " WHERE kind='realm_items' AND scope=?"
             " ORDER BY snapshot_id DESC LIMIT ?", (scope, int(snapshots)))]
-    except sqlite3.OperationalError:
+    except missing_table_errors():
         return {}, []
     if len(heads) < 2:
         return {}, sorted(heads)
@@ -252,7 +253,7 @@ def price_path(con: sqlite3.Connection, scope: str, item_ids: Sequence[int],
                f" AND key_id IN ({id_marks}) AND snapshot_id IN ({marks})")
         try:
             rows = con.execute(sql, [scope, *chunk, *heads]).fetchall()
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             return {}, sorted(heads)
         series: Dict[int, List[Tuple[int, float]]] = {}
         for key_id, snapshot_id, min_buyout, market_value in rows:
@@ -286,7 +287,7 @@ def _realm_snapshots(intel: sqlite3.Connection, realm: str,
             f"SELECT snapshot_id, captured_at FROM ah_snapshot"
             f" WHERE {where} ORDER BY captured_at DESC LIMIT ?",
             [*params, int(limit)]).fetchall()
-    except sqlite3.OperationalError:
+    except missing_table_errors():
         return []
     return [(str(r[0]), int(r[1])) for r in rows]
 
@@ -313,7 +314,7 @@ def _snapshot_supply(intel: sqlite3.Connection, snapshot_id: str,
                 f"     THEN unit_price_copper END) AS cheapest"
                 f" FROM ah_auction WHERE snapshot_id=? AND item_id IN ({marks})"
                 f" GROUP BY item_id", [snapshot_id, *chunk]).fetchall()
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             return out
         for item_id, n, units, cheapest in rows:
             out[int(item_id)] = (int(n or 0), int(units or 0),
@@ -330,7 +331,7 @@ def _own_listings(intel: sqlite3.Connection, realm: str, item_ids: Sequence[int]
             "SELECT snapshot_id FROM inventory_snapshot"
             " WHERE LOWER(realm) = LOWER(?) ORDER BY ABS(captured_at - ?) LIMIT 1",
             (realm, int(around))).fetchone()
-    except sqlite3.OperationalError:
+    except missing_table_errors():
         return out
     if not snapshot:
         return out
@@ -343,7 +344,7 @@ def _own_listings(intel: sqlite3.Connection, realm: str, item_ids: Sequence[int]
                 f" FROM inventory_posted_listing"
                 f" WHERE snapshot_id=? AND item_id IN ({marks}) GROUP BY item_id",
                 [snapshot[0], *chunk]).fetchall()
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             return out
         for item_id, units, n, cheapest in rows:
             out[int(item_id)] = {"units": int(units or 0), "listings": int(n or 0),
@@ -365,7 +366,7 @@ def latest_scans(intel: sqlite3.Connection, realm: str,
                 f" undercut_pct, lowest_seller FROM undercut_observation"
                 f" WHERE LOWER(realm) = LOWER(?) AND item_id IN ({marks})"
                 f" ORDER BY observed_at", [realm, *chunk]).fetchall()
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             return out
         for item_id, at, ahead, sellers, pct, seller in rows:
             out[int(item_id)] = {
@@ -389,7 +390,7 @@ def region_liquidity(con: sqlite3.Connection, item_ids: Sequence[int]
             rows = con.execute(
                 f"SELECT key_id, sale_rate, sold_per_day FROM tsm_region_price"
                 f" WHERE key_id IN ({marks})", list(chunk)).fetchall()
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             return out
         for key_id, rate, per_day in rows:
             out[int(key_id)] = (float(rate) if rate is not None else None,
@@ -439,12 +440,14 @@ def build_realm_market(wow_db: Path | str, intel_db: Optional[Path | str],
     ids = sorted({int(i) for i in item_ids if i})
     market = RealmMarket(realm=str(realm))
     own_connection = con is None
-    connection = con or sqlite3.connect(str(wow_db))
-    connection.row_factory = sqlite3.Row
+    # The TSM mirror lives in Postgres in production.  Opening the SQLite
+    # path there created an empty file and every query returned nothing, so
+    # the export shipped a market context with no competition and called it
+    # "unknown" rather than "unreadable".
+    connection = con or connect_store(wow_db, readonly=True)
     intel_own = False
-    if intel is None and intel_db is not None and Path(intel_db).exists():
-        intel = sqlite3.connect(f"file:{Path(intel_db).as_posix()}?mode=ro", uri=True)
-        intel.row_factory = sqlite3.Row
+    if intel is None and intel_db is not None and store_exists(intel_db):
+        intel = connect_store(intel_db, readonly=True)
         intel_own = True
     try:
         scope = _realm_slugs(connection, [realm]).get(str(realm), "")
@@ -477,7 +480,7 @@ def build_realm_market(wow_db: Path | str, intel_db: Optional[Path | str],
                     (path_heads[0],)).fetchone()
                 stamp = _stamp(row[0]) if row else 0.0
                 trend_age = _hours(now - stamp) if stamp else None
-            except sqlite3.OperationalError:
+            except missing_table_errors():
                 trend_age = None
 
         supply_at = snapshots_seen[0][1] if snapshots_seen else 0

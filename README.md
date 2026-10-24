@@ -36,7 +36,12 @@ rather than implied:
 |---|---|---|
 | `ah_auction`, `ah_snapshot`, `ah_realm`, leases, runs, stats | **Postgres** | copied and verified row-for-row; see below |
 | `aggregate_meta`, `aggregate_partition`, `daily_*` | **Postgres** | built in whichever backend is configured; on a workstation that is still `data/aggregates.sqlite` |
-| `tsm_markets.db` | SQLite | TSM's own import, a read-only input either way |
+| `tsm_*`, `blizzard_items`, DB2 facts, Wowhead drops | **Postgres** | on the stack; `tsm_markets.db` only exists as the TSM import file of a workstation run |
+
+Every `--db` / `--blizz-db` flag below names the SQLite file for a
+workstation run. With `DATABASE_URL` set they are ignored: the same tables are
+read from the one Postgres database, which is the single source of truth on the
+Docker stack.
 
 ### Moving the data, and proving it moved
 
@@ -110,8 +115,8 @@ code path — a cache of the same schema, not a second implementation.
 
 | store (Postgres: all one database) | what it holds | how it is built |
 |---|---|---|
-| `data/intel.sqlite` | auction-house snapshots straight from the Blizzard API, plus the lease/run/stat tables the pipeline uses to coordinate | `scripts/intel.py ah-fetch --all-realms` |
-| `tsm_markets.db` | TSM's region and realm price tables, the account's own sale history, DB2 item facts | `scripts/fetch_tsm_snapshots.py` + `scripts/journal.py` |
+| `data/intel.sqlite` | auction-house snapshots straight from the Blizzard API, the relist decision ledger, plus the lease/run/stat tables the pipeline uses to coordinate (all of these are the one Postgres database on the stack) | `scripts/intel.py ah-fetch --all-realms` |
+| `tsm_markets.db` | TSM's region and realm price tables, the account's own sale history, DB2 item facts, Wowhead zone drops | `scripts/fetch_tsm_snapshots.py` + `scripts/journal.py` |
 | `data/aggregates.sqlite` | daily roll-ups, the statistical record that outlives the raw rows | `scripts/aggregates.py build --last-days 2` |
 
 None of them is committed to git: they are derived, they are gigabytes, and
@@ -129,6 +134,7 @@ version table).
 ```powershell
 python run_pipeline.py --once       # one cycle
 python run_pipeline.py --loop       # keep cycling
+python run_pipeline.py --once --workers 3   # up to three tasks at once
 python run_pipeline.py --status     # what ran, what holds a lease, what failed
 python run_pipeline.py --task fetch --dry-run
 ```
@@ -136,18 +142,21 @@ python run_pipeline.py --task fetch --dry-run
 | task | cadence | what it does |
 |---|---|---|
 | `fetch` | 1 h | all 92 EU connected realms **and** the region-wide commodity book |
+| `addon` | 15 min | imports the addon's SavedVariables: mailbox invoices, undercut scans, the event log |
 | `tsm_csv` | 6 h | the 187 TSM CSVs (92 realm groups + 3 region files), ten seconds apart |
 | `aggregates` | 6 h | rebuilds the daily roll-ups for the last 2 days (`--last-days`, not `--days`) |
 | `strategy` | 6 h | rebuilds the mog posting plan, so there is always one to read |
 | `sentinel` | 24 h | retrains, gated by chronological validation |
+| `decisions` | 6 h | replays stored scans into the relist ledger and attaches confirmed events |
 | `export` | 6 h | writes `DFA_Estimate/Data/DFA_Estimate_Data.lua` |
 | `visibility` | 24 h | were our own sales visible in the Blizzard auction book |
 | `deploy` | after export | copies the toc-listed addon files into the game |
 
 The TSM sweep is ten seconds between requests because TSM starts answering 429
-without it: 187 files is 31 minutes, and the task timeout is 90 to leave room
-for the downloads. The sweep is conditional (`ETag` / `If-Modified-Since`), so a
-run where TSM has not republished costs 187 round trips and no bodies.
+without it: 187 files is 31 minutes of pacing, but a cold sweep of a republished
+set is slower than the pacing (the CDN is the bottleneck), so the timeout is
+three hours. The sweep is conditional (`ETag` / `If-Modified-Since`), so a run
+where TSM has not republished costs 187 round trips and no bodies.
 
 `aggregates` takes `--last-days`, which names a *window*. `--days` names
 specific days, so passing it rebuilt every day in the store on every run — the
@@ -159,6 +168,110 @@ block the pipeline. What is due is read from the configured store, not from a
 timer, so a restart does not reset the clock and a missed tick is simply
 overdue next time. Redis, if `WOW_PIPELINE_REDIS` is set, is a **mirror**: it
 can never grant or veto a lease, and the pipeline runs with no Redis at all.
+
+### Several tasks at once, without stepping on each other
+
+The 187-file TSM sweep paces itself for half an hour, and a training run can
+take longer. Running the cycle strictly one task at a time meant the exporter,
+the ledger and the visibility report all waited behind the sweep — the
+pipeline looked stalled for exactly as long as it was doing the most work.
+
+`--workers N` (the container runs `--workers 3`) starts every task whose
+`after` dependencies have finished, up to `N` at once. Dependency order is
+still honoured: `export` waits for `strategy`, `deploy` for `export`. Each
+worker gets its **own** connection (a psycopg2 connection is not shared
+between threads), and the lease table still guarantees one worker per task, so
+concurrency changes waiting, never correctness.
+
+### Watching it
+
+```powershell
+python run_pipeline.py --status                 # one snapshot
+python run_pipeline.py --status --watch 30      # refresh every 30 s
+python run_pipeline.py --status --json          # for a monitor or a script
+```
+
+The snapshot lists every task with its last success, its cadence and its last
+failure (time, exit code and the final line of output), the leases held right
+now with how long each has been running, the state of the Redis mirror
+(connected, how many keys, and any key in Redis that the database does not
+have), and the last runs with their duration. `--json` returns the same view
+as one object so a dashboard does not have to parse the table.
+
+The worker also publishes `start` / `ok` / `failed` / `skipped` events on the
+Redis channel `goldbound:events`, after the run row is written, so a monitor
+can follow the pipeline live without polling:
+
+```powershell
+docker compose exec redis redis-cli subscribe goldbound:events
+```
+
+### Keeping the desktop usable
+
+The pipeline runs on the same machine you work on, and left unbounded it will
+take the whole thing. Two containers were doing that:
+
+**Postgres was the real hog, not the worker.** `aggregates` is a handful of big
+GROUP BYs over 17M auction rows; the worker only streams the results back. The
+`postgres:16-alpine` defaults are sized for a machine with 64 MB of RAM —
+`shared_buffers` 16 MB and `work_mem` 4 MB — so every aggregate re-read the
+table from disk and spilled its sorts to temp files. Measured mid-build: worker
+~35% CPU and 380 MB, Postgres ~90% CPU and 2.7 GB. The compose file now sets
+`shared_buffers=2GB`, `work_mem=64MB`, `maintenance_work_mem=512MB` and
+`effective_cache_size=8GB`, and the load moved to the client side, which is
+where it belongs.
+
+**Nothing was capped.** Both containers could use all 24 threads and the whole
+16 GB WSL2 VM. They are now capped and the worker is niced, so the pipeline
+yields to whatever is in the foreground:
+
+| Knob | Default | What it protects |
+| --- | --- | --- |
+| `WORKER_CPUS` | 6 | worker's share of a 24-thread CPU |
+| `WORKER_MEM` | 8g | keeps the worker out of the WSL2 ceiling |
+| `WORKER_BLAS_THREADS` | 4 | stops numpy/OpenMP spawning a thread per core |
+| `WORKER_NICE` | 10 | the desktop wins every contention |
+| `WORKER_TASKS` | 3 | tasks allowed to run at once |
+| `POSTGRES_CPUS` | 8 | Postgres' share of the CPU |
+| `POSTGRES_MEM` | 6g | Postgres' memory ceiling |
+
+Set them in `.env` and `docker compose up -d` to apply. On a dedicated box,
+raise them; on a laptop, lower them. `nice` is inherited by every task
+subprocess, so a single long step no longer makes the mouse stutter.
+
+**Two large scans never run together.** `--workers` decides how many tasks may
+run at once, but the tasks whose memory is proportional to a multi-gigabyte
+table (`aggregates`, `export`, `sentinel`) are serialised through a separate
+lane, because two big scans on the same store do not go faster together — they
+contend for the same buffers. Measured: an `export` that takes 312 s alone took
+826 s while two aggregate builds were running. `--heavy-lanes N` (or
+`PIPELINE_HEAVY_LANES` in `.env`) widens the lane on a machine that can take it.
+
+If the machine still feels slow, the remaining lever is Docker Desktop's own
+`.wslconfig` (`memory=`, `processors=`): the containers cannot use more than
+the VM gives them, and the VM defaults to about half the host.
+
+The measurements behind the aggregate work — what is read, what it costs, what
+was skipped, and how to roll it back — are in
+[`docs/large-data.md`](docs/large-data.md).
+
+`strategy` needs the Data for Azeroth demand export (the `demand_*.csv`
+files), which is an input rather than code. Point `DFA_DIR` in `.env` at its
+folder; the worker mounts that folder read-only at `/app/woweconomy/dfa`. With
+no `DFA_DIR` the task reports a **skip** (exit 78) instead of failing every
+cycle — an empty plan is honest, a plan of guesses is not.
+
+### Which source answers which question
+
+Auction-house **snapshots** come from the Blizzard API: `fetch` walks all 92
+connected realms plus the commodity book every hour and stores them in
+`ah_snapshot` / `ah_auction`. The risk models train on that panel first
+(`panel=blizzard`), and fall back to TSM's `tsm_snapshot` panel only when the
+Blizzard panel is too short in rows or in span — the fallback is printed with
+the reason, never silent. TSM remains the source of the **price path**
+(regional and realm prices, sale rate) and the fallback when a Blizzard
+snapshot does not cover an item or realm. Both are read through `dbcompat`,
+so on the stack they are the same Postgres database.
 
 A new dataset posts one alert (Discord via `DFA_DISCORD_WEBHOOK`, plus a
 desktop toast) **when the bytes change**, not on every export. The digest is
@@ -204,6 +317,13 @@ python scripts/deploy_addons.py             # copy the toc-listed files
 account's own auctions, kills and sales. A change in the repository that was
 never deployed is not a fix, which is why `--check` exists.
 
+The pipeline's `deploy` task does the same copy from inside the container, so a
+deployed addon no longer depends on somebody remembering to run the command.
+Compose mounts the host's folder at `/game/AddOns`; `WOW_ADDONS_DIR` names the
+host side in `.env` and is re-pointed at the mount for the container. Without
+the folder the task reports a skip (exit 78) instead of a deploy that never
+happened, and it retries on the next cycle.
+
 ### The posting plan
 
 ```powershell
@@ -230,9 +350,10 @@ planned disappears, or the addon keeps showing a recommendation the pipeline
 has stopped making. An empty build does not wipe it — "nothing built" is not
 the instruction "post nothing".
 
-Measured on the live store: 13,132 mog items planned from 31,184 region prices
-in 327 s. The action mix is 7,967 `maintain`, 3,189 `do_not_post`, 1,043
-`undercut`, 848 `post_patient`, 82 `post`, 3 `vendor`.
+Measured on the live store after the SQLite readers were pointed at the shared
+backend: 13,132 mog items planned from 31,184 region prices in 253 s. The
+action mix is 6,724 `post_patient`, 3,189 `do_not_post`, 2,091 `maintain`,
+601 `post`, 524 `undercut`, 3 `vendor`.
 
 `undercut` carries the price it means. With a price-independent probability the
 expected net gold rises with the price, so the best band candidate is always the
@@ -240,6 +361,35 @@ estimate — which meant an `undercut` recommendation could only ever quote a
 price at or *above* the wall it said to beat. The price that beats the live wall
 (one copper under it) is scored too, and the action and the price now come from
 the same decision.
+
+### The decision ledger
+
+The relist advice ranks open listings today; the next scan produces a new
+ranking and the old one is gone. That is enough to decide what to look at now
+and not enough to answer the only question that matters later: did the advice
+work? `woweconomy/intel/decision_ledger.py` records every recommendation with
+its inputs **before** the outcome is known, then attaches the confirmed journal
+event from `auction_events` / `auction_intel_events`.
+
+```powershell
+python scripts/intel.py decisions                         # read the summary
+python scripts/intel.py decisions --backfill --link       # replay + attach events
+python scripts/intel.py decisions --realm Dragonmaw --days 30
+```
+
+The table is `relist_decision` in the shared store (Alembic revision `006`).
+It is append-only in spirit: a later scan supersedes the previous
+recommendation for the same auction, rows are never deleted, and an outcome is
+written once. Only `hold` and `watch` have an unconfounded natural outcome; a
+cancel after `cancel_and_relist` is the advice being followed, not a failure,
+and the summary says so instead of pooling everything into one sale rate. When
+two open listings share item, character and price the ledger refuses to guess
+and leaves both open with an `ambiguous` evidence line.
+
+The pipeline runs `backfill --link` every six hours. The first full replay
+recorded 1,773 scans and linked 36 outcomes; the rest stay open until a
+confirmed event can be attributed to them. The record is young, and the
+summary reports sample sizes rather than a conclusion.
 
 ### Are our sales in the Blizzard auction house?
 
@@ -343,9 +493,17 @@ python -m woweconomy.services.wowhead "zone=331/ashenvale" all no-cache
 
 Output: `woweconomy/wowhead_zones/zone_<id>.json`
 (one entry per NPC: `npc_id`, `npc_name`, items with
-`item_id`, `item_name`, `item_type`, `drop_rate` 0-1, `qty`, `source_url`).
-Checkpoints every 25 NPCs; killing the window loses nothing already cached —
-rerun resumes from cache.
+`item_id`, `item_name`, `item_type`, `drop_rate` 0-1, `qty`, `source_url`),
+**and** the canonical rows in `wowhead_zone` / `wowhead_drop` in the configured
+store. The JSON is the raw artefact a killed run leaves behind; the database is
+what the farm ranking reads on Postgres. Checkpoints every 25 NPCs write JSON
+only, so a partial run cannot replace a complete previous scan in the database.
+
+Existing JSON files can be brought into the store without the browser:
+
+```powershell
+python -m woweconomy.services.wowhead --import-json
+```
 
 ## 2. Repair a zone file
 
@@ -1064,13 +1222,20 @@ python scripts/calc_price.py --inventory scripts/inventario.csv --db tsm_markets
 
 ## Full pipeline (fresh start)
 
+One command, on the configured store:
+
+```powershell
+docker compose up -d --build          # Postgres, Redis, migrations, worker
+python run_pipeline.py --once         # or --loop, or --status
+```
+
+The zone scrape is the one step that needs a browser and is therefore not in
+the worker image. It writes both the JSON artefact and `wowhead_drop`:
+
 ```powershell
 python -m woweconomy.services.wowhead "zone=331/ashenvale" "zone=719/blackfathom-deeps" "zone=16/azshara" all
-python scripts/repair_zone.py woweconomy/wowhead_zones/zone_331.json
-python scripts/repair_zone.py woweconomy/wowhead_zones/zone_719.json
-python scripts/repair_zone.py woweconomy/wowhead_zones/zone_16.json
-python scripts/enrich_items.py
-python -m woweconomy.analytics.farm_ranking woweconomy/wowhead_zones/zone_331.json woweconomy/wowhead_zones/zone_719.json woweconomy/wowhead_zones/zone_16.json
+python -m woweconomy.services.wowhead --import-json   # existing JSON -> the store
+python scripts/enrich_items.py                        # Blizzard API -> blizzard_items
 ```
 
 ## How the numbers work (resumo dos cálculos)

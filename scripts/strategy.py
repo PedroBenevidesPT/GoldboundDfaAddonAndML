@@ -34,6 +34,11 @@ from woweconomy.dbcompat import store_exists  # noqa: E402
 DEFAULT_STORE = ROOT / "tsm_markets.db"
 DEFAULT_INTEL = ROOT / "data" / "intel.sqlite"
 
+#: sysexits EX_CONFIG.  The plan needs the Data for Azeroth demand export,
+#: which is an input this machine may simply not have; `run_pipeline` reports
+#: that as a skip rather than a broken job that keeps failing every six hours.
+EX_CONFIG = 78
+
 
 def _fmt_gold(copper: Optional[float]) -> str:
     if copper is None:
@@ -42,6 +47,9 @@ def _fmt_gold(copper: Optional[float]) -> str:
 
 
 def main(argv: Optional[List[str]] = None) -> int:
+    from woweconomy.dbcompat import load_env
+
+    load_env()
     ap = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -104,7 +112,11 @@ def main(argv: Optional[List[str]] = None) -> int:
         categories=tuple(args.category) if args.category else PLANNED_CATEGORIES)
     print(report.summary())
     if report.errors:
-        return 1
+        for error in report.errors:
+            print(error, file=sys.stderr)
+        missing_input = any("DfA demand" in error or "no market store" in error
+                            for error in report.errors)
+        return EX_CONFIG if missing_input else 1
     written = store_plans(store, report)
     print(f"stored {written} plan(s)")
     if args.json:

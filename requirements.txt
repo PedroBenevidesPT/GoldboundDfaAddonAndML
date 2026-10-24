@@ -3,7 +3,7 @@
 # This is the set the worker image installs (docker/app/Dockerfile).  It is
 # deliberately narrower than what a developer machine has:
 #
-#   * no pytest / lupa -- those are test-only, see requirements-dev.txt;
+#   * no pytest -- that is test-only, see requirements-dev.txt;
 #   * no playwright -- that is the wowhead scraper, see requirements-scrape.txt.
 #     The scraper is preserved, it just does not belong in a batch worker
 #     image that would then carry a browser for no reason.
@@ -34,6 +34,12 @@ catboost>=1.2,<1.3
 joblib>=1.6,<2.0
 scipy>=1.18,<1.19
 statsmodels>=0.15,<0.16
+# lupa is a *runtime* dependency, not a test one: the journal the model
+# trains on is a Lua file, and `ml/journalator.py` parses it with a Lua
+# runtime.  It was listed as test-only, so the worker image could not read
+# the journal and the export died at "the shipped model could not be
+# fitted" -- with the file sitting in a mounted volume.
+lupa>=2.8,<3.0
 
 # --- Config ---------------------------------------------------------------
 python-dotenv>=1.2

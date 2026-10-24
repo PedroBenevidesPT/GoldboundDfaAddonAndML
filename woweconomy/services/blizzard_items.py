@@ -32,6 +32,8 @@ from typing import Any, Iterator, Optional
 
 import requests
 
+from woweconomy.dbcompat import connect_store, missing_table_errors
+
 try:
     from dotenv import load_dotenv
     load_dotenv(Path(".env"))
@@ -256,9 +258,18 @@ CREATE TABLE IF NOT EXISTS blizzard_missing (
 """
 
 
-def open_db(db_path: str) -> sqlite3.Connection:
-    conn = sqlite3.connect(db_path)
-    conn.executescript(SCHEMA)
+def open_db(db_path: str):
+    """Open the enrichment store on the configured backend.
+
+    The table shape is created here only on SQLite: on Postgres Alembic owns
+    the schema (``002_baseline`` already carries ``blizzard_items`` and
+    ``blizzard_missing``), and a second creator would drift from it.
+    """
+    from woweconomy.dbcompat import connect_store, is_postgres
+
+    conn = connect_store(db_path)
+    if not is_postgres():
+        conn.executescript(SCHEMA)
     return conn
 
 
@@ -286,7 +297,7 @@ def missing_ids(conn: sqlite3.Connection, ids: list[int],
         gone = {r[0] for r in conn.execute(
             f"SELECT itemId FROM blizzard_missing WHERE itemId IN ({','.join('?' * len(uniq))})",
             uniq).fetchall()}
-    except sqlite3.OperationalError:
+    except missing_table_errors():
         gone = set()
     now = datetime.now(timezone.utc)
     out = []
@@ -315,14 +326,15 @@ def mark_missing(conn: sqlite3.Connection, item_id: int) -> None:
 
 
 def load_map(db_path: str) -> dict[int, BlizzardItem]:
-    conn = sqlite3.connect(db_path)
     try:
-        rows = conn.execute(
-            "SELECT itemId,name,quality,binding,level,sellPrice,fetchedAt"
-            " FROM blizzard_items").fetchall()
-    except sqlite3.OperationalError:
+        conn = connect_store(db_path, readonly=True)
+        try:
+            rows = conn.execute(
+                "SELECT itemId,name,quality,binding,level,sellPrice,fetchedAt"
+                " FROM blizzard_items").fetchall()
+        finally:
+            conn.close()
+    except missing_table_errors():
         return {}
-    finally:
-        conn.close()
     return {r[0]: BlizzardItem(r[0], r[1] or "", r[2] or "", r[3] or "",
                                r[4] or 0, r[5] or 0, r[6] or "") for r in rows}

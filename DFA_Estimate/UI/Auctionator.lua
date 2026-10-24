@@ -73,6 +73,10 @@ local private = {
 	lastWarning = nil,     -- de-duplication key for the always-on failure line
 }
 
+-- Defined with the other fill helpers below; WatchPriceBox needs it to put
+-- the estimate back after Auctionator writes the box itself.
+local FillAfterTheChoice
+
 
 ---A chat line for the debug trace.  Off by default; /dfaestimate fill debug on turns it on.
 ---@param text string
@@ -397,11 +401,33 @@ local function WatchPriceBox(frame)
 		Log(("watch: OnTextChanged installed on the gold box frame=%s"):format(FrameId(frame)))
 		box:SetScript("OnTextChanged", function(self, text)
 			if not private.programmatic then
-				-- the player is typing: their price wins
-				Log(("text change from the player: %s (their price wins)"):format(tostring(text)))
-				private.userChose = true
-				if private.lastFill then
-					private.lastFill.confirmed = false
+				-- Auctionator writes the box itself as well: its price list,
+				-- the minimum buyout it just found, the vendor value of a
+				-- piece of equipment.  Those writes do not go through the
+				-- SetAmount wrapped above, so they arrive here looking like
+				-- the player.  Treating them as a choice left the field
+				-- holding Auctionator's price instead of the estimate, for
+				-- the rest of that item.  A real choice leaves the box with
+				-- the focus -- typing needs it, and a click on a row is
+				-- signalled by PriceSelected, not by this script.
+				local focused = false
+				if type(self.HasFocus) == "function" then
+					local ok, value = pcall(self.HasFocus, self)
+					focused = ok and value == true
+				end
+				if focused then
+					-- the player is typing: their price wins
+					Log(("text change from the player: %s (their price wins)"):format(tostring(text)))
+					private.userChose = true
+					if private.lastFill then
+						private.lastFill.confirmed = false
+					end
+				else
+					-- Auctionator's own price, not a choice: put the estimate
+					-- back.  Deferred, so a click that wrote before its
+					-- PriceSelected event still gets to win.
+					Log(("text change from Auctionator: %s (the estimate goes back)"):format(tostring(text)))
+					FillAfterTheChoice(frame)
 				end
 			end
 			if previous then
@@ -494,6 +520,13 @@ function Auctionator.ApplyEstimate(frame)
 		Log(("apply: skipped (price <= 0 after normalize for item %d)"):format(itemId))
 		return false
 	end
+	-- Writing the same value again would echo through Auctionator's own
+	-- text handling and back into another fill; if the field already holds
+	-- the estimate there is nothing to do.
+	if FieldValue(frame) == price then
+		Log(("apply: skipped (the field already holds the estimate for item %d)"):format(itemId))
+		return false
+	end
 	WatchPriceBox(frame)
 	local widget = PriceWidget(frame)
 	local ok, err
@@ -562,7 +595,7 @@ end
 ---`C_Timer`), the fill is synchronous and `ApplyEstimate`'s own choice
 ---check is what protects the click.
 ---@param frame table
-local function FillAfterTheChoice(frame)
+function FillAfterTheChoice(frame)
 	local timer = _G.C_Timer
 	if type(timer) == "table" and type(timer.After) == "function" then
 		local ok = pcall(timer.After, 0, function()

@@ -64,7 +64,16 @@ local function GetPrice(itemId)
 	-- Estimate, not GetRecord: an item this realm never sold still gets a
 	-- price, from the model the dataset ships, as long as TSM knows it.
 	local record = Addon.DFAEstimate and Addon.DFAEstimate.Estimate(itemId)
-	if record and record.price and record.price > 0 then
+	if not record then
+		return nil
+	end
+	if record.action and type(record.action) == "table"
+		and type(record.action.expected_deposit) == "number"
+		and record.action.expected_deposit > 0
+		and record.net and type(record.net) == "number" and record.net > 0 then
+		return math.max(0, record.net - record.action.expected_deposit)
+	end
+	if record.price and record.price > 0 then
 		return record.price
 	end
 	return nil
@@ -185,14 +194,25 @@ function Tooltip.GetLines(itemId)
 	-- What the auction actually pays: the realised price less the 5 % cut
 	-- and the deposit that a sale refunds and an expiry does not.  The ask
 	-- above is a price to post at; this is the money.
-	local netPrice = tonumber(record.net)
+	local netPrice, netReason = tonumber(record.net), "after 5%% cut"
+	if not netPrice and record.action
+		and type(record.action) == "table"
+		and type(record.action.expected_deposit) == "number"
+		and record.action.expected_deposit > 0
+		and tonumber(record.net) and tonumber(record.net) > 0 then
+		-- If the dataset gave an expected deposit, show the in-hand value
+		-- after both the cut and the deposit the player must front.
+		netPrice = math.max(0, tonumber(record.net) - record.action.expected_deposit)
+		netReason = "after cut and expected deposit"
+	end
 	if not netPrice then
 		local dataset = (Addon.DFAEstimate and Addon.DFAEstimate.data)
 			or _G.DFA_ESTIMATE
 		netPrice = tonumber(dataset and dataset.nets and dataset.nets[itemId])
 	end
 	if netPrice and netPrice > 0 then
-		lines[#lines + 1] = ("Net after 5%% cut: %s"):format(
+		lines[#lines + 1] = ("Net %s: %s"):format(
+			netReason,
 			string.format("%.2fg", netPrice / 10000))
 	end
 	-- What to do, when the dataset carries an action.  The dataset is the
@@ -205,11 +225,20 @@ function Tooltip.GetLines(itemId)
 			change_realm = "move realm", wait = "wait",
 			stop = "do not post",
 		}
-		local text = "Action: " .. (labels[action.action] or action.action)
+		local text = "Action: " .. (labels[action.action] or tostring(action.action))
 		if action.action == "wait" and tonumber(action.projected_ask) then
 			text = text .. (" until %.2fg"):format(action.projected_ask / 10000)
 		elseif tonumber(action.ask) and tonumber(action.ask) > 0 then
 			text = text .. (" at %.2fg"):format(action.ask / 10000)
+		end
+		if type(action.reason) == "string" and action.reason ~= "" then
+			text = text .. (" (%s)"):format(action.reason)
+		end
+		if type(action.deposit) == "number" and action.deposit > 0 then
+			text = text .. (" (+%.2f deposit)"):format(action.deposit / 10000)
+		end
+		if type(action.expected_deposit) == "number" and action.expected_deposit > 0 then
+			text = text .. (" ~%.2f expected deposit"):format(action.expected_deposit / 10000)
 		end
 		lines[#lines + 1] = text
 	end

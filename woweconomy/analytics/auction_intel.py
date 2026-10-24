@@ -28,6 +28,7 @@ reprices anything.
 from __future__ import annotations
 
 import json
+import os
 import re
 import sqlite3
 import statistics
@@ -94,6 +95,22 @@ WTF_GLOBS = (
 )
 
 
+def _wtf_globs() -> Tuple[str, ...]:
+    """The globs to search, including a mounted WTF directory.
+
+    The pipeline runs in a Linux container that cannot see ``Program Files``;
+    compose mounts the game's ``WTF`` folder and names it in ``WOW_WTF_DIR``,
+    so the same search finds the SavedVariables there.  The Windows paths stay
+    in the list for a run from the source tree.
+    """
+    base = os.environ.get("WOW_WTF_DIR", "").strip()
+    if not base:
+        return WTF_GLOBS
+    root = Path(base) / "Account" / "*" / "SavedVariables"
+    return (str(root / "{name}.lua"), str(root / "{name}.lua.bak"),
+            *WTF_GLOBS)
+
+
 def find_saved_variables(name: Optional[str] = None) -> Optional[Path]:
     """The most recent SavedVariables file of the addon.
 
@@ -105,7 +122,7 @@ def find_saved_variables(name: Optional[str] = None) -> Optional[Path]:
     names = (name,) if name else SAVED_VARIABLE_NAMES
     hits: List[Path] = []
     for candidate in names:
-        for pattern in WTF_GLOBS:
+        for pattern in _wtf_globs():
             hits.extend(Path(p) for p in glob.glob(pattern.format(name=candidate)))
     if not hits:
         return None
@@ -279,8 +296,10 @@ def build_name_index(db_path: Path | str) -> Dict[str, int]:
     Kept here, and not borrowed from the ML pipeline, because the importer has
     no CatBoost or pandas to load just to read three SELECTs.
     """
+    from woweconomy.dbcompat import connect_store, missing_table_errors
+
     index: Dict[str, int] = {}
-    con = sqlite3.connect(str(db_path))
+    con = connect_store(db_path, readonly=True)
     try:
         queries = ("SELECT itemId, name FROM items",
                    "SELECT item_id, name FROM tsm_realm_price",
@@ -290,7 +309,7 @@ def build_name_index(db_path: Path | str) -> Dict[str, int]:
                 for item_id, name in con.execute(query):
                     if name and item_id:
                         index.setdefault(str(name), int(item_id))
-            except sqlite3.OperationalError:
+            except missing_table_errors():
                 continue
     finally:
         con.close()

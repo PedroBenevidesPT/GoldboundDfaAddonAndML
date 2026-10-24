@@ -44,9 +44,21 @@ function print(...)
     PRINTED[#PRINTED + 1] = table.concat(parts, " ")
 end
 
--- just after the shipped dataset was generated, so nothing is stale yet
-NOW = 1792653821 + 2 * 3600
-function time() return NOW end
+-- Just after the shipped dataset was generated, so "not stale" means
+-- something on any day.  This used to be a hardcoded epoch, which pinned
+-- the harness to one build of the dataset: after the next export the
+-- clock sat *before* the data and "an old dataset is reported stale"
+-- passed 15 days into a dataset that was already 14 days ahead of it.
+-- The clock now reads the dataset's own timestamp the first time it is
+-- asked, and falls back to the old epoch when there is no dataset.
+NOW = nil
+function time()
+    if NOW == nil then
+        NOW = (DFA_ESTIMATE and DFA_ESTIMATE.generatedAt or 1792653821)
+            + 2 * 3600
+    end
+    return NOW
+end
 function date(fmt, ts) return tostring(ts) end
 
 local function Widget(kind, name)
@@ -437,6 +449,72 @@ def main() -> int:
           int(ev(f"ZoneLootDB.Ashenvale[{record_item}]")) == 2,
           str(ev(f"ZoneLootDB.Ashenvale[{record_item}]")))
 
+    # --- ZoneTimer's own capture -----------------------------------------
+    # DFA_AuctionIntelligence's feed answered for only a handful of corpses in
+    # a long session, so the addon captures the loot window itself.  These
+    # checks fire the client events rather than driving the observer.
+    run("ZoneLootDB = {}")
+    run("ZoneTimerCharDB.loot = {}")
+    run("ZoneTimerRedux.mobs = {}")
+    run("ZoneTimerRedux:TouchLedger()")
+
+    # a GUID the observer ignores (not a creature) proves the capture stands
+    # on its own: the feed never sees this corpse
+    own_guid = "GameObject-0-1465-2552-1234-99999-00004A2C00"
+    run("LOOT_CLEAR()")
+    run(f"LOOT_ADD('{own_guid}', 0, 2, "
+        f"'|cffffffff|Hitem:{record_item}:::::::|h[Item]|h|r')")
+    run("FIRE('LOOT_OPENED')")
+    run("FIRE('LOOT_CLOSED')")
+    check("the addon captures loot without the feed",
+          int(ev(f"ZoneLootDB.Ashenvale[{record_item}]")) == 2,
+          str(ev(f"ZoneLootDB.Ashenvale[{record_item}]")))
+
+    # the same corpse again, inside the dedupe window: a reopened loot window
+    # for leftovers, not a second kill
+    run("FIRE('LOOT_OPENED')")
+    run("FIRE('LOOT_CLOSED')")
+    check("a reopened corpse is counted once",
+          int(ev(f"ZoneLootDB.Ashenvale[{record_item}]")) == 2,
+          str(ev(f"ZoneLootDB.Ashenvale[{record_item}]")))
+
+    # the same spawn killed later: the client hands a respawn the same GUID,
+    # so a permanent memo would swallow this drop
+    run("NOW = NOW + 300")
+    run("FIRE('LOOT_OPENED')")
+    run("FIRE('LOOT_CLOSED')")
+    check("a respawned mob is a new drop",
+          int(ev(f"ZoneLootDB.Ashenvale[{record_item}]")) == 4,
+          str(ev(f"ZoneLootDB.Ashenvale[{record_item}]")))
+    run("NOW = NOW - 300")
+
+    # a creature corpse seen by both paths is still one drop
+    shared_guid = "Creature-0-1465-2552-1234-224654-00004A2C01"
+    run("ZoneLootDB = {}")
+    run("ZoneTimerCharDB.loot = {}")
+    run("ZoneTimerRedux:TouchLedger()")
+    run("LOOT_CLEAR()")
+    run(f"LOOT_ADD('{shared_guid}', 0, 1, "
+        f"'|cffffffff|Hitem:{record_item}:::::::|h[Item]|h|r')")
+    run("FIRE('LOOT_OPENED')")
+    run("FIRE('LOOT_CLOSED')")
+    check("a corpse both paths see is one drop",
+          int(ev(f"ZoneLootDB.Ashenvale[{record_item}]")) == 1,
+          str(ev(f"ZoneLootDB.Ashenvale[{record_item}]")))
+
+    # a zone with loot but no saved time must still get a tally row, or its
+    # loot is invisible everywhere.  Both ledgers get it, exactly as
+    # RecordDrop writes them.
+    run(f"ZoneLootDB['Loot Only Zone'] = {{ [{record_item}] = 1 }}")
+    run(f"ZoneTimerCharDB.loot['Loot Only Zone'] = {{ [{record_item}] = 1 }}")
+    run("ZoneTimerCharDB.times['Loot Only Zone'] = nil")
+    run("ZoneTimerSettings.times['Loot Only Zone'] = nil")
+    listed = [str(row["zone"]) for row in ev("ZoneTimerRedux:GetSortedZones()").values()]
+    check("a zone with loot but no time gets a tally row",
+          "Loot Only Zone" in listed, str(listed))
+    run("ZoneLootDB['Loot Only Zone'] = nil")
+    run("ZoneTimerCharDB.loot['Loot Only Zone'] = nil")
+
     # a clean ledger for the arithmetic below
     run("ZoneLootDB = {}")
     run("ZoneTimerCharDB.loot = {}")
@@ -617,6 +695,15 @@ def main() -> int:
           "cash" in printed and "vendor" in printed and "market" in printed)
     check("/zt gold says where the prices came from",
           "DFA Estimate" in printed, printed[:200])
+
+    run("PRINTED = {}")
+    run("SlashCmdList['ZONETIMEREDUX']('loot')")
+    printed = " || ".join(str(text) for text in ev("PRINTED").values())
+    check("/zt loot reports the capture", "capture" in printed or "feed" in printed,
+          printed[:160])
+    check("/zt loot names the loot-window calls it depends on",
+          "GetLootSourceInfo" in printed and "GetLootSlotLink" in printed,
+          printed[:220])
 
     failed = [item for item in checks if not item[1]]
     for name, ok, detail in checks:

@@ -31,7 +31,6 @@ from __future__ import annotations
 import json
 import logging
 import math
-import sqlite3
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -412,7 +411,33 @@ def top_mats(
 # ----------------------------------------------------------------------
 
 def load_zone_drops(paths: List[Path]) -> List[NpcDrop]:
-    """Read wowhead zone JSONs into flat NpcDrop rows."""
+    """Wowhead drops as flat ``NpcDrop`` rows.
+
+    On the shared Postgres the canonical table is ``wowhead_drop`` (written by
+    the scraper, see :mod:`woweconomy.services.wowhead_store`); the zone JSONs
+    are only a fallback for a legacy store that has not been imported yet.
+    On SQLite the JSON files remain the input, which keeps the offline
+    workflow and the tests working without a migration runner.
+    """
+    from woweconomy.dbcompat import is_postgres
+
+    if is_postgres():
+        from woweconomy.services import wowhead_store
+
+        stored = wowhead_store.load_drops()
+        if stored:
+            return [NpcDrop(
+                npc_id=int(row["npc_id"]), npc_name=row["npc_name"] or "",
+                zone=int(row["zone_id"]), zone_name=row["zone_name"] or "",
+                category=row["category"] or "",
+                item_id=int(row["item_id"]),
+                item_name=row["item_name"] or "",
+                drop_rate=float(row["drop_rate"] or 0),
+                qty=float(row["qty"] or 1),
+                item_type=row["item_type"] or "",
+                spawns=int(row["spawns"] or 0),
+            ) for row in stored]
+
     drops: List[NpcDrop] = []
     for path in paths:
         data = json.loads(Path(path).read_text(encoding="utf-8"))
@@ -504,7 +529,9 @@ def load_snapshot_market(db_path: str) -> Dict[int, ItemMarket]:
     Kept for A/B and for a DB written before the live regional table
     existed: it is a snapshot of the same feed, at an older vintage.
     """
-    conn = sqlite3.connect(db_path)
+    from woweconomy.dbcompat import connect_store
+
+    conn = connect_store(db_path, readonly=True)
     try:
         rows = conn.execute("""
             SELECT ms.itemId, COALESCE(i.name, ''),
@@ -535,15 +562,17 @@ def load_latest_market(db_path: str) -> Dict[int, ItemMarket]:
     table is empty) falls back to the frozen ``market_snapshots``
     snapshot, which stays reachable on purpose as the legacy source.
     """
+    from woweconomy.dbcompat import missing_table_errors
+
     try:
         market = load_region_market(db_path)
-    except sqlite3.Error:
+    except missing_table_errors():
         market = {}
     if market:
         return market
     try:
         return load_snapshot_market(db_path)
-    except sqlite3.Error:
+    except missing_table_errors():
         return {}
 
 
@@ -758,14 +787,16 @@ def market_asof_db(db_path: str, source: str = "region") -> str:
                       "SELECT MAX(snapshotTimestamp) FROM snapshots")
     else:
         candidates = ("SELECT MAX(snapshotTimestamp) FROM snapshots",)
+    from woweconomy.dbcompat import connect_store, missing_table_errors
+
     for sql in candidates:
         try:
-            conn = sqlite3.connect(db_path)
+            conn = connect_store(db_path, readonly=True)
             try:
                 row = conn.execute(sql).fetchone()
             finally:
                 conn.close()
-        except sqlite3.Error:
+        except missing_table_errors():
             continue
         if row and row[0]:
             return row[0]
@@ -813,10 +844,17 @@ def freshness_factor(age_days: Optional[int]) -> float:
 
 
 def list_price(m: ItemMarket, vendor_copper: float,
-               r_cfg: FarmRankingConfig) -> float:
+               r_cfg: Optional[FarmRankingConfig] = None) -> float:
     """Effective list price: avgSalePrice x (base + sr x rate_mult),
     floored at vendor x floor_mult when enabled.  Defaults (1.0 / 0.0 /
-    0.0) reproduce the reference price exactly (no silent change)."""
+    0.0) reproduce the reference price exactly (no silent change).
+
+    ``r_cfg`` defaults rather than raising: every ranking function already
+    takes it as optional, and ``top_mogs`` passed its own ``None`` straight
+    through here, which crashed with "'NoneType' object has no attribute
+    'price_base_mult'" for any caller that did not supply a config.
+    """
+    r_cfg = r_cfg or FarmRankingConfig()
     target = m.price * (r_cfg.price_base_mult + m.sale_rate * r_cfg.price_rate_mult)
     if r_cfg.price_vendor_floor_mult > 0 and vendor_copper > 0:
         target = max(target, vendor_copper * r_cfg.price_vendor_floor_mult)
@@ -824,7 +862,7 @@ def list_price(m: ItemMarket, vendor_copper: float,
 
 
 def eff_net(m: ItemMarket, b: Optional[BlizzardItem], cfg: WowEconomyConfig,
-            r_cfg: FarmRankingConfig) -> float:
+            r_cfg: Optional[FarmRankingConfig] = None) -> float:
     """Estimated auction proceeds per unit after fee, on the EFFECTIVE
     list price (reference avgSalePrice adjusted by the pricing multiplier
     and vendor floor)."""

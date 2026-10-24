@@ -352,9 +352,74 @@ def decide(own_unit: int, lowest_unit: int, items_ahead: int,
     }
 
 
+def decide_row(row: Any, now: float | None = None, market: Any = None,
+               max_age_h: float = DEFAULT_MAX_AGE_H,
+               **thresholds: Any) -> Dict[str, Any]:
+    """One recommendation for one stored observation, at a stated time.
+
+    This is the whole of :func:`advise`'s per-row work, exposed because the
+    decision ledger has to replay a stored scan at the time it was taken:
+    replaying it at ``now`` would report a five-day-old listing as "two
+    hours left" and turn every historical HOLD into a false EXPIRE.
+
+    ``row`` is any mapping with the ``undercut_observation`` columns.  ``now``
+    is the clock used to age the scan; it is explicit so the answer does not
+    depend on when the report is run.
+    """
+    import time
+    now = time.time() if now is None else float(now)
+    observed_at = _as_int(row.get("observed_at"), 0)
+    age_h = max(0.0, (now - observed_at) / 3600.0) if observed_at else 0.0
+    raw_left = _as_int(row.get("time_left"), 0)
+    # 0 is "the source did not say", not "expires now"
+    hours_left = (max(0.0, raw_left / 3600.0 - age_h)
+                  if raw_left > 0 else None)
+    status = _reference_status(row)
+    max_age_h = _as_float(max_age_h, DEFAULT_MAX_AGE_H) or 0.0
+    if max_age_h and age_h > max_age_h:
+        status = REFERENCE_STALE
+    item_id = _as_int(row.get("item_id"), 0)
+    item_name = (str(row.get("item_name") or "").strip()
+                 or (f"item {item_id}" if item_id else "item unknown"))
+    item_market = None
+    if market is not None:
+        try:
+            item_market = market.get(item_id)
+        except Exception:  # pragma: no cover - defensive
+            item_market = None
+    decision = decide(
+        own_unit=_as_int(row.get("own_unit_price_copper")),
+        lowest_unit=_as_int(row.get("lowest_unit_price_copper")),
+        items_ahead=_as_int(row.get("items_ahead")),
+        own_quantity=_as_int(row.get("own_quantity"), 1),
+        hours_left=hours_left,
+        reference_status=status,
+        market=item_market,
+        **thresholds)
+    return {
+        "item_id": item_id,
+        "item_name": item_name,
+        "character": str(row.get("character") or ""),
+        "own_auction_id": row.get("own_auction_id"),
+        "own_quantity": _as_int(row.get("own_quantity"), 1),
+        "own_unit_price_copper": row.get("own_unit_price_copper"),
+        "lowest_unit_price_copper": row.get("lowest_unit_price_copper"),
+        "lowest_seller": row.get("lowest_seller"),
+        "lowest_auction_id": row.get("lowest_auction_id"),
+        "items_ahead": row.get("items_ahead"),
+        "hours_left": round(hours_left, 2) if hours_left is not None else None,
+        "observed_at": row.get("observed_at"),
+        "scan_id": row.get("scan_id"),
+        "source": row.get("source"),
+        "confidence": row.get("confidence"),
+        **decision,
+    }
+
+
 def advise(con: sqlite3.Connection, realm: str = "", days: int = 14,
            max_age_h: float = DEFAULT_MAX_AGE_H,
            market: Any = None,
+           now: float | None = None,
            **thresholds: Any) -> Dict[str, Any]:
     """Rank the open listings by what to look at first.
 
@@ -362,62 +427,24 @@ def advise(con: sqlite3.Connection, realm: str = "", days: int = 14,
     (or a plain ``item_id -> item market`` mapping).  When it is given, each
     row is decided with the measured noise, trend and own-share; without it
     the decision is exactly the gap/queue/time one it always was.
+
+    ``now`` is the clock the scans are aged against; it defaults to the
+    current time and is explicit so a replay of old observations is
+    reproducible.
     """
     import time
-    now = time.time()
+    now = time.time() if now is None else float(now)
     rows = _latest_observations(con, realm, days)
     out = []
     counts = {HOLD: 0, RELAST: 0, EXPIRE: 0, WATCH: 0}
     review_required = 0
-    max_age_h = _as_float(max_age_h, DEFAULT_MAX_AGE_H) or 0.0
     for row in rows:
-        # time left is as of the scan, not as of now
-        observed_at = _as_int(row.get("observed_at"), 0)
-        age_h = max(0.0, (now - observed_at) / 3600.0) if observed_at else 0.0
-        raw_left = _as_int(row.get("time_left"), 0)
-        # 0 is "the source did not say", not "expires now"
-        hours_left = (max(0.0, raw_left / 3600.0 - age_h)
-                      if raw_left > 0 else None)
-        status = _reference_status(row)
-        if max_age_h and age_h > max_age_h:
-            status = REFERENCE_STALE
-        item_id = _as_int(row.get("item_id"), 0)
-        item_name = (str(row.get("item_name") or "").strip()
-                     or (f"item {item_id}" if item_id else "item unknown"))
-        item_market = None
-        if market is not None:
-            try:
-                item_market = market.get(item_id)
-            except Exception:  # pragma: no cover - defensive
-                item_market = None
-        decision = decide(
-            own_unit=_as_int(row.get("own_unit_price_copper")),
-            lowest_unit=_as_int(row.get("lowest_unit_price_copper")),
-            items_ahead=_as_int(row.get("items_ahead")),
-            own_quantity=_as_int(row.get("own_quantity"), 1),
-            hours_left=hours_left,
-            reference_status=status,
-            market=item_market,
-            **thresholds)
-        counts[decision["advice"]] += 1
-        if decision.get("review_required"):
+        entry = decide_row(row, now=now, market=market, max_age_h=max_age_h,
+                           **thresholds)
+        counts[entry["advice"]] += 1
+        if entry.get("review_required"):
             review_required += 1
-        out.append({
-            "item_id": item_id,
-            "item_name": item_name,
-            "own_auction_id": row.get("own_auction_id"),
-            "own_unit_price_copper": row.get("own_unit_price_copper"),
-            "lowest_unit_price_copper": row.get("lowest_unit_price_copper"),
-            "lowest_seller": row.get("lowest_seller"),
-            "lowest_auction_id": row.get("lowest_auction_id"),
-            "items_ahead": row.get("items_ahead"),
-            "hours_left": round(hours_left, 2) if hours_left is not None else None,
-            "observed_at": row.get("observed_at"),
-            "scan_id": row.get("scan_id"),
-            "source": row.get("source"),
-            "confidence": row.get("confidence"),
-            **decision,
-        })
+        out.append(entry)
     out.sort(key=lambda r: (r["advice"] != RELAST, -r.get("gap_pct", 0)))
     return {
         "realm": realm or "all",

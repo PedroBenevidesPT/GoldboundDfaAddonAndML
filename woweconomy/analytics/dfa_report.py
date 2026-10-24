@@ -83,8 +83,10 @@ def _output_path(preferred: Path) -> Path:
 # ----------------------------------------------------------------------
 
 def _ro(db: Path) -> sqlite3.Connection:
-    return sqlite3.connect(f"file:{Path(db).as_posix()}?mode=ro", uri=True,
-                           timeout=5.0)
+    """Read-only, on whichever backend holds the store."""
+    from woweconomy.dbcompat import connect_store
+
+    return connect_store(db, readonly=True)
 
 
 @dataclass
@@ -266,7 +268,9 @@ class TsmFacts:
 
 
 def read_tsm(db: Path) -> TsmFacts:
-    con = sqlite3.connect(db)
+    from woweconomy.dbcompat import connect_store
+
+    con = connect_store(db, readonly=True)
     try:
         rows = con.execute("SELECT COUNT(*) FROM tsm_market").fetchone()[0]
         items = con.execute(

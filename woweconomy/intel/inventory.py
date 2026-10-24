@@ -502,10 +502,10 @@ def load_journal_events(tsm_db: Path | str, start_ts: int, end_ts: int,
     ``auction_events`` is the older importer's table.  The two have
     different column names, so each is normalised to the same shape.
     """
-    import sqlite3
+    from woweconomy.dbcompat import connect_store, missing_table_errors
+
     out: List[Dict[str, Any]] = []
-    con = sqlite3.connect(str(tsm_db))
-    con.row_factory = sqlite3.Row
+    con = connect_store(tsm_db, readonly=True)
     try:
         try:
             rows = con.execute(
@@ -517,7 +517,7 @@ def load_journal_events(tsm_db: Path | str, start_ts: int, end_ts: int,
                             "item_id": row["item_id"],
                             "quantity": row["quantity"],
                             "character": row["character"]})
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             pass
         try:
             rows = con.execute(
@@ -529,7 +529,7 @@ def load_journal_events(tsm_db: Path | str, start_ts: int, end_ts: int,
                             "ts": row["timestamp_unix"],
                             "item_id": row["item_id"], "quantity": row["qty"],
                             "character": row["character"]})
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             pass
     finally:
         con.close()

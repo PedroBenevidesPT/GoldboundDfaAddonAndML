@@ -151,6 +151,14 @@ POLICY: Tuple[SourcePolicy, ...] = (
         rationale="who was selling what; feeds seller analysis",
     ),
     SourcePolicy(
+        "relist_decision", "intel.sqlite", DIMENSION, "decided_at",
+        expires_when="never: the advice is the evidence",
+        protection="all rows, including superseded ones",
+        bytes_per_row=480.0, needed_for_replay=True,
+        rationale="what was recommended before the outcome existed; deleting"
+                  " it would make the ledger unfalsifiable",
+    ),
+    SourcePolicy(
         "undercut_observation", "intel.sqlite", RAW, "observed_at",
         expires_when="observed_at < cutoff",
         bytes_per_row=700.0, needed_for_replay=True,
@@ -200,6 +208,13 @@ POLICY: Tuple[SourcePolicy, ...] = (
                  rationale="empty today"),
 
     # -- tsm_markets.db ---------------------------------------------------
+    # The Wowhead scrape is reference data, not an observation stream: a zone
+    # has one current drop table, replaced when it is re-scraped.  Expiring it
+    # would silently empty the farm ranking rather than trim history.
+    SourcePolicy("wowhead_zone", "tsm_markets.db", DIMENSION, "scraped_at",
+                 rationale="when each zone was last scraped; one row per zone"),
+    SourcePolicy("wowhead_drop", "tsm_markets.db", DIMENSION, "scraped_at",
+                 rationale="the current drop table, replaced wholesale per zone"),
     SourcePolicy(
         "tsm_snapshot", "tsm_markets.db", RAW, "updated_at",
         expires_when="updated_at < cutoff",

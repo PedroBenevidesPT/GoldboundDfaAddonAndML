@@ -46,15 +46,18 @@ def vendor_prices(tsm_db: Path | str, item_ids: Sequence[int]) -> Dict[int, int]
     dataset uses, so a loot valuation and the shipped tooltip cannot
     disagree about what a vendor pays.
     """
-    import sqlite3
+    from woweconomy.dbcompat import connect as db_connect
 
     out: Dict[int, int] = {}
     wanted = [int(i) for i in item_ids if i]
     if not wanted:
         return out
     try:
-        con = sqlite3.connect(str(tsm_db), timeout=10.0)
-    except sqlite3.Error:
+        con = db_connect(tsm_db)
+    except Exception:
+        # includes "the postgres backend has no URL": the contract of this
+        # function is that a missing vendor table costs the deposit, never
+        # the export
         return out
     try:
         for start in range(0, len(wanted), 900):
@@ -64,7 +67,7 @@ def vendor_prices(tsm_db: Path | str, item_ids: Sequence[int]) -> Dict[int, int]
                     f"SELECT itemId, sellPrice FROM blizzard_items "
                     f"WHERE itemId IN ({marks})", chunk):
                 out[int(item_id)] = int(sell or 0)
-    except sqlite3.Error:
+    except Exception:
         return out
     finally:
         con.close()
@@ -219,6 +222,10 @@ class DatasetBuilder:
     record_index: Dict[Tuple[str, int], "DatasetRecord"] = field(default_factory=dict)
     #: realm -> the market context the realm block summarises
     realm_index_market: Dict[str, object] = field(default_factory=dict)
+    #: the farm ranking block, already in the shape it ships (see
+    #: :mod:`woweconomy.pricing.farm_section`).  Empty means "not built", and
+    #: the panel says so rather than showing an empty leaderboard.
+    farm_rankings: Dict[str, object] = field(default_factory=dict)
     generated_at: int = 0
     notes: List[str] = field(default_factory=list)
 
@@ -472,6 +479,9 @@ class DatasetBuilder:
             "sentinelModel": (self.records[0].estimate.model_version
                               if self.records else ""),
             "predictionStatusCounts": self._status_counts(),
+            # how many farm stops the ranking shipped; 0 means the ranking
+            # was not built, which the panel reports instead of an empty list
+            "farmStops": len(self.farm_rankings.get("stops") or []),
         }
 
     def _status_counts(self) -> Dict[str, int]:
@@ -509,6 +519,7 @@ class DatasetBuilder:
         lines.append(f"\ttotalObservations = {meta['totalObservations']},")
         lines.append(f"\tmeanConfidence = {meta['meanConfidence']},")
         lines.append(f"\tsentinelModel = {chr(34)}{meta['sentinelModel']}{chr(34)},")
+        lines.append(f"\tfarmStops = {int(meta['farmStops'])},")
         lines.append("\tpredictionStatus = {")
         for status, count in sorted(meta["predictionStatusCounts"].items()):
             lines.append(f"\t\t[{chr(34)}{status}{chr(34)}] = {int(count)},")
@@ -638,6 +649,15 @@ class DatasetBuilder:
             lines.append("\t\t},")
         lines.append("\t},")
         lines.append("")
+
+        # --- what is worth farming --------------------------------------
+        # Emitted by its own module, because the ranking owns its row shapes
+        # and this file owns only the surrounding table.
+        if self.farm_rankings:
+            from .farm_section import render as _render_farm
+            lines.extend(_render_farm(self.farm_rankings))
+            lines.append("")
+
         lines.append("\t-- the Data for Azeroth interest of the appearances in play")
         lines.append("\tappearances = {")
         for appearance_id in sorted(self.appearances):
@@ -728,6 +748,58 @@ def dataset_content_signature(text: str) -> str:
     ]
     normalised = _FLOAT.sub(lambda m: f"{float(m.group(1)):.2f}", "\n".join(lines))
     return hashlib.sha256(normalised.encode("utf-8")).hexdigest()
+
+
+def dataset_regression(previous: "Dict[str, object]", meta: "Dict[str, object]") -> str:
+    """Why the dataset about to be written is worse than the one on disk.
+
+    ``""`` means it is not.  This exists because it happened: the export
+    inside the worker container ran to completion and wrote a dataset with
+    ``itemCount = 0`` and ``appearanceCount = 0`` over one that had 237 and
+    31, because the container could not read the account's sales or the
+    appearance scan.  It validated, it was deployed to the game, and the
+    only trace was a file that had quietly lost every per-realm record.
+
+    A missing input is a configuration failure, not a market fact, and the
+    two look nothing alike: a market fact moves a count, a missing input
+    takes it to zero.  So the rule is deliberately about zero and about
+    halves, not about any decrease -- sales really do vary.
+    """
+    if not previous:
+        return ""
+    for key, why in (("itemCount", "the account's own sales"),
+                     ("appearanceCount", "the appearance scan"),
+                     ("priceCount", "the regional price table")):
+        try:
+            was = int(previous.get(key) or 0)
+            now = int(meta.get(key) or 0)
+        except (TypeError, ValueError):
+            continue
+        if was > 0 and now == 0:
+            return (f"{key} fell from {was} to 0: {why} could not be read on "
+                    f"this machine, so this is not a new market")
+        if was >= 10 and now < was / 2:
+            return (f"{key} fell from {was} to {now}: {why} came back with "
+                    f"less than half the previous data, which is an input "
+                    f"problem rather than a market move")
+    return ""
+
+
+def read_metadata(path: Path | str) -> "Dict[str, object]":
+    """The metadata block of a generated dataset, without loading Lua."""
+    path = Path(path)
+    if not path.exists():
+        return {}
+    try:
+        text = path.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return {}
+    out: Dict[str, object] = {}
+    for key in ("itemCount", "appearanceCount", "priceCount", "realmCount"):
+        match = re.search(rf"^\t{key} = (\d+),", text, re.MULTILINE)
+        if match:
+            out[key] = int(match.group(1))
+    return out
 
 
 def validate_dataset(text: str) -> Dict[str, object]:

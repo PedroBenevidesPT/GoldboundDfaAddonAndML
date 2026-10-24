@@ -1,15 +1,15 @@
 {
  "version": 3,
- "fingerprint": "1c3da0ebda3c4dc6bf9c198a9bc79ed95f0d2ea45386b21582e5c31c5fa1602b",
+ "fingerprint": "263bfae44f456d0cb335e5bda0f6c5a28c2918ec607c3704f4f0cba7ed771662",
  "model": {
-  "intercept": -0.38675831089680984,
+  "intercept": -0.3399270965844691,
   "coefficients": [
-   0.21048880958450378,
-   0.27777448674621824,
-   0.5273306661650465
+   0.186536444272672,
+   0.3000566147150173,
+   0.5248460496199728
   ],
   "medians": [
-   9.902737271145424,
+   9.897519780756337,
    9.909916840301031,
    9.800956363888462
   ],
@@ -18,47 +18,47 @@
    "dbregionhistorical",
    "dbregionsaleavg"
   ],
-  "residual_sigma": 0.6821526344326534,
+  "residual_sigma": 0.6841777097025806,
   "n_train": 527,
   "n_complete": 526,
-  "within_25": 0.44696969696969696,
-  "within_50": 0.7234848484848485,
+  "within_25": 0.4128787878787879,
+  "within_50": 0.6893939393939394,
   "interval_level": 0.8,
-  "interval_half_width": 0.7261531938639862,
-  "interval_coverage": 0.8490566037735849,
+  "interval_half_width": 0.8390518109127703,
+  "interval_coverage": 0.8962264150943396,
   "interval_n": 106,
   "interval_method": "split-conformal"
  },
  "evaluation": {
   "n": 527,
-  "rmse_log": 0.6821526344326534,
-  "mae_log": 0.4404308469282046,
-  "median_ratio": 0.9760889107665596,
-  "within_25pct": 0.49335863377609107,
-  "within_50pct": 0.7248576850094877
+  "rmse_log": 0.6841777097025807,
+  "mae_log": 0.4416402802766768,
+  "median_ratio": 0.9747461151792188,
+  "within_25pct": 0.5009487666034156,
+  "within_50pct": 0.7324478178368121
  },
  "evaluation_out_of_sample": {
   "n": 264,
-  "rmse_log": 0.7230187605688765,
-  "mae_log": 0.4717903078554928,
-  "median_ratio": 0.9387334375844434,
-  "within_25pct": 0.44696969696969696,
-  "within_50pct": 0.7234848484848485,
+  "rmse_log": 0.7632176257305946,
+  "mae_log": 0.5032037535678625,
+  "median_ratio": 0.9394908877698491,
+  "within_25pct": 0.4128787878787879,
+  "within_50pct": 0.6893939393939394,
   "method": "walk-forward, pooled",
   "interval_level": 0.8,
-  "interval_half_width_log": 0.7261531938639862,
+  "interval_half_width_log": 0.8390518109127703,
   "interval_method": "split-conformal",
   "interval_calibration_n": 158,
-  "interval_coverage": 0.8490566037735849,
+  "interval_coverage": 0.8962264150943396,
   "interval_test_n": 106,
   "interval_note": ""
  },
  "price_interval": {
   "level": 0.8,
-  "half_width_log": 0.7055126380430643,
+  "half_width_log": 0.8052219750782008,
   "method": "split-conformal",
   "calibration_n": 98,
-  "coverage": 0.8035714285714286,
+  "coverage": 0.7678571428571429,
   "test_n": 56,
   "note": "",
   "fit_rows": 373,

@@ -34,11 +34,42 @@ services:
       # Deterministic collation: two machines must sort realm names the same
       # way, or a "stable" ranking is stable only per machine.
       POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
+    # Postgres, not the worker, is what actually pins the CPU: `aggregates`
+    # is a handful of big GROUP BYs over 17M auction rows and the client just
+    # streams the results.  The image ships the defaults meant for a machine
+    # with 64 MB of RAM -- `shared_buffers` 16MB, `work_mem` 4MB -- so every
+    # one of those queries re-read the whole table from disk and spilled its
+    # sorts to temp files.  That is the disk thrash and the 100% CPU.
+    #
+    # Sizing: 2GB of buffers against a ~11GB data set caches the hot
+    # partitions; 64MB of work_mem keeps the per-partition GROUP BYs in
+    # memory instead of on disk.  `effective_cache_size` is advice to the
+    # planner, not an allocation.
+    command:
+      - postgres
+      - -c
+      - shared_buffers=2GB
+      - -c
+      - work_mem=64MB
+      - -c
+      - maintenance_work_mem=512MB
+      - -c
+      - effective_cache_size=8GB
+      # Two parallel workers per gather is plenty when the desktop also needs
+      # cores; the default of 8 `max_parallel_workers` still allows several
+      # concurrent tasks to overlap.
+      - -c
+      - max_parallel_workers_per_gather=2
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./docker/postgres/init:/docker-entrypoint-initdb.d:ro
+    # Capped like the worker: this container has no business taking all 24
+    # threads and the whole 16GB VM while someone is using the machine.
+    cpus: "${POSTGRES_CPUS:-8}"
+    mem_limit: "${POSTGRES_MEM:-6g}"
+    cpu_shares: 768
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-goldbound} -d ${POSTGRES_DB:-goldbound}"]
       interval: 5s
@@ -118,6 +149,46 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER:-goldbound}:${POSTGRES_PASSWORD:-goldbound}@postgres:5432/${POSTGRES_DB:-goldbound}
       WOW_PIPELINE_REDIS: redis://redis:6379/0
       WOW_PIPELINE_BACKEND: postgres
+      # The Data for Azeroth scan is an input, not code: the posting plan
+      # cannot classify a look without it.  Point `DFA_DIR` in `.env` at the
+      # folder holding `dfa.db` (and the `demand_*.csv` exports) on this
+      # machine -- docker compose interpolates it for the mount below.  The
+      # reader opens the database `mode=ro`; without the folder the strategy
+      # task reports a skip instead of failing every cycle.
+      DFA_DIR: /app/woweconomy/dfa
+      # The same folder as the pricing engine's `dfa.db`, which is what the
+      # `export` task reads for the account's own sales and the appearance
+      # scan.  `PricingConfig.dfa_db` defaults to a host-only absolute
+      # Windows path when `WOW_DFA_DB` is unset, and that path does not exist
+      # inside the container: the export then built a dataset with
+      # itemCount=0 and the regression guard refused to write it, skipping
+      # the task every cycle.  `environment` wins over `env_file`, so this
+      # container-only value leaves host runs (which read `.env`) untouched.
+      WOW_DFA_DB: /app/woweconomy/dfa/dfa.db
+      # `deploy` copies the toc-listed addon files into the game, which lives
+      # on the host: the folder is mounted below and this points the task at
+      # the mount.  Set `WOW_ADDONS_DIR` in `.env` to the host folder; without
+      # it the mount falls back to the same Windows default the script uses,
+      # and a machine with no game there cannot deploy at all.
+      WOW_ADDONS_DIR: /game/AddOns
+      # The addon's SavedVariables (mailbox invoices, undercut scans, the
+      # event log) are written to `WTF/Account/<id>/SavedVariables`, which is
+      # a sibling of `Interface/AddOns`, not inside it.  The folder is mounted
+      # read-only below; the client only writes it on `/reload` or logout, so
+      # the import task sees a change after the next one.
+      WOW_WTF_DIR: /game/WTF
+      # Python block-buffers stdout when it is not a terminal, which is
+      # always inside a container: without this, `docker compose logs` shows
+      # nothing until a task finishes, and a fetch takes minutes.
+      PYTHONUNBUFFERED: "1"
+      # BLAS/OpenMP count the *logical* cores and spawn one thread each.  On a
+      # 24-thread desktop that storm -- not the work itself -- is what makes
+      # the machine unusable, and the threads fight each other for the same
+      # memory bandwidth anyway.  Capped to the container's CPU budget.
+      OMP_NUM_THREADS: "${WORKER_BLAS_THREADS:-4}"
+      OPENBLAS_NUM_THREADS: "${WORKER_BLAS_THREADS:-4}"
+      MKL_NUM_THREADS: "${WORKER_BLAS_THREADS:-4}"
+      NUMEXPR_NUM_THREADS: "${WORKER_BLAS_THREADS:-4}"
     volumes:
       # The worker reads and writes the repo's data directory (the exported
       # addon dataset, the model bundles).  Code is baked into the image so a
@@ -125,6 +196,21 @@ services:
       - ./data:/app/data
       - ./models:/app/models
       - ./DFA_Estimate/Data:/app/DFA_Estimate/Data
+      # `rw` on purpose, even though every query is read-only: `dfa.db` is in
+      # WAL mode, and SQLite has to write the `-shm` index next to it before a
+      # read-only connection can open.  On a `:ro` mount that fails with
+      # "unable to open database file", and the reader silently falls back to
+      # the `demand_*.csv` files (older than the scan by however long since
+      # the last export).  Nothing here writes the data itself.
+      - ${DFA_DIR:-./woweconomy/dfa}:/app/woweconomy/dfa:rw
+      # The game's AddOns folder, writable: `deploy` has to land the files in
+      # the client's copy, and a read-only mount would make every deploy a
+      # skip with a permission error.  Absent the host folder, the worker
+      # still starts (the bind creates it) and `deploy` reports a skip.
+      - ${WOW_ADDONS_DIR:-C:/Program Files (x86)/World of Warcraft/_retail_/Interface/AddOns}:/game/AddOns
+      # Read-only: the pipeline imports the addon's SavedVariables, it never
+      # writes them -- the client owns this folder.
+      - ${WOW_WTF_DIR:-C:/Program Files (x86)/World of Warcraft/_retail_/WTF}:/game/WTF:ro
       - ./logs:/app/logs
     depends_on:
       postgres:
@@ -133,7 +219,29 @@ services:
         condition: service_healthy
       migrate:
         condition: service_completed_successfully
-    command: ["python", "run_pipeline.py", "--loop", "--interval", "120"]
+    # Three at once: the TSM sweep paces itself for half an hour and used to
+    # hold everything else behind it.  Dependency order is still honoured
+    # (`export` waits for `strategy`, `deploy` for `export`) and the lease
+    # table still guarantees one worker per task.
+    #
+    # `nice` is not decoration.  Several steps are single-threaded by nature --
+    # `strategy` spends minutes in one pure-Python loop, `aggregates` streams
+    # 17M rows -- so they pin a core for a long time.  At normal priority that
+    # core is enough to make a desktop stutter, and every task subprocess
+    # inherits the niceness, so the whole pipeline yields to whatever the
+    # person at the keyboard is doing.
+    command: ["nice", "-n", "${WORKER_NICE:-10}", "python", "run_pipeline.py",
+              "--loop", "--interval", "120", "--workers", "${WORKER_TASKS:-3}"]
+    # The pipeline is a tenant on a workstation, not the owner of it.  Without
+    # these the container is unbounded: Docker Desktop's WSL2 VM had 16.6 GB
+    # of a 31.7 GB machine and the whole 24-thread CPU, so one heavy task both
+    # saturated the scheduler and pushed Windows into paging -- which is what
+    # "the PC freezes" actually was.  `cpus` is a hard quota; `cpu_shares`
+    # decides who wins when the desktop is also busy.  Raise the CPU budget in
+    # `.env` when running on a dedicated box.
+    cpus: "${WORKER_CPUS:-6}"
+    mem_limit: "${WORKER_MEM:-8g}"
+    cpu_shares: 512
     restart: unless-stopped
     # No `container_name`: this service is meant to be scaled, and a fixed
     # name makes a second replica impossible.

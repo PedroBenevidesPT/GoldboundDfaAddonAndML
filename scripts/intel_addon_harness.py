@@ -499,7 +499,13 @@ def main() -> int:
                        and latest.locations.guildbank is None, ""))
 
         lua.execute('SetGuildBankOpen(true)')
-        fire("GUILDBANKFRAME_OPENED")
+        # A modern client opens the guild bank through the interaction
+        # manager, and the legacy GUILDBANKFRAME_OPENED is protected there:
+        # registering it raises ADDON_ACTION_FORBIDDEN.  Core.lua therefore
+        # picks the interaction-manager event whenever the client has one,
+        # and this is the payload that opens the guild bank.
+        guild_banker = int(lua.globals().Enum.PlayerInteractionType.GuildBanker)
+        fire("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", guild_banker)
         lua.execute('RunTimers()')
         guild = db.inventory_latest
         guild_rows = dict(guild.locations.guildbank or {})

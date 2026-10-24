@@ -44,6 +44,9 @@ def distinct_ids(paths: list[Path]) -> list[int]:
 
 
 def main() -> None:
+    from woweconomy.dbcompat import load_env
+
+    load_env()
     ap = argparse.ArgumentParser(description="Enrich drop items via Blizzard API.")
     ap.add_argument("zones", nargs="*", default=[],
                     help="zone JSONs (default: all zone_*.json)")

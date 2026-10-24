@@ -90,10 +90,74 @@ local function LoginStage(stage, fn)
 	return false
 end
 
+---Does this client know the event at all?  A name it does not have would
+---otherwise reach RegisterEvent and raise "unknown event" once per load.
+---@param name string
+---@return boolean
+local function EventExists(name)
+    if C_EventUtils and C_EventUtils.IsEventValid then
+        return C_EventUtils.IsEventValid(name) and true or false
+    end
+    return true
+end
+
+-- Two ways a client announces "the guild bank is open".
+--
+-- Modern clients drive every NPC frame through PlayerInteractionFrameManager
+-- and report PLAYER_INTERACTION_MANAGER_FRAME_SHOW with an
+-- Enum.PlayerInteractionType.  On those clients the legacy name is
+-- *protected*: Frame:RegisterEvent raises
+--     [ADDON_ACTION_FORBIDDEN] AddOn 'DFA_AuctionIntelligence' tried to call
+--     the protected function 'UNKNOWN()'
+-- and the client blames the pcall line, so the addon looks broken at load even
+-- though the pcall caught it.  The protected call is RegisterEvent itself --
+-- the client simply has no name to report for it, which is why it prints
+-- UNKNOWN() instead of RegisterEvent().
+--
+-- Evidence: no other addon in this install registers the legacy name -- not
+-- Baganator and not Syndicator, both of which cache guild banks -- and
+-- Syndicator reaches the guild bank through the interaction manager plus
+-- GUILDBANKBAGSLOTS_CHANGED / GUILDBANK_UPDATE_TABS.  Older clients have no
+-- interaction manager and only the legacy event, so the client is asked which
+-- one it has instead of the version being guessed.
+local MODERN_GUILDBANK_EVENT = "PLAYER_INTERACTION_MANAGER_FRAME_SHOW"
+local LEGACY_GUILDBANK_EVENT = "GUILDBANKFRAME_OPENED"
+
+---True when this client opens NPC frames through the interaction manager.
+---@return boolean
+local function HasInteractionManager()
+    local types = Enum and Enum.PlayerInteractionType
+    return types ~= nil and types.GuildBanker ~= nil
+end
+
+-- Modern only when the client really has the interaction manager *and* the
+-- event.  A client with neither falls back to the legacy name, which is the
+-- only one it can register.  GUILDBANK_UPDATE_TABS stays in EVENTS on both
+-- paths, so the guild bank is still captured if the interaction manager turns
+-- out to be a different flavour than expected.
+local guildBankEvent
+if HasInteractionManager() and EventExists(MODERN_GUILDBANK_EVENT) then
+    guildBankEvent = MODERN_GUILDBANK_EVENT
+else
+    guildBankEvent = LEGACY_GUILDBANK_EVENT
+end
+DFA_AI.guildBankEvent = guildBankEvent
+
+---True when an interaction-manager payload is the guild bank.  The same event
+---carries the auctioneer, the merchant and the mailbox, so the payload has to
+---be checked before the guild-bank snapshot is taken.
+---@param kind any an Enum.PlayerInteractionType value
+---@return boolean
+local function IsGuildBankInteraction(kind)
+    local types = Enum and Enum.PlayerInteractionType
+    local guildBanker = types and types.GuildBanker
+    return guildBanker ~= nil and kind == guildBanker
+end
+
 local EVENTS = {
     "ADDON_LOADED", "PLAYER_LOGIN", "PLAYER_LOGOUT",
     "MAIL_INBOX_UPDATE", "OWNED_AUCTIONS_UPDATED", "AUCTION_HOUSE_SHOW",
-    "GUILDBANKFRAME_OPENED", "GUILDBANK_UPDATE_TABS", "BANKFRAME_OPENED",
+    guildBankEvent, "GUILDBANK_UPDATE_TABS", "BANKFRAME_OPENED",
     -- "ITEM_SEARCH_RESULTS_UPDATED",       -- REMOVIDO: protegido no retail moderno
     -- "COMMODITY_SEARCH_RESULTS_UPDATED",  -- REMOVIDO: protegido no retail moderno
     "AUCTION_HOUSE_CLOSED",
@@ -106,11 +170,16 @@ local EVENTS = {
     "PLAYER_REGEN_ENABLED",
 }
 for _, event in ipairs(EVENTS) do
-    local ok, reason = pcall(frame.RegisterEvent, frame, event)
-    if not ok then
-        DFA_AI.registrationWarnings[#DFA_AI.registrationWarnings + 1] =
-            tostring(event) .. ": " .. tostring(reason)
-        print(event)
+    if EventExists(event) then
+        local ok, reason = pcall(frame.RegisterEvent, frame, event)
+
+        if not ok then
+            local message = ("[DFA AI] Failed to register event '%s': %s")
+                :format(tostring(event), tostring(reason))
+
+            DFA_AI.registrationWarnings[#DFA_AI.registrationWarnings + 1] = message
+            print(message)
+        end
     end
 end
 
@@ -235,7 +304,17 @@ frame:SetScript("OnEvent", function(self, event, arg1)
         Later(1.5, function()
             pcall(function() DFA_AI.Inventory:SnapshotOnBank("bank") end)
         end)
-    elseif event == "GUILDBANKFRAME_OPENED" then
+    elseif event == MODERN_GUILDBANK_EVENT then
+        -- arg1 is an Enum.PlayerInteractionType and this event also carries
+        -- the auctioneer, the merchant and the mailbox.  Only the guild
+        -- banker opens the guild bank.  The legacy name cannot be registered
+        -- on this client -- see the note above EVENTS.
+        if IsGuildBankInteraction(arg1) then
+            Later(1.5, function()
+                pcall(function() DFA_AI.Inventory:SnapshotOnGuildBank("guildbank") end)
+            end)
+        end
+    elseif event == LEGACY_GUILDBANK_EVENT then
         Later(1.5, function()
             pcall(function() DFA_AI.Inventory:SnapshotOnGuildBank("guildbank") end)
         end)
@@ -316,6 +395,15 @@ local function HandleSlashCmd(msg)
                 tostring(inventory.readable.warband)))
         else
             print("  Inventory: no snapshot yet (/dfaai inventory)")
+        end
+        -- Which guild-bank signal this client gave us.  Worth printing: on a
+        -- modern client the legacy event is protected, so "legacy" here means
+        -- the interaction manager is missing and the guild-bank snapshot will
+        -- only fire on the old path.
+        print(string.format("  Guild bank signal: %s",
+            tostring(DFA_AI.guildBankEvent or "none")))
+        for _, warning in ipairs(DFA_AI.registrationWarnings or {}) do
+            print("  ! " .. tostring(warning))
         end
         local sellerStats = DFA_AI.Sellers:GetStats()
         print(string.format("  Seller observations: %d (duplicates=%d, last=%s)",

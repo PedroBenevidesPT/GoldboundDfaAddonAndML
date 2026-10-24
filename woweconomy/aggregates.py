@@ -104,6 +104,27 @@ CREATE TABLE IF NOT EXISTS aggregate_partition (
     PRIMARY KEY (aggregate, day, scope)
 );
 
+-- Per (aggregate, day): a fingerprint of the *header* rows that decide that
+-- day, so an unchanged day can be skipped without scanning its fact rows.
+-- The fact tables are append-only -- `ingest` refuses a snapshot_id it has
+-- already stored and never revisits its rows -- so the header set for a day
+-- fully determines that day's aggregate.  Hashing a few hundred header rows
+-- is a sound stand-in for re-grouping tens of millions of fact rows.
+-- `version` invalidates every row when the fingerprint's definition changes,
+-- which is what keeps an old state from being trusted by new code.
+-- `source_table` is the fact table the aggregate was built from (the identity
+-- of the numbers); the header table the fingerprint is read from is declared
+-- by `AggregateSpec.days_from`, and changing it requires a `version` bump.
+CREATE TABLE IF NOT EXISTS aggregate_source_state (
+    aggregate     TEXT    NOT NULL,
+    day           TEXT    NOT NULL,
+    source_table  TEXT    NOT NULL,
+    version       INTEGER NOT NULL,
+    watermark     TEXT    NOT NULL,
+    built_at      TEXT    NOT NULL,
+    PRIMARY KEY (aggregate, day)
+);
+
 -- Price observations per item per day, from tsm_price_change -- the only
 -- record of how a price moved.  An item that did not change on a day has no
 -- row for that day, and that is correct: its price was whatever it last was.
@@ -377,6 +398,60 @@ def _recent_days(con: sqlite3.Connection, table: str, column: str,
     if days is not None and days > 0:
         available = available[-days:]
     return set(available)
+
+
+#: Bumped when the fingerprint below changes meaning.  A stored state from an
+#: older version is treated as absent, so a new definition can never be
+#: compared against a hash it did not produce.
+_WATERMARK_VERSION = 2
+
+
+def _source_watermarks(con: sqlite3.Connection, table: str, day_column: str
+                       ) -> Dict[str, str]:
+    """A per-day fingerprint of the header rows, or ``{}`` when it cannot tell.
+
+    Why this is sound: ``ah_auction`` and ``tsm_price_change`` are append-only.
+    :func:`woweconomy.intel.ah.ingest` returns early for a ``snapshot_id`` it
+    already has, writes its rows once with ``INSERT OR IGNORE``, and commits --
+    so an existing snapshot's rows and price status never change again.  The
+    TSM side upserts, but the upsert rewrites ``updated_at`` and ``checksum``
+    on the same row.  Either way, the set of header rows for a day changes
+    exactly when that day's facts could have changed.
+
+    Every column of the header row is hashed, not a chosen subset: a column
+    this code has never heard of can still mark a day as changed, which is the
+    safe direction.  The row is read as ``SELECT <day>, *`` so the fingerprint
+    adapts to whatever the table actually has -- no introspection, which the
+    Postgres compatibility shim does not expose.
+
+    Returning ``{}`` is deliberate and safe: the caller then falls back to the
+    existing full-window rebuild instead of skipping anything.
+    """
+    try:
+        rows = con.execute(
+            f"SELECT {day_column}, * FROM {table}").fetchall()
+    except sqlite3.OperationalError:
+        return {}
+
+    buckets: Dict[str, List[str]] = {}
+    for row in rows:
+        day = _as_day(row[0])
+        if not day:
+            continue
+        # As text, so an int/str difference between the two backends cannot
+        # produce a spurious new fingerprint for unchanged data.
+        fields = ["" if v is None else str(v) for v in row]
+        buckets.setdefault(day, []).append("\x1f".join(fields))
+
+    out: Dict[str, str] = {}
+    for day, items in buckets.items():
+        items.sort()
+        digest = hashlib.sha256()
+        for item in items:
+            digest.update(item.encode("utf-8"))
+            digest.update(b"\x1e")
+        out[day] = digest.hexdigest()
+    return out
 
 
 def _stream_item_price(con: sqlite3.Connection,
@@ -688,11 +763,6 @@ class AggregateSpec:
         return (f'INSERT OR REPLACE INTO "{self.name}" ({",".join(cols)}) '
                 f'VALUES ({",".join("?" * len(cols))})')
 
-    @property
-    def select_sql(self) -> str:
-        where = " AND ".join(f"{c}=?" for c in self.key_columns)
-        return f'SELECT {",".join(self.columns)} FROM "{self.name}" WHERE {where}'
-
 
 SPECS: Dict[str, AggregateSpec] = {
     "daily_item_price": AggregateSpec(
@@ -814,6 +884,7 @@ def build(intel_db: Path | str, tsm_db: Path | str,
                 continue
 
             window = None
+            watermarks: Dict[str, str] = {}
             if spec.days_from is not None:
                 window = _recent_days(src, spec.days_from[0], spec.days_from[1],
                                       days, since)
@@ -824,6 +895,57 @@ def build(intel_db: Path | str, tsm_db: Path | str,
                         f"{name}: no source day inside the window")
                     continue
                 report.window[name] = sorted(window) if window else []
+
+                # Skip the days whose header rows are unchanged.  Without this
+                # a 6-hourly run re-groups every day in the window and then
+                # discovers nothing moved: measured, `daily_ah_auction` read
+                # 50,152,511 rows over 404.8 s to write 0 rows.  The
+                # per-partition checksum below cannot help with that -- it
+                # only avoids the *write*, and it is only reached after the
+                # source has already been aggregated.
+                if window and not force:
+                    watermarks = _source_watermarks(
+                        src, spec.days_from[0], spec.days_from[1])
+                    if watermarks:
+                        stored = {
+                            str(r[0]): str(r[1]) for r in out.execute(
+                                "SELECT day, watermark FROM aggregate_source_state"
+                                " WHERE aggregate=? AND version=?",
+                                (name, _WATERMARK_VERSION)).fetchall()
+                        }
+                        built_days = {
+                            str(r[0]) for r in out.execute(
+                                "SELECT DISTINCT day FROM aggregate_partition"
+                                " WHERE aggregate=?", (name,)).fetchall()
+                        }
+                        todo = set()
+                        for day in window:
+                            current = watermarks.get(day)
+                            # A day we cannot fingerprint must be rebuilt, not
+                            # skipped: silence is not evidence of no change.
+                            if current is None or stored.get(day) != current:
+                                todo.add(day)
+                        # A day that is in the aggregate but no longer in the
+                        # source has to be visited so the prune step below can
+                        # remove it.  Only days inside the window are eligible,
+                        # exactly as before.
+                        todo |= {d for d in built_days
+                                 if d in window and d not in watermarks}
+                        if not todo:
+                            # Count the partitions the skipped days would have
+                            # produced, so the report keeps meaning what it
+                            # always meant: partitions, not days.
+                            marks = ",".join("?" * len(window))
+                            report.partitions_skipped[name] = int(out.execute(
+                                "SELECT COUNT(*) FROM aggregate_partition"
+                                f" WHERE aggregate=? AND day IN ({marks})",
+                                (name, *sorted(window))).fetchone()[0])
+                            report.rows_written[name] = 0
+                            report.source_rows[name] = 0
+                            report.window[name] = sorted(window)
+                            continue
+                        window = todo
+                        report.window[name] = sorted(window)
 
             written = skipped = source_rows = 0
             pending: List[tuple] = []
@@ -861,18 +983,36 @@ def build(intel_db: Path | str, tsm_db: Path | str,
                 # survived a full rebuild and made the aggregate disagree with
                 # a plain GROUP BY.  The delete is scoped to the partition, so
                 # it can never touch another day or market.
-                out.execute(
-                    f'DELETE FROM "{name}" '
-                    f'WHERE "{spec.key_columns[0]}"=? AND "{spec.key_columns[1]}"=?',
-                    (key[0], key[1]),
-                )
-                out.executemany(spec.insert_sql, rows)
-                out.execute(
-                    "INSERT OR REPLACE INTO aggregate_partition "
-                    "(aggregate, day, scope, source_table, source_rows, "
-                    " source_checksum, built_at) VALUES (?,?,?,?,?,?,?)",
-                    partition + (spec.source_table, n_rows, digest, _utc_now()),
-                )
+                #
+                # All three statements are one transaction.  Without it an
+                # interrupted run -- a killed container, a full disk -- could
+                # leave the rows deleted and the tracking row still holding the
+                # *old* checksum: the next run would compute the same digest,
+                # find it already recorded, skip the partition, and the
+                # aggregate would stay empty for ever.  That is precisely the
+                # "an interrupted run published an incomplete result" case, and
+                # it is invisible afterwards because the checksum still looks
+                # right.
+                out.execute("BEGIN")
+                try:
+                    out.execute(
+                        f'DELETE FROM "{name}" '
+                        f'WHERE "{spec.key_columns[0]}"=?'
+                        f' AND "{spec.key_columns[1]}"=?',
+                        (key[0], key[1]),
+                    )
+                    out.executemany(spec.insert_sql, rows)
+                    out.execute(
+                        "INSERT OR REPLACE INTO aggregate_partition "
+                        "(aggregate, day, scope, source_table, source_rows, "
+                        " source_checksum, built_at) VALUES (?,?,?,?,?,?,?)",
+                        partition + (spec.source_table, n_rows, digest,
+                                     _utc_now()),
+                    )
+                except BaseException:
+                    out.execute("ROLLBACK")
+                    raise
+                out.execute("COMMIT")
                 written += len(rows)
 
             for key, acc, n_source, checksum in spec.stream(  # type: ignore[operator]
@@ -910,22 +1050,50 @@ def build(intel_db: Path | str, tsm_db: Path | str,
                     continue
                 if window is not None and day not in window:
                     continue
-                out.execute(
-                    f'DELETE FROM "{name}" '
-                    f'WHERE "{spec.key_columns[0]}"=? AND "{spec.key_columns[1]}"=?',
-                    (day, scope),
-                )
-                out.execute(
-                    "DELETE FROM aggregate_partition"
-                    " WHERE aggregate=? AND day=? AND scope=?",
-                    (name, day, scope),
-                )
+                # Same transaction rule as a write: a half-pruned partition
+                # (rows gone, tracking row left) would look like a complete
+                # one to the next run.
+                out.execute("BEGIN")
+                try:
+                    out.execute(
+                        f'DELETE FROM "{name}" '
+                        f'WHERE "{spec.key_columns[0]}"=?'
+                        f' AND "{spec.key_columns[1]}"=?',
+                        (day, scope),
+                    )
+                    out.execute(
+                        "DELETE FROM aggregate_partition"
+                        " WHERE aggregate=? AND day=? AND scope=?",
+                        (name, day, scope),
+                    )
+                except BaseException:
+                    out.execute("ROLLBACK")
+                    raise
+                out.execute("COMMIT")
                 report.partitions_pruned[name] = (
                     report.partitions_pruned.get(name, 0) + 1)
 
             report.rows_written[name] = written
             report.partitions_skipped[name] = skipped
             report.source_rows[name] = source_rows
+
+            # Record what each day's source looked like, now that its rows are
+            # written.  Only after the writes: a state row that survived a
+            # crash mid-build would tell the next run to skip a day it never
+            # actually wrote.  `built_at` is the creation stamp, `version` the
+            # fingerprint definition, and `source_table` the identity of the
+            # facts that were summarised.
+            for day in (window or ()):
+                watermark = watermarks.get(day)
+                if not watermark:
+                    continue
+                out.execute(
+                    "INSERT OR REPLACE INTO aggregate_source_state"
+                    " (aggregate, day, source_table, version, watermark,"
+                    "  built_at) VALUES (?,?,?,?,?,?)",
+                    (name, day, spec.source_table, _WATERMARK_VERSION,
+                     watermark, _utc_now()),
+                )
 
         for key, value in (
             ("built_at", _utc_now()),
@@ -1068,14 +1236,35 @@ def validate(aggregate_db: Path | str, intel_db: Path | str,
                     report.errors.append(f"{name}: no {spec.source_table}")
                     continue
                 compared = missing = 0
+                # The stored side is fetched one *partition* at a time, not
+                # one row at a time.  A per-key SELECT is an N+1 against the
+                # database -- measured on the live store it had not finished
+                # after 30 minutes for seven million groups, because every
+                # group paid a round trip.  The stream is ordered by the key,
+                # so a partition's rows are contiguous and one query per
+                # (day, scope) is all that is ever needed.
+                part_key: Optional[Tuple[str, str]] = None
+                stored_part: Dict[tuple, Dict[str, object]] = {}
+                width = len(spec.key_columns)
                 for key, acc, _n, _checksum in spec.stream(src):  # type: ignore[operator]
                     if key[0] not in wanted:
                         continue
-                    row = con.execute(spec.select_sql, tuple(key)).fetchone()
-                    if row is None:
+                    pk = (str(key[0]), str(key[1]))
+                    if pk != part_key:
+                        rows = con.execute(
+                            f'SELECT {",".join(spec.columns)} FROM "{name}"'
+                            f' WHERE "{spec.key_columns[0]}"=?'
+                            f' AND "{spec.key_columns[1]}"=?',
+                            pk).fetchall()
+                        stored_part = {
+                            tuple(str(v) for v in r[:width]):
+                                dict(zip(spec.columns, r))
+                            for r in rows}
+                        part_key = pk
+                    stored = stored_part.get(tuple(str(v) for v in key))
+                    if stored is None:
                         missing += 1
                         continue
-                    stored = dict(zip(spec.columns, row))
                     for column in spec.value_columns:
                         if _differs(stored[column], acc.get(column)):
                             report.mismatches.append(Mismatch(

@@ -34,7 +34,6 @@ from __future__ import annotations
 
 import logging
 import math
-import sqlite3
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -43,6 +42,8 @@ from typing import Dict, List, Optional, Sequence, Tuple
 import numpy as np
 import pandas as pd
 
+from ..dbcompat import connect as db_connect
+from ..dbcompat import missing_table_errors
 from ..ml.config import MLConfig
 from ..ml.features import FeatureBuilder
 from ..ml.journalator import Posting
@@ -144,6 +145,10 @@ class Estimate:
     fallback_reason: str = ""
     #: confidence in the *data*, separate from confidence in the prediction
     data_quality: float = 0.0
+    #: the expected auction-house deposit as a fraction of the vendor price.
+    #: This is the share the seller does not get back until the sale completes,
+    #: so it is the deposit a loot value should subtract from the net proceeds.
+    deposit_share: float = 0.0
     #: the measured market around this item (supply, competition, price
     #: path), when a snapshot or a scan covers it.  Empty when nothing was
     #: observed: a missing market is unknown, not empty.
@@ -363,14 +368,17 @@ class PricingEngine:
 
     def _load_history(self) -> None:
         """The account's own transactions, per realm and item."""
-        con = sqlite3.connect(self.config.tsm_db)
+        # db_connect, not sqlite3.connect: the container has no tsm_markets.db,
+        # and sqlite3.connect would create an empty one and then fail on the
+        # first query.  The tables are in the shared database there.
+        con = db_connect(self.config.tsm_db)
         try:
             rows = con.execute(
                 "SELECT realm, item_id, COUNT(*), MAX(timestamp_unix), "
                 "AVG(unit_price_copper) FROM auction_events "
                 "WHERE event_type='sale' AND item_id IS NOT NULL "
                 "GROUP BY realm, item_id").fetchall()
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             rows = []
         finally:
             con.close()
@@ -382,11 +390,11 @@ class PricingEngine:
         """The canonical TSM scopes of the realms the account sold in."""
         if not self._history_cache:
             return []
-        con = sqlite3.connect(self.config.tsm_db)
+        con = db_connect(self.config.tsm_db)
         try:
             canonical = {str(name): str(slug) for name, slug in con.execute(
                 "SELECT realm_name, canonical_slug FROM tsm_realm_group")}
-        except sqlite3.OperationalError:
+        except missing_table_errors():
             canonical = {}
         finally:
             con.close()
@@ -454,8 +462,9 @@ class PricingEngine:
         """
         if Path(path) == Path(self.config.tsm_db):
             try:
-                con = sqlite3.connect(f"file:{Path(path).as_posix()}?mode=ro",
-                                      uri=True, timeout=5.0)
+                # db_connect: the read-only file URI is a SQLite-only notion,
+                # and in the container these tables are in Postgres.
+                con = db_connect(path)
                 try:
                     snapshots = con.execute(
                         "SELECT COUNT(*), MAX(snapshot_id) FROM tsm_snapshot").fetchone()
@@ -464,8 +473,10 @@ class PricingEngine:
                 finally:
                     con.close()
                 return f"snap={snapshots[0]}:{snapshots[1]}|events={events[0]}:{events[1]}"
-            except sqlite3.Error:
+            except missing_table_errors():
                 pass  # fall back to the file, never to "unchanged"
+            except Exception:
+                pass
         try:
             stat = Path(path).stat()
             return f"file={stat.st_size}:{stat.st_mtime_ns}"

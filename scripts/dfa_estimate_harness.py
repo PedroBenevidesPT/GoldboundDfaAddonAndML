@@ -371,6 +371,30 @@ def main() -> int:
     check("the tooltip processor was registered", int(lua.eval("#POSTCALLS")) >= 1,
           str(lua.eval("#POSTCALLS")))
 
+    # The panel is a scroll frame whose child is sized to the report.  A
+    # content frame one pixel high is a blank window, and this mock cannot
+    # measure a fontstring (its fallback answers with the widget, not a
+    # number), so the layout must not depend on that measurement arriving
+    # in the same frame the text is set -- which is exactly the failure a
+    # real client shows as "the panel opens empty".
+    panel = addon["DFAEstimatePanel"]
+    try:
+        panel["Show"]()
+        layout = panel["GetLayout"]()
+        content = layout["content"] if layout else None
+        report_widget = layout["text"] if layout else None
+        report = str(report_widget["GetText"](report_widget) or "") if report_widget else ""
+        height = 0
+        if content and content["GetHeight"]:
+            value = content["GetHeight"](content)
+            if isinstance(value, (int, float)):
+                height = float(value)
+        check("the panel is sized to its report",
+              height > 1 and len(report) > 0,
+              f"{height:.0f}px for {len(report.splitlines())} line(s)")
+    except LuaError as exc:
+        check("the panel is sized to its report", False, str(exc))
+
     if item_id is not None:
         # The addon only decorates the game's own tooltips (its ValidateTooltip
         # rejects a named frame that is not GameTooltip/ItemRefTooltip), so the

@@ -28,7 +28,8 @@ from pathlib import Path
 
 from lupa import LuaError, LuaRuntime
 
-ADDON = Path(sys.argv[1] if len(sys.argv) > 1 else "C:/FarmAnalysis/DFA_AuctionIntelligence")
+ADDON = Path(sys.argv[1] if len(sys.argv) > 1
+             else Path(__file__).resolve().parent.parent / "DFA_AuctionIntelligence")
 TOC = ADDON / "DFA_AuctionIntelligence.toc"
 
 MOCK = r"""
@@ -212,6 +213,23 @@ end
 -- The client hands the combat log over through one function; the test sets
 -- the tuple the client would return and fires the event.
 Enum = { LootSlotType = { Item = 1, Money = 2, Currency = 3 } }
+
+-- The interaction manager: modern clients open the auction house, the
+-- merchant, the mailbox and the guild bank through it, and report which one
+-- with an Enum.PlayerInteractionType.  Core.lua asks for the guild banker, so
+-- the numbers have to exist here or the guild-bank snapshot never fires.
+Enum.PlayerInteractionType = {
+    Merchant = 2, Auctioneer = 3, GuildBanker = 4, MailInfo = 5,
+}
+
+-- C_EventUtils.IsEventValid is how Core.lua decides between the modern and the
+-- legacy guild-bank event.  INVALID_EVENTS lets a test play the part of an
+-- older client that has never heard of an event; by default everything the
+-- addon asks for is valid, which is the modern client.
+INVALID_EVENTS = {}
+C_EventUtils = {
+    IsEventValid = function(name) return INVALID_EVENTS[name] ~= true end,
+}
 
 PLAYER_GUID = "Player-1465-0A1B2C3D"
 PET_GUID = nil
@@ -504,6 +522,40 @@ def main() -> int:
                        g.DFA_AUCTION_INTELLIGENCE_EXPORT.total_events == count(db.events),
                        str(g.DFA_AUCTION_INTELLIGENCE_EXPORT.total_events)))
 
+        # ------------------------------------ the guild-bank event choice
+        # The legacy GUILDBANKFRAME_OPENED is protected on a modern client.
+        # Registering it does not raise a catchable error the pcall can hide:
+        # the client prints
+        #   [ADDON_ACTION_FORBIDDEN] AddOn 'DFA_AuctionIntelligence' tried to
+        #   call the protected function 'UNKNOWN()'
+        # and blames the pcall line, so BugSack recorded it at Core.lua:109
+        # and the addon looked broken at load.
+        def registered_events():
+            for frame in g.FRAMES.values():
+                events = {frame.events[i] for i in range(1, len(frame.events) + 1)}
+                if "PLAYER_REGEN_ENABLED" in events:
+                    return events
+            return set()
+
+        events = registered_events()
+        checks.append(("the protected guild-bank event is not registered",
+                       "GUILDBANKFRAME_OPENED" not in events, str(sorted(events))))
+        checks.append(("the guild bank arrives through the interaction manager",
+                       "PLAYER_INTERACTION_MANAGER_FRAME_SHOW" in events, ""))
+
+        run.execute("""
+            GB_CALLS = 0
+            DFA_AI.Inventory.SnapshotOnGuildBank = function() GB_CALLS = GB_CALLS + 1 end
+        """)
+        fire("PLAYER_INTERACTION_MANAGER_FRAME_SHOW",
+             g.Enum.PlayerInteractionType.Merchant)
+        checks.append(("a merchant interaction is not a guild-bank snapshot",
+                       g.GB_CALLS == 0, str(g.GB_CALLS)))
+        fire("PLAYER_INTERACTION_MANAGER_FRAME_SHOW",
+             g.Enum.PlayerInteractionType.GuildBanker)
+        checks.append(("the guild banker interaction snapshots the guild bank",
+                       g.GB_CALLS == 1, str(g.GB_CALLS)))
+
         printed = " || ".join(g.PRINTED.values())
         checks.append(("the slash command reports the last sync",
                        "Last sync:" in printed and "postings=" in printed, ""))
@@ -512,6 +564,30 @@ def main() -> int:
     except LuaError as exc:
         print(f"EVENT FAILED: {exc}", file=sys.stderr)
         return 1
+
+    # ------------------------------------------------ the older client
+    # No interaction manager and no C_EventUtils: the legacy event is the only
+    # guild-bank signal such a client has, so the fallback must pick it rather
+    # than register a name the client has never heard of.
+    try:
+        classic = LuaRuntime(unpack_returned_tuples=True)
+        classic.execute(MOCK)
+        classic.execute("C_EventUtils = nil; Enum.PlayerInteractionType = nil")
+        classic.execute((ADDON / "Core.lua").read_text(encoding="utf-8"),
+                        name="Core.lua")
+        cg = classic.globals()
+        legacy = set()
+        for frame in cg.FRAMES.values():
+            for i in range(1, len(frame.events) + 1):
+                legacy.add(frame.events[i])
+        checks.append(("a client without the interaction manager gets the legacy event",
+                       "GUILDBANKFRAME_OPENED" in legacy, str(sorted(legacy))))
+        checks.append(("and the addon reports which signal it chose",
+                       str(cg.DFA_AI.guildBankEvent) == "GUILDBANKFRAME_OPENED",
+                       str(cg.DFA_AI.guildBankEvent)))
+    except LuaError as exc:
+        checks.append(("a client without the interaction manager gets the legacy event",
+                       False, f"LOAD FAILED: {exc}"))
 
     failed = 0
     for label, ok, detail in checks:

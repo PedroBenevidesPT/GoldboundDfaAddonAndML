@@ -219,9 +219,11 @@ def load_invoices(con: sqlite3.Connection, realm: str = "",
         sql += " AND LOWER(realm) = LOWER(?)"
         params.append(realm)
     sql += " ORDER BY seen_at, mail_id"
+    from woweconomy.dbcompat import missing_table_errors
+
     try:
         rows = con.execute(sql, params).fetchall()
-    except sqlite3.OperationalError:
+    except missing_table_errors():
         return []
     return [MailInvoice(
         mail_id=row["mail_id"], seen_at=int(row["seen_at"]),
@@ -240,8 +242,9 @@ def load_invoices(con: sqlite3.Connection, realm: str = "",
 
 
 def _sale_rows(tsm_db: Path | str, realm: str) -> Tuple[List[Dict[str, Any]], int]:
-    con = sqlite3.connect(str(tsm_db))
-    con.row_factory = sqlite3.Row
+    from woweconomy.dbcompat import connect_store, missing_table_errors
+
+    con = connect_store(tsm_db, readonly=True)
     try:
         columns = {row[1] for row in con.execute(
             "PRAGMA table_info(auction_intel_events)")}
@@ -266,7 +269,7 @@ def _sale_rows(tsm_db: Path | str, realm: str) -> Tuple[List[Dict[str, Any]], in
                 continue
             rows.append({key: row[key] for key in row.keys()})
         return rows, total
-    except sqlite3.OperationalError:
+    except missing_table_errors():
         return [], 0
     finally:
         con.close()
@@ -303,10 +306,12 @@ def link_buyers(con: sqlite3.Connection, tsm_db: Path | str,
     # attached to a sale must not be reused for a second sale that happens
     # to share its item, quantity and price.
     used_mail = set()
+    from woweconomy.dbcompat import missing_table_errors
+
     try:
         for row in con.execute("SELECT mail_id FROM sale_buyer_link"):
             used_mail.add(str(row[0]))
-    except sqlite3.OperationalError:
+    except missing_table_errors():
         used_mail = set()
     already_linked = 0
     by_key: Dict[Tuple[str, int, int], List[MailInvoice]] = {}
@@ -402,7 +407,11 @@ def link_buyers(con: sqlite3.Connection, tsm_db: Path | str,
     for _sale, inv, _buyer, _confidence in tentative:
         mail_use[inv.mail_id] = mail_use.get(inv.mail_id, 0) + 1
 
-    journal = sqlite3.connect(str(tsm_db))
+    # A write, so not read-only: on the stack the journal table is in the one
+    # Postgres database, where the workstation file does not exist.
+    from woweconomy.dbcompat import connect_store
+
+    journal = connect_store(tsm_db)
     try:
         for sale, inv, buyer, confidence in tentative:
             if mail_use.get(inv.mail_id, 0) > 1:

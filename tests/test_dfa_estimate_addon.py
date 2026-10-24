@@ -110,6 +110,19 @@ def test_the_bridge_fills_the_price_field_and_reseeds_it():
     bridge.ApplyEstimate(frame)                     # the hook calls OnPriceSet
     assert lua.globals().__calls.price == 1100     # our estimate reseeded it
 
+    # Auctionator also writes the price box itself -- its own price list, the
+    # minimum buyout it just found.  That text change is not the player, and
+    # treating it as a choice left the field holding Auctionator's price for
+    # the rest of the item.  No focus, so the estimate goes back in.
+    lua.execute("""
+        _G.__calls = {}
+        local f = _G.__frame
+        f.Price.MoneyInput.GoldBox:SetText('777')       -- Auctionator's min buyout
+    """)
+    assert bridge.GetLastFill().confirmed is True
+    assert lua.globals().__calls.price == 1100, \
+        "Auctionator's own price replaced the estimate without a click"
+
     # but a price the player chose after the fill must win.  This is the
     # real flow: typing (or clicking a row in Auctionator's price list)
     # raises OnTextChanged, Auctionator then writes the choice, and the
@@ -119,6 +132,7 @@ def test_the_bridge_fills_the_price_field_and_reseeds_it():
     lua.execute("""
         _G.__calls = {}
         local f = _G.__frame
+        f.Price.MoneyInput.GoldBox:SetFocus()           -- the player clicks in
         f.Price.MoneyInput.GoldBox:SetText('2000')      -- the player types
         f.UpdateSalesPrice(f, 2000)                     -- Auctionator writes it
         Addon.DFAEstimateAuctionator.OnPriceSet(f)      -- the hook fires
@@ -243,3 +257,113 @@ def test_the_installed_copy_matches_the_project_after_a_deploy():
     names = addon_manifest.toc_files(project / "DFA_Estimate.toc")
     for name in names:
         assert (project / name).read_bytes() == (installed / name).read_bytes(), name
+
+
+def test_the_shipped_baseline_dataset_is_not_silently_dropped():
+    """The current export marks every record "baseline_only". That status is a
+
+    model-lifecycle tag, not a visibility gate: the reader accepts it (the
+    tooltip only suppresses the fully-validated silence path), and the record
+    still carries a usable price. This is the test the empty panel needs -- it
+    proves the exported records are real, priced records the addon can read,
+    and not rows that the addon silently discards.
+    """
+    lua = woW_like_lua()
+    load_addon(lua)
+    addon = lua.globals().Addon.DFAEstimate
+
+    # the dataset the client would actually load from the shipped file
+    assert addon.data is not None, "the shipped dataset did not load"
+    realms = addon.data.realms or {}
+    assert realms, "the shipped dataset has no realm blocks"
+    realm_name = addon.GetRealmName()
+
+    # exactly the counts the shipped metadata claims; if either path drops rows
+    # the panel -- which iterates GetItems() -- would be empty on the user's
+    # realm without any error message, which is the bug this test guards.
+    #
+    # lupa hands a Lua table back as an object, not as a dict: `realms.get` does
+    # not exist, and `block.items` resolves to lupa's own method rather than the
+    # Lua field of that name.  Every read here goes through indexing.
+    shipped_total = 0
+    for _, block in realms.items():
+        block_items = block["items"]
+        shipped_total += len(list(block_items.keys())) if block_items else 0
+    assert shipped_total == addon.data.itemCount, (
+        f"the realm blocks carry {shipped_total} items but the metadata says "
+        f"{addon.data.itemCount}")
+
+    panel_items = addon.GetItems()
+    panel_count = len(list(panel_items.keys()))
+    realm_block = realms[realm_name]
+    assert realm_block is not None, (
+        f"the dataset carries no block for the player's realm {realm_name!r}")
+    shipped_realm_count = len(list(realm_block["items"].keys()))
+    assert panel_count == shipped_realm_count, (
+        f"GetItems() returned {panel_count} items but the realm block for "
+        f"{realm_name!r} has {shipped_realm_count} items")
+    assert panel_count > 0, (
+        f"the block for {realm_name!r} carries no priced items, so the panel "
+        "would be empty on this realm")
+    # a sample record from the player's realm, read through the public API.
+    sample_id = next(iter(panel_items.keys()))
+    record = addon.GetRecord(sample_id)
+    assert record is not None, f"GetRecord({sample_id}) returned nothing"
+    assert record.price and record.price > 0, (
+        f"the exported record for item {sample_id} has no usable price")
+
+    # the record is still priced through the addon's normal path, including for
+    # an item the realm has no recorded sale of (the model path).  This is the
+    # actual shape an item the player is posting takes, so it is the one that
+    # must survive the status tag.
+    estimate = addon.Estimate(sample_id)
+    assert estimate is not None, f"Estimate({sample_id}) returned nothing"
+    assert estimate.price and estimate.price > 0, (
+        f"Estimate({sample_id}) produced no usable price")
+    assert estimate.source in ("record", "model"), (
+        f"Estimate({sample_id}) returned an unexpected source: {estimate.source!r}")
+
+    # the visible status behavior: baseline_only is shown to the player, not
+    # swallowed. The tooltip translates it; the panel does not filter on it.
+    assert record.status == "baseline_only", (
+        "this export is the baseline_only case by construction; "
+        "if the dataset changes, revisit this assertion and the state name together"
+    )
+    # the tooltip registers on the shared Addon table, not on the core module
+    # this test holds in `addon`
+    tooltip_module = lua.globals().Addon.DFAEstimateTooltip
+    assert tooltip_module, "the tooltip module was not loaded"
+    tooltip = tooltip_module.GetLines(sample_id)
+    assert tooltip, "the tooltip module did not expose GetLines"
+    lines = list(tooltip.values())
+    assert any("item sale rate, no learned model" in str(line) for line in lines), (
+        "baseline_only must be presented by the tooltip, not hidden; "
+        f"lines={lines!r}"
+    )
+
+
+
+def test_lootappraiser_is_patched_in_place():
+    """LootAppraiser's own GetItemValue answers with the DfA value.
+
+    The runtime wrapper alone is not enough: it only fires for the
+    ``dfaestimate`` source on three item classes, so every other class fell
+    back to TSM.  The patch in ``PriceSources.lua`` is what makes the whole
+    session agree with the tooltip -- and a LootAppraiser update replaces that
+    file, which is what this test notices.
+    """
+    source = Path(r"C:/Program Files (x86)/World of Warcraft/_retail_"
+                  r"\Interface\AddOns\LootAppraiserReloaded\Core"
+                  r"\PriceSources.lua")
+    if not source.exists():
+        pytest.skip("LootAppraiser is not installed on this machine")
+    text = source.read_text(encoding="utf-8", errors="replace")
+    assert "local function DfaItemValue" in text, (
+        "the DfA pricing helper is gone -- a LootAppraiser update replaced "
+        "PriceSources.lua; re-apply it and re-run verify_lootappraiser_patch.py")
+    assert "PriceSources.dfaGetItemValuePatched = true" in text, (
+        "the patch marker is gone; without it the runtime wrapper installs "
+        "again and undoes the junk and commodity rules")
+    # the marker must be a field on the table: a Lua function has no table of
+    # its own, so `PriceSources.GetItemValue.__dfaPatched = true` raises at load
+    assert "PriceSources.GetItemValue.__dfa" not in text

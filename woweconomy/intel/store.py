@@ -1,9 +1,13 @@
 """Storage for the intelligence layer.
 
-One SQLite file (``data/intel.sqlite`` by default) next to -- never on top
-of -- ``tsm_markets.db``.  The journal and the TSM mirror are read-only
-inputs here; if this layer corrupts its own file the existing engine is
-unaffected.
+One store, on whichever backend is configured: Postgres in production, and
+``data/intel.sqlite`` on a workstation (next to -- never on top of --
+``tsm_markets.db``).  The journal and the TSM mirror are read-only inputs
+here; if this layer corrupts its own file the existing engine is unaffected.
+
+On Postgres Alembic owns the schema (``002_baseline`` plus the later
+revisions); this module only creates tables for SQLite, so there is one
+author of the shared schema rather than two that can drift.
 
 Every table carries its provenance:
 
@@ -22,7 +26,20 @@ from __future__ import annotations
 import sqlite3
 from pathlib import Path
 
-DEFAULT_DB = Path(r"C:\FarmAnalysis\data\intel.sqlite")
+
+def _default_db() -> Path:
+    """The workstation store, resolved against the project root.
+
+    A hardcoded ``C:\\...`` path is correct on one machine and impossible
+    everywhere else: inside the worker the project is at ``/app``.  The
+    environment override wins, then the project-relative default.
+    """
+    from woweconomy.dbcompat import project_path
+
+    return project_path("WOW_INTEL_DB", "data/intel.sqlite")
+
+
+DEFAULT_DB = _default_db()
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS ah_snapshot (
@@ -230,6 +247,50 @@ CREATE INDEX IF NOT EXISTS idx_undercut_realm_time
 CREATE INDEX IF NOT EXISTS idx_undercut_seller
     ON undercut_observation(lowest_seller);
 
+-- What was recommended for each listing, written before the outcome is
+-- known.  ``undercut_observation`` is the market picture; this is the
+-- advice, so a recommendation can later be judged instead of remembered.
+-- It is append-only in spirit: superseded rows stay in the table, and an
+-- outcome is written once.  See ``woweconomy/intel/decision_ledger.py``.
+CREATE TABLE IF NOT EXISTS relist_decision (
+    decision_id   TEXT PRIMARY KEY,
+    decided_at    INTEGER NOT NULL,
+    observed_at   INTEGER NOT NULL DEFAULT 0,
+    realm         TEXT NOT NULL DEFAULT '',
+    character     TEXT NOT NULL DEFAULT '',
+    scan_id       TEXT NOT NULL DEFAULT '',
+    own_auction_id INTEGER NOT NULL DEFAULT 0,
+    item_id       INTEGER NOT NULL DEFAULT 0,
+    item_name     TEXT NOT NULL DEFAULT '',
+    advice        TEXT NOT NULL,
+    reason        TEXT NOT NULL DEFAULT '',
+    reference_status TEXT NOT NULL DEFAULT '',
+    relation      TEXT NOT NULL DEFAULT '',
+    own_unit_price_copper INTEGER NOT NULL DEFAULT 0,
+    lowest_unit_price_copper INTEGER NOT NULL DEFAULT 0,
+    own_quantity  INTEGER NOT NULL DEFAULT 1,
+    gap_pct       REAL NOT NULL DEFAULT 0,
+    items_ahead   INTEGER NOT NULL DEFAULT 0,
+    hours_left    REAL,
+    suggested_ask_copper INTEGER,
+    market_json   TEXT NOT NULL DEFAULT '',
+    review_required INTEGER NOT NULL DEFAULT 0,
+    superseded    INTEGER NOT NULL DEFAULT 0,
+    outcome       TEXT NOT NULL DEFAULT 'open',
+    outcome_at    INTEGER,
+    outcome_source TEXT NOT NULL DEFAULT '',
+    outcome_price_copper INTEGER,
+    outcome_qty   INTEGER,
+    realised_copper INTEGER,
+    evidence      TEXT NOT NULL DEFAULT ''
+);
+CREATE INDEX IF NOT EXISTS idx_relist_decision_realm
+    ON relist_decision(realm, decided_at);
+CREATE INDEX IF NOT EXISTS idx_relist_decision_outcome
+    ON relist_decision(outcome, decided_at);
+CREATE INDEX IF NOT EXISTS idx_relist_decision_auction
+    ON relist_decision(realm, own_auction_id);
+
 CREATE TABLE IF NOT EXISTS sale_buyer_link (
     sale_event_id TEXT PRIMARY KEY,
     mail_id     TEXT NOT NULL,
@@ -381,13 +442,17 @@ def connect(db_path: Path | str = DEFAULT_DB) -> sqlite3.Connection:
     from woweconomy.dbcompat import backend as _backend, connect as _connect
 
     if _backend() == "postgres":
-        con = _connect(None)
-    else:
-        path = Path(db_path)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        con = sqlite3.connect(str(path))
-        con.row_factory = sqlite3.Row
-        con.execute("PRAGMA journal_mode=WAL")
+        # Alembic is the only author of the Postgres schema (revision
+        # ``006_relist_decision`` added the last table).  Running this
+        # SQLite-shaped script here as well made two creators: one that a
+        # migration could not see and one that could not see the migration.
+        return _connect(None)
+
+    path = Path(db_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    con = sqlite3.connect(str(path))
+    con.row_factory = sqlite3.Row
+    con.execute("PRAGMA journal_mode=WAL")
     con.executescript(SCHEMA)
     _ensure_column(con, "inventory_snapshot", "available_json",
                    "TEXT NOT NULL DEFAULT '[\"bags\",\"bank\",\"posted\"]'")

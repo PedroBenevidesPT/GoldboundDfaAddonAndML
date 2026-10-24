@@ -2,7 +2,7 @@
 ## Title: |cff00fe00DFA Estimate|r
 ## Notes: Reads the generated DfA pricing dataset and shows the estimate, its confidence and the evidence behind it.  Analysis only: it never posts, cancels, undercuts or reprices anything on its own.
 ## Author: DfA
-## Version: 2.0.3
+## Version: 2.0.4
 ## SavedVariables: DFA_ESTIMATE_DB
 ## OptionalDeps: Auctionator, LootAppraiserReloaded, MobInfo2
 

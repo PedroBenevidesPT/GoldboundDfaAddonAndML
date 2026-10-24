@@ -155,7 +155,66 @@ def test_an_undercut_digest_names_the_item_the_gap_and_the_action():
     assert "Thing" in digest[0].lines[0]
     assert "Under-Stormscale" in digest[0].lines[0]
     assert "cheapest is 20% below your ask" in digest[0].lines[0]
-    assert "relist=1" in digest[0].lines[-1]
+    body = "\n".join(digest[0].lines)
+    assert "relist=1" in body
+    # The reader is usually away from the game, so the digest says what to
+    # do rather than leaving a count to be interpreted.
+    assert "action:" in body
+    assert "cancel" in body.lower()
+
+
+def test_an_alert_always_carries_the_item_id_and_the_name():
+    """A name alone is ambiguous; an id alone is unreadable.  Send both."""
+    advice = {
+        "realm": "Dragonmaw",
+        "counts": {"cancel_and_relist": 1},
+        "advice": [{
+            "item_id": 12345, "item_name": "Thing",
+            "own_unit_price_copper": 10_000,
+            "lowest_unit_price_copper": 8_000, "gap_pct": 0.2,
+            "advice": "cancel_and_relist",
+        }],
+    }
+
+    line = alerts.undercut_alerts(advice)[0].lines[0]
+
+    assert "Thing" in line
+    assert "item 12345" in line
+
+
+def test_an_item_with_no_name_still_carries_its_id():
+    advice = {
+        "realm": "Dragonmaw",
+        "counts": {"cancel_and_relist": 1},
+        "advice": [{
+            "item_id": 999, "own_unit_price_copper": 10_000,
+            "lowest_unit_price_copper": 8_000, "gap_pct": 0.2,
+            "advice": "cancel_and_relist",
+        }],
+    }
+
+    line = alerts.undercut_alerts(advice)[0].lines[0]
+
+    assert "item 999" in line
+    assert "None" not in line
+
+
+def test_an_item_with_neither_does_not_print_a_question_mark():
+    """An unknown item is said plainly, not disguised as an id of '?'."""
+    advice = {
+        "realm": "Dragonmaw",
+        "counts": {"cancel_and_relist": 1},
+        "advice": [{
+            "own_unit_price_copper": 10_000,
+            "lowest_unit_price_copper": 8_000, "gap_pct": 0.2,
+            "advice": "cancel_and_relist",
+        }],
+    }
+
+    line = alerts.undercut_alerts(advice)[0].lines[0]
+
+    assert "unknown item" in line
+    assert "item ?" not in line
 
 
 def test_a_review_only_result_does_not_become_a_cancel_alert():
@@ -179,3 +238,37 @@ def test_a_review_only_result_does_not_become_a_cancel_alert():
     assert "no automatic relist" in digest[0].lines[0]
     assert "relist=0" in digest[0].lines[-1]
     assert "cancel_and_relist" not in "\n".join(digest[0].lines)
+
+
+def test_a_reset_alert_says_to_look_before_reposting():
+    """A reset moves the floor; cancelling into a falling price is the trap."""
+    resets = [{
+        "item_id": 12345, "previous_cheapest": 10_000,
+        "current_cheapest": 4_000, "jump_pct": -0.6, "supply_drop_pct": 0.8,
+    }]
+
+    alert = alerts.reset_alerts(resets, {12345: "Thing"}, "Dragonmaw")[0]
+
+    body = "\n".join(alert.lines)
+    assert "Thing (item 12345)" in body
+    assert "action:" in body
+    assert "before reposting" in body
+
+
+def test_an_inventory_alert_says_what_to_do():
+    alert = alerts.inventory_alerts(
+        {"unexplained_decrease_units": 120, "snapshot_id": 7}, "Dragonmaw")[0]
+
+    body = "\n".join(alert.lines)
+    assert "action:" in body
+    assert "bank" in body
+
+
+def test_a_failure_alert_says_where_to_look():
+    """A crit alert that only says 'failed' leaves the reader guessing."""
+    alert = alerts.error_alert("ah-fetch", "the API returned 503")
+
+    body = "\n".join(alert.lines)
+    assert "the API returned 503" in body
+    assert "action:" in body
+    assert "log" in body
